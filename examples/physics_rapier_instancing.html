@@ -18,18 +18,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RapierPhysics } from '@fourjs/core/addons/physics/RapierPhysics.js';
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import * as FOUR from 'fourjs';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RapierPhysics } from 'fourjs/addons/physics/RapierPhysics.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let physics, position;

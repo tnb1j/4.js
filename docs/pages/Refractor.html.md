@@ -23,7 +23,7 @@ scene.add( refractor );
 Refractor is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Refractor } from '@fourjs/core/addons/objects/Refractor.js';
+import { Refractor } from 'fourjs/addons/objects/Refractor.js';
 ```
 
 ## Constructor

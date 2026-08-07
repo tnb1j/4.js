@@ -3,7 +3,7 @@ import {
 	Object3D,
 	Quaternion,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 // Based on http://www.emagix.net/academic/mscs-project/item/camera-sync-with-css3-and-webgl-threejs
 
@@ -15,7 +15,7 @@ const _scale = new Vector3();
  * The base 3D object that is supported by {@link CSS3DRenderer}.
  *
  * @augments Object3D
- * @four_import import { CSS3DObject } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+ * @four_import import { CSS3DObject } from 'fourjs/addons/renderers/CSS3DRenderer.js';
  */
 class CSS3DObject extends Object3D {
 
@@ -88,7 +88,7 @@ class CSS3DObject extends Object3D {
  * DOM elements as sprites.
  *
  * @augments CSS3DObject
- * @four_import import { CSS3DSprite } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+ * @four_import import { CSS3DSprite } from 'fourjs/addons/renderers/CSS3DRenderer.js';
  */
 class CSS3DSprite extends CSS3DObject {
 
@@ -152,7 +152,7 @@ const _matrix2 = new Matrix4();
  * So `CSS3DRenderer` is just focused on ordinary DOM elements. These elements are wrapped into special
  * 3D objects ({@link CSS3DObject} or {@link CSS3DSprite}) and then added to the scene graph.
  *
- * @four_import import { CSS3DRenderer } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+ * @four_import import { CSS3DRenderer } from 'fourjs/addons/renderers/CSS3DRenderer.js';
  */
 class CSS3DRenderer {
 

@@ -15,7 +15,7 @@ tiles.registerPlugin( new TileCreasedNormalsPlugin( { creaseAngle: Math.PI / 6 }
 TileCreasedNormalsPlugin is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TileCreasedNormalsPlugin } from '@fourjs/core/addons/misc/TileCreasedNormalsPlugin.js';
+import { TileCreasedNormalsPlugin } from 'fourjs/addons/misc/TileCreasedNormalsPlugin.js';
 ```
 
 ## Constructor

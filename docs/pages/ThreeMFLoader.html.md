@@ -31,7 +31,7 @@ scene.add( object );
 ThreeMFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ThreeMFLoader } from '@fourjs/core/addons/loaders/3MFLoader.js';
+import { ThreeMFLoader } from 'fourjs/addons/loaders/3MFLoader.js';
 ```
 
 ## Constructor

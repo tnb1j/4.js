@@ -4,7 +4,7 @@ import {
 	Matrix4,
 	Vector3,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Tessellates the famous Utah teapot database by Martin Newell into triangles.
@@ -26,7 +26,7 @@ import {
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { TeapotGeometry } from '@fourjs/core/addons/geometries/TeapotGeometry.js';
+ * @four_import import { TeapotGeometry } from 'fourjs/addons/geometries/TeapotGeometry.js';
  */
 class TeapotGeometry extends BufferGeometry {
 

@@ -16,7 +16,7 @@ composer.addPass( smaaPass );
 SMAAPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SMAAPass } from '@fourjs/core/addons/postprocessing/SMAAPass.js';
+import { SMAAPass } from 'fourjs/addons/postprocessing/SMAAPass.js';
 ```
 
 ## Constructor

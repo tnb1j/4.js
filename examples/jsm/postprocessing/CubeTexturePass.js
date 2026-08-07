@@ -7,7 +7,7 @@ import {
 	ShaderLib,
 	ShaderMaterial,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass } from './Pass.js';
 
 /**
@@ -21,7 +21,7 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { CubeTexturePass } from '@fourjs/core/addons/postprocessing/CubeTexturePass.js';
+ * @four_import import { CubeTexturePass } from 'fourjs/addons/postprocessing/CubeTexturePass.js';
  */
 class CubeTexturePass extends Pass {
 

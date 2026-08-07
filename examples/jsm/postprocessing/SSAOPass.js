@@ -21,7 +21,7 @@ import {
 	Vector3,
 	WebGLRenderTarget,
 	ZeroFactor
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SimplexNoise } from '../math/SimplexNoise.js';
 import { SSAOBlurShader, SSAODepthShader, SSAOShader } from '../shaders/SSAOShader.js';
@@ -39,7 +39,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SSAOPass } from '@fourjs/core/addons/postprocessing/SSAOPass.js';
+ * @four_import import { SSAOPass } from 'fourjs/addons/postprocessing/SSAOPass.js';
  */
 class SSAOPass extends Pass {
 

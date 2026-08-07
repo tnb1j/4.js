@@ -1,9 +1,9 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
-import { HTMLMesh } from '@fourjs/core/addons/interactive/HTMLMesh.js';
-import { InteractiveGroup } from '@fourjs/core/addons/interactive/InteractiveGroup.js';
+import { HTMLMesh } from 'fourjs/addons/interactive/HTMLMesh.js';
+import { InteractiveGroup } from 'fourjs/addons/interactive/InteractiveGroup.js';
 
-import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
+import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
 
 class XR {
 

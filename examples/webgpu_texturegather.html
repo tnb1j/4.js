@@ -26,18 +26,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { If, vec4, uv, ivec2, texture, Fn } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { If, vec4, uv, ivec2, texture, Fn } from 'fourjs/tsl';
 
 			// WebGPU Backend
 			init();

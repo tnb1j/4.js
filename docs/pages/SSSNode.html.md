@@ -31,7 +31,7 @@ const sssBlur = boxBlur( sssPass.r, { size: 2, separation: 1 } ); // optional bl
 SSSNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { sss } from '@fourjs/core/addons/tsl/display/SSSNode.js';
+import { sss } from 'fourjs/addons/tsl/display/SSSNode.js';
 ```
 
 ## Constructor

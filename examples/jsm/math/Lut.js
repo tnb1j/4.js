@@ -2,7 +2,7 @@ import {
 	Color,
 	LinearSRGBColorSpace,
 	MathUtils
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Represents a lookup table for colormaps. It is used to determine the color
@@ -13,7 +13,7 @@ import {
  * const color = lut.getColor( 0.5 );
  * ```
  *
- * @four_import import { Lut } from '@fourjs/core/addons/math/Lut.js';
+ * @four_import import { Lut } from 'fourjs/addons/math/Lut.js';
  */
 class Lut {
 

@@ -7,7 +7,7 @@ import {
 	RGB_S3TC_DXT1_Format,
 	RGB_BPTC_SIGNED_Format,
 	RGB_BPTC_UNSIGNED_Format
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the S3TC texture compression format.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { DDSLoader } from '@fourjs/core/addons/loaders/DDSLoader.js';
+ * @four_import import { DDSLoader } from 'fourjs/addons/loaders/DDSLoader.js';
  */
 class DDSLoader extends CompressedTextureLoader {
 

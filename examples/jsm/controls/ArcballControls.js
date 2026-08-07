@@ -14,7 +14,7 @@ import {
 	Vector3,
 	Matrix4,
 	MathUtils
-} from '@fourjs/core';
+} from 'fourjs';
 
 //trackball state
 const STATE = {
@@ -107,7 +107,7 @@ const _EPS = 0.000001;
  * animation loop when animations are on.
  *
  * @augments Controls
- * @four_import import { ArcballControls } from '@fourjs/core/addons/controls/ArcballControls.js';
+ * @four_import import { ArcballControls } from 'fourjs/addons/controls/ArcballControls.js';
  */
 class ArcballControls extends Controls {
 

@@ -18,7 +18,7 @@ const wireframeGeometry = new WireframeGeometry2( geo );
 WireframeGeometry2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { WireframeGeometry2 } from '@fourjs/core/addons/lines/WireframeGeometry2.js';
+import { WireframeGeometry2 } from 'fourjs/addons/lines/WireframeGeometry2.js';
 ```
 
 ## Constructor

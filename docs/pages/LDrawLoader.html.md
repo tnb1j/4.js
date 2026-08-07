@@ -31,7 +31,7 @@ scene.add( object );
 LDrawLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LDrawLoader } from '@fourjs/core/addons/loaders/LDrawLoader.js';
+import { LDrawLoader } from 'fourjs/addons/loaders/LDrawLoader.js';
 ```
 
 ## Constructor

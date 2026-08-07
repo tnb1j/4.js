@@ -19,7 +19,7 @@ scene.add( object );
 AMFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AMFLoader } from '@fourjs/core/addons/loaders/AMFLoader.js';
+import { AMFLoader } from 'fourjs/addons/loaders/AMFLoader.js';
 ```
 
 ## Constructor

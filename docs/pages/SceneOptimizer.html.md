@@ -7,7 +7,7 @@ This class can be used to optimized scenes by converting individual meshes into 
 SceneOptimizer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SceneOptimizer } from '@fourjs/core/addons/utils/SceneOptimizer.js';
+import { SceneOptimizer } from 'fourjs/addons/utils/SceneOptimizer.js';
 ```
 
 ## Constructor

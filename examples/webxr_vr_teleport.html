@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { BoxLineGeometry } from '@fourjs/core/addons/geometries/BoxLineGeometry.js';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
+			import { BoxLineGeometry } from 'fourjs/addons/geometries/BoxLineGeometry.js';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
 
 			let camera, scene, raycaster, renderer;
 			let controller1, controller2;

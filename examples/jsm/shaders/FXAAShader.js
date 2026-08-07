@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module FXAAShader
- * @four_import import { FXAAShader } from '@fourjs/core/addons/shaders/FXAAShader.js';
+ * @four_import import { FXAAShader } from 'fourjs/addons/shaders/FXAAShader.js';
  */
 
 /**

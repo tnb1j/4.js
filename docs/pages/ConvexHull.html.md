@@ -9,7 +9,7 @@ This Quickhull 3D implementation is a port of [quickhull3d](https://github.com/m
 ConvexHull is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ConvexHull } from '@fourjs/core/addons/math/ConvexHull.js';
+import { ConvexHull } from 'fourjs/addons/math/ConvexHull.js';
 ```
 
 ## Constructor

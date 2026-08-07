@@ -1,5 +1,5 @@
-import { Color, NodeMaterial } from '@fourjs/core/webgpu';
-import { attribute, cameraProjectionMatrix, dot, float, Fn, modelViewMatrix, modelViewProjection, normalize, positionGeometry, sign, uniform, varyingProperty, vec2, vec4 } from '@fourjs/core/tsl';
+import { Color, NodeMaterial } from 'fourjs/webgpu';
+import { attribute, cameraProjectionMatrix, dot, float, Fn, modelViewMatrix, modelViewProjection, normalize, positionGeometry, sign, uniform, varyingProperty, vec2, vec4 } from 'fourjs/tsl';
 
 /**
  * A special line material for meshes loaded via {@link LDrawLoader}.
@@ -8,7 +8,7 @@ import { attribute, cameraProjectionMatrix, dot, float, Fn, modelViewMatrix, mod
  * import the class from `LDrawConditionalLineMaterial.js`.
  *
  * @augments NodeMaterial
- * @four_import import { LDrawConditionalLineMaterial } from '@fourjs/core/addons/materials/LDrawConditionalLineMaterial.js';
+ * @four_import import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
  */
 class LDrawConditionalLineMaterial extends NodeMaterial {
 

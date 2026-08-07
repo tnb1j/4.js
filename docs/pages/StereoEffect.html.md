@@ -9,7 +9,7 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 StereoEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { StereoEffect } from '@fourjs/core/addons/effects/StereoEffect.js';
+import { StereoEffect } from 'fourjs/addons/effects/StereoEffect.js';
 ```
 
 ## Constructor

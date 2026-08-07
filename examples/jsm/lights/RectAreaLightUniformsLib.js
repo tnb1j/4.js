@@ -1,4 +1,4 @@
-import { UniformsLib } from '@fourjs/core';
+import { UniformsLib } from 'fourjs';
 import { RectAreaLightTexturesLib } from './RectAreaLightTexturesLib.js';
 
 /**
@@ -12,7 +12,7 @@ import { RectAreaLightTexturesLib } from './RectAreaLightTexturesLib.js';
  * ```
  *
  * @hideconstructor
- * @four_import import { RectAreaLightUniformsLib } from '@fourjs/core/addons/lights/RectAreaLightUniformsLib.js';
+ * @four_import import { RectAreaLightUniformsLib } from 'fourjs/addons/lights/RectAreaLightUniformsLib.js';
  */
 class RectAreaLightUniformsLib {
 

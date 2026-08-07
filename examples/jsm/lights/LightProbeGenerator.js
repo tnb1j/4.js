@@ -10,13 +10,13 @@ import {
 	DataUtils,
 	WebGLCoordinateSystem,
 	FloatType
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Utility class for creating instances of {@link LightProbe}.
  *
  * @hideconstructor
- * @four_import import { LightProbeGenerator } from '@fourjs/core/addons/lights/LightProbeGenerator.js';
+ * @four_import import { LightProbeGenerator } from 'fourjs/addons/lights/LightProbeGenerator.js';
  */
 class LightProbeGenerator {
 

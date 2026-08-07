@@ -5,7 +5,7 @@
 Raymarching is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RaymarchingBox } from '@fourjs/core/addons/tsl/utils/Raymarching.js';
+import { RaymarchingBox } from 'fourjs/addons/tsl/utils/Raymarching.js';
 ```
 
 ## Static Methods

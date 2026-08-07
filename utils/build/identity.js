@@ -1,6 +1,6 @@
 const projectIdentity = Object.freeze( {
 	brand: '4.js',
-	packageName: '@fourjs/core',
+	packageName: 'fourjs',
 	sourcePrefix: 'Four',
 	outputPrefix: '4',
 	namespace: 'FOUR'

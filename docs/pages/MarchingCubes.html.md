@@ -9,7 +9,7 @@ Port of: [http://webglsamples.org/blob/blob.html](http://webglsamples.org/blob/b
 MarchingCubes is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MarchingCubes } from '@fourjs/core/addons/objects/MarchingCubes.js';
+import { MarchingCubes } from 'fourjs/addons/objects/MarchingCubes.js';
 ```
 
 ## Constructor

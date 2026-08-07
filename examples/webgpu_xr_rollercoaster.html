@@ -12,16 +12,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
 			import {
 				RollerCoasterGeometry,
@@ -29,9 +29,9 @@
 				RollerCoasterLiftersGeometry,
 				TreesGeometry,
 				SkyGeometry
-			} from '@fourjs/core/addons/misc/RollerCoaster.js';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
-			import { setupWebGLXRFallback } from '@fourjs/core/addons/webxr/WebGLXRFallback.js';
+			} from 'fourjs/addons/misc/RollerCoaster.js';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
+			import { setupWebGLXRFallback } from 'fourjs/addons/webxr/WebGLXRFallback.js';
 
 			let mesh, material, geometry;
 			let renderer;

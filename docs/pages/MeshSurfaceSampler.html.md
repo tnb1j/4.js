@@ -32,7 +32,7 @@ scene.add( mesh );
 MeshSurfaceSampler is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MeshSurfaceSampler } from '@fourjs/core/addons/math/MeshSurfaceSampler.js';
+import { MeshSurfaceSampler } from 'fourjs/addons/math/MeshSurfaceSampler.js';
 ```
 
 ## Constructor

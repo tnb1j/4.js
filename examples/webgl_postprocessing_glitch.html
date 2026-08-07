@@ -25,20 +25,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-			import { GlitchPass } from '@fourjs/core/addons/postprocessing/GlitchPass.js';
-			import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+			import { GlitchPass } from 'fourjs/addons/postprocessing/GlitchPass.js';
+			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
 
 			let camera, scene, renderer, composer;
 			let object, light;

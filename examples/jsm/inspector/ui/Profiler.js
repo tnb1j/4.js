@@ -1,4 +1,4 @@
-import { EventDispatcher } from '@fourjs/core';
+import { EventDispatcher } from 'fourjs';
 import { Style } from './Style.js';
 import { Graph } from './Graph.js';
 import { getItem, setItem } from '../Inspector.js';

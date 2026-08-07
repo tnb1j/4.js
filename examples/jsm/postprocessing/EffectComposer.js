@@ -4,7 +4,7 @@ import {
 	Timer,
 	Vector2,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { ShaderPass } from './ShaderPass.js';
 import { ClearMaskPass, MaskPass } from './MaskPass.js';
@@ -37,7 +37,7 @@ import { ClearMaskPass, MaskPass } from './MaskPass.js';
  * }
  * ```
  *
- * @four_import import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
+ * @four_import import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
  */
 class EffectComposer {
 

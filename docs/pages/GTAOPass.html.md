@@ -19,7 +19,7 @@ composer.addPass( gtaoPass );
 GTAOPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GTAOPass } from '@fourjs/core/addons/postprocessing/GTAOPass.js';
+import { GTAOPass } from 'fourjs/addons/postprocessing/GTAOPass.js';
 ```
 
 ## Constructor

@@ -32,7 +32,7 @@ sky.material.uniforms.showSunDisc.value = true;
 Sky is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Sky } from '@fourjs/core/addons/objects/Sky.js';
+import { Sky } from 'fourjs/addons/objects/Sky.js';
 ```
 
 ## Constructor

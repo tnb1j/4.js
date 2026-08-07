@@ -5,7 +5,7 @@
 GeometryUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as GeometryUtils from '@fourjs/core/addons/utils/GeometryUtils.js';
+import * as GeometryUtils from 'fourjs/addons/utils/GeometryUtils.js';
 ```
 
 ## Methods

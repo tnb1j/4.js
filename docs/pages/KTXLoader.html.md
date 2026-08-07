@@ -22,7 +22,7 @@ map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
 KTXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { KTXLoader } from '@fourjs/core/addons/loaders/KTXLoader.js';
+import { KTXLoader } from 'fourjs/addons/loaders/KTXLoader.js';
 ```
 
 ## Constructor

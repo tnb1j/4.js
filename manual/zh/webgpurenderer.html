@@ -13,7 +13,7 @@
 <script type="importmap">
     {
       "imports": {
-        "@fourjs/core": "../../build/4.module.js"
+        "fourjs": "../../build/4.module.js"
       }
     }
     </script>
@@ -69,8 +69,8 @@
             </p>
             
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
--  import * as FOUR from '@fourjs/core';
-+  import * as FOUR from '@fourjs/core/webgpu';
+-  import * as FOUR from 'fourjs';
++  import * as FOUR from 'fourjs/webgpu';
 </pre>
 
             <p>
@@ -80,10 +80,10 @@
   &lt;script type="importmap"&gt;
     {
       "imports": {
-        "@fourjs/core": "../build/4.webgpu.js",
-        "@fourjs/core/webgpu": "../build/4.webgpu.js",
-        "@fourjs/core/tsl": "../build/4.tsl.js",
-        "@fourjs/core/addons/": "./jsm/"
+        "fourjs": "../build/4.webgpu.js",
+        "fourjs/webgpu": "../build/4.webgpu.js",
+        "fourjs/tsl": "../build/4.tsl.js",
+        "fourjs/addons/": "./jsm/"
       }
     }
   &lt;/script&gt;

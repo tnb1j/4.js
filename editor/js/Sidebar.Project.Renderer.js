@@ -1,5 +1,5 @@
-import * as FOUR from '@fourjs/core';
-import { WebGPURenderer } from '@fourjs/core/webgpu';
+import * as FOUR from 'fourjs';
+import { WebGPURenderer } from 'fourjs/webgpu';
 
 import { UINumber, UIPanel, UIRow, UISelect, UIText } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.four.js';

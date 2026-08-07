@@ -9,7 +9,7 @@ This class is an alternative implementation of [FlyControls](FlyControls.html).
 FirstPersonControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FirstPersonControls } from '@fourjs/core/addons/controls/FirstPersonControls.js';
+import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
 ```
 
 ## Constructor

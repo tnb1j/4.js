@@ -5,7 +5,7 @@ import {
 	Matrix4,
 	Vector3,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Utility functions for parsing

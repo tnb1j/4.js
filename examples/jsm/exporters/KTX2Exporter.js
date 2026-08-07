@@ -14,7 +14,7 @@ import {
 	SRGBTransfer,
 	DataTexture,
 	REVISION,
-} from '@fourjs/core';
+} from 'fourjs';
 
 import {
 	createDefaultContainer,
@@ -135,7 +135,7 @@ const ERROR_COLOR_SPACE = 'FOUR.KTX2Exporter: Supported color spaces are SRGBCol
  * const result = await exporter.parse( dataTexture );
  * ```
  *
- * @four_import import { KTX2Exporter } from '@fourjs/core/addons/exporters/KTX2Exporter.js';
+ * @four_import import { KTX2Exporter } from 'fourjs/addons/exporters/KTX2Exporter.js';
  */
 export class KTX2Exporter {
 

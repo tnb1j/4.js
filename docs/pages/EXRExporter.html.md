@@ -16,7 +16,7 @@ const result = await exporter.parse( renderer, options );
 EXRExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { EXRExporter } from '@fourjs/core/addons/exporters/EXRExporter.js';
+import { EXRExporter } from 'fourjs/addons/exporters/EXRExporter.js';
 ```
 
 ## Constructor

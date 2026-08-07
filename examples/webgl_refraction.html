@@ -26,19 +26,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { Refractor } from '@fourjs/core/addons/objects/Refractor.js';
-			import { WaterRefractionShader } from '@fourjs/core/addons/shaders/WaterRefractionShader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { Refractor } from 'fourjs/addons/objects/Refractor.js';
+			import { WaterRefractionShader } from 'fourjs/addons/shaders/WaterRefractionShader.js';
 
 			let camera, scene, renderer, timer;
 

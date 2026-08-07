@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -61,7 +61,7 @@ pour régler les lumières. J'ai également supprimé le cube et la sphère
 qui étaient ajoutés à la scène.</p>
 <p>À partir de là, la première chose à faire est d'inclure le chargeur <a href="/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>
 dans notre script.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from '@fourjs/core/addons/loaders/OBJLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from 'fourjs/addons/loaders/OBJLoader.js';
 </pre>
 <p>Ensuite, pour charger le fichier .OBJ, nous créons une instance de <a href="/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>,
 lui passons l'URL de notre fichier .OBJ, et ajoutons un rappel qui
@@ -140,10 +140,10 @@ dans un sous-dossier appelé <strong>textures</strong>.</p>
 
 <p>Maintenant que les textures sont disponibles, nous pouvons charger le fichier .MTL.</p>
 <p>D'abord, nous devons inclure le <a href="/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> ;</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
-import {OBJLoader} from '@fourjs/core/addons/loaders/OBJLoader.js';
-+import {MTLLoader} from '@fourjs/core/addons/loaders/MTLLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
+import {OBJLoader} from 'fourjs/addons/loaders/OBJLoader.js';
++import {MTLLoader} from 'fourjs/addons/loaders/MTLLoader.js';
 </pre>
 <p>Ensuite, nous chargeons d'abord le fichier .MTL. Une fois le chargement terminé,
 nous ajoutons les matériaux tout juste chargés au <a href="/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> lui-même via la méthode <code class="notranslate" translate="no">setMaterials</code>,

@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -21,7 +21,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SSAARenderPass } from '@fourjs/core/addons/postprocessing/SSAARenderPass.js';
+ * @four_import import { SSAARenderPass } from 'fourjs/addons/postprocessing/SSAARenderPass.js';
  */
 class SSAARenderPass extends Pass {
 

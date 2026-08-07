@@ -9,7 +9,7 @@ Helper class to manage and display debug visuals for TileShadowNode.
 TileShadowNodeHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TileShadowNodeHelper } from '@fourjs/core/addons/tsl/shadows/TileShadowNodeHelper.js';
+import { TileShadowNodeHelper } from 'fourjs/addons/tsl/shadows/TileShadowNodeHelper.js';
 ```
 
 ## Constructor

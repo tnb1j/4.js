@@ -1,4 +1,4 @@
-import { Color, ColorManagement, LinearSRGBColorSpace } from '@fourjs/core';
+import { Color, ColorManagement, LinearSRGBColorSpace } from 'fourjs';
 import {
 	DisplayP3ColorSpace,
 	DisplayP3ColorSpaceImpl,

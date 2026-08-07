@@ -1,6 +1,6 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
-import { zipSync, strToU8 } from '@fourjs/core/addons/libs/fflate.module.js';
+import { zipSync, strToU8 } from 'fourjs/addons/libs/fflate.module.js';
 
 import { UIButton, UICheckbox, UIPanel, UIInput, UIRow, UIText } from './libs/ui.js';
 
@@ -122,13 +122,13 @@ function SidebarProjectApp( editor ) {
 			const IMPORTMAP = {
 				WebGLRenderer: {
 					imports: {
-						'@fourjs/core': './js/4.module.js'
+						'fourjs': './js/4.module.js'
 					}
 				},
 				WebGPURenderer: {
 					imports: {
-						'@fourjs/core': './js/4.webgpu.js',
-						'@fourjs/core/webgpu': './js/4.webgpu.js'
+						'fourjs': './js/4.webgpu.js',
+						'fourjs/webgpu': './js/4.webgpu.js'
 					}
 				}
 			};

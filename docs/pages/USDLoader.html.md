@@ -19,7 +19,7 @@ scene.add( model );
 USDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { USDLoader } from '@fourjs/core/addons/loaders/USDLoader.js';
+import { USDLoader } from 'fourjs/addons/loaders/USDLoader.js';
 ```
 
 ## Constructor

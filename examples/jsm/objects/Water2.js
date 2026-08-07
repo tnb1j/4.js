@@ -10,7 +10,7 @@ import {
 	UniformsUtils,
 	Vector2,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 import { Reflector } from '../objects/Reflector.js';
 import { Refractor } from '../objects/Refractor.js';
 
@@ -28,7 +28,7 @@ import { Refractor } from '../objects/Refractor.js';
  * - {@link http://graphicsrunner.blogspot.de/2010/08/water-using-flow-maps.html}
  *
  * @augments Mesh
- * @four_import import { Water } from '@fourjs/core/addons/objects/Water2.js';
+ * @four_import import { Water } from 'fourjs/addons/objects/Water2.js';
  */
 class Water extends Mesh {
 

@@ -1,13 +1,13 @@
 import {
 	Color,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Collection of toon shaders.
  *
  * @module TriangleBlurShader
- * @four_import import * as ToonShader from '@fourjs/core/addons/shaders/ToonShader.js';
+ * @four_import import * as ToonShader from 'fourjs/addons/shaders/ToonShader.js';
  */
 
 /**

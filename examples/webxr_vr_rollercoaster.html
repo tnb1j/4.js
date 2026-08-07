@@ -12,15 +12,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
 			import {
 				RollerCoasterGeometry,
@@ -28,8 +28,8 @@
 				RollerCoasterLiftersGeometry,
 				TreesGeometry,
 				SkyGeometry
-			} from '@fourjs/core/addons/misc/RollerCoaster.js';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+			} from 'fourjs/addons/misc/RollerCoaster.js';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
 
 			let mesh, material, geometry;
 

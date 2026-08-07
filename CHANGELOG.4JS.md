@@ -9,7 +9,7 @@ history remains attributable through [UPSTREAM.md](UPSTREAM.md).
 
 - Rebranded the canonical project, source entry points, documentation, examples,
   and generated bundles as 4.js.
-- Adopted `FOUR` as the native namespace and `@fourjs/core` as the package name.
+- Adopted `FOUR` as the native namespace and `fourjs` as the package name.
 - Added native `4.*` builds and compatibility `three.*` builds from one source.
 - Added migration tooling for package names, namespaces, import maps, and build
   filenames.

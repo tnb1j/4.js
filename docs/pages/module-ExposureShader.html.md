@@ -5,7 +5,7 @@
 ExposureShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ExposureShader } from '@fourjs/core/addons/shaders/ExposureShader.js';
+import { ExposureShader } from 'fourjs/addons/shaders/ExposureShader.js';
 ```
 
 ## Properties

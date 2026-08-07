@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { color, fog, rangeFogFactor, checker, uv, mix, texture, lights, normalMap } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { color, fog, rangeFogFactor, checker, uv, mix, texture, lights, normalMap } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { TeapotGeometry } from '@fourjs/core/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { TeapotGeometry } from 'fourjs/addons/geometries/TeapotGeometry.js';
 
 			let camera, scene, renderer,
 				light1, light2, light3, light4,

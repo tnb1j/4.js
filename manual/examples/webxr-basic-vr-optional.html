@@ -32,16 +32,16 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+import * as FOUR from 'fourjs';
+import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
 function main() {
 

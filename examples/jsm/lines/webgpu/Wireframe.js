@@ -4,7 +4,7 @@ import {
 	Line2NodeMaterial,
 	Mesh,
 	Vector3
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
 import { LineSegmentsGeometry } from '../LineSegmentsGeometry.js';
 
@@ -18,7 +18,7 @@ const _end = new Vector3();
  * import the class from `lines/Wireframe.js`.
  *
  * @augments Mesh
- * @four_import import { Wireframe } from '@fourjs/core/addons/lines/webgpu/Wireframe.js';
+ * @four_import import { Wireframe } from 'fourjs/addons/lines/webgpu/Wireframe.js';
  */
 class Wireframe extends Mesh {
 

@@ -26,22 +26,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { pass, mrt, packNormalToRGB, normalView, screenUV, context, sample, unpackRGBToNormal } from '@fourjs/core/tsl';
-			import { outline } from '@fourjs/core/addons/tsl/display/OutlineNode.js';
-			import { ao } from '@fourjs/core/addons/tsl/display/GTAONode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { pass, mrt, packNormalToRGB, normalView, screenUV, context, sample, unpackRGBToNormal } from 'fourjs/tsl';
+			import { outline } from 'fourjs/addons/tsl/display/OutlineNode.js';
+			import { ao } from 'fourjs/addons/tsl/display/GTAONode.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, light;
 			let generateMeshes = true;

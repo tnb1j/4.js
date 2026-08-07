@@ -12,7 +12,7 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { MaskPass } from '@fourjs/core/addons/postprocessing/MaskPass.js';
+ * @four_import import { MaskPass } from 'fourjs/addons/postprocessing/MaskPass.js';
  */
 class MaskPass extends Pass {
 

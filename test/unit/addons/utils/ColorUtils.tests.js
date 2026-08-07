@@ -1,4 +1,4 @@
-import { Color, ColorManagement } from '@fourjs/core';
+import { Color, ColorManagement } from 'fourjs';
 import * as ColorUtils from '../../../../examples/jsm/utils/ColorUtils.js';
 
 export default QUnit.module( 'Addons', () => {

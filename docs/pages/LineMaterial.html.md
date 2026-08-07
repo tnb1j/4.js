@@ -13,7 +13,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 LineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LineMaterial } from '@fourjs/core/addons/lines/LineMaterial.js';
+import { LineMaterial } from 'fourjs/addons/lines/LineMaterial.js';
 ```
 
 ## Constructor

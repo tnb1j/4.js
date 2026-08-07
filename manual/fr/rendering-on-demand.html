@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -35,8 +35,8 @@ requestAnimationFrame(render);
 <p>La façon la plus évidente de résoudre ce problème est de rendre une fois au début, puis de ne rendre que lorsque quelque chose change. Les changements incluent le chargement final des textures ou des modèles, l'arrivée de données depuis une source externe, l'ajustement d'un paramètre par l'utilisateur, le changement de caméra ou d'autres entrées pertinentes.</p>
 <p>Prenons un exemple de <a href="responsive.html">l'article sur la réactivité</a> et modifions-le pour qu'il rende à la demande.</p>
 <p>D'abord, nous allons ajouter les <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> afin qu'il y ait quelque chose qui puisse changer et auquel nous puissions réagir en rendant.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-+import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
++import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 </pre>
 <p>et les configurer</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
@@ -143,9 +143,9 @@ render();
 
 <p></p>
 <p>Ajoutons également une simple GUI lil-gui et faisons en sorte que ses modifications rendent à la demande.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
-+import {GUI} from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
++import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>Permettons de définir la couleur et l'échelle x de chaque cube. Pour pouvoir définir la couleur, nous utiliserons le <code class="notranslate" translate="no">ColorGUIHelper</code> que nous avons créé dans <a href="lights.html">l'article sur les lumières</a>.</p>
 <p>Tout d'abord, nous devons créer une GUI</p>

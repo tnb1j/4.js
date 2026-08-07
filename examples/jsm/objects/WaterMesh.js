@@ -3,9 +3,9 @@ import {
 	Mesh,
 	Vector3,
 	NodeMaterial
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
-import { Fn, add, cameraPosition, div, normalize, positionWorld, sub, time, texture, vec2, max, dot, reflect, pow, length, float, uniform, reflector, mul, mix } from '@fourjs/core/tsl';
+import { Fn, add, cameraPosition, div, normalize, positionWorld, sub, time, texture, vec2, max, dot, reflect, pow, length, float, uniform, reflector, mul, mix } from 'fourjs/tsl';
 
 /**
  * A basic flat, reflective water effect.
@@ -20,7 +20,7 @@ import { Fn, add, cameraPosition, div, normalize, positionWorld, sub, time, text
  * - [Water shader explanations in WebGL](http://29a.ch/slides/2012/webglwater/ )
  *
  * @augments Mesh
- * @four_import import { WaterMesh } from '@fourjs/core/addons/objects/WaterMesh.js';
+ * @four_import import { WaterMesh } from 'fourjs/addons/objects/WaterMesh.js';
  */
 class WaterMesh extends Mesh {
 

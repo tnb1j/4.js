@@ -6,7 +6,7 @@ import {
 	MeshStandardMaterial,
 	PointLight,
 	Scene,
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * This class represents a scene with a very basic room setup that can be used as
@@ -26,7 +26,7 @@ import {
  * ```
  *
  * @augments Scene
- * @four_import import { DebugEnvironment } from '@fourjs/core/addons/environments/DebugEnvironment.js';
+ * @four_import import { DebugEnvironment } from 'fourjs/addons/environments/DebugEnvironment.js';
  */
 class DebugEnvironment extends Scene {
 

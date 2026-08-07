@@ -19,26 +19,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
-			import { Octree } from '@fourjs/core/addons/math/Octree.js';
-			import { OctreeHelper } from '@fourjs/core/addons/helpers/OctreeHelper.js';
+			import { Octree } from 'fourjs/addons/math/Octree.js';
+			import { OctreeHelper } from 'fourjs/addons/helpers/OctreeHelper.js';
 
-			import { Capsule } from '@fourjs/core/addons/math/Capsule.js';
+			import { Capsule } from 'fourjs/addons/math/Capsule.js';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 			const timer = new FOUR.Timer();
 			timer.connect( document );

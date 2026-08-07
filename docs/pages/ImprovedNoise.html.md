@@ -9,7 +9,7 @@ The code is based on [IMPROVED NOISE](https://cs.nyu.edu/~perlin/noise/) by Ken 
 ImprovedNoise is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ImprovedNoise } from '@fourjs/core/addons/math/ImprovedNoise.js';
+import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
 ```
 
 ## Constructor

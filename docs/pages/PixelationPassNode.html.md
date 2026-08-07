@@ -9,7 +9,7 @@ A special render pass node that renders the scene with a pixelation effect.
 PixelationPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { pixelationPass } from '@fourjs/core/addons/tsl/display/PixelationPassNode.js';
+import { pixelationPass } from 'fourjs/addons/tsl/display/PixelationPassNode.js';
 ```
 
 ## Constructor

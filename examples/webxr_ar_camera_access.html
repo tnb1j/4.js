@@ -17,16 +17,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { ARButton } from '@fourjs/core/addons/webxr/ARButton.js';
+			import * as FOUR from 'fourjs';
+			import { ARButton } from 'fourjs/addons/webxr/ARButton.js';
 
 			const timer = new FOUR.Timer();
 			timer.connect( document );

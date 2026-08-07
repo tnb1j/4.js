@@ -25,8 +25,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../../build/4.module.js",
-					"@fourjs/core/addons/": "../../examples/jsm/"
+					"fourjs": "../../build/4.module.js",
+					"fourjs/addons/": "../../examples/jsm/"
 				}
 			}
 		</script>
@@ -71,10 +71,10 @@
 				Vector3,
 				WireframeGeometry,
 				WebGLRenderer
-			} from '@fourjs/core';
+			} from 'fourjs';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
 			const twoPi = Math.PI * 2;
 

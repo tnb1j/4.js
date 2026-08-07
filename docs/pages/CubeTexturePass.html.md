@@ -17,7 +17,7 @@ composer.addPass( cubeTexturePass );
 CubeTexturePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CubeTexturePass } from '@fourjs/core/addons/postprocessing/CubeTexturePass.js';
+import { CubeTexturePass } from 'fourjs/addons/postprocessing/CubeTexturePass.js';
 ```
 
 ## Constructor

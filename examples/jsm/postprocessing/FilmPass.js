@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { FilmShader } from '../shaders/FilmShader.js';
 
@@ -14,7 +14,7 @@ import { FilmShader } from '../shaders/FilmShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { FilmPass } from '@fourjs/core/addons/postprocessing/FilmPass.js';
+ * @four_import import { FilmPass } from 'fourjs/addons/postprocessing/FilmPass.js';
  */
 class FilmPass extends Pass {
 

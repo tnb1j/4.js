@@ -23,29 +23,29 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
-			import { uniform, refract, div, frameId, lightViewPosition, float, positionView, positionViewDirection, screenUV, pass, texture3D, time, screenCoordinate, normalView, texture, Fn, vec2, vec3 } from '@fourjs/core/tsl';
+			import { uniform, refract, div, frameId, lightViewPosition, float, positionView, positionViewDirection, screenUV, pass, texture3D, time, screenCoordinate, normalView, texture, Fn, vec2, vec3 } from 'fourjs/tsl';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
-			import { ImprovedNoise } from '@fourjs/core/addons/math/ImprovedNoise.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { bayer16 } from '@fourjs/core/addons/tsl/math/Bayer.js';
-			import { bloom } from '@fourjs/core/addons/tsl/display/BloomNode.js';
+			import { bayer16 } from 'fourjs/addons/tsl/math/Bayer.js';
+			import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
 
 			let camera, scene, renderer, controls;
 			let renderPipeline;

@@ -1,4 +1,4 @@
-import { float, Fn, vec2, uv, sin, rand, degrees, cos, Loop, vec4, premultiplyAlpha, unpremultiplyAlpha, convertToTexture, nodeObject } from '@fourjs/core/tsl';
+import { float, Fn, vec2, uv, sin, rand, degrees, cos, Loop, vec4, premultiplyAlpha, unpremultiplyAlpha, convertToTexture, nodeObject } from 'fourjs/tsl';
 
 /**
  * Applies a hash blur effect to the given texture node.

@@ -12,7 +12,7 @@
  * support this type of session, it uses an immersive VR session.
  *
  * @hideconstructor
- * @four_import import { XRButton } from '@fourjs/core/addons/webxr/XRButton.js';
+ * @four_import import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
  */
 class XRButton {
 

@@ -6,7 +6,7 @@ import {
 	RGBAFormat,
 	ShaderMaterial,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 
 import { FullScreenQuad } from '../postprocessing/Pass.js';
 
@@ -99,7 +99,7 @@ import { FullScreenQuad } from '../postprocessing/Pass.js';
  * gpuCompute.doRenderTarget( myFilter2, outputRenderTarget );
  * ```
  *
- * @four_import import { GPUComputationRenderer } from '@fourjs/core/addons/misc/GPUComputationRenderer.js';
+ * @four_import import { GPUComputationRenderer } from 'fourjs/addons/misc/GPUComputationRenderer.js';
  */
 class GPUComputationRenderer {
 

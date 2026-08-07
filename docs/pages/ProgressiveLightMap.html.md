@@ -13,7 +13,7 @@ This class can only be used with [WebGLRenderer](WebGLRenderer.html). When using
 ProgressiveLightMap is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ProgressiveLightMap } from '@fourjs/core/addons/misc/ProgressiveLightMap.js';
+import { ProgressiveLightMap } from 'fourjs/addons/misc/ProgressiveLightMap.js';
 ```
 
 ## Constructor

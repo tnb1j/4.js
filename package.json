@@ -1,10 +1,22 @@
 {
-  "name": "@fourjs/core",
+  "name": "fourjs",
   "version": "0.185.1-four.0",
   "description": "4.js is an enhanced JavaScript 3D library based on Three.js r185",
+  "homepage": "https://github.com/tnb1j/4.js#readme",
+  "bugs": {
+    "url": "https://github.com/tnb1j/4.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tnb1j/4.js.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "preview"
+  },
   "type": "module",
   "bin": {
-    "four-migrate": "./utils/migrate/cli.js"
+    "four-migrate": "utils/migrate/cli.js"
   },
   "main": "./build/4.cjs",
   "module": "./build/4.module.js",

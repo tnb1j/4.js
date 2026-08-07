@@ -28,7 +28,7 @@ composer.addPass( halftonePass );
 HalftonePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HalftonePass } from '@fourjs/core/addons/postprocessing/HalftonePass.js';
+import { HalftonePass } from 'fourjs/addons/postprocessing/HalftonePass.js';
 ```
 
 ## Constructor

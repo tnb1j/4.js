@@ -3,7 +3,7 @@ import {
 	Loader,
 	Matrix4,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 import { gunzipSync } from '../libs/fflate.module.js';
 import { Volume } from '../misc/Volume.js';
 
@@ -16,7 +16,7 @@ import { Volume } from '../misc/Volume.js';
  * ```
  *
  * @augments Loader
- * @four_import import { NRRDLoader } from '@fourjs/core/addons/loaders/NRRDLoader.js';
+ * @four_import import { NRRDLoader } from 'fourjs/addons/loaders/NRRDLoader.js';
  */
 class NRRDLoader extends Loader {
 

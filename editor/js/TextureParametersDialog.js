@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 import { UIButton, UICheckbox, UIDiv, UINumber, UIRow, UISelect, UIText } from './libs/ui.js';
 import { renderToCanvas } from './libs/ui.four.js';

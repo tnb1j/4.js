@@ -9,7 +9,7 @@ Post processing node for creating a gaussian blur effect.
 GaussianBlurNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { gaussianBlur, premultipliedGaussianBlur } from '@fourjs/core/addons/tsl/display/GaussianBlurNode.js';
+import { gaussianBlur, premultipliedGaussianBlur } from 'fourjs/addons/tsl/display/GaussianBlurNode.js';
 ```
 
 ## Constructor

@@ -24,7 +24,7 @@ scene.add( line );
 Line2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Line2 } from '@fourjs/core/addons/lines/Line2.js';
+import { Line2 } from 'fourjs/addons/lines/Line2.js';
 ```
 
 ## Constructor

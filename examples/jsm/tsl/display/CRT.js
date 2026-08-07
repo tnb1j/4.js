@@ -1,4 +1,4 @@
-import { Fn, float, vec2, vec3, sin, screenUV, mix, clamp, dot, convertToTexture, time, uv, select } from '@fourjs/core/tsl';
+import { Fn, float, vec2, vec3, sin, screenUV, mix, clamp, dot, convertToTexture, time, uv, select } from 'fourjs/tsl';
 import { circle } from './Shape.js';
 
 /**

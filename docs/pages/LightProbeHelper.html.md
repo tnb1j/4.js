@@ -18,7 +18,7 @@ scene.add( helper );
 LightProbeHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LightProbeHelper } from '@fourjs/core/addons/helpers/LightProbeHelper.js';
+import { LightProbeHelper } from 'fourjs/addons/helpers/LightProbeHelper.js';
 ```
 
 ## Constructor

@@ -7,7 +7,7 @@ This class can project a given scene in 3D space into a 2D representation used f
 Projector is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Projector } from '@fourjs/core/addons/renderers/Projector.js';
+import { Projector } from 'fourjs/addons/renderers/Projector.js';
 ```
 
 ## Constructor

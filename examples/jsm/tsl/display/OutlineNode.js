@@ -1,5 +1,5 @@
-import { DepthTexture, FloatType, RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, SpriteNodeMaterial, RendererUtils, NodeUpdateType } from '@fourjs/core/webgpu';
-import { Loop, int, exp, min, float, mul, uv, vec2, vec3, Fn, textureSize, orthographicDepthToViewZ, screenUV, nodeObject, uniform, vec4, passTexture, texture, perspectiveDepthToViewZ, positionView, reference, color } from '@fourjs/core/tsl';
+import { DepthTexture, FloatType, RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, SpriteNodeMaterial, RendererUtils, NodeUpdateType } from 'fourjs/webgpu';
+import { Loop, int, exp, min, float, mul, uv, vec2, vec3, Fn, textureSize, orthographicDepthToViewZ, screenUV, nodeObject, uniform, vec4, passTexture, texture, perspectiveDepthToViewZ, positionView, reference, color } from 'fourjs/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -40,7 +40,7 @@ let _rendererState;
  * ```
  *
  * @augments TempNode
- * @four_import import { outline } from '@fourjs/core/addons/tsl/display/OutlineNode.js';
+ * @four_import import { outline } from 'fourjs/addons/tsl/display/OutlineNode.js';
  */
 class OutlineNode extends TempNode {
 

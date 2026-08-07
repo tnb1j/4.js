@@ -1,5 +1,5 @@
-import { HalfFloatType, RenderTarget, Vector2, Vector3, TempNode, QuadMesh, NodeMaterial, RendererUtils, NodeUpdateType } from '@fourjs/core/webgpu';
-import { nodeObject, Fn, float, uv, passTexture, uniform, Loop, texture, luminance, smoothstep, mix, vec4, uniformArray, add, int } from '@fourjs/core/tsl';
+import { HalfFloatType, RenderTarget, Vector2, Vector3, TempNode, QuadMesh, NodeMaterial, RendererUtils, NodeUpdateType } from 'fourjs/webgpu';
+import { nodeObject, Fn, float, uv, passTexture, uniform, Loop, texture, luminance, smoothstep, mix, vec4, uniformArray, add, int } from 'fourjs/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -49,7 +49,7 @@ const luminosityHighPass = Fn( ( { input, threshold, smoothWidth } ) => {
  * renderPipeline.outputNode = scenePassColor.add( bloomPass );
  * ```
  * @augments TempNode
- * @four_import import { bloom } from '@fourjs/core/addons/tsl/display/BloomNode.js';
+ * @four_import import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
  */
 class BloomNode extends TempNode {
 

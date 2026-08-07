@@ -11,7 +11,7 @@ Reference: [https://gpuopen.com/fidelityfx-superresolution/](https://gpuopen.com
 SharpenNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { sharpen } from '@fourjs/core/webgpu';
+import { sharpen } from 'fourjs/webgpu';
 ```
 
 ## Constructor

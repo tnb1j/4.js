@@ -22,7 +22,7 @@ light.add( lensflare );
 LensflareMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LensflareMesh } from '@fourjs/core/addons/objects/LensflareMesh.js';
+import { LensflareMesh } from 'fourjs/addons/objects/LensflareMesh.js';
 ```
 
 ## Constructor

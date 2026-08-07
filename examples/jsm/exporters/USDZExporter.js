@@ -3,7 +3,7 @@ import {
 	DoubleSide,
 	Color,
 	PropertyBinding,
-} from '@fourjs/core';
+} from 'fourjs';
 
 import {
 	strToU8,
@@ -133,7 +133,7 @@ class USDNode {
  * const arraybuffer = await exporter.parseAsync( scene );
  * ```
  *
- * @four_import import { USDZExporter } from '@fourjs/core/addons/exporters/USDZExporter.js';
+ * @four_import import { USDZExporter } from 'fourjs/addons/exporters/USDZExporter.js';
  */
 class USDZExporter {
 

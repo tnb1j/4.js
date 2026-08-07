@@ -9,7 +9,7 @@ Represents an Oculus hand model.
 OculusHandModel is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OculusHandModel } from '@fourjs/core/addons/webxr/OculusHandModel.js';
+import { OculusHandModel } from 'fourjs/addons/webxr/OculusHandModel.js';
 ```
 
 ## Constructor

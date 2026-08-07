@@ -7,7 +7,7 @@ This class has been made to hold a slice of a volume data.
 VolumeSlice is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VolumeSlice } from '@fourjs/core/addons/misc/VolumeSlice.js';
+import { VolumeSlice } from 'fourjs/addons/misc/VolumeSlice.js';
 ```
 
 ## Constructor

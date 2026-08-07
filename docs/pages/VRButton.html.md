@@ -13,7 +13,7 @@ document.body.appendChild( VRButton.createButton( renderer ) );
 VRButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
 ```
 
 ## Properties

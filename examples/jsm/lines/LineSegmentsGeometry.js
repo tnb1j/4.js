@@ -7,7 +7,7 @@ import {
 	Sphere,
 	Vector3,
 	WireframeGeometry
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _box = new Box3();
 const _vector = new Vector3();
@@ -18,7 +18,7 @@ const _vector = new Vector3();
  * This is used in {@link LineSegments2} to describe the shape.
  *
  * @augments InstancedBufferGeometry
- * @four_import import { LineSegmentsGeometry } from '@fourjs/core/addons/lines/LineSegmentsGeometry.js';
+ * @four_import import { LineSegmentsGeometry } from 'fourjs/addons/lines/LineSegmentsGeometry.js';
  */
 class LineSegmentsGeometry extends InstancedBufferGeometry {
 

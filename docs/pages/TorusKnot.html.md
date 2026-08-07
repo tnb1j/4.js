@@ -9,7 +9,7 @@ A torus knot.
 TorusKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TorusKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+import { TorusKnot } from 'fourjs/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

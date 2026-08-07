@@ -1,6 +1,6 @@
 import {
 	ExtrudeGeometry
-} from '@fourjs/core';
+} from 'fourjs';
 
 import { Font } from '../loaders/FontLoader.js';
 
@@ -25,7 +25,7 @@ import { Font } from '../loaders/FontLoader.js';
  * ```
  *
  * @augments ExtrudeGeometry
- * @four_import import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
+ * @four_import import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
  */
 class TextGeometry extends ExtrudeGeometry {
 

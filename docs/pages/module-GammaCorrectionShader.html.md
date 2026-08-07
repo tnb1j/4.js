@@ -5,7 +5,7 @@
 GammaCorrectionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GammaCorrectionShader } from '@fourjs/core/addons/shaders/GammaCorrectionShader.js';
+import { GammaCorrectionShader } from 'fourjs/addons/shaders/GammaCorrectionShader.js';
 ```
 
 ## Properties

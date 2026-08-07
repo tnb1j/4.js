@@ -9,7 +9,7 @@ The ASCII generation is based on [jsascii](https://github.com/hassadee/jsascii/b
 AsciiEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AsciiEffect } from '@fourjs/core/addons/effects/AsciiEffect.js';
+import { AsciiEffect } from 'fourjs/addons/effects/AsciiEffect.js';
 ```
 
 ## Constructor

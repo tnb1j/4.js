@@ -5,7 +5,7 @@
 SubsurfaceScatteringShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SubsurfaceScatteringShader } from '@fourjs/core/addons/shaders/SubsurfaceScatteringShader.js';
+import { SubsurfaceScatteringShader } from 'fourjs/addons/shaders/SubsurfaceScatteringShader.js';
 ```
 
 ## Properties

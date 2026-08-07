@@ -17,7 +17,7 @@ scene.add( kmz.scene );
 KMZLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { KMZLoader } from '@fourjs/core/addons/loaders/KMZLoader.js';
+import { KMZLoader } from 'fourjs/addons/loaders/KMZLoader.js';
 ```
 
 ## Constructor

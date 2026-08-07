@@ -3,7 +3,7 @@ import {
 	MathUtils,
 	Spherical,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _lookDirection = new Vector3();
 const _spherical = new Spherical();
@@ -15,7 +15,7 @@ const _targetVelocity = new Vector3();
  * This class is an alternative implementation of {@link FlyControls}.
  *
  * @augments Controls
- * @four_import import { FirstPersonControls } from '@fourjs/core/addons/controls/FirstPersonControls.js';
+ * @four_import import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
  */
 class FirstPersonControls extends Controls {
 

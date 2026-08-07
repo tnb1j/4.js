@@ -9,7 +9,7 @@ A procedural sky geometry.
 SkyGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SkyGeometry } from '@fourjs/core/addons/misc/RollerCoaster.js';
+import { SkyGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor

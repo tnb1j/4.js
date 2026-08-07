@@ -11,7 +11,7 @@ The renderer is very useful if you want to combine HTML based labels with 3D obj
 CSS2DRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSS2DRenderer } from '@fourjs/core/addons/renderers/CSS2DRenderer.js';
+import { CSS2DRenderer } from 'fourjs/addons/renderers/CSS2DRenderer.js';
 ```
 
 ## Constructor

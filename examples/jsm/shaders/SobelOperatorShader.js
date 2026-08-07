@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module SobelOperatorShader
- * @four_import import { SobelOperatorShader } from '@fourjs/core/addons/shaders/SobelOperatorShader.js';
+ * @four_import import { SobelOperatorShader } from 'fourjs/addons/shaders/SobelOperatorShader.js';
  */
 
 /**

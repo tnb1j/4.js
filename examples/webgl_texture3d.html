@@ -18,19 +18,19 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@fourjs/core": "../build/4.module.js",
-				"@fourjs/core/addons/": "./jsm/"
+				"fourjs": "../build/4.module.js",
+				"fourjs/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@fourjs/core';
+		import * as FOUR from 'fourjs';
 
-		import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-		import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-		import { NRRDLoader } from '@fourjs/core/addons/loaders/NRRDLoader.js';
-		import { VolumeRenderShader1 } from '@fourjs/core/addons/shaders/VolumeShader.js';
+		import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+		import { NRRDLoader } from 'fourjs/addons/loaders/NRRDLoader.js';
+		import { VolumeRenderShader1 } from 'fourjs/addons/shaders/VolumeShader.js';
 
 		let renderer,
 			scene,

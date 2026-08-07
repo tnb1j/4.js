@@ -16,7 +16,7 @@ scene.add( helper );
 OctreeHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OctreeHelper } from '@fourjs/core/addons/helpers/OctreeHelper.js';
+import { OctreeHelper } from 'fourjs/addons/helpers/OctreeHelper.js';
 ```
 
 ## Constructor

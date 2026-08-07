@@ -9,7 +9,7 @@ import {
 	Sphere,
 	Vector3,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
 import { LineMaterial } from './LineMaterial.js';
 
@@ -246,7 +246,7 @@ function raycastScreenSpace( lineSegments, camera, intersects ) {
  * ```
  *
  * @augments Mesh
- * @four_import import { LineSegments2 } from '@fourjs/core/addons/lines/LineSegments2.js';
+ * @four_import import { LineSegments2 } from 'fourjs/addons/lines/LineSegments2.js';
  */
 class LineSegments2 extends Mesh {
 

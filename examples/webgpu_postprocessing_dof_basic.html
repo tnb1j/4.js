@@ -27,28 +27,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { mix, pass, renderOutput, smoothstep, uniform, vec3 } from '@fourjs/core/tsl';
-			import { boxBlur } from '@fourjs/core/addons/tsl/display/boxBlur.js';
-			import { fxaa } from '@fourjs/core/addons/tsl/display/FXAANode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { mix, pass, renderOutput, smoothstep, uniform, vec3 } from 'fourjs/tsl';
+			import { boxBlur } from 'fourjs/addons/tsl/display/boxBlur.js';
+			import { fxaa } from 'fourjs/addons/tsl/display/FXAANode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from 'fourjs/addons/loaders/UltraHDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'fourjs/addons/loaders/DRACOLoader.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
-			import TWEEN from '@fourjs/core/addons/libs/tween.module.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import TWEEN from 'fourjs/addons/libs/tween.module.js';
 
 			let camera, controls, scene, timer, renderer, model, mixer, raycaster, renderPipeline;
 

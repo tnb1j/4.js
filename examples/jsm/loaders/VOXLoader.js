@@ -13,7 +13,7 @@ import {
 	NearestFilter,
 	RedFormat,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 // Helper function to read a STRING from the data view
 function readString( data, offset ) {
@@ -239,7 +239,7 @@ function buildObject( nodeId, nodes, chunks ) {
  * scene.add( result.scene.children[ 0 ] );
  * ```
  * @augments Loader
- * @four_import import { VOXLoader } from '@fourjs/core/addons/loaders/VOXLoader.js';
+ * @four_import import { VOXLoader } from 'fourjs/addons/loaders/VOXLoader.js';
  */
 class VOXLoader extends Loader {
 

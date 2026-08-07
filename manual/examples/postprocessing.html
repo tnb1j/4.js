@@ -23,19 +23,19 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-import { BloomPass } from '@fourjs/core/addons/postprocessing/BloomPass.js';
-import { FilmPass } from '@fourjs/core/addons/postprocessing/FilmPass.js';
-import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+import * as FOUR from 'fourjs';
+import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+import { BloomPass } from 'fourjs/addons/postprocessing/BloomPass.js';
+import { FilmPass } from 'fourjs/addons/postprocessing/FilmPass.js';
+import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
 
 function main() {
 

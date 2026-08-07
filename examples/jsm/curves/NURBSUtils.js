@@ -1,11 +1,11 @@
 import {
 	Vector3,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module NURBSUtils
- * @four_import import * as NURBSUtils from '@fourjs/core/addons/curves/NURBSUtils.js';
+ * @four_import import * as NURBSUtils from 'fourjs/addons/curves/NURBSUtils.js';
  */
 
 /**

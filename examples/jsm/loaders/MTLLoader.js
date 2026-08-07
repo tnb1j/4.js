@@ -11,7 +11,7 @@ import {
 	TextureLoader,
 	Vector2,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the MTL format.
@@ -29,7 +29,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { MTLLoader } from '@fourjs/core/addons/loaders/MTLLoader.js';
+ * @four_import import { MTLLoader } from 'fourjs/addons/loaders/MTLLoader.js';
  */
 class MTLLoader extends Loader {
 

@@ -4,7 +4,7 @@ import {
 	LineSegments,
 	LineBasicMaterial,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _v1 = new Vector3();
 const _v2 = new Vector3();
@@ -20,7 +20,7 @@ const _v2 = new Vector3();
  * ```
  *
  * @augments LineSegments
- * @four_import import { VertexTangentsHelper } from '@fourjs/core/addons/helpers/VertexTangentsHelper.js';
+ * @four_import import { VertexTangentsHelper } from 'fourjs/addons/helpers/VertexTangentsHelper.js';
  */
 class VertexTangentsHelper extends LineSegments {
 

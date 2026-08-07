@@ -7,7 +7,7 @@ Represents a single flare that can be added to a [Lensflare](Lensflare.html) con
 LensflareElement is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LensflareElement } from '@fourjs/core/addons/objects/Lensflare.js';
+import { LensflareElement } from 'fourjs/addons/objects/Lensflare.js';
 ```
 
 ## Constructor

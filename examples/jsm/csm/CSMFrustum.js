@@ -1,11 +1,11 @@
-import { Vector3, Matrix4 } from '@fourjs/core';
+import { Vector3, Matrix4 } from 'fourjs';
 
 const inverseProjectionMatrix = new Matrix4();
 
 /**
  * Represents the frustum of a CSM instance.
  *
- * @four_import import { CSMFrustum } from '@fourjs/core/addons/csm/CSMFrustum.js';
+ * @four_import import { CSMFrustum } from 'fourjs/addons/csm/CSMFrustum.js';
  */
 class CSMFrustum {
 

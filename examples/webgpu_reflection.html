@@ -26,26 +26,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
-			import { abs, blendOverlay, color, float, Fn, instancedBufferAttribute, max, normalWorldGeometry, pass, positionGeometry, positionLocal, pow2, reflector, screenUV, sin, sub, texture, time, uniform, uv, vec2, vec3 } from '@fourjs/core/tsl';
-			import { gaussianBlur } from '@fourjs/core/addons/tsl/display/GaussianBlurNode.js';
+			import { abs, blendOverlay, color, float, Fn, instancedBufferAttribute, max, normalWorldGeometry, pass, positionGeometry, positionLocal, pow2, reflector, screenUV, sin, sub, texture, time, uniform, uv, vec2, vec3 } from 'fourjs/tsl';
+			import { gaussianBlur } from 'fourjs/addons/tsl/display/GaussianBlurNode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import TWEEN from '@fourjs/core/addons/libs/tween.module.js';
+			import TWEEN from 'fourjs/addons/libs/tween.module.js';
 
 			let camera, scene, renderer;
 			let renderPipeline;

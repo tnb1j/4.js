@@ -1,11 +1,11 @@
-import { TempNode } from '@fourjs/core/webgpu';
-import { nodeObject, Fn, float, uv, convertToTexture, vec4, If, int, clamp, sub, mix } from '@fourjs/core/tsl';
+import { TempNode } from 'fourjs/webgpu';
+import { nodeObject, Fn, float, uv, convertToTexture, vec4, If, int, clamp, sub, mix } from 'fourjs/tsl';
 
 /**
  * Post processing node for creating a transition effect between scenes.
  *
  * @augments TempNode
- * @four_import import { transition } from '@fourjs/core/addons/tsl/display/TransitionNode.js';
+ * @four_import import { transition } from 'fourjs/addons/tsl/display/TransitionNode.js';
  */
 class TransitionNode extends TempNode {
 

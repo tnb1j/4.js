@@ -9,7 +9,7 @@ A special (abstract) render pass node that renders the scene as a stereoscopic i
 StereoCompositePassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { StereoCompositePassNode } from '@fourjs/core/addons/tsl/display/StereoCompositePassNode.js';
+import { StereoCompositePassNode } from 'fourjs/addons/tsl/display/StereoCompositePassNode.js';
 ```
 
 ## Constructor

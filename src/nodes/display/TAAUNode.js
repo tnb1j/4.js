@@ -37,7 +37,7 @@ let _rendererState;
  * Note: MSAA must be disabled when TAAU is in use.
  *
  * @augments TempNode
- * @four_import import { taau } from '@fourjs/core/webgpu';
+ * @four_import import { taau } from 'fourjs/webgpu';
  */
 class TAAUNode extends TempNode {
 

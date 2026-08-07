@@ -10,13 +10,13 @@ import {
 	MeshBasicMaterial,
 	BufferAttribute,
 	DoubleSide
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A helper for visualizing the cascades of a CSM instance.
  *
  * @augments Group
- * @four_import import { CSMHelper } from '@fourjs/core/addons/csm/CSMHelper.js';
+ * @four_import import { CSMHelper } from 'fourjs/addons/csm/CSMHelper.js';
  */
 class CSMHelper extends Group {
 

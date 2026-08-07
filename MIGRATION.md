@@ -1,7 +1,7 @@
 # Migrating from Three.js to 4.js
 
 4.js r185 compatibility is designed for staged adoption. New code should use
-`@fourjs/core` and the `FOUR` namespace. Existing projects can retain legacy
+`fourjs` and the `FOUR` namespace. Existing projects can retain legacy
 imports temporarily while migrating file by file.
 
 ## Direct Migration
@@ -9,8 +9,8 @@ imports temporarily while migrating file by file.
 ```diff
 - import * as THREE from 'three';
 - import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-+ import * as FOUR from '@fourjs/core';
-+ import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
++ import * as FOUR from 'fourjs';
++ import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
 - const scene = new THREE.Scene();
 + const scene = new FOUR.Scene();
@@ -21,8 +21,8 @@ WebGPU and TSL:
 ```diff
 - import * as THREE from 'three/webgpu';
 - import { pass } from 'three/tsl';
-+ import * as FOUR from '@fourjs/core/webgpu';
-+ import { pass } from '@fourjs/core/tsl';
++ import * as FOUR from 'fourjs/webgpu';
++ import { pass } from 'fourjs/tsl';
 ```
 
 ## Automated Migration
@@ -60,13 +60,13 @@ same 4.js version under both names:
 ```json
 {
   "dependencies": {
-    "@fourjs/core": "0.185.1-four.0",
-    "three": "npm:@fourjs/core@0.185.1-four.0"
+    "fourjs": "0.185.1-four.0",
+    "three": "npm:fourjs@0.185.1-four.0"
   }
 }
 ```
 
-Keep `@fourjs/core` installed during this bridge because migrated 4.js addons
+Keep `fourjs` installed during this bridge because migrated 4.js addons
 use the native package name internally.
 
 ## Import Map Bridge
@@ -75,8 +75,8 @@ use the native package name internally.
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "./build/4.module.js",
-    "@fourjs/core/addons/": "./examples/jsm/",
+    "fourjs": "./build/4.module.js",
+    "fourjs/addons/": "./examples/jsm/",
     "three": "./build/three.module.js",
     "three/addons/": "./examples/jsm/"
   }
@@ -91,16 +91,16 @@ The `three.*` files are compatibility builds generated from the same canonical
 
 | Import | Purpose |
 | --- | --- |
-| `@fourjs/core` | Native WebGL entry |
-| `@fourjs/core/webgpu` | Native WebGPU entry |
-| `@fourjs/core/tsl` | Native TSL entry |
-| `@fourjs/core/legacy` | Legacy-named WebGL bundle |
-| `@fourjs/core/legacy/webgpu` | Legacy-named WebGPU bundle |
-| `@fourjs/core/legacy/tsl` | Legacy-named TSL bundle |
+| `fourjs` | Native WebGL entry |
+| `fourjs/webgpu` | Native WebGPU entry |
+| `fourjs/tsl` | Native TSL entry |
+| `fourjs/legacy` | Legacy-named WebGL bundle |
+| `fourjs/legacy/webgpu` | Legacy-named WebGPU bundle |
+| `fourjs/legacy/tsl` | Legacy-named TSL bundle |
 
 ## Migration Checklist
 
-- [ ] Replace package specifiers with `@fourjs/core`.
+- [ ] Replace package specifiers with `fourjs`.
 - [ ] Rename application namespace bindings from `THREE` to `FOUR`.
 - [ ] Update build filenames from `three.*` to `4.*`.
 - [ ] Keep third-party package names unchanged.

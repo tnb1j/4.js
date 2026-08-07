@@ -8,7 +8,7 @@ import {
 	Vector2,
 	Vector3,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { LuminosityHighPassShader } from '../shaders/LuminosityHighPassShader.js';
@@ -31,7 +31,7 @@ import { LuminosityHighPassShader } from '../shaders/LuminosityHighPassShader.js
  * ```
  *
  * @augments Pass
- * @four_import import { UnrealBloomPass } from '@fourjs/core/addons/postprocessing/UnrealBloomPass.js';
+ * @four_import import { UnrealBloomPass } from 'fourjs/addons/postprocessing/UnrealBloomPass.js';
  */
 class UnrealBloomPass extends Pass {
 

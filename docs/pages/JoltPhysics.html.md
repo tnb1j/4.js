@@ -15,7 +15,7 @@ const physics = await JoltPhysics();
 JoltPhysics is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { JoltPhysics } from '@fourjs/core/addons/physics/JoltPhysics.js';
+import { JoltPhysics } from 'fourjs/addons/physics/JoltPhysics.js';
 ```
 
 ## Methods

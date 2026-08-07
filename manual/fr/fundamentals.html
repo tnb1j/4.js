@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -111,7 +111,7 @@ qui ressemble à ceci</p>
 
 <p>Tout d'abord, chargeons 4.js</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 &lt;/script&gt;
 </pre>
 <p>Il est important de mettre <code class="notranslate" translate="no">type="module"</code> dans la balise script. Cela nous permet
@@ -126,7 +126,7 @@ charger manuellement les scripts supplémentaires dont ils dépendent.</p>
 </pre>
 <p>Nous allons demander à 4.js de dessiner dans ce canevas, nous devons donc le rechercher.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -358,7 +358,7 @@ Les modules es6 peuvent être chargés via le mot-clé <code class="notranslate"
 ou en ligne via une balise <code class="notranslate" translate="no">&lt;script type="module"&gt;</code>. Voici un exemple
 </p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 ...
 
@@ -370,7 +370,7 @@ Notez le spécificateur <code class="notranslate" translate="no">'three'</code> 
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="importmap"&gt;
 {
   "imports": {
-    "@fourjs/core": "./path/to/4.module.js"
+    "fourjs": "./path/to/4.module.js"
   }
 }
 &lt;/script&gt;
@@ -381,7 +381,7 @@ Notez que le spécificateur de chemin ne peut commencer qu'avec <code class="not
 <p>
 Pour importer des extensions (addons) comme <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls.js</code></a>, utilisez ce qui suit
 </p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 </pre>
 <p>
 N'oubliez pas d'ajouter les extensions (addons) à la carte d'importation comme ceci
@@ -389,8 +389,8 @@ N'oubliez pas d'ajouter les extensions (addons) à la carte d'importation comme 
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="importmap"&gt;
 {
   "imports": {
-    "@fourjs/core": "./path/to/4.module.js",
-    "@fourjs/core/addons/": "./different/path/to/examples/jsm/"
+    "fourjs": "./path/to/4.module.js",
+    "fourjs/addons/": "./different/path/to/examples/jsm/"
   }
 }
 &lt;/script&gt;
@@ -401,8 +401,8 @@ Vous pouvez également utiliser un CDN
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="importmap"&gt;
 {
   "imports": {
-    "@fourjs/core": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
-    "@fourjs/core/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
+    "fourjs": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
+    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
   }
 }
 &lt;/script&gt;
@@ -414,15 +414,15 @@ En conclusion, la manière recommandée d'utiliser 4.js est
 &lt;script type="importmap"&gt;
 {
   "imports": {
-    "@fourjs/core": "./path/to/4.module.js",
-    "@fourjs/core/addons/": "./different/path/to/examples/jsm/"
+    "fourjs": "./path/to/4.module.js",
+    "fourjs/addons/": "./different/path/to/examples/jsm/"
   }
 }
 &lt;/script&gt;
 
 &lt;script type="module"&gt;
-import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 
 ...
 

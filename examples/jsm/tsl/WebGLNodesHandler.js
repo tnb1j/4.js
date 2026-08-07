@@ -5,7 +5,7 @@ import {
 	Color,
 	UniformsLib,
 	UniformsUtils,
-} from '@fourjs/core';
+} from 'fourjs';
 import {
 	context,
 	cubeTexture,
@@ -15,7 +15,7 @@ import {
 	rangeFogFactor,
 	densityFogFactor,
 	workingToColorSpace,
-} from '@fourjs/core/tsl';
+} from 'fourjs/tsl';
 import {
 	NodeUtils,
 	NodeFrame,
@@ -24,7 +24,7 @@ import {
 	GLSLNodeBuilder,
 	BasicNodeLibrary,
 	WebGLCapabilities,
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
 // Limitations
 // - VSM shadows not supported

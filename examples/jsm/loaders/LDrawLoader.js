@@ -13,7 +13,7 @@ import {
 	SRGBColorSpace,
 	Vector3,
 	Ray
-} from '@fourjs/core';
+} from 'fourjs';
 
 // Special surface finish tag types.
 // Note: "MATERIAL" tag (e.g. GLITTER, SPECKLE) is not implemented
@@ -1768,7 +1768,7 @@ function createObject( loader, elements, elementSize, isConditionalSegments = fa
  * ```
  *
  * @augments Loader
- * @four_import import { LDrawLoader } from '@fourjs/core/addons/loaders/LDrawLoader.js';
+ * @four_import import { LDrawLoader } from 'fourjs/addons/loaders/LDrawLoader.js';
  */
 class LDrawLoader extends Loader {
 

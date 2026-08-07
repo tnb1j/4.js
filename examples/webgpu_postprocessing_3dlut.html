@@ -27,26 +27,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, pass, texture3D, uniform, renderOutput } from '@fourjs/core/tsl';
-			import { lut3D } from '@fourjs/core/addons/tsl/display/Lut3DNode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, pass, texture3D, uniform, renderOutput } from 'fourjs/tsl';
+			import { lut3D } from 'fourjs/addons/tsl/display/Lut3DNode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { LUTCubeLoader } from '@fourjs/core/addons/loaders/LUTCubeLoader.js';
-			import { LUT3dlLoader } from '@fourjs/core/addons/loaders/LUT3dlLoader.js';
-			import { LUTImageLoader } from '@fourjs/core/addons/loaders/LUTImageLoader.js';
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { LUTCubeLoader } from 'fourjs/addons/loaders/LUTCubeLoader.js';
+			import { LUT3dlLoader } from 'fourjs/addons/loaders/LUT3dlLoader.js';
+			import { LUTImageLoader } from 'fourjs/addons/loaders/LUTImageLoader.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			const params = {
 				lut: 'Bourbon 64.CUBE',

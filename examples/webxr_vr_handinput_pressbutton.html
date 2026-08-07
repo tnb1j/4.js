@@ -19,21 +19,21 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@fourjs/core": "../build/4.module.js",
-				"@fourjs/core/addons/": "./jsm/"
+				"fourjs": "../build/4.module.js",
+				"fourjs/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from '@fourjs/core';
-		import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
-		import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
-		import { OculusHandModel } from '@fourjs/core/addons/webxr/OculusHandModel.js';
-		import { createText } from '@fourjs/core/addons/webxr/Text2D.js';
+		import * as FOUR from 'fourjs';
+		import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
+		import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
+		import { OculusHandModel } from 'fourjs/addons/webxr/OculusHandModel.js';
+		import { createText } from 'fourjs/addons/webxr/Text2D.js';
 
-		import { World, System, Component, TagComponent, Types } from '@fourjs/core/addons/libs/ecsy.module.js';
+		import { World, System, Component, TagComponent, Types } from 'fourjs/addons/libs/ecsy.module.js';
 
 		class Object3D extends Component { }
 

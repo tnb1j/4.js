@@ -6,10 +6,10 @@ import {
 	InstancedMesh,
 	Object3D,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
-import { MeshStandardNodeMaterial } from '@fourjs/core/webgpu';
-import { attribute, color, float, Fn, If, mix, mx_noise_float, normalView, positionLocal, positionView, positionWorld, smoothstep, step, uniform } from '@fourjs/core/tsl';
+import { MeshStandardNodeMaterial } from 'fourjs/webgpu';
+import { attribute, color, float, Fn, If, mix, mx_noise_float, normalView, positionLocal, positionView, positionWorld, smoothstep, step, uniform } from 'fourjs/tsl';
 
 import { ImprovedNoise } from '../math/ImprovedNoise.js';
 import { mergeVertices } from '../utils/BufferGeometryUtils.js';

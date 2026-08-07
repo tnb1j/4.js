@@ -14,7 +14,7 @@ const selectedObjects = selectionBox.select( startPoint, endPoint );
 SelectionBox is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SelectionBox } from '@fourjs/core/addons/interactive/SelectionBox.js';
+import { SelectionBox } from 'fourjs/addons/interactive/SelectionBox.js';
 ```
 
 ## Constructor

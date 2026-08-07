@@ -69,16 +69,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import initJank from '@fourjs/core/addons/offscreen/jank.js';
-			import init from '@fourjs/core/addons/offscreen/scene.js';
+			import initJank from 'fourjs/addons/offscreen/jank.js';
+			import init from 'fourjs/addons/offscreen/scene.js';
 			
 			// onscreen
 

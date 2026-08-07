@@ -18,7 +18,7 @@ scene.add( mesh );
 ConvexGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ConvexGeometry } from '@fourjs/core/addons/geometries/ConvexGeometry.js';
+import { ConvexGeometry } from 'fourjs/addons/geometries/ConvexGeometry.js';
 ```
 
 ## Constructor

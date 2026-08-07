@@ -16,7 +16,7 @@ composer.addPass( glitchPass );
 GlitchPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GlitchPass } from '@fourjs/core/addons/postprocessing/GlitchPass.js';
+import { GlitchPass } from 'fourjs/addons/postprocessing/GlitchPass.js';
 ```
 
 ## Constructor

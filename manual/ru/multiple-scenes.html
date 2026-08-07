@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -434,7 +434,7 @@ function render(time) {
 <h2 id="-">Добавление элементов управления к каждому элементу</h2>
 <p>Например, добавление <code class="notranslate" translate="no">TrackballControls</code> в интерактивном режиме так же просто.
 Сначала мы добавляем скрипт для контролов.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from '@fourjs/core/addons/controls/TrackballControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from 'fourjs/addons/controls/TrackballControls.js';
 </pre>
 <p>И затем мы можем добавить <code class="notranslate" translate="no">TrackballControls</code> к каждой сцене, передавая элемент, связанный с этой сценой.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {

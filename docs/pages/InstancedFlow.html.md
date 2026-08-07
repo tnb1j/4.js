@@ -11,7 +11,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html).
 InstancedFlow is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { InstancedFlow } from '@fourjs/core/addons/modifiers/CurveModifier.js';
+import { InstancedFlow } from 'fourjs/addons/modifiers/CurveModifier.js';
 ```
 
 ## Constructor

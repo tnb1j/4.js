@@ -4,7 +4,7 @@ import {
 	LoaderUtils,
 	Scene,
 	TextureLoader
-} from '@fourjs/core';
+} from 'fourjs';
 
 import { TGALoader } from '../loaders/TGALoader.js';
 import { ColladaParser } from './collada/ColladaParser.js';
@@ -27,7 +27,7 @@ import { ColladaComposer } from './collada/ColladaComposer.js';
  * ```
  *
  * @augments Loader
- * @four_import import { ColladaLoader } from '@fourjs/core/addons/loaders/ColladaLoader.js';
+ * @four_import import { ColladaLoader } from 'fourjs/addons/loaders/ColladaLoader.js';
  */
 class ColladaLoader extends Loader {
 

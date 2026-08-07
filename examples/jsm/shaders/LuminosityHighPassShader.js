@@ -1,10 +1,10 @@
 import {
 	Color
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module LuminosityHighPassShader
- * @four_import import { LuminosityHighPassShader } from '@fourjs/core/addons/shaders/LuminosityHighPassShader.js';
+ * @four_import import { LuminosityHighPassShader } from 'fourjs/addons/shaders/LuminosityHighPassShader.js';
  */
 
 /**

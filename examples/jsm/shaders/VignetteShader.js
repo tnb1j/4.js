@@ -1,6 +1,6 @@
 /**
  * @module VignetteShader
- * @four_import import { VignetteShader } from '@fourjs/core/addons/shaders/VignetteShader.js';
+ * @four_import import { VignetteShader } from 'fourjs/addons/shaders/VignetteShader.js';
  */
 
 /**

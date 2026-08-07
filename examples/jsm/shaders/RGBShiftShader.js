@@ -1,6 +1,6 @@
 /**
  * @module RGBShiftShader
- * @four_import import { RGBShiftShader } from '@fourjs/core/addons/shaders/RGBShiftShader.js';
+ * @four_import import { RGBShiftShader } from 'fourjs/addons/shaders/RGBShiftShader.js';
  */
 
 /**

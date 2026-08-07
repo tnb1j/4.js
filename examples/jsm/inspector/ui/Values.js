@@ -1,4 +1,4 @@
-import { EventDispatcher } from '@fourjs/core';
+import { EventDispatcher } from 'fourjs';
 
 class Value extends EventDispatcher {
 

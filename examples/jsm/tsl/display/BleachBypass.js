@@ -1,4 +1,4 @@
-import { float, Fn, vec3, vec4, min, max, mix, luminance } from '@fourjs/core/tsl';
+import { float, Fn, vec3, vec4, min, max, mix, luminance } from 'fourjs/tsl';
 
 /**
  * Applies a bleach bypass effect to the given color node.

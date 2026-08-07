@@ -13,7 +13,7 @@ Reference: [https://en.wikipedia.org/wiki/Supersampling](https://en.wikipedia.or
 SSAAPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ssaaPass } from '@fourjs/core/addons/tsl/display/SSAAPassNode.js';
+import { ssaaPass } from 'fourjs/addons/tsl/display/SSAAPassNode.js';
 ```
 
 ## Constructor

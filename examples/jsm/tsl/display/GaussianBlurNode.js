@@ -1,5 +1,5 @@
-import { RenderTarget, Vector2, NodeMaterial, RendererUtils, QuadMesh, TempNode, NodeUpdateType } from '@fourjs/core/webgpu';
-import { Fn, float, uv, uniform, convertToTexture, vec2, vec4, passTexture, premultiplyAlpha, unpremultiplyAlpha } from '@fourjs/core/tsl';
+import { RenderTarget, Vector2, NodeMaterial, RendererUtils, QuadMesh, TempNode, NodeUpdateType } from 'fourjs/webgpu';
+import { Fn, float, uv, uniform, convertToTexture, vec2, vec4, passTexture, premultiplyAlpha, unpremultiplyAlpha } from 'fourjs/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 
@@ -9,7 +9,7 @@ let _rendererState;
  * Post processing node for creating a gaussian blur effect.
  *
  * @augments TempNode
- * @four_import import { gaussianBlur, premultipliedGaussianBlur } from '@fourjs/core/addons/tsl/display/GaussianBlurNode.js';
+ * @four_import import { gaussianBlur, premultipliedGaussianBlur } from 'fourjs/addons/tsl/display/GaussianBlurNode.js';
  */
 class GaussianBlurNode extends TempNode {
 

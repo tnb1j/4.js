@@ -1,6 +1,6 @@
 /**
  * @module VerticalTiltShiftShader
- * @four_import import { VerticalTiltShiftShader } from '@fourjs/core/addons/shaders/VerticalTiltShiftShader.js';
+ * @four_import import { VerticalTiltShiftShader } from 'fourjs/addons/shaders/VerticalTiltShiftShader.js';
  */
 
 /**

@@ -5,7 +5,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _normalData = [
 	[ - 0.525731, 0.000000, 0.850651 ], [ - 0.442863, 0.238856, 0.864188 ],
@@ -105,7 +105,7 @@ const _normalData = [
  * ```
  *
  * @augments Loader
- * @four_import import { MD2Loader } from '@fourjs/core/addons/loaders/MD2Loader.js';
+ * @four_import import { MD2Loader } from 'fourjs/addons/loaders/MD2Loader.js';
  */
 class MD2Loader extends Loader {
 

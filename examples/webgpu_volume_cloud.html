@@ -26,25 +26,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { float, vec3, vec4, If, Break, Fn, smoothstep, texture3D, uniform } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { float, vec3, vec4, If, Break, Fn, smoothstep, texture3D, uniform } from 'fourjs/tsl';
 
-			import { RaymarchingBox } from '@fourjs/core/addons/tsl/utils/Raymarching.js';
+			import { RaymarchingBox } from 'fourjs/addons/tsl/utils/Raymarching.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@fourjs/core/addons/math/ImprovedNoise.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let renderer, scene, camera;
 			let mesh;

@@ -28,24 +28,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { color, fog, positionWorld, triNoise3D, normalWorld, uniform, densityFogFactor } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { color, fog, positionWorld, triNoise3D, normalWorld, uniform, densityFogFactor } from 'fourjs/tsl';
 
-			import { FirstPersonControls } from '@fourjs/core/addons/controls/FirstPersonControls.js';
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
-			import { SkyMesh } from '@fourjs/core/addons/objects/SkyMesh.js';
-			import { TerrainGenerator } from '@fourjs/core/addons/generators/TerrainGenerator.js';
-			import { ForestGenerator } from '@fourjs/core/addons/generators/ForestGenerator.js';
+			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { SkyMesh } from 'fourjs/addons/objects/SkyMesh.js';
+			import { TerrainGenerator } from 'fourjs/addons/generators/TerrainGenerator.js';
+			import { ForestGenerator } from 'fourjs/addons/generators/ForestGenerator.js';
 
 			let camera, scene, renderer, controls, timer;
 			let terrain, forest, terrainGroup, forestGroup;

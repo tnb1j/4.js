@@ -9,7 +9,7 @@ Helper for visualizing IK bones.
 CCDIKHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CCDIKHelper } from '@fourjs/core/addons/animation/CCDIKSolver.js';
+import { CCDIKHelper } from 'fourjs/addons/animation/CCDIKSolver.js';
 ```
 
 ## Constructor

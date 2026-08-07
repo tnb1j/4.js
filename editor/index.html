@@ -15,11 +15,11 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/addons/": "../examples/jsm/",
+					"fourjs": "../build/4.module.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/addons/": "../examples/jsm/",
 
-					"@fourjs/core/examples/": "../examples/",
+					"fourjs/examples/": "../examples/",
 					"three-gpu-pathtracer": "https://cdn.jsdelivr.net/npm/three-gpu-pathtracer@0.0.23/build/index.module.js",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.4/build/index.module.js"
 				}
@@ -58,7 +58,7 @@
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
 			import { Editor } from './js/Editor.js';
 			import { Viewport } from './js/Viewport.js';
@@ -71,7 +71,7 @@
 			import { AnimationResizer } from './js/AnimationResizer.js';
 			import { Animation } from './js/Animation.js';
 
-			import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
+			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
 
 			window.URL = window.URL || window.webkitURL;
 			window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;

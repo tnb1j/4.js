@@ -9,7 +9,7 @@ A specialized version of [CSS3DObject](CSS3DObject.html) that represents DOM ele
 CSS3DSprite is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSS3DSprite } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+import { CSS3DSprite } from 'fourjs/addons/renderers/CSS3DRenderer.js';
 ```
 
 ## Constructor

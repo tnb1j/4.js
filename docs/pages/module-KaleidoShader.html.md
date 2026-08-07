@@ -5,7 +5,7 @@
 KaleidoShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { KaleidoShader } from '@fourjs/core/addons/shaders/KaleidoShader.js';
+import { KaleidoShader } from 'fourjs/addons/shaders/KaleidoShader.js';
 ```
 
 ## Properties

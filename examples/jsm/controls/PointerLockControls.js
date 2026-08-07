@@ -2,7 +2,7 @@ import {
 	Controls,
 	Euler,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _euler = new Euler( 0, 0, 0, 'YXZ' );
 const _vector = new Vector3();
@@ -56,7 +56,7 @@ const _PI_2 = Math.PI / 2;
  * ```
  *
  * @augments Controls
- * @four_import import { PointerLockControls } from '@fourjs/core/addons/controls/PointerLockControls.js';
+ * @four_import import { PointerLockControls } from 'fourjs/addons/controls/PointerLockControls.js';
  */
 class PointerLockControls extends Controls {
 

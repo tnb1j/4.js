@@ -4,7 +4,7 @@
  * The code is based on [Simplex noise demystified](https://web.archive.org/web/20210210162332/http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf)
  * by Stefan Gustavson, 2005.
  *
- * @four_import import { SimplexNoise } from '@fourjs/core/addons/math/SimplexNoise.js';
+ * @four_import import { SimplexNoise } from 'fourjs/addons/math/SimplexNoise.js';
  */
 class SimplexNoise {
 

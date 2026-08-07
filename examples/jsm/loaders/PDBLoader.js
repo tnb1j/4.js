@@ -5,7 +5,7 @@ import {
 	Loader,
 	Color,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the PDB format.
@@ -23,7 +23,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { PDBLoader } from '@fourjs/core/addons/loaders/PDBLoader.js';
+ * @four_import import { PDBLoader } from 'fourjs/addons/loaders/PDBLoader.js';
  */
 class PDBLoader extends Loader {
 

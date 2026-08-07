@@ -10,7 +10,7 @@ import { Viewer } from './tabs/Viewer.js';
 import { Timeline } from './tabs/Timeline.js';
 import { setText } from './ui/utils.js';
 
-import { setConsoleFunction, REVISION } from '@fourjs/core/webgpu';
+import { setConsoleFunction, REVISION } from 'fourjs/webgpu';
 
 class Inspector extends RendererInspector {
 

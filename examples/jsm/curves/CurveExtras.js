@@ -1,7 +1,7 @@
 import {
 	Curve,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A bunch of parametric curves
@@ -17,7 +17,7 @@ import {
  * A Granny Knot curve.
  *
  * @augments Curve
- * @four_import import { GrannyKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { GrannyKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class GrannyKnot extends Curve {
 
@@ -48,7 +48,7 @@ class GrannyKnot extends Curve {
  * A heart curve.
  *
  * @augments Curve
- * @four_import import { HeartCurve } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { HeartCurve } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class HeartCurve extends Curve {
 
@@ -98,7 +98,7 @@ class HeartCurve extends Curve {
  * A Viviani curve.
  *
  * @augments Curve
- * @four_import import { VivianiCurve } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { VivianiCurve } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class VivianiCurve extends Curve {
 
@@ -149,7 +149,7 @@ class VivianiCurve extends Curve {
  * A knot curve.
  *
  * @augments Curve
- * @four_import import { KnotCurve } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { KnotCurve } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class KnotCurve extends Curve {
 
@@ -183,7 +183,7 @@ class KnotCurve extends Curve {
  * A helix curve.
  *
  * @augments Curve
- * @four_import import { HelixCurve } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { HelixCurve } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class HelixCurve extends Curve {
 
@@ -217,7 +217,7 @@ class HelixCurve extends Curve {
  * A Trefoil Knot.
  *
  * @augments Curve
- * @four_import import { TrefoilKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { TrefoilKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class TrefoilKnot extends Curve {
 
@@ -267,7 +267,7 @@ class TrefoilKnot extends Curve {
  * A torus knot.
  *
  * @augments Curve
- * @four_import import { TorusKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { TorusKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class TorusKnot extends Curve {
 
@@ -320,7 +320,7 @@ class TorusKnot extends Curve {
  * A Cinquefoil Knot.
  *
  * @augments Curve
- * @four_import import { CinquefoilKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { CinquefoilKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class CinquefoilKnot extends Curve {
 
@@ -373,7 +373,7 @@ class CinquefoilKnot extends Curve {
  * A Trefoil Polynomial Knot.
  *
  * @augments Curve
- * @four_import import { TrefoilPolynomialKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { TrefoilPolynomialKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class TrefoilPolynomialKnot extends Curve {
 
@@ -430,7 +430,7 @@ function scaleTo( x, y, t ) {
  * A Figure Eight Polynomial Knot.
  *
  * @augments Curve
- * @four_import import { FigureEightPolynomialKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { FigureEightPolynomialKnot } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class FigureEightPolynomialKnot extends Curve {
 
@@ -480,7 +480,7 @@ class FigureEightPolynomialKnot extends Curve {
  * A Decorated Torus Knot 4a.
  *
  * @augments Curve
- * @four_import import { DecoratedTorusKnot4a } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { DecoratedTorusKnot4a } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class DecoratedTorusKnot4a extends Curve {
 
@@ -530,7 +530,7 @@ class DecoratedTorusKnot4a extends Curve {
  * A Decorated Torus Knot 4b.
  *
  * @augments Curve
- * @four_import import { DecoratedTorusKnot4b } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { DecoratedTorusKnot4b } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class DecoratedTorusKnot4b extends Curve {
 
@@ -580,7 +580,7 @@ class DecoratedTorusKnot4b extends Curve {
  * A Decorated Torus Knot 5a.
  *
  * @augments Curve
- * @four_import import { DecoratedTorusKnot5a } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { DecoratedTorusKnot5a } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class DecoratedTorusKnot5a extends Curve {
 
@@ -630,7 +630,7 @@ class DecoratedTorusKnot5a extends Curve {
  * A Decorated Torus Knot 5c.
  *
  * @augments Curve
- * @four_import import { DecoratedTorusKnot5c } from '@fourjs/core/addons/curves/CurveExtras.js';
+ * @four_import import { DecoratedTorusKnot5c } from 'fourjs/addons/curves/CurveExtras.js';
  */
 class DecoratedTorusKnot5c extends Curve {
 

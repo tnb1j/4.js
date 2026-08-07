@@ -21,21 +21,21 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@fourjs/core": "../build/4.module.js",
-				"@fourjs/core/addons/": "./jsm/"
+				"fourjs": "../build/4.module.js",
+				"fourjs/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from '@fourjs/core';
+		import * as FOUR from 'fourjs';
 
-		import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-		import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-		import { RenderPixelatedPass } from '@fourjs/core/addons/postprocessing/RenderPixelatedPass.js';
-		import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
-		import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+		import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+		import { RenderPixelatedPass } from 'fourjs/addons/postprocessing/RenderPixelatedPass.js';
+		import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
+		import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 		let camera, scene, renderer, composer, crystalMesh, timer;
 		let gui, params;

@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 import { UIPanel, UIRow, UIButton, UIInteger, UISelect, UIText } from './libs/ui.js';
 

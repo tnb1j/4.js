@@ -11,7 +11,7 @@ Reference: [https://lettier.github.io/3d-game-shaders-for-beginners/screen-space
 SSRNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ssr } from '@fourjs/core/addons/tsl/display/SSRNode.js';
+import { ssr } from 'fourjs/addons/tsl/display/SSRNode.js';
 ```
 
 ## Constructor

@@ -19,7 +19,7 @@ composer.addPass( ssaaRenderPass );
 SSAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SSAARenderPass } from '@fourjs/core/addons/postprocessing/SSAARenderPass.js';
+import { SSAARenderPass } from 'fourjs/addons/postprocessing/SSAARenderPass.js';
 ```
 
 ## Constructor

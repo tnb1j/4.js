@@ -8,7 +8,7 @@ import {
 	NearestFilter,
 	RGBAFormat,
 	UVMapping
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Texture library for {@link RectAreaLight}. This class holds the LTC BRDF data
@@ -25,7 +25,7 @@ import {
  * in the main build files.
  *
  * @hideconstructor
- * @four_import import { RectAreaLightTexturesLib } from '@fourjs/core/addons/lights/RectAreaLightTexturesLib.js';
+ * @four_import import { RectAreaLightTexturesLib } from 'fourjs/addons/lights/RectAreaLightTexturesLib.js';
  */
 class RectAreaLightTexturesLib {
 

@@ -14,7 +14,7 @@ References:
 DepthOfFieldNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { dof } from '@fourjs/core/addons/tsl/display/DepthOfFieldNode.js';
+import { dof } from 'fourjs/addons/tsl/display/DepthOfFieldNode.js';
 ```
 
 ## Constructor

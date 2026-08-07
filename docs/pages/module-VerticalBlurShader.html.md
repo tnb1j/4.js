@@ -5,7 +5,7 @@
 VerticalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VerticalBlurShader } from '@fourjs/core/addons/shaders/VerticalBlurShader.js';
+import { VerticalBlurShader } from 'fourjs/addons/shaders/VerticalBlurShader.js';
 ```
 
 ## Properties

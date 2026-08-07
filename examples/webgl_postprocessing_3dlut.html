@@ -21,26 +21,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
-			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-			import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
-			import { LUTPass } from '@fourjs/core/addons/postprocessing/LUTPass.js';
-			import { LUTCubeLoader } from '@fourjs/core/addons/loaders/LUTCubeLoader.js';
-			import { LUT3dlLoader } from '@fourjs/core/addons/loaders/LUT3dlLoader.js';
-			import { LUTImageLoader } from '@fourjs/core/addons/loaders/LUTImageLoader.js';
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from 'fourjs/addons/loaders/UltraHDRLoader.js';
+			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
+			import { LUTPass } from 'fourjs/addons/postprocessing/LUTPass.js';
+			import { LUTCubeLoader } from 'fourjs/addons/loaders/LUTCubeLoader.js';
+			import { LUT3dlLoader } from 'fourjs/addons/loaders/LUT3dlLoader.js';
+			import { LUTImageLoader } from 'fourjs/addons/loaders/LUTImageLoader.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 			const params = {
 				enabled: true,

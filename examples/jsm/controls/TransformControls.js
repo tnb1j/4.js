@@ -19,7 +19,7 @@ import {
 	SphereGeometry,
 	TorusGeometry,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _raycaster = new Raycaster();
 
@@ -72,7 +72,7 @@ const _objectChangeEvent = { type: 'objectChange' };
  * `TransformControls` expects that its attached 3D object is part of the scene graph.
  *
  * @augments Controls
- * @four_import import { TransformControls } from '@fourjs/core/addons/controls/TransformControls.js';
+ * @four_import import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
  */
 class TransformControls extends Controls {
 

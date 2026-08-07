@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { bumpMap, color, cos, float, mix, mx_fractal_noise_float, mx_noise_float, mx_worley_noise_float, positionLocal, screenUV, sin, smoothstep, uv, vec3 } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { bumpMap, color, cos, float, mix, mx_fractal_noise_float, mx_noise_float, mx_worley_noise_float, positionLocal, screenUV, sin, smoothstep, uv, vec3 } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
-			import { LoftGeometry } from '@fourjs/core/addons/geometries/LoftGeometry.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+			import { LoftGeometry } from 'fourjs/addons/geometries/LoftGeometry.js';
 
 			let group, camera, scene, renderer;
 

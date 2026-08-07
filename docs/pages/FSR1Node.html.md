@@ -18,7 +18,7 @@ Reference: [https://gpuopen.com/fidelityfx-superresolution/](https://gpuopen.com
 FSR1Node is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { fsr1 } from '@fourjs/core/addons/tsl/display/fsr1/FSR1Node.js';
+import { fsr1 } from 'fourjs/addons/tsl/display/fsr1/FSR1Node.js';
 ```
 
 ## Constructor

@@ -4,7 +4,7 @@ import {
 	Mesh,
 	Vector3,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
 import { LineMaterial } from './LineMaterial.js';
 
@@ -27,7 +27,7 @@ const _viewport = new Vector4();
  * ```
  *
  * @augments Mesh
- * @four_import import { Wireframe } from '@fourjs/core/addons/lines/Wireframe.js';
+ * @four_import import { Wireframe } from 'fourjs/addons/lines/Wireframe.js';
  */
 class Wireframe extends Mesh {
 

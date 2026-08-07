@@ -14,7 +14,7 @@ import {
 	UnsignedShortType,
 	WebGLRenderTarget,
 	HalfFloatType,
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SSRBlurShader, SSRDepthShader, SSRShader } from '../shaders/SSRShader.js';
 import { CopyShader } from '../shaders/CopyShader.js';
@@ -34,7 +34,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SSRPass } from '@fourjs/core/addons/postprocessing/SSRPass.js';
+ * @four_import import { SSRPass } from 'fourjs/addons/postprocessing/SSRPass.js';
  */
 class SSRPass extends Pass {
 

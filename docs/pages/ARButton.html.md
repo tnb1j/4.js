@@ -13,7 +13,7 @@ document.body.appendChild( ARButton.createButton( renderer ) );
 ARButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ARButton } from '@fourjs/core/addons/webxr/ARButton.js';
+import { ARButton } from 'fourjs/addons/webxr/ARButton.js';
 ```
 
 ## Static Methods

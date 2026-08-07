@@ -9,7 +9,7 @@ A Cinquefoil Knot.
 CinquefoilKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CinquefoilKnot } from '@fourjs/core/addons/curves/CurveExtras.js';
+import { CinquefoilKnot } from 'fourjs/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

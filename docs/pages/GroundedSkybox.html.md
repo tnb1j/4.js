@@ -20,7 +20,7 @@ scene.add( skybox );
 GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GroundedSkybox } from '@fourjs/core/addons/objects/GroundedSkybox.js';
+import { GroundedSkybox } from 'fourjs/addons/objects/GroundedSkybox.js';
 ```
 
 ## Constructor

@@ -12,7 +12,7 @@
 	<script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -323,9 +323,9 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 			<p>当然我们需要引用lil-gui。</p>
-			<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
-+import {GUI} from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
++import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 			<p>下面是结果。</p>
 			<p></p><div translate="no" class="threejs_example_container notranslate">

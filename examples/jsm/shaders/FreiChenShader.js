@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module FreiChenShader
- * @four_import import { FreiChenShader } from '@fourjs/core/addons/shaders/FreiChenShader.js';
+ * @four_import import { FreiChenShader } from 'fourjs/addons/shaders/FreiChenShader.js';
  */
 
 /**

@@ -12,9 +12,9 @@ import {
 	Mesh,
 	InstancedMesh,
 	LinearFilter
-} from '@fourjs/core';
+} from 'fourjs';
 
-import { modelWorldMatrix, normalLocal, vec2, vec3, vec4, mat3, varyingProperty, texture, reference, Fn, select, positionLocal } from '@fourjs/core/tsl';
+import { modelWorldMatrix, normalLocal, vec2, vec3, vec4, mat3, varyingProperty, texture, reference, Fn, select, positionLocal } from 'fourjs/tsl';
 
 /**
  * Make a new DataTexture to store the descriptions of the curves.
@@ -165,7 +165,7 @@ function modifyShader( material, uniforms, numberOfCurves ) {
  * This module can only be used with {@link WebGPURenderer}. When using {@link WebGLRenderer},
  * import the class from `CurveModifier.js`.
  *
- * @four_import import { Flow } from '@fourjs/core/addons/modifiers/CurveModifierGPU.js';
+ * @four_import import { Flow } from 'fourjs/addons/modifiers/CurveModifierGPU.js';
  */
 export class Flow {
 

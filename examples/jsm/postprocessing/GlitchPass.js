@@ -5,7 +5,7 @@ import {
 	RedFormat,
 	ShaderMaterial,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { DigitalGlitch } from '../shaders/DigitalGlitch.js';
 
@@ -18,7 +18,7 @@ import { DigitalGlitch } from '../shaders/DigitalGlitch.js';
  * ```
  *
  * @augments Pass
- * @four_import import { GlitchPass } from '@fourjs/core/addons/postprocessing/GlitchPass.js';
+ * @four_import import { GlitchPass } from 'fourjs/addons/postprocessing/GlitchPass.js';
  */
 class GlitchPass extends Pass {
 

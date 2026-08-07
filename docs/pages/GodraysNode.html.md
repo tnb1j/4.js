@@ -28,7 +28,7 @@ const outputBlurred = depthAwareBlend( scenePassColor, blurPassColor, scenePassD
 GodraysNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { godrays } from '@fourjs/core/addons/tsl/display/GodraysNode.js';
+import { godrays } from 'fourjs/addons/tsl/display/GodraysNode.js';
 ```
 
 ## Constructor

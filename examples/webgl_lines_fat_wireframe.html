@@ -18,23 +18,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { LineMaterial } from '@fourjs/core/addons/lines/LineMaterial.js';
-			import { Wireframe } from '@fourjs/core/addons/lines/Wireframe.js';
-			import { WireframeGeometry2 } from '@fourjs/core/addons/lines/WireframeGeometry2.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { LineMaterial } from 'fourjs/addons/lines/LineMaterial.js';
+			import { Wireframe } from 'fourjs/addons/lines/Wireframe.js';
+			import { WireframeGeometry2 } from 'fourjs/addons/lines/WireframeGeometry2.js';
 
 			let wireframe, renderer, scene, camera, camera2, controls;
 			let wireframe1;

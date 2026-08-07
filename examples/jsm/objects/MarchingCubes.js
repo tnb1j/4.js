@@ -6,14 +6,14 @@ import {
 	Mesh,
 	Sphere,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A marching cubes implementation.
  *
  * Port of: {@link http://webglsamples.org/blob/blob.html}
  *
- * @four_import import { MarchingCubes } from '@fourjs/core/addons/objects/MarchingCubes.js';
+ * @four_import import { MarchingCubes } from 'fourjs/addons/objects/MarchingCubes.js';
  */
 class MarchingCubes extends Mesh {
 

@@ -4,7 +4,7 @@ import {
 	UniformsLib,
 	UniformsUtils,
 	Vector2,
-} from '@fourjs/core';
+} from 'fourjs';
 
 UniformsLib.line = {
 
@@ -435,7 +435,7 @@ ShaderLib[ 'line' ] = {
  * use {@link Line2NodeMaterial}.
  *
  * @augments ShaderMaterial
- * @four_import import { LineMaterial } from '@fourjs/core/addons/lines/LineMaterial.js';
+ * @four_import import { LineMaterial } from 'fourjs/addons/lines/LineMaterial.js';
  */
 class LineMaterial extends ShaderMaterial {
 

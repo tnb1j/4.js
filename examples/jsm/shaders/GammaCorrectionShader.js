@@ -1,6 +1,6 @@
 /**
  * @module GammaCorrectionShader
- * @four_import import { GammaCorrectionShader } from '@fourjs/core/addons/shaders/GammaCorrectionShader.js';
+ * @four_import import { GammaCorrectionShader } from 'fourjs/addons/shaders/GammaCorrectionShader.js';
  */
 
 /**

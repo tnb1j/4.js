@@ -6,7 +6,7 @@ import {
 	Object3D,
 	Points,
 	PointsMaterial
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Visualizes the motion path of an animated object based on position keyframes
@@ -19,7 +19,7 @@ import {
  * ```
  *
  * @augments Object3D
- * @four_import import { AnimationPathHelper } from '@fourjs/core/addons/helpers/AnimationPathHelper.js';
+ * @four_import import { AnimationPathHelper } from 'fourjs/addons/helpers/AnimationPathHelper.js';
  */
 class AnimationPathHelper extends Object3D {
 

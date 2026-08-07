@@ -16,7 +16,7 @@ geometry = modifier.modify( geometry );
 SimplifyModifier is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SimplifyModifier } from '@fourjs/core/addons/modifiers/SimplifyModifier.js';
+import { SimplifyModifier } from 'fourjs/addons/modifiers/SimplifyModifier.js';
 ```
 
 ## Constructor

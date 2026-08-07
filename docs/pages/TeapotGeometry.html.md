@@ -24,7 +24,7 @@ scene.add( teapot );
 TeapotGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TeapotGeometry } from '@fourjs/core/addons/geometries/TeapotGeometry.js';
+import { TeapotGeometry } from 'fourjs/addons/geometries/TeapotGeometry.js';
 ```
 
 ## Constructor

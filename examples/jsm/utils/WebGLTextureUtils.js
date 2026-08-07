@@ -8,11 +8,11 @@ import {
 	WebGLRenderer,
 	CanvasTexture,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module WebGLTextureUtils
- * @four_import import * as WebGLTextureUtils from '@fourjs/core/addons/utils/WebGLTextureUtils.js';
+ * @four_import import * as WebGLTextureUtils from 'fourjs/addons/utils/WebGLTextureUtils.js';
  */
 
 let _renderer;

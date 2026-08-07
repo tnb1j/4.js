@@ -1,11 +1,11 @@
-import { TempNode } from '@fourjs/core/webgpu';
-import { nodeObject, Fn, uv, uniform, vec2, vec3, sin, cos, add, vec4, screenSize } from '@fourjs/core/tsl';
+import { TempNode } from 'fourjs/webgpu';
+import { nodeObject, Fn, uv, uniform, vec2, vec3, sin, cos, add, vec4, screenSize } from 'fourjs/tsl';
 
 /**
  * Post processing node for creating dot-screen effect.
  *
  * @augments TempNode
- * @four_import import { dotScreen } from '@fourjs/core/addons/tsl/display/DotScreenNode.js';
+ * @four_import import { dotScreen } from 'fourjs/addons/tsl/display/DotScreenNode.js';
  */
 class DotScreenNode extends TempNode {
 

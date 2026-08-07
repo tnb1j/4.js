@@ -13,7 +13,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -44,10 +44,10 @@
           </p>
       
 <pre class="prettyprint notranslate lang-js" translate="no">
-import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-import { GlitchPass } from '@fourjs/core/addons/postprocessing/GlitchPass.js';
-import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+import { GlitchPass } from 'fourjs/addons/postprocessing/GlitchPass.js';
+import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
 </pre>
       
           <p>
@@ -114,8 +114,8 @@ composer.addPass( outputPass );
           </p>
       
 <pre class="prettyprint notranslate lang-js" translate="no">
-import { ShaderPass } from '@fourjs/core/addons/postprocessing/ShaderPass.js';
-import { LuminosityShader } from '@fourjs/core/addons/shaders/LuminosityShader.js';
+import { ShaderPass } from 'fourjs/addons/postprocessing/ShaderPass.js';
+import { LuminosityShader } from 'fourjs/addons/shaders/LuminosityShader.js';
 
 // 稍后在你的初始化流程中
 

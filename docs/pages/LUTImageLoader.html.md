@@ -16,7 +16,7 @@ const map = loader.loadAsync( 'luts/NeutralLUT.png' );
 LUTImageLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LUTImageLoader } from '@fourjs/core/addons/loaders/LUTImageLoader.js';
+import { LUTImageLoader } from 'fourjs/addons/loaders/LUTImageLoader.js';
 ```
 
 ## Constructor

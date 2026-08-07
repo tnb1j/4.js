@@ -1,4 +1,4 @@
-import { Object3D, Sphere, Box3 } from '@fourjs/core';
+import { Object3D, Sphere, Box3 } from 'fourjs';
 import { XRHandMeshModel } from './XRHandMeshModel.js';
 
 const TOUCH_RADIUS = 0.01;
@@ -8,7 +8,7 @@ const POINTING_JOINT = 'index-finger-tip';
  * Represents an Oculus hand model.
  *
  * @augments Object3D
- * @four_import import { OculusHandModel } from '@fourjs/core/addons/webxr/OculusHandModel.js';
+ * @four_import import { OculusHandModel } from 'fourjs/addons/webxr/OculusHandModel.js';
  */
 class OculusHandModel extends Object3D {
 

@@ -1,6 +1,6 @@
 /**
  * @module CopyShader
- * @four_import import { CopyShader } from '@fourjs/core/addons/shaders/CopyShader.js';
+ * @four_import import { CopyShader } from 'fourjs/addons/shaders/CopyShader.js';
  */
 
 /**

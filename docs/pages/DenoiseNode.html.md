@@ -11,7 +11,7 @@ Reference: [https://openaccess.thecvf.com/content/WACV2021/papers/Khademi\_Self-
 DenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { denoise } from '@fourjs/core/addons/tsl/display/DenoiseNode.js';
+import { denoise } from 'fourjs/addons/tsl/display/DenoiseNode.js';
 ```
 
 ## Constructor

@@ -5,7 +5,7 @@ import {
 	LineBasicMaterial,
 	Matrix3,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _v1 = new Vector3();
 const _v2 = new Vector3();
@@ -27,7 +27,7 @@ const _normalMatrix = new Matrix3();
  * ```
  *
  * @augments LineSegments
- * @four_import import { VertexNormalsHelper } from '@fourjs/core/addons/helpers/VertexNormalsHelper.js';
+ * @four_import import { VertexNormalsHelper } from 'fourjs/addons/helpers/VertexNormalsHelper.js';
  */
 class VertexNormalsHelper extends LineSegments {
 

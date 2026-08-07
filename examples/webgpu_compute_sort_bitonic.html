@@ -38,24 +38,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { storage, If, vec3, not, uniform, uv, uint, Fn, vec2, abs, int, uvec2, floor, instanceIndex } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { storage, If, vec3, not, uniform, uv, uint, Fn, vec2, abs, int, uvec2, floor, instanceIndex } from 'fourjs/tsl';
 
-			import { BitonicSort, getBitonicDisperseIndices, getBitonicFlipIndices } from '@fourjs/core/addons/gpgpu/BitonicSort.js';
+			import { BitonicSort, getBitonicDisperseIndices, getBitonicFlipIndices } from 'fourjs/addons/gpgpu/BitonicSort.js';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 			const StepType = {
 

@@ -1,6 +1,6 @@
 /**
  * @module AfterimageShader
- * @four_import import { AfterimageShader } from '@fourjs/core/addons/shaders/AfterimageShader.js';
+ * @four_import import { AfterimageShader } from 'fourjs/addons/shaders/AfterimageShader.js';
  */
 
 /**

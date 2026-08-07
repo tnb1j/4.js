@@ -1,4 +1,4 @@
-import { Lighting, LightsNode } from '@fourjs/core/webgpu';
+import { Lighting, LightsNode } from 'fourjs/webgpu';
 import DynamicLightsNode from '../tsl/lighting/DynamicLightsNode.js';
 
 const _defaultLights = /*@__PURE__*/ new LightsNode();
@@ -13,7 +13,7 @@ const _defaultLights = /*@__PURE__*/ new LightsNode();
  * ```
  *
  * @augments Lighting
- * @four_import import { DynamicLighting } from '@fourjs/core/addons/lighting/DynamicLighting.js';
+ * @four_import import { DynamicLighting } from 'fourjs/addons/lighting/DynamicLighting.js';
  */
 export class DynamicLighting extends Lighting {
 

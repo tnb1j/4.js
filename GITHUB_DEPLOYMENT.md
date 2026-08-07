@@ -1,7 +1,7 @@
 # 4.js GitHub Deployment Preparation
 
 **Prepared:** August 7, 2026
-**Project:** `@fourjs/core@0.185.1-four.0`
+**Project:** `fourjs@0.185.1-four.0`
 **Source state:** Extracted source snapshot with no `.git` directory, commits, tags, branches, or verifiable upstream commit hash.
 
 ## Repository Profile

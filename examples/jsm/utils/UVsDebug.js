@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module UVsDebug
- * @four_import import { UVsDebug } from '@fourjs/core/addons/utils/UVsDebug.js';
+ * @four_import import { UVsDebug } from 'fourjs/addons/utils/UVsDebug.js';
  */
 
 /**

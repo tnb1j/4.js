@@ -5,7 +5,7 @@
 NormalMapShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { NormalMapShader } from '@fourjs/core/addons/shaders/NormalMapShader.js';
+import { NormalMapShader } from 'fourjs/addons/shaders/NormalMapShader.js';
 ```
 
 ## Properties

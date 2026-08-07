@@ -16,7 +16,7 @@ composer.addPass( savePass );
 SavePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SavePass } from '@fourjs/core/addons/postprocessing/SavePass.js';
+import { SavePass } from 'fourjs/addons/postprocessing/SavePass.js';
 ```
 
 ## Constructor

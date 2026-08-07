@@ -9,7 +9,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 CSM is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSM } from '@fourjs/core/addons/csm/CSM.js';
+import { CSM } from 'fourjs/addons/csm/CSM.js';
 ```
 
 ## Constructor

@@ -1,7 +1,7 @@
 /**
  * A simple pool for managing Web Workers.
  *
- * @four_import import { WorkerPool } from '@fourjs/core/addons/utils/WorkerPool.js';
+ * @four_import import { WorkerPool } from 'fourjs/addons/utils/WorkerPool.js';
  */
 export class WorkerPool {
 

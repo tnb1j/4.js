@@ -12,7 +12,7 @@
     <script type="importmap">
     {
       "imports": {
-        "@fourjs/core": "../../build/4.module.js"
+        "fourjs": "../../build/4.module.js"
       }
     }
     </script>
@@ -82,7 +82,7 @@ const renderPipeline = new FOUR.RenderPipeline( renderer );
              function from the TSL namespace and use it to create the pass.
             </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
-import { pass } from '@fourjs/core/tsl';
+import { pass } from 'fourjs/tsl';
 
 // in your init routine
 
@@ -94,9 +94,9 @@ const scenePass = pass( scene, camera );
             </p>
 
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
-import { pass } from '@fourjs/core/tsl';
-+  import { dotScreen } from '@fourjs/core/addons/tsl/display/DotScreenNode.js';
-+  import { rgbShift } from '@fourjs/core/addons/tsl/display/RGBShiftNode.js';
+import { pass } from 'fourjs/tsl';
++  import { dotScreen } from 'fourjs/addons/tsl/display/DotScreenNode.js';
++  import { rgbShift } from 'fourjs/addons/tsl/display/RGBShiftNode.js';
 
 // in your init routine
 
@@ -123,8 +123,8 @@ renderPipeline.outputNode = rgbShiftPass;
             </p>
 
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
-import { pass, renderOutput } from '@fourjs/core/tsl';
-import { fxaa } from '@fourjs/core/addons/tsl/display/FXAANode.js';
+import { pass, renderOutput } from 'fourjs/tsl';
+import { fxaa } from 'fourjs/addons/tsl/display/FXAANode.js';
 
 // in your init routine
 
@@ -154,7 +154,7 @@ renderPipeline.outputNode = fxaaPass;
           </p>
 
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
-import { pass, mrt, output, velocity } from '@fourjs/core/tsl';
+import { pass, mrt, output, velocity } from 'fourjs/tsl';
 
 // in your init routine
 
@@ -172,7 +172,7 @@ scenePass.setMRT( mrt( {
           </p>
 
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">
-import { traa } from '@fourjs/core/addons/tsl/display/TRAANode.js';
+import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
 
 // in your init routine
 

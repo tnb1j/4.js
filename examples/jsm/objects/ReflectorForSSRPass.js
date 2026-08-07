@@ -13,13 +13,13 @@ import {
 	NearestFilter,
 	Plane,
 	HalfFloatType
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A special version of {@link Reflector} for usage with {@link SSRPass}.
  *
  * @augments Mesh
- * @four_import import { ReflectorForSSRPass } from '@fourjs/core/addons/objects/ReflectorForSSRPass.js';
+ * @four_import import { ReflectorForSSRPass } from 'fourjs/addons/objects/ReflectorForSSRPass.js';
  */
 class ReflectorForSSRPass extends Mesh {
 

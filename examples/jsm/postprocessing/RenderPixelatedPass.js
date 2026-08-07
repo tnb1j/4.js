@@ -7,7 +7,7 @@ import {
 	DepthTexture,
 	NearestFilter,
 	HalfFloatType
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 
 /**
@@ -19,7 +19,7 @@ import { Pass, FullScreenQuad } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { RenderPixelatedPass } from '@fourjs/core/addons/postprocessing/RenderPixelatedPass.js';
+ * @four_import import { RenderPixelatedPass } from 'fourjs/addons/postprocessing/RenderPixelatedPass.js';
  */
 class RenderPixelatedPass extends Pass {
 

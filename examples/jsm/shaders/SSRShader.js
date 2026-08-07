@@ -1,7 +1,7 @@
 import {
 	Matrix4,
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 
 /**
@@ -11,7 +11,7 @@ import {
  * - [3D Game Shaders For Beginners, Screen Space Reflection (SSR)](https://lettier.github.io/3d-game-shaders-for-beginners/screen-space-reflection.html).
  *
  * @module SSRShader
- * @four_import import * as SSRShader from '@fourjs/core/addons/shaders/SSRShader.js';
+ * @four_import import * as SSRShader from 'fourjs/addons/shaders/SSRShader.js';
  */
 
 /**

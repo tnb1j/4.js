@@ -28,7 +28,7 @@ slice   0              : padding  (copy of sub-volume 0, data slice 0)
 LightProbeGrid is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LightProbeGrid } from '@fourjs/core/addons/lighting/LightProbeGrid.js';
+import { LightProbeGrid } from 'fourjs/addons/lighting/LightProbeGrid.js';
 ```
 
 ## Constructor

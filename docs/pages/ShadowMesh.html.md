@@ -19,7 +19,7 @@ scene.add( cubeShadow );
 ShadowMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ShadowMesh } from '@fourjs/core/addons/objects/ShadowMesh.js';
+import { ShadowMesh } from 'fourjs/addons/objects/ShadowMesh.js';
 ```
 
 ## Constructor

@@ -9,7 +9,7 @@ Post processing node for shifting/splitting RGB color channels. The effect separ
 RGBShiftNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { rgbShift } from '@fourjs/core/addons/tsl/display/RGBShiftNode.js';
+import { rgbShift } from 'fourjs/addons/tsl/display/RGBShiftNode.js';
 ```
 
 ## Constructor

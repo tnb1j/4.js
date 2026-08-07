@@ -17,7 +17,7 @@ scene.add( object );
 VRMLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VRMLLoader } from '@fourjs/core/addons/loaders/VRMLLoader.js';
+import { VRMLLoader } from 'fourjs/addons/loaders/VRMLLoader.js';
 ```
 
 ## Constructor

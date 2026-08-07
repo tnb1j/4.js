@@ -5,7 +5,7 @@ import {
 	Vector2,
 	Vector3,
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 import * as BufferGeometryUtils from '../utils/BufferGeometryUtils.js';
 
 const _cb = new Vector3(), _ab = new Vector3();
@@ -22,7 +22,7 @@ const _cb = new Vector3(), _ab = new Vector3();
  * geometry = modifier.modify( geometry );
  * ```
  *
- * @four_import import { SimplifyModifier } from '@fourjs/core/addons/modifiers/SimplifyModifier.js';
+ * @four_import import { SimplifyModifier } from 'fourjs/addons/modifiers/SimplifyModifier.js';
  */
 class SimplifyModifier {
 

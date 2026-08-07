@@ -26,7 +26,7 @@ loader.dispose();
 DRACOLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
 ```
 
 ## Constructor

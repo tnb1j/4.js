@@ -25,7 +25,7 @@ scene.add( mesh );
 LWOLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LWOLoader } from '@fourjs/core/addons/loaders/LWOLoader.js';
+import { LWOLoader } from 'fourjs/addons/loaders/LWOLoader.js';
 ```
 
 ## Constructor

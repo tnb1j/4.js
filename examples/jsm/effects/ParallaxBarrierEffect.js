@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	StereoCamera,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { FullScreenQuad } from '../postprocessing/Pass.js';
 
 /**
@@ -14,7 +14,7 @@ import { FullScreenQuad } from '../postprocessing/Pass.js';
  * Note that this class can only be used with {@link WebGLRenderer}.
  * When using {@link WebGPURenderer}, use {@link ParallaxBarrierPassNode}.
  *
- * @four_import import { ParallaxBarrierEffect } from '@fourjs/core/addons/effects/ParallaxBarrierEffect.js';
+ * @four_import import { ParallaxBarrierEffect } from 'fourjs/addons/effects/ParallaxBarrierEffect.js';
  */
 class ParallaxBarrierEffect {
 

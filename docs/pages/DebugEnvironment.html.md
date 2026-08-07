@@ -20,7 +20,7 @@ scene.environment = envMap;
 DebugEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DebugEnvironment } from '@fourjs/core/addons/environments/DebugEnvironment.js';
+import { DebugEnvironment } from 'fourjs/addons/environments/DebugEnvironment.js';
 ```
 
 ## Constructor

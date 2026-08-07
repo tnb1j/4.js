@@ -1,7 +1,7 @@
 import {
 	Matrix4,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _pixelToLocal = new Matrix4();
 const _mvp = new Matrix4();
@@ -29,7 +29,7 @@ const _size = new Vector3();
  * // In the animation loop
  * interactions.update();
  * ```
- * @four_import import { InteractionManager } from '@fourjs/core/addons/interaction/InteractionManager.js';
+ * @four_import import { InteractionManager } from 'fourjs/addons/interaction/InteractionManager.js';
  */
 class InteractionManager {
 

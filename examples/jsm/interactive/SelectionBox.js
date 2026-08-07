@@ -3,7 +3,7 @@ import {
 	Vector3,
 	Matrix4,
 	Quaternion,
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _frustum = new Frustum();
 const _center = new Vector3();
@@ -38,7 +38,7 @@ const _scale = new Vector3();
  * const selectedObjects = selectionBox.select( startPoint, endPoint );
  * ```
  *
- * @four_import import { SelectionBox } from '@fourjs/core/addons/interactive/SelectionBox.js';
+ * @four_import import { SelectionBox } from 'fourjs/addons/interactive/SelectionBox.js';
  */
 class SelectionBox {
 

@@ -1,7 +1,7 @@
 # 4.js
 
 4.js is an enhanced, backward-compatible fork of Three.js r185 for modern
-WebGL, WebGPU, and WebXR applications. The native package is `@fourjs/core`,
+WebGL, WebGPU, and WebXR applications. The native package is `fourjs`,
 and the recommended namespace is `FOUR`.
 
 This repository is an independent derivative project. It is not an official
@@ -25,16 +25,16 @@ Node.js 26 is also used for verification.
 
 ## Install
 
-`@fourjs/core` is the intended package identity, but it has not been published
+`fourjs` is the intended package identity, but it has not been published
 to npm. For this preview, clone the repository and use `npm ci`. The following
 command is reserved for a future package release:
 
 ```sh
-npm install @fourjs/core
+npm install fourjs
 ```
 
 ```js
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 const scene = new FOUR.Scene();
 const camera = new FOUR.PerspectiveCamera( 70, innerWidth / innerHeight, 0.01, 100 );
@@ -47,14 +47,14 @@ document.body.appendChild( renderer.domElement );
 WebGPU and TSL use dedicated entry points:
 
 ```js
-import * as FOUR from '@fourjs/core/webgpu';
-import { color, pass } from '@fourjs/core/tsl';
+import * as FOUR from 'fourjs/webgpu';
+import { color, pass } from 'fourjs/tsl';
 ```
 
 Addons remain available under the familiar addon layout:
 
 ```js
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 ```
 
 ## Migration

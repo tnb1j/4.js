@@ -1,4 +1,4 @@
-import { interleavedGradientNoise, Fn, vec2, vec4, mix, uv, Loop, premultiplyAlpha, unpremultiplyAlpha, int, float, nodeObject, convertToTexture, screenCoordinate } from '@fourjs/core/tsl';
+import { interleavedGradientNoise, Fn, vec2, vec4, mix, uv, Loop, premultiplyAlpha, unpremultiplyAlpha, int, float, nodeObject, convertToTexture, screenCoordinate } from 'fourjs/tsl';
 
 /**
  * This TSL function blurs an image in a circular pattern, radiating from a configurable center point in screen space.

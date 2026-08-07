@@ -6,7 +6,7 @@ import {
 	ShaderChunk,
 	Matrix4,
 	Box3
-} from '@fourjs/core';
+} from 'fourjs';
 import { CSMFrustum } from './CSMFrustum.js';
 import { CSMShader } from './CSMShader.js';
 
@@ -27,7 +27,7 @@ const _up = new Vector3( 0, 1, 0 );
  * This module can only be used with {@link WebGLRenderer}. When using {@link WebGPURenderer},
  * use {@link CSMShadowNode} instead.
  *
- * @four_import import { CSM } from '@fourjs/core/addons/csm/CSM.js';
+ * @four_import import { CSM } from 'fourjs/addons/csm/CSM.js';
  */
 export class CSM {
 

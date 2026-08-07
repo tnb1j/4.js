@@ -21,7 +21,7 @@ const json = pdb.json;
 PDBLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PDBLoader } from '@fourjs/core/addons/loaders/PDBLoader.js';
+import { PDBLoader } from 'fourjs/addons/loaders/PDBLoader.js';
 ```
 
 ## Constructor

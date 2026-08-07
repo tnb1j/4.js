@@ -9,7 +9,7 @@ A special version of [Reflector](Reflector.html) for usage with [SSRPass](SSRPas
 ReflectorForSSRPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ReflectorForSSRPass } from '@fourjs/core/addons/objects/ReflectorForSSRPass.js';
+import { ReflectorForSSRPass } from 'fourjs/addons/objects/ReflectorForSSRPass.js';
 ```
 
 ## Constructor

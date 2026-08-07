@@ -26,28 +26,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { sample, pass, mrt, screenUV, normalView, velocity, vec3, vec4, packNormalToRGB, unpackRGBToNormal, colorSpaceToWorking, builtinAOContext } from '@fourjs/core/tsl';
-			import { ao } from '@fourjs/core/addons/tsl/display/GTAONode.js';
-			import { traa } from '@fourjs/core/addons/tsl/display/TRAANode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { sample, pass, mrt, screenUV, normalView, velocity, vec3, vec4, packNormalToRGB, unpackRGBToNormal, colorSpaceToWorking, builtinAOContext } from 'fourjs/tsl';
+			import { ao } from 'fourjs/addons/tsl/display/GTAONode.js';
+			import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
-			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { RoundedBoxGeometry } from '@fourjs/core/addons/geometries/RoundedBoxGeometry.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { RoundedBoxGeometry } from 'fourjs/addons/geometries/RoundedBoxGeometry.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 
