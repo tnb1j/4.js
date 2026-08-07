@@ -2,10 +2,6 @@ name: CI
 
 on:
   pull_request:
-    paths-ignore:
-      - 'build/**'
-      - 'docs/**'
-      - 'files/**'
   workflow_dispatch:
 
 permissions:
