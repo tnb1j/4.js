@@ -1,4 +1,4 @@
-import { Vector3 } from 'fourjs';
+import { Vector3 } from '@tnb1j/4js';
 
 /**
  * An exporter for STL.
@@ -13,7 +13,7 @@ import { Vector3 } from 'fourjs';
  * const data = exporter.parse( mesh, { binary: true } );
  * ```
  *
- * @four_import import { STLExporter } from 'fourjs/addons/exporters/STLExporter.js';
+ * @four_import import { STLExporter } from '@tnb1j/4js/addons/exporters/STLExporter.js';
  */
 class STLExporter {
 

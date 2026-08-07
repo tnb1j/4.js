@@ -1,5 +1,5 @@
-import { Matrix3, NodeMaterial, Vector3 } from 'fourjs/webgpu';
-import { clamp, Fn, vec4, uv, uniform, max } from 'fourjs/tsl';
+import { Matrix3, NodeMaterial, Vector3 } from '@tnb1j/4js/webgpu';
+import { clamp, Fn, vec4, uv, uniform, max } from '@tnb1j/4js/tsl';
 import StereoCompositePassNode from './StereoCompositePassNode.js';
 import { frameCorners } from '../../utils/CameraUtils.js';
 
@@ -278,7 +278,7 @@ const ANAGLYPH_MATRICES = {
  * perception with zero parallax at the plane distance.
  *
  * @augments StereoCompositePassNode
- * @four_import import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from 'fourjs/addons/tsl/display/AnaglyphPassNode.js';
+ * @four_import import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from '@tnb1j/4js/addons/tsl/display/AnaglyphPassNode.js';
  */
 class AnaglyphPassNode extends StereoCompositePassNode {
 

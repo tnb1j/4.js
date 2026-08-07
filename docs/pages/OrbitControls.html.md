@@ -29,7 +29,7 @@ function animate() {
 OrbitControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 ```
 
 ## Constructor

@@ -1,7 +1,7 @@
 import {
 	FileLoader, Loader, ImageBitmapLoader, Texture, RepeatWrapping, MeshBasicNodeMaterial,
 	MeshPhysicalNodeMaterial, DoubleSide,
-} from 'fourjs/webgpu';
+} from '@tnb1j/4js/webgpu';
 
 import {
 	float, bool, int, vec2, vec3, vec4, color, texture,
@@ -21,7 +21,7 @@ import {
 	mx_invert, mx_ifgreater, mx_ifgreatereq, mx_ifequal, distance,
 	mx_separate, mx_place2d, mx_rotate2d, mx_rotate3d, mx_heighttonormal,
 	mx_unifiednoise2d, mx_unifiednoise3d
-} from 'fourjs/tsl';
+} from '@tnb1j/4js/tsl';
 
 const colorSpaceLib = {
 	mx_srgb_texture_to_lin_rec709
@@ -171,7 +171,7 @@ MXElements.forEach( element => MtlXLibrary[ element.name ] = element );
  * ```
  *
  * @augments Loader
- * @four_import import { MaterialXLoader } from 'fourjs/addons/loaders/MaterialXLoader.js';
+ * @four_import import { MaterialXLoader } from '@tnb1j/4js/addons/loaders/MaterialXLoader.js';
  */
 class MaterialXLoader extends Loader {
 

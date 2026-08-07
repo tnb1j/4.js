@@ -1,6 +1,6 @@
 /**
  * @module KaleidoShader
- * @four_import import { KaleidoShader } from 'fourjs/addons/shaders/KaleidoShader.js';
+ * @four_import import { KaleidoShader } from '@tnb1j/4js/addons/shaders/KaleidoShader.js';
  */
 
 /**

@@ -9,11 +9,11 @@ import {
 	TriangleStripDrawMode,
 	TrianglesDrawMode,
 	Vector3,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module BufferGeometryUtils
- * @four_import import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
+ * @four_import import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
  */
 
 /**

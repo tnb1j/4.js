@@ -19,17 +19,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { ShadowMesh } from 'fourjs/addons/objects/ShadowMesh.js';
+			import { ShadowMesh } from '@tnb1j/4js/addons/objects/ShadowMesh.js';
 
 			let SCREEN_WIDTH = window.innerWidth;
 			let SCREEN_HEIGHT = window.innerHeight;

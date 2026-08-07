@@ -9,7 +9,7 @@ A procedural roller coaster shadow geometry.
 RollerCoasterShadowGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RollerCoasterShadowGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+import { RollerCoasterShadowGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor

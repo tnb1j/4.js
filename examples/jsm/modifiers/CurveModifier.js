@@ -14,7 +14,7 @@ import {
 	LinearFilter,
 	DynamicDrawUsage,
 	Matrix4
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * Make a new DataTexture to store the descriptions of the curves.
@@ -204,7 +204,7 @@ vec3 transformedNormal = normalMatrix * (basis * objectNormal);
  * This module can only be used with {@link WebGLRenderer}. When using {@link WebGPURenderer},
  * import the class from `CurveModifierGPU.js`.
  *
- * @four_import import { Flow } from 'fourjs/addons/modifiers/CurveModifier.js';
+ * @four_import import { Flow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
  */
 export class Flow {
 
@@ -298,7 +298,7 @@ const _matrix = new Matrix4();
  * This module can only be used with {@link WebGLRenderer}.
  *
  * @augments Flow
- * @four_import import { InstancedFlow } from 'fourjs/addons/modifiers/CurveModifier.js';
+ * @four_import import { InstancedFlow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
  */
 export class InstancedFlow extends Flow {
 

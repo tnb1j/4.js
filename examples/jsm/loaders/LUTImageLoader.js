@@ -6,7 +6,7 @@ import {
 	UnsignedByteType,
 	ClampToEdgeWrapping,
 	LinearFilter,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for loading LUT images.
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUTImageLoader } from 'fourjs/addons/loaders/LUTImageLoader.js';
+ * @four_import import { LUTImageLoader } from '@tnb1j/4js/addons/loaders/LUTImageLoader.js';
  */
 export class LUTImageLoader extends Loader {
 

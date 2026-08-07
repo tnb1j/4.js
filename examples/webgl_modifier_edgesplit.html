@@ -12,22 +12,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { OBJLoader } from 'fourjs/addons/loaders/OBJLoader.js';
-			import { EdgeSplitModifier } from 'fourjs/addons/modifiers/EdgeSplitModifier.js';
-			import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+			import { EdgeSplitModifier } from '@tnb1j/4js/addons/modifiers/EdgeSplitModifier.js';
+			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let modifier, mesh, baseGeometry;

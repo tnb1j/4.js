@@ -1,4 +1,4 @@
-const FOUR_PACKAGE = 'fourjs';
+const FOUR_PACKAGE = '@tnb1j/4js';
 
 const BUILD_FILES = new Map( [
 	[ 'three.cjs', '4.cjs' ],

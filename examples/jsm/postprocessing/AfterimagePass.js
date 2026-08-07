@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { AfterimageShader } from '../shaders/AfterimageShader.js';
@@ -19,7 +19,7 @@ import { AfterimageShader } from '../shaders/AfterimageShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { AfterimagePass } from 'fourjs/addons/postprocessing/AfterimagePass.js';
+ * @four_import import { AfterimagePass } from '@tnb1j/4js/addons/postprocessing/AfterimagePass.js';
  */
 class AfterimagePass extends Pass {
 

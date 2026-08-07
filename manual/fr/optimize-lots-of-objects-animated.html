@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -348,10 +348,10 @@ Nous pourrions également écrire du code d'animation personnalisé, ce qui sera
 mais comme le globe webgl original utilise
 <a href="https://github.com/tweenjs/tween.js/">une bibliothèque d'animation</a>, utilisons la même ici.</p>
 <p>Nous devons inclure la bibliothèque</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
-import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
-+import TWEEN from 'fourjs/addons/libs/tween.module.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
++import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
 </pre>
 <p>Et ensuite, créer un <code class="notranslate" translate="no">Tween</code> pour animer les influences.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// afficher les données sélectionnées, masquer les autres

@@ -28,23 +28,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { texture, uniform, vec3 } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { texture, uniform, vec3 } from '@tnb1j/4js/tsl';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { FBXLoader } from 'fourjs/addons/loaders/FBXLoader.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
 
 			let container;
 			let camera, scene, renderer;

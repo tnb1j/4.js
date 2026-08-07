@@ -17,22 +17,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
+			import * as FOUR from '@tnb1j/4js/webgpu';
 
-			import { BoxLineGeometry } from 'fourjs/addons/geometries/BoxLineGeometry.js';
-			import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
-			import { setupWebGLXRFallback } from 'fourjs/addons/webxr/WebGLXRFallback.js';
+			import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
+			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
+			import { setupWebGLXRFallback } from '@tnb1j/4js/addons/webxr/WebGLXRFallback.js';
 
 			const timer = new FOUR.Timer();
 			timer.connect( document );

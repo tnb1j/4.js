@@ -1,11 +1,11 @@
-import { Group, NodeMaterial, Mesh, PlaneGeometry, DoubleSide, CameraHelper } from 'fourjs/webgpu';
-import { Fn, vec4, vec3, texture, uv, positionLocal, vec2, float, int, screenSize } from 'fourjs/tsl';
+import { Group, NodeMaterial, Mesh, PlaneGeometry, DoubleSide, CameraHelper } from '@tnb1j/4js/webgpu';
+import { Fn, vec4, vec3, texture, uv, positionLocal, vec2, float, int, screenSize } from '@tnb1j/4js/tsl';
 
 /**
  * Helper class to manage and display debug visuals for TileShadowNode.
  *
  * @augments Group
- * @four_import import { TileShadowNodeHelper } from 'fourjs/addons/tsl/shadows/TileShadowNodeHelper.js';
+ * @four_import import { TileShadowNodeHelper } from '@tnb1j/4js/addons/tsl/shadows/TileShadowNodeHelper.js';
  */
 class TileShadowNodeHelper extends Group {
 

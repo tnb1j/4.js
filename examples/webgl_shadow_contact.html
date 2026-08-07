@@ -25,20 +25,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import Stats from 'fourjs/addons/libs/stats.module.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { HorizontalBlurShader } from 'fourjs/addons/shaders/HorizontalBlurShader.js';
-			import { VerticalBlurShader } from 'fourjs/addons/shaders/VerticalBlurShader.js';
+			import * as FOUR from '@tnb1j/4js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { HorizontalBlurShader } from '@tnb1j/4js/addons/shaders/HorizontalBlurShader.js';
+			import { VerticalBlurShader } from '@tnb1j/4js/addons/shaders/VerticalBlurShader.js';
 
 			let camera, scene, renderer, stats, gui;
 

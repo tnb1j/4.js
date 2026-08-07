@@ -25,7 +25,7 @@ mixer.clipAction( result.clip ).play();
 BVHLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BVHLoader } from 'fourjs/addons/loaders/BVHLoader.js';
+import { BVHLoader } from '@tnb1j/4js/addons/loaders/BVHLoader.js';
 ```
 
 ## Constructor

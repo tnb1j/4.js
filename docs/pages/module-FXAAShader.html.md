@@ -5,7 +5,7 @@
 FXAAShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FXAAShader } from 'fourjs/addons/shaders/FXAAShader.js';
+import { FXAAShader } from '@tnb1j/4js/addons/shaders/FXAAShader.js';
 ```
 
 ## Properties

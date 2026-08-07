@@ -31,7 +31,7 @@ scene.add( object );
 FBXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FBXLoader } from 'fourjs/addons/loaders/FBXLoader.js';
+import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
 ```
 
 ## Constructor

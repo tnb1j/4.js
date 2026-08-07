@@ -14,7 +14,7 @@ scene.add( painter.mesh );
 TubePainter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TubePainter } from 'fourjs/addons/misc/TubePainter.js';
+import { TubePainter } from '@tnb1j/4js/addons/misc/TubePainter.js';
 ```
 
 ## Constructor

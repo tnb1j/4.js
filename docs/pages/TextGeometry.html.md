@@ -26,7 +26,7 @@ const geometry = new TextGeometry( 'Hello 4.js!', {
 TextGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 ```
 
 ## Constructor

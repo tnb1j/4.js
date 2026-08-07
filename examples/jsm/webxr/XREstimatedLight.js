@@ -3,7 +3,7 @@ import {
 	Group,
 	LightProbe,
 	WebGLCubeRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 class SessionLightProbe {
 
@@ -138,7 +138,7 @@ class SessionLightProbe {
  * a XR session. It relies on the WebXR Lighting Estimation API.
  *
  * @augments Group
- * @four_import import { XREstimatedLight } from 'fourjs/addons/webxr/XREstimatedLight.js';
+ * @four_import import { XREstimatedLight } from '@tnb1j/4js/addons/webxr/XREstimatedLight.js';
  */
 export class XREstimatedLight extends Group {
 

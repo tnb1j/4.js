@@ -1,4 +1,4 @@
-import { Tab } from 'fourjs/addons/inspector/ui/Tab.js';
+import { Tab } from '@tnb1j/4js/addons/inspector/ui/Tab.js';
 
 export class Extension extends Tab {
 

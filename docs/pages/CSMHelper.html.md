@@ -9,7 +9,7 @@ A helper for visualizing the cascades of a CSM instance.
 CSMHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSMHelper } from 'fourjs/addons/csm/CSMHelper.js';
+import { CSMHelper } from '@tnb1j/4js/addons/csm/CSMHelper.js';
 ```
 
 ## Constructor

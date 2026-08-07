@@ -4,7 +4,7 @@ import {
 	Float32BufferAttribute,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This class can be used to modify a geometry by breaking its edges if they
@@ -15,7 +15,7 @@ import {
  * geometry = modifier.modify( geometry );
  * ```
  *
- * @four_import import { TessellateModifier } from 'fourjs/addons/modifiers/TessellateModifier.js';
+ * @four_import import { TessellateModifier } from '@tnb1j/4js/addons/modifiers/TessellateModifier.js';
  */
 class TessellateModifier {
 

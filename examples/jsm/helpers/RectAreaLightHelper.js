@@ -6,7 +6,7 @@ import {
 	LineBasicMaterial,
 	Mesh,
 	MeshBasicMaterial
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * Creates a visual aid for rect area lights.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments Line
- * @four_import import { RectAreaLightHelper } from 'fourjs/addons/helpers/RectAreaLightHelper.js';
+ * @four_import import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
  */
 class RectAreaLightHelper extends Line {
 

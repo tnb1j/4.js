@@ -5,7 +5,7 @@ import {
 	SRGBColorSpace,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * An exporter for OBJ.
@@ -17,7 +17,7 @@ import {
  * const data = exporter.parse( scene );
  * ```
  *
- * @four_import import { OBJExporter } from 'fourjs/addons/exporters/OBJExporter.js';
+ * @four_import import { OBJExporter } from '@tnb1j/4js/addons/exporters/OBJExporter.js';
  */
 class OBJExporter {
 

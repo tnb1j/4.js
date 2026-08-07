@@ -2,8 +2,8 @@ import {
 	Mesh,
 	NodeMaterial,
 	SphereGeometry
-} from 'fourjs/webgpu';
-import { float, Fn, getShIrradianceAt, normalWorld, uniformArray, uniform, vec4 } from 'fourjs/tsl';
+} from '@tnb1j/4js/webgpu';
+import { float, Fn, getShIrradianceAt, normalWorld, uniformArray, uniform, vec4 } from '@tnb1j/4js/tsl';
 
 /**
  * Renders a sphere to visualize a light probe in the scene.
@@ -18,7 +18,7 @@ import { float, Fn, getShIrradianceAt, normalWorld, uniformArray, uniform, vec4 
  *
  * @private
  * @augments Mesh
- * @four_import import { LightProbeHelper } from 'fourjs/addons/helpers/LightProbeHelperGPU.js';
+ * @four_import import { LightProbeHelper } from '@tnb1j/4js/addons/helpers/LightProbeHelperGPU.js';
  */
 class LightProbeHelper extends Mesh {
 

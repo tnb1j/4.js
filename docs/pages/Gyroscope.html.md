@@ -9,7 +9,7 @@ A special type of 3D object that takes a position from the scene graph hierarchy
 Gyroscope is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Gyroscope } from 'fourjs/addons/misc/Gyroscope.js';
+import { Gyroscope } from '@tnb1j/4js/addons/misc/Gyroscope.js';
 ```
 
 ## Constructor

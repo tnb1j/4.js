@@ -1,10 +1,10 @@
 import {
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module ColorCorrectionShader
- * @four_import import { ColorCorrectionShader } from 'fourjs/addons/shaders/ColorCorrectionShader.js';
+ * @four_import import { ColorCorrectionShader } from '@tnb1j/4js/addons/shaders/ColorCorrectionShader.js';
  */
 
 /**

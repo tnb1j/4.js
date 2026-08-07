@@ -22,7 +22,7 @@ composer.addPass( ssrPass );
 SSRPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SSRPass } from 'fourjs/addons/postprocessing/SSRPass.js';
+import { SSRPass } from '@tnb1j/4js/addons/postprocessing/SSRPass.js';
 ```
 
 ## Constructor

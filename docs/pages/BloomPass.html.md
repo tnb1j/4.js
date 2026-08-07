@@ -18,7 +18,7 @@ composer.addPass( effectBloom );
 BloomPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BloomPass } from 'fourjs/addons/postprocessing/BloomPass.js';
+import { BloomPass } from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
 ```
 
 ## Constructor

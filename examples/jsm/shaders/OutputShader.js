@@ -1,6 +1,6 @@
 /**
  * @module OutputShader
- * @four_import import { OutputShader } from 'fourjs/addons/shaders/OutputShader.js';
+ * @four_import import { OutputShader } from '@tnb1j/4js/addons/shaders/OutputShader.js';
  */
 
 /**

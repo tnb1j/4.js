@@ -19,21 +19,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-			import { ArcballControls } from 'fourjs/addons/controls/ArcballControls.js';
+			import { ArcballControls } from '@tnb1j/4js/addons/controls/ArcballControls.js';
 
-			import { OBJLoader } from 'fourjs/addons/loaders/OBJLoader.js';
-			import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
 
 			const cameras = [ 'Orthographic', 'Perspective' ];
 			const cameraType = { type: 'Perspective' };

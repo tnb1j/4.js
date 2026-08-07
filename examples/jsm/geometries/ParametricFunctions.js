@@ -1,7 +1,7 @@
 
 /**
  * @module ParametricFunctions
- * @four_import import * as ParametricFunctions from 'fourjs/addons/geometries/ParametricFunctions.js';
+ * @four_import import * as ParametricFunctions from '@tnb1j/4js/addons/geometries/ParametricFunctions.js';
  */
 
 /**

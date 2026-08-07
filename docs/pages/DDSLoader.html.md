@@ -17,7 +17,7 @@ map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
 DDSLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DDSLoader } from 'fourjs/addons/loaders/DDSLoader.js';
+import { DDSLoader } from '@tnb1j/4js/addons/loaders/DDSLoader.js';
 ```
 
 ## Constructor

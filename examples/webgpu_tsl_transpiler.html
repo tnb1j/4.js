@@ -79,20 +79,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import Transpiler from 'fourjs/addons/transpiler/Transpiler.js';
-			import GLSLDecoder from 'fourjs/addons/transpiler/GLSLDecoder.js';
-			import WGSLEncoder from 'fourjs/addons/transpiler/WGSLEncoder.js';
-			import TSLEncoder from 'fourjs/addons/transpiler/TSLEncoder.js';
+			import Transpiler from '@tnb1j/4js/addons/transpiler/Transpiler.js';
+			import GLSLDecoder from '@tnb1j/4js/addons/transpiler/GLSLDecoder.js';
+			import WGSLEncoder from '@tnb1j/4js/addons/transpiler/WGSLEncoder.js';
+			import TSLEncoder from '@tnb1j/4js/addons/transpiler/TSLEncoder.js';
 
 			init();
 

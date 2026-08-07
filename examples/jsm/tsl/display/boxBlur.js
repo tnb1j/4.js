@@ -1,4 +1,4 @@
-import { Fn, vec2, uv, Loop, vec4, premultiplyAlpha, unpremultiplyAlpha, max, int, textureSize, nodeObject, convertToTexture } from 'fourjs/tsl';
+import { Fn, vec2, uv, Loop, vec4, premultiplyAlpha, unpremultiplyAlpha, max, int, textureSize, nodeObject, convertToTexture } from '@tnb1j/4js/tsl';
 
 /**
  * Applies a box blur effect to the given texture node.

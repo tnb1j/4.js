@@ -2,7 +2,7 @@ import {
 	Curve,
 	Vector3,
 	Vector4
-} from 'fourjs';
+} from '@tnb1j/4js';
 import * as NURBSUtils from '../curves/NURBSUtils.js';
 
 /**
@@ -11,7 +11,7 @@ import * as NURBSUtils from '../curves/NURBSUtils.js';
  * Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weight`.
  *
  * @augments Curve
- * @four_import import { NURBSCurve } from 'fourjs/addons/curves/NURBSCurve.js';
+ * @four_import import { NURBSCurve } from '@tnb1j/4js/addons/curves/NURBSCurve.js';
  */
 class NURBSCurve extends Curve {
 

@@ -21,7 +21,7 @@ scene.add( result.scene );
 ColladaLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ColladaLoader } from 'fourjs/addons/loaders/ColladaLoader.js';
+import { ColladaLoader } from '@tnb1j/4js/addons/loaders/ColladaLoader.js';
 ```
 
 ## Constructor

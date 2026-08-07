@@ -25,20 +25,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { color, computeSkinning, objectWorldMatrix, instancedArray, instanceIndex, Fn, shapeCircle } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { color, computeSkinning, objectWorldMatrix, instancedArray, instanceIndex, Fn, shapeCircle } from '@tnb1j/4js/tsl';
 
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer;
 			let mixer, timer;

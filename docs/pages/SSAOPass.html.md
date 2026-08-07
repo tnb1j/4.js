@@ -18,7 +18,7 @@ composer.addPass( ssaoPass );
 SSAOPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SSAOPass } from 'fourjs/addons/postprocessing/SSAOPass.js';
+import { SSAOPass } from '@tnb1j/4js/addons/postprocessing/SSAOPass.js';
 ```
 
 ## Constructor

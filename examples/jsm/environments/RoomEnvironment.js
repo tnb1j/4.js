@@ -8,7 +8,7 @@ import {
  	PointLight,
  	Scene,
  	Object3D,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This class represents a scene with a basic room setup that can be used as
@@ -28,7 +28,7 @@ import {
  * ```
  *
  * @augments Scene
- * @four_import import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+ * @four_import import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
  */
 class RoomEnvironment extends Scene {
 

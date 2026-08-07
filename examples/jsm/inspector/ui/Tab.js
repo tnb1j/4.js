@@ -1,4 +1,4 @@
-import { EventDispatcher } from 'fourjs';
+import { EventDispatcher } from '@tnb1j/4js';
 
 /**
  * Tab class

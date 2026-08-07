@@ -1,6 +1,6 @@
 /**
  * @module FilmShader
- * @four_import import { FilmShader } from 'fourjs/addons/shaders/FilmShader.js';
+ * @four_import import { FilmShader } from '@tnb1j/4js/addons/shaders/FilmShader.js';
  */
 
 /**

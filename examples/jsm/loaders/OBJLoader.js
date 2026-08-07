@@ -14,7 +14,7 @@ import {
 	Vector3,
 	Color,
 	SRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;
@@ -448,7 +448,7 @@ function ParserState() {
  * ```
  *
  * @augments Loader
- * @four_import import { OBJLoader } from 'fourjs/addons/loaders/OBJLoader.js';
+ * @four_import import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
  */
 class OBJLoader extends Loader {
 

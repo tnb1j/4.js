@@ -11,7 +11,7 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 AnaglyphEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AnaglyphEffect } from 'fourjs/addons/effects/AnaglyphEffect.js';
+import { AnaglyphEffect } from '@tnb1j/4js/addons/effects/AnaglyphEffect.js';
 ```
 
 ## Constructor

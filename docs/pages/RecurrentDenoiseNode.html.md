@@ -11,7 +11,7 @@ The denoising kernel is selected at construction time via `mode`: `'diffuse'` (S
 RecurrentDenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { recurrentDenoise } from 'fourjs/addons/tsl/display/RecurrentDenoiseNode.js';
+import { recurrentDenoise } from '@tnb1j/4js/addons/tsl/display/RecurrentDenoiseNode.js';
 ```
 
 ## Constructor

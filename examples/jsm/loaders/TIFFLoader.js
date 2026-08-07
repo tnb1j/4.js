@@ -2,7 +2,7 @@ import {
 	DataTextureLoader,
 	LinearFilter,
 	LinearMipmapLinearFilter
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import UTIF from '../libs/utif.module.js';
 
@@ -16,7 +16,7 @@ import UTIF from '../libs/utif.module.js';
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { TIFFLoader } from 'fourjs/addons/loaders/TIFFLoader.js';
+ * @four_import import { TIFFLoader } from '@tnb1j/4js/addons/loaders/TIFFLoader.js';
  */
 class TIFFLoader extends DataTextureLoader {
 

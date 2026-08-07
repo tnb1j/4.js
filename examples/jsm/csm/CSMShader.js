@@ -1,8 +1,8 @@
-import { ShaderChunk } from 'fourjs';
+import { ShaderChunk } from '@tnb1j/4js';
 
 /**
  * @module CSMShader
- * @four_import import { CSMShader } from 'fourjs/addons/csm/CSMShader.js';
+ * @four_import import { CSMShader } from '@tnb1j/4js/addons/csm/CSMShader.js';
  */
 
 /**

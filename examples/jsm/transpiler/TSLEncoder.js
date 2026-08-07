@@ -1,5 +1,5 @@
-import { REVISION } from 'fourjs/webgpu';
-import * as TSL from 'fourjs/tsl';
+import { REVISION } from '@tnb1j/4js/webgpu';
+import * as TSL from '@tnb1j/4js/tsl';
 
 import { VariableDeclaration, Accessor } from './AST.js';
 import { isExpression, isPrimitive } from './TranspilerUtils.js';

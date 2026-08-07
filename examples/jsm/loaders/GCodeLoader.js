@@ -6,7 +6,7 @@ import {
 	LineBasicMaterial,
 	LineSegments,
 	Loader
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the GCode format.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { GCodeLoader } from 'fourjs/addons/loaders/GCodeLoader.js';
+ * @four_import import { GCodeLoader } from '@tnb1j/4js/addons/loaders/GCodeLoader.js';
  */
 class GCodeLoader extends Loader {
 

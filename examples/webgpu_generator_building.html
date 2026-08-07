@@ -24,23 +24,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { uniform } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { uniform } from '@tnb1j/4js/tsl';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { SkyMesh } from 'fourjs/addons/objects/SkyMesh.js';
-			import { SkyscraperGenerator, createSkyscraperMaterial, pickBuildingColor } from 'fourjs/addons/generators/city/SkyscraperGenerator.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
+			import { SkyscraperGenerator, createSkyscraperMaterial, pickBuildingColor } from '@tnb1j/4js/addons/generators/city/SkyscraperGenerator.js';
 
 			let camera, scene, renderer, controls, generator, building, material;
 			let sky, sunLight, pmremGenerator, envScene;

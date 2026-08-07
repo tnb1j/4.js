@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -349,9 +349,9 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 <p>물론 lil-gui 모듈도 불러와야죠.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-+import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
++import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/transparency-intersecting-planes-alphatest.html"></iframe></div>

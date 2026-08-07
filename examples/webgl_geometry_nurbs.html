@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { NURBSCurve } from 'fourjs/addons/curves/NURBSCurve.js';
-			import { NURBSSurface } from 'fourjs/addons/curves/NURBSSurface.js';
-			import { NURBSVolume } from 'fourjs/addons/curves/NURBSVolume.js';
-			import { ParametricGeometry } from 'fourjs/addons/geometries/ParametricGeometry.js';
+			import { NURBSCurve } from '@tnb1j/4js/addons/curves/NURBSCurve.js';
+			import { NURBSSurface } from '@tnb1j/4js/addons/curves/NURBSSurface.js';
+			import { NURBSVolume } from '@tnb1j/4js/addons/curves/NURBSVolume.js';
+			import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
 
 			let container, stats;
 

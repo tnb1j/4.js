@@ -1,11 +1,11 @@
-import { DataTexture, FloatType, RGBAFormat, Vector2, Vector3, LightsNode, NodeUpdateType } from 'fourjs/webgpu';
+import { DataTexture, FloatType, RGBAFormat, Vector2, Vector3, LightsNode, NodeUpdateType } from '@tnb1j/4js/webgpu';
 
 import {
 	attributeArray, nodeProxy, int, float, vec3, vec4, ivec2, ivec4, uniform, Break, Loop, positionView,
 	Fn, If, Return, textureLoad, instanceIndex, screenCoordinate, directPointLight,
 	renderGroup,
 	min, max, pow, log, clamp, dot
-} from 'fourjs/tsl';
+} from '@tnb1j/4js/tsl';
 
 const _vector3 = /*@__PURE__*/ new Vector3();
 const _size = /*@__PURE__*/ new Vector2();
@@ -20,7 +20,7 @@ const _size = /*@__PURE__*/ new Vector2();
  * different depths — suitable for 3D scenes with real depth complexity.
  *
  * @augments LightsNode
- * @four_import import { clusteredLights } from 'fourjs/addons/tsl/lighting/ClusteredLightsNode.js';
+ * @four_import import { clusteredLights } from '@tnb1j/4js/addons/tsl/lighting/ClusteredLightsNode.js';
  */
 class ClusteredLightsNode extends LightsNode {
 

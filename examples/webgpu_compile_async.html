@@ -48,20 +48,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { uv, float, vec3, hash, mx_noise_vec3, mx_worley_noise_vec3, mx_cell_noise_float, mx_fractal_noise_vec3 } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { uv, float, vec3, hash, mx_noise_vec3, mx_worley_noise_vec3, mx_cell_noise_float, mx_fractal_noise_vec3 } from '@tnb1j/4js/tsl';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let MESH_COUNT = 256;
 			let GRID_SIZE = 16;

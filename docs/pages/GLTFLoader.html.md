@@ -54,7 +54,7 @@ scene.add( gltf.scene );
 GLTFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 ```
 
 ## Constructor

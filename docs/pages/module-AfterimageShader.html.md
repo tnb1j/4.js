@@ -5,7 +5,7 @@
 AfterimageShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AfterimageShader } from 'fourjs/addons/shaders/AfterimageShader.js';
+import { AfterimageShader } from '@tnb1j/4js/addons/shaders/AfterimageShader.js';
 ```
 
 ## Properties

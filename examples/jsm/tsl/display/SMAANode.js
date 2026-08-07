@@ -1,5 +1,5 @@
-import { HalfFloatType, LinearFilter, NearestFilter, RenderTarget, Texture, Vector2, QuadMesh, NodeMaterial, TempNode, RendererUtils } from 'fourjs/webgpu';
-import { abs, Fn, NodeUpdateType, uv, uniform, convertToTexture, varyingProperty, vec2, vec4, modelViewProjection, passTexture, max, step, dot, float, texture, If, Loop, int, Break, sqrt, sign, mix } from 'fourjs/tsl';
+import { HalfFloatType, LinearFilter, NearestFilter, RenderTarget, Texture, Vector2, QuadMesh, NodeMaterial, TempNode, RendererUtils } from '@tnb1j/4js/webgpu';
+import { abs, Fn, NodeUpdateType, uv, uniform, convertToTexture, varyingProperty, vec2, vec4, modelViewProjection, passTexture, max, step, dot, float, texture, If, Loop, int, Break, sqrt, sign, mix } from '@tnb1j/4js/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -15,7 +15,7 @@ let _rendererState;
  * Reference: {@link https://github.com/iryoku/smaa/releases/tag/v2.8}.
  *
  * @augments TempNode
- * @four_import import { smaa } from 'fourjs/addons/tsl/display/SMAANode.js';
+ * @four_import import { smaa } from '@tnb1j/4js/addons/tsl/display/SMAANode.js';
  */
 class SMAANode extends TempNode {
 

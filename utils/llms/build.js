@@ -106,14 +106,14 @@ CORRECT - modern pattern (always use latest version):
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "https://cdn.jsdelivr.net/npm/fourjs@${version}/build/4.module.js",
-    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/fourjs@${version}/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/examples/jsm/"
   }
 }
 </script>
 <script type="module">
-import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 </script>
 \`\`\`
 
@@ -127,7 +127,7 @@ import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 - Most examples and tutorials use this
 
 \`\`\`js
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 const renderer = new FOUR.WebGLRenderer();
 \`\`\`
 
@@ -137,7 +137,7 @@ const renderer = new FOUR.WebGLRenderer();
 - Advanced node-based materials
 
 \`\`\`js
-import * as FOUR from 'fourjs/webgpu';
+import * as FOUR from '@tnb1j/4js/webgpu';
 const renderer = new FOUR.WebGPURenderer();
 await renderer.init();
 \`\`\`
@@ -147,7 +147,7 @@ await renderer.init();
 When using WebGPURenderer, use TSL instead of raw GLSL for custom materials:
 
 \`\`\`js
-import { texture, uv, color } from 'fourjs/tsl';
+import { texture, uv, color } from '@tnb1j/4js/tsl';
 
 const material = new FOUR.MeshStandardNodeMaterial();
 material.colorNode = texture( myTexture ).mul( color( 0xff0000 ) );
@@ -267,14 +267,14 @@ CORRECT - modern pattern (always use latest version):
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "https://cdn.jsdelivr.net/npm/fourjs@${version}/build/4.module.js",
-    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/fourjs@${version}/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/examples/jsm/"
   }
 }
 </script>
 <script type="module">
-import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 </script>
 \`\`\`
 
@@ -288,7 +288,7 @@ import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 - Most examples and tutorials use this
 
 \`\`\`js
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 const renderer = new FOUR.WebGLRenderer();
 \`\`\`
 
@@ -298,7 +298,7 @@ const renderer = new FOUR.WebGLRenderer();
 - Advanced node-based materials
 
 \`\`\`js
-import * as FOUR from 'fourjs/webgpu';
+import * as FOUR from '@tnb1j/4js/webgpu';
 const renderer = new FOUR.WebGPURenderer();
 await renderer.init();
 \`\`\`
@@ -308,7 +308,7 @@ await renderer.init();
 When using WebGPURenderer, use TSL instead of raw GLSL for custom materials:
 
 \`\`\`js
-import { texture, uv, color } from 'fourjs/tsl';
+import { texture, uv, color } from '@tnb1j/4js/tsl';
 
 const material = new FOUR.MeshStandardNodeMaterial();
 material.colorNode = texture( myTexture ).mul( color( 0xff0000 ) );
@@ -349,14 +349,14 @@ When using TSL, use node-based materials:
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "https://cdn.jsdelivr.net/npm/fourjs@${version}/build/4.module.js",
-    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/fourjs@${version}/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/examples/jsm/"
   }
 }
 </script>
 <script type="module">
-import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 // Scene
 const scene = new FOUR.Scene();
@@ -424,16 +424,16 @@ renderer.setAnimationLoop( animate );
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "https://cdn.jsdelivr.net/npm/fourjs@${version}/build/4.webgpu.js",
-    "fourjs/tsl": "https://cdn.jsdelivr.net/npm/fourjs@${version}/build/4.tsl.js",
-    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/fourjs@${version}/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/build/4.webgpu.js",
+    "@tnb1j/4js/tsl": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/build/4.tsl.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/examples/jsm/"
   }
 }
 </script>
 <script type="module">
-import * as FOUR from 'fourjs';
-import { color, positionLocal, sin, time } from 'fourjs/tsl';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import * as FOUR from '@tnb1j/4js';
+import { color, positionLocal, sin, time } from '@tnb1j/4js/tsl';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 // Scene
 const scene = new FOUR.Scene();
@@ -494,8 +494,8 @@ renderer.setAnimationLoop( animate );
 ### Loading a GLTF Model
 
 \`\`\`js
-import * as FOUR from 'fourjs';
-import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+import * as FOUR from '@tnb1j/4js';
+import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 
 const loader = new GLTFLoader();
 

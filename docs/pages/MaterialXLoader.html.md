@@ -18,7 +18,7 @@ const materials = await loader.loadAsync( 'standard_surface_brass_tiled.mtlx' );
 MaterialXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MaterialXLoader } from 'fourjs/addons/loaders/MaterialXLoader.js';
+import { MaterialXLoader } from '@tnb1j/4js/addons/loaders/MaterialXLoader.js';
 ```
 
 ## Constructor

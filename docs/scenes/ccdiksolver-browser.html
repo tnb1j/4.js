@@ -25,8 +25,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../../build/4.module.js",
-					"fourjs/addons/": "../../examples/jsm/"
+					"@tnb1j/4js": "../../build/4.module.js",
+					"@tnb1j/4js/addons/": "../../examples/jsm/"
 				}
 			}
 		</script>
@@ -53,11 +53,11 @@
 				Vector3,
 				Uint16BufferAttribute,
 				WebGLRenderer
-			} from 'fourjs';
-			import { CCDIKSolver, CCDIKHelper } from 'fourjs/addons/animation/CCDIKSolver.js';
+			} from '@tnb1j/4js';
+			import { CCDIKSolver, CCDIKHelper } from '@tnb1j/4js/addons/animation/CCDIKSolver.js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 			let gui, scene, camera, renderer, orbit, mesh, bones, skeletonHelper, ikSolver;
 

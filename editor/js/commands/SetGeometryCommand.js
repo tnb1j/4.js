@@ -1,5 +1,5 @@
 import { Command } from '../Command.js';
-import { ObjectLoader } from 'fourjs';
+import { ObjectLoader } from '@tnb1j/4js';
 
 class SetGeometryCommand extends Command {
 

@@ -73,7 +73,7 @@ gpuCompute.doRenderTarget( myFilter2, outputRenderTarget );
 GPUComputationRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GPUComputationRenderer } from 'fourjs/addons/misc/GPUComputationRenderer.js';
+import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
 ```
 
 ## Constructor

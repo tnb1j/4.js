@@ -1,5 +1,5 @@
-import { RenderTarget, StereoCamera, HalfFloatType, LinearFilter, NearestFilter, Vector2, PassNode, QuadMesh, RendererUtils } from 'fourjs/webgpu';
-import { texture } from 'fourjs/tsl';
+import { RenderTarget, StereoCamera, HalfFloatType, LinearFilter, NearestFilter, Vector2, PassNode, QuadMesh, RendererUtils } from '@tnb1j/4js/webgpu';
+import { texture } from '@tnb1j/4js/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
@@ -15,7 +15,7 @@ let _rendererState;
  *
  * @abstract
  * @augments PassNode
- * @four_import import { StereoCompositePassNode } from 'fourjs/addons/tsl/display/StereoCompositePassNode.js';
+ * @four_import import { StereoCompositePassNode } from '@tnb1j/4js/addons/tsl/display/StereoCompositePassNode.js';
  */
 class StereoCompositePassNode extends PassNode {
 

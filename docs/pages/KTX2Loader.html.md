@@ -30,7 +30,7 @@ const texture = loader.loadAsync( 'diffuse.ktx2' );
 KTX2Loader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { KTX2Loader } from 'fourjs/addons/loaders/KTX2Loader.js';
+import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
 ```
 
 ## Constructor

@@ -15,21 +15,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
-			import { TexturePass } from 'fourjs/addons/postprocessing/TexturePass.js';
-			import { ClearPass } from 'fourjs/addons/postprocessing/ClearPass.js';
-			import { MaskPass, ClearMaskPass } from 'fourjs/addons/postprocessing/MaskPass.js';
-			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+			import { TexturePass } from '@tnb1j/4js/addons/postprocessing/TexturePass.js';
+			import { ClearPass } from '@tnb1j/4js/addons/postprocessing/ClearPass.js';
+			import { MaskPass, ClearMaskPass } from '@tnb1j/4js/addons/postprocessing/MaskPass.js';
+			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
 
 			let camera, composer, renderer;
 			let box, torus;

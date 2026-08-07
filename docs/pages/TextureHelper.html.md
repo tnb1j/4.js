@@ -11,7 +11,7 @@ This helper can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 TextureHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TextureHelper } from 'fourjs/addons/helpers/TextureHelper.js';
+import { TextureHelper } from '@tnb1j/4js/addons/helpers/TextureHelper.js';
 ```
 
 ## Constructor

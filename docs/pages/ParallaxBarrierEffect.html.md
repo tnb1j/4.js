@@ -9,7 +9,7 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 ParallaxBarrierEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ParallaxBarrierEffect } from 'fourjs/addons/effects/ParallaxBarrierEffect.js';
+import { ParallaxBarrierEffect } from '@tnb1j/4js/addons/effects/ParallaxBarrierEffect.js';
 ```
 
 ## Constructor

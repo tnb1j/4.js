@@ -5,7 +5,7 @@
 DotScreenShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DotScreenShader } from 'fourjs/addons/shaders/DotScreenShader.js';
+import { DotScreenShader } from '@tnb1j/4js/addons/shaders/DotScreenShader.js';
 ```
 
 ## Properties

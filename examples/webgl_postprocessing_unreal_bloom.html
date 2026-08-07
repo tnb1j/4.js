@@ -29,25 +29,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
-			import { UnrealBloomPass } from 'fourjs/addons/postprocessing/UnrealBloomPass.js';
-			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+			import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
+			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
 
 			let camera, stats;
 			let composer, renderer, mixer, timer;

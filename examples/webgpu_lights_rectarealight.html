@@ -25,25 +25,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
+			import * as FOUR from '@tnb1j/4js/webgpu';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { RectAreaLightHelper } from 'fourjs/addons/helpers/RectAreaLightHelper.js';
-			import { RectAreaLightTexturesLib } from 'fourjs/addons/lights/RectAreaLightTexturesLib.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
+			import { RectAreaLightTexturesLib } from '@tnb1j/4js/addons/lights/RectAreaLightTexturesLib.js';
 
-			import { checker, uv } from 'fourjs/tsl';
+			import { checker, uv } from '@tnb1j/4js/tsl';
 
 			let renderer, scene, camera;
 			let rectLight1, rectLight2, rectLight3;

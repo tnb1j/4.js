@@ -14,7 +14,7 @@ const result = await exporter.parse( dataTexture );
 KTX2Exporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { KTX2Exporter } from 'fourjs/addons/exporters/KTX2Exporter.js';
+import { KTX2Exporter } from '@tnb1j/4js/addons/exporters/KTX2Exporter.js';
 ```
 
 ## Constructor

@@ -5,7 +5,7 @@
 RGBShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RGBShiftShader } from 'fourjs/addons/shaders/RGBShiftShader.js';
+import { RGBShiftShader } from '@tnb1j/4js/addons/shaders/RGBShiftShader.js';
 ```
 
 ## Properties

@@ -1,4 +1,4 @@
-import { BufferAttribute, BufferGeometry } from 'fourjs';
+import { BufferAttribute, BufferGeometry } from '@tnb1j/4js';
 import * as BufferGeometryUtils from '../../../../examples/jsm/utils/BufferGeometryUtils.js';
 
 const getGeometry = () => {

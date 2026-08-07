@@ -9,7 +9,7 @@ It visualizes the current selection box with a `div` container element.
 SelectionHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SelectionHelper } from 'fourjs/addons/interactive/SelectionHelper.js';
+import { SelectionHelper } from '@tnb1j/4js/addons/interactive/SelectionHelper.js';
 ```
 
 ## Constructor

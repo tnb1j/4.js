@@ -22,7 +22,7 @@ light.add( lensflare );
 Lensflare is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Lensflare } from 'fourjs/addons/objects/Lensflare.js';
+import { Lensflare } from '@tnb1j/4js/addons/objects/Lensflare.js';
 ```
 
 ## Constructor

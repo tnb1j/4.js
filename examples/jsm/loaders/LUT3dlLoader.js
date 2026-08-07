@@ -6,7 +6,7 @@ import {
 	Loader,
 	RGBAFormat,
 	UnsignedByteType,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the 3DL LUT format.
@@ -21,7 +21,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUT3dlLoader } from 'fourjs/addons/loaders/LUT3dlLoader.js';
+ * @four_import import { LUT3dlLoader } from '@tnb1j/4js/addons/loaders/LUT3dlLoader.js';
  */
 export class LUT3dlLoader extends Loader {
 

@@ -4,7 +4,7 @@ import {
 	FileLoader,
 	Loader,
 	NumberKeyframeTrack
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the MDD format.
@@ -40,7 +40,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { MDDLoader } from 'fourjs/addons/loaders/MDDLoader.js';
+ * @four_import import { MDDLoader } from '@tnb1j/4js/addons/loaders/MDDLoader.js';
  */
 class MDDLoader extends Loader {
 

@@ -7,7 +7,7 @@ A utility module with basic WebGL 2 capability testing.
 WebGL is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import WebGL from 'fourjs/addons/capabilities/WebGL.js';
+import WebGL from '@tnb1j/4js/addons/capabilities/WebGL.js';
 ```
 
 ## Static Methods

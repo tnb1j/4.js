@@ -10,7 +10,7 @@ if ( typeof window !== 'undefined' && isAvailable ) {
  * A utility module with basic WebGPU capability testing.
  *
  * @hideconstructor
- * @four_import import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
+ * @four_import import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
  */
 class WebGPU {
 

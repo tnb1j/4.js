@@ -16,7 +16,7 @@ renderer.lighting = lighting;
 DynamicLighting is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DynamicLighting } from 'fourjs/addons/lighting/DynamicLighting.js';
+import { DynamicLighting } from '@tnb1j/4js/addons/lighting/DynamicLighting.js';
 ```
 
 ## Constructor

@@ -21,21 +21,21 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"fourjs": "../build/4.module.js",
-				"fourjs/addons/": "./jsm/"
+				"@tnb1j/4js": "../build/4.module.js",
+				"@tnb1j/4js/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from 'fourjs';
+		import * as FOUR from '@tnb1j/4js';
 
-		import Stats from 'fourjs/addons/libs/stats.module.js';
+		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-		import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-		import { MarchingCubes } from 'fourjs/addons/objects/MarchingCubes.js';
-		import { ToonShader1, ToonShader2, ToonShaderHatching, ToonShaderDotted } from 'fourjs/addons/shaders/ToonShader.js';
+		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { MarchingCubes } from '@tnb1j/4js/addons/objects/MarchingCubes.js';
+		import { ToonShader1, ToonShader2, ToonShaderHatching, ToonShaderDotted } from '@tnb1j/4js/addons/shaders/ToonShader.js';
 
 		let container, stats;
 

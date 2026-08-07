@@ -1,6 +1,6 @@
 import {
 	Color
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass } from './Pass.js';
 
 /**
@@ -13,7 +13,7 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+ * @four_import import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
  */
 class RenderPass extends Pass {
 

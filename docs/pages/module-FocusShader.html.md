@@ -5,7 +5,7 @@
 FocusShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FocusShader } from 'fourjs/addons/shaders/FocusShader.js';
+import { FocusShader } from '@tnb1j/4js/addons/shaders/FocusShader.js';
 ```
 
 ## Properties

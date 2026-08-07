@@ -1,6 +1,6 @@
 import {
 	WireframeGeometry
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
 
 /**
@@ -14,7 +14,7 @@ import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
  * ```
  *
  * @augments LineSegmentsGeometry
- * @four_import import { WireframeGeometry2 } from 'fourjs/addons/lines/WireframeGeometry2.js';
+ * @four_import import { WireframeGeometry2 } from '@tnb1j/4js/addons/lines/WireframeGeometry2.js';
  */
 class WireframeGeometry2 extends LineSegmentsGeometry {
 

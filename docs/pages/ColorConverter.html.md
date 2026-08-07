@@ -7,7 +7,7 @@ A utility class with helper functions for color conversion.
 ColorConverter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ColorConverter } from 'fourjs/addons/math/ColorConverter.js';
+import { ColorConverter } from '@tnb1j/4js/addons/math/ColorConverter.js';
 ```
 
 ## Static Methods

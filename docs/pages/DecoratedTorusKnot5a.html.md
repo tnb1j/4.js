@@ -9,7 +9,7 @@ A Decorated Torus Knot 5a.
 DecoratedTorusKnot5a is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DecoratedTorusKnot5a } from 'fourjs/addons/curves/CurveExtras.js';
+import { DecoratedTorusKnot5a } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

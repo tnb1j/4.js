@@ -18,20 +18,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
-			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
+			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			FOUR.Cache.enabled = true;
 

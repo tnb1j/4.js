@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { densityFogFactor, mix, pass, reference, uniform, vec2 } from 'fourjs/tsl';
-			import { gaussianBlur } from 'fourjs/addons/tsl/display/GaussianBlurNode.js';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { densityFogFactor, mix, pass, reference, uniform, vec2 } from '@tnb1j/4js/tsl';
+			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
 
-			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
-			import { TreeGenerator } from 'fourjs/addons/generators/TreeGenerator.js';
+			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { TreeGenerator } from '@tnb1j/4js/addons/generators/TreeGenerator.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 

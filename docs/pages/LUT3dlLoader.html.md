@@ -21,7 +21,7 @@ const map = loader.loadAsync( 'luts/Presetpro-Cinematic.3dl' );
 LUT3dlLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LUT3dlLoader } from 'fourjs/addons/loaders/LUT3dlLoader.js';
+import { LUT3dlLoader } from '@tnb1j/4js/addons/loaders/LUT3dlLoader.js';
 ```
 
 ## Constructor

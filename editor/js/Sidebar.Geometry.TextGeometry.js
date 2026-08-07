@@ -1,4 +1,4 @@
-import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 
 import { UIDiv, UIRow, UIText, UINumber, UIInteger, UIInput, UICheckbox } from './libs/ui.js';
 

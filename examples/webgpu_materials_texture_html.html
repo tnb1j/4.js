@@ -61,9 +61,9 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/addons/": "./jsm/",
-					"fourjs/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/addons/": "./jsm/",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
 					"three-html-render/polyfill": "https://cdn.jsdelivr.net/npm/three-html-render/dist/polyfill.mjs"
 				}
 			}
@@ -71,11 +71,11 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 			import { installHtmlInCanvasPolyfill } from 'three-html-render/polyfill';
-			import { RoundedBoxGeometry } from 'fourjs/addons/geometries/RoundedBoxGeometry.js';
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
-			import { InteractionManager } from 'fourjs/addons/interaction/InteractionManager.js';
+			import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { InteractionManager } from '@tnb1j/4js/addons/interaction/InteractionManager.js';
 
 			if ( ! ( 'requestPaint' in HTMLCanvasElement.prototype ) ) {
 

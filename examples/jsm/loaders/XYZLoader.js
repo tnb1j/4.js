@@ -5,7 +5,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	SRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the XYZ format.
@@ -26,7 +26,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { XYZLoader } from 'fourjs/addons/loaders/XYZLoader.js';
+ * @four_import import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';
  */
 class XYZLoader extends Loader {
 

@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -359,9 +359,9 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 <p>et bien sûr, nous devons inclure lil-gui.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
-+import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
++import {GUI} from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>et voici les résultats.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">

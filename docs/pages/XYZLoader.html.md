@@ -23,7 +23,7 @@ scene.add( points );
 XYZLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XYZLoader } from 'fourjs/addons/loaders/XYZLoader.js';
+import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';
 ```
 
 ## Constructor

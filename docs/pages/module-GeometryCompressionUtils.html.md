@@ -5,7 +5,7 @@
 GeometryCompressionUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as GeometryCompressionUtils from 'fourjs/addons/utils/GeometryCompressionUtils.js';
+import * as GeometryCompressionUtils from '@tnb1j/4js/addons/utils/GeometryCompressionUtils.js';
 ```
 
 ## Methods

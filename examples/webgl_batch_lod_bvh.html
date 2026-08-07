@@ -25,8 +25,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/",
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/",
 
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js",
 
@@ -41,11 +41,11 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
-			import Stats from 'fourjs/addons/libs/stats.module.js';
-			import { MapControls } from 'fourjs/addons/controls/MapControls.js';
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import * as FOUR from '@tnb1j/4js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			import { acceleratedRaycast, computeBatchedBoundsTree } from 'three-mesh-bvh';
 

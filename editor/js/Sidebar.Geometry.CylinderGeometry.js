@@ -1,4 +1,4 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 import { UIDiv, UIRow, UIText, UIInteger, UICheckbox, UINumber } from './libs/ui.js';
 

@@ -21,7 +21,7 @@ scene.add( new FOUR.Mesh( geometry ) );
 PLYLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PLYLoader } from 'fourjs/addons/loaders/PLYLoader.js';
+import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
 ```
 
 ## Constructor

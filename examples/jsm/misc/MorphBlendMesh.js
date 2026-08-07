@@ -1,7 +1,7 @@
 import {
 	MathUtils,
 	Mesh
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A special type of an animated mesh with a more advanced interface
@@ -10,7 +10,7 @@ import {
  * fading options.
  *
  * @augments Mesh
- * @four_import import { MorphBlendMesh } from 'fourjs/addons/misc/MorphBlendMesh.js';
+ * @four_import import { MorphBlendMesh } from '@tnb1j/4js/addons/misc/MorphBlendMesh.js';
  */
 class MorphBlendMesh extends Mesh {
 

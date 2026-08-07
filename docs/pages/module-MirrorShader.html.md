@@ -5,7 +5,7 @@
 MirrorShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MirrorShader } from 'fourjs/addons/shaders/MirrorShader.js';
+import { MirrorShader } from '@tnb1j/4js/addons/shaders/MirrorShader.js';
 ```
 
 ## Properties

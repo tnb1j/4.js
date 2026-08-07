@@ -18,7 +18,7 @@ composer.addPass( saoPass );
 SAOPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SAOPass } from 'fourjs/addons/postprocessing/SAOPass.js';
+import { SAOPass } from '@tnb1j/4js/addons/postprocessing/SAOPass.js';
 ```
 
 ## Constructor

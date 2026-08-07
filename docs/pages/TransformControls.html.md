@@ -11,7 +11,7 @@ This class can be used to transform objects in 3D space by adapting a similar in
 TransformControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
+import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
 ```
 
 ## Constructor

@@ -9,7 +9,7 @@ import {
 	Plane,
 	Ray,
 	MathUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * Fires when the camera has been transformed by the controls.
@@ -83,7 +83,7 @@ const _EPS = 0.000001;
  * ```
  *
  * @augments Controls
- * @four_import import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+ * @four_import import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
  */
 class OrbitControls extends Controls {
 

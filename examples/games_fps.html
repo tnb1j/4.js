@@ -19,26 +19,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 
-			import { Octree } from 'fourjs/addons/math/Octree.js';
-			import { OctreeHelper } from 'fourjs/addons/helpers/OctreeHelper.js';
+			import { Octree } from '@tnb1j/4js/addons/math/Octree.js';
+			import { OctreeHelper } from '@tnb1j/4js/addons/helpers/OctreeHelper.js';
 
-			import { Capsule } from 'fourjs/addons/math/Capsule.js';
+			import { Capsule } from '@tnb1j/4js/addons/math/Capsule.js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			const timer = new FOUR.Timer();
 			timer.connect( document );

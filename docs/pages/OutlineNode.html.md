@@ -31,7 +31,7 @@ renderPipeline.outputNode = outlineColor.add( scenePass );
 OutlineNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { outline } from 'fourjs/addons/tsl/display/OutlineNode.js';
+import { outline } from '@tnb1j/4js/addons/tsl/display/OutlineNode.js';
 ```
 
 ## Constructor

@@ -33,7 +33,7 @@ const APP = {
 
 			if ( project.renderer === 'WebGPURenderer' ) {
 
-				const { WebGPURenderer } = await import( 'fourjs/webgpu' );
+				const { WebGPURenderer } = await import( '@tnb1j/4js/webgpu' );
 				renderer = new WebGPURenderer( { antialias: true, reversedDepthBuffer: true } );
 				await renderer.init();
 

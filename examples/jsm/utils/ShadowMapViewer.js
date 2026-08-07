@@ -7,7 +7,7 @@ import {
 	PlaneGeometry,
 	Scene,
 	ShaderMaterial
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This is a helper for visualising a given light's shadow map.
@@ -26,7 +26,7 @@ import {
  * lightShadowMapViewer.update();
  * ```
  *
- * @four_import import { ShadowMapViewer } from 'fourjs/addons/utils/ShadowMapViewer.js';
+ * @four_import import { ShadowMapViewer } from '@tnb1j/4js/addons/utils/ShadowMapViewer.js';
  */
 class ShadowMapViewer {
 

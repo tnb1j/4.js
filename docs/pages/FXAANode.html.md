@@ -9,7 +9,7 @@ Post processing node for applying FXAA. This node requires sRGB input so tone ma
 FXAANode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { fxaa } from 'fourjs/addons/tsl/display/FXAANode.js';
+import { fxaa } from '@tnb1j/4js/addons/tsl/display/FXAANode.js';
 ```
 
 ## Constructor

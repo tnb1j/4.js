@@ -18,8 +18,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/",
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/",
 					"three-subdivide": "https://cdn.jsdelivr.net/npm/three-subdivide@1.1.5/build/index.module.js"
 				}
 			}
@@ -27,10 +27,10 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 			import { LoopSubdivision } from 'three-subdivide';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let texture;

@@ -44,8 +44,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/",
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/",
 					"three/examples/": "./",
 					"three-gpu-pathtracer": "https://cdn.jsdelivr.net/npm/three-gpu-pathtracer@0.0.24/build/index.module.js",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js"
@@ -55,15 +55,15 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from 'fourjs/addons/loaders/UltraHDRLoader.js';
-			import { LDrawLoader } from 'fourjs/addons/loaders/LDrawLoader.js';
-			import { LDrawUtils } from 'fourjs/addons/utils/LDrawUtils.js';
-			import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+			import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
+			import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
+			import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
 			import { WebGLPathTracer, BlurredEnvMapGenerator, GradientEquirectTexture } from 'three-gpu-pathtracer';
 
 			let progressBarDiv, samplesEl;

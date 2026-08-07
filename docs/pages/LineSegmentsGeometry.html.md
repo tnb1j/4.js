@@ -11,7 +11,7 @@ This is used in [LineSegments2](LineSegments2.html) to describe the shape.
 LineSegmentsGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LineSegmentsGeometry } from 'fourjs/addons/lines/LineSegmentsGeometry.js';
+import { LineSegmentsGeometry } from '@tnb1j/4js/addons/lines/LineSegmentsGeometry.js';
 ```
 
 ## Constructor

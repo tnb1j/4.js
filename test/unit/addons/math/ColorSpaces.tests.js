@@ -1,4 +1,4 @@
-import { Color, ColorManagement, LinearSRGBColorSpace } from 'fourjs';
+import { Color, ColorManagement, LinearSRGBColorSpace } from '@tnb1j/4js';
 import {
 	DisplayP3ColorSpace,
 	DisplayP3ColorSpaceImpl,

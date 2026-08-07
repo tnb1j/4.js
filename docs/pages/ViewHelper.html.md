@@ -11,7 +11,7 @@ The helper allows to click on the X, Y and Z axes which animates the camera so i
 ViewHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ViewHelper } from 'fourjs/addons/helpers/ViewHelper.js';
+import { ViewHelper } from '@tnb1j/4js/addons/helpers/ViewHelper.js';
 ```
 
 ## Constructor

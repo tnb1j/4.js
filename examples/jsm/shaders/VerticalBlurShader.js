@@ -1,6 +1,6 @@
 /**
  * @module VerticalBlurShader
- * @four_import import { VerticalBlurShader } from 'fourjs/addons/shaders/VerticalBlurShader.js';
+ * @four_import import { VerticalBlurShader } from '@tnb1j/4js/addons/shaders/VerticalBlurShader.js';
  */
 
 /**

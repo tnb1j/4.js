@@ -25,10 +25,10 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
@@ -40,13 +40,13 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { Fn, color, mx_worley_noise_float, time } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { Fn, color, mx_worley_noise_float, time } from '@tnb1j/4js/tsl';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
-			import { PLYLoader } from 'fourjs/addons/loaders/PLYLoader.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 			let renderer, scene, camera;
 

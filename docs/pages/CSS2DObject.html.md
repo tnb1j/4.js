@@ -9,7 +9,7 @@ The only type of 3D object that is supported by [CSS2DRenderer](CSS2DRenderer.ht
 CSS2DObject is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSS2DObject } from 'fourjs/addons/renderers/CSS2DRenderer.js';
+import { CSS2DObject } from '@tnb1j/4js/addons/renderers/CSS2DRenderer.js';
 ```
 
 ## Constructor

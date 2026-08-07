@@ -25,7 +25,7 @@ import {
 	SpriteMaterial,
 	TextureLoader,
 	EquirectangularReflectionMapping
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import { EXRLoader } from '../loaders/EXRLoader.js';
 
@@ -49,7 +49,7 @@ const _taskCache = new WeakMap();
  * ```
  *
  * @augments Loader
- * @four_import import { Rhino3dmLoader } from 'fourjs/addons/loaders/3DMLoader.js';
+ * @four_import import { Rhino3dmLoader } from '@tnb1j/4js/addons/loaders/3DMLoader.js';
  */
 class Rhino3dmLoader extends Loader {
 

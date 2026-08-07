@@ -5,7 +5,7 @@
 ColorCorrectionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ColorCorrectionShader } from 'fourjs/addons/shaders/ColorCorrectionShader.js';
+import { ColorCorrectionShader } from '@tnb1j/4js/addons/shaders/ColorCorrectionShader.js';
 ```
 
 ## Properties

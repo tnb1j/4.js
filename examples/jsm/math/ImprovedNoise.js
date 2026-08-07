@@ -1,4 +1,4 @@
-import { MathUtils } from 'fourjs';
+import { MathUtils } from '@tnb1j/4js';
 
 const { lerp } = MathUtils;
 
@@ -39,7 +39,7 @@ function grad( hash, x, y, z ) {
  * The code is based on [IMPROVED NOISE](https://cs.nyu.edu/~perlin/noise/)
  * by Ken Perlin, 2002.
  *
- * @four_import import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
+ * @four_import import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
  */
 class ImprovedNoise {
 

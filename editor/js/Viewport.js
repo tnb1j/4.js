@@ -1,7 +1,7 @@
-import * as FOUR from 'fourjs';
-import { PMREMGenerator } from 'fourjs/webgpu';
+import * as FOUR from '@tnb1j/4js';
+import { PMREMGenerator } from '@tnb1j/4js/webgpu';
 
-import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
+import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
 
 import { UIPanel } from './libs/ui.js';
 
@@ -17,8 +17,8 @@ import { SetPositionCommand } from './commands/SetPositionCommand.js';
 import { SetRotationCommand } from './commands/SetRotationCommand.js';
 import { SetScaleCommand } from './commands/SetScaleCommand.js';
 
-import { ColorEnvironment } from 'fourjs/addons/environments/ColorEnvironment.js';
-import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+import { ColorEnvironment } from '@tnb1j/4js/addons/environments/ColorEnvironment.js';
+import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
 import { ViewportPathtracer } from './Viewport.Pathtracer.js';
 
 function Viewport( editor ) {

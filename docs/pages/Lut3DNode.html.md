@@ -9,7 +9,7 @@ A post processing node for color grading via lookup tables.
 Lut3DNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { lut3D } from 'fourjs/addons/tsl/display/Lut3DNode.js';
+import { lut3D } from '@tnb1j/4js/addons/tsl/display/Lut3DNode.js';
 ```
 
 ## Constructor

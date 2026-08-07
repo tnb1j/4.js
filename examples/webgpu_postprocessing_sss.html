@@ -27,25 +27,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { pass, vec3, vec4, mrt, screenUV, velocity, builtinShadowContext } from 'fourjs/tsl';
-			import { sss } from 'fourjs/addons/tsl/display/SSSNode.js';
-			import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { pass, vec3, vec4, mrt, screenUV, velocity, builtinShadowContext } from '@tnb1j/4js/tsl';
+			import { sss } from '@tnb1j/4js/addons/tsl/display/SSSNode.js';
+			import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'fourjs/addons/loaders/DRACOLoader.js';
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 

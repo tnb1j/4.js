@@ -12,7 +12,7 @@ import {
 	Vector2,
 	Vector3,
 	WebGLRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -26,7 +26,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { OutlinePass } from 'fourjs/addons/postprocessing/OutlinePass.js';
+ * @four_import import { OutlinePass } from '@tnb1j/4js/addons/postprocessing/OutlinePass.js';
  */
 class OutlinePass extends Pass {
 

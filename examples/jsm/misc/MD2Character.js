@@ -7,14 +7,14 @@ import {
 	TextureLoader,
 	UVMapping,
 	SRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { MD2Loader } from '../loaders/MD2Loader.js';
 
 /**
  * This class represents a management component for animated MD2
  * character assets.
  *
- * @four_import import { MD2Character } from 'fourjs/addons/misc/MD2Character.js';
+ * @four_import import { MD2Character } from '@tnb1j/4js/addons/misc/MD2Character.js';
  */
 class MD2Character {
 

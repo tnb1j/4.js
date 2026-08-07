@@ -4,7 +4,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -17,7 +17,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SavePass } from 'fourjs/addons/postprocessing/SavePass.js';
+ * @four_import import { SavePass } from '@tnb1j/4js/addons/postprocessing/SavePass.js';
  */
 class SavePass extends Pass {
 

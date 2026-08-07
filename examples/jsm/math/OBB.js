@@ -5,7 +5,7 @@ import {
 	Matrix3,
 	Ray,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 // module scope helper variables
 
@@ -40,7 +40,7 @@ const localRay = new Ray();
 /**
  * Represents an oriented bounding box (OBB) in 3D space.
  *
- * @four_import import { OBB } from 'fourjs/addons/math/OBB.js';
+ * @four_import import { OBB } from '@tnb1j/4js/addons/math/OBB.js';
  */
 class OBB {
 

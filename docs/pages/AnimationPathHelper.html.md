@@ -17,7 +17,7 @@ scene.add( helper );
 AnimationPathHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AnimationPathHelper } from 'fourjs/addons/helpers/AnimationPathHelper.js';
+import { AnimationPathHelper } from '@tnb1j/4js/addons/helpers/AnimationPathHelper.js';
 ```
 
 ## Constructor

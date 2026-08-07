@@ -2,14 +2,14 @@ import {
 	Matrix3,
 	Matrix4,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { VolumeSlice } from '../misc/VolumeSlice.js';
 
 /**
  * This class had been written to handle the output of the {@link NRRDLoader}.
  * It contains a volume of data and information about it. For now it only handles 3 dimensional data.
  *
- * @four_import import { Volume } from 'fourjs/addons/misc/Volume.js';
+ * @four_import import { Volume } from '@tnb1j/4js/addons/misc/Volume.js';
  */
 class Volume {
 

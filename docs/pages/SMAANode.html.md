@@ -11,7 +11,7 @@ Used Preset: SMAA 1x Medium (with color edge detection) Reference: [https://gith
 SMAANode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { smaa } from 'fourjs/addons/tsl/display/SMAANode.js';
+import { smaa } from '@tnb1j/4js/addons/tsl/display/SMAANode.js';
 ```
 
 ## Constructor

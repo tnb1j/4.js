@@ -24,8 +24,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/",
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/",
 					"web-ifc": "https://cdn.jsdelivr.net/npm/web-ifc@0.0.77/web-ifc-api.js"
 				}
 			}
@@ -33,9 +33,9 @@
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
+			import * as FOUR from '@tnb1j/4js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
 
 			import { IfcAPI } from 'web-ifc';
 

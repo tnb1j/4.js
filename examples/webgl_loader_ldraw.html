@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
 
-			import { LDrawLoader } from 'fourjs/addons/loaders/LDrawLoader.js';
-			import { LDrawUtils } from 'fourjs/addons/utils/LDrawUtils.js';
-			import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
+			import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
+			import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
+			import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
 
 			let container, progressBarDiv;
 

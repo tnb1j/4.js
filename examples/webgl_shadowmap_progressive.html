@@ -18,19 +18,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from 'fourjs';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
-			import { ProgressiveLightMap } from 'fourjs/addons/misc/ProgressiveLightMap.js';
+			import * as FOUR from '@tnb1j/4js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
+			import { ProgressiveLightMap } from '@tnb1j/4js/addons/misc/ProgressiveLightMap.js';
 
 			// ShadowMap + LightMap Res and Number of Directional Lights
 			const shadowMapRes = 512, lightMapRes = 1024, lightCount = 8;

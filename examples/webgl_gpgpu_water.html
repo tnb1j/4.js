@@ -131,25 +131,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
-			import { GPUComputationRenderer } from 'fourjs/addons/misc/GPUComputationRenderer.js';
-			import { SimplexNoise } from 'fourjs/addons/math/SimplexNoise.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
+			import { SimplexNoise } from '@tnb1j/4js/addons/math/SimplexNoise.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
 
 			// Texture width for simulation
 			const WIDTH = 128;

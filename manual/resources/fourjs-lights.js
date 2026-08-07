@@ -1,4 +1,4 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 import { OrbitControls } from '../../examples/jsm/controls/OrbitControls.js';
 import { threejsLessonUtils } from './fourjs-lesson-utils.js';
 

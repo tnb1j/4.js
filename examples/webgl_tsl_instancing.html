@@ -31,25 +31,25 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"fourjs": "../build/4.module.js",
-				"fourjs/webgpu": "../build/4.webgpu.js",
-				"fourjs/addons/": "./jsm/",
-				"fourjs/tsl": "../build/4.tsl.js"
+				"@tnb1j/4js": "../build/4.module.js",
+				"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+				"@tnb1j/4js/addons/": "./jsm/",
+				"@tnb1j/4js/tsl": "../build/4.tsl.js"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from 'fourjs';
-		import { WebGLNodesHandler } from 'fourjs/addons/tsl/WebGLNodesHandler.js';
+		import * as FOUR from '@tnb1j/4js';
+		import { WebGLNodesHandler } from '@tnb1j/4js/addons/tsl/WebGLNodesHandler.js';
 		
-		import Stats from 'fourjs/addons/libs/stats.module.js';
-		import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-		import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
-		import { MeshPhongNodeMaterial } from 'fourjs/webgpu';
-		import { sin, time, vec3, positionWorld } from 'fourjs/tsl';
+		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+		import { MeshPhongNodeMaterial } from '@tnb1j/4js/webgpu';
+		import { sin, time, vec3, positionWorld } from '@tnb1j/4js/tsl';
 
 		let container, stats, gui, guiStatsEl;
 		let camera, controls, scene, renderer, material;

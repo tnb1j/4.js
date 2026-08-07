@@ -1,7 +1,7 @@
 import {
 	DataTextureLoader,
 	LinearMipmapLinearFilter
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the TGA texture format.
@@ -13,7 +13,7 @@ import {
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { TGALoader } from 'fourjs/addons/loaders/TGALoader.js';
+ * @four_import import { TGALoader } from '@tnb1j/4js/addons/loaders/TGALoader.js';
  */
 class TGALoader extends DataTextureLoader {
 

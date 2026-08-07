@@ -4,11 +4,11 @@ import {
 	RepeatWrapping,
 	Vector2,
 	Vector3,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module GTAOShader
- * @four_import import { GTAOShader } from 'fourjs/addons/shaders/GTAOShader.js';
+ * @four_import import { GTAOShader } from '@tnb1j/4js/addons/shaders/GTAOShader.js';
  */
 
 /**

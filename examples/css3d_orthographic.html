@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { CSS3DRenderer, CSS3DObject } from 'fourjs/addons/renderers/CSS3DRenderer.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { CSS3DRenderer, CSS3DObject } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer;
 

@@ -7,7 +7,7 @@ import {
 	Loader,
 	Mesh,
 	MeshPhongMaterial
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { unzipSync } from '../libs/fflate.module.js';
 
 /**
@@ -24,7 +24,7 @@ import { unzipSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments Loader
- * @four_import import { AMFLoader } from 'fourjs/addons/loaders/AMFLoader.js';
+ * @four_import import { AMFLoader } from '@tnb1j/4js/addons/loaders/AMFLoader.js';
  */
 class AMFLoader extends Loader {
 

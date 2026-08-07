@@ -22,7 +22,7 @@ controls.addEventListener( 'unlock', function () {
 PointerLockControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PointerLockControls } from 'fourjs/addons/controls/PointerLockControls.js';
+import { PointerLockControls } from '@tnb1j/4js/addons/controls/PointerLockControls.js';
 ```
 
 ## Constructor

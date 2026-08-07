@@ -19,7 +19,7 @@ scene.add( object );
 GCodeLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GCodeLoader } from 'fourjs/addons/loaders/GCodeLoader.js';
+import { GCodeLoader } from '@tnb1j/4js/addons/loaders/GCodeLoader.js';
 ```
 
 ## Constructor

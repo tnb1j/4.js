@@ -16,7 +16,7 @@ composer.addPass( lutPass );
 LUTPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LUTPass } from 'fourjs/addons/postprocessing/LUTPass.js';
+import { LUTPass } from '@tnb1j/4js/addons/postprocessing/LUTPass.js';
 ```
 
 ## Constructor

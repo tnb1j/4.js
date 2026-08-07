@@ -17,7 +17,7 @@ scene.add( result.scene.children[ 0 ] );
 VOXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VOXLoader } from 'fourjs/addons/loaders/VOXLoader.js';
+import { VOXLoader } from '@tnb1j/4js/addons/loaders/VOXLoader.js';
 ```
 
 ## Constructor

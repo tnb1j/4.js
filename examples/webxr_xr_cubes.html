@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { BoxLineGeometry } from 'fourjs/addons/geometries/BoxLineGeometry.js';
-			import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
+			import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
+			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
 
 			const timer = new FOUR.Timer();
 			timer.connect( document );

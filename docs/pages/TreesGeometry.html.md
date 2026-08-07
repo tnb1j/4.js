@@ -9,7 +9,7 @@ A procedural trees geometry.
 TreesGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TreesGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+import { TreesGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor

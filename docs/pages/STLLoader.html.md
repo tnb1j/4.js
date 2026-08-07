@@ -45,7 +45,7 @@ const mesh = new FOUR.Mesh(geometry, materials);
 STLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { STLLoader } from 'fourjs/addons/loaders/STLLoader.js';
+import { STLLoader } from '@tnb1j/4js/addons/loaders/STLLoader.js';
 ```
 
 ## Constructor

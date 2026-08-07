@@ -23,26 +23,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
+			import * as FOUR from '@tnb1j/4js/webgpu';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { KTX2Loader } from 'fourjs/addons/loaders/KTX2Loader.js';
-			import { MeshoptDecoder } from 'fourjs/addons/libs/meshopt_decoder.module.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { MeshoptDecoder } from '@tnb1j/4js/addons/libs/meshopt_decoder.module.js';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
 			init();
 

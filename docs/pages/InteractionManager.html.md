@@ -22,7 +22,7 @@ interactions.update();
 InteractionManager is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { InteractionManager } from 'fourjs/addons/interaction/InteractionManager.js';
+import { InteractionManager } from '@tnb1j/4js/addons/interaction/InteractionManager.js';
 ```
 
 ## Constructor

@@ -5,7 +5,7 @@
 ColorUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as ColorUtils from 'fourjs/addons/utils/ColorUtils.js';
+import * as ColorUtils from '@tnb1j/4js/addons/utils/ColorUtils.js';
 ```
 
 ## Methods

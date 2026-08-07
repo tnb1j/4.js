@@ -19,7 +19,7 @@ scene.add( object );
 OBJLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OBJLoader } from 'fourjs/addons/loaders/OBJLoader.js';
+import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
 ```
 
 ## Constructor

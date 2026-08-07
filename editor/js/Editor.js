@@ -1,4 +1,4 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 import { Config } from './Config.js';
 import { Loader } from './Loader.js';

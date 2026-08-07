@@ -1,4 +1,4 @@
-import { Color, ColorManagement, SRGBColorSpace } from 'fourjs';
+import { Color, ColorManagement, SRGBColorSpace } from '@tnb1j/4js';
 
 /* global DracoEncoderModule */
 
@@ -26,7 +26,7 @@ import { Color, ColorManagement, SRGBColorSpace } from 'fourjs';
  * const data = await exporter.parseAsync( mesh, options );
  * ```
  *
- * @four_import import { DRACOExporter } from 'fourjs/addons/exporters/DRACOExporter.js';
+ * @four_import import { DRACOExporter } from '@tnb1j/4js/addons/exporters/DRACOExporter.js';
  */
 class DRACOExporter {
 

@@ -19,19 +19,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from 'fourjs';
-			import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
-			import Stats from 'fourjs/addons/libs/stats.module.js';
-			import { InstancedFlow } from 'fourjs/addons/modifiers/CurveModifier.js';
-			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
-			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+			import * as FOUR from '@tnb1j/4js';
+			import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { InstancedFlow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
+			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
+			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 
 			const ACTION_SELECT = 1, ACTION_NONE = 0;
 			const curveHandles = [];

@@ -6,13 +6,13 @@ import {
 	Matrix4,
 	Mesh,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import { mergeGroups, deepCloneAttribute } from './BufferGeometryUtils.js';
 
 /**
  * @module SceneUtils
- * @four_import import * as SceneUtils from 'fourjs/addons/utils/SceneUtils.js';
+ * @four_import import * as SceneUtils from '@tnb1j/4js/addons/utils/SceneUtils.js';
  */
 
 const _color = /*@__PURE__*/new Color();

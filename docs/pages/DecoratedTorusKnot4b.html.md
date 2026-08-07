@@ -9,7 +9,7 @@ A Decorated Torus Knot 4b.
 DecoratedTorusKnot4b is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DecoratedTorusKnot4b } from 'fourjs/addons/curves/CurveExtras.js';
+import { DecoratedTorusKnot4b } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

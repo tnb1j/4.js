@@ -2,7 +2,7 @@ import {
 	HalfFloatType,
 	ShaderMaterial,
 	WebGLRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { FullScreenQuad, Pass } from './Pass.js';
 
 /**
@@ -16,7 +16,7 @@ import { FullScreenQuad, Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { RenderTransitionPass } from 'fourjs/addons/postprocessing/RenderTransitionPass.js';
+ * @four_import import { RenderTransitionPass } from '@tnb1j/4js/addons/postprocessing/RenderTransitionPass.js';
  */
 class RenderTransitionPass extends Pass {
 

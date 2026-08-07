@@ -4,7 +4,7 @@
  * Copyright 2026 4.js contributors
  * SPDX-License-Identifier: MIT
  */
-import { TSL } from 'fourjs/webgpu';
+import { TSL } from '@tnb1j/4js/webgpu';
 
 const BRDF_GGX = TSL.BRDF_GGX;
 const BRDF_Lambert = TSL.BRDF_Lambert;

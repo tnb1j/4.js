@@ -1,5 +1,5 @@
-import { TempNode, NodeMaterial, NodeUpdateType, RenderTarget, Vector2, HalfFloatType, RedFormat, QuadMesh, RendererUtils } from 'fourjs/webgpu';
-import { convertToTexture, nodeObject, Fn, uniform, smoothstep, step, texture, max, uniformArray, outputStruct, property, vec4, vec3, uv, Loop, min, mix, float } from 'fourjs/tsl';
+import { TempNode, NodeMaterial, NodeUpdateType, RenderTarget, Vector2, HalfFloatType, RedFormat, QuadMesh, RendererUtils } from '@tnb1j/4js/webgpu';
+import { convertToTexture, nodeObject, Fn, uniform, smoothstep, step, texture, max, uniformArray, outputStruct, property, vec4, vec3, uv, Loop, min, mix, float } from '@tnb1j/4js/tsl';
 import { gaussianBlur } from './GaussianBlurNode.js';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
@@ -13,7 +13,7 @@ let _rendererState;
  * - {@link https://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/}
  *
  * @augments TempNode
- * @four_import import { dof } from 'fourjs/addons/tsl/display/DepthOfFieldNode.js';
+ * @four_import import { dof } from '@tnb1j/4js/addons/tsl/display/DepthOfFieldNode.js';
  */
 class DepthOfFieldNode extends TempNode {
 

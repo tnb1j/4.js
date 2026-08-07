@@ -1,4 +1,4 @@
-import { EventDispatcher } from 'fourjs';
+import { EventDispatcher } from '@tnb1j/4js';
 import { Style } from './Style.js';
 import { Graph } from './Graph.js';
 import { getItem, setItem } from '../Inspector.js';

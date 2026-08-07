@@ -1,4 +1,4 @@
-import { REVISION } from 'fourjs/webgpu';
+import { REVISION } from '@tnb1j/4js/webgpu';
 
 import { VariableDeclaration, Accessor } from './AST.js';
 import { isExpression } from './TranspilerUtils.js';

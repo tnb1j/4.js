@@ -16,7 +16,7 @@ composer.addPass( renderPass );
 RenderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
 ```
 
 ## Constructor

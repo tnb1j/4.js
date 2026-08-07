@@ -36,7 +36,7 @@ import {
 	TextureLoader,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 import chevrotain from '../libs/chevrotain.module.min.js';
 
 /**
@@ -49,7 +49,7 @@ import chevrotain from '../libs/chevrotain.module.min.js';
  * ```
  *
  * @augments Loader
- * @four_import import { VRMLLoader } from 'fourjs/addons/loaders/VRMLLoader.js';
+ * @four_import import { VRMLLoader } from '@tnb1j/4js/addons/loaders/VRMLLoader.js';
  */
 class VRMLLoader extends Loader {
 

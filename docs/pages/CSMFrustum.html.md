@@ -7,7 +7,7 @@ Represents the frustum of a CSM instance.
 CSMFrustum is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSMFrustum } from 'fourjs/addons/csm/CSMFrustum.js';
+import { CSMFrustum } from '@tnb1j/4js/addons/csm/CSMFrustum.js';
 ```
 
 ## Constructor
