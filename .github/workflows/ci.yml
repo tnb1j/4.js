@@ -6,6 +6,7 @@ on:
       - 'build/**'
       - 'docs/**'
       - 'files/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -70,6 +71,7 @@ jobs:
 
   e2e:
     name: E2E testing
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     permissions:

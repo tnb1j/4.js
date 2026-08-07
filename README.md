@@ -8,6 +8,14 @@ This repository is an independent derivative project. It is not an official
 Three.js release. See [UPSTREAM.md](UPSTREAM.md), [NOTICE](NOTICE), and
 [LICENSE](LICENSE) for provenance and licensing details.
 
+## Experimental Preview
+
+This repository is an experimental public preview, not a stable release.
+Build, lint, unit, migration, and entry-point compatibility checks are release
+gates. The inherited screenshot comparison suite is available as a manually
+triggered CI check while its cross-environment reference differences are
+reviewed. Screenshot baselines are not regenerated automatically.
+
 ## Requirements
 
 - Node.js 24 or newer
@@ -17,8 +25,9 @@ Node.js 26 is also used for verification.
 
 ## Install
 
-`@fourjs/core` is the intended package identity. This source snapshot is
-pre-publication; confirm the package scope and version after the first release.
+`@fourjs/core` is the intended package identity, but it has not been published
+to npm. For this preview, clone the repository and use `npm ci`. The following
+command is reserved for a future package release:
 
 ```sh
 npm install @fourjs/core
