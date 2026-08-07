@@ -151,6 +151,8 @@ git diff --cached --check
 git status --short
 ```
 
+The initial imported Three.js r185 snapshot contains pre-existing trailing whitespace and blank-line-at-EOF warnings. Record that baseline without mass-formatting unrelated upstream files; treat new warnings in 4.js-authored changes as blocking after the import commit.
+
 Do not publish any remote until the full staged content and commit boundaries have been reviewed.
 
 ## Remote Setup

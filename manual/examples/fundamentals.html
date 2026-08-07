@@ -1,0 +1,53 @@
+<!-- Licensed under a BSD license. See license.html for license -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>4.js - Fundamentals</title>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+  </body>
+<script type="importmap">
+{
+  "imports": {
+    "@fourjs/core": "../../build/4.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as FOUR from '@fourjs/core';
+
+function main() {
+
+	const canvas = document.querySelector( '#c' );
+	const renderer = new FOUR.WebGLRenderer( { antialias: true, canvas } );
+
+	const fov = 75;
+	const aspect = 2; // the canvas default
+	const near = 0.1;
+	const far = 5;
+	const camera = new FOUR.PerspectiveCamera( fov, aspect, near, far );
+	camera.position.z = 2;
+
+	const scene = new FOUR.Scene();
+
+	const boxWidth = 1;
+	const boxHeight = 1;
+	const boxDepth = 1;
+	const geometry = new FOUR.BoxGeometry( boxWidth, boxHeight, boxDepth );
+
+	const material = new FOUR.MeshBasicMaterial( { color: 0x44aa88 } ); // greenish blue
+
+	const cube = new FOUR.Mesh( geometry, material );
+	scene.add( cube );
+
+	renderer.render( scene, camera );
+
+}
+
+main();
+</script>
+</html>

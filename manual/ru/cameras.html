@@ -1,0 +1,553 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="utf-8">
+    <title>- Камера</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="4.js – - Камера">
+    <link rel="shortcut icon" href="../../files/favicon_white.ico" media="(prefers-color-scheme: dark)">
+    <link rel="shortcut icon" href="../../files/favicon.ico" media="(prefers-color-scheme: light)">
+
+    <link rel="stylesheet" href="../resources/lesson.css">
+    <link rel="stylesheet" href="../resources/lang.css">
+<script type="importmap">
+{
+  "imports": {
+    "@fourjs/core": "../../build/4.module.js"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="lesson-title">
+        <h1>- Камера</h1>
+      </div>
+      <div class="lesson">
+        <div class="lesson-main">
+          <p>Эта статья является частью серии статей о 4.js.
+Первая была <a href="fundamentals.html">об основах</a>.
+Если вы её еще не читали, советую вам сделать это.</p>
+<p>Давайте поговорим о камерах в 4.js. Мы рассмотрели некоторые из них в <a href="fundamentals.html">первой статье</a>
+, но мы расскажем здесь об этом более подробно.</p>
+<p>Самая распространенная камера в 4.js и та, которую мы использовали до этого момента, - <a href="/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a>.
+Она дает трехмерный вид, где вещи на расстоянии кажутся меньше, чем вещи рядом.</p>
+<p><a href="/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> определяет <em>frustum</em>. <a href="https://ru.wikipedia.org/wiki/Усечённая_пирамида"><em>Frustum</em> - усеченная пирамида, твердое тело</a>.
+Под твердым телом я подразумеваю, например, куб, конус, сферу,
+цилиндр и усеченный конус - все названия различных видов твердых тел.</p>
+<div class="spread">
+  <div><div data-diagram="shapeCube"></div><div>cube</div></div>
+  <div><div data-diagram="shapeCone"></div><div>cone</div></div>
+  <div><div data-diagram="shapeSphere"></div><div>sphere</div></div>
+  <div><div data-diagram="shapeCylinder"></div><div>cylinder</div></div>
+  <div><div data-diagram="shapeFrustum"></div><div>frustum</div></div>
+</div>
+
+<p>Я только указываю на это, потому что я не знал это в течение многих лет.
+Если в какой-нибудь книге или на веб странице будет упоминание <em>frustum</em> я закатывал глаза.
+Понимание того, что это название сплошной формы, сделало эти описания внезапно более понятными 😅</p>
+<p>A <a href="/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a>определяет свой frustum на основе 4 свойств. <code class="notranslate" translate="no">near</code> определяет,
+где начинается фронт усечения. <code class="notranslate" translate="no">far</code> определяет, где он заканчивается. <code class="notranslate" translate="no">fov</code>поле обзора
+определяет высоту передней и задней частей усеченного конуса, вычисляя правильную высоту,
+чтобы получить указанное поле обзора в <code class="notranslate" translate="no">near</code> единицах измерения от камеры. <code class="notranslate" translate="no">aspect</code> определяет,
+насколько широким передние и задняя часть усеченного есть. Ширина усеченного конуса -
+это просто высота, умноженная на aspect.</p>
+<p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"></p>
+<p>Давайте используем сцену из <a href="lights.html">предыдущей статьи</a> которая имеет плоскость
+земли, сферу и куб, и сделаем так, чтобы мы могли регулировать настройки камеры</p>
+<p>Для этого мы сделаем <code class="notranslate" translate="no">MinMaxGUIHelper</code> для параметров <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>, так чтобы <code class="notranslate" translate="no">far</code>
+всегда был больше, чем <code class="notranslate" translate="no">near</code>. У него будут свойства <code class="notranslate" translate="no">min</code> и <code class="notranslate" translate="no">max</code>, которые lil-gui будет
+настраивать. После настройки они установят 2 свойства, которые мы указываем.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class MinMaxGUIHelper {
+  constructor(obj, minProp, maxProp, minDif) {
+    this.obj = obj;
+    this.minProp = minProp;
+    this.maxProp = maxProp;
+    this.minDif = minDif;
+  }
+  get min() {
+    return this.obj[this.minProp];
+  }
+  set min(v) {
+    this.obj[this.minProp] = v;
+    this.obj[this.maxProp] = Math.max(this.obj[this.maxProp], v + this.minDif);
+  }
+  get max() {
+    return this.obj[this.maxProp];
+  }
+  set max(v) {
+    this.obj[this.maxProp] = v;
+    this.min = this.min;  // это вызовет setter min
+  }
+}
+</pre>
+<p>Теперь мы можем настроить наш графический интерфейс следующим образом</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateCamera() {
+  camera.updateProjectionMatrix();
+}
+
+const gui = new GUI();
+gui.add(camera, 'fov', 1, 180).onChange(updateCamera);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
+gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
+gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
+</pre>
+<p>Каждый раз, когда меняются настройки камеры, нам нужно вызывать функцию камеры
+<a href="/docs/#api/en/cameras/PerspectiveCamera#updateProjectionMatrix"><code class="notranslate" translate="no">updateProjectionMatrix</code></a> поэтому мы сделали
+функцию <code class="notranslate" translate="no">updateCamera</code> передав ее в lil-gui, чтобы вызывать ее, когда что-то меняется.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-perspective.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-perspective.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p>Вы можете просто значения и посмотреть, как они работают. Обратите внимание, что мы не делали
+<code class="notranslate" translate="no">aspect</code> сеттер, так как aspect взят из размера окна, поэтому, если вы хотите настроить aspect,
+откройте пример в новом окне, а затем измените размер окна.</p>
+<p>Тем не менее, я думаю, что это немного трудно увидеть, поэтому давайте изменим пример, чтобы он имел 2 камеры.
+Один покажет нашу сцену, как мы видим ее выше, другой покажет другую камеру, смотрящую на сцену,
+которую рисует первая камера, и показывает frustum камеры.</p>
+<p>Для этого мы можем использовать функцию ножниц (scissor) 4.js. Давайте изменим это, чтобы
+нарисовать 2 сцены с 2 камерами рядом, используя функцию scissor</p>
+<p>Для начала давайте используем HTML и CSS, чтобы определить 2 элемента рядом друг с другом.
+Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>.</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div class="split"&gt;
++     &lt;div id="view1" tabindex="1"&gt;&lt;/div&gt;
++     &lt;div id="view2" tabindex="2"&gt;&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>Для начала давайте используем HTML и CSS, чтобы расположить 2 элемента рядом друг с другом.
+Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">.split {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.split&gt;div {
+  width: 100%;
+  height: 100%;
+}
+</pre>
+<p>Затем в нашем коде мы добавим <a href="/docs/#api/en/helpers/CameraHelper"><code class="notranslate" translate="no">CameraHelper</code></a>. <a href="/docs/#api/en/helpers/CameraHelper"><code class="notranslate" translate="no">CameraHelper</code></a> рисует frustum для <a href="/docs/#api/en/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cameraHelper = new FOUR.CameraHelper(camera);
+
+...
+
+scene.add(cameraHelper);
+</pre>
+<p>Теперь давайте посмотрим на 2 элемента view.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const view1Elem = document.querySelector('#view1');
+const view2Elem = document.querySelector('#view2');
+</pre>
+<p>И мы установим нашу существующую <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> так, чтобы она отвечала
+только за первый элемент представления.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const controls = new OrbitControls(camera, canvas);
++const controls = new OrbitControls(camera, view1Elem);
+</pre>
+<p>Создадим вторую <a href="/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> и вторую <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>.
+Вторая <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> привязана ко второй камере и получает
+ввод от второго элемента view.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const camera2 = new FOUR.PerspectiveCamera(
+  60,  // fov
+  2,   // aspect
+  0.1, // near
+  500, // far
+);
+camera2.position.set(40, 10, 30);
+camera2.lookAt(0, 5, 0);
+
+const controls2 = new OrbitControls(camera2, view2Elem);
+controls2.target.set(0, 5, 0);
+controls2.update();
+</pre>
+<p>Наконец, нам нужно визуализировать сцену с точки зрения каждой камеры, используя
+функцию ножниц (scissor), чтобы визуализировать только часть холста.</p>
+<p>Вот функция, которая для данного элемента будет вычислять прямоугольник этого
+элемента, который перекрывает холст. Затем он установит плоскость отсечения (scissor) и область
+просмотра (fov) в этот прямоугольник и вернет aspect для этого размера.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function setScissorForElement(elem) {
+  const canvasRect = canvas.getBoundingClientRect();
+  const elemRect = elem.getBoundingClientRect();
+
+  // вычисляем относительный прямоугольник холста
+  const right = Math.min(elemRect.right, canvasRect.right) - canvasRect.left;
+  const left = Math.max(0, elemRect.left - canvasRect.left);
+  const bottom = Math.min(elemRect.bottom, canvasRect.bottom) - canvasRect.top;
+  const top = Math.max(0, elemRect.top - canvasRect.top);
+
+  const width = Math.min(canvasRect.width, right - left);
+  const height = Math.min(canvasRect.height, bottom - top);
+
+  //  установка области отсечения для рендеринга только на эту часть холста
+  renderer.setScissor(left, top, width, height);
+  renderer.setViewport(left, top, width, height);
+
+  // return aspect
+  return width / height;
+}
+</pre>
+<p>И теперь мы можем использовать эту функцию, чтобы нарисовать сцену дважды в нашей функции <code class="notranslate" translate="no">render</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  function render() {
+
+-    if (resizeRendererToDisplaySize(renderer)) {
+-      const canvas = renderer.domElement;
+-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+-      camera.updateProjectionMatrix();
+-    }
+
++    resizeRendererToDisplaySize(renderer);
++
++    // включить область отсечения
++    renderer.setScissorTest(true);
++
++    // render the original view
++    {
++      const aspect = setScissorForElement(view1Elem);
++
++      // настроить камеру для этого соотношения сторон
++      camera.aspect = aspect;
++      camera.updateProjectionMatrix();
++      cameraHelper.update();
++
++      // не рисуем Helper камеры в исходном представлении
++      cameraHelper.visible = false;
++
++      scene.background.set(0x000000);
++
++      // отрисовка
++      renderer.render(scene, camera);
++    }
++
++    // отрисовка со 2-й камеры
++    {
++      const aspect = setScissorForElement(view2Elem);
++
++      // настроить камеру для этого соотношения сторон
++      camera2.aspect = aspect;
++      camera2.updateProjectionMatrix();
++
++      // рисуем Helper камеры во втором представлении
++      cameraHelper.visible = true;
++
++      scene.background.set(0x000040);
++
++      renderer.render(scene, camera2);
++    }
+
+-    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+</pre>
+<p>Приведенный выше код устанавливает цвет фона сцены при рендеринге
+второго представления темно-синим, чтобы было проще различать два представления.</p>
+<p>Мы также можем удалить наш <code class="notranslate" translate="no">updateCamera</code> код, так как мы обновляем все в функции <code class="notranslate" translate="no">render</code>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function updateCamera() {
+-  camera.updateProjectionMatrix();
+-}
+
+const gui = new GUI();
+-gui.add(camera, 'fov', 1, 180).onChange(updateCamera);
++gui.add(camera, 'fov', 1, 180);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
+-gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
+-gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
++gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near');
++gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far');
+</pre>
+<p>И теперь вы можете использовать один вид, чтобы увидеть frustum другого.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-perspective-2-scenes.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-perspective-2-scenes.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p>Слева вы можете увидеть исходный вид, а справа вы можете увидеть вид,
+показывающий frustum камеры слева. Можно настроить
+<code class="notranslate" translate="no">near</code>, <code class="notranslate" translate="no">far</code>, <code class="notranslate" translate="no">fov</code> и перемещать камеру с помощью мыши. Вы можете увидеть,
+как то, что внутри frustum, показаное справа, появляется на сцене слева.</p>
+<p>Отрегулируйте <code class="notranslate" translate="no">near</code> примерно до 20, и вы легко увидите, как передние
+объекты исчезают, поскольку их больше нет в усеченном конусе.
+Отрегулируйте <code class="notranslate" translate="no">far</code> ниже примерно 35, и вы начнете видеть,
+что наземная плоскость исчезает, поскольку она больше не находится
+в не усеченной области.</p>
+<p>Возникает вопрос, почему бы просто не установить <code class="notranslate" translate="no">near</code> значение 0,0000000001 и <code class="notranslate" translate="no">far</code>
+10000000000000 или что-то в этом роде, чтобы вы могли видеть все? Причина в том, что
+ваш GPU имеет столько точности, чтобы решить, находится ли что-то впереди или
+позади чего-то другого. Эта точность распределена между
+<code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>. Хуже того, по умолчанию точность закрытия камеры детализирована (резкое отсечение),
+а точность далеко от камеры - конечна. <code class="notranslate" translate="no">near</code> медленно расширяется по мере приближения <code class="notranslate" translate="no">far</code>.</p>
+<p>Начиная с верхнего примера, давайте изменим код, вставив 20 сфер в ряд.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new FOUR.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const numSpheres = 20;
+  for (let i = 0; i &lt; numSpheres; ++i) {
+    const sphereMat = new FOUR.MeshPhongMaterial();
+    sphereMat.color.setHSL(i * .73, 1, 0.5);
+    const mesh = new FOUR.Mesh(sphereGeo, sphereMat);
+    mesh.position.set(-sphereRadius - 1, sphereRadius + 2, i * sphereRadius * -2.2);
+    scene.add(mesh);
+  }
+}
+</pre>
+<p>и давайте установим <code class="notranslate" translate="no">near</code> = 0.00001</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 45;
+const aspect = 2;  // the canvas default
+-const near = 0.1;
++const near = 0.00001;
+const far = 100;
+const camera = new FOUR.PerspectiveCamera(fov, aspect, near, far);
+</pre>
+<p>Нам также нужно немного подправить код графического интерфейса,
+чтобы позволить 0.00001, если значение редактируется</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
++gui.add(minMaxGUIHelper, 'min', 0.00001, 50, 0.00001).name('near').onChange(updateCamera);
+</pre>
+<p>Как ты думаешь, что произойдет?</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-z-fighting.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-z-fighting.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p>Это пример <em>z fighting</em> (<a href="https://en.wikipedia.org/wiki/Z-fighting">сшивание</a>), когда графический процессор на вашем компьютере не обладает
+достаточной точностью, чтобы определить, какие пиксели находятся спереди, а какие - сзади.</p>
+<p>На тот случай, если проблема не отображается на вашей машине, вот что я вижу на своей машине</p>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
+
+<p>Одно из решений состоит в том, чтобы указать использование 4.js другому методу для вычисления того,
+какие пиксели находятся спереди, а какие - сзади. Мы можем сделать это, включив,
+<code class="notranslate" translate="no">logarithmicDepthBuffer</code> когда мы создаем <a href="/docs/#api/en/renderers/WebGLRenderer"><code class="notranslate" translate="no">WebGLRenderer</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const renderer = new FOUR.WebGLRenderer({antialias: true, canvas});
++const renderer = new FOUR.WebGLRenderer({
++  antialias: true,
++  canvas,
++  logarithmicDepthBuffer: true,
++});
+</pre>
+<p>и с этим это может работать</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-logarithmic-depth-buffer.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-logarithmic-depth-buffer.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p>Если это не помогло решить проблему, вы столкнулись с одной из причин, по которой
+вы не всегда можете использовать это решение. Причина в том, что это поддерживают
+только определенные графические процессоры. По состоянию на сентябрь 2018 года
+практически ни одно мобильное устройство не поддерживает это решение, как это
+делают большинство настольных компьютеров.</p>
+<p>Другая причина не выбирать это решение - оно может быть значительно медленнее,
+чем стандартное решение.</p>
+<p>Даже при таком решении разрешение все еще ограничено. Сделайте <code class="notranslate" translate="no">near</code> еще меньше или
+<code class="notranslate" translate="no">far</code> больше, и вы в конечном итоге столкнетесь с теми же проблемами.</p>
+<p>Это означает, что вы всегда должны прилагать усилия к тому, чтобы выбрать параметр <code class="notranslate" translate="no">near</code>
+и <code class="notranslate" translate="no">far</code>, которые соответствуют вашему варианту использования.
+Установите <code class="notranslate" translate="no">near</code> как можно дальше от камеры, чтобы все не исчезло.
+Установите <code class="notranslate" translate="no">far</code> как можно ближе к камере, чтобы все не исчезло. Если вы пытаетесь
+нарисовать гигантскую сцену и показать крупным планом чье-то лицо, чтобы вы
+могли видеть их ресницы, в то время как на заднем плане вы можете видеть весь
+путь в горы на расстоянии 50 километров, тогда вам нужно будет найти другое
+креативные решения, которые, возможно, мы рассмотрим позже. На данный момент,
+просто знайте, что вы должны позаботиться о том, чтобы выбрать подходящие
+<code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> для ваших нужд.</p>
+<p>2-ая ​​самая распространенная камера - <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>. Вместо того,
+чтобы указать frustum он указывает прямоугольный паралелепипед (box)
+с параметрами <code class="notranslate" translate="no">left</code>, <code class="notranslate" translate="no">right</code>, <code class="notranslate" translate="no">top</code>, <code class="notranslate" translate="no">bottom</code>, <code class="notranslate" translate="no">near</code>, и <code class="notranslate" translate="no">far</code>.
+Поскольку он проецирует box, перспективы нет.</p>
+<p>Давайте изменим приведенный выше пример 2 для использования <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>
+в первом представлении.</p>
+<p>Сначала давайте настроим <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const left = -1;
+const right = 1;
+const top = 1;
+const bottom = -1;
+const near = 5;
+const far = 50;
+const camera = new FOUR.OrthographicCamera(left, right, top, bottom, near, far);
+camera.zoom = 0.2;
+</pre>
+<p>Мы устанавливаем <code class="notranslate" translate="no">left</code> и <code class="notranslate" translate="no">bottom</code> = -1 и <code class="notranslate" translate="no">right</code> и <code class="notranslate" translate="no">top</code> = 1. Это сделало бы
+прямоугольник шириной 2 единицы и высотой 2 единицы, но мы собираемся отрегулировать <code class="notranslate" translate="no">left</code> и <code class="notranslate" translate="no">top</code>
+в соответствии со отношением сторон прямоугольника, к которому мы рисуем.
+Мы будем использовать свойство <code class="notranslate" translate="no">zoom</code>, чтобы упростить настройку количества единиц, отображаемых камерой.</p>
+<p>Давайте добавим настройки GUI для <code class="notranslate" translate="no">zoom</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
++gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
+</pre>
+<p>Вызовем <code class="notranslate" translate="no">listen</code> говорящий lil-gui следить за изменениями.
+Потому что <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> также может управлять масштабированием.
+Например, колесо прокрутки на мыши будет масштабироваться с помощью <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>.</p>
+<p>Наконец, нам просто нужно изменить часть, которая отображает левую сторону,
+чтобы обновить <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const aspect = setScissorForElement(view1Elem);
+
+  // обновить камеру для этого соотношения сторон
+-  camera.aspect = aspect;
++  camera.left   = -aspect;
++  camera.right  =  aspect;
+  camera.updateProjectionMatrix();
+  cameraHelper.update();
+
+  // не рисуем Helper камеры в исходном view
+  cameraHelper.visible = false;
+
+  scene.background.set(0x000000);
+  renderer.render(scene, camera);
+}
+</pre>
+<p>и теперь вы можете увидеть <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> в работе.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-orthographic-2-scenes.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-orthographic-2-scenes.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p><a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> чаще всего используется для рисования 2D-объектов.
+Вы решаете, сколько единиц вы хотите, чтобы камера показывала. Например,
+если вы хотите, чтобы один пиксель холста соответствовал одному элементу
+камеры, вы можете сделать что-то вроде:</p>
+<p>Поместить начало координат в центр и иметь 1 пиксель = 1 единицу 4.js что-то вроде:</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">camera.left = -canvas.width / 2;
+camera.right = canvas.width / 2;
+camera.top = canvas.heigth / 2;
+camera.bottom = -canvas.height / 2;
+camera.near = -1;
+camera.far = 1;
+camera.zoom = 1;
+</pre>
+<p>Или, если бы мы хотели, чтобы источник находился в верхнем левом углу,
+как 2D-холст, мы могли бы использовать это</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">camera.left = 0;
+camera.right = canvas.width;
+camera.top = 0;
+camera.bottom = canvas.height;
+camera.near = -1;
+camera.far = 1;
+camera.zoom = 1;
+</pre>
+<p>В этом случае верхний левый угол будет 0,0, как 2D холст</p>
+<p>Давай попробуем! Сначала давайте настроим камеру</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const left = 0;
+const right = 300;  // default canvas size
+const top = 0;
+const bottom = 150;  // default canvas size
+const near = -1;
+const far = 1;
+const camera = new FOUR.OrthographicCamera(left, right, top, bottom, near, far);
+camera.zoom = 1;
+</pre>
+<p>Затем давайте загрузим 6 текстур и сделаем 6 плоскостей, по одной на каждую текстуру.
+Мы будем привязывать каждую плоскость к <a href="/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">FOUR.Object3D</code></a> чтобы было легче сместить плоскость,
+чтобы ее центр находился в ее верхнем левом углу.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loader = new FOUR.TextureLoader();
+const textures = [
+  loader.load('../resources/images/flower-1.jpg'),
+  loader.load('../resources/images/flower-2.jpg'),
+  loader.load('../resources/images/flower-3.jpg'),
+  loader.load('../resources/images/flower-4.jpg'),
+  loader.load('../resources/images/flower-5.jpg'),
+  loader.load('../resources/images/flower-6.jpg'),
+];
+const planeSize = 256;
+const planeGeo = new FOUR.PlaneGeometry(planeSize, planeSize);
+const planes = textures.map((texture) =&gt; {
+  const planePivot = new FOUR.Object3D();
+  scene.add(planePivot);
+  texture.magFilter = FOUR.NearestFilter;
+  const planeMat = new FOUR.MeshBasicMaterial({
+    map: texture,
+    side: FOUR.DoubleSide,
+  });
+  const mesh = new FOUR.Mesh(planeGeo, planeMat);
+  planePivot.add(mesh);
+  // move plane so top left corner is origin
+  mesh.position.set(planeSize / 2, planeSize / 2, 0);
+  return planePivot;
+});
+</pre>
+<p>и нам нужно обновить камеру, если размер холста изменится.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    camera.right = canvas.width;
+    camera.bottom = canvas.height;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</pre>
+<p><code class="notranslate" translate="no">planes</code> - массив <a href="/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">FOUR.Mesh</code></a>, по одному для каждой плоскости.
+Давайте переместим их в зависимости от времени.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
+  time *= 0.001;  // конвертировать в секунды;
+
+  ...
+
+  const distAcross = Math.max(20, canvas.width - planeSize);
+  const distDown = Math.max(20, canvas.height - planeSize);
+
+  // total distance to move across and back
+  const xRange = distAcross * 2;
+  const yRange = distDown * 2;
+  const speed = 180;
+
+  planes.forEach((plane, ndx) =&gt; {
+    // compute a unique time for each plane
+    const t = time * speed + ndx * 300;
+
+    // get a value between 0 and range
+    const xt = t % xRange;
+    const yt = t % yRange;
+
+    // set our position going forward if 0 to half of range
+    // and backward if half of range to range
+    const x = xt &lt; distAcross ? xt : xRange - xt;
+    const y = yt &lt; distDown   ? yt : yRange - yt;
+
+    plane.position.set(x, y, 0);
+  });
+
+  renderer.render(scene, camera);
+</pre>
+<p>И вы можете видеть, как изображения отскакивают от пикселей идеально по краям холста,
+используя пиксельную математику, как 2D холст</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/manual/examples/resources/editor.html?url=/manual/examples/cameras-orthographic-canvas-top-left-origin.html"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/cameras-orthographic-canvas-top-left-origin.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+<p></p>
+<p>Другое распространенное использование <a href="/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> для рисования - это отображение вверх,
+вниз, влево, вправо, спереди, сзади программ трехмерного моделирования или редактора игрового движка.</p>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
+
+<p>На скриншоте выше вы можете видеть 1 вид в перспективе и 3 вида в ортогональном виде.</p>
+<p>Это основы камер. Мы рассмотрим несколько распространенных способов перемещения камер в других статьях.
+А пока давайте перейдем к <a href="shadows.html">теням</a>.</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/fourjs-cameras.js"></script>
+
+        </div>
+      </div>
+    </div>
+
+  <script src="../resources/prettify.js"></script>
+  <script src="../resources/lesson.js"></script>
+
+
+
+
+</body></html>

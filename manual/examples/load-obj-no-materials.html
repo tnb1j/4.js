@@ -1,0 +1,151 @@
+<!-- Licensed under a BSD license. See license.html for license -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>4.js - Load .OBJ ?</title>
+    <style>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+    #c {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+  </body>
+<script type="importmap">
+{
+  "imports": {
+    "@fourjs/core": "../../build/4.module.js",
+    "@fourjs/core/addons/": "../../examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as FOUR from '@fourjs/core';
+import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+import { OBJLoader } from '@fourjs/core/addons/loaders/OBJLoader.js';
+
+function main() {
+
+	const canvas = document.querySelector( '#c' );
+	const renderer = new FOUR.WebGLRenderer( { antialias: true, canvas } );
+
+	const fov = 45;
+	const aspect = 2; // the canvas default
+	const near = 0.1;
+	const far = 100;
+	const camera = new FOUR.PerspectiveCamera( fov, aspect, near, far );
+	camera.position.set( 0, 10, 20 );
+
+	const controls = new OrbitControls( camera, canvas );
+	controls.target.set( 0, 5, 0 );
+	controls.update();
+
+	const scene = new FOUR.Scene();
+	scene.background = new FOUR.Color( 'black' );
+
+	{
+
+		const planeSize = 40;
+
+		const loader = new FOUR.TextureLoader();
+		const texture = loader.load( 'resources/images/checker.png' );
+		texture.colorSpace = FOUR.SRGBColorSpace;
+		texture.wrapS = FOUR.RepeatWrapping;
+		texture.wrapT = FOUR.RepeatWrapping;
+		texture.magFilter = FOUR.NearestFilter;
+		const repeats = planeSize / 2;
+		texture.repeat.set( repeats, repeats );
+
+		const planeGeo = new FOUR.PlaneGeometry( planeSize, planeSize );
+		const planeMat = new FOUR.MeshPhongMaterial( {
+			map: texture,
+			side: FOUR.DoubleSide,
+		} );
+		const mesh = new FOUR.Mesh( planeGeo, planeMat );
+		mesh.rotation.x = Math.PI * - .5;
+		scene.add( mesh );
+
+	}
+
+	{
+
+		const skyColor = 0xB1E1FF; // light blue
+		const groundColor = 0xB97A20; // brownish orange
+		const intensity = 2;
+		const light = new FOUR.HemisphereLight( skyColor, groundColor, intensity );
+		scene.add( light );
+
+	}
+
+	{
+
+		const color = 0xFFFFFF;
+		const intensity = 2.5;
+		const light = new FOUR.DirectionalLight( color, intensity );
+		light.position.set( 0, 10, 0 );
+		light.target.position.set( - 5, 0, 0 );
+		scene.add( light );
+		scene.add( light.target );
+
+	}
+
+	{
+
+		const objLoader = new OBJLoader();
+		objLoader.load( 'resources/models/windmill/windmill.obj', ( root ) => {
+
+			scene.add( root );
+
+		} );
+
+	}
+
+	function resizeRendererToDisplaySize( renderer ) {
+
+		const canvas = renderer.domElement;
+		const width = canvas.clientWidth;
+		const height = canvas.clientHeight;
+		const needResize = canvas.width !== width || canvas.height !== height;
+		if ( needResize ) {
+
+			renderer.setSize( width, height, false );
+
+		}
+
+		return needResize;
+
+	}
+
+	function render() {
+
+		if ( resizeRendererToDisplaySize( renderer ) ) {
+
+			const canvas = renderer.domElement;
+			camera.aspect = canvas.clientWidth / canvas.clientHeight;
+			camera.updateProjectionMatrix();
+
+		}
+
+		renderer.render( scene, camera );
+
+		requestAnimationFrame( render );
+
+	}
+
+	requestAnimationFrame( render );
+
+}
+
+main();
+</script>
+</html>
