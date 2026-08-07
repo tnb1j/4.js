@@ -7,11 +7,11 @@ import {
 	SkeletonHelper,
 	Vector3,
 	VectorKeyframeTrack
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module SkeletonUtils
- * @four_import import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
+ * @four_import import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
  */
 
 function getBoneName( bone, options ) {

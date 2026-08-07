@@ -13,7 +13,7 @@ Unlike [OrbitControls](OrbitControls.html) and [TrackballControls](TrackballCont
 ArcballControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ArcballControls } from 'fourjs/addons/controls/ArcballControls.js';
+import { ArcballControls } from '@tnb1j/4js/addons/controls/ArcballControls.js';
 ```
 
 ## Constructor

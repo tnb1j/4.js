@@ -9,7 +9,7 @@ The base 3D object that is supported by [CSS3DRenderer](CSS3DRenderer.html).
 CSS3DObject is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSS3DObject } from 'fourjs/addons/renderers/CSS3DRenderer.js';
+import { CSS3DObject } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
 ```
 
 ## Constructor

@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'fourjs';
+import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from '@tnb1j/4js';
 
 /**
  * A ground-projected skybox.
@@ -15,7 +15,7 @@ import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'fourjs';
  * ```
  *
  * @augments Mesh
- * @four_import import { GroundedSkybox } from 'fourjs/addons/objects/GroundedSkybox.js';
+ * @four_import import { GroundedSkybox } from '@tnb1j/4js/addons/objects/GroundedSkybox.js';
  */
 class GroundedSkybox extends Mesh {
 

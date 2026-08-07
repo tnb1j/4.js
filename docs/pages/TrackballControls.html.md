@@ -9,7 +9,7 @@ This class is similar to [OrbitControls](OrbitControls.html). However, it does n
 TrackballControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TrackballControls } from 'fourjs/addons/controls/TrackballControls.js';
+import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
 ```
 
 ## Constructor

@@ -6,7 +6,7 @@ import {
 	Loader,
 	UnsignedByteType,
 	Vector3,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the Cube LUT format.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUTCubeLoader } from 'fourjs/addons/loaders/LUTCubeLoader.js';
+ * @four_import import { LUTCubeLoader } from '@tnb1j/4js/addons/loaders/LUTCubeLoader.js';
  */
 export class LUTCubeLoader extends Loader {
 

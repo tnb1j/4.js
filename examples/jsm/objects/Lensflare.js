@@ -13,7 +13,7 @@ import {
 	Vector2,
 	Vector3,
 	Vector4
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * Creates a simulated lens flare that tracks a light.
@@ -33,7 +33,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Lensflare } from 'fourjs/addons/objects/Lensflare.js';
+ * @four_import import { Lensflare } from '@tnb1j/4js/addons/objects/Lensflare.js';
  */
 class Lensflare extends Mesh {
 
@@ -340,7 +340,7 @@ class Lensflare extends Mesh {
 /**
  * Represents a single flare that can be added to a {@link Lensflare} container.
  *
- * @four_import import { LensflareElement } from 'fourjs/addons/objects/Lensflare.js';
+ * @four_import import { LensflareElement } from '@tnb1j/4js/addons/objects/Lensflare.js';
  */
 class LensflareElement {
 

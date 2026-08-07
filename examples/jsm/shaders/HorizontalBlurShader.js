@@ -1,6 +1,6 @@
 /**
  * @module HorizontalBlurShader
- * @four_import import { HorizontalBlurShader } from 'fourjs/addons/shaders/HorizontalBlurShader.js';
+ * @four_import import { HorizontalBlurShader } from '@tnb1j/4js/addons/shaders/HorizontalBlurShader.js';
  */
 
 /**

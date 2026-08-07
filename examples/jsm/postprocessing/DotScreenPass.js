@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { DotScreenShader } from '../shaders/DotScreenShader.js';
 
@@ -14,7 +14,7 @@ import { DotScreenShader } from '../shaders/DotScreenShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { DotScreenPass } from 'fourjs/addons/postprocessing/DotScreenPass.js';
+ * @four_import import { DotScreenPass } from '@tnb1j/4js/addons/postprocessing/DotScreenPass.js';
  */
 class DotScreenPass extends Pass {
 

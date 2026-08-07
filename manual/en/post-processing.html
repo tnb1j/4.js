@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -96,11 +96,11 @@ This pass is usually the last pass of the pass chain.
 composer.addPass(outputPass);
 </pre>
 <p>To use these classes we need to import a bunch of scripts.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from 'fourjs/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'fourjs/addons/postprocessing/RenderPass.js';
-import {BloomPass} from 'fourjs/addons/postprocessing/BloomPass.js';
-import {FilmPass} from 'fourjs/addons/postprocessing/FilmPass.js';
-import {OutputPass} from 'fourjs/addons/postprocessing/OutputPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+import {BloomPass} from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
+import {FilmPass} from '@tnb1j/4js/addons/postprocessing/FilmPass.js';
+import {OutputPass} from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
 </pre>
 <p>For pretty much any post processing <code class="notranslate" translate="no">EffectComposer.js</code>, <code class="notranslate" translate="no">RenderPass.js</code> and <code class="notranslate" translate="no">OutputPass.js</code>
 are required.</p>
@@ -165,7 +165,7 @@ this.uniforms.grayscale.value = grayscale;
 </pre>
 <p>So which makes it pretty clear how to set them.</p>
 <p>Let's make a quick GUI to set those values</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>and</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();

@@ -16,7 +16,7 @@ import {
 	Vector2,
 	WebGLRenderTarget,
 	ZeroFactor
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SAOShader } from '../shaders/SAOShader.js';
 import { BlurShaderUtils, DepthLimitedBlurShader } from '../shaders/DepthLimitedBlurShader.js';
@@ -33,7 +33,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SAOPass } from 'fourjs/addons/postprocessing/SAOPass.js';
+ * @four_import import { SAOPass } from '@tnb1j/4js/addons/postprocessing/SAOPass.js';
  */
 class SAOPass extends Pass {
 

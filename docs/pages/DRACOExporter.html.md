@@ -21,7 +21,7 @@ const data = await exporter.parseAsync( mesh, options );
 DRACOExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DRACOExporter } from 'fourjs/addons/exporters/DRACOExporter.js';
+import { DRACOExporter } from '@tnb1j/4js/addons/exporters/DRACOExporter.js';
 ```
 
 ## Constructor

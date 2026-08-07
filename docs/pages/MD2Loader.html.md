@@ -19,7 +19,7 @@ const animations = geometry.animations;
 MD2Loader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MD2Loader } from 'fourjs/addons/loaders/MD2Loader.js';
+import { MD2Loader } from '@tnb1j/4js/addons/loaders/MD2Loader.js';
 ```
 
 ## Constructor

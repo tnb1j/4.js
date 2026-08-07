@@ -3,10 +3,10 @@ import {
 	Float32BufferAttribute,
 	Group,
 	Mesh
-} from 'fourjs';
+} from '@tnb1j/4js';
 
-import { MeshStandardNodeMaterial } from 'fourjs/webgpu';
-import { cameraPosition, color, float, Fn, If, mix, mx_noise_float, normalView, normalWorld, positionView, positionWorld, saturation, smoothstep, uniform } from 'fourjs/tsl';
+import { MeshStandardNodeMaterial } from '@tnb1j/4js/webgpu';
+import { cameraPosition, color, float, Fn, If, mix, mx_noise_float, normalView, normalWorld, positionView, positionWorld, saturation, smoothstep, uniform } from '@tnb1j/4js/tsl';
 
 import { ImprovedNoise } from '../math/ImprovedNoise.js';
 

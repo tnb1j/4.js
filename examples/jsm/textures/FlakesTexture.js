@@ -2,7 +2,7 @@
  * Utility class for generating a flakes texture image. This image might be used
  * as a normal map to produce a car paint like effect.
  *
- * @four_import import { FlakesTexture } from 'fourjs/addons/textures/FlakesTexture.js';
+ * @four_import import { FlakesTexture } from '@tnb1j/4js/addons/textures/FlakesTexture.js';
  */
 class FlakesTexture {
 

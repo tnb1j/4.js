@@ -36,7 +36,7 @@ import {
 	Vector2,
 	Vector3,
 	VectorKeyframeTrack
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 // Pre-compiled regex patterns for performance
 const VARIANT_PATH_REGEX = /^(.+?)\/\{(\w+)=(\w+)\}\/(.+)$/;

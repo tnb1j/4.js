@@ -5,7 +5,7 @@
 WebGPUTextureUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as WebGPUTextureUtils from 'fourjs/addons/utils/WebGPUTextureUtils.js';
+import * as WebGPUTextureUtils from '@tnb1j/4js/addons/utils/WebGPUTextureUtils.js';
 ```
 
 ## Static Methods

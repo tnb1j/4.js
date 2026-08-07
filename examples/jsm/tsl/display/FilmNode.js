@@ -1,11 +1,11 @@
-import { TempNode } from 'fourjs/webgpu';
-import { rand, Fn, fract, time, uv, clamp, mix, vec4, nodeProxy } from 'fourjs/tsl';
+import { TempNode } from '@tnb1j/4js/webgpu';
+import { rand, Fn, fract, time, uv, clamp, mix, vec4, nodeProxy } from '@tnb1j/4js/tsl';
 
 /**
  * Post processing node for creating a film grain effect.
  *
  * @augments TempNode
- * @four_import import { film } from 'fourjs/addons/tsl/display/FilmNode.js';
+ * @four_import import { film } from '@tnb1j/4js/addons/tsl/display/FilmNode.js';
  */
 class FilmNode extends TempNode {
 

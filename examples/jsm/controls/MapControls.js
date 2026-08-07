@@ -1,4 +1,4 @@
-import { MOUSE, TOUCH, Plane, Raycaster, Vector2, Vector3 } from 'fourjs';
+import { MOUSE, TOUCH, Plane, Raycaster, Vector2, Vector3 } from '@tnb1j/4js';
 
 import { OrbitControls } from './OrbitControls.js';
 
@@ -17,7 +17,7 @@ const _panCurrent = new Vector3();
  * - Pan: Left mouse, or arrow keys / touch: one-finger move.
  *
  * @augments OrbitControls
- * @four_import import { MapControls } from 'fourjs/addons/controls/MapControls.js';
+ * @four_import import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';
  */
 class MapControls extends OrbitControls {
 

@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { WebGLNodesHandler } from 'fourjs/addons/tsl/WebGLNodesHandler.js';
-			import { WebGLRenderer } from 'fourjs';
-			import { mx_fractal_noise_float, mx_fractal_noise_vec3, positionLocal, positionWorld, Fn, color } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { WebGLNodesHandler } from '@tnb1j/4js/addons/tsl/WebGLNodesHandler.js';
+			import { WebGLRenderer } from '@tnb1j/4js';
+			import { mx_fractal_noise_float, mx_fractal_noise_vec3, positionLocal, positionWorld, Fn, color } from '@tnb1j/4js/tsl';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, timer;
 			let dirLight, spotLight;

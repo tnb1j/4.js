@@ -17,10 +17,10 @@ import {
 	Sphere,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
-import { MeshStandardNodeMaterial } from 'fourjs/webgpu';
-import { attribute, cameraPosition, color, cross, dot, float, floor, Fn, fract, fwidth, hash as ihash, mix, mod, modelWorldMatrixInverse, mx_fractal_noise_float, mx_noise_float, normalLocal, normalView, normalWorldGeometry, positionLocal, positionView, positionWorld, select, smoothstep, step, uint, uv, varying, vec2, vec3, vec4 } from 'fourjs/tsl';
+import { MeshStandardNodeMaterial } from '@tnb1j/4js/webgpu';
+import { attribute, cameraPosition, color, cross, dot, float, floor, Fn, fract, fwidth, hash as ihash, mix, mod, modelWorldMatrixInverse, mx_fractal_noise_float, mx_noise_float, normalLocal, normalView, normalWorldGeometry, positionLocal, positionView, positionWorld, select, smoothstep, step, uint, uv, varying, vec2, vec3, vec4 } from '@tnb1j/4js/tsl';
 
 import { mergeGeometries } from '../../utils/BufferGeometryUtils.js';
 

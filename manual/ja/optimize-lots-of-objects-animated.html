@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -315,10 +315,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 または簡単にカスタムアニメーションのコードを書く事ができますが、
 オリジナルのwebgl globeでは<a href="https://github.com/tweenjs/tween.js/">アニメーションライブラリ</a>を使っているので合わせましょう。</p>
 <p>アニメーションライブラリをimportする必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
-import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
-+import TWEEN from 'fourjs/addons/libs/tween.module.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
++import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
 </pre>
 <p>そして、影響を与えるアニメーションの <code class="notranslate" translate="no">Tween</code> を作成します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest

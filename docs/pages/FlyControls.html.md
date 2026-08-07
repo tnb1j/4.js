@@ -9,7 +9,7 @@ This class enables a navigation similar to fly modes in DCC tools like Blender. 
 FlyControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FlyControls } from 'fourjs/addons/controls/FlyControls.js';
+import { FlyControls } from '@tnb1j/4js/addons/controls/FlyControls.js';
 ```
 
 ## Constructor

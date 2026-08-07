@@ -2,7 +2,7 @@ import {
 	BufferGeometry,
 	Float32BufferAttribute,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This class can be used to generate a geometry based on a parametric surface.
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { ParametricGeometry } from 'fourjs/addons/geometries/ParametricGeometry.js';
+ * @four_import import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
  */
 class ParametricGeometry extends BufferGeometry {
 

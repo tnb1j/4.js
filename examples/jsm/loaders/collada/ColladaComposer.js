@@ -38,7 +38,7 @@ import {
 	VectorKeyframeTrack,
 	SRGBColorSpace,
 	ShapeUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import { getElementsByTagName, parseFloats } from './ColladaParser.js';
 

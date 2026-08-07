@@ -1,5 +1,5 @@
 import { Command } from '../Command.js';
-import { Euler } from 'fourjs';
+import { Euler } from '@tnb1j/4js';
 
 class SetRotationCommand extends Command {
 

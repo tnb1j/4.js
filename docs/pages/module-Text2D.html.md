@@ -5,7 +5,7 @@
 Text2D is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as Text2D from 'fourjs/addons/webxr/Text2D.js';
+import * as Text2D from '@tnb1j/4js/addons/webxr/Text2D.js';
 ```
 
 ## Methods

@@ -5,7 +5,7 @@
 CSMShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSMShader } from 'fourjs/addons/csm/CSMShader.js';
+import { CSMShader } from '@tnb1j/4js/addons/csm/CSMShader.js';
 ```
 
 ## Properties

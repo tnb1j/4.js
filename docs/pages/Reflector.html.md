@@ -24,7 +24,7 @@ scene.add( reflector );
 Reflector is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Reflector } from 'fourjs/addons/objects/Reflector.js';
+import { Reflector } from '@tnb1j/4js/addons/objects/Reflector.js';
 ```
 
 ## Constructor

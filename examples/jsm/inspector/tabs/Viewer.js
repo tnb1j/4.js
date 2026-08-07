@@ -4,8 +4,8 @@ import { Item } from '../ui/Item.js';
 import { splitPath, splitCamelCase } from '../ui/utils.js';
 import { getItem, setItem } from '../Inspector.js';
 
-import { RendererUtils, NoToneMapping, LinearSRGBColorSpace, QuadMesh, NodeMaterial, CanvasTarget, Vector2 } from 'fourjs/webgpu';
-import { renderOutput, vec2, vec3, vec4, Fn, screenUV, step, OnMaterialUpdate, uniform, float } from 'fourjs/tsl';
+import { RendererUtils, NoToneMapping, LinearSRGBColorSpace, QuadMesh, NodeMaterial, CanvasTarget, Vector2 } from '@tnb1j/4js/webgpu';
+import { renderOutput, vec2, vec3, vec4, Fn, screenUV, step, OnMaterialUpdate, uniform, float } from '@tnb1j/4js/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 

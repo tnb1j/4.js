@@ -22,7 +22,7 @@ scene.add( helper );
 VertexNormalsHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VertexNormalsHelper } from 'fourjs/addons/helpers/VertexNormalsHelper.js';
+import { VertexNormalsHelper } from '@tnb1j/4js/addons/helpers/VertexNormalsHelper.js';
 ```
 
 ## Constructor

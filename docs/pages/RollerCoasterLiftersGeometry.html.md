@@ -9,7 +9,7 @@ A procedural roller coaster lifters geometry.
 RollerCoasterLiftersGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RollerCoasterLiftersGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+import { RollerCoasterLiftersGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor

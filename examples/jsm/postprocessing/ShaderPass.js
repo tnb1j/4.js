@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 
 /**
@@ -15,7 +15,7 @@ import { Pass, FullScreenQuad } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { ShaderPass } from 'fourjs/addons/postprocessing/ShaderPass.js';
+ * @four_import import { ShaderPass } from '@tnb1j/4js/addons/postprocessing/ShaderPass.js';
  */
 class ShaderPass extends Pass {
 

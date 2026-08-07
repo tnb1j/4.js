@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -46,7 +46,7 @@
 </pre>
 <p>4.jsはcanvasに描画するため、canvasを4.jsに渡す必要があります。</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -249,7 +249,7 @@ es6モジュールはスクリプトのロードに <code class="notranslate" tr
 両方とも以下に例を示します。
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 ...
 

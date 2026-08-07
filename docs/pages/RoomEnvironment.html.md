@@ -20,7 +20,7 @@ scene.environment = envMap;
 RoomEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
 ```
 
 ## Constructor

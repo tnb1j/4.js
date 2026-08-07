@@ -9,7 +9,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 Flow is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Flow } from 'fourjs/addons/modifiers/CurveModifier.js';
+import { Flow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
 ```
 
 ## Constructor

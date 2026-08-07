@@ -40,25 +40,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
 
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
-			import { KTX2Loader } from 'fourjs/addons/loaders/KTX2Loader.js';
-			import { USDZExporter } from 'fourjs/addons/exporters/USDZExporter.js';
-			import * as WebGLTextureUtils from 'fourjs/addons/utils/WebGLTextureUtils.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { USDZExporter } from '@tnb1j/4js/addons/exporters/USDZExporter.js';
+			import * as WebGLTextureUtils from '@tnb1j/4js/addons/utils/WebGLTextureUtils.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, mixer, timer, controls;
 

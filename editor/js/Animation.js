@@ -1,6 +1,6 @@
 import { UIPanel, UIText, UIButton, UINumber } from './libs/ui.js';
 
-import { AnimationPathHelper } from 'fourjs/addons/helpers/AnimationPathHelper.js';
+import { AnimationPathHelper } from '@tnb1j/4js/addons/helpers/AnimationPathHelper.js';
 
 function Animation( editor ) {
 

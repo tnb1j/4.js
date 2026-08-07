@@ -40,18 +40,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import * as GeometryUtils from 'fourjs/addons/utils/GeometryUtils.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
 
 			let camera, scene, renderer;
 			let line, sprite, texture;

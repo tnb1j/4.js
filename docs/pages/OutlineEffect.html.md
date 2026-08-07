@@ -18,7 +18,7 @@ function render() {
 OutlineEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OutlineEffect } from 'fourjs/addons/effects/OutlineEffect.js';
+import { OutlineEffect } from '@tnb1j/4js/addons/effects/OutlineEffect.js';
 ```
 
 ## Constructor

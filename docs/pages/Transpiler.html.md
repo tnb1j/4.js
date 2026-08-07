@@ -9,7 +9,7 @@ A class that transpiles shader code from one language into another.
 Transpiler is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import Transpiler from 'fourjs/addons/transpiler/Transpiler.js';
+import Transpiler from '@tnb1j/4js/addons/transpiler/Transpiler.js';
 ```
 
 ## Constructor

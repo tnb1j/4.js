@@ -16,7 +16,7 @@ const data = exporter.parse( mesh, { binary: true } );
 STLExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { STLExporter } from 'fourjs/addons/exporters/STLExporter.js';
+import { STLExporter } from '@tnb1j/4js/addons/exporters/STLExporter.js';
 ```
 
 ## Constructor

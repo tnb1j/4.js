@@ -5,7 +5,7 @@
 OutputShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OutputShader } from 'fourjs/addons/shaders/OutputShader.js';
+import { OutputShader } from '@tnb1j/4js/addons/shaders/OutputShader.js';
 ```
 
 ## Properties

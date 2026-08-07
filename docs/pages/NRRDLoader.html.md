@@ -16,7 +16,7 @@ const volume = await loader.loadAsync( 'models/nrrd/I.nrrd' );
 NRRDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { NRRDLoader } from 'fourjs/addons/loaders/NRRDLoader.js';
+import { NRRDLoader } from '@tnb1j/4js/addons/loaders/NRRDLoader.js';
 ```
 
 ## Constructor

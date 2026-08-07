@@ -1,7 +1,7 @@
 # 4.js
 
 4.js is an enhanced, backward-compatible fork of Three.js r185 for modern
-WebGL, WebGPU, and WebXR applications. The native package is `fourjs`,
+WebGL, WebGPU, and WebXR applications. The native package is `@tnb1j/4js`,
 and the recommended namespace is `FOUR`.
 
 This repository is an independent derivative project. It is not an official
@@ -25,16 +25,15 @@ Node.js 26 is also used for verification.
 
 ## Install
 
-`fourjs` is the intended package identity, but it has not been published
-to npm. For this preview, clone the repository and use `npm ci`. The following
-command is reserved for a future package release:
+The initial npm release is distributed under the `preview` tag. Install it
+with:
 
 ```sh
-npm install fourjs
+npm install @tnb1j/4js@preview
 ```
 
 ```js
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 const scene = new FOUR.Scene();
 const camera = new FOUR.PerspectiveCamera( 70, innerWidth / innerHeight, 0.01, 100 );
@@ -47,14 +46,43 @@ document.body.appendChild( renderer.domElement );
 WebGPU and TSL use dedicated entry points:
 
 ```js
-import * as FOUR from 'fourjs/webgpu';
-import { color, pass } from 'fourjs/tsl';
+import * as FOUR from '@tnb1j/4js/webgpu';
+import { color, pass } from '@tnb1j/4js/tsl';
 ```
 
 Addons remain available under the familiar addon layout:
 
 ```js
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+```
+
+### Browser imports
+
+For reproducible browser builds, pin the exact package version in an import
+map. The same URLs can be used with jsDelivr by replacing
+`https://unpkg.com/` with `https://cdn.jsdelivr.net/npm/`.
+
+```html
+<script type="importmap">
+{
+  "imports": {
+    "@tnb1j/4js": "https://unpkg.com/@tnb1j/4js@0.185.1-four.1/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://unpkg.com/@tnb1j/4js@0.185.1-four.1/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+  import * as FOUR from '@tnb1j/4js';
+  import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+
+  const scene = new FOUR.Scene();
+</script>
+```
+
+The direct core-module URL is:
+
+```text
+https://unpkg.com/@tnb1j/4js@0.185.1-four.1/build/4.module.js
 ```
 
 ## Migration

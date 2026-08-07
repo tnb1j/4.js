@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -67,11 +67,11 @@ composer.addPass(bloomPass);
 composer.addPass(filmPass);
 </pre>
 <p>为了使用这些类,我们需要导入一些js模块</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from 'fourjs/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'fourjs/addons/postprocessing/RenderPass.js';
-import {BloomPass} from 'fourjs/addons/postprocessing/BloomPass.js';
-import {FilmPass} from 'fourjs/addons/postprocessing/FilmPass.js';
-import {OutputPass} from 'fourjs/addons/postprocessing/OutputPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+import {BloomPass} from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
+import {FilmPass} from '@tnb1j/4js/addons/postprocessing/FilmPass.js';
+import {OutputPass} from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
 </pre>
 <p>对于几乎所有的后期处理EffectComposer.js，RenderPass.js 都是必需的。</p>
 <p>们需要做的最后一件事是使用EffectComposer.render 替代 WebGLRenderer.render 并告诉EffectComposer来匹配画布的大小</p>
@@ -124,7 +124,7 @@ this.uniforms.grayscale.value = grayscale;
 </pre>
 <p>这样就很清楚如何设置它们。</p>
 <p>让我们快速创建一个GUI来设置这些值</p>
-<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">import {GUI} from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>和</p>
 <pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">const gui = new GUI();

@@ -8,7 +8,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { BokehShader } from '../shaders/BokehShader.js';
 
@@ -25,7 +25,7 @@ import { BokehShader } from '../shaders/BokehShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { BokehPass } from 'fourjs/addons/postprocessing/BokehPass.js';
+ * @four_import import { BokehPass } from '@tnb1j/4js/addons/postprocessing/BokehPass.js';
  */
 class BokehPass extends Pass {
 

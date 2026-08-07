@@ -9,7 +9,7 @@ A render pass node that creates a parallax barrier effect.
 ParallaxBarrierPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { parallaxBarrierPass } from 'fourjs/addons/tsl/display/ParallaxBarrierPassNode.js';
+import { parallaxBarrierPass } from '@tnb1j/4js/addons/tsl/display/ParallaxBarrierPassNode.js';
 ```
 
 ## Constructor

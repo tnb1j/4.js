@@ -1,7 +1,7 @@
 # 4.js GitHub Deployment Preparation
 
 **Prepared:** August 7, 2026
-**Project:** `fourjs@0.185.1-four.0`
+**Project:** `@tnb1j/4js@0.185.1-four.1`
 **Source state:** Extracted source snapshot with no `.git` directory, commits, tags, branches, or verifiable upstream commit hash.
 
 ## Repository Profile
@@ -172,7 +172,7 @@ Do not replace `<github-owner>` or `<repository>` in tracked files until the fin
 The locally verified package archive is:
 
 ```text
-File:   fourjs-core-0.185.1-four.0.tgz
+File:   tnb1j-4js-0.185.1-four.1.tgz
 Size:   7,681,039 bytes
 Files:  1,226
 SHA256: C47540B827B551AA34BB35EBAED99B7C5A91BF38FB1F5923C8DDF12C03A98A59
@@ -246,7 +246,7 @@ npm pack --json
 New-Item -ItemType Directory ..\fourjs-package-smoke
 Set-Location ..\fourjs-package-smoke
 npm init -y
-npm install ..\<repository>\fourjs-core-0.185.1-four.0.tgz
+npm install ..\<repository>\tnb1j-4js-0.185.1-four.1.tgz
 ```
 
 The isolated consumer must verify:

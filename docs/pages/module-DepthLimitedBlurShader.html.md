@@ -5,7 +5,7 @@
 DepthLimitedBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DepthLimitedBlurShader, BlurShaderUtils } from 'fourjs/addons/shaders/DepthLimitedBlurShader.js';
+import { DepthLimitedBlurShader, BlurShaderUtils } from '@tnb1j/4js/addons/shaders/DepthLimitedBlurShader.js';
 ```
 
 ## Properties

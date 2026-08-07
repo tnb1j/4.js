@@ -21,7 +21,7 @@ composer.addPass( taaRenderPass );
 TAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TAARenderPass } from 'fourjs/addons/postprocessing/TAARenderPass.js';
+import { TAARenderPass } from '@tnb1j/4js/addons/postprocessing/TAARenderPass.js';
 ```
 
 ## Constructor

@@ -8,7 +8,7 @@ import {
 	Skeleton,
 	Vector3,
 	VectorKeyframeTrack
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the BVH format.
@@ -31,7 +31,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { BVHLoader } from 'fourjs/addons/loaders/BVHLoader.js';
+ * @four_import import { BVHLoader } from '@tnb1j/4js/addons/loaders/BVHLoader.js';
  */
 class BVHLoader extends Loader {
 

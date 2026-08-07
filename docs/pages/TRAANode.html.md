@@ -16,7 +16,7 @@ Note: MSAA must be disabled when TRAA is in use.
 TRAANode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
+import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
 ```
 
 ## Constructor

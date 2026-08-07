@@ -16,20 +16,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 
-			import { VertexNormalsHelper } from 'fourjs/addons/helpers/VertexNormalsHelper.js';
-			import { VertexTangentsHelper } from 'fourjs/addons/helpers/VertexTangentsHelper.js';
+			import { VertexNormalsHelper } from '@tnb1j/4js/addons/helpers/VertexNormalsHelper.js';
+			import { VertexTangentsHelper } from '@tnb1j/4js/addons/helpers/VertexTangentsHelper.js';
 
 			let scene, renderer;
 			let camera, light;

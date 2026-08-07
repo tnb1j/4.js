@@ -18,26 +18,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { color } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { color } from '@tnb1j/4js/tsl';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { Line2 } from 'fourjs/addons/lines/webgpu/Line2.js';
-			import { LineGeometry } from 'fourjs/addons/lines/LineGeometry.js';
-			import * as GeometryUtils from 'fourjs/addons/utils/GeometryUtils.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { Line2 } from '@tnb1j/4js/addons/lines/webgpu/Line2.js';
+			import { LineGeometry } from '@tnb1j/4js/addons/lines/LineGeometry.js';
+			import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
 
 			let line, renderer, scene, camera, camera2, controls, backgroundNode;
 			let line1;

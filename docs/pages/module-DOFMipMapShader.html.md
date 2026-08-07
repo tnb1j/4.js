@@ -5,7 +5,7 @@
 DOFMipMapShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DOFMipMapShader } from 'fourjs/addons/shaders/DOFMipMapShader.js';
+import { DOFMipMapShader } from '@tnb1j/4js/addons/shaders/DOFMipMapShader.js';
 ```
 
 ## Properties

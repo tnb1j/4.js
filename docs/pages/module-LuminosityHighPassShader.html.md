@@ -5,7 +5,7 @@
 LuminosityHighPassShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LuminosityHighPassShader } from 'fourjs/addons/shaders/LuminosityHighPassShader.js';
+import { LuminosityHighPassShader } from '@tnb1j/4js/addons/shaders/LuminosityHighPassShader.js';
 ```
 
 ## Properties

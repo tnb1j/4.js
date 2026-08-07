@@ -39,7 +39,7 @@ const data = await exporter.parseAsync( scene, options );
 GLTFExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GLTFExporter } from 'fourjs/addons/exporters/GLTFExporter.js';
+import { GLTFExporter } from '@tnb1j/4js/addons/exporters/GLTFExporter.js';
 ```
 
 ## Constructor

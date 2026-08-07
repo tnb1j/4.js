@@ -24,7 +24,7 @@ import { LineMaterial } from './LineMaterial.js';
  * ```
  *
  * @augments LineSegments2
- * @four_import import { Line2 } from 'fourjs/addons/lines/Line2.js';
+ * @four_import import { Line2 } from '@tnb1j/4js/addons/lines/Line2.js';
  */
 class Line2 extends LineSegments2 {
 

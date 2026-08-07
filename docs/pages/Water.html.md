@@ -17,7 +17,7 @@ References:
 Water is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Water } from 'fourjs/addons/objects/Water.js';
+import { Water } from '@tnb1j/4js/addons/objects/Water.js';
 ```
 
 ## Constructor

@@ -31,26 +31,26 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"fourjs": "../build/4.webgpu.js",
-				"fourjs/webgpu": "../build/4.webgpu.js",
-				"fourjs/tsl": "../build/4.tsl.js",
-				"fourjs/addons/": "./jsm/"
+				"@tnb1j/4js": "../build/4.webgpu.js",
+				"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+				"@tnb1j/4js/tsl": "../build/4.tsl.js",
+				"@tnb1j/4js/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from 'fourjs/webgpu';
-		import { pass, mrt, output, normalView, metalness, roughness, screenUV, color, sample, packNormalToRGB, unpackRGBToNormal, vec2, colorSpaceToWorking } from 'fourjs/tsl';
-		import { ssr } from 'fourjs/addons/tsl/display/SSRNode.js';
-		import { smaa } from 'fourjs/addons/tsl/display/SMAANode.js';
+		import * as FOUR from '@tnb1j/4js/webgpu';
+		import { pass, mrt, output, normalView, metalness, roughness, screenUV, color, sample, packNormalToRGB, unpackRGBToNormal, vec2, colorSpaceToWorking } from '@tnb1j/4js/tsl';
+		import { ssr } from '@tnb1j/4js/addons/tsl/display/SSRNode.js';
+		import { smaa } from '@tnb1j/4js/addons/tsl/display/SMAANode.js';
 
-		import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
-		import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-		import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
-		import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+		import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+		import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+		import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
 		const params = {
 			quality: 0.5,

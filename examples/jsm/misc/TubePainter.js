@@ -7,7 +7,7 @@ import {
 	Mesh,
 	MeshStandardMaterial,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @classdesc This module can be used to paint tube-like meshes
@@ -21,7 +21,7 @@ import {
  *
  * @name TubePainter
  * @class
- * @four_import import { TubePainter } from 'fourjs/addons/misc/TubePainter.js';
+ * @four_import import { TubePainter } from '@tnb1j/4js/addons/misc/TubePainter.js';
  */
 function TubePainter() {
 

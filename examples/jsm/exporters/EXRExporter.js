@@ -3,7 +3,7 @@ import {
 	HalfFloatType,
 	RGBAFormat,
 	DataUtils,
-} from 'fourjs';
+} from '@tnb1j/4js';
 import * as fflate from '../libs/fflate.module.js';
 
 const textEncoder = new TextEncoder();
@@ -27,7 +27,7 @@ const ZIP_COMPRESSION = 3;
  * const result = await exporter.parse( renderer, options );
  * ```
  *
- * @four_import import { EXRExporter } from 'fourjs/addons/exporters/EXRExporter.js';
+ * @four_import import { EXRExporter } from '@tnb1j/4js/addons/exporters/EXRExporter.js';
  */
 class EXRExporter {
 

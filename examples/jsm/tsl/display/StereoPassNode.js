@@ -1,4 +1,4 @@
-import { StereoCamera, Vector2, PassNode, RendererUtils } from 'fourjs/webgpu';
+import { StereoCamera, Vector2, PassNode, RendererUtils } from '@tnb1j/4js/webgpu';
 
 const _size = /*@__PURE__*/ new Vector2();
 
@@ -8,7 +8,7 @@ let _rendererState;
  * A special render pass node that renders the scene as a stereoscopic image.
  *
  * @augments PassNode
- * @four_import import { stereoPass } from 'fourjs/addons/tsl/display/StereoPassNode.js';
+ * @four_import import { stereoPass } from '@tnb1j/4js/addons/tsl/display/StereoPassNode.js';
  */
 class StereoPassNode extends PassNode {
 

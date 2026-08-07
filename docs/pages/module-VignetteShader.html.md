@@ -5,7 +5,7 @@
 VignetteShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VignetteShader } from 'fourjs/addons/shaders/VignetteShader.js';
+import { VignetteShader } from '@tnb1j/4js/addons/shaders/VignetteShader.js';
 ```
 
 ## Properties

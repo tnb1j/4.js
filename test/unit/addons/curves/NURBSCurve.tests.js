@@ -1,5 +1,5 @@
 import { NURBSCurve } from '../../../../examples/jsm/curves/NURBSCurve.js';
-import { MathUtils, Vector4 } from 'fourjs';
+import { MathUtils, Vector4 } from '@tnb1j/4js';
 
 export default QUnit.module( 'Extras', () => {
 

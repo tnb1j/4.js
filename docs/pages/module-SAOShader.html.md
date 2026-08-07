@@ -5,7 +5,7 @@
 SAOShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SAOShader } from 'fourjs/addons/shaders/SAOShader.js';
+import { SAOShader } from '@tnb1j/4js/addons/shaders/SAOShader.js';
 ```
 
 ## Properties

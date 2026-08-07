@@ -1,5 +1,5 @@
-import { NearestFilter, Vector4, TempNode, NodeUpdateType, PassNode } from 'fourjs/webgpu';
-import { nodeObject, Fn, float, uv, uniform, convertToTexture, vec2, vec3, clamp, floor, dot, smoothstep, If, sign, step, mrt, output, normalView, property, vec4 } from 'fourjs/tsl';
+import { NearestFilter, Vector4, TempNode, NodeUpdateType, PassNode } from '@tnb1j/4js/webgpu';
+import { nodeObject, Fn, float, uv, uniform, convertToTexture, vec2, vec3, clamp, floor, dot, smoothstep, If, sign, step, mrt, output, normalView, property, vec4 } from '@tnb1j/4js/tsl';
 
 /**
  * A inner node definition that implements the actual pixelation TSL code.
@@ -220,7 +220,7 @@ const pixelation = ( node, depthNode, normalNode, pixelSize = 6, normalEdgeStren
  * A special render pass node that renders the scene with a pixelation effect.
  *
  * @augments PassNode
- * @four_import import { pixelationPass } from 'fourjs/addons/tsl/display/PixelationPassNode.js';
+ * @four_import import { pixelationPass } from '@tnb1j/4js/addons/tsl/display/PixelationPassNode.js';
  */
 class PixelationPassNode extends PassNode {
 

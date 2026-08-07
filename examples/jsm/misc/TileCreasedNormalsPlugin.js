@@ -1,4 +1,4 @@
-import { BufferAttribute } from 'fourjs';
+import { BufferAttribute } from '@tnb1j/4js';
 
 /**
  * A plugin for `3d-tiles-renderer` that computes creased vertex normals for the
@@ -13,7 +13,7 @@ import { BufferAttribute } from 'fourjs';
  * tiles.registerPlugin( new TileCreasedNormalsPlugin( { creaseAngle: Math.PI / 6 } ) );
  * ```
  *
- * @four_import import { TileCreasedNormalsPlugin } from 'fourjs/addons/misc/TileCreasedNormalsPlugin.js';
+ * @four_import import { TileCreasedNormalsPlugin } from '@tnb1j/4js/addons/misc/TileCreasedNormalsPlugin.js';
  */
 class TileCreasedNormalsPlugin {
 

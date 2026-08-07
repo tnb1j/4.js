@@ -3,7 +3,7 @@ import {
 	BufferGeometry,
 	Float32BufferAttribute,
 	LineBasicMaterial
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A helper for visualizing an Octree.
@@ -14,7 +14,7 @@ import {
  * ```
  *
  * @augments LineSegments
- * @four_import import { OctreeHelper } from 'fourjs/addons/helpers/OctreeHelper.js';
+ * @four_import import { OctreeHelper } from '@tnb1j/4js/addons/helpers/OctreeHelper.js';
  */
 class OctreeHelper extends LineSegments {
 

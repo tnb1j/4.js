@@ -5,7 +5,7 @@
 SepiaShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SepiaShader } from 'fourjs/addons/shaders/SepiaShader.js';
+import { SepiaShader } from '@tnb1j/4js/addons/shaders/SepiaShader.js';
 ```
 
 ## Properties

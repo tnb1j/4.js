@@ -5,7 +5,7 @@
 VerticalTiltShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VerticalTiltShiftShader } from 'fourjs/addons/shaders/VerticalTiltShiftShader.js';
+import { VerticalTiltShiftShader } from '@tnb1j/4js/addons/shaders/VerticalTiltShiftShader.js';
 ```
 
 ## Properties

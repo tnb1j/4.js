@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import TWEEN from 'fourjs/addons/libs/tween.module.js';
-			import { TrackballControls } from 'fourjs/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DSprite } from 'fourjs/addons/renderers/CSS3DRenderer.js';
+			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
+			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DSprite } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
 
 			let camera, scene, renderer;
 			let controls;

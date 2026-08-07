@@ -2,7 +2,7 @@ import {
 	Group,
 	Raycaster,
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const _pointer = new Vector2();
 const _event = { type: '', data: _pointer };
@@ -34,7 +34,7 @@ const _raycaster = new Raycaster();
  * group.add( mesh1, mesh2, mesh3 );
  * ```
  * @augments Group
- * @four_import import { InteractiveGroup } from 'fourjs/addons/interactive/InteractiveGroup.js';
+ * @four_import import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
  */
 class InteractiveGroup extends Group {
 

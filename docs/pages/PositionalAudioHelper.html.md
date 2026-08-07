@@ -21,7 +21,7 @@ positionalAudio.add( helper );
 PositionalAudioHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PositionalAudioHelper } from 'fourjs/addons/helpers/PositionalAudioHelper.js';
+import { PositionalAudioHelper } from '@tnb1j/4js/addons/helpers/PositionalAudioHelper.js';
 ```
 
 ## Constructor

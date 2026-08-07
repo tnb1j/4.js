@@ -9,7 +9,7 @@ A special type of an animated mesh with a simple interface for animation playbac
 MorphAnimMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MorphAnimMesh } from 'fourjs/addons/misc/MorphAnimMesh.js';
+import { MorphAnimMesh } from '@tnb1j/4js/addons/misc/MorphAnimMesh.js';
 ```
 
 ## Constructor

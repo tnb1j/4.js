@@ -1,9 +1,9 @@
-import { ImageBitmapLoader, Texture } from 'fourjs';
-import { Fn, int, ivec2, textureLoad, screenUV, screenSize, mod, floor, float, vec3 } from 'fourjs/tsl';
+import { ImageBitmapLoader, Texture } from '@tnb1j/4js';
+import { Fn, int, ivec2, textureLoad, screenUV, screenSize, mod, floor, float, vec3 } from '@tnb1j/4js/tsl';
 
 /**
  * @module Bayer
- * @four_import import { bayer16 } from 'fourjs/addons/tsl/math/Bayer.js';
+ * @four_import import { bayer16 } from '@tnb1j/4js/addons/tsl/math/Bayer.js';
  */
 
 let bayer16Texture = null;

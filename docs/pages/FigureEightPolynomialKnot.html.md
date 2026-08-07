@@ -9,7 +9,7 @@ A Figure Eight Polynomial Knot.
 FigureEightPolynomialKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FigureEightPolynomialKnot } from 'fourjs/addons/curves/CurveExtras.js';
+import { FigureEightPolynomialKnot } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

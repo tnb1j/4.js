@@ -35,7 +35,7 @@ mixer.clipAction( clip ).play();
 MDDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MDDLoader } from 'fourjs/addons/loaders/MDDLoader.js';
+import { MDDLoader } from '@tnb1j/4js/addons/loaders/MDDLoader.js';
 ```
 
 ## Constructor

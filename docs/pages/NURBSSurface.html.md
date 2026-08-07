@@ -9,7 +9,7 @@ Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weigh
 NURBSSurface is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { NURBSSurface } from 'fourjs/addons/curves/NURBSSurface.js';
+import { NURBSSurface } from '@tnb1j/4js/addons/curves/NURBSSurface.js';
 ```
 
 ## Constructor

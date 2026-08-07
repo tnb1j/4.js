@@ -3,7 +3,7 @@ import {
 	MeshBasicMaterial,
 	Object3D,
 	SphereGeometry,
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import { GLTFLoader } from '../loaders/GLTFLoader.js';
 
@@ -256,7 +256,7 @@ function addAssetSceneToControllerModel( controllerModel, scene ) {
  * scene.add( controllerGrip );
  * ```
  *
- * @four_import import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
+ * @four_import import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
  */
 class XRControllerModelFactory {
 

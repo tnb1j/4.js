@@ -54230,7 +54230,7 @@ let _rendererState$1;
  * Reference: {@link https://gpuopen.com/fidelityfx-superresolution/}.
  *
  * @augments TempNode
- * @four_import import { sharpen } from 'fourjs/webgpu';
+ * @four_import import { sharpen } from '@tnb1j/4js/webgpu';
  */
 class SharpenNode extends TempNode {
 
@@ -54524,7 +54524,7 @@ let _rendererState;
  * Note: MSAA must be disabled when TAAU is in use.
  *
  * @augments TempNode
- * @four_import import { taau } from 'fourjs/webgpu';
+ * @four_import import { taau } from '@tnb1j/4js/webgpu';
  */
 class TAAUNode extends TempNode {
 

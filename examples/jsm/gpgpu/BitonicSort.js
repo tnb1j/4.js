@@ -1,4 +1,4 @@
-import { Fn, uvec2, If, instancedArray, instanceIndex, invocationLocalIndex, Loop, workgroupArray, workgroupBarrier, workgroupId, uint, select, min, max } from 'fourjs/tsl';
+import { Fn, uvec2, If, instancedArray, instanceIndex, invocationLocalIndex, Loop, workgroupArray, workgroupBarrier, workgroupId, uint, select, min, max } from '@tnb1j/4js/tsl';
 
 const StepType = {
 	NONE: 0,

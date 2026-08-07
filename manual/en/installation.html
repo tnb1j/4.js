@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -53,7 +53,7 @@
   <li>
     <i>main.js</i>
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 ...
 </pre>
@@ -166,14 +166,14 @@ npm install --save-dev vite
           <ol>
             <li>
               <p>
-                We imported code from 'fourjs' (an npm package) in <i>main.js</i>, and web browsers don't know what that means. In <i>index.html</i> we'll need to add an [link:https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap import map] defining where to get the package. Put the code below inside the <i>&lt;head>&lt/head></i> tag, after the styles.
+                We imported code from '@tnb1j/4js' (an npm package) in <i>main.js</i>, and web browsers don't know what that means. In <i>index.html</i> we'll need to add an [link:https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap import map] defining where to get the package. Put the code below inside the <i>&lt;head>&lt/head></i> tag, after the styles.
               </p>
 <pre class="prettyprint notranslate lang-js" translate="no">
 &lt;script type="importmap">
 {
   "imports": {
-    "fourjs": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
-    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
   }
 }
 &lt;/script>
@@ -262,9 +262,9 @@ npm install --save-dev vite
           </p>
 
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
 
 const controls = new OrbitControls( camera, renderer.domElement );
 const loader = new GLTFLoader();

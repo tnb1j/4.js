@@ -5,7 +5,7 @@
 SMAAShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SMAAShader } from 'fourjs/addons/shaders/SMAAShader.js';
+import { SMAAShader } from '@tnb1j/4js/addons/shaders/SMAAShader.js';
 ```
 
 WebGL port of Subpixel Morphological Antialiasing (SMAA) v2.8 Preset: SMAA 1x Medium (with color edge detection)

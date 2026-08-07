@@ -18,17 +18,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { XYZLoader } from 'fourjs/addons/loaders/XYZLoader.js';
+			import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';
 
 			let camera, scene, renderer, timer;
 

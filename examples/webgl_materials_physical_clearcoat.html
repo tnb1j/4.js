@@ -16,22 +16,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { HDRCubeTextureLoader } from 'fourjs/addons/loaders/HDRCubeTextureLoader.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
 
-			import { FlakesTexture } from 'fourjs/addons/textures/FlakesTexture.js';
+			import { FlakesTexture } from '@tnb1j/4js/addons/textures/FlakesTexture.js';
 
 			let container, stats;
 

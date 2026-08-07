@@ -1,6 +1,6 @@
 
-import { InspectorBase, TimestampQuery, warnOnce, RendererUtils, MeshBasicNodeMaterial, AdditiveBlending, NoToneMapping, LinearSRGBColorSpace } from 'fourjs/webgpu';
-import { vec3 } from 'fourjs/tsl';
+import { InspectorBase, TimestampQuery, warnOnce, RendererUtils, MeshBasicNodeMaterial, AdditiveBlending, NoToneMapping, LinearSRGBColorSpace } from '@tnb1j/4js/webgpu';
+import { vec3 } from '@tnb1j/4js/tsl';
 
 class ObjectStats {
 

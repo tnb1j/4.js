@@ -9,7 +9,7 @@ A heart curve.
 HeartCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HeartCurve } from 'fourjs/addons/curves/CurveExtras.js';
+import { HeartCurve } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

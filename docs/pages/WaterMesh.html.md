@@ -17,7 +17,7 @@ References:
 WaterMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { WaterMesh } from 'fourjs/addons/objects/WaterMesh.js';
+import { WaterMesh } from '@tnb1j/4js/addons/objects/WaterMesh.js';
 ```
 
 ## Constructor

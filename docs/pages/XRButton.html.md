@@ -15,7 +15,7 @@ document.body.appendChild( XRButton.createButton( renderer ) );
 XRButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
+import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
 ```
 
 ## Static Methods

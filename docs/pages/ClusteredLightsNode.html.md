@@ -9,7 +9,7 @@ A custom version of `LightsNode` implementing Forward+ clustered shading: the vi
 ClusteredLightsNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { clusteredLights } from 'fourjs/addons/tsl/lighting/ClusteredLightsNode.js';
+import { clusteredLights } from '@tnb1j/4js/addons/tsl/lighting/ClusteredLightsNode.js';
 ```
 
 ## Constructor

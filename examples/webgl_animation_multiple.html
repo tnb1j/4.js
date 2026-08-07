@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, timer;
 			let model, animations;

@@ -7,7 +7,7 @@ Utility class for LDraw models.
 LDrawUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LDrawUtils } from 'fourjs/addons/utils/LDrawUtils.js';
+import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
 ```
 
 ## Constructor

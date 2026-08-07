@@ -1,11 +1,11 @@
-import { TempNode } from 'fourjs/webgpu';
-import { nodeObject, Fn, float, uniform, vec3, vec4, mix } from 'fourjs/tsl';
+import { TempNode } from '@tnb1j/4js/webgpu';
+import { nodeObject, Fn, float, uniform, vec3, vec4, mix } from '@tnb1j/4js/tsl';
 
 /**
  * A post processing node for color grading via lookup tables.
  *
  * @augments TempNode
- * @four_import import { lut3D } from 'fourjs/addons/tsl/display/Lut3DNode.js';
+ * @four_import import { lut3D } from '@tnb1j/4js/addons/tsl/display/Lut3DNode.js';
  */
 class Lut3DNode extends TempNode {
 

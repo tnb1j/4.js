@@ -34,7 +34,7 @@ scene.environment = texture;
 UltraHDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { UltraHDRLoader } from 'fourjs/addons/loaders/UltraHDRLoader.js';
+import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
 ```
 
 ## Constructor

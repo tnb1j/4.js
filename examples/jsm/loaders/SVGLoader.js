@@ -18,7 +18,7 @@ import {
 	SRGBColorSpace,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const COLOR_SPACE_SVG = SRGBColorSpace;
 
@@ -61,7 +61,7 @@ const COLOR_SPACE_SVG = SRGBColorSpace;
  * ```
  *
  * @augments Loader
- * @four_import import { SVGLoader } from 'fourjs/addons/loaders/SVGLoader.js';
+ * @four_import import { SVGLoader } from '@tnb1j/4js/addons/loaders/SVGLoader.js';
  */
 class SVGLoader extends Loader {
 

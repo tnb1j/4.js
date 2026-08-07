@@ -9,7 +9,7 @@ Represents an Oculus hand pointer model.
 OculusHandPointerModel is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OculusHandPointerModel } from 'fourjs/addons/webxr/OculusHandPointerModel.js';
+import { OculusHandPointerModel } from '@tnb1j/4js/addons/webxr/OculusHandPointerModel.js';
 ```
 
 ## Constructor

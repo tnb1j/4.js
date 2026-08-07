@@ -4,7 +4,7 @@ import {
 	CanvasTexture,
 	NearestFilter,
 	SRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import lottie from 'https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/+esm';
 
@@ -29,7 +29,7 @@ import lottie from 'https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/+esm';
  * ```
  *
  * @augments Loader
- * @four_import import { LottieLoader } from 'fourjs/addons/loaders/LottieLoader.js';
+ * @four_import import { LottieLoader } from '@tnb1j/4js/addons/loaders/LottieLoader.js';
  */
 class LottieLoader extends Loader {
 

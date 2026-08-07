@@ -1,4 +1,4 @@
-import { mod, Fn, vec2, div, vec4, dot, floor, step, sub, min, max, mul, abs, vec3, inverseSqrt, add, float } from 'fourjs/tsl';
+import { mod, Fn, vec2, div, vec4, dot, floor, step, sub, min, max, mul, abs, vec3, inverseSqrt, add, float } from '@tnb1j/4js/tsl';
 
 /**
  * Permutation polynomial for noise generation.

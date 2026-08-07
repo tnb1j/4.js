@@ -1,11 +1,11 @@
-import { Vector2 } from 'fourjs';
+import { Vector2 } from '@tnb1j/4js';
 
 /**
  * A helper for {@link SelectionBox}.
  *
  * It visualizes the current selection box with a `div` container element.
  *
- * @four_import import { SelectionHelper } from 'fourjs/addons/interactive/SelectionHelper.js';
+ * @four_import import { SelectionHelper } from '@tnb1j/4js/addons/interactive/SelectionHelper.js';
  */
 class SelectionHelper {
 

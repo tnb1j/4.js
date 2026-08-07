@@ -5,7 +5,7 @@
 FilmShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FilmShader } from 'fourjs/addons/shaders/FilmShader.js';
+import { FilmShader } from '@tnb1j/4js/addons/shaders/FilmShader.js';
 ```
 
 ## Properties

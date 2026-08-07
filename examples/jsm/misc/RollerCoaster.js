@@ -6,13 +6,13 @@ import {
 	Raycaster,
 	SRGBColorSpace,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A procedural roller coaster geometry.
  *
  * @augments BufferGeometry
- * @four_import import { RollerCoasterGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+ * @four_import import { RollerCoasterGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
  */
 class RollerCoasterGeometry extends BufferGeometry {
 
@@ -256,7 +256,7 @@ class RollerCoasterGeometry extends BufferGeometry {
  * A procedural roller coaster lifters geometry.
  *
  * @augments BufferGeometry
- * @four_import import { RollerCoasterLiftersGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+ * @four_import import { RollerCoasterLiftersGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
  */
 class RollerCoasterLiftersGeometry extends BufferGeometry {
 
@@ -464,7 +464,7 @@ class RollerCoasterLiftersGeometry extends BufferGeometry {
  * A procedural roller coaster shadow geometry.
  *
  * @augments BufferGeometry
- * @four_import import { RollerCoasterShadowGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+ * @four_import import { RollerCoasterShadowGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
  */
 class RollerCoasterShadowGeometry extends BufferGeometry {
 
@@ -548,7 +548,7 @@ class RollerCoasterShadowGeometry extends BufferGeometry {
  * A procedural sky geometry.
  *
  * @augments BufferGeometry
- * @four_import import { SkyGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+ * @four_import import { SkyGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
  */
 class SkyGeometry extends BufferGeometry {
 
@@ -590,7 +590,7 @@ class SkyGeometry extends BufferGeometry {
  * A procedural trees geometry.
  *
  * @augments BufferGeometry
- * @four_import import { TreesGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+ * @four_import import { TreesGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
  */
 class TreesGeometry extends BufferGeometry {
 

@@ -20,7 +20,7 @@ scene.add( klein );
 ParametricGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ParametricGeometry } from 'fourjs/addons/geometries/ParametricGeometry.js';
+import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
 ```
 
 ## Constructor

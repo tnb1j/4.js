@@ -16,7 +16,7 @@ composer.addPass( pass );
 DotScreenPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DotScreenPass } from 'fourjs/addons/postprocessing/DotScreenPass.js';
+import { DotScreenPass } from '@tnb1j/4js/addons/postprocessing/DotScreenPass.js';
 ```
 
 ## Constructor

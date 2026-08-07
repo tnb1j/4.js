@@ -16,7 +16,7 @@ renderer.lighting = lighting; // set lighting system
 ClusteredLighting is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ClusteredLighting } from 'fourjs/addons/lighting/ClusteredLighting.js';
+import { ClusteredLighting } from '@tnb1j/4js/addons/lighting/ClusteredLighting.js';
 ```
 
 ## Constructor

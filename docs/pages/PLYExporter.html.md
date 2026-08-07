@@ -16,7 +16,7 @@ const data = exporter.parse( scene, options );
 PLYExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PLYExporter } from 'fourjs/addons/exporters/PLYExporter.js';
+import { PLYExporter } from '@tnb1j/4js/addons/exporters/PLYExporter.js';
 ```
 
 ## Constructor

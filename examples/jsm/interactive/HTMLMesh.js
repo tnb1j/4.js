@@ -6,7 +6,7 @@ import {
 	PlaneGeometry,
 	SRGBColorSpace,
 	Color
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This class can be used to render a DOM element onto a canvas and use it as a texture
@@ -23,7 +23,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { HTMLMesh } from 'fourjs/addons/interactive/HTMLMesh.js';
+ * @four_import import { HTMLMesh } from '@tnb1j/4js/addons/interactive/HTMLMesh.js';
  */
 class HTMLMesh extends Mesh {
 

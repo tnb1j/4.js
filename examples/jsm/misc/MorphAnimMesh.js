@@ -2,7 +2,7 @@ import {
 	AnimationClip,
 	AnimationMixer,
 	Mesh
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A special type of an animated mesh with a simple interface
@@ -10,7 +10,7 @@ import {
  * without any transitions or fading between animation changes.
  *
  * @augments Mesh
- * @four_import import { MorphAnimMesh } from 'fourjs/addons/misc/MorphAnimMesh.js';
+ * @four_import import { MorphAnimMesh } from '@tnb1j/4js/addons/misc/MorphAnimMesh.js';
  */
 class MorphAnimMesh extends Mesh {
 

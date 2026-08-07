@@ -7,7 +7,7 @@ This class had been written to handle the output of the [NRRDLoader](NRRDLoader.
 Volume is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Volume } from 'fourjs/addons/misc/Volume.js';
+import { Volume } from '@tnb1j/4js/addons/misc/Volume.js';
 ```
 
 ## Constructor

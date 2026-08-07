@@ -16,7 +16,7 @@ composer.addPass( maskPass );
 MaskPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MaskPass } from 'fourjs/addons/postprocessing/MaskPass.js';
+import { MaskPass } from '@tnb1j/4js/addons/postprocessing/MaskPass.js';
 ```
 
 ## Constructor

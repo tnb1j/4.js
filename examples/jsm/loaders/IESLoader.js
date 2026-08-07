@@ -9,7 +9,7 @@ import {
 	LinearFilter,
 	HalfFloatType,
 	DataUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the IES format.
@@ -25,7 +25,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { IESLoader } from 'fourjs/addons/loaders/IESLoader.js';
+ * @four_import import { IESLoader } from '@tnb1j/4js/addons/loaders/IESLoader.js';
  */
 class IESLoader extends Loader {
 

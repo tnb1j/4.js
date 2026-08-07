@@ -2,7 +2,7 @@ import {
 	Triangle,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const _face = new Triangle();
 const _color = new Vector3();
@@ -41,7 +41,7 @@ const _uva = new Vector2(), _uvb = new Vector2(), _uvc = new Vector2();
  * scene.add( mesh );
  * ```
  *
- * @four_import import { MeshSurfaceSampler } from 'fourjs/addons/math/MeshSurfaceSampler.js';
+ * @four_import import { MeshSurfaceSampler } from '@tnb1j/4js/addons/math/MeshSurfaceSampler.js';
  */
 class MeshSurfaceSampler {
 

@@ -9,7 +9,7 @@ A procedural roller coaster geometry.
 RollerCoasterGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RollerCoasterGeometry } from 'fourjs/addons/misc/RollerCoaster.js';
+import { RollerCoasterGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor

@@ -26,7 +26,7 @@ import {
 	Quaternion,
 	REVISION,
 	ImageUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * The KHR_mesh_quantization extension allows these extra attribute component types
@@ -99,7 +99,7 @@ const KHR_mesh_quantization_ExtraAttrTypes = {
  * const data = await exporter.parseAsync( scene, options );
  * ```
  *
- * @four_import import { GLTFExporter } from 'fourjs/addons/exporters/GLTFExporter.js';
+ * @four_import import { GLTFExporter } from '@tnb1j/4js/addons/exporters/GLTFExporter.js';
  */
 class GLTFExporter {
 

@@ -20,7 +20,7 @@ scene.add( wireframe );
 Wireframe is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Wireframe } from 'fourjs/addons/lines/Wireframe.js';
+import { Wireframe } from '@tnb1j/4js/addons/lines/Wireframe.js';
 ```
 
 ## Constructor

@@ -20,7 +20,7 @@ scene.add( object );
 Rhino3dmLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Rhino3dmLoader } from 'fourjs/addons/loaders/3DMLoader.js';
+import { Rhino3dmLoader } from '@tnb1j/4js/addons/loaders/3DMLoader.js';
 ```
 
 ## Constructor

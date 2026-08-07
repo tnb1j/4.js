@@ -9,7 +9,7 @@ A special type of an animated mesh with a more advanced interface for animation 
 MorphBlendMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MorphBlendMesh } from 'fourjs/addons/misc/MorphBlendMesh.js';
+import { MorphBlendMesh } from '@tnb1j/4js/addons/misc/MorphBlendMesh.js';
 ```
 
 ## Constructor

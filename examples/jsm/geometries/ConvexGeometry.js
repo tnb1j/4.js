@@ -1,7 +1,7 @@
 import {
 	BufferGeometry,
 	Float32BufferAttribute
-} from 'fourjs';
+} from '@tnb1j/4js';
 import { ConvexHull } from '../math/ConvexHull.js';
 
 /**
@@ -16,7 +16,7 @@ import { ConvexHull } from '../math/ConvexHull.js';
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { ConvexGeometry } from 'fourjs/addons/geometries/ConvexGeometry.js';
+ * @four_import import { ConvexGeometry } from '@tnb1j/4js/addons/geometries/ConvexGeometry.js';
  */
 class ConvexGeometry extends BufferGeometry {
 

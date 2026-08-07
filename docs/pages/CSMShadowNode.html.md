@@ -11,7 +11,7 @@ This module can only be used with [WebGPURenderer](WebGPURenderer.html). When us
 CSMShadowNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSMShadowNode } from 'fourjs/addons/csm/CSMShadowNode.js';
+import { CSMShadowNode } from '@tnb1j/4js/addons/csm/CSMShadowNode.js';
 ```
 
 ## Constructor

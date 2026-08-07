@@ -11,7 +11,7 @@ NOTE: This is a temporary location for the BRDF approximation texture data based
 RectAreaLightTexturesLib is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RectAreaLightTexturesLib } from 'fourjs/addons/lights/RectAreaLightTexturesLib.js';
+import { RectAreaLightTexturesLib } from '@tnb1j/4js/addons/lights/RectAreaLightTexturesLib.js';
 ```
 
 ## Properties

@@ -11,7 +11,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 LDrawConditionalLineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
+import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
 ```
 
 ## Constructor

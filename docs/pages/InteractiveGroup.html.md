@@ -21,7 +21,7 @@ group.add( mesh1, mesh2, mesh3 );
 InteractiveGroup is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { InteractiveGroup } from 'fourjs/addons/interactive/InteractiveGroup.js';
+import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
 ```
 
 ## Constructor

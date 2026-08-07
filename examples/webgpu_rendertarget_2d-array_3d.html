@@ -44,22 +44,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from '@tnb1j/4js/tsl';
 
-			import { TextureHelper } from 'fourjs/addons/helpers/TextureHelperGPU.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { unzipSync } from 'fourjs/addons/libs/fflate.module.js';
+			import { TextureHelper } from '@tnb1j/4js/addons/helpers/TextureHelperGPU.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { unzipSync } from '@tnb1j/4js/addons/libs/fflate.module.js';
 
 			let renderer;
 			let views = [];

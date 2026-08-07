@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -50,8 +50,8 @@ WebXR API. <a href="setup.html">the article on setting up</a>에 언급된 서�
 이를 통해 콘솔 경보, 오류, 실제로 <a href="debugging-javascript.html">코드 디버그(debug your code)</a>가  가능합니다.</p>
 <p>아래 코드가 작동하는 것을 보고 싶다면 이 사이트에서 코드를 실행할 수 있습니다.</p>
 <p>가장 먼저 해야 할 일은 4.js를 포함시킨 후 VR 지원을 포함하는 것입니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-+import {VRButton} from 'fourjs/addons/webxr/VRButton.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
++import {VRButton} from '@tnb1j/4js/addons/webxr/VRButton.js';
 </pre>
 <p>이후 4.js's WebXR 지원을 활성화하며, 이를 위한 VR button을 페이지에 추가하여 주어야합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {

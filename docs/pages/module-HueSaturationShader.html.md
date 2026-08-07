@@ -5,7 +5,7 @@
 HueSaturationShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HueSaturationShader } from 'fourjs/addons/shaders/HueSaturationShader.js';
+import { HueSaturationShader } from '@tnb1j/4js/addons/shaders/HueSaturationShader.js';
 ```
 
 ## Properties

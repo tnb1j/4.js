@@ -1,4 +1,4 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 import { threejsLessonUtils } from './fourjs-lesson-utils.js';
 import { FontLoader } from '../../examples/jsm/loaders/FontLoader.js';
 import { ParametricGeometry } from '../../examples/jsm/geometries/ParametricGeometry.js';

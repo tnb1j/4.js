@@ -1,7 +1,7 @@
 import {
 	BufferGeometry,
 	Float32BufferAttribute
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A special type of box geometry intended for {@link LineSegments}.
@@ -14,7 +14,7 @@ import {
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { BoxLineGeometry } from 'fourjs/addons/geometries/BoxLineGeometry.js';
+ * @four_import import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
  */
 class BoxLineGeometry extends BufferGeometry {
 

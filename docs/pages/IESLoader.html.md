@@ -20,7 +20,7 @@ spotLight.iesMap = texture;
 IESLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { IESLoader } from 'fourjs/addons/loaders/IESLoader.js';
+import { IESLoader } from '@tnb1j/4js/addons/loaders/IESLoader.js';
 ```
 
 ## Constructor

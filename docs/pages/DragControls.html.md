@@ -22,7 +22,7 @@ controls.addEventListener( 'dragend', function ( event ) {
 DragControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DragControls } from 'fourjs/addons/controls/DragControls.js';
+import { DragControls } from '@tnb1j/4js/addons/controls/DragControls.js';
 ```
 
 ## Constructor

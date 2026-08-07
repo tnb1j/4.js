@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -70,11 +70,11 @@ composer.addPass(filmPass);
 composer.addPass(outputPass);
 </pre>
 <p>Pour utiliser ces classes, nous devons importer un certain nombre de scripts.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from 'fourjs/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'fourjs/addons/postprocessing/RenderPass.js';
-import {BloomPass} from 'fourjs/addons/postprocessing/BloomPass.js';
-import {FilmPass} from 'fourjs/addons/postprocessing/FilmPass.js';
-import {OutputPass} from 'fourjs/addons/postprocessing/OutputPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+import {BloomPass} from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
+import {FilmPass} from '@tnb1j/4js/addons/postprocessing/FilmPass.js';
+import {OutputPass} from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
 </pre>
 <p>Pour pratiquement n'importe quel post-traitement, <code class="notranslate" translate="no">EffectComposer.js</code>, <code class="notranslate" translate="no">RenderPass.js</code> et <code class="notranslate" translate="no">OutputPass.js</code> sont requis.</p>
 <p>Les dernières choses que nous devons faire sont d'utiliser <code class="notranslate" translate="no">EffectComposer.render</code> au lieu de <a href="/docs/#api/en/renderers/WebGLRenderer.render"><code class="notranslate" translate="no">WebGLRenderer.render</code></a> <em>et</em> de dire à l'<code class="notranslate" translate="no">EffectComposer</code> de correspondre à la taille du canvas.</p>
@@ -127,7 +127,7 @@ this.uniforms.grayscale.value = grayscale;
 </pre>
 <p>Ce qui indique assez clairement comment les définir.</p>
 <p>Faisons une petite interface graphique rapide pour définir ces valeurs</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>et</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();

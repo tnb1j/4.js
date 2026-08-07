@@ -26,22 +26,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
 
-			import { Flow } from 'fourjs/addons/modifiers/CurveModifierGPU.js';
-			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
-			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+			import { Flow } from '@tnb1j/4js/addons/modifiers/CurveModifierGPU.js';
+			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
+			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 
 			const ACTION_SELECT = 1, ACTION_NONE = 0;
 			const curveHandles = [];

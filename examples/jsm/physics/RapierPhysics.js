@@ -1,4 +1,4 @@
-import { Timer, Vector3, Quaternion, Matrix4 } from 'fourjs';
+import { Timer, Vector3, Quaternion, Matrix4 } from '@tnb1j/4js';
 
 const RAPIER_PATH = 'https://cdn.skypack.dev/@dimforge/rapier3d-compat@0.17.3';
 
@@ -91,7 +91,7 @@ function getShape( geometry ) {
  * @name RapierPhysics
  * @class
  * @hideconstructor
- * @four_import import { RapierPhysics } from 'fourjs/addons/physics/RapierPhysics.js';
+ * @four_import import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
  */
 async function RapierPhysics() {
 

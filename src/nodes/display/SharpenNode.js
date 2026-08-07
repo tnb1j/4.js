@@ -19,7 +19,7 @@ let _rendererState;
  * Reference: {@link https://gpuopen.com/fidelityfx-superresolution/}.
  *
  * @augments TempNode
- * @four_import import { sharpen } from 'fourjs/webgpu';
+ * @four_import import { sharpen } from '@tnb1j/4js/webgpu';
  */
 class SharpenNode extends TempNode {
 

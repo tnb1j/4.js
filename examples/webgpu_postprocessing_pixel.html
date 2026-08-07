@@ -24,10 +24,10 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-				"fourjs/tsl": "../build/4.tsl.js",
-				"fourjs/addons/": "./jsm/"
+				"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+				"@tnb1j/4js/tsl": "../build/4.tsl.js",
+				"@tnb1j/4js/addons/": "./jsm/"
 			}
 		}
 	</script>
@@ -35,13 +35,13 @@
 
 	<script type="module">
 
-		import * as FOUR from 'fourjs/webgpu';
+		import * as FOUR from '@tnb1j/4js/webgpu';
 
-		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-		import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
-		import { uniform } from 'fourjs/tsl';
-		import { pixelationPass } from 'fourjs/addons/tsl/display/PixelationPassNode.js';
+		import { uniform } from '@tnb1j/4js/tsl';
+		import { pixelationPass } from '@tnb1j/4js/addons/tsl/display/PixelationPassNode.js';
 
 		let camera, scene, renderer, renderPipeline, crystalMesh, timer;
 		let effectController;

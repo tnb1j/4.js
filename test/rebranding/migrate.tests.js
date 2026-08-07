@@ -25,17 +25,17 @@ const compatibilityAlias = 'three/examples/';
 `;
 
 const expected = `
-import * as FOUR from 'fourjs';
-import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-const webgpu = import( 'fourjs/webgpu' );
-const requireCore = require( 'fourjs' );
+import * as FOUR from '@tnb1j/4js';
+import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+const webgpu = import( '@tnb1j/4js/webgpu' );
+const requireCore = require( '@tnb1j/4js' );
 const importMap = {
 	"imports": {
-		"fourjs": "../build/4.module.js",
-		"fourjs/addons/": "./jsm/"
+		"@tnb1j/4js": "../build/4.module.js",
+		"@tnb1j/4js/addons/": "./jsm/"
 	}
 };
-/** @four_import import { Scene } from 'fourjs'; */
+/** @four_import import { Scene } from '@tnb1j/4js'; */
 const scene = new FOUR.Scene();
 const untouchedPackage = await import( 'three-gpu-pathtracer' );
 const ThreeMFLoader = 'format name';
@@ -83,7 +83,7 @@ try {
 
 	assert.equal( result.filesScanned, 1, 'duplicate target paths should be deduplicated' );
 	assert.equal( result.filesChanged, 1, 'the fixture should be migrated' );
-	assert.equal( await readFile( temporaryFile, 'utf8' ), 'import * as FOUR from \'fourjs\';\n' );
+	assert.equal( await readFile( temporaryFile, 'utf8' ), 'import * as FOUR from \'@tnb1j/4js\';\n' );
 
 } finally {
 

@@ -19,7 +19,7 @@ light.add( helper );
 RectAreaLightHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RectAreaLightHelper } from 'fourjs/addons/helpers/RectAreaLightHelper.js';
+import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
 ```
 
 ## Constructor

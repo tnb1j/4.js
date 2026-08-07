@@ -6,9 +6,9 @@ import {
 	NodeMaterial,
 	NodeUpdateType,
 	TempNode
-} from 'fourjs/webgpu';
+} from '@tnb1j/4js/webgpu';
 
-import { Fn, vec2, viewportSafeUV, viewportSharedTexture, reflector, pow, float, abs, texture, uniform, vec4, cameraPosition, positionWorld, uv, mix, vec3, normalize, max, dot, screenUV } from 'fourjs/tsl';
+import { Fn, vec2, viewportSafeUV, viewportSharedTexture, reflector, pow, float, abs, texture, uniform, vec4, cameraPosition, positionWorld, uv, mix, vec3, normalize, max, dot, screenUV } from '@tnb1j/4js/tsl';
 
 /** @module Water2Mesh */
 
@@ -24,7 +24,7 @@ import { Fn, vec2, viewportSafeUV, viewportSharedTexture, reflector, pow, float,
  * - {@link http://graphicsrunner.blogspot.de/2010/08/water-using-flow-maps.html}
  *
  * @augments Mesh
- * @four_import import { WaterMesh } from 'fourjs/addons/objects/Water2Mesh.js';
+ * @four_import import { WaterMesh } from '@tnb1j/4js/addons/objects/Water2Mesh.js';
  */
 class WaterMesh extends Mesh {
 

@@ -1,4 +1,4 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial, Scene, SphereGeometry } from 'fourjs';
+import { BoxGeometry, Mesh, MeshStandardMaterial, Scene, SphereGeometry } from '@tnb1j/4js';
 import { USDZExporter } from '../../../../examples/jsm/exporters/USDZExporter.js';
 import { USDLoader } from '../../../../examples/jsm/loaders/USDLoader.js';
 import { unzipSync, strFromU8 } from '../../../../examples/jsm/libs/fflate.module.js';

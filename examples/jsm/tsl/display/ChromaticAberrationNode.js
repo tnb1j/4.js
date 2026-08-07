@@ -1,4 +1,4 @@
-import { TempNode } from 'fourjs/webgpu';
+import { TempNode } from '@tnb1j/4js/webgpu';
 import {
 	nodeObject,
 	Fn,
@@ -6,7 +6,7 @@ import {
 	float,
 	vec4,
 	uv,
-} from 'fourjs/tsl';
+} from '@tnb1j/4js/tsl';
 
 /**
  * Post processing node for applying chromatic aberration effect.
@@ -14,7 +14,7 @@ import {
  * by separating and offsetting the red, green, and blue channels.
  *
  * @augments TempNode
- * @four_import import { chromaticAberration } from 'fourjs/addons/tsl/display/ChromaticAberrationNode.js';
+ * @four_import import { chromaticAberration } from '@tnb1j/4js/addons/tsl/display/ChromaticAberrationNode.js';
  */
 class ChromaticAberrationNode extends TempNode {
 

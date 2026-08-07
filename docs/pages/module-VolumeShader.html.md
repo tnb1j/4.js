@@ -5,7 +5,7 @@
 VolumeShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VolumeRenderShader1 } from 'fourjs/addons/shaders/VolumeShader.js';
+import { VolumeRenderShader1 } from '@tnb1j/4js/addons/shaders/VolumeShader.js';
 ```
 
 ## Properties

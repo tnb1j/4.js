@@ -1,8 +1,8 @@
-import { varying, vec4, modelWorldMatrixInverse, cameraPosition, positionGeometry, float, Fn, Loop, max, min, vec2, vec3 } from 'fourjs/tsl';
+import { varying, vec4, modelWorldMatrixInverse, cameraPosition, positionGeometry, float, Fn, Loop, max, min, vec2, vec3 } from '@tnb1j/4js/tsl';
 
 /**
  * @module Raymarching
- * @four_import import { RaymarchingBox } from 'fourjs/addons/tsl/utils/Raymarching.js';
+ * @four_import import { RaymarchingBox } from '@tnb1j/4js/addons/tsl/utils/Raymarching.js';
  */
 
 const hitBox = /*@__PURE__*/ Fn( ( { orig, dir } ) => {

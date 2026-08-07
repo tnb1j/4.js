@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module BokehShader2
- * @four_import import { BokehShader, BokehDepthShader } from 'fourjs/addons/shaders/BokehShader2.js';
+ * @four_import import { BokehShader, BokehDepthShader } from '@tnb1j/4js/addons/shaders/BokehShader2.js';
  */
 
 /**

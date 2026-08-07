@@ -16,7 +16,7 @@ scene.add( hand );
 XRHandModelFactory is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XRHandModelFactory } from 'fourjs/addons/webxr/XRHandModelFactory.js';
+import { XRHandModelFactory } from '@tnb1j/4js/addons/webxr/XRHandModelFactory.js';
 ```
 
 ## Constructor

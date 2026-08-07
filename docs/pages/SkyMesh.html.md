@@ -32,7 +32,7 @@ sky.showSunDisc.value = true;
 SkyMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SkyMesh } from 'fourjs/addons/objects/SkyMesh.js';
+import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
 ```
 
 ## Constructor

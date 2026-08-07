@@ -9,7 +9,7 @@ import {
 	Vector4,
 	WebGLRenderTarget,
 	HalfFloatType
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * Can be used to create a flat, reflective surface like a mirror.
@@ -31,7 +31,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Reflector } from 'fourjs/addons/objects/Reflector.js';
+ * @four_import import { Reflector } from '@tnb1j/4js/addons/objects/Reflector.js';
  */
 class Reflector extends Mesh {
 

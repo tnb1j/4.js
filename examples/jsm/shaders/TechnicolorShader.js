@@ -1,6 +1,6 @@
 /**
  * @module TriangleBlurShader
- * @four_import import { TriangleBlurShader } from 'fourjs/addons/shaders/TriangleBlurShader.js';
+ * @four_import import { TriangleBlurShader } from '@tnb1j/4js/addons/shaders/TriangleBlurShader.js';
  */
 
 /**

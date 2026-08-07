@@ -1,12 +1,12 @@
-import { TempNode } from 'fourjs/webgpu';
-import { Fn, uv, uniform, vec2, sin, cos, vec4, convertToTexture } from 'fourjs/tsl';
+import { TempNode } from '@tnb1j/4js/webgpu';
+import { Fn, uv, uniform, vec2, sin, cos, vec4, convertToTexture } from '@tnb1j/4js/tsl';
 
 /**
  * Post processing node for shifting/splitting RGB color channels. The effect
  * separates color channels and offsets them from each other.
  *
  * @augments TempNode
- * @four_import import { rgbShift } from 'fourjs/addons/tsl/display/RGBShiftNode.js';
+ * @four_import import { rgbShift } from '@tnb1j/4js/addons/tsl/display/RGBShiftNode.js';
  */
 class RGBShiftNode extends TempNode {
 

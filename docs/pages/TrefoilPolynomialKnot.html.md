@@ -9,7 +9,7 @@ A Trefoil Polynomial Knot.
 TrefoilPolynomialKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TrefoilPolynomialKnot } from 'fourjs/addons/curves/CurveExtras.js';
+import { TrefoilPolynomialKnot } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

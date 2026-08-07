@@ -5,7 +5,7 @@ import {
 	HalfFloatType,
 	LinearFilter,
 	LinearSRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for the RGBE HDR texture format.
@@ -19,7 +19,7 @@ import {
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+ * @four_import import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
  */
 class HDRLoader extends DataTextureLoader {
 

@@ -18,7 +18,7 @@ scene.environment = envMap;
 HDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
 ```
 
 ## Constructor

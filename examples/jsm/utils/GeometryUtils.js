@@ -1,8 +1,8 @@
-import { Vector3 } from 'fourjs';
+import { Vector3 } from '@tnb1j/4js';
 
 /**
  * @module GeometryUtils
- * @four_import import * as GeometryUtils from 'fourjs/addons/utils/GeometryUtils.js';
+ * @four_import import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
  */
 
 /**

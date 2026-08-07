@@ -17,7 +17,7 @@ Note: This lib adds member variables to object's userData member (see prepareBre
 ConvexObjectBreaker is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ConvexObjectBreaker } from 'fourjs/addons/misc/ConvexObjectBreaker.js';
+import { ConvexObjectBreaker } from '@tnb1j/4js/addons/misc/ConvexObjectBreaker.js';
 ```
 
 ## Constructor

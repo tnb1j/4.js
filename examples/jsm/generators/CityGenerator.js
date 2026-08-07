@@ -1,10 +1,10 @@
 import {
 	Group,
 	Matrix4
-} from 'fourjs';
+} from '@tnb1j/4js';
 
-import { MeshStandardNodeMaterial } from 'fourjs/webgpu';
-import { cameraPosition, color, float, floor, Fn, fract, fwidth, hash, If, mix, mod, mx_fractal_noise_float, mx_noise_float, normalView, positionView, positionWorld, smoothstep, step, uint, varying, vec4 } from 'fourjs/tsl';
+import { MeshStandardNodeMaterial } from '@tnb1j/4js/webgpu';
+import { cameraPosition, color, float, floor, Fn, fract, fwidth, hash, If, mix, mod, mx_fractal_noise_float, mx_noise_float, normalView, positionView, positionWorld, smoothstep, step, uint, varying, vec4 } from '@tnb1j/4js/tsl';
 
 import { SkyscraperGenerator, createSkyscraperMaterial, buildingPalette } from './city/SkyscraperGenerator.js';
 import { SidewalkGenerator } from './city/SidewalkGenerator.js';

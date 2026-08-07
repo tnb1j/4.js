@@ -1,8 +1,8 @@
-import { MathUtils, SRGBColorSpace } from 'fourjs';
+import { MathUtils, SRGBColorSpace } from '@tnb1j/4js';
 
 /**
  * @module ColorUtils
- * @four_import import * as ColorUtils from 'fourjs/addons/utils/ColorUtils.js';
+ * @four_import import * as ColorUtils from '@tnb1j/4js/addons/utils/ColorUtils.js';
  */
 
 /**

@@ -19,7 +19,7 @@ scene.environment = cubeTexture;
 HDRCubeTextureLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HDRCubeTextureLoader } from 'fourjs/addons/loaders/HDRCubeTextureLoader.js';
+import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
 ```
 
 ## Constructor

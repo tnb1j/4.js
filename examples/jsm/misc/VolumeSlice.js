@@ -7,13 +7,13 @@ import {
 	PlaneGeometry,
 	Texture,
 	SRGBColorSpace
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * This class has been made to hold a slice of a volume data.
  *
  * @see {@link Volume}
- * @four_import import { VolumeSlice } from 'fourjs/addons/misc/VolumeSlice.js';
+ * @four_import import { VolumeSlice } from '@tnb1j/4js/addons/misc/VolumeSlice.js';
  */
 class VolumeSlice {
 

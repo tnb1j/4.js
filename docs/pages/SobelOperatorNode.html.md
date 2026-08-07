@@ -9,7 +9,7 @@ Post processing node for detecting edges with a sobel filter. A sobel filter sho
 SobelOperatorNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { sobel } from 'fourjs/addons/tsl/display/SobelOperatorNode.js';
+import { sobel } from '@tnb1j/4js/addons/tsl/display/SobelOperatorNode.js';
 ```
 
 ## Constructor

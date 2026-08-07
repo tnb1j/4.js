@@ -3,13 +3,13 @@ import {
 	Object3D,
 	Vector2,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * The only type of 3D object that is supported by {@link CSS2DRenderer}.
  *
  * @augments Object3D
- * @four_import import { CSS2DObject } from 'fourjs/addons/renderers/CSS2DRenderer.js';
+ * @four_import import { CSS2DObject } from '@tnb1j/4js/addons/renderers/CSS2DRenderer.js';
  */
 class CSS2DObject extends Object3D {
 
@@ -106,7 +106,7 @@ const _b = new Vector3();
  *
  * `CSS2DRenderer` only supports 100% browser and display zoom.
  *
- * @four_import import { CSS2DRenderer } from 'fourjs/addons/renderers/CSS2DRenderer.js';
+ * @four_import import { CSS2DRenderer } from '@tnb1j/4js/addons/renderers/CSS2DRenderer.js';
  */
 class CSS2DRenderer {
 

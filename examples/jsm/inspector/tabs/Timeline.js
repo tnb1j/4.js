@@ -27,7 +27,7 @@ import {
 	RGIntegerFormat,
 	RGBIntegerFormat,
 	RGBAIntegerFormat
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const LIMIT = 500;
 const TRIANGLES_GRAPH_LIMIT = 60;

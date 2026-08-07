@@ -32,7 +32,7 @@ renderPipeline.outputNode = scenePassColor.add( bloomPass );
 BloomNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
+import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
 ```
 
 ## Constructor

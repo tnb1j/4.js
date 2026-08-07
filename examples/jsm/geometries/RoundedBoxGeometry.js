@@ -1,7 +1,7 @@
 import {
 	BoxGeometry,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const _tempNormal = new Vector3();
 
@@ -49,7 +49,7 @@ function getUv( faceDirVector, normal, uvAxis, projectionAxis, radius, sideLengt
  * ```
  *
  * @augments BoxGeometry
- * @four_import import { RoundedBoxGeometry } from 'fourjs/addons/geometries/RoundedBoxGeometry.js';
+ * @four_import import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
  */
 class RoundedBoxGeometry extends BoxGeometry {
 

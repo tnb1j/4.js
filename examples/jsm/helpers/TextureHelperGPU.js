@@ -6,8 +6,8 @@ import {
 	PlaneGeometry,
 	DoubleSide,
 	Vector3,
-} from 'fourjs/webgpu';
-import { texture as textureNode, cubeTexture, texture3D, float, vec4, attribute } from 'fourjs/tsl';
+} from '@tnb1j/4js/webgpu';
+import { texture as textureNode, cubeTexture, texture3D, float, vec4, attribute } from '@tnb1j/4js/tsl';
 import { mergeGeometries } from '../utils/BufferGeometryUtils.js';
 
 /**
@@ -20,7 +20,7 @@ import { mergeGeometries } from '../utils/BufferGeometryUtils.js';
  *
  * @private
  * @augments Mesh
- * @four_import import { TextureHelper } from 'fourjs/addons/helpers/TextureHelperGPU.js';
+ * @four_import import { TextureHelper } from '@tnb1j/4js/addons/helpers/TextureHelperGPU.js';
  */
 class TextureHelper extends Mesh {
 

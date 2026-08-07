@@ -7,7 +7,7 @@ A utility class with factory methods for creating basic animation clips.
 AnimationClipCreator is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AnimationClipCreator } from 'fourjs/addons/animation/AnimationClipCreator.js';
+import { AnimationClipCreator } from '@tnb1j/4js/addons/animation/AnimationClipCreator.js';
 ```
 
 ## Static Methods

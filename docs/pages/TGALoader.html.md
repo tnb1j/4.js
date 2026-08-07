@@ -17,7 +17,7 @@ texture.colorSpace = FOUR.SRGBColorSpace; // only for color textures
 TGALoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TGALoader } from 'fourjs/addons/loaders/TGALoader.js';
+import { TGALoader } from '@tnb1j/4js/addons/loaders/TGALoader.js';
 ```
 
 ## Constructor

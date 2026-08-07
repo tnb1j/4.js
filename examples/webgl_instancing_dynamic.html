@@ -18,18 +18,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
-			import TWEEN from 'fourjs/addons/libs/tween.module.js';
+			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
 
 			let camera, scene, renderer, timer, mesh;
 

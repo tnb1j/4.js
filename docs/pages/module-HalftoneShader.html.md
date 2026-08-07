@@ -5,7 +5,7 @@
 HalftoneShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HalftoneShader } from 'fourjs/addons/shaders/HalftoneShader.js';
+import { HalftoneShader } from '@tnb1j/4js/addons/shaders/HalftoneShader.js';
 ```
 
 ## Properties

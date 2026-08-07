@@ -9,7 +9,7 @@ Post processing node for applying chromatic aberration effect. This effect simul
 ChromaticAberrationNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { chromaticAberration } from 'fourjs/addons/tsl/display/ChromaticAberrationNode.js';
+import { chromaticAberration } from '@tnb1j/4js/addons/tsl/display/ChromaticAberrationNode.js';
 ```
 
 ## Constructor

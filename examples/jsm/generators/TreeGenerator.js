@@ -3,10 +3,10 @@ import {
 	BufferGeometry,
 	Mesh,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
-import { MeshStandardNodeMaterial } from 'fourjs/webgpu';
-import { color, float, mx_fractal_noise_float, positionLocal, vec3 } from 'fourjs/tsl';
+import { MeshStandardNodeMaterial } from '@tnb1j/4js/webgpu';
+import { color, float, mx_fractal_noise_float, positionLocal, vec3 } from '@tnb1j/4js/tsl';
 
 // the golden angle ( 137.5° ): rolling each sibling branch by this much around the
 // parent axis spreads them like a real stem, so they never line up

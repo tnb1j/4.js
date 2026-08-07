@@ -9,7 +9,7 @@ Post processing node for creating dot-screen effect.
 DotScreenNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { dotScreen } from 'fourjs/addons/tsl/display/DotScreenNode.js';
+import { dotScreen } from '@tnb1j/4js/addons/tsl/display/DotScreenNode.js';
 ```
 
 ## Constructor

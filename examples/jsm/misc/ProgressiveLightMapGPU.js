@@ -1,5 +1,5 @@
-import { DoubleSide, FloatType, HalfFloatType, PlaneGeometry, Mesh, RenderTarget, Scene, MeshPhongNodeMaterial, NodeMaterial } from 'fourjs/webgpu';
-import { add, float, mix, output, sub, texture, uniform, uv, vec2, vec4 } from 'fourjs/tsl';
+import { DoubleSide, FloatType, HalfFloatType, PlaneGeometry, Mesh, RenderTarget, Scene, MeshPhongNodeMaterial, NodeMaterial } from '@tnb1j/4js/webgpu';
+import { add, float, mix, output, sub, texture, uniform, uv, vec2, vec4 } from '@tnb1j/4js/tsl';
 
 import { potpack } from '../libs/potpack.module.js';
 
@@ -19,7 +19,7 @@ import { potpack } from '../libs/potpack.module.js';
  * This class can only be used with {@link WebGPURenderer}.
  * When using {@link WebGLRenderer}, import from `ProgressiveLightMap.js`.
  *
- * @four_import import { ProgressiveLightMap } from 'fourjs/addons/misc/ProgressiveLightMapGPU.js';
+ * @four_import import { ProgressiveLightMap } from '@tnb1j/4js/addons/misc/ProgressiveLightMapGPU.js';
  */
 class ProgressiveLightMap {
 

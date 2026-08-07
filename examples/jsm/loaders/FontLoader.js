@@ -2,7 +2,7 @@ import {
 	FileLoader,
 	Loader,
 	ShapePath
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * A loader for loading fonts.
@@ -15,7 +15,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
+ * @four_import import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
  */
 class FontLoader extends Loader {
 

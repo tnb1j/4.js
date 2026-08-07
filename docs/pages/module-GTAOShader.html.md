@@ -5,7 +5,7 @@
 GTAOShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GTAOShader } from 'fourjs/addons/shaders/GTAOShader.js';
+import { GTAOShader } from '@tnb1j/4js/addons/shaders/GTAOShader.js';
 ```
 
 ## Properties

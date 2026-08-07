@@ -1,6 +1,6 @@
 import {
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * WebGL port of Subpixel Morphological Antialiasing (SMAA) v2.8
@@ -10,7 +10,7 @@ import {
  * - {@link https://github.com/iryoku/smaa/releases/tag/v2.8}
  *
  * @module SMAAShader
- * @four_import import { SMAAShader } from 'fourjs/addons/shaders/SMAAShader.js';
+ * @four_import import { SMAAShader } from '@tnb1j/4js/addons/shaders/SMAAShader.js';
  */
 
 /**

@@ -5,7 +5,7 @@
 UVsDebug is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { UVsDebug } from 'fourjs/addons/utils/UVsDebug.js';
+import { UVsDebug } from '@tnb1j/4js/addons/utils/UVsDebug.js';
 ```
 
 ## Methods

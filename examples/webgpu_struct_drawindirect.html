@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
-			import { struct, storage, sin, cross, normalize, abs, mix, Fn, vec4, max, pow, time, varyingProperty, attribute, uint, atomicStore } from 'fourjs/tsl';
+			import * as FOUR from '@tnb1j/4js/webgpu';
+			import { struct, storage, sin, cross, normalize, abs, mix, Fn, vec4, max, pow, time, varyingProperty, attribute, uint, atomicStore } from '@tnb1j/4js/tsl';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
-			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
+			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 

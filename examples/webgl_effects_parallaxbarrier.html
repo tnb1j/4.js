@@ -18,17 +18,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { ParallaxBarrierEffect } from 'fourjs/addons/effects/ParallaxBarrierEffect.js';
+			import { ParallaxBarrierEffect } from '@tnb1j/4js/addons/effects/ParallaxBarrierEffect.js';
 
 			let container, camera, scene, renderer, effect;
 

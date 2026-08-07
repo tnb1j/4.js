@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module DepthLimitedBlurShader
- * @four_import import { DepthLimitedBlurShader, BlurShaderUtils } from 'fourjs/addons/shaders/DepthLimitedBlurShader.js';
+ * @four_import import { DepthLimitedBlurShader, BlurShaderUtils } from '@tnb1j/4js/addons/shaders/DepthLimitedBlurShader.js';
  */
 
 /**

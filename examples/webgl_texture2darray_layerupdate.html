@@ -56,18 +56,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
-			import { KTX2Loader } from 'fourjs/addons/loaders/KTX2Loader.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
 
 			let camera, scene, mesh, renderer;
 

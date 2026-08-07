@@ -28,7 +28,7 @@ renderPipeline.outputNode = scenePassColor.mul( vec4( vec3( aoPassOutput.r ), 1 
 GTAONode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ao } from 'fourjs/addons/tsl/display/GTAONode.js';
+import { ao } from '@tnb1j/4js/addons/tsl/display/GTAONode.js';
 ```
 
 ## Constructor

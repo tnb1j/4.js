@@ -1,4 +1,4 @@
-import { abs, color, float, Fn, Loop, mix, nodeObject, perspectiveDepthToViewZ, reference, textureSize, uv, vec2, vec4, viewZToOrthographicDepth, int, If, array, ivec2 } from 'fourjs/tsl';
+import { abs, color, float, Fn, Loop, mix, nodeObject, perspectiveDepthToViewZ, reference, textureSize, uv, vec2, vec4, viewZToOrthographicDepth, int, If, array, ivec2 } from '@tnb1j/4js/tsl';
 
 /**
  * Performs a depth-aware blend between a base scene and a secondary effect (like godrays).

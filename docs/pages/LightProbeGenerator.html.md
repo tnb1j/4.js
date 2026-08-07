@@ -7,7 +7,7 @@ Utility class for creating instances of [LightProbe](LightProbe.html).
 LightProbeGenerator is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LightProbeGenerator } from 'fourjs/addons/lights/LightProbeGenerator.js';
+import { LightProbeGenerator } from '@tnb1j/4js/addons/lights/LightProbeGenerator.js';
 ```
 
 ## Static Methods

@@ -1,4 +1,4 @@
-import { dot, Fn, vec3, vec4 } from 'fourjs/tsl';
+import { dot, Fn, vec3, vec4 } from '@tnb1j/4js/tsl';
 
 /**
  * Applies a sepia effect to the given color node.

@@ -5,7 +5,7 @@
 WaterRefractionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { WaterRefractionShader } from 'fourjs/addons/shaders/WaterRefractionShader.js';
+import { WaterRefractionShader } from '@tnb1j/4js/addons/shaders/WaterRefractionShader.js';
 ```
 
 ## Properties

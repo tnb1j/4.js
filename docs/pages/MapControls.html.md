@@ -13,7 +13,7 @@ This class is intended for transforming a camera over a map from bird's eye pers
 MapControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MapControls } from 'fourjs/addons/controls/MapControls.js';
+import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';
 ```
 
 ## Constructor

@@ -1,4 +1,4 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 const mouse = new FOUR.Vector2();
 const raycaster = new FOUR.Raycaster();

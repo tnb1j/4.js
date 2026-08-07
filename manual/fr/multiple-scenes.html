@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -415,7 +415,7 @@ function render(time) {
 <p></p>
 <h2 id="adding-controls-to-each-element">Ajout de Contrôles à chaque élément</h2>
 <p>Ajouter de l'interactivité, par exemple un <code class="notranslate" translate="no">TrackballControls</code>, est tout aussi simple. Nous ajoutons d'abord le script pour le contrôle.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from 'fourjs/addons/controls/TrackballControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from '@tnb1j/4js/addons/controls/TrackballControls.js';
 </pre>
 <p>Et ensuite, nous pouvons ajouter un <code class="notranslate" translate="no">TrackballControls</code> à chaque scène en passant l'élément associé à cette scène.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {

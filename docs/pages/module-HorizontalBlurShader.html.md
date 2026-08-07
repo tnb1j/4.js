@@ -5,7 +5,7 @@
 HorizontalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HorizontalBlurShader } from 'fourjs/addons/shaders/HorizontalBlurShader.js';
+import { HorizontalBlurShader } from '@tnb1j/4js/addons/shaders/HorizontalBlurShader.js';
 ```
 
 ## Properties

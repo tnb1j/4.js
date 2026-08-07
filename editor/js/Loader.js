@@ -1,6 +1,6 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
-import { TGALoader } from 'fourjs/addons/loaders/TGALoader.js';
+import { TGALoader } from '@tnb1j/4js/addons/loaders/TGALoader.js';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 import { SetSceneCommand } from './commands/SetSceneCommand.js';
@@ -9,7 +9,7 @@ import { LoaderUtils } from './LoaderUtils.js';
 
 import { GLTFImportDialog } from './GLTFImportDialog.js';
 
-import { unzipSync, strFromU8 } from 'fourjs/addons/libs/fflate.module.js';
+import { unzipSync, strFromU8 } from '@tnb1j/4js/addons/libs/fflate.module.js';
 
 function Loader( editor ) {
 
@@ -183,7 +183,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { Rhino3dmLoader } = await import( 'fourjs/addons/loaders/3DMLoader.js' );
+					const { Rhino3dmLoader } = await import( '@tnb1j/4js/addons/loaders/3DMLoader.js' );
 
 					const loader = new Rhino3dmLoader();
 					loader.setLibraryPath( '../examples/jsm/libs/rhino3dm/' );
@@ -212,7 +212,7 @@ function Loader( editor ) {
 
 				reader.addEventListener( 'load', async function ( event ) {
 
-					const { TDSLoader } = await import( 'fourjs/addons/loaders/TDSLoader.js' );
+					const { TDSLoader } = await import( '@tnb1j/4js/addons/loaders/TDSLoader.js' );
 
 					const loader = new TDSLoader();
 					const object = loader.parse( event.target.result );
@@ -232,7 +232,7 @@ function Loader( editor ) {
 
 				reader.addEventListener( 'load', async function ( event ) {
 
-					const { ThreeMFLoader } = await import( 'fourjs/addons/loaders/3MFLoader.js' );
+					const { ThreeMFLoader } = await import( '@tnb1j/4js/addons/loaders/3MFLoader.js' );
 
 					const loader = new ThreeMFLoader();
 					const object = loader.parse( event.target.result );
@@ -252,7 +252,7 @@ function Loader( editor ) {
 
 				reader.addEventListener( 'load', async function ( event ) {
 
-					const { AMFLoader } = await import( 'fourjs/addons/loaders/AMFLoader.js' );
+					const { AMFLoader } = await import( '@tnb1j/4js/addons/loaders/AMFLoader.js' );
 
 					const loader = new AMFLoader();
 					const amfobject = loader.parse( event.target.result );
@@ -274,7 +274,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { ColladaLoader } = await import( 'fourjs/addons/loaders/ColladaLoader.js' );
+					const { ColladaLoader } = await import( '@tnb1j/4js/addons/loaders/ColladaLoader.js' );
 
 					const loader = new ColladaLoader( manager );
 					const collada = loader.parse( contents );
@@ -298,7 +298,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { DRACOLoader } = await import( 'fourjs/addons/loaders/DRACOLoader.js' );
+					const { DRACOLoader } = await import( '@tnb1j/4js/addons/loaders/DRACOLoader.js' );
 
 					const loader = new DRACOLoader();
 					loader.setDecoderPath( '../examples/jsm/libs/draco/' );
@@ -343,7 +343,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { FBXLoader } = await import( 'fourjs/addons/loaders/FBXLoader.js' );
+					const { FBXLoader } = await import( '@tnb1j/4js/addons/loaders/FBXLoader.js' );
 
 					const loader = new FBXLoader( manager );
 					const object = loader.parse( contents );
@@ -496,7 +496,7 @@ function Loader( editor ) {
 
 				reader.addEventListener( 'load', async function ( event ) {
 
-					const { KMZLoader } = await import( 'fourjs/addons/loaders/KMZLoader.js' );
+					const { KMZLoader } = await import( '@tnb1j/4js/addons/loaders/KMZLoader.js' );
 
 					const loader = new KMZLoader();
 					const collada = loader.parse( event.target.result );
@@ -519,7 +519,7 @@ function Loader( editor ) {
 
 				reader.addEventListener( 'load', async function ( event ) {
 
-					const { LDrawLoader } = await import( 'fourjs/addons/loaders/LDrawLoader.js' );
+					const { LDrawLoader } = await import( '@tnb1j/4js/addons/loaders/LDrawLoader.js' );
 
 					const loader = new LDrawLoader();
 					loader.setPath( '../../examples/models/ldraw/officialLibrary/' );
@@ -548,7 +548,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { MD2Loader } = await import( 'fourjs/addons/loaders/MD2Loader.js' );
+					const { MD2Loader } = await import( '@tnb1j/4js/addons/loaders/MD2Loader.js' );
 
 					const geometry = new MD2Loader().parse( contents );
 					const material = new FOUR.MeshStandardMaterial();
@@ -575,7 +575,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { OBJLoader } = await import( 'fourjs/addons/loaders/OBJLoader.js' );
+					const { OBJLoader } = await import( '@tnb1j/4js/addons/loaders/OBJLoader.js' );
 
 					const object = new OBJLoader().parse( contents );
 					object.name = filename;
@@ -597,7 +597,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { PCDLoader } = await import( 'fourjs/addons/loaders/PCDLoader.js' );
+					const { PCDLoader } = await import( '@tnb1j/4js/addons/loaders/PCDLoader.js' );
 
 					const points = new PCDLoader().parse( contents );
 					points.name = filename;
@@ -619,7 +619,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { PLYLoader } = await import( 'fourjs/addons/loaders/PLYLoader.js' );
+					const { PLYLoader } = await import( '@tnb1j/4js/addons/loaders/PLYLoader.js' );
 
 					const geometry = new PLYLoader().parse( contents );
 					let object;
@@ -658,7 +658,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { STLLoader } = await import( 'fourjs/addons/loaders/STLLoader.js' );
+					const { STLLoader } = await import( '@tnb1j/4js/addons/loaders/STLLoader.js' );
 
 					const geometry = new STLLoader().parse( contents );
 					const material = new FOUR.MeshStandardMaterial();
@@ -692,7 +692,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { SVGLoader } = await import( 'fourjs/addons/loaders/SVGLoader.js' );
+					const { SVGLoader } = await import( '@tnb1j/4js/addons/loaders/SVGLoader.js' );
 
 					const loader = new SVGLoader();
 					const paths = loader.parse( contents ).paths;
@@ -777,7 +777,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { USDLoader } = await import( 'fourjs/addons/loaders/USDLoader.js' );
+					const { USDLoader } = await import( '@tnb1j/4js/addons/loaders/USDLoader.js' );
 
 					const loader = new USDLoader( manager );
 					loader.parse( contents, '', function ( group ) {
@@ -802,7 +802,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { VOXLoader } = await import( 'fourjs/addons/loaders/VOXLoader.js' );
+					const { VOXLoader } = await import( '@tnb1j/4js/addons/loaders/VOXLoader.js' );
 
 					const { scene } = new VOXLoader().parse( contents );
 
@@ -825,7 +825,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { VRMLLoader } = await import( 'fourjs/addons/loaders/VRMLLoader.js' );
+					const { VRMLLoader } = await import( '@tnb1j/4js/addons/loaders/VRMLLoader.js' );
 
 					const result = new VRMLLoader().parse( contents );
 
@@ -846,7 +846,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
-					const { XYZLoader } = await import( 'fourjs/addons/loaders/XYZLoader.js' );
+					const { XYZLoader } = await import( '@tnb1j/4js/addons/loaders/XYZLoader.js' );
 
 					const geometry = new XYZLoader().parse( contents );
 
@@ -1007,8 +1007,8 @@ function Loader( editor ) {
 
 		if ( zip[ 'model.obj' ] && zip[ 'materials.mtl' ] ) {
 
-			const { MTLLoader } = await import( 'fourjs/addons/loaders/MTLLoader.js' );
-			const { OBJLoader } = await import( 'fourjs/addons/loaders/OBJLoader.js' );
+			const { MTLLoader } = await import( '@tnb1j/4js/addons/loaders/MTLLoader.js' );
+			const { OBJLoader } = await import( '@tnb1j/4js/addons/loaders/OBJLoader.js' );
 
 			const materials = new MTLLoader( manager ).parse( strFromU8( zip[ 'materials.mtl' ] ) );
 			const object = new OBJLoader().setMaterials( materials ).parse( strFromU8( zip[ 'model.obj' ] ) );
@@ -1032,7 +1032,7 @@ function Loader( editor ) {
 
 				{
 
-					const { FBXLoader } = await import( 'fourjs/addons/loaders/FBXLoader.js' );
+					const { FBXLoader } = await import( '@tnb1j/4js/addons/loaders/FBXLoader.js' );
 
 					const loader = new FBXLoader( manager );
 					const object = loader.parse( file.buffer );
@@ -1135,10 +1135,10 @@ function Loader( editor ) {
 
 	async function createGLTFLoader( manager ) {
 
-		const { GLTFLoader } = await import( 'fourjs/addons/loaders/GLTFLoader.js' );
-		const { DRACOLoader } = await import( 'fourjs/addons/loaders/DRACOLoader.js' );
-		const { KTX2Loader } = await import( 'fourjs/addons/loaders/KTX2Loader.js' );
-		const { MeshoptDecoder } = await import( 'fourjs/addons/libs/meshopt_decoder.module.js' );
+		const { GLTFLoader } = await import( '@tnb1j/4js/addons/loaders/GLTFLoader.js' );
+		const { DRACOLoader } = await import( '@tnb1j/4js/addons/loaders/DRACOLoader.js' );
+		const { KTX2Loader } = await import( '@tnb1j/4js/addons/loaders/KTX2Loader.js' );
+		const { MeshoptDecoder } = await import( '@tnb1j/4js/addons/libs/meshopt_decoder.module.js' );
 
 		const dracoLoader = new DRACOLoader();
 		dracoLoader.setDecoderPath( '../examples/jsm/libs/draco/gltf/' );

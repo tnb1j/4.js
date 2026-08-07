@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -230,7 +230,7 @@ worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
 <p><code class="notranslate" translate="no">shared-cubes.js</code> と <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> は前の <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> ファイルを分割したものです。</p>
 <p>まず <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> を全て <code class="notranslate" translate="no">shared-cube.js</code> にコピーします。
 次にHTMLファイルには既に <code class="notranslate" translate="no">main</code> があり、<code class="notranslate" translate="no">init</code> と <code class="notranslate" translate="no">state</code> をエクスポートする必要があるため <code class="notranslate" translate="no">main</code> の名前を <code class="notranslate" translate="no">init</code> に変更します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
 
 -const state = {
 +export const state = {
@@ -564,7 +564,7 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 ある時はメインページで実行され、全てのイベント、関連するプロパティ値をWorkerに渡します。
 また、ある時はWorkerで実行され、全てのイベント、DOMイベントと同じ構造をもつイベントをメインページに渡すので、OrbitControlsは違いを見分けられません。</p>
 <p>ここにWorker部分のコードがあります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from 'fourjs';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from '@tnb1j/4js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -634,8 +634,8 @@ self.onmessage = function(e) {
 };
 </pre>
 <p>共有の4.jsコードでは <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> をインポートして設定する必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
++import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;

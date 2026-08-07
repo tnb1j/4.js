@@ -25,21 +25,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
-			import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
-			import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
+			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
+			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
 
 			let container, stats;
 

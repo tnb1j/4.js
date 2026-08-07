@@ -1,6 +1,6 @@
 /**
  * @module ACESFilmicToneMappingShader
- * @four_import import { ACESFilmicToneMappingShader } from 'fourjs/addons/shaders/ACESFilmicToneMappingShader.js';
+ * @four_import import { ACESFilmicToneMappingShader } from '@tnb1j/4js/addons/shaders/ACESFilmicToneMappingShader.js';
  */
 
 /**

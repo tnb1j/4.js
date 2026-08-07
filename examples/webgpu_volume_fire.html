@@ -24,17 +24,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.webgpu.js",
-					"fourjs/webgpu": "../build/4.webgpu.js",
-					"fourjs/tsl": "../build/4.tsl.js",
-					"fourjs/addons/": "../examples/jsm/"
+					"@tnb1j/4js": "../build/4.webgpu.js",
+					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
+					"@tnb1j/4js/tsl": "../build/4.tsl.js",
+					"@tnb1j/4js/addons/": "../examples/jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs/webgpu';
+			import * as FOUR from '@tnb1j/4js/webgpu';
 			import {
 				vec3, vec4, uvec3, float, Fn, uniform,
 				texture3D, textureStore, instanceIndex,
@@ -44,21 +44,21 @@
 				Loop, positionWorld, positionLocal,
 				interleavedGradientNoise, frameId, fract,
 				saturation, cos, sin, atan
-			} from 'fourjs/tsl';
+			} from '@tnb1j/4js/tsl';
 
-			import { snoise, snoiseVec3 } from 'fourjs/addons/tsl/math/curlNoise.js';
-			import { ImprovedNoise } from 'fourjs/addons/math/ImprovedNoise.js';
+			import { snoise, snoiseVec3 } from '@tnb1j/4js/addons/tsl/math/curlNoise.js';
+			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
 
-			import { gaussianBlur } from 'fourjs/addons/tsl/display/GaussianBlurNode.js';
-			import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
+			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
 
-			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
-			import { DragControls } from 'fourjs/addons/controls/DragControls.js';
-			import { TeapotGeometry } from 'fourjs/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { DragControls } from '@tnb1j/4js/addons/controls/DragControls.js';
+			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
 
-			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
+			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 

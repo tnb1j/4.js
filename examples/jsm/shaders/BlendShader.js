@@ -1,6 +1,6 @@
 /**
  * @module BlendShader
- * @four_import import { BlendShader } from 'fourjs/addons/shaders/BlendShader.js';
+ * @four_import import { BlendShader } from '@tnb1j/4js/addons/shaders/BlendShader.js';
  */
 
 /**

@@ -2,7 +2,7 @@ import {
 	Object3D,
 	Quaternion,
 	Vector3
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 const _translationObject = new Vector3();
 const _quaternionObject = new Quaternion();
@@ -19,7 +19,7 @@ const _scaleWorld = new Vector3();
  * respect to the world.
  *
  * @augments Object3D
- * @four_import import { Gyroscope } from 'fourjs/addons/misc/Gyroscope.js';
+ * @four_import import { Gyroscope } from '@tnb1j/4js/addons/misc/Gyroscope.js';
  */
 class Gyroscope extends Object3D {
 

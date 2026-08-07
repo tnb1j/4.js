@@ -9,7 +9,7 @@ A Granny Knot curve.
 GrannyKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { GrannyKnot } from 'fourjs/addons/curves/CurveExtras.js';
+import { GrannyKnot } from '@tnb1j/4js/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

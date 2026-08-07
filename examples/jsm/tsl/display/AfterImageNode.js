@@ -1,5 +1,5 @@
-import { RenderTarget, Vector2, QuadMesh, NodeMaterial, RendererUtils, TempNode, NodeUpdateType } from 'fourjs/webgpu';
-import { nodeObject, Fn, float, uv, texture, passTexture, sign, max, convertToTexture } from 'fourjs/tsl';
+import { RenderTarget, Vector2, QuadMesh, NodeMaterial, RendererUtils, TempNode, NodeUpdateType } from '@tnb1j/4js/webgpu';
+import { nodeObject, Fn, float, uv, texture, passTexture, sign, max, convertToTexture } from '@tnb1j/4js/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
@@ -10,7 +10,7 @@ let _rendererState;
  * Post processing node for creating an after image effect.
  *
  * @augments TempNode
- * @four_import import { afterImage } from 'fourjs/addons/tsl/display/AfterImageNode.js';
+ * @four_import import { afterImage } from '@tnb1j/4js/addons/tsl/display/AfterImageNode.js';
  */
 class AfterImageNode extends TempNode {
 

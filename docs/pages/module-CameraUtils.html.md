@@ -5,7 +5,7 @@
 CameraUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as CameraUtils from 'fourjs/addons/utils/CameraUtils.js';
+import * as CameraUtils from '@tnb1j/4js/addons/utils/CameraUtils.js';
 ```
 
 ## Methods

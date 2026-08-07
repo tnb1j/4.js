@@ -15,7 +15,7 @@ const physics = await RapierPhysics();
 RapierPhysics is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RapierPhysics } from 'fourjs/addons/physics/RapierPhysics.js';
+import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
 ```
 
 ## Methods

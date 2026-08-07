@@ -9,7 +9,7 @@ This class can be used to represent the environmental light of a XR session. It 
 XREstimatedLight is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XREstimatedLight } from 'fourjs/addons/webxr/XREstimatedLight.js';
+import { XREstimatedLight } from '@tnb1j/4js/addons/webxr/XREstimatedLight.js';
 ```
 
 ## Constructor

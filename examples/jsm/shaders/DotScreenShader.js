@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module DotScreenShader
- * @four_import import { DotScreenShader } from 'fourjs/addons/shaders/DotScreenShader.js';
+ * @four_import import { DotScreenShader } from '@tnb1j/4js/addons/shaders/DotScreenShader.js';
  */
 
 /**

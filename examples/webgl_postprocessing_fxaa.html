@@ -38,21 +38,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
-			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
-			import { FXAAPass } from 'fourjs/addons/postprocessing/FXAAPass.js';
-			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { FXAAPass } from '@tnb1j/4js/addons/postprocessing/FXAAPass.js';
+			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, controls, container;
 

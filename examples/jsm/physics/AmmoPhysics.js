@@ -12,7 +12,7 @@ const AMMO_PATH = 'https://cdn.jsdelivr.net/gh/kripken/ammo.js@79190a1f03845794b
  * @name AmmoPhysics
  * @class
  * @hideconstructor
- * @four_import import { AmmoPhysics } from 'fourjs/addons/physics/AmmoPhysics.js';
+ * @four_import import { AmmoPhysics } from '@tnb1j/4js/addons/physics/AmmoPhysics.js';
  */
 async function AmmoPhysics() {
 

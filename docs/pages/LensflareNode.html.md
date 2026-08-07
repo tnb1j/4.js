@@ -14,7 +14,7 @@ References:
 LensflareNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { lensflare } from 'fourjs/addons/tsl/display/LensflareNode.js';
+import { lensflare } from '@tnb1j/4js/addons/tsl/display/LensflareNode.js';
 ```
 
 ## Constructor

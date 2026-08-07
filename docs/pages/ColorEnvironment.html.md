@@ -18,7 +18,7 @@ scene.environment = envMap;
 ColorEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ColorEnvironment } from 'fourjs/addons/environments/ColorEnvironment.js';
+import { ColorEnvironment } from '@tnb1j/4js/addons/environments/ColorEnvironment.js';
 ```
 
 ## Constructor

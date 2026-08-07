@@ -19,22 +19,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
 
-			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
-			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
-			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
-			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
+			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
+			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
 
 			const SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 1024;
 

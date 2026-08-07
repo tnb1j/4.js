@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 /**
  * @module NormalMapShader
- * @four_import import { NormalMapShader } from 'fourjs/addons/shaders/NormalMapShader.js';
+ * @four_import import { NormalMapShader } from '@tnb1j/4js/addons/shaders/NormalMapShader.js';
  */
 
 /**

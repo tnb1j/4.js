@@ -5,7 +5,7 @@
 DigitalGlitch is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DigitalGlitch } from 'fourjs/addons/shaders/DigitalGlitch.js';
+import { DigitalGlitch } from '@tnb1j/4js/addons/shaders/DigitalGlitch.js';
 ```
 
 ## Properties

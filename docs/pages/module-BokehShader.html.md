@@ -5,7 +5,7 @@
 BokehShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BokehShader } from 'fourjs/addons/shaders/BokehShader.js';
+import { BokehShader } from '@tnb1j/4js/addons/shaders/BokehShader.js';
 ```
 
 ## Properties

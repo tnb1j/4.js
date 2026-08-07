@@ -2,7 +2,7 @@ import {
 	FileLoader,
 	Loader,
 	LoaderUtils
-} from 'fourjs';
+} from '@tnb1j/4js';
 
 import { unzipSync } from '../libs/fflate.module.js';
 import { USDAParser } from './usd/USDAParser.js';
@@ -22,7 +22,7 @@ import { USDComposer } from './usd/USDComposer.js';
  * ```
  *
  * @augments Loader
- * @four_import import { USDLoader } from 'fourjs/addons/loaders/USDLoader.js';
+ * @four_import import { USDLoader } from '@tnb1j/4js/addons/loaders/USDLoader.js';
  */
 class USDLoader extends Loader {
 

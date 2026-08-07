@@ -1,11 +1,11 @@
-import * as FOUR from 'fourjs';
+import * as FOUR from '@tnb1j/4js';
 
 /**
  * This class can be used to optimized scenes by converting
  * individual meshes into {@link BatchedMesh}. This component
  * is an experimental attempt to implement auto-batching in 4.js.
  *
- * @four_import import { SceneOptimizer } from 'fourjs/addons/utils/SceneOptimizer.js';
+ * @four_import import { SceneOptimizer } from '@tnb1j/4js/addons/utils/SceneOptimizer.js';
  */
 class SceneOptimizer {
 

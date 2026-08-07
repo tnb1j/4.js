@@ -35,19 +35,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"fourjs": "../build/4.module.js",
-					"fourjs/addons/": "./jsm/"
+					"@tnb1j/4js": "../build/4.module.js",
+					"@tnb1j/4js/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from 'fourjs';
+			import * as FOUR from '@tnb1j/4js';
 
-			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 
-			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
+			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
 
 			let camera, controls, scene, renderer, light;
 

@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "fourjs": "../../build/4.module.js"
+    "@tnb1j/4js": "../../build/4.module.js"
   }
 }
 </script>
@@ -222,10 +222,10 @@ nous voulons plutôt cloner la scène et, en particulier, nous voulons la cloner
 pour les personnages animés avec skinning. Heureusement, il existe une fonction utilitaire,
 <code class="notranslate" translate="no">SkeletonUtils.clone</code>, que nous pouvons utiliser pour cela. Donc, nous devons d'abord inclure
 les utilitaires.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
-import {GLTFLoader} from 'fourjs/addons/loaders/GLTFLoader.js';
-+import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
+import {GLTFLoader} from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
++import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
 </pre>
 <p>Ensuite, nous pouvons cloner les modèles que nous venons de charger</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function init() {
@@ -1332,11 +1332,11 @@ class StateDisplayHelper extends Component {
 </pre>
 <p>Pendant que nous y sommes, faisons en sorte que nous puissions les activer/désactiver en utilisant lil-gui, comme
 nous l'avons fait ailleurs.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
-import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
-import {GLTFLoader} from 'fourjs/addons/loaders/GLTFLoader.js';
-import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
-+import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@tnb1j/4js';
+import {OrbitControls} from '@tnb1j/4js/addons/controls/OrbitControls.js';
+import {GLTFLoader} from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
++import {GUI} from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const gui = new GUI();
 +gui.add(globals, 'debug').onChange(showHideDebugInfo);
