@@ -5,13 +5,12 @@ suspected vulnerability.
 
 ## Reporting
 
-The public repository owner must enable GitHub private vulnerability reporting
-before launch. After it is enabled, use the repository's **Security** tab and
-select **Report a vulnerability**.
+Use GitHub private vulnerability reporting. Open the repository's **Security**
+tab and select **Report a vulnerability**. This is the project's official
+private reporting channel.
 
-No 4.js security email address has been configured in this source snapshot.
-Repository maintainers must add and test a monitored private contact before
-publishing the project.
+If that option is temporarily unavailable, do not disclose vulnerability
+details in a public issue.
 
 Include:
 
