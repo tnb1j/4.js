@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - instance sprites</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - instance sprites">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Instanced Sprites</span>
+			</div>
+
+			<small>
+				Rendering instanced sprites with TSL.
+			</small>
+		</div>
+		
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+
+			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+
+			import { uniform, time, instanceIndex, instancedBufferAttribute } from '@fourjs/core/tsl';
+
+
+			let camera, scene, renderer, material;
+			let mouseX = 0, mouseY = 0;
+
+			let windowHalfX = window.innerWidth / 2;
+			let windowHalfY = window.innerHeight / 2;
+
+			init();
+
+			function init() {
+
+				camera = new FOUR.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
+				camera.position.z = 1000;
+
+				scene = new FOUR.Scene();
+				scene.fog = new FOUR.FogExp2( 0x000000, 0.001 );
+
+				// positions
+
+				const count = 10000;
+
+				const positions = [];
+
+				for ( let i = 0; i < count; i ++ ) {
+
+					positions.push( 2000 * Math.random() - 1000, 2000 * Math.random() - 1000, 2000 * Math.random() - 1000 );
+
+				}
+
+				const positionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( positions ), 3 );
+
+				// texture
+
+				const map = new FOUR.TextureLoader().load( 'textures/sprites/snowflake1.png' );
+				map.colorSpace = FOUR.SRGBColorSpace;
+
+				// material
+
+				material = new FOUR.SpriteNodeMaterial( { sizeAttenuation: true, map, alphaMap: map, alphaTest: 0.1 } );
+				material.color.setHSL( 1.0, 0.3, 0.7, FOUR.SRGBColorSpace );
+				material.positionNode = instancedBufferAttribute( positionAttribute );
+				material.rotationNode = time.add( instanceIndex ).sin();
+				material.scaleNode = uniform( 15 );
+
+				// sprites
+
+				const particles = new FOUR.Sprite( material );
+				particles.count = count;
+
+				scene.add( particles );
+
+				//
+
+				renderer = new FOUR.WebGPURenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.inspector = new Inspector();
+				document.body.appendChild( renderer.domElement );
+
+				//
+
+				const gui = renderer.inspector.createParameters( 'Settings' );
+
+				gui.add( material, 'sizeAttenuation' ).onChange( function () {
+
+					material.needsUpdate = true;
+					material.scaleNode.value = material.sizeAttenuation ? 15 : 0.03;
+			
+				} );
+
+				//
+
+				document.body.style.touchAction = 'none';
+				document.body.addEventListener( 'pointermove', onPointerMove );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onPointerMove( event ) {
+
+				if ( event.isPrimary === false ) return;
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+
+			}
+
+			//
+
+			function animate() {
+
+				render();
+
+			}
+
+			function render() {
+
+				const time = Date.now() * 0.00005;
+
+				camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+				camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+
+				camera.lookAt( scene.position );
+
+				const h = ( 360 * ( 1.0 + time ) % 360 ) / 360;
+				material.color.setHSL( h, 0.5, 0.5 );
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

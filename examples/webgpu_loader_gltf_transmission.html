@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - glTF + transmission</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - glTF + transmission">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>glTF + Transmission</span>
+			</div>
+
+			<small>
+				<a href="https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_transmission" target="_blank" rel="noopener">KHR_materials_transmission</a> Iridescent Dish With Olives by <a href="https://github.com/echadwick-wayfair" target="_blank" rel="noopener">Eric Chadwick</a><br />
+				<a href="https://hdrihaven.com/hdri/?h=royal_esplanade" target="_blank" rel="noopener">Royal Esplanade</a> from <a href="https://hdrihaven.com/" target="_blank" rel="noopener">HDRI Haven</a>
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
+
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+
+			let camera, scene, renderer, controls, timer, mixer;
+
+			init();
+
+			function init() {
+
+				timer = new FOUR.Timer();
+				timer.connect( document );
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( 0, 0.4, 0.7 );
+
+				scene = new FOUR.Scene();
+
+				new UltraHDRLoader()
+					.setPath( 'textures/equirectangular/' )
+					.load( 'royal_esplanade_2k.hdr.jpg', function ( texture ) {
+
+						texture.mapping = FOUR.EquirectangularReflectionMapping;
+
+						scene.background = texture;
+						scene.backgroundBlurriness = 0.35;
+
+						scene.environment = texture;
+
+						// model
+
+						new GLTFLoader()
+							.setPath( 'models/gltf/' )
+							.setDRACOLoader( new DRACOLoader().setDecoderPath( DRACO_GLTF_CONFIG ) )
+							.load( 'IridescentDishWithOlives.glb', function ( gltf ) {
+
+								mixer = new FOUR.AnimationMixer( gltf.scene );
+								mixer.clipAction( gltf.animations[ 0 ] ).play();
+
+								scene.add( gltf.scene );
+
+							} );
+
+					} );
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer.setAnimationLoop( render );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				container.appendChild( renderer.domElement );
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.autoRotate = true;
+				controls.autoRotateSpeed = - 0.75;
+				controls.enableDamping = true;
+				controls.minDistance = 0.5;
+				controls.maxDistance = 1;
+				controls.target.set( 0, 0.1, 0 );
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function render() {
+
+				timer.update();
+
+				if ( mixer ) mixer.update( timer.getDelta() );
+
+				controls.update();
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

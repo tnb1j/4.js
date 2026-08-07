@@ -1,0 +1,14 @@
+{
+  "name": "4.js Editor",
+  "short_name": "4.js",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./images/icon.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ]
+}

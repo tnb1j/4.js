@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - loaders - GCode loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - loaders - GCode loader">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - GCode loader
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GCodeLoader } from '@fourjs/core/addons/loaders/GCodeLoader.js';
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+
+			let camera, scene, renderer, controls, loader;
+
+			let model;
+
+			const params = {
+				asset: 'benchy'
+			};
+
+			const assets = [
+				'benchy',
+				'test_m82',
+				'test_m83',
+			];
+
+			const positions = [
+				new FOUR.Vector3( - 100, - 20, 100 ),
+				new FOUR.Vector3( 0, 0, 0 ),
+				new FOUR.Vector3( 0, 0, 0 ),
+			];
+
+			init();
+			render();
+
+			function init() {
+
+				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.set( 0, 0, 70 );
+
+				scene = new FOUR.Scene();
+
+				loader = new GCodeLoader();
+				loadAsset( params.asset );
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 10;
+				controls.maxDistance = 100;
+
+				window.addEventListener( 'resize', resize );
+
+				const gui = new GUI();
+
+			
+				gui.add( params, 'asset', assets ).onChange( function ( value ) {
+
+					if ( model ) {
+
+						model.traverse( function ( object ) {
+
+							if ( object.material ) object.material.dispose();
+							if ( object.geometry ) object.geometry.dispose();
+
+						} );
+
+						scene.remove( model );
+
+					}
+
+					loadAsset( value );
+
+				} );
+
+				gui.open();
+
+
+			}
+
+			function loadAsset( asset ) {
+
+				loader.load( 'models/gcode/' + asset + '.gcode', function ( object ) {
+
+					model = object;
+					model.position.copy( positions[ assets.indexOf( asset ) ] );
+					scene.add( model );
+					controls.reset();
+
+				} );
+
+			}
+
+			function resize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js vr - panorama with depth</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta property="og:title" content="4.js vr - panorama with depth">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="container"></div>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> vr - panorama with depth<br />
+			Created by <a href="https://orfleisher.com" target="_blank" rel="noopener">@juniorxsound</a>. Panorama from <a href="https://krpano.com/examples/?depthmap" target="_blank" rel="noopener">krpano</a>.
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+
+			let camera, scene, renderer, sphere, timer;
+
+			init();
+
+			function init() {
+
+				const container = document.getElementById( 'container' );
+
+				timer = new FOUR.Timer();
+				timer.connect( document );
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0x101010 );
+
+				const light = new FOUR.AmbientLight( 0xffffff, 3 );
+				scene.add( light );
+
+				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
+				scene.add( camera );
+
+				// Create the panoramic sphere geometry
+				const panoSphereGeo = new FOUR.SphereGeometry( 6, 256, 256 );
+
+				// Create the panoramic sphere material
+				const panoSphereMat = new FOUR.MeshStandardMaterial( {
+					side: FOUR.BackSide,
+					displacementScale: - 4.0
+				} );
+
+				// Create the panoramic sphere mesh
+				sphere = new FOUR.Mesh( panoSphereGeo, panoSphereMat );
+
+				// Load and assign the texture and depth map
+				const manager = new FOUR.LoadingManager();
+				const loader = new FOUR.TextureLoader( manager );
+
+				loader.load( './textures/kandao3.jpg', function ( texture ) {
+
+					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.minFilter = FOUR.NearestFilter;
+					texture.generateMipmaps = false;
+					sphere.material.map = texture;
+
+				} );
+
+				loader.load( './textures/kandao3_depthmap.jpg', function ( depth ) {
+
+					depth.minFilter = FOUR.NearestFilter;
+					depth.generateMipmaps = false;
+					sphere.material.displacementMap = depth;
+
+				} );
+
+				// On load complete add the panoramic sphere to the scene
+				manager.onLoad = function () {
+
+					scene.add( sphere );
+
+				};
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.xr.enabled = true;
+				renderer.xr.setReferenceSpaceType( 'local' );
+				container.appendChild( renderer.domElement );
+
+				document.body.appendChild( VRButton.createButton( renderer ) );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				timer.update();
+
+				// If we are not presenting move the camera a little so the effect is visible
+
+				if ( renderer.xr.isPresenting === false ) {
+
+					const time = timer.getElapsed();
+
+					sphere.rotation.y += 0.001;
+					sphere.position.x = Math.sin( time ) * 0.2;
+					sphere.position.z = Math.cos( time ) * 0.2;
+
+				}
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

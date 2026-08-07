@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - level of detail</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - level of detail">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - level of detail
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { FlyControls } from '@fourjs/core/addons/controls/FlyControls.js';
+
+			let container;
+
+			let camera, scene, renderer, controls;
+
+			const timer = new FOUR.Timer();
+			timer.connect( document );
+
+			init();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 15000 );
+				camera.position.z = 1000;
+
+				scene = new FOUR.Scene();
+				scene.fog = new FOUR.Fog( 0x000000, 1, 15000 );
+
+				const pointLight = new FOUR.PointLight( 0xff2200, 3, 0, 0 );
+				pointLight.position.set( 0, 0, 0 );
+				scene.add( pointLight );
+
+				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				dirLight.position.set( 0, 0, 1 ).normalize();
+				scene.add( dirLight );
+
+				const geometry = [
+
+					[ new FOUR.IcosahedronGeometry( 100, 16 ), 50 ],
+					[ new FOUR.IcosahedronGeometry( 100, 8 ), 300 ],
+					[ new FOUR.IcosahedronGeometry( 100, 4 ), 1000 ],
+					[ new FOUR.IcosahedronGeometry( 100, 2 ), 2000 ],
+					[ new FOUR.IcosahedronGeometry( 100, 1 ), 8000 ]
+
+				];
+
+				const material = new FOUR.MeshLambertMaterial( { color: 0xffffff, wireframe: true } );
+
+				for ( let j = 0; j < 1000; j ++ ) {
+
+					const lod = new FOUR.LOD();
+
+					for ( let i = 0; i < geometry.length; i ++ ) {
+
+						const mesh = new FOUR.Mesh( geometry[ i ][ 0 ], material );
+						mesh.scale.set( 1.5, 1.5, 1.5 );
+						mesh.updateMatrix();
+						mesh.matrixAutoUpdate = false;
+						lod.addLevel( mesh, geometry[ i ][ 1 ] );
+
+					}
+
+					lod.position.x = 10000 * ( 0.5 - Math.random() );
+					lod.position.y = 7500 * ( 0.5 - Math.random() );
+					lod.position.z = 10000 * ( 0.5 - Math.random() );
+					lod.updateMatrix();
+					lod.matrixAutoUpdate = false;
+					scene.add( lod );
+
+				}
+
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				container.appendChild( renderer.domElement );
+
+				//
+
+				controls = new FlyControls( camera, renderer.domElement );
+				controls.movementSpeed = 1000;
+				controls.rollSpeed = Math.PI / 10;
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				timer.update();
+
+				controls.update( timer.getDelta() );
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - tone mapping</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - tone mapping">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Shadow Map</span>
+			</div>
+
+			<small>
+				Venice Mask by
+				<a href="https://sketchfab.com/D.art" target="_blank" rel="noopener">DailyArt</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC Attribution-NonCommercial</a><br />
+				<a href="https://hdrihaven.com/hdri/?h=venice_sunset" target="_blank" rel="noopener">Venice Sunset</a> from <a href="https://hdrihaven.com/" target="_blank" rel="noopener">HDRI Haven</a>
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+
+			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+			import { HDRLoader } from '@fourjs/core/addons/loaders/HDRLoader.js';
+
+			let renderer, scene, camera, controls;
+			let gui;
+
+			const params = {
+				exposure: 1.0,
+				toneMapping: 'Neutral',
+				blurriness: 0.3,
+				intensity: 1.0,
+			};
+
+			const toneMappingOptions = {
+				None: FOUR.NoToneMapping,
+				Linear: FOUR.LinearToneMapping,
+				Reinhard: FOUR.ReinhardToneMapping,
+				Cineon: FOUR.CineonToneMapping,
+				ACESFilmic: FOUR.ACESFilmicToneMapping,
+				AgX: FOUR.AgXToneMapping,
+				Neutral: FOUR.NeutralToneMapping
+			};
+
+			init().catch( function ( err ) {
+
+				console.error( err );
+
+			} );
+
+			async function init() {
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.inspector = new Inspector();
+				document.body.appendChild( renderer.domElement );
+
+				renderer.toneMapping = toneMappingOptions[ params.toneMapping ];
+				renderer.toneMappingExposure = params.exposure;
+
+				scene = new FOUR.Scene();
+				scene.backgroundBlurriness = params.blurriness;
+
+				const light = new FOUR.DirectionalLight( 0xfff3ee, 3 ); // simulate sun
+				light.position.set( 1, 0.05, 0.7 );
+				scene.add( light );
+
+				// scene.add( new FOUR.DirectionalLightHelper( light, 1, 0x000000 ) );
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera.position.set( - 0.02, 0.03, 0.05 );
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.enablePan = false;
+				controls.enableDamping = true;
+				controls.minDistance = 0.03;
+				controls.maxDistance = 0.2;
+				controls.target.set( 0, 0.03, 0 );
+				controls.update();
+
+				const hdrLoader = new HDRLoader()
+					.setPath( 'textures/equirectangular/' );
+
+				const dracoLoader = new DRACOLoader();
+				dracoLoader.setDecoderPath( DRACO_GLTF_CONFIG );
+
+				const gltfLoader = new GLTFLoader();
+				gltfLoader.setDRACOLoader( dracoLoader );
+				gltfLoader.setPath( 'models/gltf/' );
+
+				const [ texture, gltf ] = await Promise.all( [
+					hdrLoader.loadAsync( 'venice_sunset_1k.hdr' ),
+					gltfLoader.loadAsync( 'venice_mask.glb' ),
+				] );
+
+				// environment
+
+				texture.mapping = FOUR.EquirectangularReflectionMapping;
+
+				scene.background = texture;
+				scene.environment = texture;
+
+				// model
+
+				scene.add( gltf.scene );
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				//
+
+				gui = renderer.inspector.createParameters( 'Settings' );
+				const toneMappingFolder = gui.addFolder( 'Tone Mapping' );
+
+				toneMappingFolder.add( params, 'toneMapping', Object.keys( toneMappingOptions ) )
+
+					.name( 'type' )
+					.onChange( function () {
+
+						renderer.toneMapping = toneMappingOptions[ params.toneMapping ];
+
+					} );
+
+				toneMappingFolder.add( params, 'exposure', 0, 2 )
+
+					.onChange( function ( value ) {
+
+						renderer.toneMappingExposure = value;
+
+					} );
+
+				const backgroundFolder = gui.addFolder( 'Background' );
+
+				backgroundFolder.add( params, 'blurriness', 0, 1 )
+
+					.onChange( function ( value ) {
+
+						scene.backgroundBlurriness = value;
+
+					} );
+
+				backgroundFolder.add( params, 'intensity', 0, 1 )
+
+					.onChange( function ( value ) {
+
+						scene.backgroundIntensity = value;
+
+					} );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				controls.update();
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,133 @@
+<html lang="en">
+	<head>
+		<title>4.js webgpu - depth texture</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - depth texture">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info" class="invert">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Depth Texture</span>
+			</div>
+
+			<small>Rendering the scene's depth into a texture for later use</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+			import { texture } from '@fourjs/core/tsl';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+
+			let camera, scene, controls, renderer;
+
+			let quad, renderTarget;
+
+			const dpr = window.devicePixelRatio;
+
+			init();
+
+			function init() {
+
+				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 20 );
+				camera.position.z = 4;
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0x222222 );
+				scene.overrideMaterial = new FOUR.MeshBasicNodeMaterial();
+
+				//
+
+				const geometry = new FOUR.TorusKnotGeometry( 1, 0.3, 128, 64 );
+
+				const count = 50;
+				const scale = 5;
+
+				for ( let i = 0; i < count; i ++ ) {
+
+					const r = Math.random() * 2.0 * Math.PI;
+					const z = ( Math.random() * 2.0 ) - 1.0;
+					const zScale = Math.sqrt( 1.0 - z * z ) * scale;
+
+					const mesh = new FOUR.Mesh( geometry );
+					mesh.position.set(
+						Math.cos( r ) * zScale,
+						Math.sin( r ) * zScale,
+						z * scale
+					);
+					mesh.rotation.set( Math.random(), Math.random(), Math.random() );
+					scene.add( mesh );
+
+				}
+
+				//
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer.setPixelRatio( dpr );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				document.body.appendChild( renderer.domElement );
+
+				const depthTexture = new FOUR.DepthTexture();
+				depthTexture.type = FOUR.FloatType;
+
+				renderTarget = new FOUR.RenderTarget( window.innerWidth * dpr, window.innerHeight * dpr );
+				renderTarget.depthTexture = depthTexture;
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				// FX
+
+				const materialFX = new FOUR.MeshBasicNodeMaterial();
+				materialFX.colorNode = texture( depthTexture );
+
+				quad = new FOUR.QuadMesh( materialFX );
+
+				//
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.enableDamping = true;
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderTarget.setSize( window.innerWidth * dpr, window.innerHeight * dpr );
+
+			}
+
+			function animate() {
+
+				renderer.setRenderTarget( renderTarget );
+				renderer.render( scene, camera );
+
+				renderer.setRenderTarget( null );
+				quad.render( renderer );
+
+			}
+
+		</script>
+	</body>
+</html>

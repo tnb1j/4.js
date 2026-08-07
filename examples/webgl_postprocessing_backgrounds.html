@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - postprocessing backgrounds</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - postprocessing backgrounds">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - Backgrounds: ClearPass, TexturePass and CubeTexturePass<br/>
+			by <a href="https://clara.io" target="_blank" rel="noopener">Ben Houston</a>
+		</div>
+
+		<div id="container"></div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
+			import { TexturePass } from '@fourjs/core/addons/postprocessing/TexturePass.js';
+			import { CubeTexturePass } from '@fourjs/core/addons/postprocessing/CubeTexturePass.js';
+			import { ClearPass } from '@fourjs/core/addons/postprocessing/ClearPass.js';
+			import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+
+			let scene, renderer, composer;
+			let clearPass, texturePass, renderPass;
+			let cameraP, cubeTexturePassP;
+			let gui, stats;
+
+			const params = {
+
+				clearPass: true,
+				clearColor: 'white',
+				clearAlpha: 1.0,
+
+				texturePass: true,
+				texturePassOpacity: 1.0,
+
+				cubeTexturePass: true,
+				cubeTexturePassOpacity: 1.0,
+
+				renderPass: true
+			};
+
+			init();
+
+			clearGui();
+
+			function clearGui() {
+
+				if ( gui ) gui.destroy();
+
+				gui = new GUI();
+
+				gui.add( params, 'clearPass' );
+				gui.add( params, 'clearColor', [ 'black', 'white', 'blue', 'green', 'red' ] );
+				gui.add( params, 'clearAlpha', 0, 1 );
+
+				gui.add( params, 'texturePass' );
+				gui.add( params, 'texturePassOpacity', 0, 1 );
+
+				gui.add( params, 'cubeTexturePass' );
+				gui.add( params, 'cubeTexturePassOpacity', 0, 1 );
+
+				gui.add( params, 'renderPass' );
+
+				gui.open();
+
+			}
+
+			function init() {
+
+				const container = document.getElementById( 'container' );
+
+				const width = window.innerWidth || 1;
+				const height = window.innerHeight || 1;
+				const aspect = width / height;
+				const devicePixelRatio = window.devicePixelRatio || 1;
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( devicePixelRatio );
+				renderer.setSize( width, height );
+				renderer.setAnimationLoop( animate );
+				document.body.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				container.appendChild( stats.dom );
+
+				//
+
+				cameraP = new FOUR.PerspectiveCamera( 65, aspect, 1, 10 );
+				cameraP.position.z = 7;
+
+				scene = new FOUR.Scene();
+
+				const group = new FOUR.Group();
+				scene.add( group );
+
+				const light = new FOUR.PointLight( 0xefffef, 500 );
+				light.position.z = 10;
+				light.position.y = - 10;
+				light.position.x = - 10;
+				scene.add( light );
+
+				const light2 = new FOUR.PointLight( 0xffefef, 500 );
+				light2.position.z = 10;
+				light2.position.x = - 10;
+				light2.position.y = 10;
+				scene.add( light2 );
+
+				const light3 = new FOUR.PointLight( 0xefefff, 500 );
+				light3.position.z = 10;
+				light3.position.x = 10;
+				light3.position.y = - 10;
+				scene.add( light3 );
+
+				const geometry = new FOUR.SphereGeometry( 1, 48, 24 );
+
+				const material = new FOUR.MeshStandardMaterial();
+				material.roughness = 0.5 * Math.random() + 0.25;
+				material.metalness = 0;
+				material.color.setHSL( Math.random(), 1.0, 0.3 );
+
+				const mesh = new FOUR.Mesh( geometry, material );
+				group.add( mesh );
+
+				// postprocessing
+
+				const genCubeUrls = function ( prefix, postfix ) {
+
+					return [
+						prefix + 'px' + postfix, prefix + 'nx' + postfix,
+						prefix + 'py' + postfix, prefix + 'ny' + postfix,
+						prefix + 'pz' + postfix, prefix + 'nz' + postfix
+					];
+
+				};
+
+				composer = new EffectComposer( renderer );
+
+				clearPass = new ClearPass( params.clearColor, params.clearAlpha );
+				composer.addPass( clearPass );
+
+				texturePass = new TexturePass();
+				composer.addPass( texturePass );
+
+				const textureLoader = new FOUR.TextureLoader();
+				textureLoader.load( 'textures/hardwood2_diffuse.jpg', function ( map ) {
+
+					map.colorSpace = FOUR.SRGBColorSpace;
+					texturePass.map = map;
+
+				} );
+
+				cubeTexturePassP = null;
+
+				const ldrUrls = genCubeUrls( 'textures/cube/pisa/', '.png' );
+				new FOUR.CubeTextureLoader().load( ldrUrls, function ( ldrCubeMap ) {
+
+					cubeTexturePassP = new CubeTexturePass( cameraP, ldrCubeMap );
+					composer.insertPass( cubeTexturePassP, 2 );
+
+				} );
+
+				renderPass = new RenderPass( scene, cameraP );
+				renderPass.clear = false;
+				composer.addPass( renderPass );
+
+				const outputPass = new OutputPass();
+				composer.addPass( outputPass );
+
+				const controls = new OrbitControls( cameraP, renderer.domElement );
+				controls.enableZoom = false;
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				const width = window.innerWidth;
+				const height = window.innerHeight;
+				const aspect = width / height;
+
+				cameraP.aspect = aspect;
+				cameraP.updateProjectionMatrix();
+
+				renderer.setSize( width, height );
+				composer.setSize( width, height );
+
+			}
+
+			function animate() {
+
+				stats.begin();
+
+				cameraP.updateMatrixWorld( true );
+
+				let newColor = clearPass.clearColor;
+
+				switch ( params.clearColor ) {
+
+					case 'blue': newColor = 0x0000ff; break;
+					case 'red': newColor = 0xff0000; break;
+					case 'green': newColor = 0x00ff00; break;
+					case 'white': newColor = 0xffffff; break;
+					case 'black': newColor = 0x000000; break;
+
+				}
+
+				clearPass.enabled = params.clearPass;
+				clearPass.clearColor = newColor;
+				clearPass.clearAlpha = params.clearAlpha;
+
+				texturePass.enabled = params.texturePass;
+				texturePass.opacity = params.texturePassOpacity;
+
+				if ( cubeTexturePassP !== null ) {
+
+					cubeTexturePassP.enabled = params.cubeTexturePass;
+					cubeTexturePassP.opacity = params.cubeTexturePassOpacity;
+
+				}
+
+				renderPass.enabled = params.renderPass;
+
+				composer.render();
+
+				stats.end();
+
+			}
+
+		</script>
+	</body>
+</html>

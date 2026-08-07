@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - 3d luts</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - 3d luts">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - 3D LUTs<br />
+			Battle Damaged Sci-fi Helmet by
+			<a href="https://sketchfab.com/theblueturtle_" target="_blank" rel="noopener">theblueturtle_</a><br />
+			<a href="https://hdrihaven.com/hdri/?h=royal_esplanade" target="_blank" rel="noopener">Royal Esplanade</a> from <a href="https://hdrihaven.com/" target="_blank" rel="noopener">HDRI Haven</a><br />
+			LUTs from <a href="https://www.rocketstock.com/free-after-effects-templates/35-free-luts-for-color-grading-videos/">RocketStock</a>, <a href="https://www.freepresets.com/product/free-luts-cinematic/">FreePresets.com</a>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+			import * as FOUR from '@fourjs/core';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
+			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
+			import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+			import { LUTPass } from '@fourjs/core/addons/postprocessing/LUTPass.js';
+			import { LUTCubeLoader } from '@fourjs/core/addons/loaders/LUTCubeLoader.js';
+			import { LUT3dlLoader } from '@fourjs/core/addons/loaders/LUT3dlLoader.js';
+			import { LUTImageLoader } from '@fourjs/core/addons/loaders/LUTImageLoader.js';
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+
+			const params = {
+				enabled: true,
+				lut: 'Bourbon 64.CUBE',
+				intensity: 1
+			};
+
+			const lutMap = {
+				'Bourbon 64.CUBE': null,
+				'Chemical 168.CUBE': null,
+				'Clayton 33.CUBE': null,
+				'Cubicle 99.CUBE': null,
+				'Remy 24.CUBE': null,
+				'Presetpro-Cinematic.3dl': null,
+				'NeutralLUT': null,
+				'B&WLUT': null,
+				'NightLUT': null
+			};
+
+			let gui;
+			let camera, scene, renderer;
+			let composer, lutPass;
+
+			init();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( - 1.8, 0.6, 2.7 );
+
+				scene = new FOUR.Scene();
+
+				new UltraHDRLoader()
+					.setPath( 'textures/equirectangular/' )
+					.load( 'royal_esplanade_2k.hdr.jpg', function ( texture ) {
+
+						texture.mapping = FOUR.EquirectangularReflectionMapping;
+
+						scene.background = texture;
+						scene.environment = texture;
+
+						// model
+
+						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
+						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
+
+							scene.add( gltf.scene );
+
+						} );
+
+					} );
+
+				Object.keys( lutMap ).forEach( name => {
+
+					if ( /\.CUBE$/i.test( name ) ) {
+
+						new LUTCubeLoader()
+							.load( 'luts/' + name, function ( result ) {
+
+								lutMap[ name ] = result;
+
+							} );
+
+					} else if ( /\LUT$/i.test( name ) ) {
+
+						new LUTImageLoader()
+							.load( `luts/${name}.png`, function ( result ) {
+
+								lutMap[ name ] = result;
+
+							} );
+
+					} else {
+
+						new LUT3dlLoader()
+							.load( 'luts/' + name, function ( result ) {
+
+								lutMap[ name ] = result;
+
+							} );
+
+					}
+
+				} );
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				container.appendChild( renderer.domElement );
+
+				composer = new EffectComposer( renderer );
+				composer.setPixelRatio( window.devicePixelRatio );
+				composer.setSize( window.innerWidth, window.innerHeight );
+				composer.addPass( new RenderPass( scene, camera ) );
+				composer.addPass( new OutputPass() );
+
+				lutPass = new LUTPass();
+				composer.addPass( lutPass );
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0, - 0.2 );
+				controls.update();
+
+				gui = new GUI();
+				gui.width = 350;
+				gui.add( params, 'enabled' );
+				gui.add( params, 'lut', Object.keys( lutMap ) );
+				gui.add( params, 'intensity' ).min( 0 ).max( 1 );
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				composer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function animate() {
+
+				lutPass.enabled = params.enabled && Boolean( lutMap[ params.lut ] );
+				lutPass.intensity = params.intensity;
+				if ( lutMap[ params.lut ] ) {
+
+					const lut = lutMap[ params.lut ];
+					lutPass.lut = lut.texture3D;
+
+				}
+
+				composer.render();
+
+			}
+
+		</script>
+
+	</body>
+</html>

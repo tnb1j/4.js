@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - helpers</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - helpers">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - helpers
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+
+			import { VertexNormalsHelper } from '@fourjs/core/addons/helpers/VertexNormalsHelper.js';
+			import { VertexTangentsHelper } from '@fourjs/core/addons/helpers/VertexTangentsHelper.js';
+
+			let scene, renderer;
+			let camera, light;
+			let vnh;
+			let vth;
+
+			init();
+
+			function init() {
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				document.body.appendChild( renderer.domElement );
+
+				//
+
+				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.z = 400;
+
+				scene = new FOUR.Scene();
+
+				light = new FOUR.PointLight();
+				light.position.set( 200, 100, 150 );
+				scene.add( light );
+
+				scene.add( new FOUR.PointLightHelper( light, 15 ) );
+
+				const gridHelper = new FOUR.GridHelper( 400, 40, 0x0000ff, 0x808080 );
+				gridHelper.position.y = - 150;
+				gridHelper.position.x = - 150;
+				scene.add( gridHelper );
+
+				const polarGridHelper = new FOUR.PolarGridHelper( 200, 16, 8, 64, 0x0000ff, 0x808080 );
+				polarGridHelper.position.y = - 150;
+				polarGridHelper.position.x = 200;
+				scene.add( polarGridHelper );
+
+				const loader = new GLTFLoader();
+				loader.load( 'models/gltf/LeePerrySmith/LeePerrySmith.glb', function ( gltf ) {
+
+					const mesh = gltf.scene.children[ 0 ];
+
+					mesh.geometry.computeTangents(); // generates bad data due to degenerate UVs
+
+					const group = new FOUR.Group();
+					group.scale.multiplyScalar( 50 );
+					scene.add( group );
+
+					// To make sure that the matrixWorld is up to date for the boxhelpers
+					group.updateMatrixWorld( true );
+
+					group.add( mesh );
+
+					vnh = new VertexNormalsHelper( mesh, 5 );
+					scene.add( vnh );
+
+					vth = new VertexTangentsHelper( mesh, 5 );
+					scene.add( vth );
+
+					scene.add( new FOUR.BoxHelper( mesh ) );
+
+					const wireframe = new FOUR.WireframeGeometry( mesh.geometry );
+					let line = new FOUR.LineSegments( wireframe );
+					line.material.depthTest = false;
+					line.material.opacity = 0.25;
+					line.material.transparent = true;
+					line.position.x = 4;
+					group.add( line );
+					scene.add( new FOUR.BoxHelper( line ) );
+
+					const edges = new FOUR.EdgesGeometry( mesh.geometry );
+					line = new FOUR.LineSegments( edges );
+					line.material.depthTest = false;
+					line.material.opacity = 0.25;
+					line.material.transparent = true;
+					line.position.x = - 4;
+					group.add( line );
+					scene.add( new FOUR.BoxHelper( line ) );
+
+					scene.add( new FOUR.BoxHelper( group ) );
+					scene.add( new FOUR.BoxHelper( scene ) );
+
+
+				} );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				const time = - performance.now() * 0.0003;
+
+				camera.position.x = 400 * Math.cos( time );
+				camera.position.z = 400 * Math.sin( time );
+				camera.lookAt( scene.position );
+
+				light.position.x = Math.sin( time * 1.7 ) * 300;
+				light.position.y = Math.cos( time * 1.5 ) * 400;
+				light.position.z = Math.cos( time * 1.3 ) * 300;
+
+				if ( vnh ) vnh.update();
+				if ( vth ) vth.update();
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

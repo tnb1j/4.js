@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js - webgl memory test I</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js - webgl memory test I">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				background-color: #fff;
+				color: #000;
+			}
+			a {
+				color: #08f;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - memory test I
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			let camera, scene, renderer;
+
+			init();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 200;
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0xffffff );
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				container.appendChild( renderer.domElement );
+
+			}
+
+			function createImage() {
+
+				const canvas = document.createElement( 'canvas' );
+				canvas.width = 256;
+				canvas.height = 256;
+
+				const context = canvas.getContext( '2d' );
+				context.fillStyle = 'rgb(' + Math.floor( Math.random() * 256 ) + ',' + Math.floor( Math.random() * 256 ) + ',' + Math.floor( Math.random() * 256 ) + ')';
+				context.fillRect( 0, 0, 256, 256 );
+
+				return canvas;
+
+			}
+
+			//
+
+			function animate() {
+
+				const geometry = new FOUR.SphereGeometry( 50, Math.random() * 64, Math.random() * 32 );
+
+				const texture = new FOUR.CanvasTexture( createImage() );
+
+				const material = new FOUR.MeshBasicMaterial( { map: texture, wireframe: true } );
+
+				const mesh = new FOUR.Mesh( geometry, material );
+
+				scene.add( mesh );
+
+				renderer.render( scene, camera );
+
+				scene.remove( mesh );
+
+				// clean up
+
+				geometry.dispose();
+				material.dispose();
+				texture.dispose();
+
+			}
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - materials - channels</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - materials - channels">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - <span id="description">Normal, Velocity, and Depth Materials</span><br/>
+			ninja head from <a href="https://gpuopen.com/archive/gamescgi/amd-gpu-meshmapper/" target="_blank" rel="noopener">AMD GPU MeshMapper</a>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { OBJLoader } from '@fourjs/core/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { VelocityShader } from '@fourjs/core/addons/shaders/VelocityShader.js';
+
+
+			let stats;
+
+			let camera, scene, renderer;
+
+			const params = {
+				material: 'normal',
+				camera: 'perspective',
+				side: 'double'
+			};
+
+			const sides = {
+				'front': FOUR.FrontSide,
+				'back': FOUR.BackSide,
+				'double': FOUR.DoubleSide
+			};
+
+			let cameraOrtho, cameraPerspective;
+			let controlsOrtho, controlsPerspective;
+
+			let mesh, materialStandard, materialDepthBasic, materialDepthRGBA, materialDepthRGB, materialDepthRG, materialNormal, materialVelocity;
+
+			const SCALE = 2.436143; // from original model
+			const BIAS = - 0.428408; // from original model
+
+			init();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				container.appendChild( renderer.domElement );
+
+				//
+
+				scene = new FOUR.Scene();
+
+				const aspect = window.innerWidth / window.innerHeight;
+				cameraPerspective = new FOUR.PerspectiveCamera( 45, aspect, 500, 3000 );
+				cameraPerspective.position.z = 1500;
+				scene.add( cameraPerspective );
+
+				const height = 500;
+				cameraOrtho = new FOUR.OrthographicCamera( - height * aspect, height * aspect, height, - height, 1000, 2500 );
+				cameraOrtho.position.z = 1500;
+				scene.add( cameraOrtho );
+
+				camera = cameraPerspective;
+
+				controlsPerspective = new OrbitControls( cameraPerspective, renderer.domElement );
+				controlsPerspective.minDistance = 1000;
+				controlsPerspective.maxDistance = 2400;
+				controlsPerspective.enableDamping = true;
+
+				controlsOrtho = new OrbitControls( cameraOrtho, renderer.domElement );
+				controlsOrtho.minZoom = 0.5;
+				controlsOrtho.maxZoom = 1.5;
+				controlsOrtho.enableDamping = true;
+
+				// lights
+
+				const ambientLight = new FOUR.AmbientLight( 0xffffff, 0.3 );
+				scene.add( ambientLight );
+
+				const pointLight = new FOUR.PointLight( 0xff0000, 1.5, 0, 0 );
+				pointLight.position.z = 2500;
+				scene.add( pointLight );
+
+				const pointLight2 = new FOUR.PointLight( 0xff6666, 3, 0, 0 );
+				camera.add( pointLight2 );
+
+				const pointLight3 = new FOUR.PointLight( 0x0000ff, 1.5, 0, 0 );
+				pointLight3.position.x = - 1000;
+				pointLight3.position.z = 1000;
+				scene.add( pointLight3 );
+
+				// textures
+
+				const textureLoader = new FOUR.TextureLoader();
+				const normalMap = textureLoader.load( 'models/obj/ninja/normal.png' );
+				const aoMap = textureLoader.load( 'models/obj/ninja/ao.jpg' );
+				const displacementMap = textureLoader.load( 'models/obj/ninja/displacement.jpg' );
+
+				// material
+
+				materialStandard = new FOUR.MeshStandardMaterial( {
+					color: 0xffffff,
+
+					metalness: 0.5,
+					roughness: 0.6,
+
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					aoMap: aoMap,
+
+					normalMap: normalMap,
+					normalScale: new FOUR.Vector2( 1, - 1 ),
+
+					//flatShading: true,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialDepthBasic = new FOUR.MeshDepthMaterial( {
+					depthPacking: FOUR.BasicDepthPacking,
+
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialDepthRGBA = new FOUR.MeshDepthMaterial( {
+					depthPacking: FOUR.RGBADepthPacking,
+
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialDepthRGB = new FOUR.MeshDepthMaterial( {
+					depthPacking: FOUR.RGBDepthPacking,
+
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialDepthRG = new FOUR.MeshDepthMaterial( {
+					depthPacking: FOUR.RGDepthPacking,
+
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialNormal = new FOUR.MeshNormalMaterial( {
+					displacementMap: displacementMap,
+					displacementScale: SCALE,
+					displacementBias: BIAS,
+
+					normalMap: normalMap,
+					normalScale: new FOUR.Vector2( 1, - 1 ),
+
+					//flatShading: true,
+
+					side: FOUR.DoubleSide
+				} );
+
+				materialVelocity = new FOUR.ShaderMaterial( {
+					uniforms: FOUR.UniformsUtils.clone( VelocityShader.uniforms ),
+					vertexShader: VelocityShader.vertexShader,
+					fragmentShader: VelocityShader.fragmentShader,
+					side: FOUR.DoubleSide
+				} );
+				materialVelocity.displacementMap = displacementMap; // required for defines
+				materialVelocity.uniforms.displacementMap.value = displacementMap;
+				materialVelocity.uniforms.displacementScale.value = SCALE;
+				materialVelocity.uniforms.displacementBias.value = BIAS;
+
+				//
+
+				const loader = new OBJLoader();
+				loader.load( 'models/obj/ninja/ninjaHead_Low.obj', function ( group ) {
+
+					const geometry = group.children[ 0 ].geometry;
+					geometry.center();
+
+					mesh = new FOUR.Mesh( geometry, materialNormal );
+					mesh.scale.multiplyScalar( 25 );
+					mesh.userData.matrixWorldPrevious = new FOUR.Matrix4(); // for velocity
+					scene.add( mesh );
+
+				} );
+
+
+				//
+
+				stats = new Stats();
+				container.appendChild( stats.dom );
+
+				//
+
+				const gui = new GUI();
+				gui.add( params, 'material', [ 'standard', 'normal', 'velocity', 'depthBasic', 'depthRGBA', 'depthRGB', 'depthRG' ] );
+				gui.add( params, 'camera', [ 'perspective', 'ortho' ] );
+				gui.add( params, 'side', [ 'front', 'back', 'double' ] );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				const width = window.innerWidth;
+				const height = window.innerHeight;
+				const aspect = window.innerWidth / window.innerHeight;
+
+				camera.aspect = aspect;
+
+				camera.left = - height * aspect;
+				camera.right = height * aspect;
+				camera.top = height;
+				camera.bottom = - height;
+
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( width, height );
+
+			}
+
+			//
+
+			function animate() {
+
+				stats.begin();
+				render();
+				stats.end();
+
+			}
+
+			function render() {
+
+				if ( mesh ) {
+
+					let material = mesh.material;
+
+					switch ( params.material ) {
+
+						case 'standard': material = materialStandard; break;
+						case 'depthBasic': material = materialDepthBasic; break;
+						case 'depthRGBA': material = materialDepthRGBA; break;
+						case 'depthRGB': material = materialDepthRGB; break;
+						case 'depthRG': material = materialDepthRG; break;
+						case 'normal': material = materialNormal; break;
+						case 'velocity': material = materialVelocity; break;
+
+					}
+
+					if ( sides[ params.side ] !== material.side ) {
+
+						switch ( params.side ) {
+
+							case 'front': material.side = FOUR.FrontSide; break;
+							case 'back': material.side = FOUR.BackSide; break;
+							case 'double': material.side = FOUR.DoubleSide; break;
+
+						}
+
+						material.needsUpdate = true;
+
+					}
+
+					mesh.material = material;
+
+				}
+
+				switch ( params.camera ) {
+
+					case 'perspective':
+						camera = cameraPerspective;
+						break;
+					case 'ortho':
+						camera = cameraOrtho;
+						break;
+
+				}
+
+				controlsPerspective.update();
+				controlsOrtho.update(); // must update both controls for damping to complete
+
+				// remember camera projection changes
+
+				materialVelocity.uniforms.previousProjectionViewMatrix.value.copy( materialVelocity.uniforms.currentProjectionViewMatrix.value );
+				materialVelocity.uniforms.currentProjectionViewMatrix.value.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
+
+				if ( mesh && mesh.userData.matrixWorldPrevious ) {
+
+					materialVelocity.uniforms.modelMatrixPrev.value.copy( mesh.userData.matrixWorldPrevious );
+
+				}
+
+				renderer.render( scene, camera );
+
+				scene.traverse( function ( object ) {
+
+					if ( object.isMesh ) {
+
+						object.userData.matrixWorldPrevious.copy( object.matrixWorld );
+
+					}
+
+				} );
+
+			}
+
+		</script>
+
+	</body>
+
+</html>

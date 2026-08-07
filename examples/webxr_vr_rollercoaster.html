@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js vr - roller coaster</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta property="og:title" content="4.js vr - roller coaster">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import {
+				RollerCoasterGeometry,
+				RollerCoasterShadowGeometry,
+				RollerCoasterLiftersGeometry,
+				TreesGeometry,
+				SkyGeometry
+			} from '@fourjs/core/addons/misc/RollerCoaster.js';
+			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+
+			let mesh, material, geometry;
+
+			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			renderer.setPixelRatio( window.devicePixelRatio );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setAnimationLoop( animate );
+			renderer.xr.enabled = true;
+			renderer.xr.setReferenceSpaceType( 'local' );
+			document.body.appendChild( renderer.domElement );
+
+			document.body.appendChild( VRButton.createButton( renderer ) );
+
+			//
+
+			const scene = new FOUR.Scene();
+			scene.background = new FOUR.Color( 0xf0f0ff );
+
+			const light = new FOUR.HemisphereLight( 0xfff0f0, 0x60606, 3 );
+			light.position.set( 1, 1, 1 );
+			scene.add( light );
+
+			const train = new FOUR.Object3D();
+			scene.add( train );
+
+			const camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 500 );
+			train.add( camera );
+
+			// environment
+
+			geometry = new FOUR.PlaneGeometry( 500, 500, 15, 15 );
+			geometry.rotateX( - Math.PI / 2 );
+
+			const positions = geometry.attributes.position.array;
+			const vertex = new FOUR.Vector3();
+
+			for ( let i = 0; i < positions.length; i += 3 ) {
+
+				vertex.fromArray( positions, i );
+
+				vertex.x += Math.random() * 10 - 5;
+				vertex.z += Math.random() * 10 - 5;
+
+				const distance = ( vertex.distanceTo( scene.position ) / 5 ) - 25;
+				vertex.y = Math.random() * Math.max( 0, distance );
+
+				vertex.toArray( positions, i );
+
+			}
+
+			geometry.computeVertexNormals();
+
+			material = new FOUR.MeshLambertMaterial( {
+				color: 0x407000
+			} );
+
+			mesh = new FOUR.Mesh( geometry, material );
+			scene.add( mesh );
+
+			geometry = new TreesGeometry( mesh );
+			material = new FOUR.MeshBasicMaterial( {
+				side: FOUR.DoubleSide, vertexColors: true
+			} );
+			mesh = new FOUR.Mesh( geometry, material );
+			scene.add( mesh );
+
+			geometry = new SkyGeometry();
+			material = new FOUR.MeshBasicMaterial( { color: 0xffffff } );
+			mesh = new FOUR.Mesh( geometry, material );
+			scene.add( mesh );
+
+			//
+
+			const PI2 = Math.PI * 2;
+
+			const curve = ( function () {
+
+				const vector = new FOUR.Vector3();
+				const vector2 = new FOUR.Vector3();
+
+				return {
+
+					getPointAt: function ( t ) {
+
+						t = t * PI2;
+
+						const x = Math.sin( t * 3 ) * Math.cos( t * 4 ) * 50;
+						const y = Math.sin( t * 10 ) * 2 + Math.cos( t * 17 ) * 2 + 5;
+						const z = Math.sin( t ) * Math.sin( t * 4 ) * 50;
+
+						return vector.set( x, y, z ).multiplyScalar( 2 );
+
+					},
+
+					getTangentAt: function ( t ) {
+
+						const delta = 0.0001;
+						const t1 = Math.max( 0, t - delta );
+						const t2 = Math.min( 1, t + delta );
+
+						return vector2.copy( this.getPointAt( t2 ) )
+							.sub( this.getPointAt( t1 ) ).normalize();
+
+					}
+
+				};
+
+			} )();
+
+			geometry = new RollerCoasterGeometry( curve, 1500 );
+			material = new FOUR.MeshPhongMaterial( {
+				vertexColors: true
+			} );
+			mesh = new FOUR.Mesh( geometry, material );
+			scene.add( mesh );
+
+			geometry = new RollerCoasterLiftersGeometry( curve, 100 );
+			material = new FOUR.MeshPhongMaterial();
+			mesh = new FOUR.Mesh( geometry, material );
+			mesh.position.y = 0.1;
+			scene.add( mesh );
+
+			geometry = new RollerCoasterShadowGeometry( curve, 500 );
+			material = new FOUR.MeshBasicMaterial( {
+				color: 0x305000, depthWrite: false, transparent: true
+			} );
+			mesh = new FOUR.Mesh( geometry, material );
+			mesh.position.y = 0.1;
+			scene.add( mesh );
+
+			const funfairs = [];
+
+			//
+
+			geometry = new FOUR.CylinderGeometry( 10, 10, 5, 15 );
+			material = new FOUR.MeshLambertMaterial( {
+				color: 0xff8080
+			} );
+			mesh = new FOUR.Mesh( geometry, material );
+			mesh.position.set( - 80, 10, - 70 );
+			mesh.rotation.x = Math.PI / 2;
+			scene.add( mesh );
+
+			funfairs.push( mesh );
+
+			geometry = new FOUR.CylinderGeometry( 5, 6, 4, 10 );
+			material = new FOUR.MeshLambertMaterial( {
+				color: 0x8080ff
+			} );
+			mesh = new FOUR.Mesh( geometry, material );
+			mesh.position.set( 50, 2, 30 );
+			scene.add( mesh );
+
+			funfairs.push( mesh );
+
+			//
+
+			window.addEventListener( 'resize', onWindowResize );
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			const position = new FOUR.Vector3();
+			const tangent = new FOUR.Vector3();
+
+			const lookAt = new FOUR.Vector3();
+
+			const tangent1 = new FOUR.Vector3();
+			const tangent2 = new FOUR.Vector3();
+			const bankQuaternion = new FOUR.Quaternion();
+
+			let velocity = 0;
+			let progress = 0;
+
+			let prevTime = performance.now();
+
+			function animate() {
+
+				const time = performance.now();
+				const delta = time - prevTime;
+
+				for ( let i = 0; i < funfairs.length; i ++ ) {
+
+					funfairs[ i ].rotation.y = time * 0.0004;
+
+				}
+
+				//
+
+				progress += velocity;
+				progress = progress % 1;
+
+				position.copy( curve.getPointAt( progress ) );
+				position.y += 0.3;
+
+				train.position.copy( position );
+
+				tangent.copy( curve.getTangentAt( progress ) );
+
+				velocity -= tangent.y * 0.0000001 * delta;
+				velocity = Math.max( 0.00004, Math.min( 0.0002, velocity ) );
+
+				// banking
+
+				const bankDelta = 0.01;
+				const t1 = ( ( progress - bankDelta ) % 1 + 1 ) % 1;
+				const t2 = ( progress + bankDelta ) % 1;
+
+				tangent1.copy( curve.getTangentAt( t1 ) );
+				tangent2.copy( curve.getTangentAt( t2 ) );
+
+				let headingChange = Math.atan2( tangent2.x, tangent2.z ) - Math.atan2( tangent1.x, tangent1.z );
+				if ( headingChange > Math.PI ) headingChange -= Math.PI * 2;
+				if ( headingChange < -Math.PI ) headingChange += Math.PI * 2;
+
+				train.up.set( 0, 1, 0 );
+				bankQuaternion.setFromAxisAngle( tangent, - Math.atan( headingChange * 8 ) * 0.5 );
+				train.up.applyQuaternion( bankQuaternion );
+
+				train.lookAt( lookAt.copy( position ).sub( tangent ) );
+
+				//
+
+				renderer.render( scene, camera );
+
+				prevTime = time;
+
+			}
+
+		</script>
+
+	</body>
+</html>

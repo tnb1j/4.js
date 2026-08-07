@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - ocean</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - ocean">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="container"></div>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Occlusion</span>
+			</div>
+
+			<small>
+				The plane is green when the sphere is completely occluded.
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+			import { pass } from '@fourjs/core/tsl';
+			import { bloom } from '@fourjs/core/addons/tsl/display/BloomNode.js';
+
+			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { WaterMesh } from '@fourjs/core/addons/objects/WaterMesh.js';
+			import { SkyMesh } from '@fourjs/core/addons/objects/SkyMesh.js';
+
+			let container;
+			let camera, scene, renderer, renderPipeline;
+			let controls, water, sun, sky, mesh, bloomPass;
+
+			init();
+
+			function init() {
+
+				container = document.getElementById( 'container' );
+
+				//
+
+				renderer = new FOUR.WebGPURenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( render );
+				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 0.1;
+				renderer.inspector = new Inspector();
+				container.appendChild( renderer.domElement );
+
+				//
+
+				scene = new FOUR.Scene();
+
+				camera = new FOUR.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera.position.set( 30, 30, 100 );
+
+				// Post-processing
+
+				renderPipeline = new FOUR.RenderPipeline( renderer );
+
+				const scenePass = pass( scene, camera );
+				const scenePassColor = scenePass.getTextureNode( 'output' );
+
+				bloomPass = bloom( scenePassColor );
+				bloomPass.threshold.value = 0;
+				bloomPass.strength.value = 0.1;
+				bloomPass.radius.value = 0;
+
+				renderPipeline.outputNode = scenePassColor.add( bloomPass );
+
+				//
+
+				sun = new FOUR.Vector3();
+
+				// Water
+
+				const waterGeometry = new FOUR.PlaneGeometry( 10000, 10000 );
+				const loader = new FOUR.TextureLoader();
+				const waterNormals = loader.load( 'textures/waternormals.jpg' );
+				waterNormals.wrapS = waterNormals.wrapT = FOUR.RepeatWrapping;
+
+				water = new WaterMesh(
+					waterGeometry,
+					{
+						waterNormals: waterNormals,
+						sunDirection: new FOUR.Vector3(),
+						sunColor: 0xffffff,
+						waterColor: 0x001e0f,
+						distortionScale: 3.7
+					}
+				);
+
+				water.rotation.x = - Math.PI / 2;
+
+				scene.add( water );
+
+				// Skybox
+
+				sky = new SkyMesh();
+				sky.scale.setScalar( 10000 );
+				scene.add( sky );
+
+				sky.turbidity.value = 10;
+				sky.rayleigh.value = 2;
+				sky.mieCoefficient.value = 0.005;
+				sky.mieDirectionalG.value = 0.8;
+				sky.cloudCoverage.value = 0.4;
+				sky.cloudDensity.value = 0.5;
+				sky.cloudElevation.value = 0.5;
+
+				const parameters = {
+					elevation: 2,
+					azimuth: 180,
+					exposure: 0.1
+				};
+
+				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const sceneEnv = new FOUR.Scene();
+
+				let renderTarget;
+
+				function updateSun() {
+
+					const phi = FOUR.MathUtils.degToRad( 90 - parameters.elevation );
+					const theta = FOUR.MathUtils.degToRad( parameters.azimuth );
+
+					sun.setFromSphericalCoords( 1, phi, theta );
+
+					sky.sunPosition.value.copy( sun );
+					water.sunDirection.value.copy( sun ).normalize();
+
+					if ( renderTarget !== undefined ) renderTarget.dispose();
+
+					sceneEnv.add( sky );
+					renderTarget = pmremGenerator.fromScene( sceneEnv );
+					scene.add( sky );
+
+					scene.environment = renderTarget.texture;
+
+				}
+
+				renderer.init().then( updateSun );
+
+				//
+
+				const geometry = new FOUR.BoxGeometry( 30, 30, 30 );
+				const material = new FOUR.MeshStandardMaterial( { roughness: 0 } );
+
+				mesh = new FOUR.Mesh( geometry, material );
+				scene.add( mesh );
+
+				//
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.maxPolarAngle = Math.PI * 0.495;
+				controls.target.set( 0, 10, 0 );
+				controls.minDistance = 40.0;
+				controls.maxDistance = 200.0;
+				controls.update();
+
+				// GUI
+
+				const gui = renderer.inspector.createParameters( 'Settings' );
+
+				const folderSky = gui.addFolder( 'Sky' );
+				folderSky.add( parameters, 'elevation', 0, 90, 0.1 ).onChange( updateSun );
+				folderSky.add( parameters, 'azimuth', - 180, 180, 0.1 ).onChange( updateSun );
+				folderSky.add( parameters, 'exposure', 0, 1, 0.0001 ).onChange( function ( value ) {
+
+					renderer.toneMappingExposure = value;
+
+				} );
+
+				const folderWater = gui.addFolder( 'Water' );
+				folderWater.add( water.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
+				folderWater.add( water.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
+
+				const folderBloom = gui.addFolder( 'Bloom' );
+				folderBloom.add( bloomPass.strength, 'value', 0, 3, 0.01 ).name( 'strength' );
+				folderBloom.add( bloomPass.radius, 'value', 0, 1, 0.01 ).name( 'radius' );
+
+				const folderClouds = gui.addFolder( 'Clouds' );
+				folderClouds.add( sky.cloudCoverage, 'value', 0, 1, 0.01 ).name( 'coverage' );
+				folderClouds.add( sky.cloudDensity, 'value', 0, 1, 0.01 ).name( 'density' );
+				folderClouds.add( sky.cloudElevation, 'value', 0, 1, 0.01 ).name( 'elevation' );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function render() {
+
+				const time = performance.now() * 0.001;
+
+				mesh.position.y = Math.sin( time ) * 20 + 5;
+				mesh.rotation.x = time * 0.5;
+				mesh.rotation.z = time * 0.51;
+
+				renderPipeline.render();
+
+			}
+
+		</script>
+	</body>
+</html>

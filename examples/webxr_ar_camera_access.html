@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js ar - camera access</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta property="og:title" content="4.js ar - camera access">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> ar - camera access<br/>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+			import { ARButton } from '@fourjs/core/addons/webxr/ARButton.js';
+
+			const timer = new FOUR.Timer();
+			timer.connect( document );
+
+			let camera, scene, renderer;
+			let cube;
+
+			init();
+
+			async function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				scene = new FOUR.Scene();
+
+				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+
+				const defaultLight = new FOUR.HemisphereLight( 0xffffff, 0xbbbbff, 3 );
+				defaultLight.position.set( 0.5, 1, 0.25 );
+				scene.add( defaultLight );
+
+				//
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.xr.enabled = true;
+				container.appendChild( renderer.domElement );
+
+				//
+
+				document.body.appendChild( ARButton.createButton( renderer, { requiredFeatures: [ 'camera-access' ] } ) );
+
+				//
+
+				const boxGeometry = new FOUR.BoxGeometry( 1, 1, 1 );
+				const boxMaterial = new FOUR.MeshStandardMaterial();
+				cube = new FOUR.Mesh( boxGeometry, boxMaterial );
+				cube.position.z = - 3;
+
+				scene.add( cube );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function setCameraTexture() {
+
+				if ( ! renderer.xr.getSession() ) {
+
+					if ( cube.material.map ) {
+
+						cube.material.map = null;
+						cube.material.needsUpdate = true;
+
+					}
+
+					return;
+
+				}
+
+				const frame = renderer.xr.getFrame();
+				const referenceSpace = renderer.xr.getReferenceSpace();
+
+				if ( ! frame || ! referenceSpace ) return;
+
+				const viewerPose = frame.getViewerPose( referenceSpace );
+
+				if ( ! viewerPose ) return;
+
+				const view = viewerPose.views.find( view => view.camera );
+			
+				const cameraTexture = renderer.xr.getCameraTexture( view.camera );
+
+				if ( cube.material.map === cameraTexture ) return;
+
+				cube.material.map = cameraTexture;
+				cube.material.needsUpdate = true;
+			
+			}
+
+			function animate() {
+
+				timer.update();
+
+				const delta = timer.getDelta();
+
+				setCameraTexture();
+
+				cube.rotation.x += delta;
+				cube.rotation.y += delta;
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - drag controls</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - drag controls">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				background-color: #f0f0f0;
+				color: #444;
+			}
+			a {
+				color: #08f;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> webgl - drag controls<br />
+			Use "Shift+Click" to add/remove objects to/from a group.<br />
+			Use "M" to toggle between rotate and pan mode (touch only).<br />
+			Grouped objects can be transformed as a union.
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { DragControls } from '@fourjs/core/addons/controls/DragControls.js';
+
+			let container;
+			let camera, scene, renderer;
+			let controls, group;
+			let enableSelection = false;
+
+			const objects = [];
+
+			const mouse = new FOUR.Vector2(), raycaster = new FOUR.Raycaster();
+
+			init();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 500 );
+				camera.position.z = 25;
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0xf0f0f0 );
+
+				scene.add( new FOUR.AmbientLight( 0xaaaaaa ) );
+
+				const light = new FOUR.SpotLight( 0xffffff, 10000 );
+				light.position.set( 0, 25, 50 );
+				light.angle = Math.PI / 9;
+
+				light.castShadow = true;
+				light.shadow.camera.near = 10;
+				light.shadow.camera.far = 100;
+				light.shadow.mapSize.width = 1024;
+				light.shadow.mapSize.height = 1024;
+
+				scene.add( light );
+
+				group = new FOUR.Group();
+				scene.add( group );
+
+				const geometry = new FOUR.BoxGeometry();
+
+				for ( let i = 0; i < 200; i ++ ) {
+
+					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+					object.position.x = Math.random() * 30 - 15;
+					object.position.y = Math.random() * 15 - 7.5;
+					object.position.z = Math.random() * 20 - 10;
+
+					object.rotation.x = Math.random() * 2 * Math.PI;
+					object.rotation.y = Math.random() * 2 * Math.PI;
+					object.rotation.z = Math.random() * 2 * Math.PI;
+
+					object.scale.x = Math.random() * 2 + 1;
+					object.scale.y = Math.random() * 2 + 1;
+					object.scale.z = Math.random() * 2 + 1;
+
+					object.castShadow = true;
+					object.receiveShadow = true;
+
+					scene.add( object );
+
+					objects.push( object );
+
+				}
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.shadowMap.enabled = true;
+				renderer.shadowMap.type = FOUR.PCFShadowMap;
+
+				container.appendChild( renderer.domElement );
+
+				controls = new DragControls( [ ... objects ], camera, renderer.domElement );
+				controls.rotateSpeed = 2;
+				controls.addEventListener( 'drag', render );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				document.addEventListener( 'click', onClick );
+				window.addEventListener( 'keydown', onKeyDown );
+				window.addEventListener( 'keyup', onKeyUp );
+
+				render();
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			function onKeyDown( event ) {
+
+				enableSelection = ( event.keyCode === 16 ) ? true : false;
+			
+				if ( event.keyCode === 77 ) {
+
+					controls.touches.ONE = ( controls.touches.ONE === FOUR.TOUCH.PAN ) ? FOUR.TOUCH.ROTATE : FOUR.TOUCH.PAN;
+			
+				}
+
+			}
+
+			function onKeyUp() {
+
+				enableSelection = false;
+
+			}
+
+			function onClick( event ) {
+
+				event.preventDefault();
+
+				if ( enableSelection === true ) {
+
+					const draggableObjects = controls.objects;
+					draggableObjects.length = 0;
+
+					mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+					mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+					raycaster.setFromCamera( mouse, camera );
+
+					const intersections = raycaster.intersectObjects( objects, true );
+
+					if ( intersections.length > 0 ) {
+
+						const object = intersections[ 0 ].object;
+
+						if ( group.children.includes( object ) === true ) {
+
+							object.material.emissive.set( 0x000000 );
+							scene.attach( object );
+
+						} else {
+
+							object.material.emissive.set( 0xaaaaaa );
+							group.attach( object );
+
+						}
+
+						controls.transformGroup = true;
+						draggableObjects.push( group );
+
+					}
+
+					if ( group.children.length === 0 ) {
+
+						controls.transformGroup = false;
+						draggableObjects.push( ...objects );
+
+					}
+
+				}
+
+				render();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

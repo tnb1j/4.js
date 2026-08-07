@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - USDZ exporter</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - USDZ exporter">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				background-color: #eee;
+			}
+			#info {
+				color: #222;
+			}
+			a {
+				color: #00f
+			}
+			#button {
+				position: absolute;
+				bottom: 15px;
+				left: calc(50% - 40px);
+
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - USDZ exporter<br />
+			Carbon Frame Bike by
+			<a href="https://sketchfab.com/prefrontalcortex" target="_blank" rel="noopener">prefrontal cortex</a>
+		</div>
+
+		<a id="link" rel="ar" href="" download="asset.usdz">
+			<img id="button" width="100" src="files/arkit.png">
+		</a>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
+
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+			import { KTX2Loader } from '@fourjs/core/addons/loaders/KTX2Loader.js';
+			import { USDZExporter } from '@fourjs/core/addons/exporters/USDZExporter.js';
+			import * as WebGLTextureUtils from '@fourjs/core/addons/utils/WebGLTextureUtils.js';
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+
+			let camera, scene, renderer, mixer, timer, controls;
+
+			const params = {
+				exportUSDZ: exportUSDZ
+			};
+
+			init();
+
+			function init() {
+
+				timer = new FOUR.Timer();
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				document.body.appendChild( renderer.domElement );
+
+				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( - 2.5, 1.6, 3.0 );
+
+				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
+
+				const ktx2loader = new KTX2Loader().detectSupport( renderer );
+				const dracoLoader = new DRACOLoader();
+				const gltfLoader = new GLTFLoader();
+			
+				gltfLoader.setDRACOLoader( dracoLoader );
+				gltfLoader.setKTX2Loader( ktx2loader );
+				gltfLoader.setPath( 'models/gltf/' );
+				gltfLoader.load( 'CarbonFrameBike.glb', async function ( gltf ) {
+
+					scene.add( gltf.scene );
+
+					if ( gltf.animations.length > 0 ) {
+
+						mixer = new FOUR.AnimationMixer( gltf.scene );
+						const action = mixer.clipAction( gltf.animations[ 0 ] );
+						action.setLoop( FOUR.LoopRepeat, Infinity );
+						action.play();
+
+					}
+
+
+					// USDZ
+
+					const exporter = new USDZExporter();
+					exporter.setTextureUtils( WebGLTextureUtils ); // for texture decompresssing
+					const arraybuffer = await exporter.parseAsync( gltf.scene, { animations: gltf.animations } );
+					const blob = new Blob( [ arraybuffer ], { type: 'application/octet-stream' } );
+
+					const link = document.getElementById( 'link' );
+					link.href = URL.createObjectURL( blob );
+
+				} );
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.enableDamping = true;
+				controls.target.set( 0, 0.7, 0 );
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				const isIOS = /iPad|iPhone|iPod/.test( navigator.userAgent );
+
+				if ( isIOS === false ) {
+
+					const gui = new GUI();
+
+					gui.add( params, 'exportUSDZ' ).name( 'Export USDZ' );
+					gui.open();
+
+				}
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function exportUSDZ() {
+
+				const link = document.getElementById( 'link' );
+				link.click();
+
+			}
+
+			//
+
+			function animate() {
+
+				timer.update();
+
+				const delta = timer.getDelta();
+
+				if ( mixer ) mixer.update( delta );
+
+				controls.update();
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

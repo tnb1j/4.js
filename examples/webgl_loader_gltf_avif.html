@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - GLTFloader + EXT_texture_avif</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+		<meta property="og:title" content="4.js webgl - GLTFloader + EXT_texture_avif">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css" />
+		<style>
+			body {
+				background-color: #bfe3dd;
+				color: #000;
+			}
+
+			a {
+				color: #986b60;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - GLTFLoader +
+			<a href="https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Vendor/EXT_texture_avif" target="_blank" rel="noopener" >EXT_texture_avif</a><br />
+			Forest House by <a href="https://sketchfab.com/peachyroyalty" target="_blank" rel="noopener">peachyroyalty</a><br />
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+			import * as FOUR from '@fourjs/core';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+
+			let camera, scene, renderer;
+
+			init();
+			render();
+
+			function init() {
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera.position.set( 1.5, 4, 9 );
+
+				scene = new FOUR.Scene();
+				scene.background = new FOUR.Color( 0xf6eedc );
+
+				//
+
+				const dracoLoader = new DRACOLoader();
+				dracoLoader.setDecoderPath( DRACO_GLTF_CONFIG );
+
+				const loader = new GLTFLoader();
+				loader.setDRACOLoader( dracoLoader );
+				loader.setPath( 'models/gltf/AVIFTest/' );
+				loader.load( 'forest_house.glb', function ( gltf ) {
+
+					scene.add( gltf.scene );
+
+					render();
+
+				} );
+
+				//
+
+				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render );
+				controls.target.set( 0, 2, 0 );
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			//
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+		</script>
+	</body>
+</html>

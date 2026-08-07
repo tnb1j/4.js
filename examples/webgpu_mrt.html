@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - mrt</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - mrt">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Multiple Render Targets (MRT)</span>
+			</div>
+
+			<small>
+				Final / Beauty / Normal / Emissive / Diffuse
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+			import { output, normalView, pass, step, diffuseColor, emissive, packNormalToRGB, screenUV, mix, mrt, Fn } from '@fourjs/core/tsl';
+
+			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+
+			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+
+			let camera, scene, renderer;
+			let renderPipeline;
+
+			init();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				// scene
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( - 1.8, 0.6, 2.7 );
+
+				scene = new FOUR.Scene();
+
+				new UltraHDRLoader()
+					.setPath( 'textures/equirectangular/' )
+					.load( 'royal_esplanade_2k.hdr.jpg', function ( texture ) {
+
+						texture.mapping = FOUR.EquirectangularReflectionMapping;
+
+						scene.background = texture;
+						scene.environment = texture;
+
+						// model
+
+						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
+						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
+
+							scene.add( gltf.scene );
+
+						} );
+
+					} );
+
+				// renderer
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxColorAttachments: 5 } } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( render );
+				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.inspector = new Inspector();
+				container.appendChild( renderer.domElement );
+
+				// post processing
+
+				const scenePass = pass( scene, camera, { minFilter: FOUR.NearestFilter, magFilter: FOUR.NearestFilter } );
+				scenePass.setMRT( mrt( {
+					output: output,
+					normal: packNormalToRGB( normalView ),
+					diffuse: diffuseColor,
+					emissive: emissive
+				} ) );
+
+				// optimize textures
+
+				const normalTexture = scenePass.getTexture( 'normal' );
+				const diffuseTexture = scenePass.getTexture( 'diffuse' );
+				const emissiveTexture = scenePass.getTexture( 'emissive' );
+
+				normalTexture.type = diffuseTexture.type = emissiveTexture.type = FOUR.UnsignedByteType;
+
+				// post processing - mrt
+
+				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline.outputColorTransform = false;
+				renderPipeline.outputNode = Fn( () => {
+
+					const output = scenePass.getTextureNode( 'output' ); // output name is optional here
+					const normal = scenePass.getTextureNode( 'normal' );
+					const diffuse = scenePass.getTextureNode( 'diffuse' );
+					const emissive = scenePass.getTextureNode( 'emissive' );
+
+					const out = mix( output.renderOutput(), output, step( 0.2, screenUV.x ) );
+					const nor = mix( out, normal, step( 0.4, screenUV.x ) );
+					const emi = mix( nor, emissive, step( 0.6, screenUV.x ) );
+					const dif = mix( emi, diffuse, step( 0.8, screenUV.x ) );
+
+					return dif;
+
+				} )();
+
+				// controls
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0, - 0.2 );
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function render() {
+
+				renderPipeline.render();
+
+			}
+
+		</script>
+
+	</body>
+</html>

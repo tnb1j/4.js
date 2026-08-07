@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgl - materials - EXR texture loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgl - materials - EXR texture loader">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl EXR texture loader example<br/>
+			Image courtesy of <a href="http://www.pauldebevec.com/Research/HDR/" target="_blank" rel="noopener">Paul Debevec</a>.
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.module.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+
+			import { EXRLoader } from '@fourjs/core/addons/loaders/EXRLoader.js';
+
+			const params = {
+				exposure: 2.0
+			};
+
+			let renderer, scene, camera;
+
+			init();
+
+			function init() {
+
+				renderer = new FOUR.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				renderer.toneMapping = FOUR.ReinhardToneMapping;
+				renderer.toneMappingExposure = params.exposure;
+
+
+				scene = new FOUR.Scene();
+
+				const aspect = window.innerWidth / window.innerHeight;
+
+				camera = new FOUR.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 1 );
+
+				new EXRLoader()
+					.load( 'textures/memorial.exr', function ( texture, textureData ) {
+
+						// memorial.exr is NPOT
+
+						//console.log( textureData );
+						//console.log( texture );
+
+						// EXRLoader sets these default settings
+						//texture.generateMipmaps = false;
+						//texture.minFilter = LinearFilter;
+						//texture.magFilter = LinearFilter;
+
+						const material = new FOUR.MeshBasicMaterial( { map: texture } );
+
+						const quad = new FOUR.PlaneGeometry( 1.5 * textureData.width / textureData.height, 1.5 );
+
+						const mesh = new FOUR.Mesh( quad, material );
+
+						scene.add( mesh );
+
+						render();
+
+					} );
+
+				//
+
+				const gui = new GUI();
+
+				gui.add( params, 'exposure', 0, 4, 0.01 ).onChange( render );
+				gui.open();
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				const aspect = window.innerWidth / window.innerHeight;
+
+				const frustumHeight = camera.top - camera.bottom;
+
+				camera.left = - frustumHeight * aspect / 2;
+				camera.right = frustumHeight * aspect / 2;
+
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			//
+
+			function render() {
+
+				renderer.toneMappingExposure = params.exposure;
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - white furnace test</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - white furnace test">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info" class="invert">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>White Furnace Energy Conservation Test</span>
+			</div>
+
+			<small>
+				<br>Roughness increases left to right
+				<br>Metalness increases top to bottom
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core';
+
+			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+
+			let scene, camera, renderer, radianceMap;
+
+			let gui;
+
+			const COLOR = 0xcccccc;
+
+			async function init() {
+
+				const width = window.innerWidth;
+				const height = window.innerHeight;
+				const aspect = width / height;
+
+				// renderer
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer.setSize( width, height );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				document.body.appendChild( renderer.domElement );
+
+				await renderer.init();
+
+				// scene
+
+				scene = new FOUR.Scene();
+
+				// camera
+
+				camera = new FOUR.PerspectiveCamera( 40, aspect, 1, 30 );
+				camera.position.set( 0, 0, 18 );
+
+				//
+
+				initGui();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function createObjects() {
+
+				const geometry = new FOUR.SphereGeometry( 0.4, 32, 16 );
+
+				for ( let x = 0; x <= 10; x ++ ) {
+
+					for ( let y = 0; y <= 10; y ++ ) {
+
+						const material = new FOUR.MeshPhysicalMaterial( {
+							roughness: x / 10,
+							metalness: y / 10,
+							color: 0xffffff,
+							envMap: radianceMap,
+							envMapIntensity: 1,
+							transmission: 0,
+							ior: 1.5
+						} );
+
+						const mesh = new FOUR.Mesh( geometry, material );
+						mesh.position.x = x - 5;
+						mesh.position.y = 5 - y;
+						scene.add( mesh );
+
+					}
+
+				}
+
+			}
+
+			function createEnvironment() {
+
+				const envScene = new FOUR.Scene();
+				envScene.background = new FOUR.Color( COLOR );
+
+				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				radianceMap = pmremGenerator.fromScene( envScene ).texture;
+				pmremGenerator.dispose();
+
+				scene.background = envScene.background;
+
+			}
+
+			function onWindowResize() {
+
+				const width = window.innerWidth;
+				const height = window.innerHeight;
+
+				camera.aspect = width / height;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( width, height );
+
+				render();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+			function initGui() {
+
+				gui = new GUI();
+
+				const param = {
+					'tint': false
+				};
+
+				gui.add( param, 'tint' ).name( 'Tint for Visibility' ).onChange( function ( val ) {
+
+					scene.traverse( function ( child ) {
+
+						const tint = val ? 0xccccff : 0xffffff;
+
+						if ( child.isMesh ) child.material.color.setHex( tint );
+
+					} );
+
+					render();
+
+				} );
+
+			}
+
+			Promise.resolve()
+				.then( init )
+				.then( createEnvironment )
+				.then( createObjects )
+				.then( render );
+
+		</script>
+	</body>
+</html>

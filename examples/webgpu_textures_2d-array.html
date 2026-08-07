@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - 2d texture array</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - 2d texture array">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>2D Texture Array</span>
+			</div>
+
+			<small>
+				Scanned head data by
+				<a href="https://www.codeproject.com/Articles/352270/Getting-started-with-Volume-Rendering" target="_blank" rel="noopener">Divine Augustine</a> licensed under <a href="https://www.codeproject.com/info/cpol10.aspx" target="_blank" rel="noopener">CPOL</a>.
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+			import { texture, uv, time, oscTriangle } from '@fourjs/core/tsl';
+
+			import { unzipSync } from '@fourjs/core/addons/libs/fflate.module.js';
+
+			//
+
+			let camera, scene, mesh, renderer;
+
+			const planeWidth = 50;
+			const planeHeight = 50;
+
+			init();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+				camera.position.z = 70;
+
+				scene = new FOUR.Scene();
+
+				// width 256, height 256, depth 109, 8-bit, zip archived raw data
+
+				new FOUR.FileLoader()
+					.setResponseType( 'arraybuffer' )
+					.load( 'textures/3d/head256x256x109.zip', function ( data ) {
+
+						const zip = unzipSync( new Uint8Array( data ) );
+						const array = new Uint8Array( zip[ 'head256x256x109' ].buffer );
+
+						const map = new FOUR.DataArrayTexture( array, 256, 256, 109 );
+						map.format = FOUR.RedFormat;
+						map.needsUpdate = true;
+
+						let coord = uv();
+						coord = coord.setY( coord.y.oneMinus() ); // flip y
+
+						let oscLayers = oscTriangle( time.mul( .5 ) ); // [ /\/ ] triangle osc animation
+						oscLayers = oscLayers.add( 1 ).mul( .5 ); // convert osc range of [ -1, 1 ] to [ 0, 1 ]
+						oscLayers = oscLayers.mul( map.image.depth ); // scale osc range to texture depth
+
+						const material = new FOUR.MeshBasicNodeMaterial();
+						material.colorNode = texture( map, coord ).depth( oscLayers ).r.remap( 0, 1, - .1, 1.8 ); // remap to make it more visible
+
+						const geometry = new FOUR.PlaneGeometry( planeWidth, planeHeight );
+
+						mesh = new FOUR.Mesh( geometry, material );
+
+						scene.add( mesh );
+
+					} );
+
+				renderer = new FOUR.WebGPURenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( render );
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>4.js webgpu - volumetric cloud</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta property="og:title" content="4.js webgpu - volumetric cloud">
+		<meta property="og:type" content="website">
+		<link type="text/css" rel="stylesheet" href="example.css">
+	</head>
+
+	<body>
+
+		<div id="info">
+			<a href="../" target="_blank" rel="noopener" class="logo-link"></a>
+
+			<div class="title-wrapper">
+				<a href="../" target="_blank" rel="noopener">4.js</a><span>Volumetric Cloud</span>
+			</div>
+
+			<small>
+				Volumetric cloud using 3D texture raymarching.
+			</small>
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@fourjs/core": "../build/4.webgpu.js",
+					"@fourjs/core/webgpu": "../build/4.webgpu.js",
+					"@fourjs/core/tsl": "../build/4.tsl.js",
+					"@fourjs/core/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as FOUR from '@fourjs/core/webgpu';
+			import { float, vec3, vec4, If, Break, Fn, smoothstep, texture3D, uniform } from '@fourjs/core/tsl';
+
+			import { RaymarchingBox } from '@fourjs/core/addons/tsl/utils/Raymarching.js';
+
+			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from '@fourjs/core/addons/math/ImprovedNoise.js';
+
+			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+
+			let renderer, scene, camera;
+			let mesh;
+
+			init();
+
+			function init() {
+
+				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				renderer.inspector = new Inspector();
+				document.body.appendChild( renderer.domElement );
+
+				scene = new FOUR.Scene();
+
+				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera.position.set( 0, 0, 1.5 );
+
+				new OrbitControls( camera, renderer.domElement );
+
+				// Sky
+
+				const canvas = document.createElement( 'canvas' );
+				canvas.width = 1;
+				canvas.height = 32;
+
+				const context = canvas.getContext( '2d' );
+				const gradient = context.createLinearGradient( 0, 0, 0, 32 );
+				gradient.addColorStop( 0.0, '#014a84' );
+				gradient.addColorStop( 0.5, '#0561a0' );
+				gradient.addColorStop( 1.0, '#437ab6' );
+				context.fillStyle = gradient;
+				context.fillRect( 0, 0, 1, 32 );
+
+				const skyMap = new FOUR.CanvasTexture( canvas );
+				skyMap.colorSpace = FOUR.SRGBColorSpace;
+
+				const sky = new FOUR.Mesh(
+					new FOUR.SphereGeometry( 10 ),
+					new FOUR.MeshBasicNodeMaterial( { map: skyMap, side: FOUR.BackSide } )
+				);
+				scene.add( sky );
+
+				// Texture
+
+				const size = 128;
+				const data = new Uint8Array( size * size * size );
+
+				let i = 0;
+				const scale = 0.05;
+				const perlin = new ImprovedNoise();
+				const vector = new FOUR.Vector3();
+
+				for ( let z = 0; z < size; z ++ ) {
+
+					for ( let y = 0; y < size; y ++ ) {
+
+						for ( let x = 0; x < size; x ++ ) {
+
+							const d = 1.0 - vector.set( x, y, z ).subScalar( size / 2 ).divideScalar( size ).length();
+							data[ i ] = ( 128 + 128 * perlin.noise( x * scale / 1.5, y * scale, z * scale / 1.5 ) ) * d * d;
+							i ++;
+
+						}
+
+					}
+
+				}
+
+				const texture = new FOUR.Data3DTexture( data, size, size, size );
+				texture.format = FOUR.RedFormat;
+				texture.minFilter = FOUR.LinearFilter;
+				texture.magFilter = FOUR.LinearFilter;
+				texture.unpackAlignment = 1;
+				texture.needsUpdate = true;
+
+				// Shader
+
+				const transparentRaymarchingTexture = Fn( ( {
+					texture,
+					range = float( 0.1 ),
+					threshold = float( 0.25 ),
+					opacity = float( 0.25 ),
+					steps = float( 100 )
+				} ) => {
+
+					const finalColor = vec4( 0 ).toVar();
+
+					RaymarchingBox( steps, ( { positionRay } ) => {
+
+						const mapValue = float( texture.sample( positionRay.add( 0.5 ) ).r ).toVar();
+
+						mapValue.assign( smoothstep( threshold.sub( range ), threshold.add( range ), mapValue ).mul( opacity ) );
+
+						const shading = texture.sample( positionRay.add( vec3( - 0.01 ) ) ).r.sub( texture.sample( positionRay.add( vec3( 0.01 ) ) ).r );
+
+						const col = shading.mul( 3.0 ).add( positionRay.x.add( positionRay.y ).mul( 0.25 ) ).add( 0.2 );
+
+						finalColor.rgb.addAssign( finalColor.a.oneMinus().mul( mapValue ).mul( col ) );
+
+						finalColor.a.addAssign( finalColor.a.oneMinus().mul( mapValue ) );
+
+						If( finalColor.a.greaterThanEqual( 0.95 ), () => {
+
+							Break();
+
+						} );
+
+					} );
+
+					return finalColor;
+
+				} );
+
+				// Material
+
+				const baseColor = uniform( new FOUR.Color( 0x798aa0 ) );
+				const range = uniform( 0.1 );
+				const threshold = uniform( 0.25 );
+				const opacity = uniform( 0.25 );
+				const steps = uniform( 100 );
+
+				const cloud3d = transparentRaymarchingTexture( {
+					texture: texture3D( texture, null, 0 ),
+					range,
+					threshold,
+					opacity,
+					steps
+				} );
+
+				const finalCloud = cloud3d.setRGB( cloud3d.rgb.add( baseColor ) );
+
+				const material = new FOUR.NodeMaterial();
+				material.colorNode = finalCloud;
+				material.side = FOUR.BackSide;
+				material.transparent = true;
+
+				mesh = new FOUR.Mesh( new FOUR.BoxGeometry( 1, 1, 1 ), material );
+				scene.add( mesh );
+
+				//
+
+				const gui = renderer.inspector.createParameters( 'Parameters' );
+				gui.add( threshold, 'value', 0, 1, 0.01 ).name( 'threshold' );
+				gui.add( opacity, 'value', 0, 1, 0.01 ).name( 'opacity' );
+				gui.add( range, 'value', 0, 1, 0.01 ).name( 'range' );
+				gui.add( steps, 'value', 0, 200, 1 ).name( 'steps' );
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				mesh.rotation.y = - performance.now() / 7500;
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>
