@@ -18,7 +18,7 @@ import {
 	RepeatWrapping,
 	TextureLoader,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 import { unzipSync } from '../libs/fflate.module.js';
 
 const COLOR_SPACE_3MF = SRGBColorSpace;
@@ -48,7 +48,7 @@ const COLOR_SPACE_3MF = SRGBColorSpace;
  * ```
  *
  * @augments Loader
- * @four_import import { ThreeMFLoader } from '@fourjs/core/addons/loaders/3MFLoader.js';
+ * @four_import import { ThreeMFLoader } from 'fourjs/addons/loaders/3MFLoader.js';
  */
 class ThreeMFLoader extends Loader {
 

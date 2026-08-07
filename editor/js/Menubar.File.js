@@ -1,5 +1,5 @@
 import { UIPanel, UIRow, UIHorizontalRule } from './libs/ui.js';
-import { FileLoader, PropertyBinding } from '@fourjs/core';
+import { FileLoader, PropertyBinding } from 'fourjs';
 
 function MenubarFile( editor ) {
 
@@ -247,7 +247,7 @@ function MenubarFile( editor ) {
 
 		}
 
-		const { DRACOExporter } = await import( '@fourjs/core/addons/exporters/DRACOExporter.js' );
+		const { DRACOExporter } = await import( 'fourjs/addons/exporters/DRACOExporter.js' );
 
 		const exporter = new DRACOExporter();
 
@@ -294,7 +294,7 @@ function MenubarFile( editor ) {
 
 		}
 
-		const { GLTFExporter } = await import( '@fourjs/core/addons/exporters/GLTFExporter.js' );
+		const { GLTFExporter } = await import( 'fourjs/addons/exporters/GLTFExporter.js' );
 
 		const exporter = new GLTFExporter();
 
@@ -334,7 +334,7 @@ function MenubarFile( editor ) {
 
 		}
 
-		const { GLTFExporter } = await import( '@fourjs/core/addons/exporters/GLTFExporter.js' );
+		const { GLTFExporter } = await import( 'fourjs/addons/exporters/GLTFExporter.js' );
 
 		const exporter = new GLTFExporter();
 
@@ -364,7 +364,7 @@ function MenubarFile( editor ) {
 
 		}
 
-		const { OBJExporter } = await import( '@fourjs/core/addons/exporters/OBJExporter.js' );
+		const { OBJExporter } = await import( 'fourjs/addons/exporters/OBJExporter.js' );
 
 		const exporter = new OBJExporter();
 
@@ -380,7 +380,7 @@ function MenubarFile( editor ) {
 	option.setTextContent( 'PLY' );
 	option.onClick( async function () {
 
-		const { PLYExporter } = await import( '@fourjs/core/addons/exporters/PLYExporter.js' );
+		const { PLYExporter } = await import( 'fourjs/addons/exporters/PLYExporter.js' );
 
 		const exporter = new PLYExporter();
 
@@ -400,7 +400,7 @@ function MenubarFile( editor ) {
 	option.setTextContent( 'PLY (BINARY)' );
 	option.onClick( async function () {
 
-		const { PLYExporter } = await import( '@fourjs/core/addons/exporters/PLYExporter.js' );
+		const { PLYExporter } = await import( 'fourjs/addons/exporters/PLYExporter.js' );
 
 		const exporter = new PLYExporter();
 
@@ -420,7 +420,7 @@ function MenubarFile( editor ) {
 	option.setTextContent( 'STL' );
 	option.onClick( async function () {
 
-		const { STLExporter } = await import( '@fourjs/core/addons/exporters/STLExporter.js' );
+		const { STLExporter } = await import( 'fourjs/addons/exporters/STLExporter.js' );
 
 		const exporter = new STLExporter();
 
@@ -436,7 +436,7 @@ function MenubarFile( editor ) {
 	option.setTextContent( 'STL (BINARY)' );
 	option.onClick( async function () {
 
-		const { STLExporter } = await import( '@fourjs/core/addons/exporters/STLExporter.js' );
+		const { STLExporter } = await import( 'fourjs/addons/exporters/STLExporter.js' );
 
 		const exporter = new STLExporter();
 
@@ -452,7 +452,7 @@ function MenubarFile( editor ) {
 	option.setTextContent( 'USDZ' );
 	option.onClick( async function () {
 
-		const { USDZExporter } = await import( '@fourjs/core/addons/exporters/USDZExporter.js' );
+		const { USDZExporter } = await import( 'fourjs/addons/exporters/USDZExporter.js' );
 
 		const exporter = new USDZExporter();
 

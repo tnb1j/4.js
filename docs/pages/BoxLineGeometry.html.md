@@ -18,7 +18,7 @@ scene.add( lines );
 BoxLineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BoxLineGeometry } from '@fourjs/core/addons/geometries/BoxLineGeometry.js';
+import { BoxLineGeometry } from 'fourjs/addons/geometries/BoxLineGeometry.js';
 ```
 
 ## Constructor

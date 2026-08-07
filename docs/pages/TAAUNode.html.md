@@ -18,7 +18,7 @@ Note: MSAA must be disabled when TAAU is in use.
 TAAUNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { taau } from '@fourjs/core/webgpu';
+import { taau } from 'fourjs/webgpu';
 ```
 
 ## Constructor

@@ -14,7 +14,7 @@ geometry = modifier.modify( geometry );
 TessellateModifier is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TessellateModifier } from '@fourjs/core/addons/modifiers/TessellateModifier.js';
+import { TessellateModifier } from 'fourjs/addons/modifiers/TessellateModifier.js';
 ```
 
 ## Constructor

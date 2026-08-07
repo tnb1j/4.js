@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
-			import { XRHandModelFactory } from '@fourjs/core/addons/webxr/XRHandModelFactory.js';
+			import * as FOUR from 'fourjs';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'fourjs/addons/webxr/XRHandModelFactory.js';
 
 			let container;
 			let camera, scene, renderer;

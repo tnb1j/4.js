@@ -20,7 +20,7 @@ lightShadowMapViewer.update();
 ShadowMapViewer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ShadowMapViewer } from '@fourjs/core/addons/utils/ShadowMapViewer.js';
+import { ShadowMapViewer } from 'fourjs/addons/utils/ShadowMapViewer.js';
 ```
 
 ## Constructor

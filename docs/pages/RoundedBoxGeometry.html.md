@@ -18,7 +18,7 @@ scene.add( cube );
 RoundedBoxGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RoundedBoxGeometry } from '@fourjs/core/addons/geometries/RoundedBoxGeometry.js';
+import { RoundedBoxGeometry } from 'fourjs/addons/geometries/RoundedBoxGeometry.js';
 ```
 
 ## Constructor

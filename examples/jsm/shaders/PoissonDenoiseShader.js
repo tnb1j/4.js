@@ -2,11 +2,11 @@ import {
 	Matrix4,
 	Vector2,
 	Vector3,
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module PoissonDenoiseShader
- * @four_import import { PoissonDenoiseShader } from '@fourjs/core/addons/shaders/PoissonDenoiseShader.js';
+ * @four_import import { PoissonDenoiseShader } from 'fourjs/addons/shaders/PoissonDenoiseShader.js';
  */
 
 /**

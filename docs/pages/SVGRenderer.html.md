@@ -20,7 +20,7 @@ There are, however, some important limitations:
 SVGRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SVGRenderer } from '@fourjs/core/addons/renderers/SVGRenderer.js';
+import { SVGRenderer } from 'fourjs/addons/renderers/SVGRenderer.js';
 ```
 
 ## Constructor

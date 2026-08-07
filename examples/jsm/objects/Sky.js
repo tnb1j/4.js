@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Represents a skydome for scene backgrounds. Based on [A Practical Analytic Model for Daylight](https://www.researchgate.net/publication/220720443_A_Practical_Analytic_Model_for_Daylight)
@@ -37,7 +37,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Sky } from '@fourjs/core/addons/objects/Sky.js';
+ * @four_import import { Sky } from 'fourjs/addons/objects/Sky.js';
  */
 class Sky extends Mesh {
 

@@ -14,9 +14,9 @@ import {
 	Vector3,
 	Vector4,
 	Node
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
-import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, reference, varyingProperty, materialReference, Fn } from '@fourjs/core/tsl';
+import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, reference, varyingProperty, materialReference, Fn } from 'fourjs/tsl';
 
 /**
  * Creates a simulated lens flare that tracks a light.
@@ -36,7 +36,7 @@ import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, referenc
  * ```
  *
  * @augments Mesh
- * @four_import import { LensflareMesh } from '@fourjs/core/addons/objects/LensflareMesh.js';
+ * @four_import import { LensflareMesh } from 'fourjs/addons/objects/LensflareMesh.js';
  */
 class LensflareMesh extends Mesh {
 

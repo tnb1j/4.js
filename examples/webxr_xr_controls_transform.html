@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { TransformControls } from '@fourjs/core/addons/controls/TransformControls.js';
-			import { XRButton } from '@fourjs/core/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
-			import { UnrealBloomPass } from '@fourjs/core/addons/postprocessing/UnrealBloomPass.js';
+			import * as FOUR from 'fourjs';
+			import { TransformControls } from 'fourjs/addons/controls/TransformControls.js';
+			import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
+			import { UnrealBloomPass } from 'fourjs/addons/postprocessing/UnrealBloomPass.js';
 
 			let container;
 			let camera, scene, renderer;

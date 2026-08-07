@@ -20,7 +20,7 @@ scene.add( object );
 TDSLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TDSLoader } from '@fourjs/core/addons/loaders/TDSLoader.js';
+import { TDSLoader } from 'fourjs/addons/loaders/TDSLoader.js';
 ```
 
 ## Constructor

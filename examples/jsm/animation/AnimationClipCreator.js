@@ -5,13 +5,13 @@ import {
 	NumberKeyframeTrack,
 	Vector3,
 	VectorKeyframeTrack
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A utility class with factory methods for creating basic animation clips.
  *
  * @hideconstructor
- * @four_import import { AnimationClipCreator } from '@fourjs/core/addons/animation/AnimationClipCreator.js';
+ * @four_import import { AnimationClipCreator } from 'fourjs/addons/animation/AnimationClipCreator.js';
  */
 class AnimationClipCreator {
 

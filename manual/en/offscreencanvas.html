@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -252,7 +252,7 @@ the split of our previous <code class="notranslate" translate="no">offscreencanv
 copy all of <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> to <code class="notranslate" translate="no">shared-cube.js</code>. Then
 we rename <code class="notranslate" translate="no">main</code> to <code class="notranslate" translate="no">init</code> since we already have a <code class="notranslate" translate="no">main</code> in our
 HTML file and we need to export <code class="notranslate" translate="no">init</code> and <code class="notranslate" translate="no">state</code></p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
 
 -const state = {
 +export const state = {
@@ -603,7 +603,7 @@ events and pass them on using events that have the same structure
 as the original DOM events so the OrbitControls won't be able to
 tell the difference.</p>
 <p>Here's the code for the worker part.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from '@fourjs/core';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from 'fourjs';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -677,8 +677,8 @@ self.onmessage = function(e) {
 };
 </pre>
 <p>In our shared 4.js code we need to import the <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> and set them up.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-+import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
++import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;

@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -248,8 +248,8 @@ pour la tête et d'un plan pour l'étiquette.</p>
 </pre>
 <p>Il ne reste plus qu'à ajouter des <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>
 afin de pouvoir déplacer la caméra.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-+import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
++import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default

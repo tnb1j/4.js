@@ -1,6 +1,6 @@
 import {
 	Vector4
-} from '@fourjs/core';
+} from 'fourjs';
 import * as NURBSUtils from '../curves/NURBSUtils.js';
 
 /**
@@ -8,7 +8,7 @@ import * as NURBSUtils from '../curves/NURBSUtils.js';
  *
  * Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weight`.
  *
- * @four_import import { NURBSSurface } from '@fourjs/core/addons/curves/NURBSSurface.js';
+ * @four_import import { NURBSSurface } from 'fourjs/addons/curves/NURBSSurface.js';
  */
 class NURBSSurface {
 

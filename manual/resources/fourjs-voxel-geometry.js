@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 import * as BufferGeometryUtils from '../../examples/jsm/utils/BufferGeometryUtils.js';
 import { threejsLessonUtils } from './fourjs-lesson-utils.js';
 

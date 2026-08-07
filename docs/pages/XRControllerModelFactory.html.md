@@ -18,7 +18,7 @@ scene.add( controllerGrip );
 XRControllerModelFactory is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
+import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
 ```
 
 ## Constructor

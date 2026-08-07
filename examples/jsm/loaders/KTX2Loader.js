@@ -44,7 +44,7 @@ import {
 	UnsignedInt5999Type,
 	UnsignedInt101111Type,
 	UnsignedShortType
-} from '@fourjs/core';
+} from 'fourjs';
 import { WorkerPool } from '../utils/WorkerPool.js';
 import {
 	read,
@@ -137,7 +137,7 @@ let _zstd;
  * ```
  *
  * @augments Loader
- * @four_import import { KTX2Loader } from '@fourjs/core/addons/loaders/KTX2Loader.js';
+ * @four_import import { KTX2Loader } from 'fourjs/addons/loaders/KTX2Loader.js';
  */
 class KTX2Loader extends Loader {
 

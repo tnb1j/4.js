@@ -9,7 +9,7 @@ The code is based on [Simplex noise demystified](https://web.archive.org/web/202
 SimplexNoise is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SimplexNoise } from '@fourjs/core/addons/math/SimplexNoise.js';
+import { SimplexNoise } from 'fourjs/addons/math/SimplexNoise.js';
 ```
 
 ## Constructor

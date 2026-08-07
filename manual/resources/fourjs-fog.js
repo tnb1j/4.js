@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 import { GLTFLoader } from '../../examples/jsm/loaders/GLTFLoader.js';
 import { threejsLessonUtils } from './fourjs-lesson-utils.js';
 

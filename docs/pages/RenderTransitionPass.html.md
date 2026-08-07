@@ -17,7 +17,7 @@ composer.addPass( renderTransitionPass );
 RenderTransitionPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RenderTransitionPass } from '@fourjs/core/addons/postprocessing/RenderTransitionPass.js';
+import { RenderTransitionPass } from 'fourjs/addons/postprocessing/RenderTransitionPass.js';
 ```
 
 ## Constructor

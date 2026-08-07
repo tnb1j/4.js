@@ -22,24 +22,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { WebGLNodesHandler } from '@fourjs/core/addons/tsl/WebGLNodesHandler.js';
-			import { WebGLRenderer } from '@fourjs/core';
+			import * as FOUR from 'fourjs/webgpu';
+			import { WebGLNodesHandler } from 'fourjs/addons/tsl/WebGLNodesHandler.js';
+			import { WebGLRenderer } from 'fourjs';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { HDRCubeTextureLoader } from '@fourjs/core/addons/loaders/HDRCubeTextureLoader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { HDRCubeTextureLoader } from 'fourjs/addons/loaders/HDRCubeTextureLoader.js';
 
-			import { FlakesTexture } from '@fourjs/core/addons/textures/FlakesTexture.js';
+			import { FlakesTexture } from 'fourjs/addons/textures/FlakesTexture.js';
 
 			let camera, scene, renderer;
 

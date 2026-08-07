@@ -16,7 +16,7 @@ const data = exporter.parse( scene );
 OBJExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OBJExporter } from '@fourjs/core/addons/exporters/OBJExporter.js';
+import { OBJExporter } from 'fourjs/addons/exporters/OBJExporter.js';
 ```
 
 ## Constructor

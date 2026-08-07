@@ -16,7 +16,7 @@ composer.addPass( fxaaPass );
 ShaderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ShaderPass } from '@fourjs/core/addons/postprocessing/ShaderPass.js';
+import { ShaderPass } from 'fourjs/addons/postprocessing/ShaderPass.js';
 ```
 
 ## Constructor

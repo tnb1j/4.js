@@ -5,7 +5,7 @@
 GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { getGroundProjectedNormal } from '@fourjs/core/addons/tsl/utils/GroundedSkybox.js';
+import { getGroundProjectedNormal } from 'fourjs/addons/tsl/utils/GroundedSkybox.js';
 ```
 
 ## Static Methods

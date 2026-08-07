@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 import { threejsLessonUtils } from './fourjs-lesson-utils.js';
 import { GUI } from '../../examples/jsm/libs/lil-gui.module.min.js';
 

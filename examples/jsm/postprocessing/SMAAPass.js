@@ -6,7 +6,7 @@ import {
 	Texture,
 	UniformsUtils,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SMAABlendShader, SMAAEdgesShader, SMAAWeightsShader } from '../shaders/SMAAShader.js';
 
@@ -20,7 +20,7 @@ import { SMAABlendShader, SMAAEdgesShader, SMAAWeightsShader } from '../shaders/
  * ```
  *
  * @augments Pass
- * @four_import import { SMAAPass } from '@fourjs/core/addons/postprocessing/SMAAPass.js';
+ * @four_import import { SMAAPass } from 'fourjs/addons/postprocessing/SMAAPass.js';
  */
 class SMAAPass extends Pass {
 

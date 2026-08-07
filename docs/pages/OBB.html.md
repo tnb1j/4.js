@@ -7,7 +7,7 @@ Represents an oriented bounding box (OBB) in 3D space.
 OBB is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OBB } from '@fourjs/core/addons/math/OBB.js';
+import { OBB } from 'fourjs/addons/math/OBB.js';
 ```
 
 ## Constructor

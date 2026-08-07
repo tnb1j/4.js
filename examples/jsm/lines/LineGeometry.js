@@ -17,7 +17,7 @@ import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
  * ```
  *
  * @augments LineSegmentsGeometry
- * @four_import import { LineLineGeometry2 } from '@fourjs/core/addons/lines/LineGeometry.js';
+ * @four_import import { LineLineGeometry2 } from 'fourjs/addons/lines/LineGeometry.js';
  */
 class LineGeometry extends LineSegmentsGeometry {
 

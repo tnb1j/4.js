@@ -12,7 +12,7 @@
 	<script type="importmap">
 		{
 		  "imports": {
-			"@fourjs/core": "../../build/4.module.js"
+			"fourjs": "../../build/4.module.js"
 		  }
 		}
 	</script>
@@ -37,8 +37,8 @@
 			<p>如果你打算真正进行 WebXR 开发，你还应该了解一下 <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">远程调试</a>，这样你就可以查看控制台警告、错误，当然也可以<a href="debugging-javascript.html">调试你的代码</a>。</p>
 			<p>如果你只是想看看下面的代码是否可运行，你可以直接在本网站运行它。</p>
 			<p>我们首先需要在引入 4.js 之后引入对 VR 的支持：</p>
-			<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-+import {VRButton} from '@fourjs/core/addons/webxr/VRButton.js';  // 引入 VR 按钮模块
+			<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
++import {VRButton} from 'fourjs/addons/webxr/VRButton.js';  // 引入 VR 按钮模块
 </pre>
 			<p>然后我们需要启用 4.js 的 WebXR 支持，并将 VR 按钮添加到页面中：</p>
 			<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {

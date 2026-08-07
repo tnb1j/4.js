@@ -5,7 +5,7 @@
 TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TriangleBlurShader } from '@fourjs/core/addons/shaders/TriangleBlurShader.js';
+import { TriangleBlurShader } from 'fourjs/addons/shaders/TriangleBlurShader.js';
 ```
 
 ## Properties
@@ -45,7 +45,7 @@ A basic blur filter, which convolves the image with a pyramid filter. The pyrami
 TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as ToonShader from '@fourjs/core/addons/shaders/ToonShader.js';
+import * as ToonShader from 'fourjs/addons/shaders/ToonShader.js';
 ```
 
 Collection of toon shaders.
@@ -87,7 +87,7 @@ A basic blur filter, which convolves the image with a pyramid filter. The pyrami
 TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TriangleBlurShader } from '@fourjs/core/addons/shaders/TriangleBlurShader.js';
+import { TriangleBlurShader } from 'fourjs/addons/shaders/TriangleBlurShader.js';
 ```
 
 ## Properties

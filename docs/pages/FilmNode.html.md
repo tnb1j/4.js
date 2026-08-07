@@ -9,7 +9,7 @@ Post processing node for creating a film grain effect.
 FilmNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { film } from '@fourjs/core/addons/tsl/display/FilmNode.js';
+import { film } from 'fourjs/addons/tsl/display/FilmNode.js';
 ```
 
 ## Constructor

@@ -1,10 +1,10 @@
-import { FileLoader, error } from '@fourjs/core';
+import { FileLoader, error } from 'fourjs';
 
-import * as FOUR from '@fourjs/core';
-import * as TSL from '@fourjs/core/tsl';
+import * as FOUR from 'fourjs';
+import * as TSL from 'fourjs/tsl';
 
 const _library = {
-	'@fourjs/core/tsl': { ...TSL }
+	'fourjs/tsl': { ...TSL }
 };
 
 const STORAGE_PREFIX = 'tsl-graph';

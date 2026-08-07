@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { TubePainter } from '@fourjs/core/addons/misc/TubePainter.js';
-			import { XRButton } from '@fourjs/core/addons/webxr/XRButton.js';
+			import * as FOUR from 'fourjs';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { TubePainter } from 'fourjs/addons/misc/TubePainter.js';
+			import { XRButton } from 'fourjs/addons/webxr/XRButton.js';
 
 			let camera, scene, renderer;
 			let controller1, controller2;

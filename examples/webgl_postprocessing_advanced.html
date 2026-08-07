@@ -20,36 +20,36 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-			import { ShaderPass } from '@fourjs/core/addons/postprocessing/ShaderPass.js';
-			import { BloomPass } from '@fourjs/core/addons/postprocessing/BloomPass.js';
-			import { FilmPass } from '@fourjs/core/addons/postprocessing/FilmPass.js';
-			import { DotScreenPass } from '@fourjs/core/addons/postprocessing/DotScreenPass.js';
-			import { MaskPass, ClearMaskPass } from '@fourjs/core/addons/postprocessing/MaskPass.js';
-			import { TexturePass } from '@fourjs/core/addons/postprocessing/TexturePass.js';
+			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+			import { ShaderPass } from 'fourjs/addons/postprocessing/ShaderPass.js';
+			import { BloomPass } from 'fourjs/addons/postprocessing/BloomPass.js';
+			import { FilmPass } from 'fourjs/addons/postprocessing/FilmPass.js';
+			import { DotScreenPass } from 'fourjs/addons/postprocessing/DotScreenPass.js';
+			import { MaskPass, ClearMaskPass } from 'fourjs/addons/postprocessing/MaskPass.js';
+			import { TexturePass } from 'fourjs/addons/postprocessing/TexturePass.js';
 
-			import { BleachBypassShader } from '@fourjs/core/addons/shaders/BleachBypassShader.js';
-			import { ColorifyShader } from '@fourjs/core/addons/shaders/ColorifyShader.js';
-			import { HorizontalBlurShader } from '@fourjs/core/addons/shaders/HorizontalBlurShader.js';
-			import { VerticalBlurShader } from '@fourjs/core/addons/shaders/VerticalBlurShader.js';
-			import { SepiaShader } from '@fourjs/core/addons/shaders/SepiaShader.js';
-			import { VignetteShader } from '@fourjs/core/addons/shaders/VignetteShader.js';
-			import { GammaCorrectionShader } from '@fourjs/core/addons/shaders/GammaCorrectionShader.js';
+			import { BleachBypassShader } from 'fourjs/addons/shaders/BleachBypassShader.js';
+			import { ColorifyShader } from 'fourjs/addons/shaders/ColorifyShader.js';
+			import { HorizontalBlurShader } from 'fourjs/addons/shaders/HorizontalBlurShader.js';
+			import { VerticalBlurShader } from 'fourjs/addons/shaders/VerticalBlurShader.js';
+			import { SepiaShader } from 'fourjs/addons/shaders/SepiaShader.js';
+			import { VignetteShader } from 'fourjs/addons/shaders/VignetteShader.js';
+			import { GammaCorrectionShader } from 'fourjs/addons/shaders/GammaCorrectionShader.js';
 
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
 			let container, stats;
 

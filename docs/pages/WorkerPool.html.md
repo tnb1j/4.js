@@ -7,7 +7,7 @@ A simple pool for managing Web Workers.
 WorkerPool is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { WorkerPool } from '@fourjs/core/addons/utils/WorkerPool.js';
+import { WorkerPool } from 'fourjs/addons/utils/WorkerPool.js';
 ```
 
 ## Constructor

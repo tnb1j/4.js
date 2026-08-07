@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -84,11 +84,11 @@ composer.addPass(bloomPass);
 composer.addPass(filmPass);
 </pre>
 <p>これらのクラスを使用するには、以下をインポートする必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from '@fourjs/core/addons/postprocessing/RenderPass.js';
-import {BloomPass} from '@fourjs/core/addons/postprocessing/BloomPass.js';
-import {FilmPass} from '@fourjs/core/addons/postprocessing/FilmPass.js';
-import {OutputPass} from '@fourjs/core/addons/postprocessing/OutputPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from 'fourjs/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'fourjs/addons/postprocessing/RenderPass.js';
+import {BloomPass} from 'fourjs/addons/postprocessing/BloomPass.js';
+import {FilmPass} from 'fourjs/addons/postprocessing/FilmPass.js';
+import {OutputPass} from 'fourjs/addons/postprocessing/OutputPass.js';
 </pre>
 <p>ほとんどのポストプロセスには <code class="notranslate" translate="no">EffectComposer.js</code> と <code class="notranslate" translate="no">RenderPass.js</code> が必須です。</p>
 <p>最後に <a href="/docs/#api/ja/renderers/WebGLRenderer.render"><code class="notranslate" translate="no">WebGLRenderer.render</code></a> の代わりに <code class="notranslate" translate="no">EffectComposer.render</code> を使用し、<code class="notranslate" translate="no">EffectComposer</code> にキャンバスのサイズを合わせます。</p>
@@ -145,7 +145,7 @@ this.uniforms.grayscale.value = grayscale;
 </pre>
 <p>これでどのように設定するか、かなり明確になりました。</p>
 <p>これらの値を設定する簡単なGUIを作ってみましょう。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>そして</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();

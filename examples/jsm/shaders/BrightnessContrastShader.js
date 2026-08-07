@@ -1,6 +1,6 @@
 /**
  * @module BrightnessContrastShader
- * @four_import import { BrightnessContrastShader } from '@fourjs/core/addons/shaders/BrightnessContrastShader.js';
+ * @four_import import { BrightnessContrastShader } from 'fourjs/addons/shaders/BrightnessContrastShader.js';
  */
 
 /**

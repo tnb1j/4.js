@@ -1,5 +1,5 @@
-import { HalfFloatType, Vector2, RenderTarget, RendererUtils, QuadMesh, NodeMaterial, TempNode, NodeUpdateType, Matrix4, DepthTexture, FloatType } from '@fourjs/core/webgpu';
-import { add, float, If, Fn, max, texture, uniform, uv, vec2, vec4, luminance, convertToTexture, passTexture, velocity, getViewPosition, viewZToPerspectiveDepth, struct, ivec2, mix, logarithmicDepthToViewZ, viewZToOrthographicDepth } from '@fourjs/core/tsl';
+import { HalfFloatType, Vector2, RenderTarget, RendererUtils, QuadMesh, NodeMaterial, TempNode, NodeUpdateType, Matrix4, DepthTexture, FloatType } from 'fourjs/webgpu';
+import { add, float, If, Fn, max, texture, uniform, uv, vec2, vec4, luminance, convertToTexture, passTexture, velocity, getViewPosition, viewZToPerspectiveDepth, struct, ivec2, mix, logarithmicDepthToViewZ, viewZToOrthographicDepth } from 'fourjs/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -17,7 +17,7 @@ let _rendererState;
  * Note: MSAA must be disabled when TRAA is in use.
  *
  * @augments TempNode
- * @four_import import { traa } from '@fourjs/core/addons/tsl/display/TRAANode.js';
+ * @four_import import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
  */
 class TRAANode extends TempNode {
 

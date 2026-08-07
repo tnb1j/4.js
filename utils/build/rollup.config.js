@@ -48,7 +48,7 @@ function packageImports( webgpuSpecifier ) {
 
 			const replacement = `from '${webgpuSpecifier}'`;
 			const sources = [
-				'from \'@fourjs/core/webgpu\'',
+				'from \'fourjs/webgpu\'',
 				'from \'three/webgpu\''
 			];
 			const source = sources.find( ( candidate ) => code.includes( candidate ) );
@@ -259,7 +259,7 @@ function createBuilds( identity ) {
 
 function createLegacyPackageTSLBuild() {
 
-	const webgpuSpecifier = '@fourjs/core/legacy/webgpu';
+	const webgpuSpecifier = 'fourjs/legacy/webgpu';
 
 	return {
 		input: {

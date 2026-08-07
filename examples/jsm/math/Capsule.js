@@ -1,6 +1,6 @@
 import {
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A capsule is essentially a cylinder with hemispherical caps at both ends.
@@ -8,7 +8,7 @@ import {
  *
  * Capsules are often used as bounding volumes (next to AABBs and bounding spheres).
  *
- * @four_import import { Capsule } from '@fourjs/core/addons/math/Capsule.js';
+ * @four_import import { Capsule } from 'fourjs/addons/math/Capsule.js';
  */
 class Capsule {
 

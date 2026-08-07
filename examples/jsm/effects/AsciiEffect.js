@@ -3,7 +3,7 @@
  *
  * The ASCII generation is based on [jsascii](https://github.com/hassadee/jsascii/blob/master/jsascii.js).
  *
- * @four_import import { AsciiEffect } from '@fourjs/core/addons/effects/AsciiEffect.js';
+ * @four_import import { AsciiEffect } from 'fourjs/addons/effects/AsciiEffect.js';
  */
 class AsciiEffect {
 

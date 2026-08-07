@@ -1,4 +1,4 @@
-import { Fn, float, length, smoothstep, uv } from '@fourjs/core/tsl';
+import { Fn, float, length, smoothstep, uv } from 'fourjs/tsl';
 
 /**
  * Returns a radial gradient from center (white) to edges (black).

@@ -6,7 +6,7 @@ import {
 	Triangle,
 	Vector3,
 	Layers
-} from '@fourjs/core';
+} from 'fourjs';
 import { Capsule } from '../math/Capsule.js';
 
 
@@ -99,7 +99,7 @@ function lineToLineClosestPoints( line1, line2, target1 = null, target2 = null )
  * const result = octree.capsuleIntersect( playerCollider ); // collision detection
  * ```
  *
- * @four_import import { Octree } from '@fourjs/core/addons/math/Octree.js';
+ * @four_import import { Octree } from 'fourjs/addons/math/Octree.js';
  */
 class Octree {
 

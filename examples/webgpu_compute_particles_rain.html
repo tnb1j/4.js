@@ -22,24 +22,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { Fn, texture, uv, uint, instancedArray, positionWorld, billboarding, time, hash, deltaTime, vec2, instanceIndex, positionGeometry, If } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { Fn, texture, uv, uint, instancedArray, positionWorld, billboarding, time, hash, deltaTime, vec2, instanceIndex, positionGeometry, If } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import * as BufferGeometryUtils from '@fourjs/core/addons/utils/BufferGeometryUtils.js';
+			import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
 
 			const maxParticleCount = 50000;
 			const instanceCount = maxParticleCount / 2;

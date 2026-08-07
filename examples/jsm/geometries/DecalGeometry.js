@@ -6,7 +6,7 @@ import {
 	Matrix4,
 	Mesh,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * This class can be used to create a decal mesh that serves different kinds of purposes e.g.
@@ -25,7 +25,7 @@ import {
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { DecalGeometry } from '@fourjs/core/addons/geometries/DecalGeometry.js';
+ * @four_import import { DecalGeometry } from 'fourjs/addons/geometries/DecalGeometry.js';
  */
 class DecalGeometry extends BufferGeometry {
 

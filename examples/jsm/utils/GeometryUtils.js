@@ -1,8 +1,8 @@
-import { Vector3 } from '@fourjs/core';
+import { Vector3 } from 'fourjs';
 
 /**
  * @module GeometryUtils
- * @four_import import * as GeometryUtils from '@fourjs/core/addons/utils/GeometryUtils.js';
+ * @four_import import * as GeometryUtils from 'fourjs/addons/utils/GeometryUtils.js';
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
  * @module BokehShader
- * @four_import import { BokehShader } from '@fourjs/core/addons/shaders/BokehShader.js';
+ * @four_import import { BokehShader } from 'fourjs/addons/shaders/BokehShader.js';
  */
 
 /**

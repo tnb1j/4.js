@@ -19,16 +19,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+			import * as FOUR from 'fourjs';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
 
 			let camera, scene, renderer, sphere, timer;
 

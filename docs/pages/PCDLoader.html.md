@@ -27,7 +27,7 @@ scene.add( points );
 PCDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PCDLoader } from '@fourjs/core/addons/loaders/PCDLoader.js';
+import { PCDLoader } from 'fourjs/addons/loaders/PCDLoader.js';
 ```
 
 ## Constructor

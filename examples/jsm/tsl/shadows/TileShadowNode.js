@@ -12,9 +12,9 @@ import {
 	VSMShadowMap,
 	RendererUtils,
 	Quaternion
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
-import { min, Fn, shadow, NodeUpdateType, getShadowMaterial, getShadowRenderObjectFunction } from '@fourjs/core/tsl';
+import { min, Fn, shadow, NodeUpdateType, getShadowMaterial, getShadowRenderObjectFunction } from 'fourjs/tsl';
 
 const { resetRendererAndSceneState, restoreRendererAndSceneState } = RendererUtils;
 let _rendererState;
@@ -45,7 +45,7 @@ class LwLight extends Object3D {
  *
  * @class
  * @augments ShadowBaseNode
- * @four_import import { TileShadowNode } from '@fourjs/core/addons/tsl/shadows/TileShadowNode.js';
+ * @four_import import { TileShadowNode } from 'fourjs/addons/tsl/shadows/TileShadowNode.js';
  */
 class TileShadowNode extends ShadowBaseNode {
 

@@ -18,7 +18,7 @@ composer.addPass( outputPass );
 OutputPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
 ```
 
 ## Constructor

@@ -11,7 +11,7 @@ import {
 	Vector4,
 	WebGLRenderTarget,
 	HalfFloatType
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Can be used to create a flat, refractive surface like for special
@@ -33,7 +33,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Refractor } from '@fourjs/core/addons/objects/Refractor.js';
+ * @four_import import { Refractor } from 'fourjs/addons/objects/Refractor.js';
  */
 class Refractor extends Mesh {
 

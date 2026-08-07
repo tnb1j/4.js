@@ -1,5 +1,5 @@
-import * as FOUR from '@fourjs/core';
-import * as TSL from '@fourjs/core/tsl';
+import * as FOUR from 'fourjs';
+import * as TSL from 'fourjs/tsl';
 
 // some helpers below are ported from Blender and converted to TSL
 

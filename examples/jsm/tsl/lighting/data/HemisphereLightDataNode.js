@@ -1,5 +1,5 @@
-import { Color, Node, Vector3 } from '@fourjs/core/webgpu';
-import { Loop, NodeUpdateType, mix, normalWorld, renderGroup, uniform, uniformArray } from '@fourjs/core/tsl';
+import { Color, Node, Vector3 } from 'fourjs/webgpu';
+import { Loop, NodeUpdateType, mix, normalWorld, renderGroup, uniform, uniformArray } from 'fourjs/tsl';
 
 const warn = ( message ) => {
 

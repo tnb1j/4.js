@@ -1,7 +1,7 @@
 import {
 	StereoCamera,
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A class that creates an stereo effect.
@@ -9,7 +9,7 @@ import {
  * Note that this class can only be used with {@link WebGLRenderer}.
  * When using {@link WebGPURenderer}, use {@link StereoPassNode}.
  *
- * @four_import import { StereoEffect } from '@fourjs/core/addons/effects/StereoEffect.js';
+ * @four_import import { StereoEffect } from 'fourjs/addons/effects/StereoEffect.js';
  */
 class StereoEffect {
 

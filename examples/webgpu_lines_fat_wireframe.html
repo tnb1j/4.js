@@ -28,24 +28,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { color } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { color } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { Wireframe } from '@fourjs/core/addons/lines/webgpu/Wireframe.js';
-			import { WireframeGeometry2 } from '@fourjs/core/addons/lines/WireframeGeometry2.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { Wireframe } from 'fourjs/addons/lines/webgpu/Wireframe.js';
+			import { WireframeGeometry2 } from 'fourjs/addons/lines/WireframeGeometry2.js';
 
 			let wireframe, renderer, scene, camera, camera2, controls, backgroundNode;
 			let wireframe1;

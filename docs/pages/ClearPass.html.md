@@ -16,7 +16,7 @@ composer.addPass( clearPass );
 ClearPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ClearPass } from '@fourjs/core/addons/postprocessing/ClearPass.js';
+import { ClearPass } from 'fourjs/addons/postprocessing/ClearPass.js';
 ```
 
 ## Constructor

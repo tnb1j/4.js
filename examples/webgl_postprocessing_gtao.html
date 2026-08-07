@@ -25,25 +25,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
-			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-			import { GTAOPass } from '@fourjs/core/addons/postprocessing/GTAOPass.js';
-			import { OutputPass } from '@fourjs/core/addons/postprocessing/OutputPass.js';
+			import * as FOUR from 'fourjs';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+			import { GTAOPass } from 'fourjs/addons/postprocessing/GTAOPass.js';
+			import { OutputPass } from 'fourjs/addons/postprocessing/OutputPass.js';
 
 			let camera, scene, renderer, composer, controls, timer, stats, mixer;
 

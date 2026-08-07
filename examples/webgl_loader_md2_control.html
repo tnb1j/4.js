@@ -27,21 +27,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { MD2CharacterComplex } from '@fourjs/core/addons/misc/MD2CharacterComplex.js';
-			import { Gyroscope } from '@fourjs/core/addons/misc/Gyroscope.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { MD2CharacterComplex } from 'fourjs/addons/misc/MD2CharacterComplex.js';
+			import { Gyroscope } from 'fourjs/addons/misc/Gyroscope.js';
 
 			let SCREEN_WIDTH = window.innerWidth;
 			let SCREEN_HEIGHT = window.innerHeight;

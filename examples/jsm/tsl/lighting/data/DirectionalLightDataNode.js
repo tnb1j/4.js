@@ -1,5 +1,5 @@
-import { Color, Node, Vector3 } from '@fourjs/core/webgpu';
-import { Loop, NodeUpdateType, renderGroup, uniform, uniformArray, vec3 } from '@fourjs/core/tsl';
+import { Color, Node, Vector3 } from 'fourjs/webgpu';
+import { Loop, NodeUpdateType, renderGroup, uniform, uniformArray, vec3 } from 'fourjs/tsl';
 
 const _lightPosition = /*@__PURE__*/ new Vector3();
 const _targetPosition = /*@__PURE__*/ new Vector3();

@@ -1,6 +1,6 @@
 import {
 	CompressedTextureLoader
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the KTX texture compression format.
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { KTXLoader } from '@fourjs/core/addons/loaders/KTXLoader.js';
+ * @four_import import { KTXLoader } from 'fourjs/addons/loaders/KTXLoader.js';
  */
 class KTXLoader extends CompressedTextureLoader {
 

@@ -1,6 +1,6 @@
 import {
 	Color
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass } from './Pass.js';
 
 /**
@@ -13,7 +13,7 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { ClearPass } from '@fourjs/core/addons/postprocessing/ClearPass.js';
+ * @four_import import { ClearPass } from 'fourjs/addons/postprocessing/ClearPass.js';
  */
 class ClearPass extends Pass {
 

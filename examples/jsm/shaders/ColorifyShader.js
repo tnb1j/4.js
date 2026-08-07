@@ -1,10 +1,10 @@
 import {
 	Color
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module ColorifyShader
- * @four_import import { ColorifyShader } from '@fourjs/core/addons/shaders/ColorifyShader.js';
+ * @four_import import { ColorifyShader } from 'fourjs/addons/shaders/ColorifyShader.js';
  */
 
 /**

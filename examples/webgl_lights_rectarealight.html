@@ -18,21 +18,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RectAreaLightHelper } from '@fourjs/core/addons/helpers/RectAreaLightHelper.js';
-			import { RectAreaLightUniformsLib } from '@fourjs/core/addons/lights/RectAreaLightUniformsLib.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RectAreaLightHelper } from 'fourjs/addons/helpers/RectAreaLightHelper.js';
+			import { RectAreaLightUniformsLib } from 'fourjs/addons/lights/RectAreaLightUniformsLib.js';
 
 			let renderer, scene, camera;
 			let rectLight1, rectLight2, rectLight3;

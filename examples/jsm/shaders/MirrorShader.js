@@ -1,6 +1,6 @@
 /**
  * @module MirrorShader
- * @four_import import { MirrorShader } from '@fourjs/core/addons/shaders/MirrorShader.js';
+ * @four_import import { MirrorShader } from 'fourjs/addons/shaders/MirrorShader.js';
  */
 
 /**

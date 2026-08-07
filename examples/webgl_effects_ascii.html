@@ -15,18 +15,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { AsciiEffect } from '@fourjs/core/addons/effects/AsciiEffect.js';
-			import { TrackballControls } from '@fourjs/core/addons/controls/TrackballControls.js';
+			import { AsciiEffect } from 'fourjs/addons/effects/AsciiEffect.js';
+			import { TrackballControls } from 'fourjs/addons/controls/TrackballControls.js';
 
 			let camera, controls, scene, renderer, effect;
 

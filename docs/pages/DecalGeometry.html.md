@@ -22,7 +22,7 @@ scene.add( mesh );
 DecalGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DecalGeometry } from '@fourjs/core/addons/geometries/DecalGeometry.js';
+import { DecalGeometry } from 'fourjs/addons/geometries/DecalGeometry.js';
 ```
 
 ## Constructor

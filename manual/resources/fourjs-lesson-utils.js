@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 import { OrbitControls } from '../../examples/jsm/controls/OrbitControls.js';
 
 export const threejsLessonUtils = {

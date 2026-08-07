@@ -4,7 +4,7 @@ import {
 	ShapeUtils,
 	Vector2,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _vector = /*@__PURE__*/ new Vector3();
 
@@ -50,7 +50,7 @@ const _vector = /*@__PURE__*/ new Vector3();
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { LoftGeometry } from '@fourjs/core/addons/geometries/LoftGeometry.js';
+ * @four_import import { LoftGeometry } from 'fourjs/addons/geometries/LoftGeometry.js';
  */
 class LoftGeometry extends BufferGeometry {
 

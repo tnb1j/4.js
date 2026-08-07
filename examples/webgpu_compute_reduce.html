@@ -181,22 +181,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { instancedArray, Loop, If, vec3, dot, clamp, storage, uvec4, subgroupAdd, uniform, uv, uint, float, Fn, vec2, invocationLocalIndex, invocationSubgroupIndex, uvec2, floor, instanceIndex, workgroupId, workgroupBarrier, workgroupArray, subgroupSize, select, countTrailingZeros } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { instancedArray, Loop, If, vec3, dot, clamp, storage, uvec4, subgroupAdd, uniform, uv, uint, float, Fn, vec2, invocationLocalIndex, invocationSubgroupIndex, uvec2, floor, instanceIndex, workgroupId, workgroupBarrier, workgroupArray, subgroupSize, select, countTrailingZeros } from 'fourjs/tsl';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 			const timestamps = {
 				left_side_display: document.getElementById( 'left_side_display' ),

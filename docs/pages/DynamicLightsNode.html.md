@@ -11,7 +11,7 @@ Unsupported lights, node lights, shadow-casting lights, and projected spot light
 DynamicLightsNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { DynamicLightsNode } from '@fourjs/core/addons/tsl/lighting/DynamicLightsNode.js';
+import { DynamicLightsNode } from 'fourjs/addons/tsl/lighting/DynamicLightsNode.js';
 ```
 
 ## Constructor

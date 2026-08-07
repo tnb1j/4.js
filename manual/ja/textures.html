@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -442,7 +442,7 @@ const material = new FOUR.MeshBasicMaterial({
 });
 </pre>
 <p>ここでも、簡単なインターフェースを提供するために<a href="https://github.com/georgealways/lil-gui">lil-gui</a>を使います。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>以前のlil-guiの例でしたように、lil-guiに度数で操作できるオブジェクトを与え、
 ラジアン単位でプロパティを設定する簡単なクラスを使います。</p>

@@ -5,7 +5,7 @@
 ParametricFunctions is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as ParametricFunctions from '@fourjs/core/addons/geometries/ParametricFunctions.js';
+import * as ParametricFunctions from 'fourjs/addons/geometries/ParametricFunctions.js';
 ```
 
 ## Methods

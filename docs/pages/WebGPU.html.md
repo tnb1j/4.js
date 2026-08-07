@@ -7,7 +7,7 @@ A utility module with basic WebGPU capability testing.
 WebGPU is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 ```
 
 ## Static Methods

@@ -15,7 +15,7 @@ RectAreaLightUniformsLib.init();
 RectAreaLightUniformsLib is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RectAreaLightUniformsLib } from '@fourjs/core/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightUniformsLib } from 'fourjs/addons/lights/RectAreaLightUniformsLib.js';
 ```
 
 ## Static Methods

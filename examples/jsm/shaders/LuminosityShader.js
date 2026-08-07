@@ -1,6 +1,6 @@
 /**
  * @module LuminosityShader
- * @four_import import { LuminosityShader } from '@fourjs/core/addons/shaders/LuminosityShader.js';
+ * @four_import import { LuminosityShader } from 'fourjs/addons/shaders/LuminosityShader.js';
  */
 
 /**

@@ -1,4 +1,4 @@
-import { TSL } from '@fourjs/core/webgpu';
+import { TSL } from 'fourjs/webgpu';
 
 export const BRDF_GGX = TSL.BRDF_GGX;
 export const BRDF_Lambert = TSL.BRDF_Lambert;

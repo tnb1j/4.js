@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -393,7 +393,7 @@ function render(time) {
 <p></p>
 <h2 id="-">给每个元素增加控制器</h2>
 <p>当需要交互时，我们需要为每个场景分别添加交互控件，如<code class="notranslate" translate="no">TrackballControls</code>。首先，需要引入该控件。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from '@fourjs/core/addons/controls/TrackballControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from 'fourjs/addons/controls/TrackballControls.js';
 </pre>
 <p>接着给每个元素增加控制器：</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {

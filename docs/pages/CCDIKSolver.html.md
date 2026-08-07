@@ -9,7 +9,7 @@ This class solves the Inverse Kinematics Problem with a [CCD Algorithm](https://
 CCDIKSolver is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CCDIKSolver } from '@fourjs/core/addons/animation/CCDIKSolver.js';
+import { CCDIKSolver } from 'fourjs/addons/animation/CCDIKSolver.js';
 ```
 
 ## Constructor

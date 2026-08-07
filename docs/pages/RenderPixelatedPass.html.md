@@ -16,7 +16,7 @@ composer.addPass( renderPixelatedPass );
 RenderPixelatedPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RenderPixelatedPass } from '@fourjs/core/addons/postprocessing/RenderPixelatedPass.js';
+import { RenderPixelatedPass } from 'fourjs/addons/postprocessing/RenderPixelatedPass.js';
 ```
 
 ## Constructor

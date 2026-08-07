@@ -12,7 +12,7 @@ import {
 	Mesh,
 	MeshPhongMaterial,
 	TextureLoader
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the 3DS format, based on lib3ds.
@@ -26,7 +26,7 @@ import {
  * scene.add( object );
  *
  * @augments Loader
- * @four_import import { TDSLoader } from '@fourjs/core/addons/loaders/TDSLoader.js';
+ * @four_import import { TDSLoader } from 'fourjs/addons/loaders/TDSLoader.js';
  */
 class TDSLoader extends Loader {
 

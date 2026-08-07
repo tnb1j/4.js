@@ -1,6 +1,6 @@
 import { UIPanel } from './libs/ui.js';
 
-import { ViewHelper as ViewHelperBase } from '@fourjs/core/addons/helpers/ViewHelper.js';
+import { ViewHelper as ViewHelperBase } from 'fourjs/addons/helpers/ViewHelper.js';
 
 class ViewHelper extends ViewHelperBase {
 

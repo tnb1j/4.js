@@ -4,9 +4,9 @@ import {
 	InstancedMesh,
 	MeshStandardNodeMaterial,
 	Shape
-} from '@fourjs/core/webgpu';
+} from 'fourjs/webgpu';
 
-import { cameraPosition, color, float, floor, Fn, fract, fwidth, If, mix, mx_noise_float, normalView, normalWorldGeometry, positionView, positionWorld, sin, smoothstep } from '@fourjs/core/tsl';
+import { cameraPosition, color, float, floor, Fn, fract, fwidth, If, mix, mx_noise_float, normalView, normalWorldGeometry, positionView, positionWorld, sin, smoothstep } from 'fourjs/tsl';
 
 /**
  * Generates the raised sidewalk for a city's blocks: per block, a rounded-corner concrete

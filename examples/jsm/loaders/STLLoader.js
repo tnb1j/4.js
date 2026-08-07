@@ -7,7 +7,7 @@ import {
 	Loader,
 	Vector3,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the STL format, as created by Solidworks and other CAD programs.
@@ -49,7 +49,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { STLLoader } from '@fourjs/core/addons/loaders/STLLoader.js';
+ * @four_import import { STLLoader } from 'fourjs/addons/loaders/STLLoader.js';
  */
 class STLLoader extends Loader {
 

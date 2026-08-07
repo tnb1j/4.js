@@ -5,7 +5,7 @@ import {
 	Quaternion,
 	Vector2,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Fires when the camera has been transformed by the controls.
@@ -51,7 +51,7 @@ const _moveDirection = new Vector3();
  * to stay "right side up".
  *
  * @augments Controls
- * @four_import import { TrackballControls } from '@fourjs/core/addons/controls/TrackballControls.js';
+ * @four_import import { TrackballControls } from 'fourjs/addons/controls/TrackballControls.js';
  */
 class TrackballControls extends Controls {
 

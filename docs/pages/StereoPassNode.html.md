@@ -9,7 +9,7 @@ A special render pass node that renders the scene as a stereoscopic image.
 StereoPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { stereoPass } from '@fourjs/core/addons/tsl/display/StereoPassNode.js';
+import { stereoPass } from 'fourjs/addons/tsl/display/StereoPassNode.js';
 ```
 
 ## Constructor

@@ -1,5 +1,5 @@
-import { Box3, Vector3 } from '@fourjs/core';
-import { clone } from '@fourjs/core/addons/utils/SkeletonUtils.js';
+import { Box3, Vector3 } from 'fourjs';
+import { clone } from 'fourjs/addons/utils/SkeletonUtils.js';
 
 import { UIPanel, UIRow, UIHorizontalRule, UIText } from './libs/ui.js';
 

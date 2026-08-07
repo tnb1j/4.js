@@ -17,7 +17,7 @@ composer.addPass( outlinePass );
 OutlinePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { OutlinePass } from '@fourjs/core/addons/postprocessing/OutlinePass.js';
+import { OutlinePass } from 'fourjs/addons/postprocessing/OutlinePass.js';
 ```
 
 ## Constructor

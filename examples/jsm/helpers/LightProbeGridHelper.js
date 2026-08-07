@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	SphereGeometry,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Visualizes an {@link LightProbeGrid} by rendering a sphere at each
@@ -19,7 +19,7 @@ import {
  * ```
  *
  * @augments InstancedMesh
- * @four_import import { LightProbeGridHelper } from '@fourjs/core/addons/helpers/LightProbeGridHelper.js';
+ * @four_import import { LightProbeGridHelper } from 'fourjs/addons/helpers/LightProbeGridHelper.js';
  */
 class LightProbeGridHelper extends InstancedMesh {
 

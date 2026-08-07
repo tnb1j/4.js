@@ -5,7 +5,7 @@
 SkeletonUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as SkeletonUtils from '@fourjs/core/addons/utils/SkeletonUtils.js';
+import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
 ```
 
 ## Methods

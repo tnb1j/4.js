@@ -1,4 +1,4 @@
-import { Fn, float, uv, Loop, int } from '@fourjs/core/tsl';
+import { Fn, float, uv, Loop, int } from 'fourjs/tsl';
 
 /**
  * Applies a motion blur effect to the given input node.

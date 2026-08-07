@@ -24,21 +24,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { pass, renderOutput } from '@fourjs/core/tsl';
-			import { fxaa } from '@fourjs/core/addons/tsl/display/FXAANode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { pass, renderOutput } from 'fourjs/tsl';
+			import { fxaa } from 'fourjs/addons/tsl/display/FXAANode.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			const params = {
 				enabled: true,

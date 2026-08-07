@@ -2,11 +2,11 @@ import {
 	UniformsLib,
 	UniformsUtils,
 	Matrix4
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module VelocityShader
- * @four_import import { VelocityShader } from '@fourjs/core/addons/shaders/VelocityShader.js';
+ * @four_import import { VelocityShader } from 'fourjs/addons/shaders/VelocityShader.js';
  */
 
 /**

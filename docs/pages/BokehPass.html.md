@@ -20,7 +20,7 @@ composer.addPass( bokehPass );
 BokehPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BokehPass } from '@fourjs/core/addons/postprocessing/BokehPass.js';
+import { BokehPass } from 'fourjs/addons/postprocessing/BokehPass.js';
 ```
 
 ## Constructor

@@ -16,7 +16,7 @@ composer.addPass( afterimagePass );
 AfterimagePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AfterimagePass } from '@fourjs/core/addons/postprocessing/AfterimagePass.js';
+import { AfterimagePass } from 'fourjs/addons/postprocessing/AfterimagePass.js';
 ```
 
 ## Constructor

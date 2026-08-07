@@ -5,14 +5,14 @@ import {
 	LineSegments,
 	Matrix3,
 	Mesh
-} from '@fourjs/core';
+} from 'fourjs';
 
 import { mergeGeometries } from './BufferGeometryUtils.js';
 
 /**
  * Utility class for LDraw models.
  *
- * @four_import import { LDrawUtils } from '@fourjs/core/addons/utils/LDrawUtils.js';
+ * @four_import import { LDrawUtils } from 'fourjs/addons/utils/LDrawUtils.js';
  */
 class LDrawUtils {
 

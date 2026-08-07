@@ -4,7 +4,7 @@ import {
 	RGBA_PVRTC_4BPPV1_Format,
 	RGB_PVRTC_2BPPV1_Format,
 	RGB_PVRTC_4BPPV1_Format
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the PVRTC texture compression format.
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { PVRLoader } from '@fourjs/core/addons/loaders/PVRLoader.js';
+ * @four_import import { PVRLoader } from 'fourjs/addons/loaders/PVRLoader.js';
  */
 class PVRLoader extends CompressedTextureLoader {
 

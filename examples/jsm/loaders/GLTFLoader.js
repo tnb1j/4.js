@@ -64,7 +64,7 @@ import {
 	VectorKeyframeTrack,
 	SRGBColorSpace,
 	InstancedBufferAttribute
-} from '@fourjs/core';
+} from 'fourjs';
 import { toTrianglesDrawMode } from '../utils/BufferGeometryUtils.js';
 import { clone } from '../utils/SkeletonUtils.js';
 
@@ -123,7 +123,7 @@ import { clone } from '../utils/SkeletonUtils.js';
  * ```
  *
  * @augments Loader
- * @four_import import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+ * @four_import import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
  */
 class GLTFLoader extends Loader {
 

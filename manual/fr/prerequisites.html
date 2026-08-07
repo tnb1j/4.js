@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -43,15 +43,15 @@ ou en ligne via une balise <code class="notranslate" translate="no">&lt;script t
 &lt;script type="importmap"&gt;
 {
   "imports": {
-    "@fourjs/core": "./path/to/4.module.js",
-    "@fourjs/core/addons/": "./different/path/to/examples/jsm/"
+    "fourjs": "./path/to/4.module.js",
+    "fourjs/addons/": "./different/path/to/examples/jsm/"
   }
 }
 &lt;/script&gt;
 
 &lt;script type="module"&gt;
-import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
+import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
 
 ...
 

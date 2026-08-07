@@ -151,18 +151,18 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-import * as SkeletonUtils from '@fourjs/core/addons/utils/SkeletonUtils.js';
-import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+import * as FOUR from 'fourjs';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
+import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 function main() {
 

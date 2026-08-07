@@ -22,18 +22,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { ThreeMFLoader } from '@fourjs/core/addons/loaders/3MFLoader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { ThreeMFLoader } from 'fourjs/addons/loaders/3MFLoader.js';
 
 			let camera, scene, renderer;
 

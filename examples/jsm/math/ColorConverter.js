@@ -1,4 +1,4 @@
-import { MathUtils } from '@fourjs/core';
+import { MathUtils } from 'fourjs';
 
 const _hsl = {};
 
@@ -6,7 +6,7 @@ const _hsl = {};
  * A utility class with helper functions for color conversion.
  *
  * @hideconstructor
- * @four_import import { ColorConverter } from '@fourjs/core/addons/math/ColorConverter.js';
+ * @four_import import { ColorConverter } from 'fourjs/addons/math/ColorConverter.js';
  */
 class ColorConverter {
 

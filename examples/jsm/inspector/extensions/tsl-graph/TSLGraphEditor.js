@@ -1,5 +1,5 @@
-import { Raycaster, Vector2, BoxHelper, error, warn } from '@fourjs/core/webgpu';
-import { Extension } from '@fourjs/core/addons/inspector/Extension.js';
+import { Raycaster, Vector2, BoxHelper, error, warn } from 'fourjs/webgpu';
+import { Extension } from 'fourjs/addons/inspector/Extension.js';
 import { TSLGraphLoader } from './TSLGraphLoader.js';
 
 const HOST_SOURCE = 'tsl-graph-host';

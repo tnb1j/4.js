@@ -13,24 +13,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
 
-			import { ssaaPass } from '@fourjs/core/addons/tsl/display/SSAAPassNode.js';
+			import { ssaaPass } from 'fourjs/addons/tsl/display/SSAAPassNode.js';
 
 			let camera, scene, renderer, controls, mesh, material, renderPipeline;
 

@@ -32,7 +32,7 @@ scene.add( mesh );
 LoftGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LoftGeometry } from '@fourjs/core/addons/geometries/LoftGeometry.js';
+import { LoftGeometry } from 'fourjs/addons/geometries/LoftGeometry.js';
 ```
 
 ## Constructor

@@ -17,7 +17,7 @@ import {
 	WebGL3DRenderTarget,
 	WebGLCubeRenderTarget,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 
 // Shared fullscreen-quad scene / camera
 let _scene = null;
@@ -78,7 +78,7 @@ const ATLAS_PADDING = 1;
  * Baking is fully GPU-resident: cubemap rendering, SH projection, and
  * texture packing all happen on the GPU with zero CPU readback.
  *
- * @four_import import { LightProbeGrid } from '@fourjs/core/addons/lighting/LightProbeGrid.js';
+ * @four_import import { LightProbeGrid } from 'fourjs/addons/lighting/LightProbeGrid.js';
  */
 class LightProbeGrid extends Object3D {
 

@@ -8,7 +8,7 @@
  * ```
  *
  * @hideconstructor
- * @four_import import { ARButton } from '@fourjs/core/addons/webxr/ARButton.js';
+ * @four_import import { ARButton } from 'fourjs/addons/webxr/ARButton.js';
  */
 class ARButton {
 

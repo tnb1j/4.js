@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -228,10 +228,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there's a utility function,
 <code class="notranslate" translate="no">SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
-import {GLTFLoader} from '@fourjs/core/addons/loaders/GLTFLoader.js';
-+import * as SkeletonUtils from '@fourjs/core/addons/utils/SkeletonUtils.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'fourjs/addons/loaders/GLTFLoader.js';
++import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
 </pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function init() {
@@ -1507,11 +1507,11 @@ class StateDisplayHelper extends Component {
 </pre>
 <p>While we're at it lets make it so we can turn them on/off using lil-gui like
 we've used else where</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from '@fourjs/core';
-import {OrbitControls} from '@fourjs/core/addons/controls/OrbitControls.js';
-import {GLTFLoader} from '@fourjs/core/addons/loaders/GLTFLoader.js';
-import * as SkeletonUtils from '@fourjs/core/addons/utils/SkeletonUtils.js';
-+import {GUI} from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as FOUR from 'fourjs';
+import {OrbitControls} from 'fourjs/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'fourjs/addons/loaders/GLTFLoader.js';
+import * as SkeletonUtils from 'fourjs/addons/utils/SkeletonUtils.js';
++import {GUI} from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const gui = new GUI();
 +gui.add(globals, 'debug').onChange(showHideDebugInfo);

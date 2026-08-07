@@ -1,5 +1,5 @@
-import { RenderTarget, Vector2, NodeMaterial, RendererUtils, QuadMesh, TempNode, NodeUpdateType } from '@fourjs/core/webgpu';
-import { Fn, float, uv, uniform, convertToTexture, vec2, vec4, passTexture, luminance, abs, exp, max } from '@fourjs/core/tsl';
+import { RenderTarget, Vector2, NodeMaterial, RendererUtils, QuadMesh, TempNode, NodeUpdateType } from 'fourjs/webgpu';
+import { Fn, float, uv, uniform, convertToTexture, vec2, vec4, passTexture, luminance, abs, exp, max } from 'fourjs/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 
@@ -17,7 +17,7 @@ let _rendererState;
  * Reference: {@link https://en.wikipedia.org/wiki/Bilateral_filter}
  *
  * @augments TempNode
- * @four_import import { bilateralBlur } from '@fourjs/core/addons/tsl/display/BilateralBlurNode.js';
+ * @four_import import { bilateralBlur } from 'fourjs/addons/tsl/display/BilateralBlurNode.js';
  */
 class BilateralBlurNode extends TempNode {
 

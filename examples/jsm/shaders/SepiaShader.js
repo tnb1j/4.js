@@ -1,6 +1,6 @@
 /**
  * @module SepiaShader
- * @four_import import { SepiaShader } from '@fourjs/core/addons/shaders/SepiaShader.js';
+ * @four_import import { SepiaShader } from 'fourjs/addons/shaders/SepiaShader.js';
  */
 
 /**

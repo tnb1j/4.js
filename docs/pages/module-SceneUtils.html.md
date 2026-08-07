@@ -5,7 +5,7 @@
 SceneUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as SceneUtils from '@fourjs/core/addons/utils/SceneUtils.js';
+import * as SceneUtils from 'fourjs/addons/utils/SceneUtils.js';
 ```
 
 ## Methods

@@ -5,7 +5,7 @@
 WebGLTextureUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as WebGLTextureUtils from '@fourjs/core/addons/utils/WebGLTextureUtils.js';
+import * as WebGLTextureUtils from 'fourjs/addons/utils/WebGLTextureUtils.js';
 ```
 
 ## Static Methods

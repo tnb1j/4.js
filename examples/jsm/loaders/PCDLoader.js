@@ -8,7 +8,7 @@ import {
 	Points,
 	PointsMaterial,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A loader for the Point Cloud Data (PCD) format.
@@ -30,7 +30,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { PCDLoader } from '@fourjs/core/addons/loaders/PCDLoader.js';
+ * @four_import import { PCDLoader } from 'fourjs/addons/loaders/PCDLoader.js';
  */
 class PCDLoader extends Loader {
 

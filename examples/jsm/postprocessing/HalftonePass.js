@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { HalftoneShader } from '../shaders/HalftoneShader.js';
 
@@ -26,7 +26,7 @@ import { HalftoneShader } from '../shaders/HalftoneShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { HalftonePass } from '@fourjs/core/addons/postprocessing/HalftonePass.js';
+ * @four_import import { HalftonePass } from 'fourjs/addons/postprocessing/HalftonePass.js';
  */
 class HalftonePass extends Pass {
 

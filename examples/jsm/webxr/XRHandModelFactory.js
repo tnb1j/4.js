@@ -1,6 +1,6 @@
 import {
 	Object3D
-} from '@fourjs/core';
+} from 'fourjs';
 
 import {
 	XRHandPrimitiveModel
@@ -91,7 +91,7 @@ class XRHandModel extends Object3D {
  * scene.add( hand );
  * ```
  *
- * @four_import import { XRHandModelFactory } from '@fourjs/core/addons/webxr/XRHandModelFactory.js';
+ * @four_import import { XRHandModelFactory } from 'fourjs/addons/webxr/XRHandModelFactory.js';
  */
 class XRHandModelFactory {
 

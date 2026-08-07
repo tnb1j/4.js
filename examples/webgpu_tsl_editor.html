@@ -43,20 +43,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { vec4 } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { vec4 } from 'fourjs/tsl';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 			init();
 
@@ -120,7 +120,7 @@
 
 					const tslCode = `// Simple uv.x animation
 
-const { texture, uniform, vec2, vec4, uv, oscSine, time, grayscale } = await import( '@fourjs/core/tsl' );
+const { texture, uniform, vec2, vec4, uv, oscSine, time, grayscale } = await import( 'fourjs/tsl' );
 
 const samplerTexture = new FOUR.TextureLoader().load( './textures/uv_grid_opengl.jpg' );
 samplerTexture.wrapS = FOUR.RepeatWrapping;

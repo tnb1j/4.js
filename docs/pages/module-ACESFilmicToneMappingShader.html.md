@@ -5,7 +5,7 @@
 ACESFilmicToneMappingShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ACESFilmicToneMappingShader } from '@fourjs/core/addons/shaders/ACESFilmicToneMappingShader.js';
+import { ACESFilmicToneMappingShader } from 'fourjs/addons/shaders/ACESFilmicToneMappingShader.js';
 ```
 
 ## Properties

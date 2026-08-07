@@ -1,5 +1,5 @@
 import { Command } from '../Command.js';
-import { Euler } from '@fourjs/core';
+import { Euler } from 'fourjs';
 
 class SetRotationCommand extends Command {
 

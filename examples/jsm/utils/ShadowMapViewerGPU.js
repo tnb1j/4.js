@@ -9,8 +9,8 @@ import {
 	Scene,
 	DepthTexture,
 	Vector2
-} from '@fourjs/core/webgpu';
-import { uv, uniform, textureLoad } from '@fourjs/core/tsl';
+} from 'fourjs/webgpu';
+import { uv, uniform, textureLoad } from 'fourjs/tsl';
 
 /**
  * This is a helper for visualising a given light's shadow map.
@@ -29,7 +29,7 @@ import { uv, uniform, textureLoad } from '@fourjs/core/tsl';
  * lightShadowMapViewer.update();
  * ```
  *
- * @four_import import { ShadowMapViewer } from '@fourjs/core/addons/utils/ShadowMapViewerGPU.js';
+ * @four_import import { ShadowMapViewer } from 'fourjs/addons/utils/ShadowMapViewerGPU.js';
  */
 class ShadowMapViewer {
 

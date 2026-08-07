@@ -81,19 +81,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { DisplayP3ColorSpace, DisplayP3ColorSpaceImpl, LinearDisplayP3ColorSpace, LinearDisplayP3ColorSpaceImpl } from '@fourjs/core/addons/math/ColorSpaces.js';
+			import { DisplayP3ColorSpace, DisplayP3ColorSpaceImpl, LinearDisplayP3ColorSpace, LinearDisplayP3ColorSpaceImpl } from 'fourjs/addons/math/ColorSpaces.js';
 
-			import WebGL from '@fourjs/core/addons/capabilities/WebGL.js';
+			import WebGL from 'fourjs/addons/capabilities/WebGL.js';
 
 			let container, camera, renderer, loader;
 			let sceneL, sceneR, textureL, textureR;

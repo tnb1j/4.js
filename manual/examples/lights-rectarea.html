@@ -23,18 +23,18 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-import { RectAreaLightUniformsLib } from '@fourjs/core/addons/lights/RectAreaLightUniformsLib.js';
-import { RectAreaLightHelper } from '@fourjs/core/addons/helpers/RectAreaLightHelper.js';
-import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+import * as FOUR from 'fourjs';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import { RectAreaLightUniformsLib } from 'fourjs/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'fourjs/addons/helpers/RectAreaLightHelper.js';
+import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
 function main() {
 

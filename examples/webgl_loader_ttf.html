@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { TTFLoader } from '@fourjs/core/addons/loaders/TTFLoader.js';
-			import { Font } from '@fourjs/core/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
+			import { TTFLoader } from 'fourjs/addons/loaders/TTFLoader.js';
+			import { Font } from 'fourjs/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
 
 			let container;
 			let camera, cameraTarget, scene, renderer;

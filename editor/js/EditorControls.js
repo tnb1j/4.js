@@ -1,4 +1,4 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 class EditorControls extends FOUR.EventDispatcher {
 

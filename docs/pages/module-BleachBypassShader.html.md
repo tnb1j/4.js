@@ -5,7 +5,7 @@
 BleachBypassShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BleachBypassShader } from '@fourjs/core/addons/shaders/BleachBypassShader.js';
+import { BleachBypassShader } from 'fourjs/addons/shaders/BleachBypassShader.js';
 ```
 
 ## Properties

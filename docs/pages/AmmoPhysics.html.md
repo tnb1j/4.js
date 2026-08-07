@@ -15,7 +15,7 @@ const physics = await AmmoPhysics();
 AmmoPhysics is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { AmmoPhysics } from '@fourjs/core/addons/physics/AmmoPhysics.js';
+import { AmmoPhysics } from 'fourjs/addons/physics/AmmoPhysics.js';
 ```
 
 ## Methods

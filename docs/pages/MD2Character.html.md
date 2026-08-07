@@ -7,7 +7,7 @@ This class represents a management component for animated MD2 character assets.
 MD2Character is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MD2Character } from '@fourjs/core/addons/misc/MD2Character.js';
+import { MD2Character } from 'fourjs/addons/misc/MD2Character.js';
 ```
 
 ## Constructor

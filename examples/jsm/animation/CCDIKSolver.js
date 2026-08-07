@@ -11,7 +11,7 @@ import {
 	Quaternion,
 	SphereGeometry,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _quaternion = new Quaternion();
 const _targetPos = new Vector3();
@@ -30,7 +30,7 @@ const _matrix = new Matrix4();
  *
  * `CCDIKSolver` is designed to work with instances of {@link SkinnedMesh}.
  *
- * @four_import import { CCDIKSolver } from '@fourjs/core/addons/animation/CCDIKSolver.js';
+ * @four_import import { CCDIKSolver } from 'fourjs/addons/animation/CCDIKSolver.js';
  */
 class CCDIKSolver {
 
@@ -328,7 +328,7 @@ function setPositionOfBoneToAttributeArray( array, index, bone, matrixWorldInv )
  * Helper for visualizing IK bones.
  *
  * @augments Object3D
- * @four_import import { CCDIKHelper } from '@fourjs/core/addons/animation/CCDIKSolver.js';
+ * @four_import import { CCDIKHelper } from 'fourjs/addons/animation/CCDIKSolver.js';
  */
 class CCDIKHelper extends Object3D {
 

@@ -1,6 +1,6 @@
 /**
  * @module FocusShader
- * @four_import import { FocusShader } from '@fourjs/core/addons/shaders/FocusShader.js';
+ * @four_import import { FocusShader } from 'fourjs/addons/shaders/FocusShader.js';
  */
 
 /**

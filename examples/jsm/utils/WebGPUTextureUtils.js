@@ -3,12 +3,12 @@ import {
 	NodeMaterial,
 	WebGPURenderer,
 	CanvasTexture
-} from '@fourjs/core/webgpu';
-import { texture, uv } from '@fourjs/core/tsl';
+} from 'fourjs/webgpu';
+import { texture, uv } from 'fourjs/tsl';
 
 /**
  * @module WebGPUTextureUtils
- * @four_import import * as WebGPUTextureUtils from '@fourjs/core/addons/utils/WebGPUTextureUtils.js';
+ * @four_import import * as WebGPUTextureUtils from 'fourjs/addons/utils/WebGPUTextureUtils.js';
  */
 
 let _renderer;

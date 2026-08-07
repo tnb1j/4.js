@@ -1,5 +1,5 @@
-import { Color, Node } from '@fourjs/core/webgpu';
-import { NodeUpdateType, renderGroup, uniform } from '@fourjs/core/tsl';
+import { Color, Node } from 'fourjs/webgpu';
+import { NodeUpdateType, renderGroup, uniform } from 'fourjs/tsl';
 
 /**
  * Batched data node for ambient lights in dynamic lighting mode.

@@ -3,7 +3,7 @@ import {
 	ShaderChunk,
 	ShaderLib,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 
 function replaceAll( string, find, replace ) {
 
@@ -16,7 +16,7 @@ const meshphong_frag_body = ShaderChunk[ 'meshphong_frag' ].slice( ShaderChunk[ 
 
 /**
  * @module SubsurfaceScatteringShader
- * @four_import import { SubsurfaceScatteringShader } from '@fourjs/core/addons/shaders/SubsurfaceScatteringShader.js';
+ * @four_import import { SubsurfaceScatteringShader } from 'fourjs/addons/shaders/SubsurfaceScatteringShader.js';
  */
 
 /**

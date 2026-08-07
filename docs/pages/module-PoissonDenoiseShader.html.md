@@ -5,7 +5,7 @@
 PoissonDenoiseShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PoissonDenoiseShader } from '@fourjs/core/addons/shaders/PoissonDenoiseShader.js';
+import { PoissonDenoiseShader } from 'fourjs/addons/shaders/PoissonDenoiseShader.js';
 ```
 
 ## Properties

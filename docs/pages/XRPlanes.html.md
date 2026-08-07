@@ -16,7 +16,7 @@ scene.add( planes );
 XRPlanes is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XRPlanes } from '@fourjs/core/addons/webxr/XRPlanes.js';
+import { XRPlanes } from 'fourjs/addons/webxr/XRPlanes.js';
 ```
 
 ## Constructor

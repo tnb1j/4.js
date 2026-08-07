@@ -46,28 +46,28 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@fourjs/core": "../build/4.webgpu.js",
-				"@fourjs/core/webgpu": "../build/4.webgpu.js",
-				"@fourjs/core/tsl": "../build/4.tsl.js",
-				"@fourjs/core/addons/": "./jsm/"
+				"fourjs": "../build/4.webgpu.js",
+				"fourjs/webgpu": "../build/4.webgpu.js",
+				"fourjs/tsl": "../build/4.tsl.js",
+				"fourjs/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from '@fourjs/core/webgpu';
-		import { pass, mrt, output, normalView, materialMetalness, materialRoughness, screenUV, sample, packNormalToRGB, unpackRGBToNormal, vec2, velocity, diffuseColor, vec3, vec4, uniform, mix, step, abs, float, renderOutput, saturation } from '@fourjs/core/tsl';
-		import { ssr } from '@fourjs/core/addons/tsl/display/SSRNode.js';
-		import { temporalReproject } from '@fourjs/core/addons/tsl/display/TemporalReprojectNode.js';
-		import { recurrentDenoise } from '@fourjs/core/addons/tsl/display/RecurrentDenoiseNode.js';
-		import { sharpen } from '@fourjs/core/addons/tsl/display/SharpenNode.js';
-		import { traa } from '@fourjs/core/addons/tsl/display/TRAANode.js';
+		import * as FOUR from 'fourjs/webgpu';
+		import { pass, mrt, output, normalView, materialMetalness, materialRoughness, screenUV, sample, packNormalToRGB, unpackRGBToNormal, vec2, velocity, diffuseColor, vec3, vec4, uniform, mix, step, abs, float, renderOutput, saturation } from 'fourjs/tsl';
+		import { ssr } from 'fourjs/addons/tsl/display/SSRNode.js';
+		import { temporalReproject } from 'fourjs/addons/tsl/display/TemporalReprojectNode.js';
+		import { recurrentDenoise } from 'fourjs/addons/tsl/display/RecurrentDenoiseNode.js';
+		import { sharpen } from 'fourjs/addons/tsl/display/SharpenNode.js';
+		import { traa } from 'fourjs/addons/tsl/display/TRAANode.js';
 
-		import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-		import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-		import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
-		import { HDRLoader } from '@fourjs/core/addons/loaders/HDRLoader.js';
+		import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+		import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+		import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
+		import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
 
 		// Disable env map specular (radiance and clearcoat radiance) for every PBR material
 		// in this scene, since SSR provides the specular reflections instead. Diffuse env

@@ -18,24 +18,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { LineMaterial } from '@fourjs/core/addons/lines/LineMaterial.js';
-			import { LineSegments2 } from '@fourjs/core/addons/lines/LineSegments2.js';
-			import { LineSegmentsGeometry } from '@fourjs/core/addons/lines/LineSegmentsGeometry.js';
-			import { Line2 } from '@fourjs/core/addons/lines/Line2.js';
-			import { LineGeometry } from '@fourjs/core/addons/lines/LineGeometry.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { LineMaterial } from 'fourjs/addons/lines/LineMaterial.js';
+			import { LineSegments2 } from 'fourjs/addons/lines/LineSegments2.js';
+			import { LineSegmentsGeometry } from 'fourjs/addons/lines/LineSegmentsGeometry.js';
+			import { Line2 } from 'fourjs/addons/lines/Line2.js';
+			import { LineGeometry } from 'fourjs/addons/lines/LineGeometry.js';
 
 			let line, thresholdLine, segments, thresholdSegments;
 			let renderer, scene, camera, controls;

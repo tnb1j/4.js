@@ -3,7 +3,7 @@ import {
 	Float32BufferAttribute,
 	OrthographicCamera,
 	Mesh
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Abstract base class for all post processing passes.
@@ -11,7 +11,7 @@ import {
  * This module is only relevant for post processing with {@link WebGLRenderer}.
  *
  * @abstract
- * @four_import import { Pass } from '@fourjs/core/addons/postprocessing/Pass.js';
+ * @four_import import { Pass } from 'fourjs/addons/postprocessing/Pass.js';
  */
 class Pass {
 
@@ -133,7 +133,7 @@ const _geometry = new FullscreenTriangleGeometry();
  * This module can only be used with {@link WebGLRenderer}.
  *
  * @augments Mesh
- * @four_import import { FullScreenQuad } from '@fourjs/core/addons/postprocessing/Pass.js';
+ * @four_import import { FullScreenQuad } from 'fourjs/addons/postprocessing/Pass.js';
  */
 class FullScreenQuad {
 

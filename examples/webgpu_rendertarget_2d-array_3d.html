@@ -44,22 +44,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from 'fourjs/tsl';
 
-			import { TextureHelper } from '@fourjs/core/addons/helpers/TextureHelperGPU.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { unzipSync } from '@fourjs/core/addons/libs/fflate.module.js';
+			import { TextureHelper } from 'fourjs/addons/helpers/TextureHelperGPU.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { unzipSync } from 'fourjs/addons/libs/fflate.module.js';
 
 			let renderer;
 			let views = [];

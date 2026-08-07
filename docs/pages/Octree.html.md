@@ -18,7 +18,7 @@ const result = octree.capsuleIntersect( playerCollider ); // collision detection
 Octree is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Octree } from '@fourjs/core/addons/math/Octree.js';
+import { Octree } from 'fourjs/addons/math/Octree.js';
 ```
 
 ## Constructor

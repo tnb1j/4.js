@@ -23,28 +23,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { Fn, If, Loop, vec2, vec4, uvec2, uvec4, mat4, uint, float, int, min, max, clamp, ceil, log2, length, dFdx, dFdy, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, instanceIndex, vertexIndex, distance, screenSize, screenCoordinate, time, texture, varyingProperty, sqrt, normalize, cross, sign, positionGeometry, cameraViewMatrix, Discard, context, positionView, positionViewDirection, overrideNodes } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { Fn, If, Loop, vec2, vec4, uvec2, uvec4, mat4, uint, float, int, min, max, clamp, ceil, log2, length, dFdx, dFdy, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, instanceIndex, vertexIndex, distance, screenSize, screenCoordinate, time, texture, varyingProperty, sqrt, normalize, cross, sign, positionGeometry, cameraViewMatrix, Discard, context, positionView, positionViewDirection, overrideNodes } from 'fourjs/tsl';
 
-			import { FirstPersonControls } from '@fourjs/core/addons/controls/FirstPersonControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { UltraHDRLoader } from '@fourjs/core/addons/loaders/UltraHDRLoader.js';
-			import { MeshoptClusterizer } from '@fourjs/core/addons/libs/meshopt_clusterizer.module.js';
-			import { MeshoptSimplifier } from '@fourjs/core/addons/libs/meshopt_simplifier.module.js';
+			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from 'fourjs/addons/loaders/UltraHDRLoader.js';
+			import { MeshoptClusterizer } from 'fourjs/addons/libs/meshopt_clusterizer.module.js';
+			import { MeshoptSimplifier } from 'fourjs/addons/libs/meshopt_simplifier.module.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 

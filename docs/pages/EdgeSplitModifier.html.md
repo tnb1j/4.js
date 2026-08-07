@@ -14,7 +14,7 @@ geometry = modifier.modify( geometry, Math.PI * 0.4 );
 EdgeSplitModifier is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { EdgeSplitModifier } from '@fourjs/core/addons/modifiers/EdgeSplitModifier.js';
+import { EdgeSplitModifier } from 'fourjs/addons/modifiers/EdgeSplitModifier.js';
 ```
 
 ## Constructor

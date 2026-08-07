@@ -7,7 +7,7 @@ Utility class for generating a flakes texture image. This image might be used as
 FlakesTexture is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FlakesTexture } from '@fourjs/core/addons/textures/FlakesTexture.js';
+import { FlakesTexture } from 'fourjs/addons/textures/FlakesTexture.js';
 ```
 
 ## Constructor

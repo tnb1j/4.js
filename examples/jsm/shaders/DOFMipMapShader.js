@@ -1,6 +1,6 @@
 /**
  * @module DOFMipMapShader
- * @four_import import { DOFMipMapShader } from '@fourjs/core/addons/shaders/DOFMipMapShader.js';
+ * @four_import import { DOFMipMapShader } from 'fourjs/addons/shaders/DOFMipMapShader.js';
  */
 
 /**

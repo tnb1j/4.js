@@ -1,7 +1,7 @@
 import {
 	FileLoader,
 	Loader
-} from '@fourjs/core';
+} from 'fourjs';
 import opentype from 'https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/+esm';
 
 /**
@@ -17,7 +17,7 @@ import opentype from 'https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/+esm';
  * ```
  *
  * @augments Loader
- * @four_import import { TTFLoader } from '@fourjs/core/addons/loaders/TTFLoader.js';
+ * @four_import import { TTFLoader } from 'fourjs/addons/loaders/TTFLoader.js';
  */
 class TTFLoader extends Loader {
 

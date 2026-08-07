@@ -19,7 +19,7 @@ const font = new Font( json );
 TTFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TTFLoader } from '@fourjs/core/addons/loaders/TTFLoader.js';
+import { TTFLoader } from 'fourjs/addons/loaders/TTFLoader.js';
 ```
 
 ## Constructor

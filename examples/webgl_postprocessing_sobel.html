@@ -18,26 +18,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-			import { ShaderPass } from '@fourjs/core/addons/postprocessing/ShaderPass.js';
+			import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+			import { ShaderPass } from 'fourjs/addons/postprocessing/ShaderPass.js';
 
-			import { LuminosityShader } from '@fourjs/core/addons/shaders/LuminosityShader.js';
-			import { SobelOperatorShader } from '@fourjs/core/addons/shaders/SobelOperatorShader.js';
+			import { LuminosityShader } from 'fourjs/addons/shaders/LuminosityShader.js';
+			import { SobelOperatorShader } from 'fourjs/addons/shaders/SobelOperatorShader.js';
 
 			let camera, scene, renderer, composer;
 

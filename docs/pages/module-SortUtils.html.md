@@ -5,7 +5,7 @@
 SortUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as SortUtils from '@fourjs/core/addons/utils/SortUtils.js';
+import * as SortUtils from 'fourjs/addons/utils/SortUtils.js';
 ```
 
 ## Static Methods

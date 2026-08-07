@@ -14,7 +14,7 @@ const color = lut.getColor( 0.5 );
 Lut is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Lut } from '@fourjs/core/addons/math/Lut.js';
+import { Lut } from 'fourjs/addons/math/Lut.js';
 ```
 
 ## Constructor

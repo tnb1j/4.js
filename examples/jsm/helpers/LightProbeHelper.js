@@ -2,7 +2,7 @@ import {
 	Mesh,
 	ShaderMaterial,
 	SphereGeometry
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * Renders a sphere to visualize a light probe in the scene.
@@ -16,7 +16,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { LightProbeHelper } from '@fourjs/core/addons/helpers/LightProbeHelper.js';
+ * @four_import import { LightProbeHelper } from 'fourjs/addons/helpers/LightProbeHelper.js';
  */
 class LightProbeHelper extends Mesh {
 

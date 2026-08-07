@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -53,7 +53,7 @@
   <li>
     <i>main.js</i>
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 ...
 </pre>
@@ -172,8 +172,8 @@ npm install --save-dev vite
 &lt;script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
-    "@fourjs/core/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
+    "fourjs": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/build/4.module.js",
+    "fourjs/addons/": "https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/examples/jsm/"
   }
 }
 &lt;/script>
@@ -262,9 +262,9 @@ npm install --save-dev vite
           </p>
 
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from '@fourjs/core';
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+import * as FOUR from 'fourjs';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
 const controls = new OrbitControls( camera, renderer.domElement );
 const loader = new GLTFLoader();

@@ -6,7 +6,7 @@ import {
 	InstancedMesh,
 	Matrix4,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _matrix = new Matrix4();
 const _vector = new Vector3();
@@ -16,7 +16,7 @@ const _vector = new Vector3();
  * depending on the selected profile. `XRHandPrimitiveModel` represents a hand
  * with sphere or box primitives according to the selected `primitive` option.
  *
- * @four_import import { XRHandPrimitiveModel } from '@fourjs/core/addons/webxr/XRHandPrimitiveModel.js';
+ * @four_import import { XRHandPrimitiveModel } from 'fourjs/addons/webxr/XRHandPrimitiveModel.js';
  */
 class XRHandPrimitiveModel {
 

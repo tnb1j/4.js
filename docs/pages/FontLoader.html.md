@@ -18,7 +18,7 @@ const font = await loader.loadAsync( 'fonts/helvetiker_regular.typeface.json' );
 FontLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FontLoader } from '@fourjs/core/addons/loaders/FontLoader.js';
+import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
 ```
 
 ## Constructor

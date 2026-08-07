@@ -1,6 +1,6 @@
 /**
  * @module BasicShader
- * @four_import import { BasicShader } from '@fourjs/core/addons/shaders/BasicShader.js';
+ * @four_import import { BasicShader } from 'fourjs/addons/shaders/BasicShader.js';
  */
 
 /**

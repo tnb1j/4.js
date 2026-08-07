@@ -4,7 +4,7 @@ import {
 	LineBasicMaterial,
 	Line,
 	MathUtils
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * This helper displays the directional cone of a positional audio.
@@ -21,7 +21,7 @@ import {
  * ```
  *
  * @augments Line
- * @four_import import { PositionalAudioHelper } from '@fourjs/core/addons/helpers/PositionalAudioHelper.js';
+ * @four_import import { PositionalAudioHelper } from 'fourjs/addons/helpers/PositionalAudioHelper.js';
  */
 class PositionalAudioHelper extends Line {
 

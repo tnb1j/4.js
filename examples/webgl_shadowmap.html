@@ -19,23 +19,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { FontLoader } from '@fourjs/core/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
-			import { ShadowMapViewer } from '@fourjs/core/addons/utils/ShadowMapViewer.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
+			import { ShadowMapViewer } from 'fourjs/addons/utils/ShadowMapViewer.js';
 
 			const SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 1024;
 

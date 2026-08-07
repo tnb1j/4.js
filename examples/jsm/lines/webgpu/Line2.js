@@ -1,4 +1,4 @@
-import { Line2NodeMaterial } from '@fourjs/core/webgpu';
+import { Line2NodeMaterial } from 'fourjs/webgpu';
 
 import { LineSegments2 } from './LineSegments2.js';
 import { LineGeometry } from '../LineGeometry.js';
@@ -14,7 +14,7 @@ import { LineGeometry } from '../LineGeometry.js';
  * import the class from `lines/Line2.js`.
  *
  * @augments LineSegments2
- * @four_import import { Line2 } from '@fourjs/core/addons/lines/webgpu/Line2.js';
+ * @four_import import { Line2 } from 'fourjs/addons/lines/webgpu/Line2.js';
  */
 class Line2 extends LineSegments2 {
 

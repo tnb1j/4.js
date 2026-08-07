@@ -7,7 +7,7 @@ import Linker from './Linker.js';
  * to support developers when they want to migrate their custom materials from the
  * current to the new node-based material system.
  *
- * @four_import import Transpiler from '@fourjs/core/addons/transpiler/Transpiler.js';
+ * @four_import import Transpiler from 'fourjs/addons/transpiler/Transpiler.js';
  */
 class Transpiler {
 

@@ -7,7 +7,7 @@ import {
 	Object3D,
 	SRGBColorSpace,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 import {
 	Projector,
@@ -20,7 +20,7 @@ import {
  * Can be used to wrap SVG elements into a 3D object.
  *
  * @augments Object3D
- * @four_import import { SVGObject } from '@fourjs/core/addons/renderers/SVGRenderer.js';
+ * @four_import import { SVGObject } from 'fourjs/addons/renderers/SVGRenderer.js';
  */
 class SVGObject extends Object3D {
 
@@ -72,7 +72,7 @@ class SVGObject extends Object3D {
  * - No texture support.
  * - No shadow support.
  *
- * @four_import import { SVGRenderer } from '@fourjs/core/addons/renderers/SVGRenderer.js';
+ * @four_import import { SVGRenderer } from 'fourjs/addons/renderers/SVGRenderer.js';
  */
 class SVGRenderer {
 

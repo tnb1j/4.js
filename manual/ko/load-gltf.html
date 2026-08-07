@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -107,10 +107,10 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) =&gt; {
 <p>자동으로 카메라의 시야를 조정하는 코드는 그대로 두었습니다.</p>
 <p>모듈이 바뀌었으니 import 문도 변경해야 합니다. <a href="/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>를 제거하고 <a href="/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a>를
 추가합니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import { LoaderSupport } from '@fourjs/core/addons/loaders/LoaderSupport.js';
--import { OBJLoader } from '@fourjs/core/addons/loaders/OBJLoader.js';
--import { MTLLoader } from '@fourjs/core/addons/loaders/MTLLoader.js';
-+import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import { LoaderSupport } from 'fourjs/addons/loaders/LoaderSupport.js';
+-import { OBJLoader } from 'fourjs/addons/loaders/OBJLoader.js';
+-import { MTLLoader } from 'fourjs/addons/loaders/MTLLoader.js';
++import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 </pre>
 <p>이제 실행해보죠.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">

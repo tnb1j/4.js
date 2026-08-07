@@ -44,16 +44,16 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import * as BufferGeometryUtils from '@fourjs/core/addons/utils/BufferGeometryUtils.js';
-import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+import * as FOUR from 'fourjs';
+import * as BufferGeometryUtils from 'fourjs/addons/utils/BufferGeometryUtils.js';
+import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
 function main() {
 

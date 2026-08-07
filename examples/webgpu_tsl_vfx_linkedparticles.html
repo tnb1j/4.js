@@ -25,25 +25,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { atan, cos, float, max, min, mix, PI, TWO_PI, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform, step } from '@fourjs/core/tsl';
-			import { bloom } from '@fourjs/core/addons/tsl/display/BloomNode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { atan, cos, float, max, min, mix, PI, TWO_PI, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform, step } from 'fourjs/tsl';
+			import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
 			let camera, scene, renderer, renderPipeline, controls, timer, light;
 

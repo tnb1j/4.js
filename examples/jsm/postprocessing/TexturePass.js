@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -17,7 +17,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { TexturePass } from '@fourjs/core/addons/postprocessing/TexturePass.js';
+ * @four_import import { TexturePass } from 'fourjs/addons/postprocessing/TexturePass.js';
  */
 class TexturePass extends Pass {
 

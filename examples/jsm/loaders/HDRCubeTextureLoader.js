@@ -7,7 +7,7 @@ import {
 	LinearFilter,
 	LinearSRGBColorSpace,
 	Loader
-} from '@fourjs/core';
+} from 'fourjs';
 import { HDRLoader } from '../loaders/HDRLoader.js';
 
 /**
@@ -23,7 +23,7 @@ import { HDRLoader } from '../loaders/HDRLoader.js';
  * ```
  *
  * @augments Loader
- * @four_import import { HDRCubeTextureLoader } from '@fourjs/core/addons/loaders/HDRCubeTextureLoader.js';
+ * @four_import import { HDRCubeTextureLoader } from 'fourjs/addons/loaders/HDRCubeTextureLoader.js';
  */
 class HDRCubeTextureLoader extends Loader {
 

@@ -20,7 +20,7 @@ objLoader.setMaterials( materials );
 MTLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { MTLLoader } from '@fourjs/core/addons/loaders/MTLLoader.js';
+import { MTLLoader } from 'fourjs/addons/loaders/MTLLoader.js';
 ```
 
 ## Constructor

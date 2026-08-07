@@ -9,7 +9,7 @@ Capsules are often used as bounding volumes (next to AABBs and bounding spheres)
 Capsule is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Capsule } from '@fourjs/core/addons/math/Capsule.js';
+import { Capsule } from 'fourjs/addons/math/Capsule.js';
 ```
 
 ## Constructor

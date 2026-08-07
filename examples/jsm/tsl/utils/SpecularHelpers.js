@@ -1,4 +1,4 @@
-import { Fn, If, PI, clamp, cos, cross, dot, equirectUV, float, log, max, mix, normalize, pow, reflect, sin, sqrt, struct, vec3 } from '@fourjs/core/tsl';
+import { Fn, If, PI, clamp, cos, cross, dot, equirectUV, float, log, max, mix, normalize, pow, reflect, sin, sqrt, struct, vec3 } from 'fourjs/tsl';
 
 /**
  * Specular / microfacet BRDF helpers: VNDF sampling, GTR distribution, Smith geometry,

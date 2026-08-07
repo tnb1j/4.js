@@ -11,7 +11,7 @@ Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weigh
 NURBSCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { NURBSCurve } from '@fourjs/core/addons/curves/NURBSCurve.js';
+import { NURBSCurve } from 'fourjs/addons/curves/NURBSCurve.js';
 ```
 
 ## Constructor

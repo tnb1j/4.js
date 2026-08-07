@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -40,7 +40,7 @@
 		<p><i>main.js —</i></p>
 
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 const scene = new FOUR.Scene();
 const camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -137,7 +137,7 @@ cube.rotation.y = time / 1000;
 		<p><i>main.js —</i></p>
 
 <pre class="prettyprint notranslate lang-js" translate="no">
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 const scene = new FOUR.Scene();
 const camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );

@@ -19,7 +19,7 @@ scene.add( mesh );
 HTMLMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { HTMLMesh } from '@fourjs/core/addons/interactive/HTMLMesh.js';
+import { HTMLMesh } from 'fourjs/addons/interactive/HTMLMesh.js';
 ```
 
 ## Constructor

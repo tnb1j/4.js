@@ -1,6 +1,6 @@
 /**
  * @module UnpackDepthRGBAShader
- * @four_import import { UnpackDepthRGBAShader } from '@fourjs/core/addons/shaders/UnpackDepthRGBAShader.js';
+ * @four_import import { UnpackDepthRGBAShader } from 'fourjs/addons/shaders/UnpackDepthRGBAShader.js';
  */
 
 /**

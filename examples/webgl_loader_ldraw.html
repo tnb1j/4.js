@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@fourjs/core/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'fourjs/addons/environments/RoomEnvironment.js';
 
-			import { LDrawLoader } from '@fourjs/core/addons/loaders/LDrawLoader.js';
-			import { LDrawUtils } from '@fourjs/core/addons/utils/LDrawUtils.js';
-			import { LDrawConditionalLineMaterial } from '@fourjs/core/addons/materials/LDrawConditionalLineMaterial.js';
+			import { LDrawLoader } from 'fourjs/addons/loaders/LDrawLoader.js';
+			import { LDrawUtils } from 'fourjs/addons/utils/LDrawUtils.js';
+			import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
 
 			let container, progressBarDiv;
 

@@ -11,7 +11,7 @@ A class that extends `ShadowBaseNode` to implement tiled shadow mapping. This al
 TileShadowNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TileShadowNode } from '@fourjs/core/addons/tsl/shadows/TileShadowNode.js';
+import { TileShadowNode } from 'fourjs/addons/tsl/shadows/TileShadowNode.js';
 ```
 
 ## Constructor

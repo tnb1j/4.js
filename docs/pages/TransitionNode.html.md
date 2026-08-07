@@ -9,7 +9,7 @@ Post processing node for creating a transition effect between scenes.
 TransitionNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { transition } from '@fourjs/core/addons/tsl/display/TransitionNode.js';
+import { transition } from 'fourjs/addons/tsl/display/TransitionNode.js';
 ```
 
 ## Constructor

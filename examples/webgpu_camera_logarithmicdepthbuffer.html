@@ -76,22 +76,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { FontLoader } from '@fourjs/core/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
+			import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
 
 			// 1 micrometer to 100 billion light years in one scene, with 1 unit = 1 meter?  preposterous!  and yet...
 			const NEAR = 1e-6, FAR = 1e27;

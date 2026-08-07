@@ -9,7 +9,7 @@ This module is only relevant for post processing with [WebGLRenderer](WebGLRende
 Pass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { Pass } from '@fourjs/core/addons/postprocessing/Pass.js';
+import { Pass } from 'fourjs/addons/postprocessing/Pass.js';
 ```
 
 ## Constructor

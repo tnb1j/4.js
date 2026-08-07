@@ -7,7 +7,7 @@ import {
 	Vector3,
 	MOUSE,
 	TOUCH
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _plane = new Plane();
 
@@ -52,7 +52,7 @@ const STATE = {
  * ```
  *
  * @augments Controls
- * @four_import import { DragControls } from '@fourjs/core/addons/controls/DragControls.js';
+ * @four_import import { DragControls } from 'fourjs/addons/controls/DragControls.js';
  */
 class DragControls extends Controls {
 

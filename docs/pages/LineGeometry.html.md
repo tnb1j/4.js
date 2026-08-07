@@ -23,7 +23,7 @@ geometry.setFromPoints( points );
 LineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LineLineGeometry2 } from '@fourjs/core/addons/lines/LineGeometry.js';
+import { LineLineGeometry2 } from 'fourjs/addons/lines/LineGeometry.js';
 ```
 
 ## Constructor

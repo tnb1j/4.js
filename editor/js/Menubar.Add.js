@@ -1,12 +1,12 @@
-import * as FOUR from '@fourjs/core';
+import * as FOUR from 'fourjs';
 
 import { UIPanel, UIRow } from './libs/ui.js';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 import { MultiCmdsCommand } from './commands/MultiCmdsCommand.js';
 
-import { FontLoader } from '@fourjs/core/addons/loaders/FontLoader.js';
-import { TextGeometry } from '@fourjs/core/addons/geometries/TextGeometry.js';
+import { FontLoader } from 'fourjs/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'fourjs/addons/geometries/TextGeometry.js';
 
 function MenubarAdd( editor ) {
 

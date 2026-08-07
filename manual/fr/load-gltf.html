@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -81,10 +81,10 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) =&gt; {
 </pre>
 <p>J'ai gardé le code de cadrage automatique comme auparavant.</p>
 <p>Nous devons également inclure le <a href="/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> et nous pouvons nous débarrasser du <a href="/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>.</p>
-<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from '@fourjs/core/addons/loaders/LoaderSupport.js';
--import {OBJLoader} from '@fourjs/core/addons/loaders/OBJLoader.js';
--import {MTLLoader} from '@fourjs/core/addons/loaders/MTLLoader.js';
-+import {GLTFLoader} from '@fourjs/core/addons/loaders/GLTFLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from 'fourjs/addons/loaders/LoaderSupport.js';
+-import {OBJLoader} from 'fourjs/addons/loaders/OBJLoader.js';
+-import {MTLLoader} from 'fourjs/addons/loaders/MTLLoader.js';
++import {GLTFLoader} from 'fourjs/addons/loaders/GLTFLoader.js';
 </pre>
 <p>Et en exécutant cela, nous obtenons</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">

@@ -36,7 +36,7 @@ scene.add( group );
 SVGLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SVGLoader } from '@fourjs/core/addons/loaders/SVGLoader.js';
+import { SVGLoader } from 'fourjs/addons/loaders/SVGLoader.js';
 ```
 
 ## Constructor

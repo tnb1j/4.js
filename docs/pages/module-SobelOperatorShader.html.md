@@ -5,7 +5,7 @@
 SobelOperatorShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SobelOperatorShader } from '@fourjs/core/addons/shaders/SobelOperatorShader.js';
+import { SobelOperatorShader } from 'fourjs/addons/shaders/SobelOperatorShader.js';
 ```
 
 ## Properties

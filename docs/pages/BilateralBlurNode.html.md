@@ -13,7 +13,7 @@ Reference: [https://en.wikipedia.org/wiki/Bilateral\_filter](https://en.wikipedi
 BilateralBlurNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { bilateralBlur } from '@fourjs/core/addons/tsl/display/BilateralBlurNode.js';
+import { bilateralBlur } from 'fourjs/addons/tsl/display/BilateralBlurNode.js';
 ```
 
 ## Constructor

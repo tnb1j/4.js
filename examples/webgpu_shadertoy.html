@@ -24,10 +24,10 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
@@ -178,12 +178,12 @@
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import * as TSL from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import * as TSL from 'fourjs/tsl';
 
-			import Transpiler from '@fourjs/core/addons/transpiler/Transpiler.js';
-			import ShaderToyDecoder from '@fourjs/core/addons/transpiler/ShaderToyDecoder.js';
-			import TSLEncoder from '@fourjs/core/addons/transpiler/TSLEncoder.js';
+			import Transpiler from 'fourjs/addons/transpiler/Transpiler.js';
+			import ShaderToyDecoder from 'fourjs/addons/transpiler/ShaderToyDecoder.js';
+			import TSLEncoder from 'fourjs/addons/transpiler/TSLEncoder.js';
 
 			class ShaderToyNode extends FOUR.Node {
 

@@ -73,9 +73,9 @@ const threePackageTSL = await readFile( new URL( '../../build/three.tsl.package.
 const fourCore = await readFile( new URL( '../../build/4.core.js', import.meta.url ), 'utf8' );
 const threeCore = await readFile( new URL( '../../build/three.core.js', import.meta.url ), 'utf8' );
 
-assert.match( fourTSL, /from '@fourjs\/core\/webgpu'/, '4.js TSL must use the native package path' );
+assert.match( fourTSL, /from 'fourjs\/webgpu'/, '4.js TSL must use the native package path' );
 assert.match( threeTSL, /from 'three\/webgpu'/, 'legacy TSL must retain the legacy package path' );
-assert.match( threePackageTSL, /from '@fourjs\/core\/legacy\/webgpu'/, 'package legacy TSL must use the package legacy path' );
+assert.match( threePackageTSL, /from 'fourjs\/legacy\/webgpu'/, 'package legacy TSL must use the package legacy path' );
 assert.match( fourCore, /__FOUR_DEVTOOLS__/, 'native builds must use the 4.js devtools marker' );
 assert.match( fourCore, /window\.__FOUR__/, 'native builds must use the 4.js instance marker' );
 assert.match( threeCore, /__THREE_DEVTOOLS__/, 'legacy builds must use the Three.js devtools marker' );
@@ -90,8 +90,8 @@ for ( const file of [ fourTSL, threeTSL, threePackageTSL ] ) {
 }
 
 const [ packageLegacyWebGPU, packageLegacyTSL ] = await Promise.all( [
-	import( '@fourjs/core/legacy/webgpu' ),
-	import( '@fourjs/core/legacy/tsl' )
+	import( 'fourjs/legacy/webgpu' ),
+	import( 'fourjs/legacy/tsl' )
 ] );
 
 assert.equal( packageLegacyTSL.Fn, packageLegacyWebGPU.TSL.Fn, 'package legacy TSL must share the legacy WebGPU TSL bindings' );

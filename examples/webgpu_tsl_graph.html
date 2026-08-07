@@ -30,28 +30,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
+			import * as FOUR from 'fourjs/webgpu';
 
-			import { Fn, abs, fract, fwidth, length, max, saturate, smoothstep, vec3, vec4, positionWorld, float } from '@fourjs/core/tsl';
+			import { Fn, abs, fract, fwidth, length, max, saturate, smoothstep, vec3, vec4, positionWorld, float } from 'fourjs/tsl';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import { HDRLoader } from '@fourjs/core/addons/loaders/HDRLoader.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { TSLGraphLoader } from '@fourjs/core/addons/inspector/extensions/tsl-graph/TSLGraphLoader.js';
+			import { TSLGraphLoader } from 'fourjs/addons/inspector/extensions/tsl-graph/TSLGraphLoader.js';
 
 			let camera, scene, renderer;
 			let controls;

@@ -1,6 +1,6 @@
 /**
  * @module WaterRefractionShader
- * @four_import import { WaterRefractionShader } from '@fourjs/core/addons/shaders/WaterRefractionShader.js';
+ * @four_import import { WaterRefractionShader } from 'fourjs/addons/shaders/WaterRefractionShader.js';
  */
 
 /**

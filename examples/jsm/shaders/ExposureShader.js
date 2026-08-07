@@ -1,6 +1,6 @@
 /**
  * @module ExposureShader
- * @four_import import { ExposureShader } from '@fourjs/core/addons/shaders/ExposureShader.js';
+ * @four_import import { ExposureShader } from 'fourjs/addons/shaders/ExposureShader.js';
  */
 
 /**

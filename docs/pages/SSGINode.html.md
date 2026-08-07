@@ -31,7 +31,7 @@ Without temporal filtering:
 SSGINode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ssgi } from '@fourjs/core/addons/tsl/display/SSGINode.js';
+import { ssgi } from 'fourjs/addons/tsl/display/SSGINode.js';
 ```
 
 ## Constructor

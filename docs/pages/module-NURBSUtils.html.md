@@ -5,7 +5,7 @@
 NURBSUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as NURBSUtils from '@fourjs/core/addons/curves/NURBSUtils.js';
+import * as NURBSUtils from 'fourjs/addons/curves/NURBSUtils.js';
 ```
 
 ## Methods

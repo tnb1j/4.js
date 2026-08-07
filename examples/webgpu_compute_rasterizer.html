@@ -23,25 +23,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { Fn, If, Loop, vec4, vec2, uvec4, mat4, uint, float, int, min, max, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, uv, instanceIndex, vertexIndex, distance, screenSize, time, texture, varyingProperty, sqrt } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { Fn, If, Loop, vec4, vec2, uvec4, mat4, uint, float, int, min, max, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, uv, instanceIndex, vertexIndex, distance, screenSize, time, texture, varyingProperty, sqrt } from 'fourjs/tsl';
 
-			import { FirstPersonControls } from '@fourjs/core/addons/controls/FirstPersonControls.js';
-			import { TeapotGeometry } from '@fourjs/core/addons/geometries/TeapotGeometry.js';
+			import { FirstPersonControls } from 'fourjs/addons/controls/FirstPersonControls.js';
+			import { TeapotGeometry } from 'fourjs/addons/geometries/TeapotGeometry.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 

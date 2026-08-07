@@ -96,19 +96,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import TWEEN from '@fourjs/core/addons/libs/tween.module.js';
-			import { TrackballControls } from '@fourjs/core/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DObject } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+			import TWEEN from 'fourjs/addons/libs/tween.module.js';
+			import { TrackballControls } from 'fourjs/addons/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DObject } from 'fourjs/addons/renderers/CSS3DRenderer.js';
 
 			const table = [
 				'H', 'Hydrogen', '1.00794', 1, 1,

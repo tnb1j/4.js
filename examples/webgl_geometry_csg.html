@@ -29,8 +29,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/",
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js",
 					"three-bvh-csg": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.18/build/index.module.js"
 				}
@@ -39,10 +39,10 @@
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+			import * as FOUR from 'fourjs';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 			import { SUBTRACTION, INTERSECTION, ADDITION, Brush, Evaluator } from 'three-bvh-csg';
 
 			let stats;

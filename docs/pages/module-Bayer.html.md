@@ -5,7 +5,7 @@
 Bayer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { bayer16 } from '@fourjs/core/addons/tsl/math/Bayer.js';
+import { bayer16 } from 'fourjs/addons/tsl/math/Bayer.js';
 ```
 
 ## Static Methods

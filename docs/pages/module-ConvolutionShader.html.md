@@ -5,7 +5,7 @@
 ConvolutionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { ConvolutionShader } from '@fourjs/core/addons/shaders/ConvolutionShader.js';
+import { ConvolutionShader } from 'fourjs/addons/shaders/ConvolutionShader.js';
 ```
 
 ## Properties

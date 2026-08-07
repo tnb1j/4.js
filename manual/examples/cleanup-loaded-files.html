@@ -28,15 +28,15 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js",
-    "@fourjs/core/addons/": "../../examples/jsm/"
+    "fourjs": "../../build/4.module.js",
+    "fourjs/addons/": "../../examples/jsm/"
   }
 }
 </script>
 
 <script type="module">
-import * as FOUR from '@fourjs/core';
-import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+import * as FOUR from 'fourjs';
+import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
 class ResourceTracker {
 

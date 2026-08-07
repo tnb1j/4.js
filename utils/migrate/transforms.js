@@ -1,4 +1,4 @@
-const FOUR_PACKAGE = '@fourjs/core';
+const FOUR_PACKAGE = 'fourjs';
 
 const BUILD_FILES = new Map( [
 	[ 'three.cjs', '4.cjs' ],

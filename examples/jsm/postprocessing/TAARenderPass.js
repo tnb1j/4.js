@@ -1,7 +1,7 @@
 import {
 	HalfFloatType,
 	WebGLRenderTarget
-} from '@fourjs/core';
+} from 'fourjs';
 import { SSAARenderPass } from './SSAARenderPass.js';
 
 /**
@@ -20,7 +20,7 @@ import { SSAARenderPass } from './SSAARenderPass.js';
  * ```
  *
  * @augments SSAARenderPass
- * @four_import import { TAARenderPass } from '@fourjs/core/addons/postprocessing/TAARenderPass.js';
+ * @four_import import { TAARenderPass } from 'fourjs/addons/postprocessing/TAARenderPass.js';
  */
 class TAARenderPass extends SSAARenderPass {
 

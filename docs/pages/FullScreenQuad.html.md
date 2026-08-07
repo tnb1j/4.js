@@ -13,7 +13,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html).
 FullScreenQuad is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FullScreenQuad } from '@fourjs/core/addons/postprocessing/Pass.js';
+import { FullScreenQuad } from 'fourjs/addons/postprocessing/Pass.js';
 ```
 
 ## Constructor

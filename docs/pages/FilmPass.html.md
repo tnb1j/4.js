@@ -16,7 +16,7 @@ composer.addPass( filmPass );
 FilmPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FilmPass } from '@fourjs/core/addons/postprocessing/FilmPass.js';
+import { FilmPass } from 'fourjs/addons/postprocessing/FilmPass.js';
 ```
 
 ## Constructor

@@ -9,7 +9,7 @@ This class displays all Rapier Colliders in outline.
 RapierHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { RapierHelper } from '@fourjs/core/addons/helpers/RapierHelper.js';
+import { RapierHelper } from 'fourjs/addons/helpers/RapierHelper.js';
 ```
 
 ## Constructor

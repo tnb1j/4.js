@@ -52,8 +52,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/",
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/",
 					"three/examples/": "./",
 					"3d-tiles-renderer": "https://cdn.jsdelivr.net/npm/3d-tiles-renderer@0.4.27/build/index.js",
 					"3d-tiles-renderer/core/plugins": "https://cdn.jsdelivr.net/npm/3d-tiles-renderer@0.4.27/build/index.core-plugins.js",
@@ -71,9 +71,9 @@
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
-			import { TileCreasedNormalsPlugin } from '@fourjs/core/addons/misc/TileCreasedNormalsPlugin.js';
+			import * as FOUR from 'fourjs';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { TileCreasedNormalsPlugin } from 'fourjs/addons/misc/TileCreasedNormalsPlugin.js';
 			import { TilesRenderer, GlobeControls, CAMERA_FRAME } from '3d-tiles-renderer';
 			import { CesiumIonAuthPlugin } from '3d-tiles-renderer/core/plugins';
 			import { GLTFExtensionsPlugin, TilesFadePlugin, UpdateOnChangePlugin } from '3d-tiles-renderer/three/plugins';

@@ -9,7 +9,7 @@ Can be used to wrap SVG elements into a 3D object.
 SVGObject is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { SVGObject } from '@fourjs/core/addons/renderers/SVGRenderer.js';
+import { SVGObject } from 'fourjs/addons/renderers/SVGRenderer.js';
 ```
 
 ## Constructor

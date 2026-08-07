@@ -5,7 +5,7 @@
 BrightnessContrastShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BrightnessContrastShader } from '@fourjs/core/addons/shaders/BrightnessContrastShader.js';
+import { BrightnessContrastShader } from 'fourjs/addons/shaders/BrightnessContrastShader.js';
 ```
 
 ## Properties

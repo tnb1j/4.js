@@ -12,7 +12,7 @@ import {
 	Uint32BufferAttribute,
 	Color,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _color = new Color();
 
@@ -30,7 +30,7 @@ const _color = new Color();
  * ```
  *
  * @augments Loader
- * @four_import import { PLYLoader } from '@fourjs/core/addons/loaders/PLYLoader.js';
+ * @four_import import { PLYLoader } from 'fourjs/addons/loaders/PLYLoader.js';
  */
 class PLYLoader extends Loader {
 

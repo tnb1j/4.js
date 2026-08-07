@@ -7,7 +7,7 @@ Represents one of the hand model types [XRHandModelFactory](XRHandModelFactory.h
 XRHandMeshModel is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { XRHandMeshModel } from '@fourjs/core/addons/webxr/XRHandMeshModel.js';
+import { XRHandMeshModel } from 'fourjs/addons/webxr/XRHandMeshModel.js';
 ```
 
 ## Constructor

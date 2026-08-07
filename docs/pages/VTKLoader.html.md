@@ -21,7 +21,7 @@ scene.add( mesh );
 VTKLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VTKLoader } from '@fourjs/core/addons/loaders/VTKLoader.js';
+import { VTKLoader } from 'fourjs/addons/loaders/VTKLoader.js';
 ```
 
 ## Constructor

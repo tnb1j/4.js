@@ -26,20 +26,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { Fn, uniform, instanceIndex, instancedArray, float, texture, screenUV, color } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { Fn, uniform, instanceIndex, instancedArray, float, texture, screenUV, color } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 			let computeNode;

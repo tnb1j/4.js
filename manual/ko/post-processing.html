@@ -12,7 +12,7 @@
 <script type="importmap">
 {
   "imports": {
-    "@fourjs/core": "../../build/4.module.js"
+    "fourjs": "../../build/4.module.js"
   }
 }
 </script>
@@ -68,11 +68,11 @@ composer.addPass(bloomPass);
 composer.addPass(filmPass);
 </pre>
 <p>또 이 클래스들을 사용하기 위해 여러 스크립트를 불러와야 합니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { EffectComposer } from '@fourjs/core/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from '@fourjs/core/addons/postprocessing/RenderPass.js';
-import { BloomPass } from '@fourjs/core/addons/postprocessing/BloomPass.js';
-import { FilmPass } from '@fourjs/core/addons/postprocessing/FilmPass.js';
-import {OutputPass} from '@fourjs/core/addons/postprocessing/OutputPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { EffectComposer } from 'fourjs/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'fourjs/addons/postprocessing/RenderPass.js';
+import { BloomPass } from 'fourjs/addons/postprocessing/BloomPass.js';
+import { FilmPass } from 'fourjs/addons/postprocessing/FilmPass.js';
+import {OutputPass} from 'fourjs/addons/postprocessing/OutputPass.js';
 </pre>
 <p>대부분의 후처리에는 <code class="notranslate" translate="no">EffectComposer.js</code>와 <code class="notranslate" translate="no">RenderPass.js</code>가 필수입니다.</p>
 <p>이제 <a href="/docs/#api/ko/renderers/WebGLRenderer.render"><code class="notranslate" translate="no">WebGLRenderer.render</code></a> 대신 <code class="notranslate" translate="no">EffectComposer.render</code>를 사용<em>하고</em> <code class="notranslate" translate="no">EffectComposer</code>가 결과물을 캔버스의 크기에 맞추도록 해야 합니다.</p>
@@ -126,7 +126,7 @@ import {OutputPass} from '@fourjs/core/addons/postprocessing/OutputPass.js';
 this.uniforms.grayscale.value = grayscale;
 </pre>
 <p>이제 어떻게 값을 지정해야 하는지 알았으니 이 값을 조작하는 GUI를 만들어봅시다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
 </pre>
 <p>일단 모듈을 로드합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();

@@ -23,7 +23,7 @@ composer.addPass( bloomPass );
 UnrealBloomPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { UnrealBloomPass } from '@fourjs/core/addons/postprocessing/UnrealBloomPass.js';
+import { UnrealBloomPass } from 'fourjs/addons/postprocessing/UnrealBloomPass.js';
 ```
 
 ## Constructor

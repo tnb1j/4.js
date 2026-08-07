@@ -3,7 +3,7 @@ import {
 	ShaderMaterial,
 	UniformsLib,
 	UniformsUtils,
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * A special line material for meshes loaded via {@link LDrawLoader}.
@@ -12,7 +12,7 @@ import {
  * import the class from `LDrawConditionalLineNodeMaterial.js`.
  *
  * @augments ShaderMaterial
- * @four_import import { LDrawConditionalLineMaterial } from '@fourjs/core/addons/materials/LDrawConditionalLineMaterial.js';
+ * @four_import import { LDrawConditionalLineMaterial } from 'fourjs/addons/materials/LDrawConditionalLineMaterial.js';
  */
 class LDrawConditionalLineMaterial extends ShaderMaterial {
 

@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module ConvolutionShader
- * @four_import import { ConvolutionShader } from '@fourjs/core/addons/shaders/ConvolutionShader.js';
+ * @four_import import { ConvolutionShader } from 'fourjs/addons/shaders/ConvolutionShader.js';
  */
 
 /**

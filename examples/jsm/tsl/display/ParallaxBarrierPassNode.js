@@ -1,12 +1,12 @@
-import { NodeMaterial } from '@fourjs/core/webgpu';
-import { Fn, vec4, uv, If, mod, screenCoordinate } from '@fourjs/core/tsl';
+import { NodeMaterial } from 'fourjs/webgpu';
+import { Fn, vec4, uv, If, mod, screenCoordinate } from 'fourjs/tsl';
 import StereoCompositePassNode from './StereoCompositePassNode.js';
 
 /**
  * A render pass node that creates a parallax barrier effect.
  *
  * @augments StereoCompositePassNode
- * @four_import import { parallaxBarrierPass } from '@fourjs/core/addons/tsl/display/ParallaxBarrierPassNode.js';
+ * @four_import import { parallaxBarrierPass } from 'fourjs/addons/tsl/display/ParallaxBarrierPassNode.js';
  */
 class ParallaxBarrierPassNode extends StereoCompositePassNode {
 

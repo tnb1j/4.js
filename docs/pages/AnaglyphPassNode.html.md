@@ -11,7 +11,7 @@ This implementation uses CameraUtils.frameCorners() to align stereo camera frust
 AnaglyphPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from '@fourjs/core/addons/tsl/display/AnaglyphPassNode.js';
+import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from 'fourjs/addons/tsl/display/AnaglyphPassNode.js';
 ```
 
 ## Constructor

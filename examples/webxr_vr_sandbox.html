@@ -12,26 +12,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.module.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.module.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core';
+			import * as FOUR from 'fourjs';
 
-			import { HDRLoader } from '@fourjs/core/addons/loaders/HDRLoader.js';
-			import { Reflector } from '@fourjs/core/addons/objects/Reflector.js';
-			import { VRButton } from '@fourjs/core/addons/webxr/VRButton.js';
+			import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+			import { Reflector } from 'fourjs/addons/objects/Reflector.js';
+			import { VRButton } from 'fourjs/addons/webxr/VRButton.js';
 
-			import { HTMLMesh } from '@fourjs/core/addons/interactive/HTMLMesh.js';
-			import { InteractiveGroup } from '@fourjs/core/addons/interactive/InteractiveGroup.js';
-			import { XRControllerModelFactory } from '@fourjs/core/addons/webxr/XRControllerModelFactory.js';
+			import { HTMLMesh } from 'fourjs/addons/interactive/HTMLMesh.js';
+			import { InteractiveGroup } from 'fourjs/addons/interactive/InteractiveGroup.js';
+			import { XRControllerModelFactory } from 'fourjs/addons/webxr/XRControllerModelFactory.js';
 
-			import { GUI } from '@fourjs/core/addons/libs/lil-gui.module.min.js';
-			import Stats from '@fourjs/core/addons/libs/stats.module.js';
+			import { GUI } from 'fourjs/addons/libs/lil-gui.module.min.js';
+			import Stats from 'fourjs/addons/libs/stats.module.js';
 
 			let camera, scene, renderer;
 			let reflector;

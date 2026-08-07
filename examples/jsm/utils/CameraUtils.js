@@ -2,11 +2,11 @@ import {
 	MathUtils,
 	Quaternion,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * @module CameraUtils
- * @four_import import * as CameraUtils from '@fourjs/core/addons/utils/CameraUtils.js';
+ * @four_import import * as CameraUtils from 'fourjs/addons/utils/CameraUtils.js';
  */
 
 const _va = /*@__PURE__*/ new Vector3(), // from pe to pa

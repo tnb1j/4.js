@@ -6,7 +6,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 import { unzlibSync } from '../libs/fflate.module.js';
 
 /**
@@ -26,7 +26,7 @@ import { unzlibSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments Loader
- * @four_import import { VTKLoader } from '@fourjs/core/addons/loaders/VTKLoader.js';
+ * @four_import import { VTKLoader } from 'fourjs/addons/loaders/VTKLoader.js';
  * @deprecated since r184.
  */
 class VTKLoader extends Loader {

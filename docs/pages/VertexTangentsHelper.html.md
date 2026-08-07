@@ -18,7 +18,7 @@ scene.add( helper );
 VertexTangentsHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VertexTangentsHelper } from '@fourjs/core/addons/helpers/VertexTangentsHelper.js';
+import { VertexTangentsHelper } from 'fourjs/addons/helpers/VertexTangentsHelper.js';
 ```
 
 ## Constructor

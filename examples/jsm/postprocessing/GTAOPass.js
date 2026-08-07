@@ -19,7 +19,7 @@ import {
 	UnsignedInt248Type,
 	WebGLRenderTarget,
 	ZeroFactor
-} from '@fourjs/core';
+} from 'fourjs';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { generateMagicSquareNoise, GTAOShader, GTAODepthShader, GTAOBlendShader } from '../shaders/GTAOShader.js';
 import { generatePdSamplePointInitializer, PoissonDenoiseShader } from '../shaders/PoissonDenoiseShader.js';
@@ -38,7 +38,7 @@ import { SimplexNoise } from '../math/SimplexNoise.js';
  * ```
  *
  * @augments Pass
- * @four_import import { GTAOPass } from '@fourjs/core/addons/postprocessing/GTAOPass.js';
+ * @four_import import { GTAOPass } from 'fourjs/addons/postprocessing/GTAOPass.js';
  */
 class GTAOPass extends Pass {
 

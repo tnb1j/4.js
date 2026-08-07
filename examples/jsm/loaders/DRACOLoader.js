@@ -10,7 +10,7 @@ import {
 	InterleavedBuffer,
 	InterleavedBufferAttribute,
 	LoaderUtils
-} from '@fourjs/core';
+} from 'fourjs';
 
 const _taskCache = new WeakMap();
 
@@ -51,7 +51,7 @@ const DRACO_GLTF_CONFIG = {
  * ```
  *
  * @augments Loader
- * @four_import import { DRACOLoader } from '@fourjs/core/addons/loaders/DRACOLoader.js';
+ * @four_import import { DRACOLoader } from 'fourjs/addons/loaders/DRACOLoader.js';
  */
 class DRACOLoader extends Loader {
 

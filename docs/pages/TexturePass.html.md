@@ -18,7 +18,7 @@ composer.addPass( texturePass );
 TexturePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TexturePass } from '@fourjs/core/addons/postprocessing/TexturePass.js';
+import { TexturePass } from 'fourjs/addons/postprocessing/TexturePass.js';
 ```
 
 ## Constructor

@@ -4,7 +4,7 @@ import {
 	MeshBasicMaterial,
 	SphereGeometry,
 	Scene
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * This class represents a scene with a uniform color that can be used as
@@ -21,7 +21,7 @@ import {
  * ```
  *
  * @augments Scene
- * @four_import import { ColorEnvironment } from '@fourjs/core/addons/environments/ColorEnvironment.js';
+ * @four_import import { ColorEnvironment } from 'fourjs/addons/environments/ColorEnvironment.js';
  */
 class ColorEnvironment extends Scene {
 

@@ -1,6 +1,6 @@
 /**
  * @module HalftoneShader
- * @four_import import { HalftoneShader } from '@fourjs/core/addons/shaders/HalftoneShader.js';
+ * @four_import import { HalftoneShader } from 'fourjs/addons/shaders/HalftoneShader.js';
  */
 
 /**

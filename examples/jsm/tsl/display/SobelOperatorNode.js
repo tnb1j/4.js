@@ -1,5 +1,5 @@
-import { Vector2, TempNode, NodeUpdateType } from '@fourjs/core/webgpu';
-import { Fn, uv, uniform, convertToTexture, vec2, vec3, vec4, mat3, luminance, add } from '@fourjs/core/tsl';
+import { Vector2, TempNode, NodeUpdateType } from 'fourjs/webgpu';
+import { Fn, uv, uniform, convertToTexture, vec2, vec3, vec4, mat3, luminance, add } from 'fourjs/tsl';
 
 /**
  * Post processing node for detecting edges with a sobel filter.
@@ -7,7 +7,7 @@ import { Fn, uv, uniform, convertToTexture, vec2, vec3, vec4, mat3, luminance, a
  * space conversion.
  *
  * @augments TempNode
- * @four_import import { sobel } from '@fourjs/core/addons/tsl/display/SobelOperatorNode.js';
+ * @four_import import { sobel } from 'fourjs/addons/tsl/display/SobelOperatorNode.js';
  */
 class SobelOperatorNode extends TempNode {
 

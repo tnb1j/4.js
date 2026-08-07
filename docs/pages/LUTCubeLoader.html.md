@@ -20,7 +20,7 @@ const map = loader.loadAsync( 'luts/Bourbon 64.CUBE' );
 LUTCubeLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LUTCubeLoader } from '@fourjs/core/addons/loaders/LUTCubeLoader.js';
+import { LUTCubeLoader } from 'fourjs/addons/loaders/LUTCubeLoader.js';
 ```
 
 ## Constructor

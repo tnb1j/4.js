@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { pass, screenUV, uniform, uv, vec2, vec3, color, Fn, vec4, Loop, float, mix, luminance, smoothstep, rtt, time, viewportSize, instanceIndex, positionLocal } from '@fourjs/core/tsl';
-			import { bloom } from '@fourjs/core/addons/tsl/display/BloomNode.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { pass, screenUV, uniform, uv, vec2, vec3, color, Fn, vec4, Loop, float, mix, luminance, smoothstep, rtt, time, viewportSize, instanceIndex, positionLocal } from 'fourjs/tsl';
+			import { bloom } from 'fourjs/addons/tsl/display/BloomNode.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, instancedMesh, controls;
 			let renderPipeline;

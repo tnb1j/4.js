@@ -1,4 +1,4 @@
-import { Lighting } from '@fourjs/core/webgpu';
+import { Lighting } from 'fourjs/webgpu';
 import ClusteredLightsNode from '../tsl/lighting/ClusteredLightsNode.js';
 
 /**
@@ -14,7 +14,7 @@ import ClusteredLightsNode from '../tsl/lighting/ClusteredLightsNode.js';
  * ```
  *
  * @augments Lighting
- * @four_import import { ClusteredLighting } from '@fourjs/core/addons/lighting/ClusteredLighting.js';
+ * @four_import import { ClusteredLighting } from 'fourjs/addons/lighting/ClusteredLighting.js';
  */
 export class ClusteredLighting extends Lighting {
 

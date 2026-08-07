@@ -24,7 +24,7 @@ scene.add( lineSegments );
 LineSegments2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LineSegments2 } from '@fourjs/core/addons/lines/LineSegments2.js';
+import { LineSegments2 } from 'fourjs/addons/lines/LineSegments2.js';
 ```
 
 ## Constructor

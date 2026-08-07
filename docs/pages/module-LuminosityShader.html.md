@@ -5,7 +5,7 @@
 LuminosityShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { LuminosityShader } from '@fourjs/core/addons/shaders/LuminosityShader.js';
+import { LuminosityShader } from 'fourjs/addons/shaders/LuminosityShader.js';
 ```
 
 ## Properties

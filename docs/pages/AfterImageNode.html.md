@@ -9,7 +9,7 @@ Post processing node for creating an after image effect.
 AfterImageNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { afterImage } from '@fourjs/core/addons/tsl/display/AfterImageNode.js';
+import { afterImage } from 'fourjs/addons/tsl/display/AfterImageNode.js';
 ```
 
 ## Constructor

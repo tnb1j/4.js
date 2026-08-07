@@ -5,7 +5,7 @@
 SSRShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import * as SSRShader from '@fourjs/core/addons/shaders/SSRShader.js';
+import * as SSRShader from 'fourjs/addons/shaders/SSRShader.js';
 ```
 
 A collection of shaders used for SSR.

@@ -1,9 +1,9 @@
-import { LineSegments, LineBasicMaterial, BufferAttribute } from '@fourjs/core';
+import { LineSegments, LineBasicMaterial, BufferAttribute } from 'fourjs';
 /**
  * This class displays all Rapier Colliders in outline.
  *
  * @augments LineSegments
- * @four_import import { RapierHelper } from '@fourjs/core/addons/helpers/RapierHelper.js';
+ * @four_import import { RapierHelper } from 'fourjs/addons/helpers/RapierHelper.js';
  */
 class RapierHelper extends LineSegments {
 

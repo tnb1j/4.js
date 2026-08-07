@@ -4,7 +4,7 @@ import {
 	Color,
 	ColorManagement,
 	SRGBColorSpace
-} from '@fourjs/core';
+} from 'fourjs';
 
 /**
  * An exporter for PLY.
@@ -19,7 +19,7 @@ import {
  * const data = exporter.parse( scene, options );
  * ```
  *
- * @four_import import { PLYExporter } from '@fourjs/core/addons/exporters/PLYExporter.js';
+ * @four_import import { PLYExporter } from 'fourjs/addons/exporters/PLYExporter.js';
  */
 class PLYExporter {
 

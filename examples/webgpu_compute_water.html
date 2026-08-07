@@ -26,28 +26,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { instanceIndex, struct, If, uint, int, floor, float, length, clamp, vec2, cos, vec3, vertexIndex, Fn, uniform, instancedArray, min, max, positionLocal, transformNormalToView, select, globalId } from '@fourjs/core/tsl';
+			import * as FOUR from 'fourjs/webgpu';
+			import { instanceIndex, struct, If, uint, int, floor, float, length, clamp, vec2, cos, vec3, vertexIndex, Fn, uniform, instancedArray, min, max, positionLocal, transformNormalToView, select, globalId } from 'fourjs/tsl';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
-			import { SimplexNoise } from '@fourjs/core/addons/math/SimplexNoise.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@fourjs/core/addons/loaders/HDRLoader.js';
- 			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@fourjs/core/addons/loaders/DRACOLoader.js';
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
+			import { SimplexNoise } from 'fourjs/addons/math/SimplexNoise.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'fourjs/addons/loaders/HDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'fourjs/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
 
-			import WebGPU from '@fourjs/core/addons/capabilities/WebGPU.js';
+			import WebGPU from 'fourjs/addons/capabilities/WebGPU.js';
 
 			// Dimensions of simulation grid.
 			const WIDTH = 128;

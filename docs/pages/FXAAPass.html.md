@@ -16,7 +16,7 @@ composer.addPass( fxaaPass );
 FXAAPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { FXAAPass } from '@fourjs/core/addons/postprocessing/FXAAPass.js';
+import { FXAAPass } from 'fourjs/addons/postprocessing/FXAAPass.js';
 ```
 
 ## Constructor

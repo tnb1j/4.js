@@ -1,5 +1,5 @@
 import { Command } from '../Command.js';
-import { Vector3 } from '@fourjs/core';
+import { Vector3 } from 'fourjs';
 
 class SetPositionCommand extends Command {
 

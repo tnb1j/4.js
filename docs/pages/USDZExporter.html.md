@@ -14,7 +14,7 @@ const arraybuffer = await exporter.parseAsync( scene );
 USDZExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { USDZExporter } from '@fourjs/core/addons/exporters/USDZExporter.js';
+import { USDZExporter } from 'fourjs/addons/exporters/USDZExporter.js';
 ```
 
 ## Constructor

@@ -25,7 +25,7 @@ import {
 	TextureLoader,
 	Vector2,
 	Vector3
-} from '@fourjs/core';
+} from 'fourjs';
 
 import { IFFParser } from './lwo/IFFParser.js';
 
@@ -49,7 +49,7 @@ let _lwoTree;
  * ```
  *
  * @augments Loader
- * @four_import import { LWOLoader } from '@fourjs/core/addons/loaders/LWOLoader.js';
+ * @four_import import { LWOLoader } from 'fourjs/addons/loaders/LWOLoader.js';
  * @deprecated since r185.
  */
 class LWOLoader extends Loader {

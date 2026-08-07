@@ -8,7 +8,7 @@ import {
 	RedFormat,
 	RGFormat,
 	RGBAFormat
-} from '@fourjs/core';
+} from 'fourjs';
 import { unzlibSync } from '../libs/fflate.module.js';
 
 // Referred to the original Industrial Light & Magic OpenEXR implementation and the TinyEXR / Syoyo Fujita
@@ -92,7 +92,7 @@ import { unzlibSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { EXRLoader } from '@fourjs/core/addons/loaders/EXRLoader.js';
+ * @four_import import { EXRLoader } from 'fourjs/addons/loaders/EXRLoader.js';
  */
 class EXRLoader extends DataTextureLoader {
 

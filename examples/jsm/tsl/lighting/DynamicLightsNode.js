@@ -1,5 +1,5 @@
-import { LightsNode, NodeUtils, warn } from '@fourjs/core/webgpu';
-import { nodeObject } from '@fourjs/core/tsl';
+import { LightsNode, NodeUtils, warn } from 'fourjs/webgpu';
+import { nodeObject } from 'fourjs/tsl';
 
 import AmbientLightDataNode from './data/AmbientLightDataNode.js';
 import DirectionalLightDataNode from './data/DirectionalLightDataNode.js';
@@ -71,7 +71,7 @@ const getOrCreateLightNode = ( light, nodeLibrary ) => {
  * lights keep the default per-light path.
  *
  * @augments LightsNode
- * @four_import import { DynamicLightsNode } from '@fourjs/core/addons/tsl/lighting/DynamicLightsNode.js';
+ * @four_import import { DynamicLightsNode } from 'fourjs/addons/tsl/lighting/DynamicLightsNode.js';
  */
 class DynamicLightsNode extends LightsNode {
 

@@ -17,7 +17,7 @@ texture.colorSpace = FOUR.SRGBColorSpace;
 TIFFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { TIFFLoader } from '@fourjs/core/addons/loaders/TIFFLoader.js';
+import { TIFFLoader } from 'fourjs/addons/loaders/TIFFLoader.js';
 ```
 
 ## Constructor

@@ -1,5 +1,5 @@
-import { AdditiveBlending, Color, Vector2, PassNode, QuadMesh, NodeMaterial } from '@fourjs/core/webgpu';
-import { uniform, mrt, texture, getTextureIndex, unpremultiplyAlpha } from '@fourjs/core/tsl';
+import { AdditiveBlending, Color, Vector2, PassNode, QuadMesh, NodeMaterial } from 'fourjs/webgpu';
+import { uniform, mrt, texture, getTextureIndex, unpremultiplyAlpha } from 'fourjs/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 const _clearColor = /*@__PURE__*/ new Color();
@@ -14,7 +14,7 @@ const _clearColor = /*@__PURE__*/ new Color();
  * Reference: {@link https://en.wikipedia.org/wiki/Supersampling}
  *
  * @augments PassNode
- * @four_import import { ssaaPass } from '@fourjs/core/addons/tsl/display/SSAAPassNode.js';
+ * @four_import import { ssaaPass } from 'fourjs/addons/tsl/display/SSAAPassNode.js';
  */
 class SSAAPassNode extends PassNode {
 

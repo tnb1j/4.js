@@ -15,7 +15,7 @@ So `CSS3DRenderer` is just focused on ordinary DOM elements. These elements are 
 CSS3DRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { CSS3DRenderer } from '@fourjs/core/addons/renderers/CSS3DRenderer.js';
+import { CSS3DRenderer } from 'fourjs/addons/renderers/CSS3DRenderer.js';
 ```
 
 ## Constructor

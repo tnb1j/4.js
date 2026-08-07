@@ -5,7 +5,7 @@
 BasicShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { BasicShader } from '@fourjs/core/addons/shaders/BasicShader.js';
+import { BasicShader } from 'fourjs/addons/shaders/BasicShader.js';
 ```
 
 ## Properties

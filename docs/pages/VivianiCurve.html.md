@@ -9,7 +9,7 @@ A Viviani curve.
 VivianiCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { VivianiCurve } from '@fourjs/core/addons/curves/CurveExtras.js';
+import { VivianiCurve } from 'fourjs/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor

@@ -25,26 +25,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@fourjs/core": "../build/4.webgpu.js",
-					"@fourjs/core/webgpu": "../build/4.webgpu.js",
-					"@fourjs/core/tsl": "../build/4.tsl.js",
-					"@fourjs/core/addons/": "./jsm/"
+					"fourjs": "../build/4.webgpu.js",
+					"fourjs/webgpu": "../build/4.webgpu.js",
+					"fourjs/tsl": "../build/4.tsl.js",
+					"fourjs/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@fourjs/core/webgpu';
-			import { pass, uniform, float, int, color } from '@fourjs/core/tsl';
-			import { godrays } from '@fourjs/core/addons/tsl/display/GodraysNode.js';
-			import { bilateralBlur } from '@fourjs/core/addons/tsl/display/BilateralBlurNode.js';
-			import { depthAwareBlend } from '@fourjs/core/addons/tsl/display/depthAwareBlend.js';
+			import * as FOUR from 'fourjs/webgpu';
+			import { pass, uniform, float, int, color } from 'fourjs/tsl';
+			import { godrays } from 'fourjs/addons/tsl/display/GodraysNode.js';
+			import { bilateralBlur } from 'fourjs/addons/tsl/display/BilateralBlurNode.js';
+			import { depthAwareBlend } from 'fourjs/addons/tsl/display/depthAwareBlend.js';
 
-			import { OrbitControls } from '@fourjs/core/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@fourjs/core/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'fourjs/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'fourjs/addons/loaders/GLTFLoader.js';
 
-			import { Inspector } from '@fourjs/core/addons/inspector/Inspector.js';
+			import { Inspector } from 'fourjs/addons/inspector/Inspector.js';
 
 			let camera, controls, scene, renderer, renderPipeline;
 

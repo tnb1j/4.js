@@ -17,7 +17,7 @@ map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
 PVRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
 
 ```js
-import { PVRLoader } from '@fourjs/core/addons/loaders/PVRLoader.js';
+import { PVRLoader } from 'fourjs/addons/loaders/PVRLoader.js';
 ```
 
 ## Constructor
