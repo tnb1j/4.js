@@ -1,0 +1,11 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Keep the current largest binary/model assets out of normal Git object history.
+examples/models/ifc/rac_advanced_sample_project.ifc filter=lfs diff=lfs merge=lfs -text
+examples/models/gltf/Xbot.blend filter=lfs diff=lfs merge=lfs -text
+examples/models/gltf/kira.glb filter=lfs diff=lfs merge=lfs -text
+examples/models/gltf/BoomBox.glb filter=lfs diff=lfs merge=lfs -text
+manual/examples/resources/models/windmill_2/windmill_normal.tga filter=lfs diff=lfs merge=lfs -text
+manual/examples/resources/models/windmill_2/windmill_diffuse.tga filter=lfs diff=lfs merge=lfs -text
+manual/examples/resources/models/windmill_2/windmill_spec.tga filter=lfs diff=lfs merge=lfs -text
