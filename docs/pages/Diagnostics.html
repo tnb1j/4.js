@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Diagnostics - 4.js Docs</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="../scripts/highlight.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/page.css">
+</head>
+<body>
+		<p class="inheritance" translate="no"><a href="EventDispatcher.html">EventDispatcher</a> → </p>
+	<h1 translate="no">Diagnostics</h1>
+		<section>
+			<header>
+				<div class="class-description"><p>Collects structured diagnostic entries in a bounded in-memory buffer.</p>
+<p>Diagnostics is intentionally independent of the browser console. Applications
+can provide a sink callback to route accepted entries to a logger, telemetry
+service, or development overlay.</p></div>
+			</header>
+			<article>
+				<div class="container-overview">
+					<h2>Constructor</h2>
+					<h3 class="name name-method" id="Diagnostics" translate="no">new <a href="#Diagnostics">Diagnostics</a><span class="signature">( options : <span class="param-type">Object</span> )</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Constructs a diagnostics collector.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Configuration options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">level</strong>
+									</td>
+									<td class="description last">
+										<p>Minimum accepted diagnostic level.</p>
+										<p>Default is <code>'info'</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">maxEntries</strong>
+									</td>
+									<td class="description last">
+										<p>Maximum retained entry count.</p>
+										<p>Default is <code>200</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">scope</strong>
+									</td>
+									<td class="description last">
+										<p>Default entry scope.</p>
+										<p>Default is <code>'4.js'</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">sink</strong>
+									</td>
+									<td class="description last">
+										<p>Optional callback invoked for each accepted entry.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="subsection-title">Properties</h2>
+				<div class="member">
+					<h3 class="name" id="entries" translate="no">.<a href="#entries">entries</a><span class="type-signature"> : Array.&lt;Object></span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>Retained diagnostic entries.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="isDiagnostics" translate="no">.<a href="#isDiagnostics">isDiagnostics</a><span class="type-signature"> : boolean</span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>This flag can be used for type testing.</p>
+						<p>Default is <code>true</code>.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="level" translate="no">.<a href="#level">level</a><span class="type-signature"> : string</span> </h3>
+					<div class="description">
+						<p>Minimum accepted diagnostic level.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="maxEntries" translate="no">.<a href="#maxEntries">maxEntries</a><span class="type-signature"> : number</span> </h3>
+					<div class="description">
+						<p>Maximum retained entry count.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="scope" translate="no">.<a href="#scope">scope</a><span class="type-signature"> : string</span> </h3>
+					<div class="description">
+						<p>Default entry scope.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="sink" translate="no">.<a href="#sink">sink</a><span class="type-signature"> : function</span> </h3>
+					<div class="description">
+						<p>Optional callback invoked for each accepted entry.</p>
+					</div>
+				</div>
+				<h2 class="subsection-title">Methods</h2>
+					<h3 class="name name-method" id="captureRenderer" translate="no">.<a href="#captureRenderer">captureRenderer</a><span class="signature">( renderer : <span class="param-type">Object</span>, label : <span class="param-type">string</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Captures a portable snapshot of a renderer's public information.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">renderer</strong>
+									</td>
+									<td class="description last">
+										<p>A WebGL or WebGPU renderer.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">label</strong>
+									</td>
+									<td class="description last">
+										<p>Entry message.</p>
+										<p>Default is <code>'Renderer snapshot'</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted diagnostic entry.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="clear" translate="no">.<a href="#clear">clear</a><span class="signature">()</span><span class="type-signature"> : <a href="Diagnostics.html">Diagnostics</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Removes all retained entries.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this instance.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="debug" translate="no">.<a href="#debug">debug</a><span class="signature">( message : <span class="param-type">string</span>, data : <span class="param-type">*</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Records a debug entry.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">message</strong>
+									</td>
+									<td class="description last">
+										<p>Human-readable message.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">data</strong>
+									</td>
+									<td class="description last">
+										<p>Optional structured data.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Entry options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted entry, or <code>null</code> when filtered.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="error" translate="no">.<a href="#error">error</a><span class="signature">( message : <span class="param-type">string</span>, data : <span class="param-type">*</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Records an error entry.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">message</strong>
+									</td>
+									<td class="description last">
+										<p>Human-readable message.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">data</strong>
+									</td>
+									<td class="description last">
+										<p>Optional structured data.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Entry options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted entry, or <code>null</code> when filtered.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="getEntries" translate="no">.<a href="#getEntries">getEntries</a><span class="signature">( options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Array.&lt;Object></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns entries matching optional level, scope, and timestamp filters.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Filter options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">level</strong>
+									</td>
+									<td class="description last">
+										<p>Exact entry level.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">scope</strong>
+									</td>
+									<td class="description last">
+										<p>Exact entry scope.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">since</strong>
+									</td>
+									<td class="description last">
+										<p>Inclusive ISO timestamp.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Matching entries.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="info" translate="no">.<a href="#info">info</a><span class="signature">( message : <span class="param-type">string</span>, data : <span class="param-type">*</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Records an informational entry.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">message</strong>
+									</td>
+									<td class="description last">
+										<p>Human-readable message.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">data</strong>
+									</td>
+									<td class="description last">
+										<p>Optional structured data.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Entry options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted entry, or <code>null</code> when filtered.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="record" translate="no">.<a href="#record">record</a><span class="signature">( level : <span class="param-type">string</span>, message : <span class="param-type">string</span>, data : <span class="param-type">*</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Adds a structured entry when its level meets the configured threshold.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">level</strong>
+									</td>
+									<td class="description last">
+										<p>Entry level.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">message</strong>
+									</td>
+									<td class="description last">
+										<p>Human-readable message.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">data</strong>
+									</td>
+									<td class="description last">
+										<p>Optional structured data.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Entry options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">scope</strong>
+									</td>
+									<td class="description last">
+										<p>Scope override.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted entry, or <code>null</code> when filtered.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setLevel" translate="no">.<a href="#setLevel">setLevel</a><span class="signature">( level : <span class="param-type">string</span> )</span><span class="type-signature"> : <a href="Diagnostics.html">Diagnostics</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Sets the minimum accepted level.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">level</strong>
+									</td>
+									<td class="description last">
+										<p>The new diagnostic level.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this instance.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="toJSON" translate="no">.<a href="#toJSON">toJSON</a><span class="signature">()</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns a serializable diagnostics snapshot.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Diagnostics data.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="toString" translate="no">.<a href="#toString">toString</a><span class="signature">()</span><span class="type-signature"> : string</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns a formatted JSON representation.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Formatted diagnostics data.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="warn" translate="no">.<a href="#warn">warn</a><span class="signature">( message : <span class="param-type">string</span>, data : <span class="param-type">*</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Records a warning entry.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">message</strong>
+									</td>
+									<td class="description last">
+										<p>Human-readable message.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">data</strong>
+									</td>
+									<td class="description last">
+										<p>Optional structured data.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Entry options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The accepted entry, or <code>null</code> when filtered.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Source</h2>
+				<p>
+					<a href="../../src/core/Diagnostics.js" translate="no">src/core/Diagnostics.js</a>
+				</p>
+			</article>
+		</section>
+<script src="../scripts/linenumber.js"></script>
+<script src="../scripts/page.js"></script>
+</body>
+</html>

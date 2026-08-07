@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AssetScheduler - 4.js Docs</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="../scripts/highlight.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/page.css">
+</head>
+<body>
+		<p class="inheritance" translate="no"><a href="EventDispatcher.html">EventDispatcher</a> → </p>
+	<h1 translate="no">AssetScheduler</h1>
+		<section>
+			<header>
+				<div class="class-description"><p>Schedules asynchronous asset work with priorities, concurrency limits,
+cancellation, dependency blocking, and in-flight deduplication.</p></div>
+			</header>
+			<article>
+				<div class="container-overview">
+					<h2>Constructor</h2>
+					<h3 class="name name-method" id="AssetScheduler" translate="no">new <a href="#AssetScheduler">AssetScheduler</a><span class="signature">( options : <span class="param-type">Object</span> )</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Constructs an asset scheduler.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Scheduler options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">maxConcurrent</strong>
+									</td>
+									<td class="description last">
+										<p>Maximum concurrent tasks.</p>
+										<p>Default is <code>4</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">retain</strong>
+									</td>
+									<td class="description last">
+										<p>Retain completed tasks for result reuse.</p>
+										<p>Default is <code>false</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="subsection-title">Properties</h2>
+				<div class="member">
+					<h3 class="name" id="isAssetScheduler" translate="no">.<a href="#isAssetScheduler">isAssetScheduler</a><span class="type-signature"> : boolean</span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>This flag can be used for type testing.</p>
+						<p>Default is <code>true</code>.</p>
+					</div>
+				</div>
+				<h2 class="subsection-title">Methods</h2>
+					<h3 class="name name-method" id="cancel" translate="no">.<a href="#cancel">cancel</a><span class="signature">( key : <span class="param-type">*</span>, reason : <span class="param-type">*</span> )</span><span class="type-signature"> : boolean</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Cancels one task.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Task key.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">reason</strong>
+									</td>
+									<td class="description last">
+										<p>Cancellation reason.</p>
+										<p>Default is <code>'Asset task cancelled.'</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Whether a task was found.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="cancelAll" translate="no">.<a href="#cancelAll">cancelAll</a><span class="signature">( reason : <span class="param-type">*</span> )</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Cancels all pending and active tasks.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">reason</strong>
+									</td>
+									<td class="description last">
+										<p>Cancellation reason.</p>
+										<p>Default is <code>'All asset tasks cancelled.'</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="clear" translate="no">.<a href="#clear">clear</a><span class="signature">()</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Removes retained terminal tasks.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="enqueue" translate="no">.<a href="#enqueue">enqueue</a><span class="signature">( key : <span class="param-type">*</span>, executor : <span class="param-type">function</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : <a href="AssetTask.html">AssetTask</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Alias for <a href="AssetScheduler.html#schedule"><code>schedule()</code></a>.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Stable deduplication key.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">executor</strong>
+									</td>
+									<td class="description last">
+										<p>Task executor.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Task options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The scheduled task.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="get" translate="no">.<a href="#get">get</a><span class="signature">( key : <span class="param-type">*</span> )</span><span class="type-signature"> : <a href="AssetTask.html">AssetTask</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns a task by key.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Task key.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The task, or <code>null</code>.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="getStats" translate="no">.<a href="#getStats">getStats</a><span class="signature">()</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns scheduler counters.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Scheduler status.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="has" translate="no">.<a href="#has">has</a><span class="signature">( key : <span class="param-type">*</span> )</span><span class="type-signature"> : boolean</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns whether a task key is registered.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Task key.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Whether the key exists.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="pause" translate="no">.<a href="#pause">pause</a><span class="signature">()</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Pauses starting new tasks.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="resume" translate="no">.<a href="#resume">resume</a><span class="signature">()</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Resumes starting queued tasks.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="schedule" translate="no">.<a href="#schedule">schedule</a><span class="signature">( key : <span class="param-type">*</span>, executor : <span class="param-type">function</span>, options : <span class="param-type">Object</span> )</span><span class="type-signature"> : <a href="AssetTask.html">AssetTask</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Schedules asset work.</p>
+<p>Scheduling the same key while a task is pending returns the existing task.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Stable deduplication key.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">executor</strong>
+									</td>
+									<td class="description last">
+										<p>Async or synchronous task executor.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Task options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">priority</strong>
+									</td>
+									<td class="description last">
+										<p>Higher values run first.</p>
+										<p>Default is <code>0</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">dependencies</strong>
+									</td>
+									<td class="description last">
+										<p>Tasks or promises that must resolve first.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">signal</strong>
+									</td>
+									<td class="description last">
+										<p>External cancellation signal.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">retain</strong>
+									</td>
+									<td class="description last">
+										<p>Retain this task after completion.</p>
+										<p>Default is <code>false</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The scheduled or deduplicated task.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setConcurrency" translate="no">.<a href="#setConcurrency">setConcurrency</a><span class="signature">( maxConcurrent : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Updates the concurrency limit.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">maxConcurrent</strong>
+									</td>
+									<td class="description last">
+										<p>Maximum concurrent tasks.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setPriority" translate="no">.<a href="#setPriority">setPriority</a><span class="signature">( key : <span class="param-type">*</span>, priority : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="AssetScheduler.html">AssetScheduler</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Updates a queued task's priority.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Task key.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">priority</strong>
+									</td>
+									<td class="description last">
+										<p>New priority.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this scheduler.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="whenIdle" translate="no">.<a href="#whenIdle">whenIdle</a><span class="signature">()</span><span class="type-signature"> : Promise.&lt;void></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns a promise that resolves when no tasks remain pending or active.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Idle promise.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Source</h2>
+				<p>
+					<a href="../../src/loaders/AssetScheduler.js" translate="no">src/loaders/AssetScheduler.js</a>
+				</p>
+			</article>
+		</section>
+<script src="../scripts/linenumber.js"></script>
+<script src="../scripts/page.js"></script>
+</body>
+</html>

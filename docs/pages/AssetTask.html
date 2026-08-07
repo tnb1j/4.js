@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>AssetTask - 4.js Docs</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="../scripts/highlight.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/page.css">
+</head>
+<body>
+		<p class="inheritance" translate="no"><a href="EventDispatcher.html">EventDispatcher</a> → </p>
+	<h1 translate="no">AssetTask</h1>
+		<section>
+			<header>
+				<div class="class-description"><p>Represents one scheduled asset operation.</p></div>
+			</header>
+			<article>
+				<div class="container-overview">
+					<h2>Constructor</h2>
+					<h3 class="name name-method" id="AssetTask" translate="no">new <a href="#AssetTask">AssetTask</a><span class="signature">( scheduler : <span class="param-type"><a href="AssetScheduler.html">AssetScheduler</a></span>, key : <span class="param-type">*</span>, executor : <span class="param-type">function</span>, options : <span class="param-type">Object</span> )</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Constructs an asset task.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">scheduler</strong>
+									</td>
+									<td class="description last">
+										<p>Owning scheduler.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">key</strong>
+									</td>
+									<td class="description last">
+										<p>Deduplication key.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">executor</strong>
+									</td>
+									<td class="description last">
+										<p>Task executor.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Task options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="subsection-title">Methods</h2>
+					<h3 class="name name-method" id="cancel" translate="no">.<a href="#cancel">cancel</a><span class="signature">( reason : <span class="param-type">string</span> )</span><span class="type-signature"> : <a href="AssetTask.html">AssetTask</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Cancels this task.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">reason</strong>
+									</td>
+									<td class="description last">
+										<p>Cancellation reason.</p>
+										<p>Default is <code>'Asset task cancelled.'</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this task.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setPriority" translate="no">.<a href="#setPriority">setPriority</a><span class="signature">( priority : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="AssetTask.html">AssetTask</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Updates the priority of a queued task.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">priority</strong>
+									</td>
+									<td class="description last">
+										<p>New priority.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this task.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Source</h2>
+				<p>
+					<a href="../../src/loaders/AssetScheduler.js" translate="no">src/loaders/AssetScheduler.js</a>
+				</p>
+			</article>
+		</section>
+<script src="../scripts/linenumber.js"></script>
+<script src="../scripts/page.js"></script>
+</body>
+</html>

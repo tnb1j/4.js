@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CapabilitiesReport - 4.js Docs</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="../scripts/highlight.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/page.css">
+</head>
+<body>
+	<h1 translate="no">CapabilitiesReport</h1>
+		<section>
+			<header>
+				<div class="class-description"><p>Produces portable, serializable graphics capability reports.</p>
+<p>The synchronous constructor captures environment, renderer, and WebGL data.
+Call <a href="CapabilitiesReport.html#refresh"><code>refresh()</code></a> with
+<code>requestAdapter: true</code> to request optional WebGPU adapter details.</p></div>
+			</header>
+			<article>
+				<div class="container-overview">
+					<h2>Constructor</h2>
+					<h3 class="name name-method" id="CapabilitiesReport" translate="no">new <a href="#CapabilitiesReport">CapabilitiesReport</a><span class="signature">( options : <span class="param-type">Object</span> )</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Constructs a capability report.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Collection options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">renderer</strong>
+									</td>
+									<td class="description last">
+										<p>Optional renderer.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">canvas</strong>
+									</td>
+									<td class="description last">
+										<p>Optional canvas used for WebGL probing.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">context</strong>
+									</td>
+									<td class="description last">
+										<p>Optional WebGL context.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">probeWebGL</strong>
+									</td>
+									<td class="description last">
+										<p>Whether to create a WebGL2 context when needed.</p>
+										<p>Default is <code>true</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">globalObject</strong>
+									</td>
+									<td class="description last">
+										<p>Optional global object for testing or isolation.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="subsection-title">Properties</h2>
+				<div class="member">
+					<h3 class="name" id="data" translate="no">.<a href="#data">data</a><span class="type-signature"> : Object</span> </h3>
+					<div class="description">
+						<p>The latest serializable report data.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="isCapabilitiesReport" translate="no">.<a href="#isCapabilitiesReport">isCapabilitiesReport</a><span class="type-signature"> : boolean</span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>This flag can be used for type testing.</p>
+						<p>Default is <code>true</code>.</p>
+					</div>
+				</div>
+				<h2 class="subsection-title">Methods</h2>
+					<h3 class="name name-method" id="refresh" translate="no">.<a href="#refresh">refresh</a><span class="signature">( options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Promise.&lt;<a href="CapabilitiesReport.html">CapabilitiesReport</a>></span> <span class="type-signature">(async) </span></h3>
+					<div class="method">
+						<div class="description">
+							<p>Refreshes the report and optionally requests WebGPU adapter information.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Options merged with constructor options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">requestAdapter</strong>
+									</td>
+									<td class="description last">
+										<p>Whether to request a WebGPU adapter.</p>
+										<p>Default is <code>false</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">powerPreference</strong>
+									</td>
+									<td class="description last">
+										<p>Optional WebGPU power preference.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">adapter</strong>
+									</td>
+									<td class="description last">
+										<p>Existing adapter to inspect.</p>
+										<p>Default is <code>null</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A promise resolving to this report.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="toJSON" translate="no">.<a href="#toJSON">toJSON</a><span class="signature">()</span><span class="type-signature"> : Object</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns a detached serializable report object.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Capability report data.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="toString" translate="no">.<a href="#toString">toString</a><span class="signature">()</span><span class="type-signature"> : string</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns formatted JSON suitable for bug reports.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Formatted report data.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Static Methods</h2>
+					<h3 class="name name-method" id=".generate" translate="no">.<a href="#.generate">generate</a><span class="signature">( options : <span class="param-type">Object</span> )</span><span class="type-signature"> : Promise.&lt;<a href="CapabilitiesReport.html">CapabilitiesReport</a>></span> <span class="type-signature">(async) </span></h3>
+					<div class="method">
+						<div class="description">
+							<p>Creates and refreshes a report.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Collection options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The populated report.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Source</h2>
+				<p>
+					<a href="../../src/core/CapabilitiesReport.js" translate="no">src/core/CapabilitiesReport.js</a>
+				</p>
+			</article>
+		</section>
+<script src="../scripts/linenumber.js"></script>
+<script src="../scripts/page.js"></script>
+</body>
+</html>

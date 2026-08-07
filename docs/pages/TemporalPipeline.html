@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>TemporalPipeline - 4.js Docs</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="../scripts/highlight.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/page.css">
+</head>
+<body>
+		<p class="inheritance" translate="no"><a href="RenderPipeline.html">RenderPipeline</a> → </p>
+	<h1 translate="no">TemporalPipeline</h1>
+		<section>
+			<header>
+				<div class="class-description"><p>High-level temporal antialiasing and upscaling pipeline.</p>
+<p>The pipeline owns a lower-resolution scene pass with color, depth, and
+velocity outputs, a TAAU history resolve, and optional contrast-adaptive
+sharpening.</p>
+<p>Note: The scene pass is created with multisampling disabled because temporal
+accumulation and MSAA must not be combined.</p></div>
+			</header>
+			<article>
+				<div class="container-overview">
+					<h2>Constructor</h2>
+					<h3 class="name name-method" id="TemporalPipeline" translate="no">new <a href="#TemporalPipeline">TemporalPipeline</a><span class="signature">( renderer : <span class="param-type"><a href="Renderer.html">Renderer</a></span>, scene : <span class="param-type"><a href="Scene.html">Scene</a></span>, camera : <span class="param-type"><a href="Camera.html">Camera</a></span>, options : <span class="param-type">Object</span> )</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Constructs a temporal pipeline.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">renderer</strong>
+									</td>
+									<td class="description last">
+										<p>Initialized WebGPU renderer.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">scene</strong>
+									</td>
+									<td class="description last">
+										<p>Scene to render.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">camera</strong>
+									</td>
+									<td class="description last">
+										<p>Camera to render.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">options</strong>
+									</td>
+									<td class="description last">
+										<p>Pipeline options.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">resolutionScale</strong>
+									</td>
+									<td class="description last">
+										<p>Internal scene resolution scale.</p>
+										<p>Default is <code>0.67</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">sharpen</strong>
+									</td>
+									<td class="description last">
+										<p>Whether sharpening is enabled.</p>
+										<p>Default is <code>true</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">enabled</strong>
+									</td>
+									<td class="description last">
+										<p>Whether temporal resolve is enabled.</p>
+										<p>Default is <code>true</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">sharpness</strong>
+									</td>
+									<td class="description last">
+										<p>RCAS sharpness, where zero is strongest.</p>
+										<p>Default is <code>0.2</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">denoise</strong>
+									</td>
+									<td class="description last">
+										<p>Whether RCAS noise attenuation is enabled.</p>
+										<p>Default is <code>false</code>.</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">passOptions</strong>
+									</td>
+									<td class="description last">
+										<p>Additional scene pass render target options.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<h2 class="subsection-title">Properties</h2>
+				<div class="member">
+					<h3 class="name" id="camera" translate="no">.<a href="#camera">camera</a><span class="type-signature"> : <a href="Camera.html">Camera</a></span> </h3>
+					<div class="description">
+						<p>Camera rendered by this pipeline.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="enabled" translate="no">.<a href="#enabled">enabled</a><span class="type-signature"> : boolean</span> </h3>
+					<div class="description">
+						<p>Whether temporal resolve is enabled.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="isTemporalPipeline" translate="no">.<a href="#isTemporalPipeline">isTemporalPipeline</a><span class="type-signature"> : boolean</span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>This flag can be used for type testing.</p>
+						<p>Default is <code>true</code>.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="scene" translate="no">.<a href="#scene">scene</a><span class="type-signature"> : <a href="Scene.html">Scene</a></span> </h3>
+					<div class="description">
+						<p>Scene rendered by this pipeline.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="scenePass" translate="no">.<a href="#scenePass">scenePass</a><span class="type-signature"> : <a href="PassNode.html">PassNode</a></span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>Lower-resolution scene pass.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="sharpenNode" translate="no">.<a href="#sharpenNode">sharpenNode</a><span class="type-signature"> : <a href="SharpenNode.html">SharpenNode</a></span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>Contrast-adaptive sharpening node.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="sharpening" translate="no">.<a href="#sharpening">sharpening</a><span class="type-signature"> : boolean</span> </h3>
+					<div class="description">
+						<p>Whether sharpening is enabled.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="temporalNode" translate="no">.<a href="#temporalNode">temporalNode</a><span class="type-signature"> : <a href="TAAUNode.html">TAAUNode</a></span> <span class="type-signature">(readonly) </span></h3>
+					<div class="description">
+						<p>Temporal resolve node.</p>
+					</div>
+				</div>
+				<h2 class="subsection-title">Methods</h2>
+					<h3 class="name name-method" id="dispose" translate="no">.<a href="#dispose">dispose</a><span class="signature">()</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Frees pipeline resources.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="RenderPipeline.html#dispose">RenderPipeline#dispose</a></dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="getResolutionScale" translate="no">.<a href="#getResolutionScale">getResolutionScale</a><span class="signature">()</span><span class="type-signature"> : number</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns the internal scene resolution scale.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Resolution scale.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="reset" translate="no">.<a href="#reset">reset</a><span class="signature">()</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Invalidates temporal history.</p>
+<p>Call this after camera cuts, teleports, or discontinuous scene changes.</p>
+						</div>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setCamera" translate="no">.<a href="#setCamera">setCamera</a><span class="signature">( camera : <span class="param-type"><a href="Camera.html">Camera</a></span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Replaces the rendered camera.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">camera</strong>
+									</td>
+									<td class="description last">
+										<p>New camera.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setEnabled" translate="no">.<a href="#setEnabled">setEnabled</a><span class="signature">( enabled : <span class="param-type">boolean</span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Enables temporal resolve or bypasses it with the scene pass.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">enabled</strong>
+									</td>
+									<td class="description last">
+										<p>Whether temporal resolve is enabled.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setResolutionScale" translate="no">.<a href="#setResolutionScale">setResolutionScale</a><span class="signature">( resolutionScale : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Sets the internal scene resolution scale.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">resolutionScale</strong>
+									</td>
+									<td class="description last">
+										<p>Value greater than zero and at most one.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setScene" translate="no">.<a href="#setScene">setScene</a><span class="signature">( scene : <span class="param-type"><a href="Scene.html">Scene</a></span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Replaces the rendered scene.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">scene</strong>
+									</td>
+									<td class="description last">
+										<p>New scene.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setSharpening" translate="no">.<a href="#setSharpening">setSharpening</a><span class="signature">( enabled : <span class="param-type">boolean</span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Enables or disables the sharpening stage.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">enabled</strong>
+									</td>
+									<td class="description last">
+										<p>Whether sharpening is enabled.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="setSharpness" translate="no">.<a href="#setSharpness">setSharpness</a><span class="signature">( sharpness : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="TemporalPipeline.html">TemporalPipeline</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Sets RCAS sharpening strength.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">sharpness</strong>
+									</td>
+									<td class="description last">
+										<p>Value from zero (strongest) to two (disabled).</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> A reference to this pipeline.</dt>
+						</dl>
+					</div>
+				<h2 class="subsection-title">Source</h2>
+				<p>
+					<a href="../../src/renderers/common/TemporalPipeline.js" translate="no">src/renderers/common/TemporalPipeline.js</a>
+				</p>
+			</article>
+		</section>
+<script src="../scripts/linenumber.js"></script>
+<script src="../scripts/page.js"></script>
+</body>
+</html>
