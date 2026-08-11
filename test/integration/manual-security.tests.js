@@ -205,6 +205,7 @@ async function testRejectedEditorURL( browser, baseURL, exampleURL ) {
 
 		const example = encodeURIComponent( exampleURL );
 		const editorURL = `${baseURL}/manual/examples/resources/editor.html?editor=false&url=${example}`;
+		const rejectedURL = new URL( exampleURL, baseURL ).href;
 		await page.goto( editorURL, { waitUntil: 'domcontentloaded' } );
 		await page.waitForFunction( () => window.location.protocol === 'http:' );
 		await new Promise( resolve => setTimeout( resolve, 100 ) );
@@ -215,7 +216,7 @@ async function testRejectedEditorURL( browser, baseURL, exampleURL ) {
 			`Rejected editor URL: ${exampleURL}`
 		);
 		assert.equal(
-			requestedURLs.some( requestURL => requestURL === exampleURL ),
+			requestedURLs.some( requestURL => requestURL === rejectedURL ),
 			false,
 			`Rejected URL was not fetched: ${exampleURL}`
 		);
@@ -381,6 +382,8 @@ try {
 	await testEditorExternalScripts( browser, baseURL );
 	await testRejectedEditorURL( browser, baseURL, 'https://example.invalid/evil.html' );
 	await testRejectedEditorURL( browser, baseURL, `${baseURL}/examples/webgl_animation_skinning_blending.html` );
+	await testRejectedEditorURL( browser, baseURL, `${baseURL}/manual/examples/%2e%2e%2findex.html` );
+	await testRejectedEditorURL( browser, baseURL, `${baseURL}/manual/examples/%2e%2e%5cindex.html` );
 	await testCodeSiteModuleRewriting( browser, baseURL );
 	await testOffscreenExample( browser, baseURL, 'offscreencanvas.html' );
 	await testOffscreenExample( browser, baseURL, 'offscreencanvas-w-fallback.html' );

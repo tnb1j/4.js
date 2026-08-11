@@ -14,6 +14,7 @@
 
 	const lessonHelperScriptRE = /<script src="[^"]+lessons-helper\.js"><\/script>/;
 	const webglDebugHelperScriptRE = /<script src="[^"]+webgl-debug-helper\.js"><\/script>/;
+	const allowedExampleFilenameCharacters = new Set( 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._' );
 
 	function getQuery( s ) {
 
@@ -45,22 +46,39 @@
 
 		}
 
-		const url = new URL( path, window.location.href );
+		const sourceURL = new URL( path, window.location.href );
 		const examplesRoot = new URL( '../', window.location.href );
+		const filename = sourceURL.pathname.startsWith( examplesRoot.pathname )
+			? sourceURL.pathname.slice( examplesRoot.pathname.length )
+			: '';
+		const isAllowedFilename = filename.endsWith( '.html' ) &&
+			filename !== '.html' &&
+			Array.from( filename ).every( character => allowedExampleFilenameCharacters.has( character ) );
 
-		if ( url.origin !== examplesRoot.origin || url.pathname.startsWith( examplesRoot.pathname ) === false || url.pathname.endsWith( '.html' ) === false ) {
+		if (
+			sourceURL.origin !== examplesRoot.origin ||
+			sourceURL.username !== '' ||
+			sourceURL.password !== '' ||
+			isAllowedFilename === false
+		) {
 
 			throw new Error( 'Only same-origin manual examples can be opened.' );
 
 		}
 
-		return url;
+		return {
+			requestURL: new URL( encodeURIComponent( filename ), examplesRoot ),
+			sourceURL
+		};
 
 	}
 
 	async function getHTML( url ) {
 
-		const req = await fetch( url );
+		const req = await fetch( url, {
+			credentials: 'omit',
+			redirect: 'error'
+		} );
 		return await req.text();
 
 	}
@@ -528,13 +546,13 @@
 	async function main() {
 
 		const query = getQuery();
-		const exampleURL = getExampleURL( query.get( 'url' ) );
-		g.url = exampleURL.href;
+		const example = getExampleURL( query.get( 'url' ) );
+		g.url = example.sourceURL.href;
 		g.query = getSearch( g.url );
 		let html;
 		try {
 
-			html = await getHTML( exampleURL );
+			html = await getHTML( example.requestURL );
 
 		} catch ( err ) {
 
@@ -543,7 +561,7 @@
 
 		}
 
-		await parseHTML( exampleURL.href, html );
+		await parseHTML( example.sourceURL.href, html );
 		setupEditor();
 		const startPane = query.get( 'startPane' );
 		if ( startPane ) {
@@ -1967,13 +1985,13 @@ async function openInStackBlitz() {
 	async function runAsBlob() {
 
 		const query = getQuery();
-		const exampleURL = getExampleURL( query.get( 'url' ) );
-		g.url = exampleURL.href;
+		const example = getExampleURL( query.get( 'url' ) );
+		g.url = example.sourceURL.href;
 		g.query = getSearch( g.url );
 		let html;
 		try {
 
-			html = await getHTML( exampleURL );
+			html = await getHTML( example.requestURL );
 
 		} catch ( err ) {
 
@@ -1982,7 +2000,7 @@ async function openInStackBlitz() {
 
 		}
 
-		await parseHTML( exampleURL.href, html );
+		await parseHTML( example.sourceURL.href, html );
 		window.location.href = getSourceBlobFromOrig();
 
 	}
