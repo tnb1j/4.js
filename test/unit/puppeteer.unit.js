@@ -13,11 +13,11 @@ const networkTimeout = 5; // 5 minutes, set to 0 to disable
 const port = 1234;
 
 let browser;
+let closing = false;
 
 import { createServer } from '../../utils/server.js';
 
 const server = createServer();
-server.listen( port, main );
 
 
 const color = code => msg => console.log( `\x1b[${code}m${msg}\x1b[39m` );
@@ -49,106 +49,144 @@ const captureConsole = ( page ) => {
 };
 
 
-function main() {
+async function main() {
 
-	( async () => {
+	const flags = [
+		'--hide-scrollbars',
+		'--enable-unsafe-webgpu',
+		'--enable-features=Vulkan',
+		'--disable-vulkan-surface',
+		'--ignore-gpu-blocklist',
+		'--disable-gpu-driver-bug-workarounds',
+		'--no-sandbox'
+	];
 
-		const flags = [
-			'--hide-scrollbars',
-			'--enable-unsafe-webgpu',
-			'--enable-features=Vulkan',
-			'--disable-vulkan-surface',
-			'--ignore-gpu-blocklist',
-			'--disable-gpu-driver-bug-workarounds',
-			'--no-sandbox'
-		];
+	let testPage = '';
+	let testMode = '';
 
-		let testPage = '';
-		let testMode = '';
+	let argvIndex = 2;
+	const testPageArgument = process.argv[ argvIndex ];
 
-		let argvIndex = 2;
+	if ( testPageArgument?.startsWith( '--testPage=' ) ) {
 
-		if ( process.argv[ argvIndex ].startsWith( '--testPage' ) ) {
+		testPage = testPageArgument.split( '=' )[ 1 ];
+		argvIndex ++;
 
-			testPage = process.argv[ argvIndex ].split( '=' )[ 1 ];
-			argvIndex ++;
+	}
 
-		}
+	const testModeArgument = process.argv[ argvIndex ];
 
-		if ( process.argv[ argvIndex ].startsWith( '--mode' ) ) {
+	if ( testModeArgument?.startsWith( '--mode=' ) ) {
 
-			testMode = process.argv[ argvIndex ].split( '=' )[ 1 ];
-			argvIndex ++;
+		testMode = testModeArgument.split( '=' )[ 1 ];
 
-		}
+	}
 
-		browser = await puppeteer.launch( {
-			headless: testMode === 'headless',
-			args: flags,
-			env: { ...process.env, VK_DRIVER_FILES: '/usr/share/vulkan/icd.d/lvp_icd.x86_64.json' },
-			defaultViewport: null,
-			handleSIGINT: false,
-			protocolTimeout: 0,
-			userDataDir: './.puppeteer_profile'
-		} );
+	if ( testPage === '' ) throw new Error( 'Missing required --testPage argument.' );
+	if ( testMode !== 'headless' && testMode !== 'headful' ) throw new Error( 'The --mode argument must be headless or headful.' );
 
-		if ( testMode === 'headful' ) {
+	browser = await puppeteer.launch( {
+		headless: testMode === 'headless',
+		args: flags,
+		env: { ...process.env, VK_DRIVER_FILES: '/usr/share/vulkan/icd.d/lvp_icd.x86_64.json' },
+		defaultViewport: null,
+		handleSIGINT: false,
+		protocolTimeout: 0,
+		userDataDir: './.puppeteer_profile'
+	} );
 
-			browser.on( 'targetdestroyed', target => {
+	if ( testMode === 'headful' ) {
 
-				// close the process when testing page is closed
-				if ( target.type() === 'page' ) close( 0 );
+		browser.on( 'targetdestroyed', target => {
 
-			} );
-
-		}
-
-		const page = await browser.newPage();
-
-		captureConsole( page );
-
-		const testUrl = `http://localhost:${port}/test/unit/${testPage}`;
-
-		// Load the test page
-		await page.goto( testUrl, {
-			waitUntil: 'networkidle0',
-			timeout: networkTimeout * 60000
-		} );
-
-		// Wait for the QUnit test results
-		await page.waitForFunction( () => {
-
-			return window.QUnit && window.QUnit.done;
+			// Close the process when the test page is closed.
+			if ( target.type() === 'page' ) void close( 0 );
 
 		} );
 
-		// Get the test results
-		const stats = await page.evaluate( () => {
+	}
 
-			// these are set on window in the HTML test page
-			return window._QUnitStats;
+	const page = await browser.newPage();
 
-		} );
+	captureConsole( page );
 
-		white( `1..${stats.total}` );
-		green( `# pass ${stats.passed}` );
-		yellow( `# skip ${stats.skipped}` );
-		cyan( `# todo ${stats.todo}` );
-		red( `# fail ${stats.failed}` );
+	const testUrl = `http://localhost:${port}/test/unit/${testPage}`;
 
-		// Keep the process running if testing in headful mode, otherwise close it.
-		testMode === 'headless' && close( stats.failed > 0 ? 1 : 0 );
+	// Load the test page
+	await page.goto( testUrl, {
+		waitUntil: 'networkidle0',
+		timeout: networkTimeout * 60000
+	} );
 
-	} )();
+	// Wait for the QUnit test results
+	await page.waitForFunction( () => {
+
+		return window.QUnit && window.QUnit.done;
+
+	} );
+
+	// Get the test results
+	const stats = await page.evaluate( () => {
+
+		// these are set on window in the HTML test page
+		return window._QUnitStats;
+
+	} );
+
+	white( `1..${stats.total}` );
+	green( `# pass ${stats.passed}` );
+	yellow( `# skip ${stats.skipped}` );
+	cyan( `# todo ${stats.todo}` );
+	red( `# fail ${stats.failed}` );
+
+	// Keep the process running if testing in headful mode, otherwise close it.
+	if ( testMode === 'headless' ) await close( stats.failed > 0 ? 1 : 0 );
 
 }
 
-process.on( 'SIGINT', () => close() );
+server.listen( port, () => {
 
-function close( exitCode = 1 ) {
+	main().catch( async error => {
 
-	browser.close();
-	server.close();
-	process.exit( exitCode );
+		red( error.stack || error.message || String( error ) );
+		await close( 1 );
+
+	} );
+
+} );
+
+process.on( 'SIGINT', () => void close() );
+
+async function close( exitCode = 1 ) {
+
+	if ( closing ) return;
+	closing = true;
+
+	try {
+
+		if ( browser ) await browser.close();
+
+	} catch ( error ) {
+
+		red( `Failed to close browser cleanly: ${error.message}` );
+		exitCode = 1;
+
+	}
+
+	await new Promise( resolve => {
+
+		if ( server.listening ) {
+
+			server.close( resolve );
+
+		} else {
+
+			resolve();
+
+		}
+
+	} );
+
+	process.exitCode = exitCode;
 
 }

@@ -44,13 +44,30 @@ const mimeTypes = {
 
 function createHandler( rootDirectory ) {
 
+	rootDirectory = path.resolve( rootDirectory );
+
 	return ( req, res ) => {
 
-		const pathname = decodeURIComponent( req.url.split( '?' )[ 0 ] );
-		let filePath = path.join( rootDirectory, pathname );
+		let pathname;
+
+		try {
+
+			pathname = decodeURIComponent( new URL( req.url || '/', 'http://localhost' ).pathname );
+
+		} catch ( error ) {
+
+			res.writeHead( 400 );
+			res.end( 'Bad request' );
+			return;
+
+		}
+
+		const requestPath = pathname.replace( /^[/\\]+/, '' );
+		let filePath = path.resolve( rootDirectory, requestPath );
+		const relativePath = path.relative( rootDirectory, filePath );
 
 		// Prevent path traversal attacks
-		if ( ! filePath.startsWith( rootDirectory ) ) {
+		if ( relativePath === '..' || relativePath.startsWith( `..${path.sep}` ) || path.isAbsolute( relativePath ) ) {
 
 			res.writeHead( 403 );
 			res.end( 'Forbidden' );
@@ -189,12 +206,19 @@ function tryListen( server, port, maxAttempts = 20 ) {
 
 		let attempts = 0;
 
+		const listen = () => {
+
+			server.once( 'error', onError );
+			server.listen( port + attempts );
+
+		};
+
 		const onError = ( err ) => {
 
 			if ( err.code === 'EADDRINUSE' && attempts < maxAttempts ) {
 
 				attempts ++;
-				server.listen( port + attempts );
+				listen();
 
 			} else {
 
@@ -211,9 +235,8 @@ function tryListen( server, port, maxAttempts = 20 ) {
 
 		};
 
-		server.once( 'error', onError );
 		server.once( 'listening', onListening );
-		server.listen( port );
+		listen();
 
 	} );
 

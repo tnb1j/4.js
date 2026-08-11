@@ -1,24 +1,27 @@
-import { spawn } from 'child_process';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname( fileURLToPath( import.meta.url ) );
 const rootDir = path.resolve( __dirname, '../..' );
+const require = createRequire( import.meta.url );
+const rollupPath = require.resolve( 'rollup/dist/bin/rollup' );
 
 // Start rollup in watch mode
-const rollup = spawn( 'npx', [
-	'rollup',
+const rollup = spawn( process.execPath, [
+	rollupPath,
 	'-c', 'utils/build/rollup.config.js',
 	'-w',
 	'-m', 'inline'
 ], {
 	cwd: rootDir,
 	stdio: [ 'ignore', 'pipe', 'pipe' ],
-	shell: true
+	shell: false
 } );
 
 // Start server
-const server = spawn( 'node', [ 'utils/server.js', '-p', '8080' ], {
+const server = spawn( process.execPath, [ 'utils/server.js', '-p', '8080' ], {
 	cwd: rootDir,
 	stdio: [ 'ignore', 'pipe', 'pipe' ],
 	shell: false
@@ -46,16 +49,58 @@ server.stdout.on( 'data', prefix( 'HTTP', '\x1b[42m\x1b[1m' ) );
 server.stderr.on( 'data', prefix( 'HTTP', '\x1b[42m\x1b[1m' ) );
 
 // Handle cleanup
-const cleanup = () => {
+let closing = false;
 
-	rollup.kill();
-	server.kill();
-	process.exit( 0 );
+const stopChild = child => new Promise( resolve => {
+
+	if ( child.exitCode !== null || child.signalCode !== null ) {
+
+		resolve();
+		return;
+
+	}
+
+	child.once( 'close', resolve );
+
+	if ( child.kill() === false ) resolve();
+
+} );
+
+const cleanup = async ( exitCode = 0 ) => {
+
+	if ( closing ) return;
+	closing = true;
+
+	await Promise.all( [
+		stopChild( rollup ),
+		stopChild( server )
+	] );
+
+	process.exitCode = exitCode;
 
 };
 
-process.on( 'SIGINT', cleanup );
-process.on( 'SIGTERM', cleanup );
+const fail = ( name, error ) => {
 
-rollup.on( 'close', cleanup );
-server.on( 'close', cleanup );
+	console.error( `[${name}] ${error.stack || error.message || String( error )}` );
+	void cleanup( 1 );
+
+};
+
+process.on( 'SIGINT', () => void cleanup() );
+process.on( 'SIGTERM', () => void cleanup() );
+
+rollup.on( 'error', error => fail( 'ROLLUP', error ) );
+server.on( 'error', error => fail( 'HTTP', error ) );
+
+rollup.on( 'close', code => {
+
+	if ( closing === false ) void cleanup( code ?? 1 );
+
+} );
+
+server.on( 'close', code => {
+
+	if ( closing === false ) void cleanup( code ?? 1 );
+
+} );

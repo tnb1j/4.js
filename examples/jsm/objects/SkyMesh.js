@@ -27,7 +27,7 @@ import { Fn, float, vec2, vec3, acos, add, mul, clamp, cos, dot, exp, max, mix, 
  * ```
  *
  * It can be useful to hide the sun disc when generating an environment map to avoid artifacts
- * 
+ *
  * ```js
  * // disable before rendering environment map
  * sky.showSunDisc.value = false;

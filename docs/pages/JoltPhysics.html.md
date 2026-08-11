@@ -70,6 +70,24 @@ If the mesh is instanced, the index represents the instanced ID.
 
 Default is `0`.
 
+### .setMeshVelocity( mesh : Mesh, velocity : Vector3, index : number )
+
+Sets the linear velocity of the given mesh which is part of the physics simulation.
+
+**mesh**
+
+The mesh to update the velocity for.
+
+**velocity**
+
+The new linear velocity.
+
+**index**
+
+If the mesh is instanced, the index represents the instanced ID.
+
+Default is `0`.
+
 ## Source
 
 [examples/jsm/physics/JoltPhysics.js](../../examples/jsm/physics/JoltPhysics.js)

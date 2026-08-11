@@ -1,3 +1,5 @@
+/* global FOUR */
+
 const APP = {
 
 	Player: function () {

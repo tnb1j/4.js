@@ -28,6 +28,8 @@ export default [
 			'**/vendor/**',
 			'**/fuse/**',
 			'**/template/static/**',
+			'manual/examples/resources/webgl-debug-helper.js',
+			'test/treeshake/*.bundle*.js',
 		]
 	},
 
