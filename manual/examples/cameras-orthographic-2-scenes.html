@@ -95,7 +95,7 @@ function main() {
 		set max( v ) {
 
 			this.obj[ this.maxProp ] = v;
-			this.min = this.min; // this will call the min setter
+			this.min = this.obj[ this.minProp ]; // this will call the min setter
 
 		}
 

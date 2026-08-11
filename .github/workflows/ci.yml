@@ -24,26 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: === Build testing ===
-        run: npm run build
-
-      - name: === Rebranding compatibility testing ===
-        run: npm run test-rebranding
-
-      - name: === Migration tooling testing ===
-        run: npm run test-migrate
-
-      - name: === Lint testing ===
-        run: npm run lint
-
-      - name: === Unit testing ===
-        run: npm run test-unit
-
-      - name: === Unit addons testing ===
-        run: npm run test-unit-addons
-
-      - name: === Examples ready for release ===
-        run: npm run test-e2e-cov
+      - name: === Repository verification ===
+        run: npm test
 
   node-26-parity:
     name: Node 26 build & entrypoint parity

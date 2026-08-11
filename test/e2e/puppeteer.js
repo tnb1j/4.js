@@ -100,27 +100,25 @@ console.green = msg => console.log( `\x1b[32m${msg}\x1b[39m` );
 console.yellow = msg => console.log( `\x1b[33m${msg}\x1b[39m` );
 
 let browser;
+let closing = false;
 
 /* Launch server */
 
-server.listen( port, main );
+server.listen( port, () => {
 
-process.on( 'SIGINT', async () => {
+	main().catch( async error => {
+
+		console.red( error.stack || error.message || String( error ) );
+		await close( 1 );
+
+	} );
+
+} );
+
+process.on( 'SIGINT', () => {
 
 	console.log( '\nInterrupted, cleaning up...' );
-
-	if ( browser ) {
-
-		try {
-
-			await browser.close();
-
-		} catch ( e ) {}
-
-	}
-
-	server.close();
-	process.exit( 1 );
+	void close( 1 );
 
 } );
 
@@ -310,7 +308,7 @@ async function main() {
 
 	}
 
-	setTimeout( close, 300, failedScreenshots.length );
+	setTimeout( () => void close( failedScreenshots.length ), 300 );
 
 }
 
@@ -600,12 +598,38 @@ async function checkFile( ctx, failedScreenshots, cleanPage, isMakeScreenshot, f
 
 }
 
-function close( exitCode = 1 ) {
+async function close( exitCode = 1 ) {
+
+	if ( closing ) return;
+	closing = true;
 
 	console.log( 'Closing...' );
 
-	browser.close();
-	server.close();
-	process.exit( exitCode );
+	try {
+
+		if ( browser ) await browser.close();
+
+	} catch ( error ) {
+
+		console.red( `Failed to close browser cleanly: ${error.message}` );
+		exitCode = 1;
+
+	}
+
+	await new Promise( resolve => {
+
+		if ( server.listening ) {
+
+			server.close( resolve );
+
+		} else {
+
+			resolve();
+
+		}
+
+	} );
+
+	process.exitCode = exitCode;
 
 }

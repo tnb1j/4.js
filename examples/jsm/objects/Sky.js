@@ -25,9 +25,9 @@ import {
  * sky.scale.setScalar( 10000 );
  * scene.add( sky );
  * ```
- * 
+ *
  * It can be useful to hide the sun disc when generating an environment map to avoid artifacts
- * 
+ *
  * ```js
  * // disable before rendering environment map
  * sky.material.uniforms.showSunDisc.value = false;

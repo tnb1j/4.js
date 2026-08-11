@@ -19055,6 +19055,10 @@
 			"kind": "function"
 		},
 		{
+			"title": "JoltPhysics#setMeshVelocity",
+			"kind": "function"
+		},
+		{
 			"title": "KMZLoader",
 			"kind": "class"
 		},

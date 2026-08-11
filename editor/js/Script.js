@@ -311,7 +311,7 @@ function Script( editor ) {
 			const url = new URL( '../build/4.core.js', document.baseURI ).href;
 			const source = await ( await fetch( url ) ).text();
 
-	server.server.defs.push( buildFourDefs( source ) );
+			server.server.defs.push( buildFourDefs( source ) );
 			server.server.reset();
 
 		} catch ( error ) {
