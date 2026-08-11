@@ -143,15 +143,44 @@ class PLYLoader extends Loader {
 	 */
 	parse( data ) {
 
+		function findHeaderEnd( text ) {
+
+			const marker = 'end_header';
+			let markerIndex = text.indexOf( marker );
+
+			while ( markerIndex !== - 1 ) {
+
+				const beforeMarker = markerIndex === 0 || text[ markerIndex - 1 ] === '\r' || text[ markerIndex - 1 ] === '\n';
+				const afterMarkerIndex = markerIndex + marker.length;
+				const afterMarker = afterMarkerIndex === text.length || text[ afterMarkerIndex ] === '\r' || text[ afterMarkerIndex ] === '\n';
+
+				if ( beforeMarker && afterMarker ) {
+
+					let bodyStart = afterMarkerIndex;
+					while ( text[ bodyStart ] === '\r' || text[ bodyStart ] === '\n' ) bodyStart ++;
+
+					return { markerIndex, bodyStart };
+
+				}
+
+				markerIndex = text.indexOf( marker, afterMarkerIndex );
+
+			}
+
+			return null;
+
+		}
+
 		function parseHeader( data, headerLength = 0 ) {
 
-			const patternHeader = /^ply([\s\S]*)end_header(\r\n|\r|\n)/;
 			let headerText = '';
-			const result = patternHeader.exec( data );
+			const headerEnd = findHeaderEnd( data );
 
-			if ( result !== null ) {
+			if ( headerEnd !== null ) {
 
-				headerText = result[ 1 ];
+				const headerStart = data.startsWith( 'ply' ) ? 3 : 0;
+				headerText = data.slice( headerStart, headerEnd.markerIndex );
+				if ( headerLength === 0 ) headerLength = headerEnd.bodyStart;
 
 			}
 
@@ -462,18 +491,9 @@ class PLYLoader extends Loader {
 
 			const buffer = createBuffer();
 
-			const patternBody = /end_header\s+(\S[\s\S]*\S|\S)\s*$/;
-			let body, matches;
-
-			if ( ( matches = patternBody.exec( data ) ) !== null ) {
-
-				body = matches[ 1 ].split( /\s+/ );
-
-			} else {
-
-				body = [ ];
-
-			}
+			const headerEnd = findHeaderEnd( data );
+			const bodyText = headerEnd === null ? '' : data.slice( headerEnd.bodyStart ).trim();
+			const body = bodyText === '' ? [] : bodyText.split( /\s+/ );
 
 			const tokens = new ArrayStream( body );
 

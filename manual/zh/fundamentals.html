@@ -298,10 +298,10 @@ import * as FOUR from '@tnb1j/4js';
 <pre class="prettyprint">import * as FOUR from './someFolder/build/4.module.js';
 import {OrbitControls} from './someFolder/addons/controls/OrbitControls.js';
 </pre>
-<p>在使用CDN时，是同样的道理。确保<code class="notranslate" translate="no">three.modules.js</code>的路径以
-<code class="notranslate" translate="no">/build/three.modules.js</code>结尾，比如</p>
-<pre class="prettyprint">import * as FOUR from 'https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/<b>build/4.module.js</b>';
-import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/addons/controls/OrbitControls.js';
+<p>在使用CDN时，是同样的道理。确保<code class="notranslate" translate="no">4.module.js</code>的路径以
+<code class="notranslate" translate="no">/build/4.module.js</code>结尾，比如</p>
+<pre class="prettyprint">import * as FOUR from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@&lt;version&gt;/<b>+esm</b>';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@&lt;version&gt;/examples/jsm/controls/OrbitControls.js/+esm';
 </pre>
 </div>
         </div>

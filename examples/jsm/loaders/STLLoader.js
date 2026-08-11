@@ -283,9 +283,6 @@ class STLLoader extends Loader {
 		function parseASCII( data ) {
 
 			const geometry = new BufferGeometry();
-			const patternSolid = /solid([\s\S]*?)endsolid/g;
-			const patternFace = /facet([\s\S]*?)endfacet/g;
-			const patternName = /solid\s(.+)/;
 			let faceCounter = 0;
 
 			const patternFloat = /[\s]+([+-]?(?:\d*)(?:\.\d*)?(?:[eE][+-]?\d+)?)/.source;
@@ -303,22 +300,75 @@ class STLLoader extends Loader {
 			let groupCount = 0;
 			let startVertex = 0;
 			let endVertex = 0;
+			const solidToken = 'solid';
+			const solidEndToken = 'endsolid';
+			const faceToken = 'facet';
+			const faceEndToken = 'endfacet';
 
-			while ( ( result = patternSolid.exec( data ) ) !== null ) {
+			function findLineToken( text, token, fromIndex = 0 ) {
 
+				let tokenIndex = text.indexOf( token, fromIndex );
+
+				while ( tokenIndex !== - 1 ) {
+
+					let beforeIndex = tokenIndex - 1;
+					while ( beforeIndex >= 0 && ( text[ beforeIndex ] === ' ' || text[ beforeIndex ] === '\t' ) ) beforeIndex --;
+
+					const atLineStart = beforeIndex < 0 || text[ beforeIndex ] === '\r' || text[ beforeIndex ] === '\n';
+					const afterIndex = tokenIndex + token.length;
+					const after = text[ afterIndex ];
+					const atTokenEnd = after === undefined || after === ' ' || after === '\t' || after === '\r' || after === '\n';
+
+					if ( atLineStart && atTokenEnd ) return tokenIndex;
+
+					tokenIndex = text.indexOf( token, afterIndex );
+
+				}
+
+				return - 1;
+
+			}
+
+			function getLineEnd( text, fromIndex ) {
+
+				const carriageReturn = text.indexOf( '\r', fromIndex );
+				const lineFeed = text.indexOf( '\n', fromIndex );
+
+				if ( carriageReturn === - 1 ) return lineFeed === - 1 ? text.length : lineFeed;
+				if ( lineFeed === - 1 ) return carriageReturn;
+
+				return Math.min( carriageReturn, lineFeed );
+
+			}
+
+			let solidStart = findLineToken( data, solidToken );
+
+			while ( solidStart !== - 1 ) {
+
+				const solidEnd = findLineToken( data, solidEndToken, solidStart + solidToken.length );
+				if ( solidEnd === - 1 ) break;
+
+				const nextSolidStart = solidEnd + solidEndToken.length;
+				const solid = data.slice( solidStart, nextSolidStart );
 				startVertex = endVertex;
 
-				const solid = result[ 0 ];
-
-				const name = ( result = patternName.exec( solid ) ) !== null ? result[ 1 ] : '';
+				const nameStart = solidStart + solidToken.length;
+				const nameEnd = getLineEnd( data, nameStart );
+				const name = data.slice( nameStart, nameEnd ).trim();
 				groupNames.push( name );
 
-				while ( ( result = patternFace.exec( solid ) ) !== null ) {
+				let faceStart = findLineToken( solid, faceToken );
+
+				while ( faceStart !== - 1 ) {
+
+					const faceEnd = findLineToken( solid, faceEndToken, faceStart + faceToken.length );
+					if ( faceEnd === - 1 ) break;
 
 					let vertexCountPerFace = 0;
 					let normalCountPerFace = 0;
 
-					const text = result[ 0 ];
+					const nextFaceStart = faceEnd + faceEndToken.length;
+					const text = solid.slice( faceStart, nextFaceStart );
 
 					while ( ( result = patternNormal.exec( text ) ) !== null ) {
 
@@ -355,6 +405,7 @@ class STLLoader extends Loader {
 					}
 
 					faceCounter ++;
+					faceStart = findLineToken( solid, faceToken, nextFaceStart );
 
 				}
 
@@ -365,6 +416,7 @@ class STLLoader extends Loader {
 
 				geometry.addGroup( start, count, groupCount );
 				groupCount ++;
+				solidStart = findLineToken( data, solidToken, nextSolidStart );
 
 			}
 

@@ -18,20 +18,7 @@
 	function getQuery( s ) {
 
 		s = s === undefined ? window.location.search : s;
-		if ( s[ 0 ] === '?' ) {
-
-			s = s.substring( 1 );
-
-		}
-
-		const query = {};
-		s.split( '&' ).forEach( function ( pair ) {
-
-			const parts = pair.split( '=' ).map( decodeURIComponent );
-			query[ parts[ 0 ] ] = parts[ 1 ];
-
-		} );
-		return query;
+		return new URLSearchParams( s );
 
 	}
 
@@ -39,7 +26,7 @@
 
 		// yea I know this is not perfect but whatever
 		const s = url.indexOf( '?' );
-		return s < 0 ? {} : getQuery( url.substring( s ) );
+		return s < 0 ? {} : Object.fromEntries( getQuery( url.substring( s ) ) );
 
 	}
 
@@ -47,6 +34,27 @@
 
 		const url = new URL( path, baseUrl || window.location.href );
 		return url.href;
+
+	}
+
+	function getExampleURL( path ) {
+
+		if ( typeof path !== 'string' || path === '' ) {
+
+			throw new Error( 'A manual example URL is required.' );
+
+		}
+
+		const url = new URL( path, window.location.href );
+		const examplesRoot = new URL( '../', window.location.href );
+
+		if ( url.origin !== examplesRoot.origin || url.pathname.startsWith( examplesRoot.pathname ) === false || url.pathname.endsWith( '.html' ) === false ) {
+
+			throw new Error( 'Only same-origin manual examples can be opened.' );
+
+		}
+
+		return url;
 
 	}
 
@@ -316,12 +324,6 @@
 
 	}
 
-	function safeStr( s ) {
-
-		return s === undefined ? '' : s;
-
-	}
-
 	async function parseHTML( url, html ) {
 
 		html = fixSourceLinks( url, html );
@@ -333,8 +335,6 @@
 		const bodyRE = /<body>([^]*?)<\/body>/i;
 		const inlineScriptRE = /<script>([^]*?)<\/script>/i;
 		const inlineModuleScriptRE = /<script type="module">([^]*?)<\/script>/i;
-		const externalScriptRE = /(<!--(?:(?!-->)[\s\S])*?-->\n){0,1}<script\s+([^>]*?)(type="module"\s+)?src\s*=\s*"(.*?)"(.*?)>\s*<\/script>/ig;
-		const dataScriptRE = /(<!--(?:(?!-->)[\s\S])*?-->\n){0,1}<script([^>]*?type="(?!module).*?".*?)>([^]*?)<\/script>/ig;
 		const cssLinkRE = /<link ([^>]+?)>/g;
 		const isCSSLinkRE = /type="text\/css"|rel="stylesheet"/;
 		const hrefRE = /href="([^"]+)"/;
@@ -372,16 +372,6 @@
 
 		}
 
-		const kScript = 'script';
-		const scripts = [];
-		html = html.replace( externalScriptRE, function ( p0, p1, p2, type, p3, p4 ) {
-
-			p1 = p1 || '';
-			scripts.push( `${p1}<${kScript} ${p2}${safeStr( type )}src="${p3}"${p4}></${kScript}>` );
-			return '';
-
-		} );
-
 		const prefix = getPrefix( url );
 		const rootPrefix = getRootPrefix( url );
 
@@ -401,14 +391,50 @@
 
 		}
 
-		const importMapRE = /type\s*=["']importmap["']/;
+		const parsedDocument = new DOMParser().parseFromString( html, 'text/html' );
+		const scripts = [];
 		const dataScripts = [];
-		html = html.replace( dataScriptRE, function ( p0, blockComments, scriptTagAttrs, content ) {
+		const auxiliaryScripts = Array.from( parsedDocument.scripts );
 
-			blockComments = blockComments || '';
-			if ( importMapRE.test( scriptTagAttrs ) ) {
+		function takeLeadingComment( script ) {
 
-				const imap = JSON.parse( content );
+			let previous = script.previousSibling;
+
+			if ( previous && previous.nodeType === Node.TEXT_NODE && previous.textContent.trim() === '' ) {
+
+				previous = previous.previousSibling;
+
+			}
+
+			if ( previous && previous.nodeType === Node.COMMENT_NODE ) {
+
+				const comment = `<!--${previous.data}-->\n`;
+				previous.remove();
+				return comment;
+
+			}
+
+			return '';
+
+		}
+
+		for ( const script of auxiliaryScripts ) {
+
+			const type = ( script.getAttribute( 'type' ) || '' ).trim().toLowerCase();
+
+			if ( script.hasAttribute( 'src' ) ) {
+
+				scripts.push( takeLeadingComment( script ) + script.outerHTML );
+				script.remove();
+				continue;
+
+			}
+
+			if ( script.textContent.trim() === '${js}' || type === '' || type === 'module' ) continue;
+
+			if ( type === 'importmap' ) {
+
+				const imap = JSON.parse( script.textContent );
 				const imports = imap.imports;
 				if ( imports ) {
 
@@ -424,14 +450,34 @@
 
 				}
 
-				content = JSON.stringify( imap, null, '\t' );
+				script.textContent = JSON.stringify( imap, null, '\t' );
 
 			}
 
-			dataScripts.push( `${blockComments}<${kScript} ${scriptTagAttrs}>${content}</${kScript}>` );
-			return '';
+			dataScripts.push( takeLeadingComment( script ) + script.outerHTML );
+			script.remove();
 
-		} );
+		}
+
+		html = Array.from( parsedDocument.childNodes ).map( node => {
+
+			switch ( node.nodeType ) {
+
+				case Node.ELEMENT_NODE:
+					return node.outerHTML;
+
+				case Node.COMMENT_NODE:
+					return `<!--${node.data}-->`;
+
+				case Node.DOCUMENT_TYPE_NODE:
+					return `<!DOCTYPE ${node.name}>`;
+
+				default:
+					return node.textContent || '';
+
+			}
+
+		} ).join( '\n' );
 
 
 		htmlParts.html.sources[ 0 ].source += dataScripts.join( '\n' );
@@ -482,12 +528,13 @@
 	async function main() {
 
 		const query = getQuery();
-		g.url = getFQUrl( query.url );
+		const exampleURL = getExampleURL( query.get( 'url' ) );
+		g.url = exampleURL.href;
 		g.query = getSearch( g.url );
 		let html;
 		try {
 
-			html = await getHTML( query.url );
+			html = await getHTML( exampleURL );
 
 		} catch ( err ) {
 
@@ -496,11 +543,12 @@
 
 		}
 
-		await parseHTML( query.url, html );
+		await parseHTML( exampleURL.href, html );
 		setupEditor();
-		if ( query.startPane ) {
+		const startPane = query.get( 'startPane' );
+		if ( startPane ) {
 
-			const button = document.querySelector( '.button-' + query.startPane );
+			const button = document.querySelector( '.button-' + startPane );
 			toggleSourcePane( button );
 
 		}
@@ -581,8 +629,8 @@ import '${dirname( scriptInfo.fqURL )}/resources/lessons-worker-helper.js';`;
 		source = source.replace( '</head>', `<script src="${prefix}/resources/webgl-debug-helper.js"></script>
 <script src="${prefix}/resources/lessons-helper.js"></script>
   </head>` );
-		const scriptNdx = source.search( /<script(\s+type="module"\s*)?>/ );
-		g.rootScriptInfo.numLinesBeforeScript = ( source.substring( 0, scriptNdx ).match( /\n/g ) || [] ).length;
+		const scriptNdx = source.toLowerCase().indexOf( '<script' );
+		g.rootScriptInfo.numLinesBeforeScript = scriptNdx === - 1 ? 0 : ( source.substring( 0, scriptNdx ).match( /\n/g ) || [] ).length;
 
 		const blob = new Blob( [ source ], { type: 'text/html' } );
 		// This seems hacky. We are combining html/css/js into one html blob but we already made
@@ -855,14 +903,20 @@ import '${dirname( scriptInfo.fqURL )}/resources/lessons-worker-helper.js';`;
 			],
 		};
 
-		window.open( 'https://jsgist.org/?newGist=true', '_blank' );
+		const targetOrigin = 'https://jsgist.org';
+		const targetWindow = window.open( `${targetOrigin}/?newGist=true`, '_blank' );
+		if ( targetWindow === null ) return;
+
 		const send = ( e ) => {
 
-			e.source.postMessage( { type: 'newGist', data: gist }, '*' );
+			if ( e.origin !== targetOrigin || e.source !== targetWindow ) return;
+
+			targetWindow.postMessage( { type: 'newGist', data: gist }, targetOrigin );
+			window.removeEventListener( 'message', send );
 
 		};
 
-		window.addEventListener( 'message', send, { once: true } );
+		window.addEventListener( 'message', send );
 
 	}
 
@@ -1913,12 +1967,13 @@ async function openInStackBlitz() {
 	async function runAsBlob() {
 
 		const query = getQuery();
-		g.url = getFQUrl( query.url );
+		const exampleURL = getExampleURL( query.get( 'url' ) );
+		g.url = exampleURL.href;
 		g.query = getSearch( g.url );
 		let html;
 		try {
 
-			html = await getHTML( query.url );
+			html = await getHTML( exampleURL );
 
 		} catch ( err ) {
 
@@ -1927,7 +1982,7 @@ async function openInStackBlitz() {
 
 		}
 
-		await parseHTML( query.url, html );
+		await parseHTML( exampleURL.href, html );
 		window.location.href = getSourceBlobFromOrig();
 
 	}
@@ -1952,7 +2007,7 @@ async function openInStackBlitz() {
 		const parentQuery = getQuery( window.parent.location.search );
 		const isSmallish = window.navigator.userAgent.match( /Android|iPhone|iPod|Windows Phone/i );
 		const isEdge = window.navigator.userAgent.match( /Edge/i );
-		if ( isEdge || isSmallish || parentQuery.editor === 'false' ) {
+		if ( isEdge || isSmallish || parentQuery.get( 'editor' ) === 'false' ) {
 
 			runAsBlob();
 			// var url = query.url;

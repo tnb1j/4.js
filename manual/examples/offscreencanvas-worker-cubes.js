@@ -7,20 +7,21 @@ function size( data ) {
 
 }
 
-const handlers = {
-	init,
-	size,
-};
-
 self.onmessage = function ( e ) {
 
-	const fn = handlers[ e.data.type ];
-	if ( typeof fn !== 'function' ) {
+	switch ( e.data.type ) {
 
-		throw new Error( 'no handler for type: ' + e.data.type );
+		case 'init':
+			init( e.data );
+			break;
+
+		case 'size':
+			size( e.data );
+			break;
+
+		default:
+			throw new Error( 'no handler for type: ' + e.data.type );
 
 	}
-
-	fn( e.data );
 
 };

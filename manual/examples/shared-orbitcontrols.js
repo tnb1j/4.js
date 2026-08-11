@@ -1,5 +1,5 @@
-import * as FOUR from 'https://cdn.skypack.dev/three@0.136.0/build/4.module.js';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
+import * as FOUR from './resources/four-module.js';
+import { OrbitControls } from './resources/orbit-controls-module.js';
 
 export function init( data ) {
 

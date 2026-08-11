@@ -6,5 +6,6 @@ import './addons/math/ColorSpaces.tests.js';
 import './addons/curves/NURBSCurve.tests.js';
 import './addons/loaders/FBXLoader.tests.js';
 import './addons/loaders/HDRLoader.tests.js';
+import './addons/loaders/SecurityHardening.tests.js';
 import './addons/loaders/USDLoader.tests.js';
 import './addons/exporters/USDZExporter.tests.js';
