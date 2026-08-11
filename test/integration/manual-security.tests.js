@@ -116,7 +116,7 @@ async function testValidEditorBlobRun( browser, baseURL ) {
 
 	try {
 
-		const example = encodeURIComponent( '/manual/examples/fundamentals.html' );
+		const example = encodeURIComponent( '/manual/examples/fundamentals.html?mode=secure&__proto__=polluted' );
 		await page.goto(
 			`${baseURL}/manual/examples/resources/editor.html?editor=false&url=${example}`,
 			{ waitUntil: 'domcontentloaded' }
@@ -132,6 +132,8 @@ async function testValidEditorBlobRun( browser, baseURL ) {
 		const result = await page.evaluate( () => ( {
 			canvasCount: document.querySelectorAll( 'canvas' ).length,
 			engine: document.querySelector( 'canvas' ).dataset.engine,
+			mode: window.hackedParams.mode,
+			prototypePolluted: Object.prototype.polluted,
 			protocol: window.location.protocol,
 			title: document.title
 		} ) );
@@ -140,6 +142,8 @@ async function testValidEditorBlobRun( browser, baseURL ) {
 		assert.equal( result.title, '4.js - Fundamentals' );
 		assert.equal( result.canvasCount, 1 );
 		assert.match( result.engine, /^4\.js r185/ );
+		assert.equal( result.mode, 'secure' );
+		assert.equal( result.prototypePolluted, undefined );
 		assert.deepEqual( pageErrors, [] );
 
 	} finally {

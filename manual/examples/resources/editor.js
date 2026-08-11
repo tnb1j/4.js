@@ -18,15 +18,7 @@
 	function getQuery( s ) {
 
 		s = s === undefined ? window.location.search : s;
-		const query = Object.create( null );
-
-		for ( const [ key, value ] of new URLSearchParams( s ) ) {
-
-			query[ key ] = value;
-
-		}
-
-		return query;
+		return new URLSearchParams( s );
 
 	}
 
@@ -34,7 +26,7 @@
 
 		// yea I know this is not perfect but whatever
 		const s = url.indexOf( '?' );
-		return s < 0 ? {} : getQuery( url.substring( s ) );
+		return s < 0 ? {} : Object.fromEntries( getQuery( url.substring( s ) ) );
 
 	}
 
@@ -536,7 +528,7 @@
 	async function main() {
 
 		const query = getQuery();
-		const exampleURL = getExampleURL( query.url );
+		const exampleURL = getExampleURL( query.get( 'url' ) );
 		g.url = exampleURL.href;
 		g.query = getSearch( g.url );
 		let html;
@@ -553,9 +545,10 @@
 
 		await parseHTML( exampleURL.href, html );
 		setupEditor();
-		if ( query.startPane ) {
+		const startPane = query.get( 'startPane' );
+		if ( startPane ) {
 
-			const button = document.querySelector( '.button-' + query.startPane );
+			const button = document.querySelector( '.button-' + startPane );
 			toggleSourcePane( button );
 
 		}
@@ -1974,7 +1967,7 @@ async function openInStackBlitz() {
 	async function runAsBlob() {
 
 		const query = getQuery();
-		const exampleURL = getExampleURL( query.url );
+		const exampleURL = getExampleURL( query.get( 'url' ) );
 		g.url = exampleURL.href;
 		g.query = getSearch( g.url );
 		let html;
@@ -2014,7 +2007,7 @@ async function openInStackBlitz() {
 		const parentQuery = getQuery( window.parent.location.search );
 		const isSmallish = window.navigator.userAgent.match( /Android|iPhone|iPod|Windows Phone/i );
 		const isEdge = window.navigator.userAgent.match( /Edge/i );
-		if ( isEdge || isSmallish || parentQuery.editor === 'false' ) {
+		if ( isEdge || isSmallish || parentQuery.get( 'editor' ) === 'false' ) {
 
 			runAsBlob();
 			// var url = query.url;
