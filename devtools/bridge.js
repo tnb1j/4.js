@@ -621,7 +621,7 @@
 					id: MESSAGE_ID,
 					name: name,
 					detail: detail
-				}, '*' );
+				} );
 
 			} catch ( error ) {
 

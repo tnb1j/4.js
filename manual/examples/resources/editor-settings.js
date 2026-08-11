@@ -169,14 +169,14 @@
 
 		const moduleRE = /(import.*?)('|")(.*?)('|")/g;
 
-		// convert https://threejs.org/build/4.module.js -> https://cdn.jsdelivr.net/npm/three@<version>
-		// convert https://threejs.org/examples/jsm/.?? -> https://cdn.jsdelivr.net/npm/three@<version>/examples/jsm/.??
+		// Convert local 4.js modules to worker-safe jsDelivr ESM URLs.
 
 		if ( ! version ) {
 
 			try {
 
-				const res = await fetch( 'https://raw.githubusercontent.com/mrdoob/three.js/master/package.json' );
+				const packageURL = new URL( '../../../package.json', window.location.href );
+				const res = await fetch( packageURL );
 				const json = await res.json();
 				version = json.version;
 
@@ -194,12 +194,13 @@
 
 				if ( href.includes( '/build/4.module.js' ) ) {
 
-					return `https://cdn.jsdelivr.net/npm/three@${version}`;
+					return `https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}/+esm`;
 
 				} else if ( href.includes( '/examples/jsm/' ) ) {
 
 					const url = new URL( href );
-					return `https://cdn.jsdelivr.net/npm/three@${version}${url.pathname}${url.search}${url.hash}`;
+					const addonPath = url.pathname.slice( url.pathname.indexOf( '/examples/jsm/' ) );
+					return `https://cdn.jsdelivr.net/npm/@tnb1j/4js@${version}${addonPath}/+esm${url.search}${url.hash}`;
 
 				}
 

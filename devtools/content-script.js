@@ -59,7 +59,7 @@ function handleBackgroundMessage( message ) {
 	if ( forwardableMessages.has( message.name ) ) {
 
 		message.id = MESSAGE_ID;
-		window.postMessage( message, '*' );
+		window.postMessage( message );
 
 	}
 
@@ -77,4 +77,3 @@ window.matchMedia( '(prefers-color-scheme: light)' ).onchange = event => {
 	chrome.runtime.sendMessage( { scheme: event.matches ? 'light' : 'dark' } );
 
 };
-

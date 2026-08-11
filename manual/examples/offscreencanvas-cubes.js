@@ -1,4 +1,4 @@
-import * as FOUR from 'https://cdn.skypack.dev/three@0.136.0/build/4.module.js';
+import * as FOUR from './resources/four-module.js';
 
 const state = {
 	width: 300, // canvas default
@@ -111,20 +111,21 @@ function size( data ) {
 
 }
 
-const handlers = {
-	main,
-	size,
-};
-
 self.onmessage = function ( e ) {
 
-	const fn = handlers[ e.data.type ];
-	if ( typeof fn !== 'function' ) {
+	switch ( e.data.type ) {
 
-		throw new Error( 'no handler for type: ' + e.data.type );
+		case 'main':
+			main( e.data );
+			break;
+
+		case 'size':
+			size( e.data );
+			break;
+
+		default:
+			throw new Error( 'no handler for type: ' + e.data.type );
 
 	}
-
-	fn( e.data );
 
 };

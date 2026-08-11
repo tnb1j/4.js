@@ -1,4 +1,4 @@
-import * as FOUR from 'https://cdn.skypack.dev/three@0.136.0/build/4.module.js';
+import * as FOUR from './resources/four-module.js';
 
 export const state = {
 	width: 300, // canvas default

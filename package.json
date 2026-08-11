@@ -66,11 +66,12 @@
   "scripts": {
     "start": "npm run dev",
     "test": "npm run verify",
-    "verify": "npm run build && npm run lint && npm run test-rebranding && npm run test-brand-sync && npm run test-migrate && npm run test-server && npm run test-unit && npm run test-unit-addons && npm run test-treeshake && npm run test-e2e-cov",
+    "verify": "npm run build && npm run lint && npm run test-rebranding && npm run test-brand-sync && npm run test-migrate && npm run test-server && npm run test-manual-security && npm run test-unit && npm run test-unit-addons && npm run test-treeshake && npm run test-e2e-cov",
     "test-rebranding": "node test/rebranding/dual-entrypoints.js",
     "test-brand-sync": "node utils/rebrand/sync-project.js",
     "test-migrate": "node test/rebranding/migrate.tests.js",
     "test-server": "node test/integration/server.tests.js",
+    "test-manual-security": "node test/integration/manual-security.tests.js",
     "build": "rollup -c utils/build/rollup.config.js",
     "build-docs": "jsdoc -c utils/docs/jsdoc.config.json && npm run build-llms",
     "build-llms": "node utils/llms/build.js",

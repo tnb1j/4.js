@@ -148,7 +148,7 @@ function Viewport( editor ) {
 
 	//
 
-	const xr = new XR( editor, transformControls ); // eslint-disable-line no-unused-vars
+	new XR( editor, transformControls );
 
 	// events
 

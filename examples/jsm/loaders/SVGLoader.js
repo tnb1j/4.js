@@ -767,10 +767,11 @@ class SVGLoader extends Loader {
 						Object.entries( stylesheet.style ).filter( ( [ , v ] ) => v !== '' )
 					);
 
-					stylesheets[ selectorList[ j ] ] = Object.assign(
-						stylesheets[ selectorList[ j ] ] || {},
+					const selector = selectorList[ j ];
+					stylesheets.set( selector, Object.assign(
+						stylesheets.get( selector ) || {},
 						definitions
-					);
+					) );
 
 				}
 
@@ -1214,7 +1215,7 @@ class SVGLoader extends Loader {
 
 				for ( let i = 0; i < classSelectors.length; i ++ ) {
 
-					stylesheetStyles = Object.assign( stylesheetStyles, stylesheets[ '.' + classSelectors[ i ] ] );
+					stylesheetStyles = Object.assign( stylesheetStyles, stylesheets.get( '.' + classSelectors[ i ] ) );
 
 				}
 
@@ -1222,7 +1223,7 @@ class SVGLoader extends Loader {
 
 			if ( node.hasAttribute( 'id' ) ) {
 
-				stylesheetStyles = Object.assign( stylesheetStyles, stylesheets[ '#' + node.getAttribute( 'id' ) ] );
+				stylesheetStyles = Object.assign( stylesheetStyles, stylesheets.get( '#' + node.getAttribute( 'id' ) ) );
 
 			}
 
@@ -2127,7 +2128,7 @@ class SVGLoader extends Loader {
 		//
 
 		const paths = [];
-		const stylesheets = {};
+		const stylesheets = new Map();
 		const gradients = {};
 
 		const transformStack = [];

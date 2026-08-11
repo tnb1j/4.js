@@ -298,9 +298,9 @@ import * as FOUR from '@tnb1j/4js';
 <pre class="prettyprint">import * as FOUR from './someFolder/build/4.module.js';
 import {OrbitControls} from './someFolder/addons/controls/OrbitControls.js';
 </pre>
-<p>これにはCDNを使用する場合も含まれます。 <code class="notranslate" translate="no">three.modules.js</code> のパスが <code class="notranslate" translate="no">/build/three.modules.js</code> のようになってる事を確認して下さい。例えば</p>
-<pre class="prettyprint">import * as FOUR from 'https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/<b>build/4.module.js</b>';
-import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@&lt;version&gt;/addons/controls/OrbitControls.js';
+<p>これにはCDNを使用する場合も含まれます。 <code class="notranslate" translate="no">4.module.js</code> のパスが <code class="notranslate" translate="no">/build/4.module.js</code> のようになってる事を確認して下さい。例えば</p>
+<pre class="prettyprint">import * as FOUR from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@&lt;version&gt;/<b>+esm</b>';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@&lt;version&gt;/examples/jsm/controls/OrbitControls.js/+esm';
 </pre>
 </div>
 

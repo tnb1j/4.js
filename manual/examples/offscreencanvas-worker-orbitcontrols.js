@@ -1,5 +1,5 @@
 import { init } from './shared-orbitcontrols.js';
-import { EventDispatcher } from 'https://cdn.skypack.dev/three@0.136.0/build/4.module.js';
+import { EventDispatcher } from './resources/four-module.js';
 
 function noop() {
 }
@@ -11,6 +11,12 @@ class ElementProxyReceiver extends EventDispatcher {
 		super();
 		// because OrbitControls try to set style.touchAction;
 		this.style = {};
+		this.ownerDocument = this;
+
+	}
+	getRootNode() {
+
+		return this;
 
 	}
 	get clientWidth() {
@@ -65,25 +71,44 @@ class ProxyManager {
 
 	constructor() {
 
-		this.targets = {};
+		this.targets = new Map();
 		this.handleEvent = this.handleEvent.bind( this );
 
 	}
 	makeProxy( data ) {
 
 		const { id } = data;
+		if ( Number.isInteger( id ) === false || id < 0 ) {
+
+			throw new Error( 'invalid proxy id: ' + id );
+
+		}
+
+		if ( this.targets.has( id ) ) {
+
+			throw new Error( 'proxy already exists: ' + id );
+
+		}
+
 		const proxy = new ElementProxyReceiver();
-		this.targets[ id ] = proxy;
+		this.targets.set( id, proxy );
 
 	}
 	getProxy( id ) {
 
-		return this.targets[ id ];
+		const proxy = this.targets.get( id );
+		if ( proxy === undefined ) {
+
+			throw new Error( 'unknown proxy id: ' + id );
+
+		}
+
+		return proxy;
 
 	}
 	handleEvent( data ) {
 
-		this.targets[ data.id ].handleEvent( data.data );
+		this.getProxy( data.id ).handleEvent( data.data );
 
 	}
 
@@ -109,21 +134,25 @@ function makeProxy( data ) {
 
 }
 
-const handlers = {
-	start,
-	makeProxy,
-	event: proxyManager.handleEvent,
-};
-
 self.onmessage = function ( e ) {
 
-	const fn = handlers[ e.data.type ];
-	if ( typeof fn !== 'function' ) {
+	switch ( e.data.type ) {
 
-		throw new Error( 'no handler for type: ' + e.data.type );
+		case 'start':
+			start( e.data );
+			break;
+
+		case 'makeProxy':
+			makeProxy( e.data );
+			break;
+
+		case 'event':
+			proxyManager.handleEvent( e.data );
+			break;
+
+		default:
+			throw new Error( 'no handler for type: ' + e.data.type );
 
 	}
-
-	fn( e.data );
 
 };

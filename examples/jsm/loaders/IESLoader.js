@@ -210,13 +210,7 @@ function IESLamp( text ) {
 
 	function textToArray( text ) {
 
-		text = text.replace( /^\s+|\s+$/g, '' ); // remove leading or trailing spaces
-		text = text.replace( /,/g, ' ' ); // replace commas with spaces
-		text = text.replace( /\s\s+/g, ' ' ); // replace white space/tabs etc by single whitespace
-
-		const array = text.split( ' ' );
-
-		return array;
+		return text.trim().replaceAll( ',', ' ' ).split( /\s+/ );
 
 	}
 

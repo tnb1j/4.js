@@ -61,6 +61,7 @@
 		let iframe = document.querySelector( 'iframe' );
 
 		const pageProperties = {};
+		const pageLinks = new Map();
 		const titles = {};
 		const categoryElements = [];
 
@@ -87,6 +88,7 @@
 			}
 
 			const languageSelect = document.querySelector( '#language' );
+			if ( Object.hasOwn( list, language ) === false ) language = 'en';
 			languageSelect.value = language;
 			languageSelect.addEventListener( 'change', function () {
 
@@ -218,6 +220,7 @@
 
 			navigation = document.createElement( 'div' );
 			content.appendChild( navigation );
+			pageLinks.clear();
 
 			if ( language === 'ar' ) {
 
@@ -265,6 +268,12 @@
 
 					const linkElement = createLink( pageName, pageURL );
 					listElement.appendChild( linkElement );
+
+					const pageHashIndex = pageURL.indexOf( '#' );
+					const pagePath = pageHashIndex === - 1 ? pageURL : pageURL.slice( 0, pageHashIndex );
+					const pageDestination = new URL( linkElement.href );
+					pageDestination.hash = '';
+					pageLinks.set( pagePath, pageDestination.href );
 
 					// select current page
 
@@ -322,8 +331,9 @@
 
 			const hash = location.hash;
 			if ( hash === '' ) return;
-			const docLink = hash.slice( hash.indexOf( '/' ) );
-			location.href = '#' + language + docLink;
+			const slashIndex = hash.indexOf( '/' );
+			if ( slashIndex === - 1 ) return;
+			location.hash = language + hash.slice( slashIndex );
 
 		}
 
@@ -490,7 +500,10 @@
 			// First separate the member part of the fragment (if existing)
 
 			const hash = window.location.hash.substring( 1 );
-			const splitHash = decomposePageName( hash, '.', '#' );
+			const hashDelimiter = hash.indexOf( '#' );
+			const splitHash = hashDelimiter === - 1
+				? decomposePageName( hash, '.', '#' )
+				: [ hash.slice( 0, hashDelimiter ), hash.slice( hashDelimiter ) ];
 
 			// Creating a new Iframe instead of assigning a new src is
 			// a cross-browser solution to allow normal browser navigation;
@@ -502,26 +515,18 @@
 			const oldIframe = iframe;
 			iframe = oldIframe.cloneNode();
 
-			if ( hash ) {
+			const pageDestination = pageLinks.get( splitHash[ 0 ] );
+			const anchor = splitHash[ 1 ].slice( 1 );
+			const validAnchor = anchor === '' || /^[A-Za-z0-9_.:-]+$/.test( anchor );
 
-				// We can have 2 hashes. One for the main page, one for the page it's referencing
-				// In other words
-				//	 #en/somePage#someSectionOfPage
-				const subHash = splitHash[ 0 ].indexOf( '#' );
-				let src;
-				if ( subHash >= 0 ) {
+			if ( pageDestination !== undefined && validAnchor ) {
 
-					const beforeSubHash = splitHash[ 0 ].slice( 0, subHash );
-					const afterSubHash = splitHash[ 0 ].slice( subHash );
-					src = `${beforeSubHash}.html${afterSubHash}${splitHash[ 1 ]}`;
-		
-				} else {
+				const destination = new URL( pageDestination );
 
-					src = splitHash[ 0 ] + '.html' + splitHash[ 1 ];
-		
-				}
+				if ( destination.origin !== window.location.origin ) throw new Error( 'Invalid manual page origin.' );
+				if ( anchor !== '' ) destination.hash = anchor;
 
-				iframe.src = src; // lgtm[js/client-side-unvalidated-url-redirection]
+				iframe.src = destination.href;
 				iframe.style.display = 'unset';
 
 			} else {
