@@ -60,8 +60,8 @@ same 4.js version under both names:
 ```json
 {
   "dependencies": {
-    "@tnb1j/4js": "0.185.1-four.1",
-    "three": "npm:@tnb1j/4js@0.185.1-four.1"
+    "@tnb1j/4js": "0.185.1-four.2",
+    "three": "npm:@tnb1j/4js@0.185.1-four.2"
   }
 }
 ```
