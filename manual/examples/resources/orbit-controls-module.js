@@ -1,1 +1,1 @@
-export { OrbitControls } from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.1/examples/jsm/controls/OrbitControls.js/+esm';
+export { OrbitControls } from 'https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.2/examples/jsm/controls/OrbitControls.js/+esm';
