@@ -39,7 +39,7 @@ function main() {
 	const canvas = document.querySelector( '#c' );
 	const renderer = new FOUR.WebGLRenderer( { antialias: true, canvas } );
 	renderer.shadowMap.enabled = true;
-	renderer.shadowMap.type = FOUR.PCFSoftShadowMap; // default FOUR.PCFShadowMap
+	renderer.shadowMap.type = FOUR.PCFShadowMap;
 
 	const fov = 45;
 	const aspect = 2; // the canvas default

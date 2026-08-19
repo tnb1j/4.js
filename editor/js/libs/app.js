@@ -1,5 +1,13 @@
 /* global FOUR */
 
+function getShadowMapType( shadowType ) {
+
+	// PCFSoftShadowMap ( 2 ) was deprecated; PCFShadowMap ( 1 ) now applies the
+	// same soft filtering, so migrate the old value before using it.
+	return shadowType === FOUR.PCFSoftShadowMap ? FOUR.PCFShadowMap : shadowType;
+
+}
+
 const APP = {
 
 	Player: function () {
@@ -48,7 +56,7 @@ const APP = {
 			renderer.setPixelRatio( window.devicePixelRatio );
 
 			if ( project.shadows !== undefined ) renderer.shadowMap.enabled = project.shadows;
-			if ( project.shadowType !== undefined ) renderer.shadowMap.type = project.shadowType;
+			if ( project.shadowType !== undefined ) renderer.shadowMap.type = getShadowMapType( project.shadowType );
 			if ( project.toneMapping !== undefined ) renderer.toneMapping = project.toneMapping;
 			if ( project.toneMappingExposure !== undefined ) renderer.toneMappingExposure = project.toneMappingExposure;
 
@@ -306,4 +314,4 @@ const APP = {
 
 };
 
-export { APP };
+export { APP, getShadowMapType };

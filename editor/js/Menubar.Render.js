@@ -3,7 +3,7 @@ import * as FOUR from '@tnb1j/4js';
 import { UIPanel, UIRow, UIButton, UIInteger, UISelect, UIText } from './libs/ui.js';
 
 import { ViewportPathtracer } from './Viewport.Pathtracer.js';
-import { APP } from './libs/app.js';
+import { APP, getShadowMapType } from './libs/app.js';
 
 function MenubarRender( editor ) {
 
@@ -228,7 +228,7 @@ class RenderImageDialog {
 			renderer.setClearColor( editor.viewportColor );
 
 			if ( project.shadows !== undefined ) renderer.shadowMap.enabled = project.shadows;
-			if ( project.shadowType !== undefined ) renderer.shadowMap.type = project.shadowType;
+			if ( project.shadowType !== undefined ) renderer.shadowMap.type = getShadowMapType( project.shadowType );
 			if ( project.toneMapping !== undefined ) renderer.toneMapping = project.toneMapping;
 			if ( project.toneMappingExposure !== undefined ) renderer.toneMappingExposure = project.toneMappingExposure;
 

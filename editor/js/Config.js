@@ -51,6 +51,16 @@ function Config() {
 
 	}
 
+	// PCFSoftShadowMap ( 2 ) was deprecated in favor of PCFShadowMap ( 1 ), which
+	// now performs the same soft shadow filtering. Migrate stale saved values so
+	// old configs stop triggering the deprecation warning.
+	if ( storage[ 'project/renderer/shadowType' ] === 2 ) {
+
+		storage[ 'project/renderer/shadowType' ] = 1;
+		window.localStorage[ name ] = JSON.stringify( storage );
+
+	}
+
 	return {
 
 		getKey: function ( key ) {
