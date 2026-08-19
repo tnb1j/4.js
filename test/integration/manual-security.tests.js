@@ -331,24 +331,36 @@ async function testOffscreenExample( browser, baseURL, filename, interact = fals
 
 		}
 
-		await new Promise( resolve => setTimeout( resolve, 1000 ) );
-
-		const screenshot = Buffer.from( await page.screenshot( { encoding: 'binary' } ) );
-		const image = PNG.sync.read( screenshot );
-		const background = Array.from( image.data.subarray( 0, 4 ) );
+		// Software WebGL ( SwiftShader ) can be slow to draw the first frame,
+		// especially for an OffscreenCanvas rendered inside a worker. Poll the
+		// screenshot until the scene is visibly drawn instead of asserting after
+		// a single fixed delay.
 		let changedPixels = 0;
 
-		for ( let i = 0; i < image.data.length; i += 4 ) {
+		for ( let attempt = 0; attempt < 20; attempt ++ ) {
 
-			let difference = 0;
+			await new Promise( resolve => setTimeout( resolve, 500 ) );
 
-			for ( let channel = 0; channel < 4; channel ++ ) {
+			const screenshot = Buffer.from( await page.screenshot( { encoding: 'binary' } ) );
+			const image = PNG.sync.read( screenshot );
+			const background = Array.from( image.data.subarray( 0, 4 ) );
+			changedPixels = 0;
 
-				difference += Math.abs( image.data[ i + channel ] - background[ channel ] );
+			for ( let i = 0; i < image.data.length; i += 4 ) {
+
+				let difference = 0;
+
+				for ( let channel = 0; channel < 4; channel ++ ) {
+
+					difference += Math.abs( image.data[ i + channel ] - background[ channel ] );
+
+				}
+
+				if ( difference > 24 ) changedPixels ++;
 
 			}
 
-			if ( difference > 24 ) changedPixels ++;
+			if ( changedPixels > 500 ) break;
 
 		}
 
