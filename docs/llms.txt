@@ -18,8 +18,8 @@ CORRECT - modern pattern (always use latest version):
 <script type="importmap">
 {
   "imports": {
-    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.1/build/4.module.js",
-    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.1/examples/jsm/"
+    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.2/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.2/examples/jsm/"
   }
 }
 </script>

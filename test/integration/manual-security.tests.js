@@ -265,8 +265,8 @@ async function testCodeSiteModuleRewriting( browser, baseURL ) {
 
 		}, baseURL );
 
-		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.1\/\+esm/ );
-		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.1\/examples\/jsm\/controls\/OrbitControls\.js\/\+esm/ );
+		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.2\/\+esm/ );
+		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.2\/examples\/jsm\/controls\/OrbitControls\.js\/\+esm/ );
 		assert.doesNotMatch( rewritten, /npm\/three@/ );
 
 	} finally {

@@ -66,8 +66,8 @@ map. The same URLs can be used with jsDelivr by replacing
 <script type="importmap">
 {
   "imports": {
-    "@tnb1j/4js": "https://unpkg.com/@tnb1j/4js@0.185.1-four.1/build/4.module.js",
-    "@tnb1j/4js/addons/": "https://unpkg.com/@tnb1j/4js@0.185.1-four.1/examples/jsm/"
+    "@tnb1j/4js": "https://unpkg.com/@tnb1j/4js@0.185.1-four.2/build/4.module.js",
+    "@tnb1j/4js/addons/": "https://unpkg.com/@tnb1j/4js@0.185.1-four.2/examples/jsm/"
   }
 }
 </script>
@@ -82,7 +82,7 @@ map. The same URLs can be used with jsDelivr by replacing
 The direct core-module URL is:
 
 ```text
-https://unpkg.com/@tnb1j/4js@0.185.1-four.1/build/4.module.js
+https://unpkg.com/@tnb1j/4js@0.185.1-four.2/build/4.module.js
 ```
 
 ## Migration

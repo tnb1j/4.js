@@ -3,6 +3,16 @@
 This file records changes introduced by the 4.js fork. Upstream Three.js
 history remains attributable through [UPSTREAM.md](UPSTREAM.md).
 
+## 0.185.1-four.2 - 2026-08-19
+
+### Fixes
+
+- Migrated deprecated `PCFSoftShadowMap` to `PCFShadowMap` in the editor and
+  examples; `PCFShadowMap` now applies the same soft filtering, so saved scenes
+  stop emitting the WebGLShadowMap deprecation warning.
+- Made the offscreen-canvas security tests tolerant of slow software
+  (SwiftShader) rendering, eliminating a flaky blank-canvas failure on CI.
+
 ## 0.185.1-four.1 - 2026-08-07
 
 ### Packaging
