@@ -2,10 +2,10 @@
 
 ## Import
 
-TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TriangleBlurShader } from '@tnb1j/4js/addons/shaders/TriangleBlurShader.js';
+import { TriangleBlurShader } from 'three/addons/shaders/TriangleBlurShader.js';
 ```
 
 ## Properties
@@ -38,14 +38,14 @@ A basic blur filter, which convolves the image with a pyramid filter. The pyrami
 
 ## Source
 
-[examples/jsm/shaders/TechnicolorShader.js](../../examples/jsm/shaders/TechnicolorShader.js)
+[examples/jsm/shaders/TechnicolorShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/TechnicolorShader.js)
 
 ## Import
 
-TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as ToonShader from '@tnb1j/4js/addons/shaders/ToonShader.js';
+import * as ToonShader from 'three/addons/shaders/ToonShader.js';
 ```
 
 Collection of toon shaders.
@@ -80,14 +80,14 @@ A basic blur filter, which convolves the image with a pyramid filter. The pyrami
 
 ## Source
 
-[examples/jsm/shaders/ToonShader.js](../../examples/jsm/shaders/ToonShader.js)
+[examples/jsm/shaders/ToonShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ToonShader.js)
 
 ## Import
 
-TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TriangleBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TriangleBlurShader } from '@tnb1j/4js/addons/shaders/TriangleBlurShader.js';
+import { TriangleBlurShader } from 'three/addons/shaders/TriangleBlurShader.js';
 ```
 
 ## Properties
@@ -120,4 +120,4 @@ A basic blur filter, which convolves the image with a pyramid filter. The pyrami
 
 ## Source
 
-[examples/jsm/shaders/TriangleBlurShader.js](../../examples/jsm/shaders/TriangleBlurShader.js)
+[examples/jsm/shaders/TriangleBlurShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/TriangleBlurShader.js)

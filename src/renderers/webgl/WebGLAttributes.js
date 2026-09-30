@@ -63,7 +63,7 @@ function WebGLAttributes( gl ) {
 
 		} else {
 
-			throw new Error( 'FOUR.WebGLAttributes: Unsupported buffer data format: ' + array );
+			throw new Error( 'THREE.WebGLAttributes: Unsupported buffer data format: ' + array );
 
 		}
 
@@ -211,7 +211,7 @@ function WebGLAttributes( gl ) {
 
 			if ( data.size !== attribute.array.byteLength ) {
 
-				throw new Error( 'FOUR.WebGLAttributes: The size of the buffer attribute\'s array buffer does not match the original size. Resizing buffer attributes is not supported.' );
+				throw new Error( 'THREE.WebGLAttributes: The size of the buffer attribute\'s array buffer does not match the original size. Resizing buffer attributes is not supported.' );
 
 			}
 

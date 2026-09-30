@@ -9,7 +9,7 @@ This light cannot be used to cast shadows.
 ## Code Example
 
 ```js
-const light = new FOUR.HemisphereLight( 0xffffbb, 0x080820, 1 );
+const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
 scene.add( light );
 ```
 
@@ -51,4 +51,4 @@ Default is `true`.
 
 ## Source
 
-[src/lights/HemisphereLight.js](../../src/lights/HemisphereLight.js)
+[src/lights/HemisphereLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/HemisphereLight.js)

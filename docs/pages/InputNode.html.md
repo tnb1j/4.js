@@ -12,7 +12,7 @@ Constructs a new input node.
 
 **value**
 
-The value of this node. This can be any JS primitive, functions, array buffers or even 4.js objects (vector, matrices, colors).
+The value of this node. This can be any JS primitive, functions, array buffers or even three.js objects (vector, matrices, colors).
 
 **nodeType**
 
@@ -36,7 +36,7 @@ Default is `null`.
 
 ### .value : any
 
-The value of this node. This can be any JS primitive, functions, array buffers or even 4.js objects (vector, matrices, colors).
+The value of this node. This can be any JS primitive, functions, array buffers or even three.js objects (vector, matrices, colors).
 
 ## Methods
 
@@ -64,4 +64,4 @@ The precision of the input value in the shader.
 
 ## Source
 
-[src/nodes/core/InputNode.js](../../src/nodes/core/InputNode.js)
+[src/nodes/core/InputNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/InputNode.js)

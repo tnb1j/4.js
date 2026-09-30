@@ -1,4 +1,4 @@
-import { Color, ColorManagement, SRGBColorSpace } from '@tnb1j/4js';
+import { Color, ColorManagement, SRGBColorSpace } from 'three';
 
 /* global DracoEncoderModule */
 
@@ -26,7 +26,7 @@ import { Color, ColorManagement, SRGBColorSpace } from '@tnb1j/4js';
  * const data = await exporter.parseAsync( mesh, options );
  * ```
  *
- * @four_import import { DRACOExporter } from '@tnb1j/4js/addons/exporters/DRACOExporter.js';
+ * @three_import import { DRACOExporter } from 'three/addons/exporters/DRACOExporter.js';
  */
 class DRACOExporter {
 
@@ -52,7 +52,7 @@ class DRACOExporter {
 
 		if ( typeof DracoEncoderModule === 'undefined' ) {
 
-			throw new Error( 'FOUR.DRACOExporter: required the draco_encoder to work.' );
+			throw new Error( 'THREE.DRACOExporter: required the draco_encoder to work.' );
 
 		}
 
@@ -158,7 +158,7 @@ class DRACOExporter {
 
 		} else {
 
-			throw new Error( 'FOUR.DRACOExporter: Unsupported object type.' );
+			throw new Error( 'THREE.DRACOExporter: Unsupported object type.' );
 
 		}
 
@@ -213,7 +213,7 @@ class DRACOExporter {
 
 		if ( length === 0 ) {
 
-			throw new Error( 'FOUR.DRACOExporter: Draco encoding failed.' );
+			throw new Error( 'THREE.DRACOExporter: Draco encoding failed.' );
 
 		}
 
@@ -239,7 +239,7 @@ class DRACOExporter {
 	 */
 	parse() {
 
-		throw new Error( 'FOUR.DRACOExporter: parse() has been replaced by parseAsync().' );
+		throw new Error( 'THREE.DRACOExporter: parse() has been replaced by parseAsync().' );
 
 	}
 

@@ -13,10 +13,10 @@ composer.addPass( savePass );
 
 ## Import
 
-SavePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SavePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SavePass } from '@tnb1j/4js/addons/postprocessing/SavePass.js';
+import { SavePass } from 'three/addons/postprocessing/SavePass.js';
 ```
 
 ## Constructor
@@ -101,4 +101,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/SavePass.js](../../examples/jsm/postprocessing/SavePass.js)
+[examples/jsm/postprocessing/SavePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/SavePass.js)

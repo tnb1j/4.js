@@ -5,7 +5,7 @@
 Post processing node for creating a bloom effect.
 
 ```js
-const renderPipeline = new FOUR.RenderPipeline( renderer );
+const renderPipeline = new THREE.RenderPipeline( renderer );
 const scenePass = pass( scene, camera );
 const scenePassColor = scenePass.getTextureNode( 'output' );
 const bloomPass = bloom( scenePassColor );
@@ -15,7 +15,7 @@ renderPipeline.outputNode = scenePassColor.add( bloomPass );
 By default, the node affects the entire image. For a selective bloom, use the `emissive` material property to control which objects should contribute to bloom or not. This can be achieved via MRT.
 
 ```js
-const renderPipeline = new FOUR.RenderPipeline( renderer );
+const renderPipeline = new THREE.RenderPipeline( renderer );
 const scenePass = pass( scene, camera );
 scenePass.setMRT( mrt( {
 	output,
@@ -29,10 +29,10 @@ renderPipeline.outputNode = scenePassColor.add( bloomPass );
 
 ## Import
 
-BloomNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BloomNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
+import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 ```
 
 ## Constructor
@@ -64,6 +64,10 @@ The luminance threshold limits which bright areas contribute to the bloom effect
 Default is `0`.
 
 ## Properties
+
+### .bloomTintColors : Array.<Vector3>
+
+A per-mip tint color for the bloom, applied during the composite pass. Defaults to white (no tint) for each of the mips. Mutate the vectors to colorize the bloom (e.g. for a warm or anamorphic look).
 
 ### .highPassFn : function
 
@@ -161,4 +165,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/BloomNode.js](../../examples/jsm/tsl/display/BloomNode.js)
+[examples/jsm/tsl/display/BloomNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/BloomNode.js)

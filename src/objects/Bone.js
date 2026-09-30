@@ -5,8 +5,8 @@ import { Object3D } from '../core/Object3D.js';
  * the {@link SkinnedMesh}.
  *
  * ```js
- * const root = new FOUR.Bone();
- * const child = new FOUR.Bone();
+ * const root = new THREE.Bone();
+ * const child = new THREE.Bone();
  *
  * root.add( child );
  * child.position.y = 5;

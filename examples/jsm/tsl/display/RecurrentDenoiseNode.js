@@ -1,5 +1,5 @@
-import { abs, atan, bool, convertToTexture, cos, cross, Discard, dot, EPSILON, exp, float, Fn, getScreenPosition, getViewPosition, If, int, log, Loop, luminance, mat2, max, mix, nodeObject, NodeUpdateType, normalize, passTexture, PI, property, reflect, sin, smoothstep, sqrt, tan, texture, uniform, unpackRGBToNormal, uv, vec2, vec3, vec4 } from '@tnb1j/4js/tsl';
-import { HalfFloatType, MathUtils, Matrix4, NodeMaterial, QuadMesh, RendererUtils, RenderTarget, TempNode, Vector2 } from '@tnb1j/4js/webgpu';
+import { abs, atan, bool, convertToTexture, cos, cross, Discard, dot, EPSILON, exp, float, Fn, getScreenPosition, getViewPosition, If, int, log, Loop, luminance, mat2, max, mix, nodeObject, NodeUpdateType, normalize, passTexture, PI, property, reflect, sin, smoothstep, sqrt, tan, texture, uniform, unpackRGBToNormal, uv, vec2, vec3, vec4, context } from 'three/tsl';
+import { HalfFloatType, MathUtils, Matrix4, NodeMaterial, QuadMesh, RendererUtils, RenderTarget, TempNode, Vector2 } from 'three/webgpu';
 import { bindAnalyticNoise } from '../utils/RNoise.js';
 import { ENV_RAY_LENGTH_THRESHOLD } from '../utils/SpecularHelpers.js';
 
@@ -338,7 +338,7 @@ const toTextureNode = ( value ) => {
  * `'diffuse'` (SSGI) or `'specular'` (SSR). The kernel uses a fixed 8-sample Vogel disk.
  *
  * @augments TempNode
- * @four_import import { recurrentDenoise } from '@tnb1j/4js/addons/tsl/display/RecurrentDenoiseNode.js';
+ * @three_import import { recurrentDenoise } from 'three/addons/tsl/display/RecurrentDenoiseNode.js';
  */
 class RecurrentDenoiseNode extends TempNode {
 
@@ -606,7 +606,7 @@ class RecurrentDenoiseNode extends TempNode {
 			const runDenoise = () => {
 
 				const viewNormal = sampleNormal( uvCoord ).toConst();
-				const worldNormal = viewNormal.transformDirection( this._viewMatrix ).toConst();
+				const worldNormal = viewNormal.transformNormalByInverseViewMatrix( this._viewMatrix ).toConst();
 				const texel = sampleTexture( uvCoord ).max( 0 ).toConst();
 
 				const viewPosition = getViewPosition( uvCoord, depth, this._cameraProjectionMatrixInverse ).toConst();
@@ -796,7 +796,7 @@ class RecurrentDenoiseNode extends TempNode {
 					if ( this.mode === 'specular' ) kernelDiff.addAssign( ( abs( roughness.sub( sampleRoughnessMetalness( sampleUv ).g ) ).mul( this.roughnessPhi ) ) );
 
 					const nViewNormal = sampleNormal( sampleUv );
-					const nWorldNormal = nViewNormal.transformDirection( this._viewMatrix );
+					const nWorldNormal = nViewNormal.transformNormalByInverseViewMatrix( this._viewMatrix );
 					const distToPlane = planeDistance( viewPosition, nViewPosition, viewNormal );
 
 					// Geometric edge stopping (depth and normal)
@@ -880,7 +880,8 @@ class RecurrentDenoiseNode extends TempNode {
 
 		} );
 
-		this._material.fragmentNode = denoiseFn( uv() ).context( builder.getSharedContext() );
+		this._material.contextNode = context( builder.getSharedContext() );
+		this._material.fragmentNode = denoiseFn( uv() );
 		this._material.needsUpdate = true;
 
 		return this._textureNode;
@@ -888,6 +889,8 @@ class RecurrentDenoiseNode extends TempNode {
 	}
 
 	dispose() {
+
+		super.dispose();
 
 		this._renderTarget.dispose();
 		this._material.dispose();

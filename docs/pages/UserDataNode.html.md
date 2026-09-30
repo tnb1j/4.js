@@ -10,7 +10,7 @@ Since `UserDataNode` is extended from [ReferenceNode](ReferenceNode.html), the n
 
 ```js
 sprite.userData.rotation = 1; // stores individual rotation per sprite
-const material = new FOUR.SpriteNodeMaterial();
+const material = new THREE.SpriteNodeMaterial();
 material.rotationNode = userData( 'rotation', 'float' );
 ```
 
@@ -58,4 +58,4 @@ The current state to evaluate.
 
 ## Source
 
-[src/nodes/accessors/UserDataNode.js](../../src/nodes/accessors/UserDataNode.js)
+[src/nodes/accessors/UserDataNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/UserDataNode.js)

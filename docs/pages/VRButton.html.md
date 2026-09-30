@@ -10,10 +10,10 @@ document.body.appendChild( VRButton.createButton( renderer ) );
 
 ## Import
 
-VRButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VRButton is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+import { VRButton } from 'three/addons/webxr/VRButton.js';
 ```
 
 ## Properties
@@ -46,4 +46,4 @@ Registers a `sessiongranted` event listener. When a session is granted, the VRBu
 
 ## Source
 
-[examples/jsm/webxr/VRButton.js](../../examples/jsm/webxr/VRButton.js)
+[examples/jsm/webxr/VRButton.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/VRButton.js)

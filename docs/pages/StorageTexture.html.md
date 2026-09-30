@@ -40,13 +40,13 @@ Default is `true`.
 
 ### .magFilter : number
 
-The default `magFilter` for storage textures is `FOUR.LinearFilter`.
+The default `magFilter` for storage textures is `THREE.LinearFilter`.
 
 **Overrides:** [Texture#magFilter](Texture.html#magFilter)
 
 ### .minFilter : number
 
-The default `minFilter` for storage textures is `FOUR.LinearFilter`.
+The default `minFilter` for storage textures is `THREE.LinearFilter`.
 
 **Overrides:** [Texture#minFilter](Texture.html#minFilter)
 
@@ -72,4 +72,4 @@ The new height of the storage texture.
 
 ## Source
 
-[src/renderers/common/StorageTexture.js](../../src/renderers/common/StorageTexture.js)
+[src/renderers/common/StorageTexture.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/StorageTexture.js)

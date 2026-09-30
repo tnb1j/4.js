@@ -13,22 +13,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { normalWorldGeometry, uniform, pmremTexture } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { normalWorldGeometry, uniform, pmremTexture } from 'three/tsl';
 
-			import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
+			import { HDRCubeTextureLoader } from 'three/addons/loaders/HDRCubeTextureLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer;
 
@@ -39,18 +39,18 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
 				camera.position.set( 0, 0, 8 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const forceWebGL = false;
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				await renderer.init();
 
@@ -67,19 +67,19 @@
 
 						scene.backgroundNode = pmremTexture( map, normalWorldGeometry, uniform( 0.5 ) );
 
-						const geometry = new FOUR.SphereGeometry( 0.4, 64, 64 );
+						const geometry = new THREE.SphereGeometry( 0.4, 64, 64 );
 
 						for ( let i = 0; i < 6; i ++ ) {
 
 							for ( let j = 0; j < 5; j ++ ) {
 
-								const material = new FOUR.MeshPhysicalNodeMaterial( {
+								const material = new THREE.MeshPhysicalNodeMaterial( {
 									roughness: i / 5,
 									metalness: j / 4,
 									envMap: map
 								} );
 
-								const mesh = new FOUR.Mesh( geometry, material );
+								const mesh = new THREE.Mesh( geometry, material );
 								mesh.position.x = i - 2.5;
 								mesh.position.y = j - 2;
 								scene.add( mesh );

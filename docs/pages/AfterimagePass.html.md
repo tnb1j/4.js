@@ -13,10 +13,10 @@ composer.addPass( afterimagePass );
 
 ## Import
 
-AfterimagePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AfterimagePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AfterimagePass } from '@tnb1j/4js/addons/postprocessing/AfterimagePass.js';
+import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';
 ```
 
 ## Constructor
@@ -103,4 +103,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/AfterimagePass.js](../../examples/jsm/postprocessing/AfterimagePass.js)
+[examples/jsm/postprocessing/AfterimagePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/AfterimagePass.js)

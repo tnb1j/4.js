@@ -80,4 +80,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/geometry/RangeNode.js](../../src/nodes/geometry/RangeNode.js)
+[src/nodes/geometry/RangeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/geometry/RangeNode.js)

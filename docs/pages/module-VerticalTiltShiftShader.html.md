@@ -2,10 +2,10 @@
 
 ## Import
 
-VerticalTiltShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VerticalTiltShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VerticalTiltShiftShader } from '@tnb1j/4js/addons/shaders/VerticalTiltShiftShader.js';
+import { VerticalTiltShiftShader } from 'three/addons/shaders/VerticalTiltShiftShader.js';
 ```
 
 ## Properties
@@ -21,4 +21,4 @@ Simple fake tilt-shift effect, modulating two pass Gaussian blur (see above) by 
 
 ## Source
 
-[examples/jsm/shaders/VerticalTiltShiftShader.js](../../examples/jsm/shaders/VerticalTiltShiftShader.js)
+[examples/jsm/shaders/VerticalTiltShiftShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/VerticalTiltShiftShader.js)

@@ -8,15 +8,15 @@ Creates extruded geometry from a path shape.
 
 ```js
 const length = 12, width = 8;
-const shape = new FOUR.Shape();
+const shape = new THREE.Shape();
 shape.moveTo( 0,0 );
 shape.lineTo( 0, width );
 shape.lineTo( length, width );
 shape.lineTo( length, 0 );
 shape.lineTo( 0, 0 );
-const geometry = new FOUR.ExtrudeGeometry( shape );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material ) ;
+const geometry = new THREE.ExtrudeGeometry( shape );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material ) ;
 scene.add( mesh );
 ```
 
@@ -132,4 +132,4 @@ An object that provides UV generator functions for custom UV generation.
 
 ## Source
 
-[src/geometries/ExtrudeGeometry.js](../../src/geometries/ExtrudeGeometry.js)
+[src/geometries/ExtrudeGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/ExtrudeGeometry.js)

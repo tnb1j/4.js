@@ -2,10 +2,10 @@
 
 ## Import
 
-GeometryCompressionUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GeometryCompressionUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as GeometryCompressionUtils from '@tnb1j/4js/addons/utils/GeometryCompressionUtils.js';
+import * as GeometryCompressionUtils from 'three/addons/utils/GeometryCompressionUtils.js';
 ```
 
 ## Methods
@@ -40,4 +40,4 @@ The geometry whose texture coordinates should be compressed.
 
 ## Source
 
-[examples/jsm/utils/GeometryCompressionUtils.js](../../examples/jsm/utils/GeometryCompressionUtils.js)
+[examples/jsm/utils/GeometryCompressionUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/GeometryCompressionUtils.js)

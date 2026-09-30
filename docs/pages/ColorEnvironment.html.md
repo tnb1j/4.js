@@ -8,17 +8,17 @@ This class represents a scene with a uniform color that can be used as input for
 
 ```js
 const environment = new ColorEnvironment( 0x00ff00 );
-const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
 const envMap = pmremGenerator.fromScene( environment ).texture;
 scene.environment = envMap;
 ```
 
 ## Import
 
-ColorEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColorEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ColorEnvironment } from '@tnb1j/4js/addons/environments/ColorEnvironment.js';
+import { ColorEnvironment } from 'three/addons/environments/ColorEnvironment.js';
 ```
 
 ## Constructor
@@ -39,6 +39,8 @@ Default is `16777215`.
 
 Frees internal resources. This method should be called when the environment is no longer required.
 
+**Overrides:** [Scene#dispose](Scene.html#dispose)
+
 ## Source
 
-[examples/jsm/environments/ColorEnvironment.js](../../examples/jsm/environments/ColorEnvironment.js)
+[examples/jsm/environments/ColorEnvironment.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/environments/ColorEnvironment.js)

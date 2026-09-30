@@ -8,9 +8,9 @@ import { Vector3 } from '../math/Vector3.js';
  * Creates a tube that extrudes along a 3D curve.
  *
  * ```js
- * class CustomSinCurve extends FOUR.Curve {
+ * class CustomSinCurve extends THREE.Curve {
  *
- * 	getPoint( t, optionalTarget = new FOUR.Vector3() ) {
+ * 	getPoint( t, optionalTarget = new THREE.Vector3() ) {
  *
  * 		const tx = t * 3 - 1.5;
  * 		const ty = Math.sin( 2 * Math.PI * t );
@@ -22,9 +22,9 @@ import { Vector3 } from '../math/Vector3.js';
  * }
  *
  * const path = new CustomSinCurve( 10 );
- * const geometry = new FOUR.TubeGeometry( path, 20, 2, 8, false );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const geometry = new THREE.TubeGeometry( path, 20, 2, 8, false );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  * ```
  *

@@ -28,28 +28,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, mrt, output, emissive, uniform } from '@tnb1j/4js/tsl';
-			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
-			import { lensflare } from '@tnb1j/4js/addons/tsl/display/LensflareNode.js';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, mrt, output, emissive, uniform } from 'three/tsl';
+			import { bloom } from 'three/addons/tsl/display/BloomNode.js';
+			import { lensflare } from 'three/addons/tsl/display/LensflareNode.js';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, controls;
 			let renderPipeline;
@@ -60,14 +60,14 @@
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0.5, - 0.5 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const texture = await new UltraHDRLoader().loadAsync( 'textures/equirectangular/ice_planet_close.jpg' );
 
-				texture.mapping = FOUR.EquirectangularReflectionMapping;
+				texture.mapping = THREE.EquirectangularReflectionMapping;
 
 				scene.background = texture;
 				scene.environment = texture;
@@ -82,8 +82,8 @@
 
 				const object = gltf.scene;
 
-				const aabb = new FOUR.Box3().setFromObject( object );
-				const center = aabb.getCenter( new FOUR.Vector3() );
+				const aabb = new THREE.Box3().setFromObject( object );
+				const center = aabb.getCenter( new THREE.Vector3() );
 
 				object.position.x += ( object.position.x - center.x );
 				object.position.y += ( object.position.y - center.y );
@@ -93,11 +93,11 @@
 			
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
@@ -126,7 +126,7 @@
 
 				const blurPass = gaussianBlur( flarePass, 8 ); // optional (blurring produces better flare quality but also adds some overhead)
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputNode = outputPass.add( bloomPass ).add( blurPass );
 
 				//

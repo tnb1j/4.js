@@ -26,17 +26,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let stats;
 			let camera, scene, raycaster, renderer;
@@ -44,27 +44,27 @@
 			let INTERSECTED;
 			let theta = 0;
 
-			const pointer = new FOUR.Vector2();
+			const pointer = new THREE.Vector2();
 			const radius = 5;
 
 			init();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 
-				const geometry = new FOUR.BoxGeometry();
+				const geometry = new THREE.BoxGeometry();
 
 				for ( let i = 0; i < 2000; i ++ ) {
 
-					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 
 					object.position.x = Math.random() * 40 - 20;
 					object.position.y = Math.random() * 40 - 20;
@@ -82,9 +82,9 @@
 
 				}
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -130,9 +130,9 @@
 
 				theta += 0.1;
 
-				camera.position.x = radius * Math.sin( FOUR.MathUtils.degToRad( theta ) );
-				camera.position.y = radius * Math.sin( FOUR.MathUtils.degToRad( theta ) );
-				camera.position.z = radius * Math.cos( FOUR.MathUtils.degToRad( theta ) );
+				camera.position.x = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.y = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.z = radius * Math.cos( THREE.MathUtils.degToRad( theta ) );
 				camera.lookAt( scene.position );
 
 				camera.updateMatrixWorld();

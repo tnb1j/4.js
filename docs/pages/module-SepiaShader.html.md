@@ -2,10 +2,10 @@
 
 ## Import
 
-SepiaShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SepiaShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SepiaShader } from '@tnb1j/4js/addons/shaders/SepiaShader.js';
+import { SepiaShader } from 'three/addons/shaders/SepiaShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Sepia tone shader based on [glfx.js sepia shader](https://github.com/evanw/glfx.
 
 ## Source
 
-[examples/jsm/shaders/SepiaShader.js](../../examples/jsm/shaders/SepiaShader.js)
+[examples/jsm/shaders/SepiaShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SepiaShader.js)

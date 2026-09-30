@@ -17,10 +17,10 @@ lightShadowMapViewer.update();
 
 ## Import
 
-ShadowMapViewer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ShadowMapViewer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ShadowMapViewer } from '@tnb1j/4js/addons/utils/ShadowMapViewer.js';
+import { ShadowMapViewer } from 'three/addons/utils/ShadowMapViewer.js';
 ```
 
 ## Constructor
@@ -73,4 +73,4 @@ Resizes the viewer. This method should be called whenever the app's window is re
 
 ## Source
 
-[examples/jsm/utils/ShadowMapViewer.js](../../examples/jsm/utils/ShadowMapViewer.js)
+[examples/jsm/utils/ShadowMapViewer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/ShadowMapViewer.js)

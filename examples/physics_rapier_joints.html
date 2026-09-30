@@ -22,19 +22,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
-			import { RapierHelper } from '@tnb1j/4js/addons/helpers/RapierHelper.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
+			import { RapierHelper } from 'three/addons/helpers/RapierHelper.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let physics, pivot, physicsHelper;
@@ -43,17 +43,17 @@
 
 			async function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 3, 10 );
 
-				const ambient = new FOUR.HemisphereLight( 0x555555, 0xFFFFFF );
+				const ambient = new THREE.HemisphereLight( 0x555555, 0xFFFFFF );
 
 				scene.add( ambient );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 4 );
+				const light = new THREE.DirectionalLight( 0xffffff, 4 );
 
 				light.position.set( 0, 12.5, 12.5 );
 				light.castShadow = true;
@@ -72,7 +72,7 @@
 
 				scene.add( light );
 			
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
@@ -80,17 +80,17 @@
 				renderer.setAnimationLoop( animate );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
-				controls.target = new FOUR.Vector3( 0, 2, 0 );
+				controls.target = new THREE.Vector3( 0, 2, 0 );
 				controls.update();
 
 				stats = new Stats();
 				document.body.appendChild( stats.dom );
 
 				//Create pivot point
-				const geometry = new FOUR.SphereGeometry( 0.5 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0xFF0000 } );
+				const geometry = new THREE.SphereGeometry( 0.5 );
+				const material = new THREE.MeshStandardMaterial( { color: 0xFF0000 } );
 			
-				pivot = new FOUR.Mesh( geometry, material );
+				pivot = new THREE.Mesh( geometry, material );
 
 				pivot.position.y = 6;
 				pivot.userData.physics = { mass: 0 };
@@ -126,10 +126,10 @@
 			//x    - used to position the new link
 			function addLink( link, x ) {
 
-				const geometry = new FOUR.CapsuleGeometry( 0.25, 1.8 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0xCCCC00 } );
+				const geometry = new THREE.CapsuleGeometry( 0.25, 1.8 );
+				const material = new THREE.MeshStandardMaterial( { color: 0xCCCC00 } );
 			
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.rotateZ( Math.PI * 0.5 );
 
 				mesh.position.set( x + 0.9, 5.8, 0 );

@@ -1,8 +1,8 @@
-import { DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry, Texture } from '@tnb1j/4js';
+import { DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry, Texture } from 'three';
 
 /**
  * @module Text2D
- * @four_import import * as Text2D from '@tnb1j/4js/addons/webxr/Text2D.js';
+ * @three_import import * as Text2D from 'three/addons/webxr/Text2D.js';
  */
 
 /**

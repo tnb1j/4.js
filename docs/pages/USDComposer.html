@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>USDComposer - 4.js Docs</title>
+	<title>USDComposer - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 			<header>
 				<div class="class-description"><p>USDComposer handles scene composition from parsed USD data.
 This includes reference resolution, variant selection, transform handling,
-and building the 4.js scene graph.</p>
+and building the Three.js scene graph.</p>
 <p>Works with specsByPath format from USDCParser.</p></div>
 			</header>
 			<article>
@@ -118,10 +118,19 @@ while supporting USDZExporter round-trip (Xform &gt; Xform &gt; Mesh pattern).</
 							<p>Extract variant selections from a spec's fields.</p>
 						</div>
 					</div>
+					<h3 class="name name-method" id="_getMaterialBindingSpec" translate="no">.<a href="#_getMaterialBindingSpec">_getMaterialBindingSpec</a><span class="signature">()</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Get the material binding relationship for a prim, including overrides from
+active variants.</p>
+						</div>
+					</div>
 					<h3 class="name name-method" id="_getMaterialBindingTarget" translate="no">.<a href="#_getMaterialBindingTarget">_getMaterialBindingTarget</a><span class="signature">()</span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Get material binding target path, checking variant paths if needed.</p>
+							<p>Get the resolved material binding target for a prim. Material bindings are
+inherited, and an ancestor marked strongerThanDescendants takes precedence
+over bindings authored on its descendants.</p>
 						</div>
 					</div>
 					<h3 class="name name-method" id="_getMaterialPath" translate="no">.<a href="#_getMaterialPath">_getMaterialPath</a><span class="signature">()</span> </h3>
@@ -155,6 +164,13 @@ while supporting USDZExporter round-trip (Xform &gt; Xform &gt; Mesh pattern).</
 					<div class="method">
 						<div class="description">
 							<p>Check if a path is a direct child of parentPath.</p>
+						</div>
+					</div>
+					<h3 class="name name-method" id="_resolveAttributeValue" translate="no">.<a href="#_resolveAttributeValue">_resolveAttributeValue</a><span class="signature">()</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Resolve an attribute's authored value, following connections before using
+local fallback values.</p>
 						</div>
 					</div>
 					<h3 class="name name-method" id="_resolveFilePath" translate="no">.<a href="#_resolveFilePath">_resolveFilePath</a><span class="signature">()</span> </h3>
@@ -195,15 +211,15 @@ while supporting USDZExporter round-trip (Xform &gt; Xform &gt; Mesh pattern).</
 					<h3 class="name name-method" id="applyTransform" translate="no">.<a href="#applyTransform">applyTransform</a><span class="signature">()</span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Apply USD transforms to a 4.js object.
+							<p>Apply USD transforms to a Three.js object.
 Handles xformOpOrder with proper matrix composition.
-USD uses row-vector convention, 4.js uses column-vector.</p>
+USD uses row-vector convention, Three.js uses column-vector.</p>
 						</div>
 					</div>
 					<h3 class="name name-method" id="compose" translate="no">.<a href="#compose">compose</a><span class="signature">( parsedData : <span class="param-type">Object</span>, assets : <span class="param-type">Object</span>, variantSelections : <span class="param-type">Object</span>, basePath : <span class="param-type">string</span> )</span><span class="type-signature"> : <a href="Group.html">Group</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Compose a 4.js scene from parsed USD data.</p>
+							<p>Compose a Three.js scene from parsed USD data.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -242,12 +258,12 @@ USD uses row-vector convention, 4.js uses column-vector.</p>
 							</tbody>
 						</table>
 						<dl class="details">
-							<dt class="tag-returns"><strong>Returns:</strong> 4.js scene graph</dt>
+							<dt class="tag-returns"><strong>Returns:</strong> Three.js scene graph</dt>
 						</dl>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/loaders/usd/USDComposer.js" translate="no">examples/jsm/loaders/usd/USDComposer.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/usd/USDComposer.js" translate="no" target="_blank" rel="noopener">examples/jsm/loaders/usd/USDComposer.js</a>
 				</p>
 			</article>
 		</section>

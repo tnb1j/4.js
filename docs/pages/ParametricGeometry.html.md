@@ -9,18 +9,18 @@ Reference: [Mesh Generation with Python](https://prideout.net/blog/old/blog/inde
 ## Code Example
 
 ```js
-const geometry = new FOUR.ParametricGeometry( klein, 25, 25 );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const klein = new FOUR.Mesh( geometry, material );
+const geometry = new ParametricGeometry( klein, 25, 25 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const klein = new THREE.Mesh( geometry, material );
 scene.add( klein );
 ```
 
 ## Import
 
-ParametricGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ParametricGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
+import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';
 ```
 
 ## Constructor
@@ -71,4 +71,4 @@ The target vector that is used to store the method's result.
 
 ## Source
 
-[examples/jsm/geometries/ParametricGeometry.js](../../examples/jsm/geometries/ParametricGeometry.js)
+[examples/jsm/geometries/ParametricGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/ParametricGeometry.js)

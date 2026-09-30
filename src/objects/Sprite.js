@@ -35,10 +35,10 @@ const _uvC = /*@__PURE__*/ new Vector2();
  * have no effect.
  *
  * ```js
- * const map = new FOUR.TextureLoader().load( 'sprite.png' );
- * const material = new FOUR.SpriteMaterial( { map: map } );
+ * const map = new THREE.TextureLoader().load( 'sprite.png' );
+ * const material = new THREE.SpriteMaterial( { map: map } );
  *
- * const sprite = new FOUR.Sprite( material );
+ * const sprite = new THREE.Sprite( material );
  * scene.add( sprite );
  * ```
  *
@@ -117,6 +117,18 @@ class Sprite extends Object3D {
 		 * @default 1
 		 */
 		this.count = 1;
+
+	}
+
+	/**
+	 * Returns `true` if this sprite intersects the given frustum.
+	 *
+	 * @param {Frustum|FrustumArray} frustum - The frustum to test.
+	 * @return {boolean} Whether this sprite intersects the given frustum or not.
+	 */
+	intersectsFrustum( frustum ) {
+
+		return frustum.intersectsSprite( this );
 
 	}
 

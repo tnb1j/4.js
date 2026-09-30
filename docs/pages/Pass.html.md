@@ -6,10 +6,10 @@ This module is only relevant for post processing with [WebGLRenderer](WebGLRende
 
 ## Import
 
-Pass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Pass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Pass } from '@tnb1j/4js/addons/postprocessing/Pass.js';
+import { Pass } from 'three/addons/postprocessing/Pass.js';
 ```
 
 ## Constructor
@@ -94,4 +94,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/Pass.js](../../examples/jsm/postprocessing/Pass.js)
+[examples/jsm/postprocessing/Pass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/Pass.js)

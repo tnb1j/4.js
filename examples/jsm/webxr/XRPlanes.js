@@ -4,7 +4,7 @@ import {
 	Mesh,
 	MeshBasicMaterial,
 	Object3D
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A utility class for the WebXR Plane Detection Module. If planes
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments Object3D
- * @four_import import { XRPlanes } from '@tnb1j/4js/addons/webxr/XRPlanes.js';
+ * @three_import import { XRPlanes } from 'three/addons/webxr/XRPlanes.js';
  */
 class XRPlanes extends Object3D {
 

@@ -7,18 +7,18 @@ This pass can be used to render a texture over the entire screen.
 ## Code Example
 
 ```js
-const texture = new FOUR.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
-texture.colorSpace = FOUR.SRGBColorSpace;
+const texture = new THREE.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
+texture.colorSpace = THREE.SRGBColorSpace;
 const texturePass = new TexturePass( texture );
 composer.addPass( texturePass );
 ```
 
 ## Import
 
-TexturePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TexturePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TexturePass } from '@tnb1j/4js/addons/postprocessing/TexturePass.js';
+import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
 ```
 
 ## Constructor
@@ -101,4 +101,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/TexturePass.js](../../examples/jsm/postprocessing/TexturePass.js)
+[examples/jsm/postprocessing/TexturePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/TexturePass.js)

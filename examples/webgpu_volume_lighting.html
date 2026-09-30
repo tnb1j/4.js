@@ -24,27 +24,27 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { vec3, Fn, time, texture3D, screenUV, uniform, screenCoordinate, pass } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { vec3, Fn, time, texture3D, screenUV, uniform, screenCoordinate, pass } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
-			import { bayer16 } from '@tnb1j/4js/addons/tsl/math/Bayer.js';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import { bayer16 } from 'three/addons/tsl/math/Bayer.js';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
 			let renderer, scene, camera;
 			let volumetricMesh, teapot, pointLight, spotLight;
@@ -86,12 +86,12 @@
 
 				}
 
-				const texture = new FOUR.Data3DTexture( data, size, size, size );
-				texture.format = FOUR.RedFormat;
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
-				texture.wrapS = FOUR.RepeatWrapping;
-				texture.wrapT = FOUR.RepeatWrapping;
+				const texture = new THREE.Data3DTexture( data, size, size, size );
+				texture.format = THREE.RedFormat;
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
 				texture.unpackAlignment = 1;
 				texture.needsUpdate = true;
 
@@ -103,19 +103,19 @@
 
 				const LAYER_VOLUMETRIC_LIGHTING = 10;
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 2;
 				renderer.shadowMap.enabled = true;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( - 8, 1, - 6 );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
@@ -128,7 +128,7 @@
 
 				const smokeAmount = uniform( 2 );
 
-				const volumetricMaterial = new FOUR.VolumeNodeMaterial();
+				const volumetricMaterial = new THREE.VolumeNodeMaterial();
 				volumetricMaterial.steps = 12;
 				volumetricMaterial.offsetNode = bayer16( screenCoordinate ); // Add dithering to reduce banding
 				volumetricMaterial.scatteringNode = Fn( ( { positionRay } ) => {
@@ -147,7 +147,7 @@
 
 				} );
 
-				volumetricMesh = new FOUR.Mesh( new FOUR.BoxGeometry( 20, 10, 20 ), volumetricMaterial );
+				volumetricMesh = new THREE.Mesh( new THREE.BoxGeometry( 20, 10, 20 ), volumetricMaterial );
 				volumetricMesh.receiveShadow = true;
 				volumetricMesh.position.y = 2;
 				volumetricMesh.layers.disableAll();
@@ -156,11 +156,11 @@
 
 				// Objects
 
-				teapot = new FOUR.Mesh( new TeapotGeometry( .8, 18 ), new FOUR.MeshStandardMaterial( { color: 0xffffff, side: FOUR.DoubleSide } ) );
+				teapot = new THREE.Mesh( new TeapotGeometry( .8, 18 ), new THREE.MeshStandardMaterial( { color: 0xffffff, side: THREE.DoubleSide } ) );
 				teapot.castShadow = true;
 				scene.add( teapot );
 
-				const floor = new FOUR.Mesh( new FOUR.PlaneGeometry( 100, 100 ), new FOUR.MeshStandardMaterial( { color: 0xffffff } ) );
+				const floor = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), new THREE.MeshStandardMaterial( { color: 0xffffff } ) );
 				floor.rotation.x = - Math.PI / 2;
 				floor.position.y = - 3;
 				floor.receiveShadow = true;
@@ -168,20 +168,20 @@
 
 				// Lights
 
-				pointLight = new FOUR.PointLight( 0xf9bb50, 3, 100 );
+				pointLight = new THREE.PointLight( 0xf9bb50, 3, 100 );
 				pointLight.castShadow = true;
 				pointLight.position.set( 0, 1.4, 0 );
 				pointLight.layers.enable( LAYER_VOLUMETRIC_LIGHTING );
-				//lightBase.add( new FOUR.Mesh( new FOUR.SphereGeometry( 0.1, 16, 16 ), new FOUR.MeshBasicMaterial( { color: 0xf9bb50 } ) ) );
+				//lightBase.add( new THREE.Mesh( new THREE.SphereGeometry( 0.1, 16, 16 ), new THREE.MeshBasicMaterial( { color: 0xf9bb50 } ) ) );
 				scene.add( pointLight );
 
-				spotLight = new FOUR.SpotLight( 0xffffff, 100 );
+				spotLight = new THREE.SpotLight( 0xffffff, 100 );
 				spotLight.position.set( 2.5, 5, 2.5 );
 				spotLight.angle = Math.PI / 6;
 				spotLight.penumbra = 1;
 				spotLight.decay = 2;
 				spotLight.distance = 0;
-				spotLight.map = new FOUR.TextureLoader().setPath( 'textures/' ).load( 'colors.png' );
+				spotLight.map = new THREE.TextureLoader().setPath( 'textures/' ).load( 'colors.png' );
 				spotLight.castShadow = true;
 				spotLight.shadow.intensity = .98;
 				spotLight.shadow.mapSize.width = 1024;
@@ -190,18 +190,18 @@
 				spotLight.shadow.camera.far = 15;
 				spotLight.shadow.focus = 1;
 				spotLight.layers.enable( LAYER_VOLUMETRIC_LIGHTING );
-				//sunLight.add( new FOUR.Mesh( new FOUR.SphereGeometry( 0.1, 16, 16 ), new FOUR.MeshBasicMaterial( { color: 0xffffff } ) ) );
+				//sunLight.add( new THREE.Mesh( new THREE.SphereGeometry( 0.1, 16, 16 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) ) );
 				scene.add( spotLight );
 
 				// Post-Processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// Layers
 
 				const volumetricLightingIntensity = uniform( 1 );
 
-				const volumetricLayer = new FOUR.Layers();
+				const volumetricLayer = new THREE.Layers();
 				volumetricLayer.disableAll();
 				volumetricLayer.enable( LAYER_VOLUMETRIC_LIGHTING );
 

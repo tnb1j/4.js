@@ -8,4 +8,4 @@ Precomputes marginal and conditional CDF textures from an equirectangular HDR en
 
 ## Source
 
-[examples/jsm/tsl/display/ImportanceSampledEnvironment.js](../../examples/jsm/tsl/display/ImportanceSampledEnvironment.js)
+[examples/jsm/tsl/display/ImportanceSampledEnvironment.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/ImportanceSampledEnvironment.js)

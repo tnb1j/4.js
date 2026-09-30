@@ -12,19 +12,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer;
 
@@ -36,9 +36,9 @@
 			};
 
 			const clipPlanes = [
-				new FOUR.Plane( new FOUR.Vector3( 1, 0, 0 ), 0 ),
-				new FOUR.Plane( new FOUR.Vector3( 0, - 1, 0 ), 0 ),
-				new FOUR.Plane( new FOUR.Vector3( 0, 0, - 1 ), 0 )
+				new THREE.Plane( new THREE.Vector3( 1, 0, 0 ), 0 ),
+				new THREE.Plane( new THREE.Vector3( 0, - 1, 0 ), 0 ),
+				new THREE.Plane( new THREE.Vector3( 0, 0, - 1 ), 0 )
 			];
 
 			init();
@@ -46,15 +46,15 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.localClippingEnabled = true;
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 200 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 200 );
 
 				camera.position.set( - 1.5, 2.5, 3.0 );
 
@@ -64,29 +64,29 @@
 				controls.maxDistance = 10;
 				controls.enablePan = false;
 
-				const light = new FOUR.HemisphereLight( 0xffffff, 0x080808, 4.5 );
+				const light = new THREE.HemisphereLight( 0xffffff, 0x080808, 4.5 );
 				light.position.set( - 1.25, 1, 1.25 );
 				scene.add( light );
 
 				//
 
-				const group = new FOUR.Group();
+				const group = new THREE.Group();
 
 				for ( let i = 1; i <= 30; i += 2 ) {
 
-					const geometry = new FOUR.SphereGeometry( i / 30, 48, 24 );
+					const geometry = new THREE.SphereGeometry( i / 30, 48, 24 );
 
-					const material = new FOUR.MeshPhongMaterial( {
+					const material = new THREE.MeshPhongMaterial( {
 
-						color: new FOUR.Color().setHSL( Math.random(), 0.5, 0.5, FOUR.SRGBColorSpace ),
-						side: FOUR.DoubleSide,
+						color: new THREE.Color().setHSL( Math.random(), 0.5, 0.5, THREE.SRGBColorSpace ),
+						side: THREE.DoubleSide,
 						clippingPlanes: clipPlanes,
 						clipIntersection: params.clipIntersection,
 						alphaToCoverage: true,
 
 					} );
 
-					group.add( new FOUR.Mesh( geometry, material ) );
+					group.add( new THREE.Mesh( geometry, material ) );
 
 				}
 
@@ -94,10 +94,10 @@
 
 				// helpers
 
-				const helpers = new FOUR.Group();
-				helpers.add( new FOUR.PlaneHelper( clipPlanes[ 0 ], 2, 0xff0000 ) );
-				helpers.add( new FOUR.PlaneHelper( clipPlanes[ 1 ], 2, 0x00ff00 ) );
-				helpers.add( new FOUR.PlaneHelper( clipPlanes[ 2 ], 2, 0x0000ff ) );
+				const helpers = new THREE.Group();
+				helpers.add( new THREE.PlaneHelper( clipPlanes[ 0 ], 2, 0xff0000 ) );
+				helpers.add( new THREE.PlaneHelper( clipPlanes[ 1 ], 2, 0x00ff00 ) );
+				helpers.add( new THREE.PlaneHelper( clipPlanes[ 2 ], 2, 0x0000ff ) );
 				helpers.visible = false;
 				scene.add( helpers );
 

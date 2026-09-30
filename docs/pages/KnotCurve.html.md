@@ -6,10 +6,10 @@ A knot curve.
 
 ## Import
 
-KnotCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+KnotCurve is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { KnotCurve } from '@tnb1j/4js/addons/curves/CurveExtras.js';
+import { KnotCurve } from 'three/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor
@@ -36,4 +36,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[examples/jsm/curves/CurveExtras.js](../../examples/jsm/curves/CurveExtras.js)
+[examples/jsm/curves/CurveExtras.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/curves/CurveExtras.js)

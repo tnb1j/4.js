@@ -44,4 +44,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/accessors/BuiltinNode.js](../../src/nodes/accessors/BuiltinNode.js)
+[src/nodes/accessors/BuiltinNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/BuiltinNode.js)

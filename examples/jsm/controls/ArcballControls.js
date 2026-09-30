@@ -14,7 +14,7 @@ import {
 	Vector3,
 	Matrix4,
 	MathUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 //trackball state
 const STATE = {
@@ -107,7 +107,7 @@ const _EPS = 0.000001;
  * animation loop when animations are on.
  *
  * @augments Controls
- * @four_import import { ArcballControls } from '@tnb1j/4js/addons/controls/ArcballControls.js';
+ * @three_import import { ArcballControls } from 'three/addons/controls/ArcballControls.js';
  */
 class ArcballControls extends Controls {
 
@@ -2563,7 +2563,7 @@ class ArcballControls extends Controls {
 	 * Rotates camera around its direction axis passing by a given point by a given angle.
 	 *
 	 * @private
-	 * @param {Vector3} point - The point where the rotation axis is passing trough.
+	 * @param {Vector3} point - The point where the rotation axis is passing through.
 	 * @param {number} angle - Angle in radians.
 	 * @returns {Object} The computed transformation matrix.
 	 */

@@ -12,7 +12,7 @@ import {
 	Vector3,
 	Vector4,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A basic flat, reflective water effect.
@@ -27,7 +27,7 @@ import {
  * - [Water shader explanations in WebGL](http://29a.ch/slides/2012/webglwater/ )
  *
  * @augments Mesh
- * @four_import import { Water } from '@tnb1j/4js/addons/objects/Water.js';
+ * @three_import import { Water } from 'three/addons/objects/Water.js';
  */
 class Water extends Mesh {
 

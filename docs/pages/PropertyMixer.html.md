@@ -94,4 +94,4 @@ Remembers the state of the bound property and copy it to both accus.
 
 ## Source
 
-[src/animation/PropertyMixer.js](../../src/animation/PropertyMixer.js)
+[src/animation/PropertyMixer.js](https://github.com/mrdoob/three.js/blob/master/src/animation/PropertyMixer.js)

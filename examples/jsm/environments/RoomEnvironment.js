@@ -8,7 +8,7 @@ import {
  	PointLight,
  	Scene,
  	Object3D,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class represents a scene with a basic room setup that can be used as
@@ -21,14 +21,14 @@ import {
  *
  * ```js
  * const environment = new RoomEnvironment();
- * const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+ * const pmremGenerator = new THREE.PMREMGenerator( renderer );
  *
  * const envMap = pmremGenerator.fromScene( environment ).texture;
  * scene.environment = envMap;
  * ```
  *
  * @augments Scene
- * @four_import import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+ * @three_import import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
  */
 class RoomEnvironment extends Scene {
 

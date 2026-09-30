@@ -19,7 +19,7 @@
 	</head>
 
 	<body>
-		<div id="info">Percent Closer Soft-Shadows (PCSS) by <a href="http://eduperiment.com">spidersharma03</a></div>
+		<div id="info">Percent Closer Soft-Shadows (PCSS) by <a href="https://github.com/spidersharma03">spidersharma03</a></div>
 
 		<script type="x-shader/x-fragment" id="PCSS">
 
@@ -123,19 +123,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let stats;
 			let camera, scene, renderer;
@@ -151,12 +151,12 @@
 
 				// scene
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.Fog( 0xcce0ff, 5, 100 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0xcce0ff, 5, 100 );
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
 
 				// We use this particular camera position in order to expose a bug that can sometimes happen presumably
 				// due to lack of precision when interpolating values over really large triangles.
@@ -170,9 +170,9 @@
 
 				// lights
 
-				scene.add( new FOUR.AmbientLight( 0xaaaaaa, 3 ) );
+				scene.add( new THREE.AmbientLight( 0xaaaaaa, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xf0f6ff, 4.5 );
+				const light = new THREE.DirectionalLight( 0xf0f6ff, 4.5 );
 				light.position.set( 2, 8, 4 );
 
 				light.castShadow = true;
@@ -183,20 +183,20 @@
 				scene.add( light );
 
 				// scene.add( new DirectionalLightHelper( light ) );
-				scene.add( new FOUR.CameraHelper( light.shadow.camera ) );
+				scene.add( new THREE.CameraHelper( light.shadow.camera ) );
 
 				// group
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				scene.add( group );
 
-				const geometry = new FOUR.SphereGeometry( 0.3, 20, 20 );
+				const geometry = new THREE.SphereGeometry( 0.3, 20, 20 );
 
 				for ( let i = 0; i < 20; i ++ ) {
 
-					const material = new FOUR.MeshPhongMaterial( { color: Math.random() * 0xffffff } );
+					const material = new THREE.MeshPhongMaterial( { color: Math.random() * 0xffffff } );
 
-					const sphere = new FOUR.Mesh( geometry, material );
+					const sphere = new THREE.Mesh( geometry, material );
 					sphere.position.x = Math.random() - 0.5;
 					sphere.position.z = Math.random() - 0.5;
 					sphere.position.normalize();
@@ -210,16 +210,16 @@
 
 				// ground
 
-				const groundMaterial = new FOUR.MeshPhongMaterial( { color: 0x898989 } );
+				const groundMaterial = new THREE.MeshPhongMaterial( { color: 0x898989 } );
 
-				const ground = new FOUR.Mesh( new FOUR.PlaneGeometry( 20000, 20000, 8, 8 ), groundMaterial );
+				const ground = new THREE.Mesh( new THREE.PlaneGeometry( 20000, 20000, 8, 8 ), groundMaterial );
 				ground.rotation.x = - Math.PI / 2;
 				ground.receiveShadow = true;
 				scene.add( ground );
 
 				// column
 
-				const column = new FOUR.Mesh( new FOUR.BoxGeometry( 1, 4, 1 ), groundMaterial );
+				const column = new THREE.Mesh( new THREE.BoxGeometry( 1, 4, 1 ), groundMaterial );
 				column.position.y = 2;
 				column.castShadow = true;
 				column.receiveShadow = true;
@@ -227,7 +227,7 @@
 
 				// overwrite shadowmap code
 
-				let shader = FOUR.ShaderChunk.shadowmap_pars_fragment;
+				let shader = THREE.ShaderChunk.shadowmap_pars_fragment;
 
 				shader = shader.replace(
 					'#ifdef USE_SHADOWMAP',
@@ -242,11 +242,11 @@
 					'\t\t\t\tfloat depth = texture2D( shadowMap, shadowCoord.xy ).r;'
 				);
 
-				FOUR.ShaderChunk.shadowmap_pars_fragment = shader;
+				THREE.ShaderChunk.shadowmap_pars_fragment = shader;
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -255,7 +255,7 @@
 				container.appendChild( renderer.domElement );
 
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.BasicShadowMap; // PCSS requires reading raw depth values
+				renderer.shadowMap.type = THREE.BasicShadowMap; // PCSS requires reading raw depth values
 
 				// controls
 				const controls = new OrbitControls( camera, renderer.domElement );

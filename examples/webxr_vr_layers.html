@@ -24,21 +24,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { HTMLMesh } from '@tnb1j/4js/addons/interactive/HTMLMesh.js';
-			import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
-			import { XRHandModelFactory } from '@tnb1j/4js/addons/webxr/XRHandModelFactory.js';
+			import * as THREE from 'three';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
+			import { InteractiveGroup } from 'three/addons/interactive/InteractiveGroup.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 
 			let camera, scene, renderer;
 			let video;
@@ -70,7 +70,7 @@
 				eyeChartDistanceFt: 20,
 			};
 
-			// Data shared between the FOUR.Meshes on the bottom and WebXR Layers on the top for the eye
+			// Data shared between the THREE.Meshes on the bottom and WebXR Layers on the top for the eye
 			// charts. See https://en.wikipedia.org/wiki/Snellen_chart for details about the math.
 			//
 			// The image was designed so that each 2x2px block on the 20/20 line subtends 1 minute of
@@ -110,23 +110,23 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 
-				const hemLight = new FOUR.HemisphereLight( 0x808080, 0x606060, 3 );
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const hemLight = new THREE.HemisphereLight( 0x808080, 0x606060, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				scene.add( hemLight, light );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: false } );
+				renderer = new THREE.WebGLRenderer( { antialias: false } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.setClearAlpha( 1 );
-				renderer.setClearColor( new FOUR.Color( 0 ), 0 );
+				renderer.setClearColor( new THREE.Color( 0 ), 0 );
 				renderer.xr.enabled = true;
 
 				document.body.appendChild( renderer.domElement );
@@ -134,11 +134,11 @@
 
 				// controllers
 
-				const lineGeometry = new FOUR.BufferGeometry().setFromPoints( [
-					new FOUR.Vector3( 0, 0, 0 ),
-					new FOUR.Vector3( 0, 0, - 10 )
+				const lineGeometry = new THREE.BufferGeometry().setFromPoints( [
+					new THREE.Vector3( 0, 0, 0 ),
+					new THREE.Vector3( 0, 0, - 10 )
 				] );
-				const line = new FOUR.Line( lineGeometry, new FOUR.LineBasicMaterial( { color: 0x5555ff } ) );
+				const line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color: 0x5555ff } ) );
 
 				// The invisible dummyMesh quads and the guiMesh need to be rendered before the controller lines so that they
 				// leave a hole in the depth buffer that the lines can intersect.
@@ -170,28 +170,28 @@
 
 				// Eye charts
 
-				const eyeCharts = new FOUR.Group();
+				const eyeCharts = new THREE.Group();
 				eyeCharts.position.z = snellenConfig.z;
 				scene.add( eyeCharts );
 
-				snellenTexture = new FOUR.TextureLoader().load( 'textures/snellen.png' );
+				snellenTexture = new THREE.TextureLoader().load( 'textures/snellen.png' );
 				snellenTexture.repeat.x = snellenConfig.cropX;
 				snellenTexture.repeat.y = snellenConfig.cropY;
 				snellenTexture.generateMipmaps = false;
-				snellenTexture.minFilter = FOUR.LinearFilter;
-				const snellenMeshPlain = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
-					new FOUR.MeshBasicMaterial( { map: snellenTexture } ) );
+				snellenTexture.minFilter = THREE.LinearFilter;
+				const snellenMeshPlain = new THREE.Mesh(
+					new THREE.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
+					new THREE.MeshBasicMaterial( { map: snellenTexture } ) );
 				snellenMeshPlain.position.x = snellenConfig.x - snellenConfig.widthMeters;
 				snellenMeshPlain.position.y = snellenConfig.y - snellenConfig.heightMeters;
 				eyeCharts.add( snellenMeshPlain );
 
-				snellenTexture = new FOUR.TextureLoader().load( 'textures/snellen.png' );
+				snellenTexture = new THREE.TextureLoader().load( 'textures/snellen.png' );
 				snellenTexture.repeat.x = snellenConfig.cropX;
 				snellenTexture.repeat.y = snellenConfig.cropY;
-				const snellenMeshMipMap = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
-					new FOUR.MeshBasicMaterial( { map: snellenTexture } ) );
+				const snellenMeshMipMap = new THREE.Mesh(
+					new THREE.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
+					new THREE.MeshBasicMaterial( { map: snellenTexture } ) );
 				snellenMeshMipMap.position.x = snellenConfig.x + snellenConfig.widthMeters;
 				snellenMeshMipMap.position.y = snellenConfig.y - snellenConfig.heightMeters;
 				eyeCharts.add( snellenMeshMipMap );
@@ -200,9 +200,9 @@
 				// layer is rendered last, any 3D object will incorrectly overlap layers. To avoid this,
 				// invisible quads can be placed into the scene to participate in depth testing when the
 				// projection layer is rendered.
-				const dummyMeshLeft = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
-					new FOUR.MeshBasicMaterial( { colorWrite: false } ) );
+				const dummyMeshLeft = new THREE.Mesh(
+					new THREE.PlaneGeometry( snellenConfig.widthMeters, snellenConfig.heightMeters ),
+					new THREE.MeshBasicMaterial( { colorWrite: false } ) );
 				dummyMeshLeft.position.x = snellenConfig.x - snellenConfig.widthMeters;
 				dummyMeshLeft.position.y = snellenConfig.y + snellenConfig.heightMeters;
 				eyeCharts.add( dummyMeshLeft );
@@ -272,9 +272,9 @@
 				errorContext.font = '28px sans-serif';
 				errorContext.fillText( 'ERROR: Layers not initialized!', 10, 30 );
 
-				errorMesh = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 1, .1 ),
-					new FOUR.MeshBasicMaterial( { map: new FOUR.CanvasTexture( errorCanvas ) } )
+				errorMesh = new THREE.Mesh(
+					new THREE.PlaneGeometry( 1, .1 ),
+					new THREE.MeshBasicMaterial( { map: new THREE.CanvasTexture( errorCanvas ) } )
 				);
 				errorMesh.position.z = - 1;
 				errorMesh.position.y = 1.5;

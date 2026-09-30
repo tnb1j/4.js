@@ -13,31 +13,31 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-			import { ssaaPass } from '@tnb1j/4js/addons/tsl/display/SSAAPassNode.js';
+			import { ssaaPass } from 'three/addons/tsl/display/SSAAPassNode.js';
 
 			let camera, scene, renderer, controls, mesh, material, renderPipeline;
 
 			const amount = parseInt( window.location.search.slice( 1 ) ) || 3;
 			const count = Math.pow( amount, 3 );
 
-			const color = new FOUR.Color();
+			const color = new THREE.Color();
 
 			const params = {
 				alpha: 0.5,
@@ -48,27 +48,27 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( amount, amount, amount );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				const geometry = new FOUR.IcosahedronGeometry( 0.5, 3 );
+				const geometry = new THREE.IcosahedronGeometry( 0.5, 3 );
 
-				material = new FOUR.MeshStandardMaterial( {
+				material = new THREE.MeshStandardMaterial( {
 					color: 0xffffff,
 					alphaHash: params.alphaHash,
 					opacity: params.alpha
 				} );
 
-				mesh = new FOUR.InstancedMesh( geometry, material, count );
+				mesh = new THREE.InstancedMesh( geometry, material, count );
 
 				let i = 0;
 				const offset = ( amount - 1 ) / 2;
 
-				const matrix = new FOUR.Matrix4();
+				const matrix = new THREE.Matrix4();
 
 				for ( let x = 0; x < amount; x ++ ) {
 
@@ -93,7 +93,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -105,7 +105,7 @@
 				//
 
 				const environment = new RoomEnvironment();
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
 				scene.environment = pmremGenerator.fromScene( environment, 0.04 ).texture;
 				environment.dispose();
@@ -114,7 +114,7 @@
 
 				// postprocessing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				const scenePass = ssaaPass( scene, camera );
 				scenePass.sampleLevel = 3;
 

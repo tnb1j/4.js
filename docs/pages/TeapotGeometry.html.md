@@ -14,17 +14,17 @@ Code based on [SPD software](http://tog.acm.org/resources/SPD/) Created for the 
 
 ```js
 const geometry = new TeapotGeometry( 50, 18 );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const teapot = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const teapot = new THREE.Mesh( geometry, material );
 scene.add( teapot );
 ```
 
 ## Import
 
-TeapotGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TeapotGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 ```
 
 ## Constructor
@@ -77,4 +77,4 @@ Default is `true`.
 
 ## Source
 
-[examples/jsm/geometries/TeapotGeometry.js](../../examples/jsm/geometries/TeapotGeometry.js)
+[examples/jsm/geometries/TeapotGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/TeapotGeometry.js)

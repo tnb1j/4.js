@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PhysicalLightingModel - 4.js Docs</title>
+	<title>PhysicalLightingModel - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<article>
 				<div class="container-overview">
 					<h2>Constructor</h2>
-					<h3 class="name name-method" id="PhysicalLightingModel" translate="no">new <a href="#PhysicalLightingModel">PhysicalLightingModel</a><span class="signature">( clearcoat : <span class="param-type">boolean</span>, sheen : <span class="param-type">boolean</span>, iridescence : <span class="param-type">boolean</span>, anisotropy : <span class="param-type">boolean</span>, transmission : <span class="param-type">boolean</span>, dispersion : <span class="param-type">boolean</span> )</span> </h3>
+					<h3 class="name name-method" id="PhysicalLightingModel" translate="no">new <a href="#PhysicalLightingModel">PhysicalLightingModel</a><span class="signature">( clearcoat : <span class="param-type">boolean</span>, sheen : <span class="param-type">boolean</span>, iridescence : <span class="param-type">boolean</span>, anisotropy : <span class="param-type">boolean</span>, transmission : <span class="param-type">boolean</span>, dispersion : <span class="param-type">boolean</span>, retroreflection : <span class="param-type">boolean</span> )</span> </h3>
 					<div class="method">
 						<div class="description">
 							<p>Constructs a new physical lighting model.</p>
@@ -79,6 +79,15 @@
 										<p>Default is <code>false</code>.</p>
 									</td>
 								</tr>
+								<tr>
+									<td class="name">
+										<strong translate="no">retroreflection</strong>
+									</td>
+									<td class="description last">
+										<p>Whether retroreflection is supported or not.</p>
+										<p>Default is <code>false</code>.</p>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -120,6 +129,13 @@
 					</div>
 				</div>
 				<div class="member">
+					<h3 class="name" id="dfg" translate="no">.<a href="#dfg">dfg</a><span class="type-signature"> : <a href="Node.html">Node</a></span> </h3>
+					<div class="description">
+						<p>The sampled DFG LUT value, shared by the direct and indirect lighting paths.</p>
+						<p>Default is <code>null</code>.</p>
+					</div>
+				</div>
+				<div class="member">
 					<h3 class="name" id="dispersion" translate="no">.<a href="#dispersion">dispersion</a><span class="type-signature"> : boolean</span> </h3>
 					<div class="description">
 						<p>Whether dispersion is supported or not.</p>
@@ -131,13 +147,6 @@
 					<div class="description">
 						<p>Whether iridescence is supported or not.</p>
 						<p>Default is <code>false</code>.</p>
-					</div>
-				</div>
-				<div class="member">
-					<h3 class="name" id="iridescenceF0" translate="no">.<a href="#iridescenceF0">iridescenceF0</a><span class="type-signature"> : <a href="Node.html">Node</a></span> </h3>
-					<div class="description">
-						<p>The iridescence F0.</p>
-						<p>Default is <code>null</code>.</p>
 					</div>
 				</div>
 				<div class="member">
@@ -159,6 +168,20 @@
 					<div class="description">
 						<p>The iridescence Fresnel.</p>
 						<p>Default is <code>null</code>.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="multiScatteringCompensation" translate="no">.<a href="#multiScatteringCompensation">multiScatteringCompensation</a><span class="type-signature"> : <a href="Node.html">Node</a></span> </h3>
+					<div class="description">
+						<p>The multi-scattering energy compensation for direct lighting.</p>
+						<p>Default is <code>null</code>.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="retroreflection" translate="no">.<a href="#retroreflection">retroreflection</a><span class="type-signature"> : boolean</span> </h3>
+					<div class="description">
+						<p>Whether retroreflection is supported or not.</p>
+						<p>Default is <code>false</code>.</p>
 					</div>
 				</div>
 				<div class="member">
@@ -372,7 +395,7 @@ which are later used for lighting computations.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/nodes/functions/PhysicalLightingModel.js" translate="no">src/nodes/functions/PhysicalLightingModel.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/nodes/functions/PhysicalLightingModel.js" translate="no" target="_blank" rel="noopener">src/nodes/functions/PhysicalLightingModel.js</a>
 				</p>
 			</article>
 		</section>

@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from '@tnb1j/4js';
+import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'three';
 
 /**
  * A ground-projected skybox.
@@ -15,7 +15,7 @@ import { Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from '@tnb1j/4js';
  * ```
  *
  * @augments Mesh
- * @four_import import { GroundedSkybox } from '@tnb1j/4js/addons/objects/GroundedSkybox.js';
+ * @three_import import { GroundedSkybox } from 'three/addons/objects/GroundedSkybox.js';
  */
 class GroundedSkybox extends Mesh {
 
@@ -32,7 +32,7 @@ class GroundedSkybox extends Mesh {
 
 		if ( height <= 0 || radius <= 0 || resolution <= 0 ) {
 
-			throw new Error( 'FOUR.GroundedSkybox: height, radius, and resolution must be positive.' );
+			throw new Error( 'THREE.GroundedSkybox: height, radius, and resolution must be positive.' );
 
 		}
 

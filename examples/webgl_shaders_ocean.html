@@ -18,23 +18,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Water } from '@tnb1j/4js/addons/objects/Water.js';
-			import { Sky } from '@tnb1j/4js/addons/objects/Sky.js';
-			import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Water } from 'three/addons/objects/Water.js';
+			import { Sky } from 'three/addons/objects/Sky.js';
+			import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 			let container, stats, timer;
 			let camera, scene, renderer;
@@ -48,15 +48,15 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { outputBufferType: FOUR.HalfFloatType } );
+				renderer = new THREE.WebGLRenderer( { outputBufferType: THREE.HalfFloatType } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.1;
 				container.appendChild( renderer.domElement );
 
-				bloomPass = new UnrealBloomPass( new FOUR.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+				bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
 				bloomPass.threshold = 0;
 				bloomPass.strength = 0.1;
 				bloomPass.radius = 0;
@@ -64,32 +64,32 @@
 
 				//
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 				camera.position.set( 30, 30, 100 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
 				//
 
-				sun = new FOUR.Vector3();
+				sun = new THREE.Vector3();
 
 				// Water
 
-				const waterGeometry = new FOUR.PlaneGeometry( 10000, 10000 );
+				const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
 
 				water = new Water(
 					waterGeometry,
 					{
 						textureWidth: 512,
 						textureHeight: 512,
-						waterNormals: new FOUR.TextureLoader().load( 'textures/waternormals.jpg', function ( texture ) {
+						waterNormals: new THREE.TextureLoader().load( 'textures/waternormals.jpg', function ( texture ) {
 
-							texture.wrapS = texture.wrapT = FOUR.RepeatWrapping;
+							texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
 						} ),
-						sunDirection: new FOUR.Vector3(),
+						sunDirection: new THREE.Vector3(),
 						sunColor: 0xffffff,
 						waterColor: 0x001e0f,
 						distortionScale: 3.7,
@@ -123,15 +123,15 @@
 					exposure: 0.1
 				};
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
-				const sceneEnv = new FOUR.Scene();
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
+				const sceneEnv = new THREE.Scene();
 
 				let renderTarget;
 
 				function updateSun() {
 
-					const phi = FOUR.MathUtils.degToRad( 90 - parameters.elevation );
-					const theta = FOUR.MathUtils.degToRad( parameters.azimuth );
+					const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation );
+					const theta = THREE.MathUtils.degToRad( parameters.azimuth );
 
 					sun.setFromSphericalCoords( 1, phi, theta );
 
@@ -152,10 +152,10 @@
 
 				//
 
-				const geometry = new FOUR.BoxGeometry( 30, 30, 30 );
-				const material = new FOUR.MeshStandardMaterial( { roughness: 0 } );
+				const geometry = new THREE.BoxGeometry( 30, 30, 30 );
+				const material = new THREE.MeshStandardMaterial( { roughness: 0 } );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//

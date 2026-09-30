@@ -9,10 +9,10 @@ When the spot light or its target are transformed or light properties are change
 ## Code Example
 
 ```js
-const spotLight = new FOUR.SpotLight( 0xffffff );
+const spotLight = new THREE.SpotLight( 0xffffff );
 spotLight.position.set( 10, 10, 10 );
 scene.add( spotLight );
-const spotLightHelper = new FOUR.SpotLightHelper( spotLight );
+const spotLightHelper = new THREE.SpotLightHelper( spotLight );
 scene.add( spotLightHelper );
 ```
 
@@ -46,10 +46,12 @@ The light being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Object3D#dispose](Object3D.html#dispose)
+
 ### .update()
 
 Updates the helper to match the position and direction of the light being visualized.
 
 ## Source
 
-[src/helpers/SpotLightHelper.js](../../src/helpers/SpotLightHelper.js)
+[src/helpers/SpotLightHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/SpotLightHelper.js)

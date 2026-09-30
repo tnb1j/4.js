@@ -2,10 +2,10 @@
 
 ## Import
 
-HueSaturationShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HueSaturationShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HueSaturationShader } from '@tnb1j/4js/addons/shaders/HueSaturationShader.js';
+import { HueSaturationShader } from 'three/addons/shaders/HueSaturationShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ hue: -1 to 1 (-1 is 180 degrees in the negative direction, 0 is no change, etc. 
 
 ## Source
 
-[examples/jsm/shaders/HueSaturationShader.js](../../examples/jsm/shaders/HueSaturationShader.js)
+[examples/jsm/shaders/HueSaturationShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/HueSaturationShader.js)

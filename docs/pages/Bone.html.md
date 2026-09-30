@@ -7,8 +7,8 @@ A bone which is part of a [Skeleton](Skeleton.html). The skeleton in turn is use
 ## Code Example
 
 ```js
-const root = new FOUR.Bone();
-const child = new FOUR.Bone();
+const root = new THREE.Bone();
+const child = new THREE.Bone();
 root.add( child );
 child.position.y = 5;
 ```
@@ -29,4 +29,4 @@ Default is `true`.
 
 ## Source
 
-[src/objects/Bone.js](../../src/objects/Bone.js)
+[src/objects/Bone.js](https://github.com/mrdoob/three.js/blob/master/src/objects/Bone.js)

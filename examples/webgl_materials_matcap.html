@@ -18,20 +18,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { EXRLoader } from '@tnb1j/4js/addons/loaders/EXRLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 
 			let mesh, renderer, scene, camera;
 
@@ -45,21 +45,21 @@
 			function init() {
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
 				// tone mapping
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			 	renderer.toneMappingExposure = API.exposure;
 
 
 				// scene
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
 				camera.position.set( 0, 0, 13 );
 
 				// controls
@@ -69,14 +69,14 @@
 				controls.enablePan = false;
 
 				// manager
-				const manager = new FOUR.LoadingManager( render );
+				const manager = new THREE.LoadingManager( render );
 
 				// matcap
 				const loaderEXR = new EXRLoader( manager );
 				const matcap = loaderEXR.load( 'textures/matcaps/040full.exr' );
 
 				// normalmap
-				const loader = new FOUR.TextureLoader( manager );
+				const loader = new THREE.TextureLoader( manager );
 
 				const normalmap = loader.load( 'models/gltf/LeePerrySmith/Infinite-Level_02_Tangent_SmoothUV.jpg' );
 
@@ -86,9 +86,9 @@
 					mesh = gltf.scene.children[ 0 ];
 					mesh.position.y = - 0.25;
 
-					mesh.material = new FOUR.MeshMatcapMaterial( {
+					mesh.material = new THREE.MeshMatcapMaterial( {
 
-						color: new FOUR.Color().setHex( API.color ),
+						color: new THREE.Color().setHex( API.color ),
 						matcap: matcap,
 						normalMap: normalmap
 
@@ -170,9 +170,9 @@
 
 				function imgCallback( event ) {
 
-					const texture = new FOUR.Texture( event.target );
+					const texture = new THREE.Texture( event.target );
 
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.colorSpace = THREE.SRGBColorSpace;
 
 					updateMatcap( texture );
 

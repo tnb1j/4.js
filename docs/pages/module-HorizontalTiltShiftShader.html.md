@@ -2,10 +2,10 @@
 
 ## Import
 
-HorizontalTiltShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HorizontalTiltShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HorizontalTiltShiftShader } from '@tnb1j/4js/addons/shaders/HorizontalTiltShiftShader.js';
+import { HorizontalTiltShiftShader } from 'three/addons/shaders/HorizontalTiltShiftShader.js';
 ```
 
 ## Properties
@@ -21,4 +21,4 @@ Simple fake tilt-shift effect, modulating two pass Gaussian blur (see above) by 
 
 ## Source
 
-[examples/jsm/shaders/HorizontalTiltShiftShader.js](../../examples/jsm/shaders/HorizontalTiltShiftShader.js)
+[examples/jsm/shaders/HorizontalTiltShiftShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/HorizontalTiltShiftShader.js)

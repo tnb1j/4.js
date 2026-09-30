@@ -25,26 +25,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, vec4, fract, sample, abs, uniform, pow, color, max, length, rangeFogFactor, sub, reflector, normalWorld, hue, time, mix, positionWorld } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, vec4, fract, sample, abs, uniform, pow, color, max, length, rangeFogFactor, sub, reflector, normalWorld, hue, time, mix, positionWorld } from 'three/tsl';
 
-			import { hashBlur } from '@tnb1j/4js/addons/tsl/display/hashBlur.js';
+			import { hashBlur } from 'three/addons/tsl/display/hashBlur.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 			let model, mixer, timer;
@@ -55,17 +55,17 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 30 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 30 );
 				camera.position.set( - 2.5, 2, 2.5 );
 				camera.lookAt( 0, .4, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundNode = hue( normalWorld.y.mix( 0, color( 0x0066ff ) ).mul( .1 ), time );
 
-				const waterAmbientLight = new FOUR.HemisphereLight( 0xffffff, 0x0066ff, 10 );
+				const waterAmbientLight = new THREE.HemisphereLight( 0xffffff, 0x0066ff, 10 );
 				scene.add( waterAmbientLight );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// animated model
@@ -76,7 +76,7 @@
 					model = gltf.scene;
 					model.children[ 0 ].children[ 0 ].castShadow = true;
 
-					mixer = new FOUR.AnimationMixer( model );
+					mixer = new THREE.AnimationMixer( model );
 
 					const action = mixer.clipAction( gltf.animations[ 0 ] );
 					action.play();
@@ -87,19 +87,19 @@
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				const uvMap = textureLoader.load( 'textures/uv_grid_directx.jpg' );
-				uvMap.colorSpace = FOUR.SRGBColorSpace;
+				uvMap.colorSpace = THREE.SRGBColorSpace;
 
 				// uv map for debugging
 
-				const uvMaterial = new FOUR.MeshStandardNodeMaterial( {
+				const uvMaterial = new THREE.MeshStandardNodeMaterial( {
 					map: uvMap,
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				const uvMesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 2, 2 ), uvMaterial );
+				const uvMesh = new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), uvMaterial );
 				uvMesh.position.set( 0, 1, - 3 );
 				scene.add( uvMesh );
 
@@ -123,7 +123,7 @@
 				const animatedColor = mix( color( 0x74ccf4 ), color( 0x7f00c5 ), positionWorld.xz.distance( 0 ).div( 10 ).clamp() );
 				const animatedCircle = hue( drawCircle( positionWorld.xz.mul( .1 ), 0.5, 0.8, .01, animatedColor ).mul( circleFadeY ), time );
 
-				const floorLight = new FOUR.PointLight( 0xffffff );
+				const floorLight = new THREE.PointLight( 0xffffff );
 				floorLight.colorNode = animatedCircle.mul( 50 );
 				scene.add( floorLight );
 
@@ -137,7 +137,7 @@
 				reflection.target.rotateX( - Math.PI / 2 );
 				scene.add( reflection.target );
 
-				const floorMaterial = new FOUR.MeshStandardNodeMaterial();
+				const floorMaterial = new THREE.MeshStandardNodeMaterial();
 				floorMaterial.transparent = true;
 				floorMaterial.colorNode = Fn( () => {
 
@@ -185,17 +185,17 @@
 
 				} )();
 
-				const floor = new FOUR.Mesh( new FOUR.BoxGeometry( 50, .001, 50 ), floorMaterial );
+				const floor = new THREE.Mesh( new THREE.BoxGeometry( 50, .001, 50 ), floorMaterial );
 				floor.position.set( 0, 0, 0 );
 				scene.add( floor );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 1.3;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );

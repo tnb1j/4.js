@@ -21,7 +21,7 @@
 		<div id="container"></div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl hemisphere light example<br/>
-			flamingo by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="http://www.ro.me" target="_blank" rel="noopener">ro.me</a>
+			flamingo by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="https://rome.mrdoob.com" target="_blank" rel="noopener">ro.me</a>
 		</div>
 
 		<script type="x-shader/x-vertex" id="vertexShader">
@@ -60,26 +60,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer;
 			const mixers = [];
 			let stats;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			init();
@@ -88,27 +88,27 @@
 
 				const container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.set( 0, 0, 250 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color().setHSL( 0.6, 0, 1 );
-				scene.fog = new FOUR.Fog( scene.background, 1, 5000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color().setHSL( 0.6, 0, 1 );
+				scene.fog = new THREE.Fog( scene.background, 1, 5000 );
 
 				// LIGHTS
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0xffffff, 2 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 2 );
 				hemiLight.color.setHSL( 0.6, 1, 0.6 );
 				hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
 				hemiLight.position.set( 0, 50, 0 );
 				scene.add( hemiLight );
 
-				const hemiLightHelper = new FOUR.HemisphereLightHelper( hemiLight, 10 );
+				const hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
 				scene.add( hemiLightHelper );
 
 				//
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.color.setHSL( 0.1, 1, 0.95 );
 				dirLight.position.set( - 1, 1.75, 1 );
 				dirLight.position.multiplyScalar( 30 );
@@ -129,16 +129,16 @@
 				dirLight.shadow.camera.far = 3500;
 				dirLight.shadow.bias = - 0.0001;
 
-				const dirLightHelper = new FOUR.DirectionalLightHelper( dirLight, 10 );
+				const dirLightHelper = new THREE.DirectionalLightHelper( dirLight, 10 );
 				scene.add( dirLightHelper );
 
 				// GROUND
 
-				const groundGeo = new FOUR.PlaneGeometry( 10000, 10000 );
-				const groundMat = new FOUR.MeshLambertMaterial( { color: 0xffffff } );
+				const groundGeo = new THREE.PlaneGeometry( 10000, 10000 );
+				const groundMat = new THREE.MeshLambertMaterial( { color: 0xffffff } );
 				groundMat.color.setHSL( 0.095, 1, 0.75 );
 
-				const ground = new FOUR.Mesh( groundGeo, groundMat );
+				const ground = new THREE.Mesh( groundGeo, groundMat );
 				ground.position.y = - 33;
 				ground.rotation.x = - Math.PI / 2;
 				ground.receiveShadow = true;
@@ -149,8 +149,8 @@
 				const vertexShader = document.getElementById( 'vertexShader' ).textContent;
 				const fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
 				const uniforms = {
-					'topColor': { value: new FOUR.Color( 0x0077ff ) },
-					'bottomColor': { value: new FOUR.Color( 0xffffff ) },
+					'topColor': { value: new THREE.Color( 0x0077ff ) },
+					'bottomColor': { value: new THREE.Color( 0xffffff ) },
 					'offset': { value: 33 },
 					'exponent': { value: 0.6 }
 				};
@@ -158,15 +158,15 @@
 
 				scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
 
-				const skyGeo = new FOUR.SphereGeometry( 4000, 32, 15 );
-				const skyMat = new FOUR.ShaderMaterial( {
+				const skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
+				const skyMat = new THREE.ShaderMaterial( {
 					uniforms: uniforms,
 					vertexShader: vertexShader,
 					fragmentShader: fragmentShader,
-					side: FOUR.BackSide
+					side: THREE.BackSide
 				} );
 
-				const sky = new FOUR.Mesh( skyGeo, skyMat );
+				const sky = new THREE.Mesh( skyGeo, skyMat );
 				scene.add( sky );
 
 				// MODEL
@@ -187,7 +187,7 @@
 
 					scene.add( mesh );
 
-					const mixer = new FOUR.AnimationMixer( mesh );
+					const mixer = new THREE.AnimationMixer( mesh );
 					mixer.clipAction( gltf.animations[ 0 ] ).setDuration( 1 ).play();
 					mixers.push( mixer );
 
@@ -195,7 +195,7 @@
 
 				// RENDERER
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

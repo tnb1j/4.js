@@ -2,10 +2,10 @@
 
 ## Import
 
-PoissonDenoiseShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PoissonDenoiseShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PoissonDenoiseShader } from '@tnb1j/4js/addons/shaders/PoissonDenoiseShader.js';
+import { PoissonDenoiseShader } from 'three/addons/shaders/PoissonDenoiseShader.js';
 ```
 
 ## Properties
@@ -21,4 +21,4 @@ References:
 
 ## Source
 
-[examples/jsm/shaders/PoissonDenoiseShader.js](../../examples/jsm/shaders/PoissonDenoiseShader.js)
+[examples/jsm/shaders/PoissonDenoiseShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/PoissonDenoiseShader.js)

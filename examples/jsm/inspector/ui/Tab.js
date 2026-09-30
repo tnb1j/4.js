@@ -1,4 +1,4 @@
-import { EventDispatcher } from '@tnb1j/4js';
+import { EventDispatcher } from 'three';
 
 /**
  * Tab class
@@ -263,5 +263,7 @@ export class Tab extends EventDispatcher {
 		}
 
 	}
+
+	dispose() { }
 
 }

@@ -18,10 +18,10 @@ const _v3 = /*@__PURE__*/ new Vector3();
  * are changed, it's necessary to call the `update()` method of the respective helper.
  *
  * ```js
- * const light = new FOUR.DirectionalLight( 0xFFFFFF );
+ * const light = new THREE.DirectionalLight( 0xFFFFFF );
  * scene.add( light );
  *
- * const helper = new FOUR.DirectionalLightHelper( light, 5 );
+ * const helper = new THREE.DirectionalLightHelper( light, 5 );
  * scene.add( helper );
  * ```
  *
@@ -102,6 +102,8 @@ class DirectionalLightHelper extends Object3D {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.lightPlane.geometry.dispose();
 		this.lightPlane.material.dispose();

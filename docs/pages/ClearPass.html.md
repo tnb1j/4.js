@@ -13,10 +13,10 @@ composer.addPass( clearPass );
 
 ## Import
 
-ClearPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ClearPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ClearPass } from '@tnb1j/4js/addons/postprocessing/ClearPass.js';
+import { ClearPass } from 'three/addons/postprocessing/ClearPass.js';
 ```
 
 ## Constructor
@@ -89,4 +89,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/ClearPass.js](../../examples/jsm/postprocessing/ClearPass.js)
+[examples/jsm/postprocessing/ClearPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/ClearPass.js)

@@ -5,8 +5,8 @@ This class can be used to define a linear fog that grows linearly denser with th
 ## Code Example
 
 ```js
-const scene = new FOUR.Scene();
-scene.fog = new FOUR.Fog( 0xcccccc, 10, 15 );
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog( 0xcccccc, 10, 15 );
 ```
 
 ## Constructor
@@ -79,4 +79,4 @@ An optional value holding meta information about the serialization.
 
 ## Source
 
-[src/scenes/Fog.js](../../src/scenes/Fog.js)
+[src/scenes/Fog.js](https://github.com/mrdoob/three.js/blob/master/src/scenes/Fog.js)

@@ -8,10 +8,10 @@ NOTE: This is a temporary location for the BRDF approximation texture data based
 
 ## Import
 
-RectAreaLightTexturesLib is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RectAreaLightTexturesLib is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RectAreaLightTexturesLib } from '@tnb1j/4js/addons/lights/RectAreaLightTexturesLib.js';
+import { RectAreaLightTexturesLib } from 'three/addons/lights/RectAreaLightTexturesLib.js';
 ```
 
 ## Properties
@@ -48,4 +48,4 @@ Inits the texture library.
 
 ## Source
 
-[examples/jsm/lights/RectAreaLightTexturesLib.js](../../examples/jsm/lights/RectAreaLightTexturesLib.js)
+[examples/jsm/lights/RectAreaLightTexturesLib.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lights/RectAreaLightTexturesLib.js)

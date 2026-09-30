@@ -6,10 +6,10 @@ This class solves the Inverse Kinematics Problem with a [CCD Algorithm](https://
 
 ## Import
 
-CCDIKSolver is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CCDIKSolver is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CCDIKSolver } from '@tnb1j/4js/addons/animation/CCDIKSolver.js';
+import { CCDIKSolver } from 'three/addons/animation/CCDIKSolver.js';
 ```
 
 ## Constructor
@@ -152,4 +152,4 @@ The blend factor.
 
 ## Source
 
-[examples/jsm/animation/CCDIKSolver.js](../../examples/jsm/animation/CCDIKSolver.js)
+[examples/jsm/animation/CCDIKSolver.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/animation/CCDIKSolver.js)

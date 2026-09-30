@@ -108,18 +108,18 @@ The current node builder.
 
 **Overrides:** [NodeMaterial#setupDiffuseColor](NodeMaterial.html#setupDiffuseColor)
 
-### .setupModelViewProjection( builder : NodeBuilder ) : Node.<vec4>
+### .setupPosition( builder : NodeBuilder ) : Node.<vec3>
 
-Setups the position in clip space for the vertex stage of the fat line. Overrides the default model-view-projection to return the expanded fat line vertex coordinates.
+Setups the position of the expanded fat line vertex in local space.
 
 **builder**
 
 The current node builder.
 
-**Overrides:** [NodeMaterial#setupModelViewProjection](NodeMaterial.html#setupModelViewProjection)
+**Overrides:** [NodeMaterial#setupPosition](NodeMaterial.html#setupPosition)
 
-**Returns:** The position of the fat line vertex in clip space.
+**Returns:** The position of the fat line vertex in local space.
 
 ## Source
 
-[src/materials/nodes/Line2NodeMaterial.js](../../src/materials/nodes/Line2NodeMaterial.js)
+[src/materials/nodes/Line2NodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/Line2NodeMaterial.js)

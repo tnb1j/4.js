@@ -34,4 +34,4 @@ Overwritten so the method always returns the unique shared framebuffer texture.
 
 ## Source
 
-[src/nodes/display/ViewportSharedTextureNode.js](../../src/nodes/display/ViewportSharedTextureNode.js)
+[src/nodes/display/ViewportSharedTextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ViewportSharedTextureNode.js)

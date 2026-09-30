@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ParametricGeometry - 4.js Docs</title>
+	<title>ParametricGeometry - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -16,16 +16,16 @@
 				<div class="class-description"><p>This class can be used to generate a geometry based on a parametric surface.</p>
 <p>Reference: <a href="https://prideout.net/blog/old/blog/index.html@p=44.html" target="_blank" rel="noopener">Mesh Generation with Python</a></p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const geometry = new FOUR.ParametricGeometry( klein, 25, 25 );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const klein = new FOUR.Mesh( geometry, material );
+				<div translate="no"><pre><code class="language-js">const geometry = new ParametricGeometry( klein, 25, 25 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const klein = new THREE.Mesh( geometry, material );
 scene.add( klein );
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">ParametricGeometry</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';</code></pre>
+				<p><span translate="no">ParametricGeometry</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="ParametricGeometry" translate="no">new <a href="#ParametricGeometry">ParametricGeometry</a><span class="signature">( func : <span class="param-type"><a href="ParametricGeometry.html#~Func">ParametricGeometry~Func</a></span>, slices : <span class="param-type">number</span>, stacks : <span class="param-type">number</span> )</span> </h3>
@@ -111,7 +111,7 @@ after instantiation does not change the geometry.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/geometries/ParametricGeometry.js" translate="no">examples/jsm/geometries/ParametricGeometry.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/ParametricGeometry.js" translate="no" target="_blank" rel="noopener">examples/jsm/geometries/ParametricGeometry.js</a>
 				</p>
 			</article>
 		</section>

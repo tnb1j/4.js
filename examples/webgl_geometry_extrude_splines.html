@@ -27,55 +27,55 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import * as Curves from '@tnb1j/4js/addons/curves/CurveExtras.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as Curves from 'three/addons/curves/CurveExtras.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let container, stats;
 
 			let camera, scene, renderer, splineCamera, cameraHelper, cameraEye;
 
-			const direction = new FOUR.Vector3();
-			const binormal = new FOUR.Vector3();
-			const normal = new FOUR.Vector3();
-			const position = new FOUR.Vector3();
-			const lookAt = new FOUR.Vector3();
+			const direction = new THREE.Vector3();
+			const binormal = new THREE.Vector3();
+			const normal = new THREE.Vector3();
+			const position = new THREE.Vector3();
+			const lookAt = new THREE.Vector3();
 
-			const pipeSpline = new FOUR.CatmullRomCurve3( [
-				new FOUR.Vector3( 0, 10, - 10 ), new FOUR.Vector3( 10, 0, - 10 ),
-				new FOUR.Vector3( 20, 0, 0 ), new FOUR.Vector3( 30, 0, 10 ),
-				new FOUR.Vector3( 30, 0, 20 ), new FOUR.Vector3( 20, 0, 30 ),
-				new FOUR.Vector3( 10, 0, 30 ), new FOUR.Vector3( 0, 0, 30 ),
-				new FOUR.Vector3( - 10, 10, 30 ), new FOUR.Vector3( - 10, 20, 30 ),
-				new FOUR.Vector3( 0, 30, 30 ), new FOUR.Vector3( 10, 30, 30 ),
-				new FOUR.Vector3( 20, 30, 15 ), new FOUR.Vector3( 10, 30, 10 ),
-				new FOUR.Vector3( 0, 30, 10 ), new FOUR.Vector3( - 10, 20, 10 ),
-				new FOUR.Vector3( - 10, 10, 10 ), new FOUR.Vector3( 0, 0, 10 ),
-				new FOUR.Vector3( 10, - 10, 10 ), new FOUR.Vector3( 20, - 15, 10 ),
-				new FOUR.Vector3( 30, - 15, 10 ), new FOUR.Vector3( 40, - 15, 10 ),
-				new FOUR.Vector3( 50, - 15, 10 ), new FOUR.Vector3( 60, 0, 10 ),
-				new FOUR.Vector3( 70, 0, 0 ), new FOUR.Vector3( 80, 0, 0 ),
-				new FOUR.Vector3( 90, 0, 0 ), new FOUR.Vector3( 100, 0, 0 )
+			const pipeSpline = new THREE.CatmullRomCurve3( [
+				new THREE.Vector3( 0, 10, - 10 ), new THREE.Vector3( 10, 0, - 10 ),
+				new THREE.Vector3( 20, 0, 0 ), new THREE.Vector3( 30, 0, 10 ),
+				new THREE.Vector3( 30, 0, 20 ), new THREE.Vector3( 20, 0, 30 ),
+				new THREE.Vector3( 10, 0, 30 ), new THREE.Vector3( 0, 0, 30 ),
+				new THREE.Vector3( - 10, 10, 30 ), new THREE.Vector3( - 10, 20, 30 ),
+				new THREE.Vector3( 0, 30, 30 ), new THREE.Vector3( 10, 30, 30 ),
+				new THREE.Vector3( 20, 30, 15 ), new THREE.Vector3( 10, 30, 10 ),
+				new THREE.Vector3( 0, 30, 10 ), new THREE.Vector3( - 10, 20, 10 ),
+				new THREE.Vector3( - 10, 10, 10 ), new THREE.Vector3( 0, 0, 10 ),
+				new THREE.Vector3( 10, - 10, 10 ), new THREE.Vector3( 20, - 15, 10 ),
+				new THREE.Vector3( 30, - 15, 10 ), new THREE.Vector3( 40, - 15, 10 ),
+				new THREE.Vector3( 50, - 15, 10 ), new THREE.Vector3( 60, 0, 10 ),
+				new THREE.Vector3( 70, 0, 0 ), new THREE.Vector3( 80, 0, 0 ),
+				new THREE.Vector3( 90, 0, 0 ), new THREE.Vector3( 100, 0, 0 )
 			] );
 
-			const sampleClosedSpline = new FOUR.CatmullRomCurve3( [
-				new FOUR.Vector3( 0, - 40, - 40 ),
-				new FOUR.Vector3( 0, 40, - 40 ),
-				new FOUR.Vector3( 0, 140, - 40 ),
-				new FOUR.Vector3( 0, 40, 40 ),
-				new FOUR.Vector3( 0, - 40, 40 )
+			const sampleClosedSpline = new THREE.CatmullRomCurve3( [
+				new THREE.Vector3( 0, - 40, - 40 ),
+				new THREE.Vector3( 0, 40, - 40 ),
+				new THREE.Vector3( 0, 140, - 40 ),
+				new THREE.Vector3( 0, 40, 40 ),
+				new THREE.Vector3( 0, - 40, 40 )
 			] );
 
 			sampleClosedSpline.curveType = 'catmullrom';
@@ -114,9 +114,9 @@
 				cameraHelper: false,
 			};
 
-			const material = new FOUR.MeshLambertMaterial( { color: 0xff00ff } );
+			const material = new THREE.MeshLambertMaterial( { color: 0xff00ff } );
 
-			const wireframeMaterial = new FOUR.MeshBasicMaterial( { color: 0x000000, opacity: 0.3, wireframe: true, transparent: true } );
+			const wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 0.3, wireframe: true, transparent: true } );
 
 			function addTube() {
 
@@ -129,7 +129,7 @@
 
 				const extrudePath = splines[ params.spline ];
 
-				tubeGeometry = new FOUR.TubeGeometry( extrudePath, params.extrusionSegments, 2, params.radiusSegments, params.closed );
+				tubeGeometry = new THREE.TubeGeometry( extrudePath, params.extrusionSegments, 2, params.radiusSegments, params.closed );
 
 				addGeometry( tubeGeometry );
 
@@ -148,8 +148,8 @@
 
 				// 3D shape
 
-				mesh = new FOUR.Mesh( geometry, material );
-				const wireframe = new FOUR.Mesh( geometry, wireframeMaterial );
+				mesh = new THREE.Mesh( geometry, material );
+				const wireframe = new THREE.Mesh( geometry, wireframeMaterial );
 				mesh.add( wireframe );
 
 				parent.add( mesh );
@@ -171,38 +171,38 @@
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 10000 );
 				camera.position.set( 0, 50, 500 );
 
 				// scene
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
 				// light
 
-				scene.add( new FOUR.AmbientLight( 0xffffff ) );
+				scene.add( new THREE.AmbientLight( 0xffffff ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				light.position.set( 0, 0, 1 );
 				scene.add( light );
 
 				// tube
 
-				parent = new FOUR.Object3D();
+				parent = new THREE.Object3D();
 				scene.add( parent );
 
-				splineCamera = new FOUR.PerspectiveCamera( 84, window.innerWidth / window.innerHeight, 0.01, 1000 );
+				splineCamera = new THREE.PerspectiveCamera( 84, window.innerWidth / window.innerHeight, 0.01, 1000 );
 				parent.add( splineCamera );
 
-				cameraHelper = new FOUR.CameraHelper( splineCamera );
+				cameraHelper = new THREE.CameraHelper( splineCamera );
 				scene.add( cameraHelper );
 
 				addTube();
 
 				// debug camera
 
-				cameraEye = new FOUR.Mesh( new FOUR.SphereGeometry( 5 ), new FOUR.MeshBasicMaterial( { color: 0xdddddd } ) );
+				cameraEye = new THREE.Mesh( new THREE.SphereGeometry( 5 ), new THREE.MeshBasicMaterial( { color: 0xdddddd } ) );
 				parent.add( cameraEye );
 
 				cameraHelper.visible = params.cameraHelper;
@@ -210,7 +210,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

@@ -82,4 +82,4 @@ Default is `true`.
 
 ## Source
 
-[src/textures/CubeDepthTexture.js](../../src/textures/CubeDepthTexture.js)
+[src/textures/CubeDepthTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/CubeDepthTexture.js)

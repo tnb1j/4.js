@@ -40,4 +40,4 @@ A texture node which size should be retrieved.
 
 ## Source
 
-[src/nodes/accessors/TextureSizeNode.js](../../src/nodes/accessors/TextureSizeNode.js)
+[src/nodes/accessors/TextureSizeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/TextureSizeNode.js)

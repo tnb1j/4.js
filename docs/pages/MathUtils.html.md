@@ -334,4 +334,4 @@ The max value. Any x value above max will be `1`.
 
 ## Source
 
-[src/math/MathUtils.js](../../src/math/MathUtils.js)
+[src/math/MathUtils.js](https://github.com/mrdoob/three.js/blob/master/src/math/MathUtils.js)

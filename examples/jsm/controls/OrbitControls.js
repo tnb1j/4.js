@@ -9,7 +9,7 @@ import {
 	Plane,
 	Ray,
 	MathUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Fires when the camera has been transformed by the controls.
@@ -83,7 +83,7 @@ const _EPS = 0.000001;
  * ```
  *
  * @augments Controls
- * @four_import import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+ * @three_import import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
  */
 class OrbitControls extends Controls {
 
@@ -348,9 +348,9 @@ class OrbitControls extends Controls {
 		 *
 		 * ```js
 		 * controls.mouseButtons = {
-		 * 	LEFT: FOUR.MOUSE.ROTATE,
-		 * 	MIDDLE: FOUR.MOUSE.DOLLY,
-		 * 	RIGHT: FOUR.MOUSE.PAN
+		 * 	LEFT: THREE.MOUSE.ROTATE,
+		 * 	MIDDLE: THREE.MOUSE.DOLLY,
+		 * 	RIGHT: THREE.MOUSE.PAN
 		 * }
 		 * ```
 		 * @type {Object}
@@ -362,8 +362,8 @@ class OrbitControls extends Controls {
 		 *
 		 * ```js
 		 * controls.mouseButtons = {
-		 * 	ONE: FOUR.TOUCH.ROTATE,
-		 * 	TWO: FOUR.TOUCH.DOLLY_PAN
+		 * 	ONE: THREE.TOUCH.ROTATE,
+		 * 	TWO: THREE.TOUCH.DOLLY_PAN
 		 * }
 		 * ```
 		 * @type {Object}
@@ -511,6 +511,8 @@ class OrbitControls extends Controls {
 
 	disconnect() {
 
+		this.state = _STATE.NONE;
+
 		this.domElement.removeEventListener( 'pointerdown', this._onPointerDown );
 		this.domElement.ownerDocument.removeEventListener( 'pointermove', this._onPointerMove );
 		this.domElement.ownerDocument.removeEventListener( 'pointerup', this._onPointerUp );
@@ -523,8 +525,15 @@ class OrbitControls extends Controls {
 
 		const document = this.domElement.getRootNode(); // offscreen canvas compatibility
 		document.removeEventListener( 'keydown', this._interceptControlDown, { capture: true } );
+		document.removeEventListener( 'keyup', this._interceptControlUp, { capture: true } );
+
+		this._controlActive = false;
+
+		this._pointers.length = 0;
+		this._pointerPositions = {};
 
 		this.domElement.style.touchAction = ''; // Restore touch scroll
+		this.domElement.style.cursor = 'auto';
 
 	}
 

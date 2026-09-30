@@ -98,4 +98,4 @@ This method is overwritten to ensure it returns the reference to [ContextNode#no
 
 ## Source
 
-[src/nodes/core/ContextNode.js](../../src/nodes/core/ContextNode.js)
+[src/nodes/core/ContextNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/ContextNode.js)

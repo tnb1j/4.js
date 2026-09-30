@@ -131,25 +131,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
-			import { SimplexNoise } from '@tnb1j/4js/addons/math/SimplexNoise.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
+			import { SimplexNoise } from 'three/addons/math/SimplexNoise.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
 
 			// Texture width for simulation
 			const WIDTH = 128;
@@ -159,16 +160,16 @@
 			const BOUNDS_HALF = BOUNDS * 0.5;
 
 			let tmpHeightmap = null;
-			const tmpQuat = new FOUR.Quaternion();
-			const tmpQuatX = new FOUR.Quaternion();
-			const tmpQuatZ = new FOUR.Quaternion();
+			const tmpQuat = new THREE.Quaternion();
+			const tmpQuatX = new THREE.Quaternion();
+			const tmpQuatZ = new THREE.Quaternion();
 			let duckModel = null;
 
 			let container, stats;
 			let camera, scene, renderer, controls;
 			let mousedown = false;
-			const mouseCoords = new FOUR.Vector2();
-			const raycaster = new FOUR.Raycaster();
+			const mouseCoords = new THREE.Vector2();
+			const raycaster = new THREE.Raycaster();
 
 			let sun;
 			let waterMesh;
@@ -180,7 +181,7 @@
 			let readWaterLevelShader;
 			let readWaterLevelRenderTarget;
 			let readWaterLevelImage;
-			const waterNormal = new FOUR.Vector3();
+			const waterNormal = new THREE.Vector3();
 
 			const NUM_DUCK = 12;
 			const ducks = [];
@@ -208,20 +209,20 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( 0, 2.00, 4 );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				sun = new FOUR.DirectionalLight( 0xFFFFFF, 4.0 );
+				sun = new SunLight( 0xFFFFFF, 4.0 );
 				sun.position.set( - 1, 2.6, 1.4 );
 				scene.add( sun );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.5;
 				container.appendChild( renderer.domElement );
 
@@ -243,7 +244,7 @@
 				glbloader.setDRACOLoader( new DRACOLoader().setDecoderPath( DRACO_GLTF_CONFIG ) );
 
 				const [ env, model ] = await Promise.all( [ hdrLoader.loadAsync( 'blouberg_sunrise_2_1k.hdr' ), glbloader.loadAsync( 'duck.glb' ) ] );
-				env.mapping = FOUR.EquirectangularReflectionMapping;
+				env.mapping = THREE.EquirectangularReflectionMapping;
 				scene.environment = env;
 				scene.background = env;
 				scene.backgroundBlurriness = 0.3;
@@ -303,7 +304,7 @@
 
 			function initWater() {
 
-				const geometry = new FOUR.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
+				const geometry = new THREE.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
 
 				const material = new WaterMaterial( {
 					color: 0x9bd2ec,
@@ -311,10 +312,10 @@
 					roughness: 0,
 					transparent: true,
 					opacity: 0.8,
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				waterMesh = new FOUR.Mesh( geometry, material );
+				waterMesh = new THREE.Mesh( geometry, material );
 				waterMesh.rotation.x = - Math.PI * 0.5;
 				waterMesh.matrixAutoUpdate = false;
 				waterMesh.updateMatrix();
@@ -325,17 +326,17 @@
 				scene.add( waterMesh );
 
 				// pool border
-				const borderGeom = new FOUR.TorusGeometry( 4.2, 0.1, 12, 4 );
+				const borderGeom = new THREE.TorusGeometry( 4.2, 0.1, 12, 4 );
 				borderGeom.rotateX( Math.PI * 0.5 );
 				borderGeom.rotateY( Math.PI * 0.25 );
-				poolBorder = new FOUR.Mesh( borderGeom, new FOUR.MeshStandardMaterial( { color: 0x908877, roughness: 0.2 } ) );
+				poolBorder = new THREE.Mesh( borderGeom, new THREE.MeshStandardMaterial( { color: 0x908877, roughness: 0.2 } ) );
 				scene.add( poolBorder );
 				poolBorder.receiveShadow = true;
 				poolBorder.castShadow = true;
 
-				// FOUR.Mesh just for mouse raycasting
-				const geometryRay = new FOUR.PlaneGeometry( BOUNDS, BOUNDS, 1, 1 );
-				meshRay = new FOUR.Mesh( geometryRay, new FOUR.MeshBasicMaterial( { color: 0xFFFFFF, visible: false } ) );
+				// THREE.Mesh just for mouse raycasting
+				const geometryRay = new THREE.PlaneGeometry( BOUNDS, BOUNDS, 1, 1 );
+				meshRay = new THREE.Mesh( geometryRay, new THREE.MeshBasicMaterial( { color: 0xFFFFFF, visible: false } ) );
 				meshRay.rotation.x = - Math.PI / 2;
 				meshRay.matrixAutoUpdate = false;
 				meshRay.updateMatrix();
@@ -354,7 +355,7 @@
 
 				gpuCompute.setVariableDependencies( heightmapVariable, [ heightmapVariable ] );
 
-				heightmapVariable.material.uniforms[ 'mousePos' ] = { value: new FOUR.Vector2( 10000, 10000 ) };
+				heightmapVariable.material.uniforms[ 'mousePos' ] = { value: new THREE.Vector2( 10000, 10000 ) };
 				heightmapVariable.material.uniforms[ 'mouseSize' ] = { value: 0.2 };
 				heightmapVariable.material.uniforms[ 'viscosity' ] = { value: 0.93 };
 				heightmapVariable.material.uniforms[ 'deep' ] = { value: 0.01 };
@@ -368,7 +369,7 @@
 
 				// Create compute shader to read water level
 				readWaterLevelShader = gpuCompute.createShaderMaterial( document.getElementById( 'readWaterLevelFragmentShader' ).textContent, {
-					point1: { value: new FOUR.Vector2() },
+					point1: { value: new THREE.Vector2() },
 					levelTexture: { value: null }
 				} );
 				readWaterLevelShader.defines.WIDTH = WIDTH.toFixed( 1 );
@@ -377,13 +378,13 @@
 				// Create a 4x1 pixel image and a render target (Uint8, 4 channels, 1 byte per channel) to read water height and orientation
 				readWaterLevelImage = new Uint8Array( 4 * 1 * 4 );
 
-				readWaterLevelRenderTarget = new FOUR.WebGLRenderTarget( 4, 1, {
-					wrapS: FOUR.ClampToEdgeWrapping,
-					wrapT: FOUR.ClampToEdgeWrapping,
-					minFilter: FOUR.NearestFilter,
-					magFilter: FOUR.NearestFilter,
-					format: FOUR.RGBAFormat,
-					type: FOUR.UnsignedByteType,
+				readWaterLevelRenderTarget = new THREE.WebGLRenderTarget( 4, 1, {
+					wrapS: THREE.ClampToEdgeWrapping,
+					wrapT: THREE.ClampToEdgeWrapping,
+					minFilter: THREE.NearestFilter,
+					magFilter: THREE.NearestFilter,
+					format: THREE.RGBAFormat,
+					type: THREE.UnsignedByteType,
 					depthBuffer: false
 				} );
 
@@ -440,25 +441,17 @@
 
 				if ( v ) {
 
-					renderer.shadowMap.type = FOUR.VSMShadowMap;
+					renderer.shadowMap.type = THREE.VSMShadowMap;
 					const shadow = sun.shadow;
-					shadow.mapSize.width = shadow.mapSize.height = 2048;
 					shadow.radius = 2;
 					shadow.bias = - 0.0005;
-					const shadowCam = shadow.camera, s = 5;
-					shadowCam.near = 0.1;
-					shadowCam.far = 6;
-					shadowCam.right = shadowCam.top	= s;
-					shadowCam.left = shadowCam.bottom = - s;
+					shadow.camera.far = 6;
 
 				} else {
 
 					if ( sun.shadow ) sun.shadow.dispose();
 
 				}
-
-				// debug shadow
-				//scene.add(  new FOUR.CameraHelper(shadowCam) );
 
 			}
 
@@ -493,7 +486,7 @@
 					sphere.position.x = ( Math.random() - 0.5 ) * BOUNDS * 0.7;
 					sphere.position.z = ( Math.random() - 0.5 ) * BOUNDS * 0.7;
 
-					sphere.userData.velocity = new FOUR.Vector3();
+					sphere.userData.velocity = new THREE.Vector3();
 
 					scene.add( sphere );
 
@@ -569,14 +562,14 @@
 
 						// duck orientation test
 
-						const startNormal = new FOUR.Vector3( pixels[ 1 ], 1, - pixels[ 2 ] ).normalize();
+						const startNormal = new THREE.Vector3( pixels[ 1 ], 1, - pixels[ 2 ] ).normalize();
 
 						const dir = startPos.sub( pos );
 						dir.y = 0;
 						dir.normalize();
 
-						const yAxis = new FOUR.Vector3( 0, 1, 0 );
-						const zAxis = new FOUR.Vector3( 0, 0, - 1 );
+						const yAxis = new THREE.Vector3( 0, 1, 0 );
+						const zAxis = new THREE.Vector3( 0, 0, - 1 );
 						tmpQuatX.setFromUnitVectors( zAxis, dir );
 						tmpQuatZ.setFromUnitVectors( yAxis, startNormal );
 						tmpQuat.multiplyQuaternions( tmpQuatZ, tmpQuatX );
@@ -683,7 +676,7 @@
 
 			//----------------------
 
-			class WaterMaterial extends FOUR.MeshStandardMaterial {
+			class WaterMaterial extends THREE.MeshStandardMaterial {
 
 				constructor( parameters ) {
 

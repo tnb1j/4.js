@@ -22,26 +22,26 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+		import Stats from 'three/addons/libs/stats.module.js';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-		import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-		import { SSRPass } from '@tnb1j/4js/addons/postprocessing/SSRPass.js';
-		import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
-		import { ReflectorForSSRPass } from '@tnb1j/4js/addons/objects/ReflectorForSSRPass.js';
+		import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+		import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+		import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
+		import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+		import { ReflectorForSSRPass } from 'three/addons/objects/ReflectorForSSRPass.js';
 
-		import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+		import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 		const params = {
 			enableSSR: true,
@@ -68,17 +68,17 @@
 
 		function init() {
 
-			camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 15 );
+			camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 15 );
 			camera.position.set( 0.13271600513224902, 0.3489546826045913, 0.43921296427927076 );
 
-			scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0x443333 );
-			scene.fog = new FOUR.Fog( 0x443333, 1, 4 );
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0x443333 );
+			scene.fog = new THREE.Fog( 0x443333, 1, 4 );
 
 			// Ground
-			const plane = new FOUR.Mesh(
-				new FOUR.PlaneGeometry( 8, 8 ),
-				new FOUR.MeshPhongMaterial( { color: 0xcbcbcb } )
+			const plane = new THREE.Mesh(
+				new THREE.PlaneGeometry( 8, 8 ),
+				new THREE.MeshPhongMaterial( { color: 0xcbcbcb } )
 			);
 			plane.rotation.x = - Math.PI / 2;
 			plane.position.y = - 0.0001;
@@ -86,10 +86,10 @@
 			scene.add( plane );
 
 			// Lights
-			const hemiLight = new FOUR.HemisphereLight( 0x8d7c7c, 0x494966, 3 );
+			const hemiLight = new THREE.HemisphereLight( 0x8d7c7c, 0x494966, 3 );
 			scene.add( hemiLight );
 
-			const spotLight = new FOUR.SpotLight();
+			const spotLight = new THREE.SpotLight();
 			spotLight.intensity = 8;
 			spotLight.angle = Math.PI / 16;
 			spotLight.penumbra = 0.5;
@@ -101,8 +101,8 @@
 
 				geometry.computeVertexNormals();
 
-				const material = new FOUR.MeshStandardMaterial( { color: 0xa5a5a5 } );
-				const mesh = new FOUR.Mesh( geometry, material );
+				const material = new THREE.MeshStandardMaterial( { color: 0xa5a5a5 } );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.position.y = - 0.0365;
 				scene.add( mesh );
 				selects.push( mesh );
@@ -114,31 +114,31 @@
 
 			let geometry, material, mesh;
 
-			geometry = new FOUR.BoxGeometry( .05, .05, .05 );
-			material = new FOUR.MeshStandardMaterial( { color: 'green' } );
-			mesh = new FOUR.Mesh( geometry, material );
+			geometry = new THREE.BoxGeometry( .05, .05, .05 );
+			material = new THREE.MeshStandardMaterial( { color: 'green' } );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.set( - .12, .025, .015 );
 			scene.add( mesh );
 			otherMeshes.push( mesh );
 			selects.push( mesh );
 
-			geometry = new FOUR.IcosahedronGeometry( .025, 4 );
-			material = new FOUR.MeshStandardMaterial( { color: 'cyan' } );
-			mesh = new FOUR.Mesh( geometry, material );
+			geometry = new THREE.IcosahedronGeometry( .025, 4 );
+			material = new THREE.MeshStandardMaterial( { color: 'cyan' } );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.set( - .05, .025, .08 );
 			scene.add( mesh );
 			otherMeshes.push( mesh );
 			selects.push( mesh );
 
-			geometry = new FOUR.ConeGeometry( .025, .05, 64 );
-			material = new FOUR.MeshStandardMaterial( { color: 'yellow' } );
-			mesh = new FOUR.Mesh( geometry, material );
+			geometry = new THREE.ConeGeometry( .025, .05, 64 );
+			material = new THREE.MeshStandardMaterial( { color: 'yellow' } );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.set( - .05, .025, - .055 );
 			scene.add( mesh );
 			otherMeshes.push( mesh );
 			selects.push( mesh );
 
-			geometry = new FOUR.PlaneGeometry( 1, 1 );
+			geometry = new THREE.PlaneGeometry( 1, 1 );
 			groundReflector = new ReflectorForSSRPass( geometry, {
 				clipBias: 0.0003,
 				textureWidth: window.innerWidth,
@@ -152,7 +152,7 @@
 			scene.add( groundReflector );
 
 			// renderer
-			renderer = new FOUR.WebGLRenderer( { antialias: false } );
+			renderer = new THREE.WebGLRenderer( { antialias: false } );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
 			container.appendChild( renderer.domElement );

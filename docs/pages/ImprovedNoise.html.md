@@ -6,10 +6,10 @@ The code is based on [IMPROVED NOISE](https://cs.nyu.edu/~perlin/noise/) by Ken 
 
 ## Import
 
-ImprovedNoise is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ImprovedNoise is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 ```
 
 ## Constructor
@@ -38,4 +38,4 @@ The z coordinate.
 
 ## Source
 
-[examples/jsm/math/ImprovedNoise.js](../../examples/jsm/math/ImprovedNoise.js)
+[examples/jsm/math/ImprovedNoise.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/ImprovedNoise.js)

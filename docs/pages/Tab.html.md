@@ -36,4 +36,4 @@ SVG icon HTML for the builtin button
 
 ## Source
 
-[examples/jsm/inspector/ui/Tab.js](../../examples/jsm/inspector/ui/Tab.js)
+[examples/jsm/inspector/ui/Tab.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/inspector/ui/Tab.js)

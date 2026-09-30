@@ -79,6 +79,44 @@ async function testRequestValidation() {
 		assert.equal( traversal.status, 403 );
 		assert.equal( malformed.status, 400 );
 
+		// CORS and OPTIONS preflight
+		const preflight = await fetch( `http://127.0.0.1:${port}/package.json`, { method: 'OPTIONS' } );
+		assert.equal( preflight.status, 204 );
+		assert.equal( preflight.headers.get( 'access-control-allow-origin' ), '*' );
+
+		// HEAD request
+		const headRes = await fetch( `http://127.0.0.1:${port}/package.json`, { method: 'HEAD' } );
+		assert.equal( headRes.status, 200 );
+		assert.ok( Number( headRes.headers.get( 'content-length' ) ) > 0 );
+		const headBody = await headRes.text();
+		assert.equal( headBody, '' );
+
+		// Range requests
+		const rangeRes = await fetch( `http://127.0.0.1:${port}/package.json`, {
+			headers: { 'Range': 'bytes=0-9' }
+		} );
+		assert.equal( rangeRes.status, 206 );
+		assert.equal( rangeRes.headers.get( 'content-length' ), '10' );
+		const rangeBody = await rangeRes.text();
+		assert.equal( rangeBody.length, 10 );
+
+		// Suffix range
+		const suffixRes = await fetch( `http://127.0.0.1:${port}/package.json`, {
+			headers: { 'Range': 'bytes=-10' }
+		} );
+		assert.equal( suffixRes.status, 206 );
+		assert.equal( suffixRes.headers.get( 'content-length' ), '10' );
+
+		// Invalid range (out of bounds)
+		const invalidRange = await fetch( `http://127.0.0.1:${port}/package.json`, {
+			headers: { 'Range': 'bytes=99999999-99999999' }
+		} );
+		assert.equal( invalidRange.status, 416 );
+
+		// Method not allowed
+		const postRes = await fetch( `http://127.0.0.1:${port}/package.json`, { method: 'POST' } );
+		assert.equal( postRes.status, 405 );
+
 	} finally {
 
 		await closeServer( server );

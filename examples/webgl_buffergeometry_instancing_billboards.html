@@ -75,16 +75,16 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+		import Stats from 'three/addons/libs/stats.module.js';
 
 		let container, stats;
 
@@ -98,14 +98,14 @@
 			container = document.createElement( 'div' );
 			document.body.appendChild( container );
 
-			camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+			camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
 			camera.position.z = 1400;
 
-			scene = new FOUR.Scene();
+			scene = new THREE.Scene();
 
-			const circleGeometry = new FOUR.CircleGeometry( 1, 6 );
+			const circleGeometry = new THREE.CircleGeometry( 1, 6 );
 
-			geometry = new FOUR.InstancedBufferGeometry();
+			geometry = new THREE.InstancedBufferGeometry();
 			geometry.index = circleGeometry.index;
 			geometry.attributes = circleGeometry.attributes;
 
@@ -121,11 +121,11 @@
 
 			}
 
-			geometry.setAttribute( 'translate', new FOUR.InstancedBufferAttribute( translateArray, 3 ) );
+			geometry.setAttribute( 'translate', new THREE.InstancedBufferAttribute( translateArray, 3 ) );
 
-			material = new FOUR.RawShaderMaterial( {
+			material = new THREE.RawShaderMaterial( {
 				uniforms: {
-					'map': { value: new FOUR.TextureLoader().load( 'textures/sprites/circle.png' ) },
+					'map': { value: new THREE.TextureLoader().load( 'textures/sprites/circle.png' ) },
 					'time': { value: 0.0 }
 				},
 				vertexShader: document.getElementById( 'vshader' ).textContent,
@@ -134,11 +134,11 @@
 				depthWrite: true
 			} );
 
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.scale.set( 500, 500, 500 );
 			scene.add( mesh );
 
-			renderer = new FOUR.WebGLRenderer();
+			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );

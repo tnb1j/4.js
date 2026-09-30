@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>TextureLoader - 4.js Docs</title>
+	<title>TextureLoader - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -19,9 +19,9 @@ loaded via <a href="ImageLoader.html">ImageLoader</a>.</p>
 events in <code>r84</code>. For a <code>TextureLoader</code> that supports progress events, see
 <a href="https://github.com/mrdoob/three.js/issues/10439#issuecomment-293260145" target="_blank" rel="noopener">this thread</a>.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const loader = new FOUR.TextureLoader();
+				<div translate="no"><pre><code class="language-js">const loader = new THREE.TextureLoader();
 const texture = await loader.loadAsync( 'textures/land_ocean_ice_cloud_2048.jpg' );
-const material = new FOUR.MeshBasicMaterial( { map:texture } );
+const material = new THREE.MeshBasicMaterial( { map:texture } );
 </code></pre></div>
 			</header>
 			<article>
@@ -100,7 +100,7 @@ may pop up in your scene once the respective loading process is finished.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/loaders/TextureLoader.js" translate="no">src/loaders/TextureLoader.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/loaders/TextureLoader.js" translate="no" target="_blank" rel="noopener">src/loaders/TextureLoader.js</a>
 				</p>
 			</article>
 		</section>

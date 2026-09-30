@@ -9,7 +9,7 @@ This node can only be used with a WebGPU backend.
 ## Code Example
 
 ```js
-const storageTexture = new FOUR.StorageTexture( width, height );
+const storageTexture = new THREE.StorageTexture( width, height );
 const computeTexture = Fn( ( { storageTexture } ) => {
 	const posX = instanceIndex.mod( width );
 	const posY = instanceIndex.div( width );
@@ -220,4 +220,4 @@ Convenience method for configuring a write-only node access.
 
 ## Source
 
-[src/nodes/accessors/StorageTextureNode.js](../../src/nodes/accessors/StorageTextureNode.js)
+[src/nodes/accessors/StorageTextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/StorageTextureNode.js)

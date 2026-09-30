@@ -10,4 +10,4 @@ VolumetricLightingModel class extends the LightingModel to implement volumetric 
 
 ## Source
 
-[src/nodes/functions/VolumetricLightingModel.js](../../src/nodes/functions/VolumetricLightingModel.js)
+[src/nodes/functions/VolumetricLightingModel.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/functions/VolumetricLightingModel.js)

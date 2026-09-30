@@ -27,25 +27,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass } from '@tnb1j/4js/tsl';
-			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass } from 'three/tsl';
+			import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { WaterMesh } from '@tnb1j/4js/addons/objects/WaterMesh.js';
-			import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { WaterMesh } from 'three/addons/objects/WaterMesh.js';
+			import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 
 			let container;
 			let camera, scene, renderer, renderPipeline;
@@ -59,25 +59,25 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.1;
 				renderer.inspector = new Inspector();
 				container.appendChild( renderer.domElement );
 
 				//
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 				camera.position.set( 30, 30, 100 );
 
 				// Post-processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera );
 				const scenePassColor = scenePass.getTextureNode( 'output' );
@@ -91,20 +91,20 @@
 
 				//
 
-				sun = new FOUR.Vector3();
+				sun = new THREE.Vector3();
 
 				// Water
 
-				const waterGeometry = new FOUR.PlaneGeometry( 10000, 10000 );
-				const loader = new FOUR.TextureLoader();
+				const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+				const loader = new THREE.TextureLoader();
 				const waterNormals = loader.load( 'textures/waternormals.jpg' );
-				waterNormals.wrapS = waterNormals.wrapT = FOUR.RepeatWrapping;
+				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
 				water = new WaterMesh(
 					waterGeometry,
 					{
 						waterNormals: waterNormals,
-						sunDirection: new FOUR.Vector3(),
+						sunDirection: new THREE.Vector3(),
 						sunColor: 0xffffff,
 						waterColor: 0x001e0f,
 						distortionScale: 3.7
@@ -135,15 +135,15 @@
 					exposure: 0.1
 				};
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
-				const sceneEnv = new FOUR.Scene();
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
+				const sceneEnv = new THREE.Scene();
 
 				let renderTarget;
 
 				function updateSun() {
 
-					const phi = FOUR.MathUtils.degToRad( 90 - parameters.elevation );
-					const theta = FOUR.MathUtils.degToRad( parameters.azimuth );
+					const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation );
+					const theta = THREE.MathUtils.degToRad( parameters.azimuth );
 
 					sun.setFromSphericalCoords( 1, phi, theta );
 
@@ -164,10 +164,10 @@
 
 				//
 
-				const geometry = new FOUR.BoxGeometry( 30, 30, 30 );
-				const material = new FOUR.MeshStandardMaterial( { roughness: 0 } );
+				const geometry = new THREE.BoxGeometry( 30, 30, 30 );
+				const material = new THREE.MeshStandardMaterial( { roughness: 0 } );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//

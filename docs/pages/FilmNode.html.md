@@ -6,10 +6,10 @@ Post processing node for creating a film grain effect.
 
 ## Import
 
-FilmNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FilmNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { film } from '@tnb1j/4js/addons/tsl/display/FilmNode.js';
+import { film } from 'three/addons/tsl/display/FilmNode.js';
 ```
 
 ## Constructor
@@ -66,4 +66,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/FilmNode.js](../../examples/jsm/tsl/display/FilmNode.js)
+[examples/jsm/tsl/display/FilmNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/FilmNode.js)

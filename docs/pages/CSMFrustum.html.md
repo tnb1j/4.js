@@ -4,10 +4,10 @@ Represents the frustum of a CSM instance.
 
 ## Import
 
-CSMFrustum is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSMFrustum is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSMFrustum } from '@tnb1j/4js/addons/csm/CSMFrustum.js';
+import { CSMFrustum } from 'three/addons/csm/CSMFrustum.js';
 ```
 
 ## Constructor
@@ -102,4 +102,4 @@ The maximum far value.
 
 ## Source
 
-[examples/jsm/csm/CSMFrustum.js](../../examples/jsm/csm/CSMFrustum.js)
+[examples/jsm/csm/CSMFrustum.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/csm/CSMFrustum.js)

@@ -79,4 +79,4 @@ The value to set.
 
 ## Source
 
-[src/core/Uniform.js](../../src/core/Uniform.js)
+[src/core/Uniform.js](https://github.com/mrdoob/three.js/blob/master/src/core/Uniform.js)

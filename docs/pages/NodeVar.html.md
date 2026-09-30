@@ -54,4 +54,4 @@ The type of the variable.
 
 ## Source
 
-[src/nodes/core/NodeVar.js](../../src/nodes/core/NodeVar.js)
+[src/nodes/core/NodeVar.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeVar.js)

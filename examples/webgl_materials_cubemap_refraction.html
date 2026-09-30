@@ -19,19 +19,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
+			import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 
 			let container, stats;
 
@@ -49,7 +49,7 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100000 );
 				camera.position.z = - 4000;
 
 				//
@@ -62,26 +62,26 @@
 					r + 'pz.jpg', r + 'nz.jpg'
 				];
 
-				const textureCube = new FOUR.CubeTextureLoader().load( urls );
-				textureCube.mapping = FOUR.CubeRefractionMapping;
+				const textureCube = new THREE.CubeTextureLoader().load( urls );
+				textureCube.mapping = THREE.CubeRefractionMapping;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = textureCube;
 
 				// LIGHTS
 
-				const ambient = new FOUR.AmbientLight( 0xffffff, 3.5 );
+				const ambient = new THREE.AmbientLight( 0xffffff, 3.5 );
 				scene.add( ambient );
 
 				// material samples
 
-				const cubeMaterial3 = new FOUR.MeshPhongMaterial( { color: 0xccddff, envMap: textureCube, refractionRatio: 0.98, reflectivity: 0.9 } );
-				const cubeMaterial2 = new FOUR.MeshPhongMaterial( { color: 0xccfffd, envMap: textureCube, refractionRatio: 0.985 } );
-				const cubeMaterial1 = new FOUR.MeshPhongMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.98 } );
+				const cubeMaterial3 = new THREE.MeshPhongMaterial( { color: 0xccddff, envMap: textureCube, refractionRatio: 0.98, reflectivity: 0.9 } );
+				const cubeMaterial2 = new THREE.MeshPhongMaterial( { color: 0xccfffd, envMap: textureCube, refractionRatio: 0.985 } );
+				const cubeMaterial1 = new THREE.MeshPhongMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.98 } );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -123,16 +123,16 @@
 
 				const s = 1.5;
 
-				let mesh = new FOUR.Mesh( geometry, m1 );
+				let mesh = new THREE.Mesh( geometry, m1 );
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
 				scene.add( mesh );
 
-				mesh = new FOUR.Mesh( geometry, m2 );
+				mesh = new THREE.Mesh( geometry, m2 );
 				mesh.position.x = - 1500;
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
 				scene.add( mesh );
 
-				mesh = new FOUR.Mesh( geometry, m3 );
+				mesh = new THREE.Mesh( geometry, m3 );
 				mesh.position.x = 1500;
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
 				scene.add( mesh );

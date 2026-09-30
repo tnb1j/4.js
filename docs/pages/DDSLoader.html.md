@@ -9,15 +9,15 @@ A loader for the S3TC texture compression format.
 ```js
 const loader = new DDSLoader();
 const map = loader.load( 'textures/compressed/disturb_dxt1_nomip.dds' );
-map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+map.colorSpace = THREE.SRGBColorSpace; // only for color textures
 ```
 
 ## Import
 
-DDSLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DDSLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DDSLoader } from '@tnb1j/4js/addons/loaders/DDSLoader.js';
+import { DDSLoader } from 'three/addons/loaders/DDSLoader.js';
 ```
 
 ## Constructor
@@ -50,4 +50,4 @@ Whether to load mipmaps or not.
 
 ## Source
 
-[examples/jsm/loaders/DDSLoader.js](../../examples/jsm/loaders/DDSLoader.js)
+[examples/jsm/loaders/DDSLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DDSLoader.js)

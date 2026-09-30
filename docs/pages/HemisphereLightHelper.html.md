@@ -9,8 +9,8 @@ When the hemisphere light is transformed or its light properties are changed, it
 ## Code Example
 
 ```js
-const light = new FOUR.HemisphereLight( 0xffffbb, 0x080820, 1 );
-const helper = new FOUR.HemisphereLightHelper( light, 5 );
+const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+const helper = new THREE.HemisphereLightHelper( light, 5 );
 scene.add( helper );
 ```
 
@@ -50,10 +50,12 @@ The light being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Object3D#dispose](Object3D.html#dispose)
+
 ### .update()
 
 Updates the helper to match the position and direction of the light being visualized.
 
 ## Source
 
-[src/helpers/HemisphereLightHelper.js](../../src/helpers/HemisphereLightHelper.js)
+[src/helpers/HemisphereLightHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/HemisphereLightHelper.js)

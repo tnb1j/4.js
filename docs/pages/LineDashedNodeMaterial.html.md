@@ -74,4 +74,4 @@ The current node builder.
 
 ## Source
 
-[src/materials/nodes/LineDashedNodeMaterial.js](../../src/materials/nodes/LineDashedNodeMaterial.js)
+[src/materials/nodes/LineDashedNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/LineDashedNodeMaterial.js)

@@ -13,10 +13,10 @@ renderer.lighting = lighting; // set lighting system
 
 ## Import
 
-ClusteredLighting is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ClusteredLighting is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ClusteredLighting } from '@tnb1j/4js/addons/lighting/ClusteredLighting.js';
+import { ClusteredLighting } from 'three/addons/lighting/ClusteredLighting.js';
 ```
 
 ## Constructor
@@ -71,4 +71,4 @@ The lights.
 
 ## Source
 
-[examples/jsm/lighting/ClusteredLighting.js](../../examples/jsm/lighting/ClusteredLighting.js)
+[examples/jsm/lighting/ClusteredLighting.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lighting/ClusteredLighting.js)

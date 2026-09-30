@@ -52,4 +52,4 @@ Default is `'string'`.
 
 ## Source
 
-[src/animation/tracks/StringKeyframeTrack.js](../../src/animation/tracks/StringKeyframeTrack.js)
+[src/animation/tracks/StringKeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/tracks/StringKeyframeTrack.js)

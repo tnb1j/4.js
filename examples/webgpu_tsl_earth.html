@@ -27,22 +27,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { step, normalWorldGeometry, output, texture, vec3, vec4, normalize, positionWorld, bumpMap, cameraPosition, color, uniform, mix, uv, max } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { step, normalWorldGeometry, output, texture, vec3, vec4, normalize, positionWorld, bumpMap, cameraPosition, color, uniform, mix, uv, max } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, controls, globe, timer;
 
@@ -50,18 +50,18 @@
 
 			function init() {
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 4.5, 2, 3 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				// sun
 
-				const sun = new FOUR.DirectionalLight( '#ffffff', 2 );
+				const sun = new THREE.DirectionalLight( '#ffffff', 2 );
 				sun.position.set( 0, 0, 3 );
 				scene.add( sun );
 
@@ -74,14 +74,14 @@
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				const dayTexture = textureLoader.load( './textures/planets/earth_day_4096.jpg' );
-				dayTexture.colorSpace = FOUR.SRGBColorSpace;
+				dayTexture.colorSpace = THREE.SRGBColorSpace;
 				dayTexture.anisotropy = 8;
 
 				const nightTexture = textureLoader.load( './textures/planets/earth_night_4096.jpg' );
-				nightTexture.colorSpace = FOUR.SRGBColorSpace;
+				nightTexture.colorSpace = THREE.SRGBColorSpace;
 				nightTexture.anisotropy = 8;
 
 				const bumpRoughnessCloudsTexture = textureLoader.load( './textures/planets/earth_bump_roughness_clouds_4096.jpg' );
@@ -102,7 +102,7 @@
 
 				// globe
 
-				const globeMaterial = new FOUR.MeshStandardNodeMaterial();
+				const globeMaterial = new THREE.MeshStandardNodeMaterial();
 
 				const cloudsStrength = texture( bumpRoughnessCloudsTexture, uv() ).b.smoothstep( 0.2, 1 );
 
@@ -131,24 +131,24 @@
 				);
 				globeMaterial.normalNode = bumpMap( bumpElevation );
 
-				const sphereGeometry = new FOUR.SphereGeometry( 1, 64, 64 );
-				globe = new FOUR.Mesh( sphereGeometry, globeMaterial );
+				const sphereGeometry = new THREE.SphereGeometry( 1, 64, 64 );
+				globe = new THREE.Mesh( sphereGeometry, globeMaterial );
 				scene.add( globe );
 
 				// atmosphere
 
-				const atmosphereMaterial = new FOUR.MeshBasicNodeMaterial( { side: FOUR.BackSide, transparent: true } );
+				const atmosphereMaterial = new THREE.MeshBasicNodeMaterial( { side: THREE.BackSide, transparent: true } );
 				let alpha = fresnel.remap( 0.73, 1, 1, 0 ).pow( 3 );
 				alpha = alpha.mul( sunOrientation.smoothstep( - 0.5, 1 ) );
 				atmosphereMaterial.outputNode = vec4( atmosphereColor, alpha );
 
-				const atmosphere = new FOUR.Mesh( sphereGeometry, atmosphereMaterial );
+				const atmosphere = new THREE.Mesh( sphereGeometry, atmosphereMaterial );
 				atmosphere.scale.setScalar( 1.04 );
 				scene.add( atmosphere );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -171,7 +171,7 @@
 				const gui = renderer.inspector.createParameters( 'Parameters' );
 
 				gui
-					.addColor( { color: atmosphereDayColor.value.getHex( FOUR.SRGBColorSpace ) }, 'color' )
+					.addColor( { color: atmosphereDayColor.value.getHex( THREE.SRGBColorSpace ) }, 'color' )
 					.onChange( ( value ) => {
 
 						atmosphereDayColor.value.set( value );
@@ -180,7 +180,7 @@
 					.name( 'atmosphereDayColor' );
 
 				gui
-					.addColor( { color: atmosphereTwilightColor.value.getHex( FOUR.SRGBColorSpace ) }, 'color' )
+					.addColor( { color: atmosphereTwilightColor.value.getHex( THREE.SRGBColorSpace ) }, 'color' )
 					.onChange( ( value ) => {
 
 						atmosphereTwilightColor.value.set( value );

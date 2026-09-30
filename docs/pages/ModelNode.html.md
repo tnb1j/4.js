@@ -28,4 +28,4 @@ The current node frame.
 
 ## Source
 
-[src/nodes/accessors/ModelNode.js](../../src/nodes/accessors/ModelNode.js)
+[src/nodes/accessors/ModelNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/ModelNode.js)

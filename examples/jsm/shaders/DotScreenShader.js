@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module DotScreenShader
- * @four_import import { DotScreenShader } from '@tnb1j/4js/addons/shaders/DotScreenShader.js';
+ * @three_import import { DotScreenShader } from 'three/addons/shaders/DotScreenShader.js';
  */
 
 /**

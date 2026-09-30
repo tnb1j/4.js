@@ -16,10 +16,10 @@ composer.addPass( ssaaRenderPass );
 
 ## Import
 
-SSAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SSAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SSAARenderPass } from '@tnb1j/4js/addons/postprocessing/SSAARenderPass.js';
+import { SSAARenderPass } from 'three/addons/postprocessing/SSAARenderPass.js';
 ```
 
 ## Constructor
@@ -138,4 +138,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/SSAARenderPass.js](../../examples/jsm/postprocessing/SSAARenderPass.js)
+[examples/jsm/postprocessing/SSAARenderPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/SSAARenderPass.js)

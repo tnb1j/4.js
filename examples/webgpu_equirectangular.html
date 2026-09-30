@@ -18,28 +18,28 @@
 			</div>
 
 			<small>
-				Photo by <a href="http://www.flickr.com/photos/jonragnarsson/2294472375/" target="_blank" rel="noopener">Jón Ragnarsson</a>.
+				Photo by <a href="https://www.flickr.com/photos/jonragnarsson/2294472375/" target="_blank" rel="noopener">Jón Ragnarsson</a>.
 			</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { texture, equirectUV } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { texture, equirectUV } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -51,16 +51,16 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
 				camera.position.set( 1, 0, 0 );
 
-				const equirectTexture = new FOUR.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
-				equirectTexture.colorSpace = FOUR.SRGBColorSpace;
+				const equirectTexture = new THREE.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
+				equirectTexture.colorSpace = THREE.SRGBColorSpace;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundNode = texture( equirectTexture, equirectUV(), 0 );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

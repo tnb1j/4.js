@@ -18,4 +18,4 @@ The stack trace associated with the error.
 
 ## Source
 
-[src/nodes/core/NodeError.js](../../src/nodes/core/NodeError.js)
+[src/nodes/core/NodeError.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeError.js)

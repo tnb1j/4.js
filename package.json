@@ -1,7 +1,7 @@
 {
   "name": "@tnb1j/4js",
-  "version": "0.185.1-four.2",
-  "description": "4.js is an enhanced JavaScript 3D library based on Three.js r185",
+  "version": "0.186.1-four.0",
+  "description": "4.js is an enhanced JavaScript 3D library based on Three.js r186",
   "homepage": "https://github.com/tnb1j/4.js#readme",
   "bugs": {
     "url": "https://github.com/tnb1j/4.js/issues"
@@ -18,26 +18,44 @@
   "bin": {
     "four-migrate": "utils/migrate/cli.js"
   },
+  "types": "./types/index.d.ts",
   "main": "./build/4.cjs",
   "module": "./build/4.module.js",
   "exports": {
     ".": {
+      "types": "./types/index.d.ts",
       "import": "./build/4.module.js",
       "require": "./build/4.cjs"
     },
     "./examples/fonts/*": "./examples/fonts/*",
     "./examples/jsm/*": "./examples/jsm/*",
-    "./addons": "./examples/jsm/Addons.js",
+    "./addons": {
+      "types": "./types/addons.d.ts",
+      "default": "./examples/jsm/Addons.js"
+    },
     "./addons/*": "./examples/jsm/*",
     "./src/*": "./src/*",
-    "./webgpu": "./build/4.webgpu.js",
-    "./tsl": "./build/4.tsl.js",
+    "./webgpu": {
+      "types": "./types/webgpu.d.ts",
+      "default": "./build/4.webgpu.js"
+    },
+    "./tsl": {
+      "types": "./types/tsl.d.ts",
+      "default": "./build/4.tsl.js"
+    },
     "./legacy": {
+      "types": "./types/legacy.d.ts",
       "import": "./build/three.module.js",
       "require": "./build/three.cjs"
     },
-    "./legacy/webgpu": "./build/three.webgpu.js",
-    "./legacy/tsl": "./build/three.tsl.package.js"
+    "./legacy/webgpu": {
+      "types": "./types/webgpu.d.ts",
+      "default": "./build/three.webgpu.js"
+    },
+    "./legacy/tsl": {
+      "types": "./types/tsl.d.ts",
+      "default": "./build/three.tsl.package.js"
+    }
   },
   "sideEffects": [
     "./src/nodes/**/*"
@@ -53,6 +71,7 @@
     "package.json",
     "README.md",
     "src",
+    "types",
     "utils/migrate"
   ],
   "directories": {
@@ -85,8 +104,9 @@
     "lint-manual": "eslint manual",
     "lint-test": "eslint test",
     "lint-utils": "eslint utils",
-    "lint": "eslint src examples editor manual test utils",
-    "lint-fix": "eslint src examples editor manual test utils --fix",
+    "lint-tsl": "eslint tsl",
+    "lint": "eslint src examples editor manual test utils tsl",
+    "lint-fix": "eslint src examples editor manual test utils tsl --fix",
     "test-unit": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headless",
     "test-unit-headful": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headful",
     "test-unit-addons": "node test/unit/puppeteer.unit.js --testPage=UnitTestsAddons.html --mode=headless",

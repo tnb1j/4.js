@@ -6,10 +6,10 @@ The ASCII generation is based on [jsascii](https://github.com/hassadee/jsascii/b
 
 ## Import
 
-AsciiEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AsciiEffect is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AsciiEffect } from '@tnb1j/4js/addons/effects/AsciiEffect.js';
+import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
 ```
 
 ## Constructor
@@ -121,4 +121,4 @@ Default is `'low'`.
 
 ## Source
 
-[examples/jsm/effects/AsciiEffect.js](../../examples/jsm/effects/AsciiEffect.js)
+[examples/jsm/effects/AsciiEffect.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/effects/AsciiEffect.js)

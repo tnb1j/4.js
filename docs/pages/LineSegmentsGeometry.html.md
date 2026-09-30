@@ -8,10 +8,10 @@ This is used in [LineSegments2](LineSegments2.html) to describe the shape.
 
 ## Import
 
-LineSegmentsGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LineSegmentsGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LineSegmentsGeometry } from '@tnb1j/4js/addons/lines/LineSegmentsGeometry.js';
+import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
 ```
 
 ## Constructor
@@ -102,4 +102,4 @@ The position data to set.
 
 ## Source
 
-[examples/jsm/lines/LineSegmentsGeometry.js](../../examples/jsm/lines/LineSegmentsGeometry.js)
+[examples/jsm/lines/LineSegmentsGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/LineSegmentsGeometry.js)

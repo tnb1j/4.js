@@ -593,7 +593,7 @@ An array of post-processing effects.
 
 ### .setNodesHandler( nodesHandler : WebGLNodesHandler )
 
-Sets a compatibility node builder for rendering node materials with WebGLRenderer. This enables using TSL (4.js Shading Language) node materials to prepare for migration to WebGPURenderer.
+Sets a compatibility node builder for rendering node materials with WebGLRenderer. This enables using TSL (Three.js Shading Language) node materials to prepare for migration to WebGPURenderer.
 
 **nodesHandler**
 
@@ -995,4 +995,4 @@ Default is `PCFShadowMap`.
 
 ## Source
 
-[src/renderers/WebGLRenderer.js](../../src/renderers/WebGLRenderer.js)
+[src/renderers/WebGLRenderer.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/WebGLRenderer.js)

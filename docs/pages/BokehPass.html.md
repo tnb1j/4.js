@@ -17,10 +17,10 @@ composer.addPass( bokehPass );
 
 ## Import
 
-BokehPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BokehPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BokehPass } from '@tnb1j/4js/addons/postprocessing/BokehPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 ```
 
 ## Constructor
@@ -142,4 +142,4 @@ Default is `1`.
 
 ## Source
 
-[examples/jsm/postprocessing/BokehPass.js](../../examples/jsm/postprocessing/BokehPass.js)
+[examples/jsm/postprocessing/BokehPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/BokehPass.js)

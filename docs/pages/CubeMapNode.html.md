@@ -30,4 +30,4 @@ Default is `'render'`.
 
 ## Source
 
-[src/nodes/utils/CubeMapNode.js](../../src/nodes/utils/CubeMapNode.js)
+[src/nodes/utils/CubeMapNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/CubeMapNode.js)

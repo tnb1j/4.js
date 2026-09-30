@@ -7,7 +7,7 @@ Class for loading animation clips in the JSON format. The files are internally l
 ## Code Example
 
 ```js
-const loader = new FOUR.AnimationLoader();
+const loader = new THREE.AnimationLoader();
 const animations = await loader.loadAsync( 'animations/animation.js' );
 ```
 
@@ -59,4 +59,4 @@ The serialized animation clips.
 
 ## Source
 
-[src/loaders/AnimationLoader.js](../../src/loaders/AnimationLoader.js)
+[src/loaders/AnimationLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/AnimationLoader.js)

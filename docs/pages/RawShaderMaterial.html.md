@@ -26,4 +26,4 @@ Default is `true`.
 
 ## Source
 
-[src/materials/RawShaderMaterial.js](../../src/materials/RawShaderMaterial.js)
+[src/materials/RawShaderMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/RawShaderMaterial.js)

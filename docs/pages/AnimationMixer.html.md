@@ -130,4 +130,4 @@ The delta time in seconds.
 
 ## Source
 
-[src/animation/AnimationMixer.js](../../src/animation/AnimationMixer.js)
+[src/animation/AnimationMixer.js](https://github.com/mrdoob/three.js/blob/master/src/animation/AnimationMixer.js)

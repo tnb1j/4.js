@@ -16,10 +16,10 @@ const animations = geometry.animations;
 
 ## Import
 
-MD2Loader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MD2Loader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MD2Loader } from '@tnb1j/4js/addons/loaders/MD2Loader.js';
+import { MD2Loader } from 'three/addons/loaders/MD2Loader.js';
 ```
 
 ## Constructor
@@ -70,4 +70,4 @@ The raw MD2 data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/MD2Loader.js](../../examples/jsm/loaders/MD2Loader.js)
+[examples/jsm/loaders/MD2Loader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/MD2Loader.js)

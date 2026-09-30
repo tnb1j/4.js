@@ -2,10 +2,10 @@
 
 ## Import
 
-FreiChenShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FreiChenShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FreiChenShader } from '@tnb1j/4js/addons/shaders/FreiChenShader.js';
+import { FreiChenShader } from 'three/addons/shaders/FreiChenShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ aspect: vec2 of (1/width, 1/height)
 
 ## Source
 
-[examples/jsm/shaders/FreiChenShader.js](../../examples/jsm/shaders/FreiChenShader.js)
+[examples/jsm/shaders/FreiChenShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/FreiChenShader.js)

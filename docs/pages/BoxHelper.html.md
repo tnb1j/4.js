@@ -7,9 +7,9 @@ Helper object to graphically show the world-axis-aligned bounding box around an 
 ## Code Example
 
 ```js
-const sphere = new FOUR.SphereGeometry();
-const object = new FOUR.Mesh( sphere, new FOUR.MeshBasicMaterial( 0xff0000 ) );
-const box = new FOUR.BoxHelper( object, 0xffff00 );
+const sphere = new THREE.SphereGeometry();
+const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0xff0000 ) );
+const box = new THREE.BoxHelper( object, 0xffff00 );
 scene.add( box );
 ```
 
@@ -41,6 +41,8 @@ The 3D object being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .setFromObject( object : Object3D ) : BoxHelper
 
 Updates the wireframe box for the passed object.
@@ -57,4 +59,4 @@ Updates the helper's geometry to match the dimensions of the object, including a
 
 ## Source
 
-[src/helpers/BoxHelper.js](../../src/helpers/BoxHelper.js)
+[src/helpers/BoxHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/BoxHelper.js)

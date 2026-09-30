@@ -9,6 +9,7 @@
 		<link type="text/css" rel="stylesheet" href="main.css">
 	</head>
 	<body>
+		<div id="info"><a href="../" target="_blank" rel="noopener">4.js</a> - kinect</div>
 
 		<video id="video" loop muted crossOrigin="anonymous" playsinline style="display:none">
 			<source src="textures/kinect.webm">
@@ -73,17 +74,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let scene, camera, renderer;
 			let geometry, mesh, material;
@@ -96,28 +97,23 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				const info = document.createElement( 'div' );
-				info.id = 'info';
-				info.innerHTML = '<a href="../" target="_blank" rel="noopener">4.js</a> - kinect';
-				document.body.appendChild( info );
-
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.set( 0, 0, 500 );
 
-				scene = new FOUR.Scene();
-				center = new FOUR.Vector3();
+				scene = new THREE.Scene();
+				center = new THREE.Vector3();
 				center.z = - 1000;
 
 				const video = document.getElementById( 'video' );
 
-				const texture = new FOUR.VideoTexture( video );
-				texture.minFilter = FOUR.NearestFilter;
+				const texture = new THREE.VideoTexture( video );
+				texture.minFilter = THREE.NearestFilter;
 				texture.generateMipmaps = false;
 
 				const width = 640, height = 480;
 				const nearClipping = 850, farClipping = 4000;
 
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 
 				const vertices = new Float32Array( width * height * 3 );
 
@@ -128,9 +124,9 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( vertices, 3 ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
-				material = new FOUR.ShaderMaterial( {
+				material = new THREE.ShaderMaterial( {
 
 					uniforms: {
 
@@ -146,13 +142,13 @@
 					},
 					vertexShader: document.getElementById( 'vs' ).textContent,
 					fragmentShader: document.getElementById( 'fs' ).textContent,
-					blending: FOUR.AdditiveBlending,
+					blending: THREE.AdditiveBlending,
 					depthTest: false, depthWrite: false,
 					transparent: true
 
 				} );
 
-				mesh = new FOUR.Points( geometry, material );
+				mesh = new THREE.Points( geometry, material );
 				scene.add( mesh );
 
 				const gui = new GUI();
@@ -165,13 +161,13 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				container.appendChild( renderer.domElement );
 
-				mouse = new FOUR.Vector3( 0, 0, 1 );
+				mouse = new THREE.Vector3( 0, 0, 1 );
 
 				document.addEventListener( 'mousemove', onDocumentMouseMove );
 

@@ -22,24 +22,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, texture, uv, uint, instancedArray, positionWorld, billboarding, time, hash, deltaTime, vec2, instanceIndex, positionGeometry, If } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, texture, uv, uint, instancedArray, positionWorld, billboarding, time, hash, deltaTime, vec2, instanceIndex, positionGeometry, If } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
 			const maxParticleCount = 50000;
 			const instanceCount = maxParticleCount / 2;
@@ -59,34 +59,34 @@
 
 				const { innerWidth, innerHeight } = window;
 
-				camera = new FOUR.PerspectiveCamera( 60, innerWidth / innerHeight, .1, 110 );
+				camera = new THREE.PerspectiveCamera( 60, innerWidth / innerHeight, .1, 110 );
 				camera.position.set( 40, 8, 0 );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, .5 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, .5 );
 				dirLight.position.set( 3, 17, 17 );
 				scene.add( dirLight );
 			
-				scene.add( new FOUR.AmbientLight( 0x111111 ) );
+				scene.add( new THREE.AmbientLight( 0x111111 ) );
 
 				//
 
-				collisionCamera = new FOUR.OrthographicCamera( - 50, 50, 50, - 50, .1, 50 );
+				collisionCamera = new THREE.OrthographicCamera( - 50, 50, 50, - 50, .1, 50 );
 				collisionCamera.position.y = 50;
 				collisionCamera.lookAt( 0, 0, 0 );
 				collisionCamera.layers.disableAll();
 				collisionCamera.layers.enable( 1 );
 
-				collisionPosRT = new FOUR.RenderTarget( 1024, 1024 );
-				collisionPosRT.texture.type = FOUR.HalfFloatType;
-				collisionPosRT.texture.magFilter = FOUR.NearestFilter;
-				collisionPosRT.texture.minFilter = FOUR.NearestFilter;
+				collisionPosRT = new THREE.RenderTarget( 1024, 1024 );
+				collisionPosRT.texture.type = THREE.HalfFloatType;
+				collisionPosRT.texture.magFilter = THREE.NearestFilter;
+				collisionPosRT.texture.minFilter = THREE.NearestFilter;
 				collisionPosRT.texture.generateMipmaps = false;
 
-				collisionPosMaterial = new FOUR.MeshBasicNodeMaterial();
+				collisionPosMaterial = new THREE.MeshBasicNodeMaterial();
 				collisionPosMaterial.colorNode = positionWorld;
 
 				//
@@ -104,6 +104,7 @@
 
 					const position = positionBuffer.element( instanceIndex );
 					const velocity = velocityBuffer.element( instanceIndex );
+					const ripplePosition = ripplePositionBuffer.element( instanceIndex );
 					const rippleTime = rippleTimeBuffer.element( instanceIndex );
 
 					const randX = hash( instanceIndex );
@@ -115,6 +116,10 @@
 					position.z = randZ.mul( 100 ).add( - 50 );
 
 					velocity.y = randX.mul( - .04 ).add( - .2 );
+
+					ripplePosition.x = randZ.mul( 100 ).add( - 50 );
+					ripplePosition.y = - 1;
+					ripplePosition.z = randY.mul( 100 ).add( - 50 );
 
 					rippleTime.x = 1000;
 
@@ -181,17 +186,16 @@
 
 				// rain
 
-				const rainMaterial = new FOUR.MeshBasicNodeMaterial();
+				const rainMaterial = new THREE.MeshBasicNodeMaterial();
 				rainMaterial.colorNode = uv().distance( vec2( .5, 0 ) ).oneMinus().mul( 3 ).exp().mul( .1 );
-				rainMaterial.vertexNode = billboarding( { position: positionBuffer.toAttribute() } );
+				rainMaterial.positionNode = positionGeometry.add( positionBuffer.toAttribute() );
+				rainMaterial.vertexNode = billboarding( { horizontalRotation: true } );
 				rainMaterial.opacity = .2;
-				rainMaterial.side = FOUR.DoubleSide;
-				rainMaterial.forceSinglePass = true;
 				rainMaterial.depthWrite = false;
 				rainMaterial.depthTest = true;
 				rainMaterial.transparent = true;
 
-				const rainParticles = new FOUR.Mesh( new FOUR.PlaneGeometry( .1, 2 ), rainMaterial );
+				const rainParticles = new THREE.Mesh( new THREE.PlaneGeometry( .1, 2 ), rainMaterial );
 				rainParticles.count = instanceCount;
 				scene.add( rainParticles );
 
@@ -208,11 +212,11 @@
 
 				} );
 
-				const rippleMaterial = new FOUR.MeshBasicNodeMaterial();
+				const rippleMaterial = new THREE.MeshBasicNodeMaterial();
 				rippleMaterial.colorNode = rippleEffect();
 				rippleMaterial.positionNode = positionGeometry.add( ripplePositionBuffer.toAttribute() );
 				rippleMaterial.opacityNode = rippleTime.mul( .3 ).oneMinus().max( 0 ).mul( .5 );
-				rippleMaterial.side = FOUR.DoubleSide;
+				rippleMaterial.side = THREE.DoubleSide;
 				rippleMaterial.forceSinglePass = true;
 				rippleMaterial.depthWrite = false;
 				rippleMaterial.depthTest = true;
@@ -220,31 +224,31 @@
 
 				// ripple geometry
 
-				const surfaceRippleGeometry = new FOUR.PlaneGeometry( 2.5, 2.5 );
+				const surfaceRippleGeometry = new THREE.PlaneGeometry( 2.5, 2.5 );
 				surfaceRippleGeometry.rotateX( - Math.PI / 2 );
 
-				const xRippleGeometry = new FOUR.PlaneGeometry( 1, 2 );
+				const xRippleGeometry = new THREE.PlaneGeometry( 1, 2 );
 				xRippleGeometry.rotateY( - Math.PI / 2 );
 
-				const zRippleGeometry = new FOUR.PlaneGeometry( 1, 2 );
+				const zRippleGeometry = new THREE.PlaneGeometry( 1, 2 );
 
 				const rippleGeometry = BufferGeometryUtils.mergeGeometries( [ surfaceRippleGeometry, xRippleGeometry, zRippleGeometry ] );
 
-				const rippleParticles = new FOUR.Mesh( rippleGeometry, rippleMaterial );
+				const rippleParticles = new THREE.Mesh( rippleGeometry, rippleMaterial );
 				rippleParticles.count = instanceCount;
 				scene.add( rippleParticles );
 
 				// floor geometry
 
-				const floorGeometry = new FOUR.PlaneGeometry( 1000, 1000 );
+				const floorGeometry = new THREE.PlaneGeometry( 1000, 1000 );
 				floorGeometry.rotateX( - Math.PI / 2 );
 
-				const plane = new FOUR.Mesh( floorGeometry, new FOUR.MeshBasicMaterial( { color: 0x050505 } ) );
+				const plane = new THREE.Mesh( floorGeometry, new THREE.MeshBasicMaterial( { color: 0x050505 } ) );
 				scene.add( plane );
 
 				//
 
-				collisionBox = new FOUR.Mesh( new FOUR.BoxGeometry( 30, 1, 15 ), new FOUR.MeshStandardMaterial() );
+				collisionBox = new THREE.Mesh( new THREE.BoxGeometry( 30, 1, 15 ), new THREE.MeshStandardMaterial() );
 				collisionBox.material.color.set( 0x333333 );
 				collisionBox.position.y = 12;
 				collisionBox.scale.x = 3.5;
@@ -253,12 +257,12 @@
 
 				//
 
-				const loader = new FOUR.BufferGeometryLoader();
+				const loader = new THREE.BufferGeometryLoader();
 				loader.load( 'models/json/suzanne_buffergeometry.json', function ( geometry ) {
 
 					geometry.computeVertexNormals();
 
-					monkey = new FOUR.Mesh( geometry, new FOUR.MeshStandardMaterial( { roughness: 1, metalness: 0 } ) );
+					monkey = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial( { roughness: 1, metalness: 0 } ) );
 					monkey.scale.setScalar( 5 );
 					monkey.rotation.y = Math.PI / 2;
 					monkey.position.y = 4.5;
@@ -270,12 +274,12 @@
 
 				//
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -304,8 +308,8 @@
 				const gui = renderer.inspector.createParameters( 'Settings' );
 
 				// use lerp to smooth the movement
-				collisionBoxPosUI = new FOUR.Vector3().copy( collisionBox.position );
-				collisionBoxPos = new FOUR.Vector3();
+				collisionBoxPosUI = new THREE.Vector3().copy( collisionBox.position );
+				collisionBoxPos = new THREE.Vector3();
 
 				gui.add( collisionBoxPosUI, 'z', - 50, 50, .001 ).name( 'position' );
 				gui.add( collisionBox.scale, 'x', .1, 3.5, 0.01 ).name( 'scale' );

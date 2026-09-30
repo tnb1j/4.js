@@ -85,7 +85,9 @@ Checks all intersection between the ray and the object with or without the desce
 
 `Raycaster` delegates to the `raycast()` method of the passed 3D object, when evaluating whether the ray intersects the object or not. This allows meshes to respond differently to ray casting than lines or points.
 
-Note that for meshes, faces must be pointed towards the origin of the ray in order to be detected; intersections of the ray passing through the back of a face will not be detected. To raycast against both faces of an object, you'll want to set [Material#side](Material.html#side) to `FOUR.DoubleSide`.
+Note that for meshes, faces must be pointed towards the origin of the ray in order to be detected; intersections of the ray passing through the back of a face will not be detected. To raycast against both faces of an object, you'll want to set [Material#side](Material.html#side) to `THREE.DoubleSide`.
+
+Note that a ray hitting a triangle mesh exactly along an edge shared by two faces may be reported by both faces, resulting in two coincident intersections (identical point and distance) in the returned array.
 
 **object**
 
@@ -219,4 +221,4 @@ The index number of the instance where the ray intersects the [InstancedMesh](In
 
 ## Source
 
-[src/core/Raycaster.js](../../src/core/Raycaster.js)
+[src/core/Raycaster.js](https://github.com/mrdoob/three.js/blob/master/src/core/Raycaster.js)

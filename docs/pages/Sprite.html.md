@@ -9,9 +9,9 @@ Sprites do not cast shadows, setting [Object3D#castShadow](Object3D.html#castSha
 ## Code Example
 
 ```js
-const map = new FOUR.TextureLoader().load( 'sprite.png' );
-const material = new FOUR.SpriteMaterial( { map: map } );
-const sprite = new FOUR.Sprite( material );
+const map = new THREE.TextureLoader().load( 'sprite.png' );
+const material = new THREE.SpriteMaterial( { map: map } );
+const sprite = new THREE.Sprite( material );
 scene.add( sprite );
 ```
 
@@ -55,6 +55,18 @@ The sprite material.
 
 ## Methods
 
+### .intersectsFrustum( frustum : Frustum | FrustumArray ) : boolean
+
+Returns `true` if this sprite intersects the given frustum.
+
+**frustum**
+
+The frustum to test.
+
+**Overrides:** [Object3D#intersectsFrustum](Object3D.html#intersectsFrustum)
+
+**Returns:** Whether this sprite intersects the given frustum or not.
+
 ### .raycast( raycaster : Raycaster, intersects : Array.<Object> )
 
 Computes intersection points between a casted ray and this sprite.
@@ -71,4 +83,4 @@ The target array that holds the intersection points.
 
 ## Source
 
-[src/objects/Sprite.js](../../src/objects/Sprite.js)
+[src/objects/Sprite.js](https://github.com/mrdoob/three.js/blob/master/src/objects/Sprite.js)

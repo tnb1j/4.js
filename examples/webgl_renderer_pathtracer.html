@@ -40,12 +40,11 @@
 			See <a href="https://github.com/gkjohnson/three-gpu-pathtracer" target="_blank" rel="noopener">main project repository</a> for more information and examples on high fidelity path tracing.
 		</div>
 
-		<!-- four-migrate-preserve: three/examples/ -->
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three/examples/": "./",
 					"three-gpu-pathtracer": "https://cdn.jsdelivr.net/npm/three-gpu-pathtracer@0.0.24/build/index.module.js",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js"
@@ -55,15 +54,15 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
-			import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
-			import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
+			import { LDrawUtils } from 'three/addons/utils/LDrawUtils.js';
+			import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 			import { WebGLPathTracer, BlurredEnvMapGenerator, GradientEquirectTexture } from 'three-gpu-pathtracer';
 
 			let progressBarDiv, samplesEl;
@@ -93,14 +92,14 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.set( 150, 200, 250 );
 
 				// initialize the renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true, preserveDrawingBuffer: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				gradientMap = new GradientEquirectTexture();
@@ -116,7 +115,7 @@
 				pathTracer.tiles.set( params.tiles, params.tiles );
 
 				// scene
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = gradientMap;
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -187,7 +186,7 @@
 									if ( c.material.opacity < 1.0 ) {
 
 										const oldMaterial = c.material;
-										const newMaterial = new FOUR.MeshPhysicalMaterial();
+										const newMaterial = new THREE.MeshPhysicalMaterial();
 
 										newMaterial.opacity = 1.0;
 										newMaterial.transmission = 1.0;
@@ -235,11 +234,11 @@
 				scene.environment = environment;
 
 				// Adjust camera
-				const bbox = new FOUR.Box3().setFromObject( model );
-				const size = bbox.getSize( new FOUR.Vector3() );
+				const bbox = new THREE.Box3().setFromObject( model );
+				const size = bbox.getSize( new THREE.Vector3() );
 				const radius = Math.max( size.x, Math.max( size.y, size.z ) ) * 0.4;
 
-				controls.target0.copy( bbox.getCenter( new FOUR.Vector3() ) );
+				controls.target0.copy( bbox.getCenter( new THREE.Vector3() ) );
 				controls.position0.set( 2.3, 1, 2 ).multiplyScalar( radius ).add( controls.target0 );
 				controls.reset();
 
@@ -247,10 +246,10 @@
 				scene.add( model );
 
 				// add floor
-				floor = new FOUR.Mesh(
-					new FOUR.PlaneGeometry(),
-					new FOUR.MeshStandardMaterial( {
-						side: FOUR.DoubleSide,
+				floor = new THREE.Mesh(
+					new THREE.PlaneGeometry(),
+					new THREE.MeshStandardMaterial( {
+						side: THREE.DoubleSide,
 						roughness: params.roughness,
 						metalness: params.metalness,
 						map: generateRadialFloorTexture( 1024 ),
@@ -347,7 +346,7 @@
 
 			function animate() {
 
-				renderer.toneMapping = params.toneMapping ? FOUR.ACESFilmicToneMapping : FOUR.NoToneMapping;
+				renderer.toneMapping = params.toneMapping ? THREE.ACESFilmicToneMapping : THREE.NoToneMapping;
 
 				const samples = Math.floor( pathTracer.samples );
 				samplesEl.innerText = `samples: ${ samples }`;
@@ -427,13 +426,13 @@
 
 				}
 
-				const tex = new FOUR.DataTexture( data, dim, dim );
-				tex.format = FOUR.RGBAFormat;
-				tex.type = FOUR.UnsignedByteType;
-				tex.minFilter = FOUR.LinearFilter;
-				tex.magFilter = FOUR.LinearFilter;
-				tex.wrapS = FOUR.RepeatWrapping;
-				tex.wrapT = FOUR.RepeatWrapping;
+				const tex = new THREE.DataTexture( data, dim, dim );
+				tex.format = THREE.RGBAFormat;
+				tex.type = THREE.UnsignedByteType;
+				tex.minFilter = THREE.LinearFilter;
+				tex.magFilter = THREE.LinearFilter;
+				tex.wrapS = THREE.RepeatWrapping;
+				tex.wrapT = THREE.RepeatWrapping;
 				tex.needsUpdate = true;
 				return tex;
 
@@ -444,9 +443,9 @@
 		<!-- LDraw.org CC BY 2.0 Parts Library attribution -->
 		<div style="display: block; position: absolute; bottom: 8px; left: 8px; width: 160px; padding: 10px; background-color: #F3F7F8;">
 			<center>
-				<a href="http://www.ldraw.org"><img style="width: 145px" src="models/ldraw/ldraw_org_logo/Stamp145.png"></a>
+				<a href="https://www.ldraw.org"><img style="width: 145px" src="models/ldraw/ldraw_org_logo/Stamp145.png"></a>
 				<br />
-				<a href="http://www.ldraw.org/">This software uses the LDraw Parts Library</a>
+				<a href="https://www.ldraw.org/">This software uses the LDraw Parts Library</a>
 			</center>
 		</div>
 

@@ -24,23 +24,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, mix } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, mix } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer;
 
@@ -51,29 +51,29 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 40 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 40 );
 				camera.position.set( - 4, 2, 6 );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.AgXToneMapping;
+				renderer.toneMapping = THREE.AgXToneMapping;
 				renderer.toneMappingExposure = 1.5;
 				renderer.shadowMap.enabled = true;
 				renderer.shadowMap.transmitted = true;
 				renderer.inspector = new Inspector();
 				container.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x9e9eff );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x9e9eff );
 
 				// light + shadow
 
-				const hemi = new FOUR.AmbientLight( 0xffffff, .5 );
+				const hemi = new THREE.AmbientLight( 0xffffff, .5 );
 				scene.add( hemi );
 
-				const dirLight = new FOUR.DirectionalLight( 0x6666ff, 10 );
+				const dirLight = new THREE.DirectionalLight( 0x6666ff, 10 );
 				dirLight.position.set( 3, 5, 17 );
 				dirLight.castShadow = true;
 				dirLight.shadow.camera.near = 0.1;
@@ -106,7 +106,7 @@
 
 				const dragon2 = dragon.clone();
 				dragon2.material = dragon.material.clone();
-				dragon2.material.attenuationColor = new FOUR.Color( 0xff0000 );
+				dragon2.material.attenuationColor = new THREE.Color( 0xff0000 );
 				dragon2.position.x += 4;
 				gltf.scene.add( dragon2 );
 

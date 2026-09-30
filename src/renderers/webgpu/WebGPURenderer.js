@@ -94,9 +94,9 @@ class WebGPURenderer extends Renderer {
 		 */
 		this.isWebGPURenderer = true;
 
-		if ( typeof __FOUR_DEVTOOLS__ !== 'undefined' ) {
+		if ( typeof __THREE_DEVTOOLS__ !== 'undefined' ) {
 
-			__FOUR_DEVTOOLS__.dispatchEvent( new CustomEvent( 'observe', { detail: this } ) );
+			__THREE_DEVTOOLS__.dispatchEvent( new CustomEvent( 'observe', { detail: this } ) );
 
 		}
 

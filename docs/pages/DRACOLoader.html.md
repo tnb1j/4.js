@@ -23,10 +23,10 @@ loader.dispose();
 
 ## Import
 
-DRACOLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DRACOLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 ```
 
 ## Constructor
@@ -115,4 +115,4 @@ The worker limit.
 
 ## Source
 
-[examples/jsm/loaders/DRACOLoader.js](../../examples/jsm/loaders/DRACOLoader.js)
+[examples/jsm/loaders/DRACOLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DRACOLoader.js)

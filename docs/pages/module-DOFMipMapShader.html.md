@@ -2,10 +2,10 @@
 
 ## Import
 
-DOFMipMapShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DOFMipMapShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DOFMipMapShader } from '@tnb1j/4js/addons/shaders/DOFMipMapShader.js';
+import { DOFMipMapShader } from 'three/addons/shaders/DOFMipMapShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ Requires power-of-2 sized render target with enabled mipmaps.
 
 ## Source
 
-[examples/jsm/shaders/DOFMipMapShader.js](../../examples/jsm/shaders/DOFMipMapShader.js)
+[examples/jsm/shaders/DOFMipMapShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/DOFMipMapShader.js)

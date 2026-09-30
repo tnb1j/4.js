@@ -11,15 +11,15 @@ Materials define the appearance of renderable 3D objects.
 ```js
 const vertices = [];
 for ( let i = 0; i < 10000; i ++ ) {
-	const x = FOUR.MathUtils.randFloatSpread( 2000 );
-	const y = FOUR.MathUtils.randFloatSpread( 2000 );
-	const z = FOUR.MathUtils.randFloatSpread( 2000 );
+	const x = THREE.MathUtils.randFloatSpread( 2000 );
+	const y = THREE.MathUtils.randFloatSpread( 2000 );
+	const z = THREE.MathUtils.randFloatSpread( 2000 );
 	vertices.push( x, y, z );
 }
-const geometry = new FOUR.BufferGeometry();
-geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( vertices, 3 ) );
-const material = new FOUR.PointsMaterial( { color: 0x888888 } );
-const points = new FOUR.Points( geometry, material );
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+const material = new THREE.PointsMaterial( { color: 0x888888 } );
+const points = new THREE.Points( geometry, material );
 scene.add( points );
 ```
 
@@ -87,4 +87,4 @@ Default is `true`.
 
 ## Source
 
-[src/materials/PointsMaterial.js](../../src/materials/PointsMaterial.js)
+[src/materials/PointsMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/PointsMaterial.js)

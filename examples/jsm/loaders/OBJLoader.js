@@ -14,7 +14,7 @@ import {
 	Vector3,
 	Color,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;
@@ -448,7 +448,7 @@ function ParserState() {
  * ```
  *
  * @augments Loader
- * @four_import import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+ * @three_import import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
  */
 class OBJLoader extends Loader {
 
@@ -713,7 +713,7 @@ class OBJLoader extends Loader {
 				// the line is parsed but ignored since the loader assumes textures are defined MTL files
 				// (according to https://www.okino.com/conv/imp_wave.htm, 'usemap' is the old-style Wavefront texture reference method)
 
-				console.warn( 'FOUR.OBJLoader: Rendering identifier "usemap" not supported. Textures must be defined in MTL files.' );
+				console.warn( 'THREE.OBJLoader: Rendering identifier "usemap" not supported. Textures must be defined in MTL files.' );
 
 			} else if ( lineFirstChar === 's' ) {
 
@@ -757,7 +757,7 @@ class OBJLoader extends Loader {
 				// Handle null terminated files without exception
 				if ( line === '\0' ) continue;
 
-				console.warn( 'FOUR.OBJLoader: Unexpected line: "' + line + '"' );
+				console.warn( 'THREE.OBJLoader: Unexpected line: "' + line + '"' );
 
 			}
 

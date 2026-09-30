@@ -1,6 +1,6 @@
 import {
 	WireframeGeometry
-} from '@tnb1j/4js';
+} from 'three';
 import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
 
 /**
@@ -9,12 +9,12 @@ import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
  * This is used in {@link Wireframe} to describe the shape.
  *
  * ```js
- * const geometry = new FOUR.IcosahedronGeometry();
+ * const geometry = new THREE.IcosahedronGeometry();
  * const wireframeGeometry = new WireframeGeometry2( geo );
  * ```
  *
  * @augments LineSegmentsGeometry
- * @four_import import { WireframeGeometry2 } from '@tnb1j/4js/addons/lines/WireframeGeometry2.js';
+ * @three_import import { WireframeGeometry2 } from 'three/addons/lines/WireframeGeometry2.js';
  */
 class WireframeGeometry2 extends LineSegmentsGeometry {
 

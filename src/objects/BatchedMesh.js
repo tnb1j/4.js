@@ -151,9 +151,9 @@ function copyArrayContents( src, target ) {
  * rendering performance in your application.
  *
  * ```js
- * const box = new FOUR.BoxGeometry( 1, 1, 1 );
- * const sphere = new FOUR.SphereGeometry( 1, 12, 12 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const box = new THREE.BoxGeometry( 1, 1, 1 );
+ * const sphere = new THREE.SphereGeometry( 1, 12, 12 );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
  *
  * // initialize and add geometries into the batched mesh
  * const batchedMesh = new BatchedMesh( 10, 5000, 10000, material );
@@ -272,6 +272,7 @@ class BatchedMesh extends Mesh {
 		this._multiDrawCounts = new Int32Array( maxInstanceCount );
 		this._multiDrawStarts = new Int32Array( maxInstanceCount );
 		this._multiDrawCount = 0;
+		this._multiDrawBytesPerElement = 1;
 
 		// Local matrix per geometry by using data texture
 		this._matricesTexture = null;
@@ -420,7 +421,7 @@ class BatchedMesh extends Mesh {
 		const batchGeometry = this.geometry;
 		if ( Boolean( geometry.getIndex() ) !== Boolean( batchGeometry.getIndex() ) ) {
 
-			throw new Error( 'FOUR.BatchedMesh: All geometries must consistently have "index".' );
+			throw new Error( 'THREE.BatchedMesh: All geometries must consistently have "index".' );
 
 		}
 
@@ -428,7 +429,7 @@ class BatchedMesh extends Mesh {
 
 			if ( ! geometry.hasAttribute( attributeName ) ) {
 
-				throw new Error( `FOUR.BatchedMesh: Added geometry missing "${ attributeName }". All geometries must have consistent attributes.` );
+				throw new Error( `THREE.BatchedMesh: Added geometry missing "${ attributeName }". All geometries must have consistent attributes.` );
 
 			}
 
@@ -436,7 +437,7 @@ class BatchedMesh extends Mesh {
 			const dstAttribute = batchGeometry.getAttribute( attributeName );
 			if ( srcAttribute.itemSize !== dstAttribute.itemSize || srcAttribute.normalized !== dstAttribute.normalized ) {
 
-				throw new Error( 'FOUR.BatchedMesh: All attributes must have a consistent itemSize and normalized value.' );
+				throw new Error( 'THREE.BatchedMesh: All attributes must have a consistent itemSize and normalized value.' );
 
 			}
 
@@ -454,7 +455,7 @@ class BatchedMesh extends Mesh {
 		const instanceInfo = this._instanceInfo;
 		if ( instanceId < 0 || instanceId >= instanceInfo.length || instanceInfo[ instanceId ].active === false ) {
 
-			throw new Error( `FOUR.BatchedMesh: Invalid instanceId ${instanceId}. Instance is either out of range or has been deleted.` );
+			throw new Error( `THREE.BatchedMesh: Invalid instanceId ${instanceId}. Instance is either out of range or has been deleted.` );
 
 		}
 
@@ -470,7 +471,7 @@ class BatchedMesh extends Mesh {
 		const geometryInfoList = this._geometryInfo;
 		if ( geometryId < 0 || geometryId >= geometryInfoList.length || geometryInfoList[ geometryId ].active === false ) {
 
-			throw new Error( `FOUR.BatchedMesh: Invalid geometryId ${geometryId}. Geometry is either out of range or has been deleted.` );
+			throw new Error( `THREE.BatchedMesh: Invalid geometryId ${geometryId}. Geometry is either out of range or has been deleted.` );
 
 		}
 
@@ -564,7 +565,7 @@ class BatchedMesh extends Mesh {
 		// ensure we're not over geometry
 		if ( atCapacity && this._availableInstanceIds.length === 0 ) {
 
-			throw new Error( 'FOUR.BatchedMesh: Maximum item count reached.' );
+			throw new Error( 'THREE.BatchedMesh: Maximum item count reached.' );
 
 		}
 
@@ -668,7 +669,7 @@ class BatchedMesh extends Mesh {
 			geometryInfo.vertexStart + geometryInfo.reservedVertexCount > this._maxVertexCount
 		) {
 
-			throw new Error( 'FOUR.BatchedMesh: Reserved space request exceeds the maximum buffer size.' );
+			throw new Error( 'THREE.BatchedMesh: Reserved space request exceeds the maximum buffer size.' );
 
 		}
 
@@ -714,7 +715,7 @@ class BatchedMesh extends Mesh {
 
 		if ( geometryId >= this._geometryCount ) {
 
-			throw new Error( 'FOUR.BatchedMesh: Maximum geometry count reached.' );
+			throw new Error( 'THREE.BatchedMesh: Maximum geometry count reached.' );
 
 		}
 
@@ -731,7 +732,7 @@ class BatchedMesh extends Mesh {
 			geometry.attributes.position.count > geometryInfo.reservedVertexCount
 		) {
 
-			throw new Error( 'FOUR.BatchedMesh: Reserved space not large enough for provided geometry.' );
+			throw new Error( 'THREE.BatchedMesh: Reserved space not large enough for provided geometry.' );
 
 		}
 
@@ -1203,6 +1204,7 @@ class BatchedMesh extends Mesh {
 		this.validateGeometryId( geometryId );
 
 		this._instanceInfo[ instanceId ].geometryIndex = geometryId;
+		this._visibilityChanged = true;
 
 		return this;
 
@@ -1277,7 +1279,7 @@ class BatchedMesh extends Mesh {
 		// throw an error if it can't be shrunk to the desired size
 		if ( maxInstanceCount < instanceInfo.length ) {
 
-			throw new Error( `FOUR.BatchedMesh: Instance ids outside the range ${ maxInstanceCount } are being used. Cannot shrink instance count.` );
+			throw new Error( `THREE.BatchedMesh: Instance ids outside the range ${ maxInstanceCount } are being used. Cannot shrink instance count.` );
 
 		}
 
@@ -1329,7 +1331,7 @@ class BatchedMesh extends Mesh {
 		const requiredVertexLength = Math.max( ...validRanges.map( range => range.vertexStart + range.reservedVertexCount ) );
 		if ( requiredVertexLength > maxVertexCount ) {
 
-			throw new Error( `FOUR.BatchedMesh: Geometry vertex values are being used outside the range ${ maxIndexCount }. Cannot shrink further.` );
+			throw new Error( `THREE.BatchedMesh: Geometry vertex values are being used outside the range ${ maxIndexCount }. Cannot shrink further.` );
 
 		}
 
@@ -1339,7 +1341,7 @@ class BatchedMesh extends Mesh {
 			const requiredIndexLength = Math.max( ...validRanges.map( range => range.indexStart + range.reservedIndexCount ) );
 			if ( requiredIndexLength > maxIndexCount ) {
 
-				throw new Error( `FOUR.BatchedMesh: Geometry index values are being used outside the range ${ maxIndexCount }. Cannot shrink further.` );
+				throw new Error( `THREE.BatchedMesh: Geometry index values are being used outside the range ${ maxIndexCount }. Cannot shrink further.` );
 
 			}
 
@@ -1473,6 +1475,7 @@ class BatchedMesh extends Mesh {
 		this._geometryInitialized = source._geometryInitialized;
 		this._multiDrawCounts = source._multiDrawCounts.slice();
 		this._multiDrawStarts = source._multiDrawStarts.slice();
+		this._multiDrawBytesPerElement = source._multiDrawBytesPerElement;
 
 		this._indirectTexture = source._indirectTexture.clone();
 		this._indirectTexture.image.data = this._indirectTexture.image.data.slice();
@@ -1496,6 +1499,8 @@ class BatchedMesh extends Mesh {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		// Assuming the geometry is not shared with other meshes
 		this.geometry.dispose();
@@ -1675,6 +1680,7 @@ class BatchedMesh extends Mesh {
 
 		indirectTexture.needsUpdate = true;
 		this._multiDrawCount = multiDrawCount;
+		this._multiDrawBytesPerElement = bytesPerElement;
 		this._visibilityChanged = false;
 
 	}

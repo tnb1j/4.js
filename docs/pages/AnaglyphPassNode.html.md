@@ -8,10 +8,10 @@ This implementation uses CameraUtils.frameCorners() to align stereo camera frust
 
 ## Import
 
-AnaglyphPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AnaglyphPassNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from '@tnb1j/4js/addons/tsl/display/AnaglyphPassNode.js';
+import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from 'three/addons/tsl/display/AnaglyphPassNode.js';
 ```
 
 ## Constructor
@@ -90,4 +90,4 @@ The current coordinate system.
 
 ## Source
 
-[examples/jsm/tsl/display/AnaglyphPassNode.js](../../examples/jsm/tsl/display/AnaglyphPassNode.js)
+[examples/jsm/tsl/display/AnaglyphPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/AnaglyphPassNode.js)

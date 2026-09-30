@@ -13,10 +13,10 @@ scene.add( planes );
 
 ## Import
 
-XRPlanes is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+XRPlanes is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { XRPlanes } from '@tnb1j/4js/addons/webxr/XRPlanes.js';
+import { XRPlanes } from 'three/addons/webxr/XRPlanes.js';
 ```
 
 ## Constructor
@@ -31,4 +31,4 @@ The renderer.
 
 ## Source
 
-[examples/jsm/webxr/XRPlanes.js](../../examples/jsm/webxr/XRPlanes.js)
+[examples/jsm/webxr/XRPlanes.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XRPlanes.js)

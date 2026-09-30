@@ -22,4 +22,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/accessors/PointUVNode.js](../../src/nodes/accessors/PointUVNode.js)
+[src/nodes/accessors/PointUVNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/PointUVNode.js)

@@ -2,10 +2,10 @@
 
 ## Import
 
-DotScreenShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DotScreenShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DotScreenShader } from '@tnb1j/4js/addons/shaders/DotScreenShader.js';
+import { DotScreenShader } from 'three/addons/shaders/DotScreenShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Dot screen shader based on [glfx.js sepia shader](https://github.com/evanw/glfx.
 
 ## Source
 
-[examples/jsm/shaders/DotScreenShader.js](../../examples/jsm/shaders/DotScreenShader.js)
+[examples/jsm/shaders/DotScreenShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/DotScreenShader.js)

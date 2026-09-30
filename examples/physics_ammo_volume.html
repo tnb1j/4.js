@@ -24,33 +24,33 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
 			// Graphics variables
 			let container, stats;
 			let camera, controls, scene, renderer;
 			let textureLoader;
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			let clickRequest = false;
-			const mouseCoords = new FOUR.Vector2();
-			const raycaster = new FOUR.Raycaster();
-			const ballMaterial = new FOUR.MeshPhongMaterial( { color: 0x202020 } );
-			const pos = new FOUR.Vector3();
-			const quat = new FOUR.Quaternion();
+			const mouseCoords = new THREE.Vector2();
+			const raycaster = new THREE.Raycaster();
+			const ballMaterial = new THREE.MeshPhongMaterial( { color: 0x202020 } );
+			const pos = new THREE.Vector3();
+			const quat = new THREE.Quaternion();
 
 			// Physics variables
 			const gravityConstant = - 9.8;
@@ -63,7 +63,7 @@
 
 			Ammo().then( function ( AmmoLib ) {
 
-				globalThis.Ammo = AmmoLib;
+				Ammo = AmmoLib;
 
 				init();
 
@@ -85,14 +85,14 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
 				camera.position.set( - 7, 5, 8 );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -103,12 +103,12 @@
 				controls.target.set( 0, 2, 0 );
 				controls.update();
 
-				textureLoader = new FOUR.TextureLoader();
+				textureLoader = new THREE.TextureLoader();
 
-				const ambientLight = new FOUR.AmbientLight( 0xbbbbbb );
+				const ambientLight = new THREE.AmbientLight( 0xbbbbbb );
 				scene.add( ambientLight );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( - 10, 10, 5 );
 				light.castShadow = true;
 				const d = 20;
@@ -158,14 +158,14 @@
 				// Ground
 				pos.set( 0, - 0.5, 0 );
 				quat.set( 0, 0, 0, 1 );
-				const ground = createParalellepiped( 40, 1, 40, 0, pos, quat, new FOUR.MeshPhongMaterial( { color: 0xFFFFFF } ) );
+				const ground = createParalellepiped( 40, 1, 40, 0, pos, quat, new THREE.MeshPhongMaterial( { color: 0xFFFFFF } ) );
 				ground.castShadow = true;
 				ground.receiveShadow = true;
 				textureLoader.load( 'textures/grid.png', function ( texture ) {
 
-					texture.colorSpace = FOUR.SRGBColorSpace;
-					texture.wrapS = FOUR.RepeatWrapping;
-					texture.wrapT = FOUR.RepeatWrapping;
+					texture.colorSpace = THREE.SRGBColorSpace;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
 					texture.repeat.set( 40, 40 );
 					ground.material.map = texture;
 					ground.material.needsUpdate = true;
@@ -175,18 +175,18 @@
 				// Create soft volumes
 				const volumeMass = 15;
 
-				const sphereGeometry = new FOUR.SphereGeometry( 1.5, 40, 25 );
+				const sphereGeometry = new THREE.SphereGeometry( 1.5, 40, 25 );
 				sphereGeometry.translate( 5, 5, 0 );
 				createSoftVolume( sphereGeometry, volumeMass, 250 );
 
-				const boxGeometry = new FOUR.BoxGeometry( 1, 1, 5, 4, 4, 20 );
+				const boxGeometry = new THREE.BoxGeometry( 1, 1, 5, 4, 4, 20 );
 				boxGeometry.translate( - 2, 5, 0 );
 				createSoftVolume( boxGeometry, volumeMass, 120 );
 
 				// Ramp
 				pos.set( 3, 1, 0 );
-				quat.setFromAxisAngle( new FOUR.Vector3( 0, 0, 1 ), 30 * Math.PI / 180 );
-				const obstacle = createParalellepiped( 10, 1, 4, 0, pos, quat, new FOUR.MeshPhongMaterial( { color: 0x606060 } ) );
+				quat.setFromAxisAngle( new THREE.Vector3( 0, 0, 1 ), 30 * Math.PI / 180 );
+				const obstacle = createParalellepiped( 10, 1, 4, 0, pos, quat, new THREE.MeshPhongMaterial( { color: 0x606060 } ) );
 				obstacle.castShadow = true;
 				obstacle.receiveShadow = true;
 
@@ -195,7 +195,7 @@
 			function processGeometry( bufGeometry ) {
 
 				// Ony consider the position values when merging the vertices
-				const posOnlyBufGeometry = new FOUR.BufferGeometry();
+				const posOnlyBufGeometry = new THREE.BufferGeometry();
 				posOnlyBufGeometry.setAttribute( 'position', bufGeometry.getAttribute( 'position' ) );
 				posOnlyBufGeometry.setIndex( bufGeometry.getIndex() );
 
@@ -258,7 +258,7 @@
 
 				processGeometry( bufferGeom );
 
-				const volume = new FOUR.Mesh( bufferGeom, new FOUR.MeshPhongMaterial( { color: 0xFFFFFF } ) );
+				const volume = new THREE.Mesh( bufferGeom, new THREE.MeshPhongMaterial( { color: 0xFFFFFF } ) );
 				volume.castShadow = true;
 				volume.receiveShadow = true;
 				volume.frustumCulled = false;
@@ -310,7 +310,7 @@
 
 			function createParalellepiped( sx, sy, sz, mass, pos, quat, material ) {
 
-				const threeObject = new FOUR.Mesh( new FOUR.BoxGeometry( sx, sy, sz, 1, 1, 1 ), material );
+				const threeObject = new THREE.Mesh( new THREE.BoxGeometry( sx, sy, sz, 1, 1, 1 ), material );
 				const shape = new Ammo.btBoxShape( new Ammo.btVector3( sx * 0.5, sy * 0.5, sz * 0.5 ) );
 				shape.setMargin( margin );
 
@@ -385,7 +385,7 @@
 					const ballMass = 3;
 					const ballRadius = 0.4;
 
-					const ball = new FOUR.Mesh( new FOUR.SphereGeometry( ballRadius, 18, 16 ), ballMaterial );
+					const ball = new THREE.Mesh( new THREE.SphereGeometry( ballRadius, 18, 16 ), ballMaterial );
 					ball.castShadow = true;
 					ball.receiveShadow = true;
 					const ballShape = new Ammo.btSphereShape( ballRadius );

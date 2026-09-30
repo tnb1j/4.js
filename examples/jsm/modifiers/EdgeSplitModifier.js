@@ -2,7 +2,7 @@ import {
 	BufferAttribute,
 	BufferGeometry,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 import * as BufferGeometryUtils from '../utils/BufferGeometryUtils.js';
 
 const _A = new Vector3();
@@ -18,7 +18,7 @@ const _C = new Vector3();
  * geometry = modifier.modify( geometry, Math.PI * 0.4 );
  * ```
  *
- * @four_import import { EdgeSplitModifier } from '@tnb1j/4js/addons/modifiers/EdgeSplitModifier.js';
+ * @three_import import { EdgeSplitModifier } from 'three/addons/modifiers/EdgeSplitModifier.js';
  */
 class EdgeSplitModifier {
 

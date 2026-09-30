@@ -7,7 +7,7 @@ import {
 	Loader,
 	Mesh,
 	MeshPhongMaterial
-} from '@tnb1j/4js';
+} from 'three';
 import { unzipSync } from '../libs/fflate.module.js';
 
 /**
@@ -24,7 +24,7 @@ import { unzipSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments Loader
- * @four_import import { AMFLoader } from '@tnb1j/4js/addons/loaders/AMFLoader.js';
+ * @three_import import { AMFLoader } from 'three/addons/loaders/AMFLoader.js';
  */
 class AMFLoader extends Loader {
 
@@ -101,7 +101,7 @@ class AMFLoader extends Loader {
 				let zip = null;
 				let file = null;
 
-				console.log( 'FOUR.AMFLoader: Loading Zip' );
+				console.log( 'THREE.AMFLoader: Loading Zip' );
 
 				try {
 
@@ -111,7 +111,7 @@ class AMFLoader extends Loader {
 
 					if ( e instanceof ReferenceError ) {
 
-						console.log( 'FOUR.AMFLoader: fflate missing and file is compressed.' );
+						console.log( 'THREE.AMFLoader: fflate missing and file is compressed.' );
 						return null;
 
 					}
@@ -128,7 +128,7 @@ class AMFLoader extends Loader {
 
 				}
 
-				console.log( 'FOUR.AMFLoader: Trying to load file asset: ' + file );
+				console.log( 'THREE.AMFLoader: Trying to load file asset: ' + file );
 				view = new DataView( zip[ file ].buffer );
 
 			}
@@ -138,7 +138,7 @@ class AMFLoader extends Loader {
 
 			if ( xmlData.documentElement.nodeName.toLowerCase() !== 'amf' ) {
 
-				console.log( 'FOUR.AMFLoader: Error loading AMF - no AMF document found.' );
+				console.log( 'THREE.AMFLoader: Error loading AMF - no AMF document found.' );
 				return null;
 
 			}
@@ -172,7 +172,7 @@ class AMFLoader extends Loader {
 
 			}
 
-			console.log( 'FOUR.AMFLoader: Unit scale: ' + scale );
+			console.log( 'THREE.AMFLoader: Unit scale: ' + scale );
 			return scale;
 
 		}

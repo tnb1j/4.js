@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { VOXLoader } from '@tnb1j/4js/addons/loaders/VOXLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VOXLoader } from 'three/addons/loaders/VOXLoader.js';
 
 			let camera, controls, scene, renderer;
 
@@ -36,22 +36,22 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.set( 0.175, 0.075, 0.175 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.add( camera );
 
 				// light
 
-				const hemiLight = new FOUR.HemisphereLight( 0xcccccc, 0x444444, 3 );
+				const hemiLight = new THREE.HemisphereLight( 0xcccccc, 0x444444, 3 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 2.5 );
 				dirLight.position.set( 1.5, 3, 2.5 );
 				scene.add( dirLight );
 
-				const dirLight2 = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const dirLight2 = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				dirLight2.position.set( - 1.5, - 3, - 2.5 );
 				scene.add( dirLight2 );
 
@@ -67,7 +67,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

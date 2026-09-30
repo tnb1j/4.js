@@ -18,8 +18,8 @@ const _color2 = /*@__PURE__*/ new Color();
  * it's necessary to call the `update()` method of the respective helper.
  *
  * ```js
- * const light = new FOUR.HemisphereLight( 0xffffbb, 0x080820, 1 );
- * const helper = new FOUR.HemisphereLightHelper( light, 5 );
+ * const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+ * const helper = new THREE.HemisphereLightHelper( light, 5 );
  * scene.add( helper );
  * ```
  *
@@ -81,6 +81,8 @@ class HemisphereLightHelper extends Object3D {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.children[ 0 ].geometry.dispose();
 		this.children[ 0 ].material.dispose();

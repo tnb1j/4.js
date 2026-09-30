@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-			import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
-			import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
-			import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
+			import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
+			import { LDrawUtils } from 'three/addons/utils/LDrawUtils.js';
+			import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 
 			let container, progressBarDiv;
 
@@ -79,24 +79,24 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.set( 150, 200, 250 );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true, outputBufferType: FOUR.HalfFloatType } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, outputBufferType: THREE.HalfFloatType } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				container.appendChild( renderer.domElement );
 
 				// scene
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xdeebed );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xdeebed );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -195,7 +195,7 @@
 
 							function convertMaterial( material ) {
 
-								const newMaterial = new FOUR.MeshBasicMaterial();
+								const newMaterial = new THREE.MeshBasicMaterial();
 								newMaterial.color.copy( material.color );
 								newMaterial.polygonOffset = material.polygonOffset;
 								newMaterial.polygonOffsetUnits = material.polygonOffsetUnits;
@@ -243,13 +243,13 @@
 
 						// Adjust camera and light
 
-						const bbox = new FOUR.Box3().setFromObject( model );
-						const size = bbox.getSize( new FOUR.Vector3() );
+						const bbox = new THREE.Box3().setFromObject( model );
+						const size = bbox.getSize( new THREE.Vector3() );
 						const radius = Math.max( size.x, Math.max( size.y, size.z ) ) * 0.5;
 
 						if ( resetCamera ) {
 
-							controls.target0.copy( bbox.getCenter( new FOUR.Vector3() ) );
+							controls.target0.copy( bbox.getCenter( new THREE.Vector3() ) );
 							controls.position0.set( - 2.3, 1, 2 ).multiplyScalar( radius ).add( controls.target0 );
 							controls.reset();
 
@@ -380,9 +380,9 @@
 		<!-- LDraw.org CC BY 2.0 Parts Library attribution -->
 		<div style="display: block; position: absolute; bottom: 8px; left: 8px; width: 160px; padding: 10px; background-color: #F3F7F8;">
 			<center>
-				<a href="http://www.ldraw.org"><img style="width: 145px" src="models/ldraw/ldraw_org_logo/Stamp145.png"></a>
+				<a href="https://www.ldraw.org"><img style="width: 145px" src="models/ldraw/ldraw_org_logo/Stamp145.png"></a>
 				<br />
-				<a href="http://www.ldraw.org/">This software uses the LDraw Parts Library</a>
+				<a href="https://www.ldraw.org/">This software uses the LDraw Parts Library</a>
 			</center>
 		</div>
 

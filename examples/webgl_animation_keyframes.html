@@ -32,40 +32,40 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Sky } from '@tnb1j/4js/addons/objects/Sky.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Sky } from 'three/addons/objects/Sky.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
 
 			let mixer;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			const container = document.getElementById( 'container' );
 
 			const stats = new Stats();
 			container.appendChild( stats.dom );
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
-			renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+			renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			container.appendChild( renderer.domElement );
 
-			const scene = new FOUR.Scene();
+			const scene = new THREE.Scene();
 
 			// Sky
 
@@ -80,11 +80,11 @@
 			uniforms[ 'cloudElevation' ].value = 1;
 			uniforms[ 'sunPosition' ].value.set( - 0.8, 0.19, 0.56 ); // elevation: 11, azimuth: -55
 
-			const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+			const pmremGenerator = new THREE.PMREMGenerator( renderer );
 			const environment = pmremGenerator.fromScene( sky ).texture;
 			scene.environment = environment;
 
-			const camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
+			const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
 			camera.position.set( 5, 2, 8 );
 
 			const controls = new OrbitControls( camera, renderer.domElement );
@@ -104,7 +104,7 @@
 				model.scale.set( 0.01, 0.01, 0.01 );
 				scene.add( model );
 
-				mixer = new FOUR.AnimationMixer( model );
+				mixer = new THREE.AnimationMixer( model );
 				mixer.clipAction( gltf.animations[ 0 ] ).play();
 
 				renderer.setAnimationLoop( animate );

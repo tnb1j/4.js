@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>OutlinePass - 4.js Docs</title>
+	<title>OutlinePass - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,15 +15,15 @@
 			<header>
 				<div class="class-description"><p>A pass for rendering outlines around selected objects.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const resolution = new FOUR.Vector2( window.innerWidth, window.innerHeight );
+				<div translate="no"><pre><code class="language-js">const resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
 const outlinePass = new OutlinePass( resolution, scene, camera );
 composer.addPass( outlinePass );
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">OutlinePass</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { OutlinePass } from '@tnb1j/4js/addons/postprocessing/OutlinePass.js';</code></pre>
+				<p><span translate="no">OutlinePass</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="OutlinePass" translate="no">new <a href="#OutlinePass">OutlinePass</a><span class="signature">( resolution : <span class="param-type"><a href="Vector2.html">Vector2</a></span>, scene : <span class="param-type"><a href="Scene.html">Scene</a></span>, camera : <span class="param-type"><a href="Camera.html">Camera</a></span>, selectedObjects : <span class="param-type">Array.&lt;<a href="Object3D.html">Object3D</a>></span> )</span> </h3>
@@ -258,7 +258,7 @@ previous pass from this buffer.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/postprocessing/OutlinePass.js" translate="no">examples/jsm/postprocessing/OutlinePass.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/OutlinePass.js" translate="no" target="_blank" rel="noopener">examples/jsm/postprocessing/OutlinePass.js</a>
 				</p>
 			</article>
 		</section>

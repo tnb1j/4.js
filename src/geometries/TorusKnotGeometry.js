@@ -8,9 +8,9 @@ import { Vector3 } from '../math/Vector3.js';
  * be a torus link.
  *
  * ```js
- * const geometry = new FOUR.TorusKnotGeometry( 10, 3, 100, 16 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
- * const torusKnot = new FOUR.Mesh( geometry, material );
+ * const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+ * const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+ * const torusKnot = new THREE.Mesh( geometry, material );
  * scene.add( torusKnot );
  * ```
  *

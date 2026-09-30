@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, mix, normalWorld, output, Fn, uniform, vec4, rotate, screenCoordinate, screenSize } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, mix, normalWorld, output, Fn, uniform, vec4, rotate, screenCoordinate, screenSize } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer, controls, timer, halftoneSettings;
 
@@ -49,17 +49,17 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 6, 3, 10 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -74,10 +74,10 @@
 
 				// lights
 
-				const ambientLight = new FOUR.AmbientLight( '#ffffff', 3 );
+				const ambientLight = new THREE.AmbientLight( '#ffffff', 3 );
 				scene.add( ambientLight );
 
-				const directionalLight = new FOUR.DirectionalLight( '#ffffff', 8 );
+				const directionalLight = new THREE.DirectionalLight( '#ffffff', 8 );
 				directionalLight.position.set( 4, 3, 1 );
 				scene.add( directionalLight );
 
@@ -94,7 +94,7 @@
 					{
 						count: 140,
 						color: '#fb00ff',
-						direction: new FOUR.Vector3( - 0.4, - 1, 0.5 ),
+						direction: new THREE.Vector3( - 0.4, - 1, 0.5 ),
 						start: 1,
 						end: 0,
 						mixLow: 0,
@@ -107,7 +107,7 @@
 					{
 						count: 180,
 						color: '#94ffd1',
-						direction: new FOUR.Vector3( 0.5, 0.5, - 0.2 ),
+						direction: new THREE.Vector3( 0.5, 0.5, - 0.2 ),
 						start: 0.55,
 						end: 0.2,
 						mixLow: 0.5,
@@ -194,7 +194,7 @@
 
 				// default material
 
-				const defaultMaterial = new FOUR.MeshStandardNodeMaterial( { color: '#ff622e' } );
+				const defaultMaterial = new THREE.MeshStandardNodeMaterial( { color: '#ff622e' } );
 				defaultMaterial.outputNode = halftones( output );
 
 				const folder = gui.addFolder( '🎨 default material' );
@@ -202,15 +202,15 @@
 
 				// objects
 
-				const torusKnot = new FOUR.Mesh(
-					new FOUR.TorusKnotGeometry( 0.6, 0.25, 128, 32 ),
+				const torusKnot = new THREE.Mesh(
+					new THREE.TorusKnotGeometry( 0.6, 0.25, 128, 32 ),
 					defaultMaterial
 				);
 				torusKnot.position.x = 3;
 				scene.add( torusKnot );
 
-				const sphere = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 1, 64, 64 ),
+				const sphere = new THREE.Mesh(
+					new THREE.SphereGeometry( 1, 64, 64 ),
 					defaultMaterial
 				);
 				sphere.position.x = - 3;

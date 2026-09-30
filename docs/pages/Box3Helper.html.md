@@ -7,9 +7,9 @@ A helper object to visualize an instance of [Box3](Box3.html).
 ## Code Example
 
 ```js
-const box = new FOUR.Box3();
-box.setFromCenterAndSize( new FOUR.Vector3( 1, 1, 1 ), new FOUR.Vector3( 2, 1, 3 ) );
-const helper = new FOUR.Box3Helper( box, 0xffff00 );
+const box = new THREE.Box3();
+box.setFromCenterAndSize( new THREE.Vector3( 1, 1, 1 ), new THREE.Vector3( 2, 1, 3 ) );
+const helper = new THREE.Box3Helper( box, 0xffff00 );
 scene.add( helper )
 ```
 
@@ -41,6 +41,8 @@ The box being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ## Source
 
-[src/helpers/Box3Helper.js](../../src/helpers/Box3Helper.js)
+[src/helpers/Box3Helper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/Box3Helper.js)

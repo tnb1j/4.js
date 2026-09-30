@@ -17,20 +17,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { JoltPhysics } from '@tnb1j/4js/addons/physics/JoltPhysics.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import * as THREE from 'three/webgpu';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { JoltPhysics } from 'three/addons/physics/JoltPhysics.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let physics, position;
@@ -42,30 +42,30 @@
 			async function init() {
 
 				physics = await JoltPhysics();
-				position = new FOUR.Vector3();
+				position = new THREE.Vector3();
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( - 1, 1.5, 2 );
 				camera.lookAt( 0, 0.5, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x666666 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x666666 );
 
-				const hemiLight = new FOUR.HemisphereLight();
+				const hemiLight = new THREE.HemisphereLight();
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.position.set( 5, 5, 5 );
 				dirLight.castShadow = true;
 				dirLight.shadow.camera.zoom = 2;
 				dirLight.shadow.bias = - 0.001;
 				scene.add( dirLight );
 
-				const shadowPlane = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 10, 10 ),
-					new FOUR.ShadowMaterial( {
+				const shadowPlane = new THREE.Mesh(
+					new THREE.PlaneGeometry( 10, 10 ),
+					new THREE.ShadowMaterial( {
 						color: 0x444444
 					} ),
 				);
@@ -73,9 +73,9 @@
 				shadowPlane.receiveShadow = true;
 				scene.add( shadowPlane );
 
-				const floorCollider = new FOUR.Mesh(
-					new FOUR.BoxGeometry( 10, 5, 10 ),
-					new FOUR.MeshBasicMaterial( { color: 0x666666 } )
+				const floorCollider = new THREE.Mesh(
+					new THREE.BoxGeometry( 10, 5, 10 ),
+					new THREE.MeshBasicMaterial( { color: 0x666666 } )
 				);
 				floorCollider.position.y = - 2.5;
 				floorCollider.userData.physics = { mass: 0 };
@@ -84,16 +84,16 @@
 
 				//
 
-				const material = new FOUR.MeshLambertMaterial();
+				const material = new THREE.MeshLambertMaterial();
 
-				const matrix = new FOUR.Matrix4();
-				const color = new FOUR.Color();
+				const matrix = new THREE.Matrix4();
+				const color = new THREE.Color();
 
 				// Boxes
 
-				const geometryBox = new FOUR.BoxGeometry( 0.075, 0.075, 0.075 );
-				boxes = new FOUR.InstancedMesh( geometryBox, material, 400 );
-				boxes.instanceMatrix.setUsage( FOUR.DynamicDrawUsage ); // will be updated every frame
+				const geometryBox = new THREE.BoxGeometry( 0.075, 0.075, 0.075 );
+				boxes = new THREE.InstancedMesh( geometryBox, material, 400 );
+				boxes.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); // will be updated every frame
 				boxes.castShadow = true;
 				boxes.receiveShadow = true;
 				boxes.userData.physics = { mass: 1 };
@@ -109,9 +109,9 @@
 
 				// Spheres
 
-				const geometrySphere = new FOUR.IcosahedronGeometry( 0.05, 4 );
-				spheres = new FOUR.InstancedMesh( geometrySphere, material, 400 );
-				spheres.instanceMatrix.setUsage( FOUR.DynamicDrawUsage ); // will be updated every frame
+				const geometrySphere = new THREE.IcosahedronGeometry( 0.05, 4 );
+				spheres = new THREE.InstancedMesh( geometrySphere, material, 400 );
+				spheres.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); // will be updated every frame
 				spheres.castShadow = true;
 				spheres.receiveShadow = true;
 				spheres.userData.physics = { mass: 1 };
@@ -129,7 +129,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

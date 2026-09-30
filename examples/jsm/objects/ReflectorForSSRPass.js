@@ -13,13 +13,13 @@ import {
 	NearestFilter,
 	Plane,
 	HalfFloatType
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A special version of {@link Reflector} for usage with {@link SSRPass}.
  *
  * @augments Mesh
- * @four_import import { ReflectorForSSRPass } from '@tnb1j/4js/addons/objects/ReflectorForSSRPass.js';
+ * @three_import import { ReflectorForSSRPass } from 'three/addons/objects/ReflectorForSSRPass.js';
  */
 class ReflectorForSSRPass extends Mesh {
 

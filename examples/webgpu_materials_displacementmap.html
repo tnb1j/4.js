@@ -20,29 +20,29 @@
 
 			<small>
 				( normal + ao + displacement + environment ) maps.<br />
-				Ninja head from <a href="https://gpuopen.com/archive/gamescgi/amd-gpu-meshmapper/" target="_blank" rel="noopener">AMD GPU MeshMapper</a>.
+				Ninja head from <a href="https://web.archive.org/web/2024/https://gpuopen.com/archive/gamescgi/amd-gpu-meshmapper/" target="_blank" rel="noopener">AMD GPU MeshMapper</a>.
 			</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 			let camera, scene, renderer, controls;
 
@@ -121,7 +121,7 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setAnimationLoop( animate );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
@@ -130,10 +130,10 @@
 
 				//
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const aspect = window.innerWidth / window.innerHeight;
-				camera = new FOUR.OrthographicCamera( - height * aspect, height * aspect, height, - height, 1, 10000 );
+				camera = new THREE.OrthographicCamera( - height * aspect, height * aspect, height, - height, 1, 10000 );
 				camera.position.z = 1500;
 				scene.add( camera );
 
@@ -143,17 +143,17 @@
 
 				// lights
 
-				ambientLight = new FOUR.AmbientLight( 0xffffff, settings.ambientIntensity );
+				ambientLight = new THREE.AmbientLight( 0xffffff, settings.ambientIntensity );
 				scene.add( ambientLight );
 
-				pointLight = new FOUR.PointLight( 0xff0000, 1.5, 0, 0 );
+				pointLight = new THREE.PointLight( 0xff0000, 1.5, 0, 0 );
 				pointLight.position.z = 2500;
 				scene.add( pointLight );
 
-				const pointLight2 = new FOUR.PointLight( 0xff6666, 3, 0, 0 );
+				const pointLight2 = new THREE.PointLight( 0xff6666, 3, 0, 0 );
 				camera.add( pointLight2 );
 
-				const pointLight3 = new FOUR.PointLight( 0x0000ff, 1.5, 0, 0 );
+				const pointLight3 = new THREE.PointLight( 0x0000ff, 1.5, 0, 0 );
 				pointLight3.position.x = - 1000;
 				pointLight3.position.z = 1000;
 				scene.add( pointLight3 );
@@ -168,25 +168,25 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const reflectionCube = new FOUR.CubeTextureLoader().load( urls );
+				const reflectionCube = new THREE.CubeTextureLoader().load( urls );
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				const normalMap = textureLoader.load( 'models/obj/ninja/normal.png' );
 				const aoMap = textureLoader.load( 'models/obj/ninja/ao.jpg' );
 				const displacementMap = textureLoader.load( 'models/obj/ninja/displacement.jpg' );
 
 				// material
 
-				material = new FOUR.MeshStandardNodeMaterial( {
+				material = new THREE.MeshStandardNodeMaterial( {
 
 					color: 0xc1c1c1,
 					roughness: settings.roughness,
 					metalness: settings.metalness,
 
 					normalMap: normalMap,
-					normalScale: new FOUR.Vector2( 1, - 1 ), // why does the normal map require negation in this case?
+					normalScale: new THREE.Vector2( 1, - 1 ), // why does the normal map require negation in this case?
 
 					aoMap: aoMap,
 					aoMapIntensity: 1,
@@ -198,7 +198,7 @@
 					envMap: reflectionCube,
 					envMapIntensity: settings.envMapIntensity,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 
 				} );
 
@@ -210,7 +210,7 @@
 					const geometry = group.children[ 0 ].geometry;
 					geometry.center();
 
-					mesh = new FOUR.Mesh( geometry, material );
+					mesh = new THREE.Mesh( geometry, material );
 					mesh.scale.multiplyScalar( 25 );
 					scene.add( mesh );
 

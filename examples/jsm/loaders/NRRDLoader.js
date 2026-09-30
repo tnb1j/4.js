@@ -3,7 +3,7 @@ import {
 	Loader,
 	Matrix4,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 import { gunzipSync } from '../libs/fflate.module.js';
 import { Volume } from '../misc/Volume.js';
 
@@ -16,7 +16,7 @@ import { Volume } from '../misc/Volume.js';
  * ```
  *
  * @augments Loader
- * @four_import import { NRRDLoader } from '@tnb1j/4js/addons/loaders/NRRDLoader.js';
+ * @three_import import { NRRDLoader } from 'three/addons/loaders/NRRDLoader.js';
  */
 class NRRDLoader extends Loader {
 
@@ -223,13 +223,13 @@ class NRRDLoader extends Loader {
 
 			if ( ! headerObject.isNrrd ) {
 
-				throw new Error( 'FOUR.NRRDLoader: Not an NRRD file' );
+				throw new Error( 'THREE.NRRDLoader: Not an NRRD file' );
 
 			}
 
 			if ( headerObject.encoding === 'bz2' || headerObject.encoding === 'bzip2' ) {
 
-				throw new Error( 'FOUR.NRRDLoader: Bzip is not supported' );
+				throw new Error( 'THREE.NRRDLoader: Bzip is not supported' );
 
 			}
 
@@ -598,7 +598,7 @@ const _fieldFunctions = {
 				this.__array = Float64Array;
 				break;
 			default:
-				throw new Error( 'FOUR.NRRDLoader: Unsupported NRRD data type: ' + data );
+				throw new Error( 'THREE.NRRDLoader: Unsupported NRRD data type: ' + data );
 
 		}
 

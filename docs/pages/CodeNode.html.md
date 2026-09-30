@@ -86,4 +86,4 @@ The includes to set.
 
 ## Source
 
-[src/nodes/code/CodeNode.js](../../src/nodes/code/CodeNode.js)
+[src/nodes/code/CodeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/code/CodeNode.js)

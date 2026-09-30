@@ -68,4 +68,4 @@ Returns a lighting context object.
 
 ## Source
 
-[src/nodes/lighting/LightingContextNode.js](../../src/nodes/lighting/LightingContextNode.js)
+[src/nodes/lighting/LightingContextNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/LightingContextNode.js)

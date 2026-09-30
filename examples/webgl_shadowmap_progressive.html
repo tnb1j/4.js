@@ -12,30 +12,30 @@
 		<div id="container"></div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - Progressive Lightmaps by <a href="https://github.com/zalo" target="_blank" rel="noopener">zalo</a><br/>
-			[Inspired by <a href="http://madebyevan.com/shaders/lightmap/" target="_blank" rel="noopener">evanw's Lightmap Generation</a>]
+			[Inspired by <a href="https://madebyevan.com/shaders/lightmap/" target="_blank" rel="noopener">evanw's Lightmap Generation</a>]
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@tnb1j/4js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
-			import { ProgressiveLightMap } from '@tnb1j/4js/addons/misc/ProgressiveLightMap.js';
+			import * as THREE from 'three';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { TransformControls } from 'three/addons/controls/TransformControls.js';
+			import { ProgressiveLightMap } from 'three/addons/misc/ProgressiveLightMap.js';
 
 			// ShadowMap + LightMap Res and Number of Directional Lights
 			const shadowMapRes = 512, lightMapRes = 1024, lightCount = 8;
 			let camera, scene, renderer, controls, control, control2,
-				object = new FOUR.Mesh(), lightOrigin = null, progressiveSurfacemap;
+				object = new THREE.Mesh(), lightOrigin = null, progressiveSurfacemap;
 			const dirLights = [], lightmapObjects = [];
 			const params = { 'Enable': true, 'Blur Edges': true, 'Blend Window': 200,
 							 'Light Radius': 50, 'Ambient Weight': 0.5, 'Debug Lightmap': false };
@@ -45,7 +45,7 @@
 			function init() {
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -53,20 +53,20 @@
 				document.body.appendChild( renderer.domElement );
 
 				// camera
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 100, 200 );
 				camera.name = 'Camera';
 
 				// scene
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x949494 );
-				scene.fog = new FOUR.Fog( 0x949494, 1000, 3000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x949494 );
+				scene.fog = new THREE.Fog( 0x949494, 1000, 3000 );
 
 				// progressive lightmap
 				progressiveSurfacemap = new ProgressiveLightMap( renderer, lightMapRes );
 
 				// directional lighting "origin"
-				lightOrigin = new FOUR.Group();
+				lightOrigin = new THREE.Group();
 				lightOrigin.position.set( 60, 150, 100 );
 				scene.add( lightOrigin );
 
@@ -83,7 +83,7 @@
 				// create 8 directional lights to speed up the convergence
 				for ( let l = 0; l < lightCount; l ++ ) {
 
-					const dirLight = new FOUR.DirectionalLight( 0xffffff, Math.PI / lightCount );
+					const dirLight = new THREE.DirectionalLight( 0xffffff, Math.PI / lightCount );
 					dirLight.name = 'Dir. Light ' + l;
 					dirLight.position.set( 200, 200, 200 );
 					dirLight.castShadow = true;
@@ -101,9 +101,9 @@
 				}
 
 				// ground
-				const groundMesh = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 600, 600 ),
-					new FOUR.MeshPhongMaterial( { color: 0xffffff, depthWrite: true } )
+				const groundMesh = new THREE.Mesh(
+					new THREE.PlaneGeometry( 600, 600 ),
+					new THREE.MeshPhongMaterial( { color: 0xffffff, depthWrite: true } )
 				);
 				groundMesh.position.y = - 0.1;
 				groundMesh.rotation.x = - Math.PI / 2;
@@ -121,7 +121,7 @@
 							child.name = 'Loaded Mesh';
 							child.castShadow = true;
 							child.receiveShadow = true;
-							child.material = new FOUR.MeshPhongMaterial();
+							child.material = new THREE.MeshPhongMaterial();
 
 							// This adds the model to the lightmap
 							lightmapObjects.push( child );
@@ -145,7 +145,7 @@
 					} );
 					control2.attach( object );
 					scene.add( control2.getHelper() );
-					const lightTarget = new FOUR.Group();
+					const lightTarget = new THREE.Group();
 					lightTarget.position.set( 0, 20, 0 );
 					for ( let l = 0; l < dirLights.length; l ++ ) {
 
@@ -157,7 +157,7 @@
 
 				}
 
-				const manager = new FOUR.LoadingManager( loadModel );
+				const manager = new THREE.LoadingManager( loadModel );
 				const loader = new GLTFLoader( manager );
 				loader.load( 'models/gltf/ShadowmappableMesh.glb', function ( obj ) {
 

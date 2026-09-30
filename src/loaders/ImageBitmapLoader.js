@@ -22,11 +22,11 @@ const _errorMap = new WeakMap();
  * Also note that unlike {@link FileLoader}, this loader will only avoid multiple concurrent requests to the same URL if {@link Cache} is enabled.
  *
  * ```js
- * const loader = new FOUR.ImageBitmapLoader();
+ * const loader = new THREE.ImageBitmapLoader();
  * loader.setOptions( { imageOrientation: 'flipY' } ); // set options if needed
  * const imageBitmap = await loader.loadAsync( 'image.png' );
  *
- * const texture = new FOUR.Texture( imageBitmap );
+ * const texture = new THREE.Texture( imageBitmap );
  * texture.needsUpdate = true;
  * ```
  *
@@ -176,7 +176,7 @@ class ImageBitmapLoader extends Loader {
 
 		} ).then( function ( blob ) {
 
-			return createImageBitmap( blob, Object.assign( scope.options, { colorSpaceConversion: 'none' } ) );
+			return createImageBitmap( blob, Object.assign( {}, scope.options, { colorSpaceConversion: 'none' } ) );
 
 		} ).then( function ( imageBitmap ) {
 
@@ -185,6 +185,8 @@ class ImageBitmapLoader extends Loader {
 			if ( onLoad ) onLoad( imageBitmap );
 
 			scope.manager.itemEnd( url );
+
+			return imageBitmap; // see #34150
 
 		} ).catch( function ( e ) {
 

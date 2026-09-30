@@ -3,7 +3,7 @@ import {
 	Vector3,
 	Matrix4,
 	Quaternion,
-} from '@tnb1j/4js';
+} from 'three';
 
 const _frustum = new Frustum();
 const _center = new Vector3();
@@ -38,7 +38,7 @@ const _scale = new Vector3();
  * const selectedObjects = selectionBox.select( startPoint, endPoint );
  * ```
  *
- * @four_import import { SelectionBox } from '@tnb1j/4js/addons/interactive/SelectionBox.js';
+ * @three_import import { SelectionBox } from 'three/addons/interactive/SelectionBox.js';
  */
 class SelectionBox {
 
@@ -237,7 +237,7 @@ class SelectionBox {
 
 		} else {
 
-			console.error( 'FOUR.SelectionBox: Unsupported camera type.' );
+			console.error( 'THREE.SelectionBox: Unsupported camera type.' );
 
 		}
 

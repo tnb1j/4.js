@@ -354,6 +354,12 @@ The gradY node.
 
 **Returns:** A texture node representing the texture sample.
 
+### .isSampleCompare() : boolean
+
+Returns `true` if the texture is sampled with a depth comparison, meaning the node must be bound with a comparison sampler.
+
+**Returns:** Whether comparison sampling is used or not.
+
 ### .level( levelNode : Node.<int> ) : TextureNode
 
 Samples a specific mip of the texture.
@@ -468,4 +474,4 @@ This method can be invocated in different contexts so `state` can refer to any o
 
 ## Source
 
-[src/nodes/accessors/TextureNode.js](../../src/nodes/accessors/TextureNode.js)
+[src/nodes/accessors/TextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/TextureNode.js)

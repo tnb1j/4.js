@@ -6,7 +6,7 @@ import {
 	Texture,
 	UniformsUtils,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SMAABlendShader, SMAAEdgesShader, SMAAWeightsShader } from '../shaders/SMAAShader.js';
 
@@ -20,7 +20,7 @@ import { SMAABlendShader, SMAAEdgesShader, SMAAWeightsShader } from '../shaders/
  * ```
  *
  * @augments Pass
- * @four_import import { SMAAPass } from '@tnb1j/4js/addons/postprocessing/SMAAPass.js';
+ * @three_import import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
  */
 class SMAAPass extends Pass {
 

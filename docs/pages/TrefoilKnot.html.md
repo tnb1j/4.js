@@ -6,10 +6,10 @@ A Trefoil Knot.
 
 ## Import
 
-TrefoilKnot is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TrefoilKnot is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TrefoilKnot } from '@tnb1j/4js/addons/curves/CurveExtras.js';
+import { TrefoilKnot } from 'three/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[examples/jsm/curves/CurveExtras.js](../../examples/jsm/curves/CurveExtras.js)
+[examples/jsm/curves/CurveExtras.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/curves/CurveExtras.js)

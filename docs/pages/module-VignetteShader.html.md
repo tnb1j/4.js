@@ -2,10 +2,10 @@
 
 ## Import
 
-VignetteShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VignetteShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VignetteShader } from '@tnb1j/4js/addons/shaders/VignetteShader.js';
+import { VignetteShader } from 'three/addons/shaders/VignetteShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Based on [PaintEffect postprocess from ro.me](https://github.com/dataarts/3-drea
 
 ## Source
 
-[examples/jsm/shaders/VignetteShader.js](../../examples/jsm/shaders/VignetteShader.js)
+[examples/jsm/shaders/VignetteShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/VignetteShader.js)

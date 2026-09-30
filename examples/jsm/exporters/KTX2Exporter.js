@@ -14,7 +14,7 @@ import {
 	SRGBTransfer,
 	DataTexture,
 	REVISION,
-} from '@tnb1j/4js';
+} from 'three';
 
 import {
 	createDefaultContainer,
@@ -122,10 +122,10 @@ const KHR_DF_CHANNEL_SAMPLE_LOWER_UPPER = {
 
 };
 
-const ERROR_INPUT = 'FOUR.KTX2Exporter: Supported inputs are DataTexture, Data3DTexture, or WebGLRenderer and WebGLRenderTarget.';
-const ERROR_FORMAT = 'FOUR.KTX2Exporter: Supported formats are RGBAFormat, RGFormat, or RedFormat.';
-const ERROR_TYPE = 'FOUR.KTX2Exporter: Supported types are FloatType, HalfFloatType, or UnsignedByteType."';
-const ERROR_COLOR_SPACE = 'FOUR.KTX2Exporter: Supported color spaces are SRGBColorSpace (UnsignedByteType only), LinearSRGBColorSpace, or NoColorSpace.';
+const ERROR_INPUT = 'THREE.KTX2Exporter: Supported inputs are DataTexture, Data3DTexture, or WebGLRenderer and WebGLRenderTarget.';
+const ERROR_FORMAT = 'THREE.KTX2Exporter: Supported formats are RGBAFormat, RGFormat, or RedFormat.';
+const ERROR_TYPE = 'THREE.KTX2Exporter: Supported types are FloatType, HalfFloatType, or UnsignedByteType."';
+const ERROR_COLOR_SPACE = 'THREE.KTX2Exporter: Supported color spaces are SRGBColorSpace (UnsignedByteType only), LinearSRGBColorSpace, or NoColorSpace.';
 
 /**
  * An exporter for KTX2.
@@ -135,7 +135,7 @@ const ERROR_COLOR_SPACE = 'FOUR.KTX2Exporter: Supported color spaces are SRGBCol
  * const result = await exporter.parse( dataTexture );
  * ```
  *
- * @four_import import { KTX2Exporter } from '@tnb1j/4js/addons/exporters/KTX2Exporter.js';
+ * @three_import import { KTX2Exporter } from 'three/addons/exporters/KTX2Exporter.js';
  */
 export class KTX2Exporter {
 

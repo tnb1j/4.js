@@ -48,4 +48,4 @@ Overwritten with a different texture type.
 
 ## Source
 
-[src/renderers/WebGL3DRenderTarget.js](../../src/renderers/WebGL3DRenderTarget.js)
+[src/renderers/WebGL3DRenderTarget.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/WebGL3DRenderTarget.js)

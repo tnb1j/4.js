@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, vec2, vec4, texture, uv, textureBicubic, rangeFogFactor, reflector, time } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, vec2, vec4, texture, uv, textureBicubic, rangeFogFactor, reflector, time } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -50,15 +50,15 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 30 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 30 );
 				camera.position.set( - 4, 1, 4 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const loader = new UltraHDRLoader();
 				loader.load( 'textures/equirectangular/spruit_sunrise_2k.hdr.jpg', function ( texture ) {
 
-					texture.mapping = FOUR.EquirectangularReflectionMapping;
+					texture.mapping = THREE.EquirectangularReflectionMapping;
 					texture.needsUpdate = true;
 
 					scene.background = texture;
@@ -68,21 +68,21 @@
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				const uvMap = textureLoader.load( 'textures/uv_grid_directx.jpg' );
-				uvMap.colorSpace = FOUR.SRGBColorSpace;
+				uvMap.colorSpace = THREE.SRGBColorSpace;
 
 				const perlinMap = textureLoader.load( './textures/noises/perlin/rgb-256x256.png' );
-				perlinMap.wrapS = FOUR.RepeatWrapping;
-				perlinMap.wrapT = FOUR.RepeatWrapping;
-				perlinMap.colorSpace = FOUR.SRGBColorSpace;
+				perlinMap.wrapS = THREE.RepeatWrapping;
+				perlinMap.wrapT = THREE.RepeatWrapping;
+				perlinMap.colorSpace = THREE.SRGBColorSpace;
 
 				// uv box for debugging
 			
-				const mesh = new FOUR.Mesh(
-					new FOUR.BoxGeometry( 1, 1, 1 ),
-					new FOUR.MeshStandardNodeMaterial( {
+				const mesh = new THREE.Mesh(
+					new THREE.BoxGeometry( 1, 1, 1 ),
+					new THREE.MeshStandardNodeMaterial( {
 						map: uvMap,
 						roughnessMap: uvMap,
 						emissiveMap: uvMap,
@@ -102,7 +102,7 @@
 				const animatedUV = uv().mul( 10 ).add( vec2( time.mul( .1 ), 0 ) );
 				const roughness = texture( perlinMap, animatedUV ).r.mul( 2 ).saturate();
 
-				const floorMaterial = new FOUR.MeshStandardNodeMaterial();
+				const floorMaterial = new THREE.MeshStandardNodeMaterial();
 				floorMaterial.transparent = true;
 				floorMaterial.metalness = 1;
 				floorMaterial.roughnessNode = roughness.mul( .2 );
@@ -118,17 +118,17 @@
 
 				} )();
 
-				const floor = new FOUR.Mesh( new FOUR.BoxGeometry( 50, .001, 50 ), floorMaterial );
+				const floor = new THREE.Mesh( new THREE.BoxGeometry( 50, .001, 50 ), floorMaterial );
 				floor.position.set( 0, 0, 0 );
 				scene.add( floor );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 1.5;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );

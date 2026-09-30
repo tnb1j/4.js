@@ -7,9 +7,9 @@ Class for loading audio buffers. Audios are internally loaded via [FileLoader](F
 ## Code Example
 
 ```js
-const audioListener = new FOUR.AudioListener();
-const ambientSound = new FOUR.Audio( audioListener );
-const loader = new FOUR.AudioLoader();
+const audioListener = new THREE.AudioListener();
+const ambientSound = new THREE.Audio( audioListener );
+const loader = new THREE.AudioLoader();
 const audioBuffer = await loader.loadAsync( 'audio/ambient_ocean.ogg' );
 ambientSound.setBuffer( audioBuffer );
 ambientSound.play();
@@ -51,4 +51,4 @@ Executed when errors occur.
 
 ## Source
 
-[src/loaders/AudioLoader.js](../../src/loaders/AudioLoader.js)
+[src/loaders/AudioLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/AudioLoader.js)

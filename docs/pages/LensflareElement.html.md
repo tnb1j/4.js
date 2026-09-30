@@ -4,10 +4,10 @@ Represents a single flare that can be added to a [Lensflare](Lensflare.html) con
 
 ## Import
 
-LensflareElement is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LensflareElement is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LensflareElement } from '@tnb1j/4js/addons/objects/Lensflare.js';
+import { LensflareElement } from 'three/addons/objects/Lensflare.js';
 ```
 
 ## Constructor
@@ -62,4 +62,4 @@ The flare's texture.
 
 ## Source
 
-[examples/jsm/objects/Lensflare.js](../../examples/jsm/objects/Lensflare.js)
+[examples/jsm/objects/Lensflare.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Lensflare.js)

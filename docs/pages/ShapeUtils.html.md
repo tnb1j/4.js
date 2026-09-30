@@ -40,4 +40,4 @@ An array that holds arrays of 2D points defining the holes.
 
 ## Source
 
-[src/extras/ShapeUtils.js](../../src/extras/ShapeUtils.js)
+[src/extras/ShapeUtils.js](https://github.com/mrdoob/three.js/blob/master/src/extras/ShapeUtils.js)

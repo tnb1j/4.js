@@ -44,4 +44,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/utils/ConvertNode.js](../../src/nodes/utils/ConvertNode.js)
+[src/nodes/utils/ConvertNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/ConvertNode.js)

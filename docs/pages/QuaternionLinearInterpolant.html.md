@@ -28,4 +28,4 @@ The result buffer.
 
 ## Source
 
-[src/math/interpolants/QuaternionLinearInterpolant.js](../../src/math/interpolants/QuaternionLinearInterpolant.js)
+[src/math/interpolants/QuaternionLinearInterpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/interpolants/QuaternionLinearInterpolant.js)

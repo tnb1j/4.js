@@ -1,6 +1,6 @@
 # USDComposer
 
-USDComposer handles scene composition from parsed USD data. This includes reference resolution, variant selection, transform handling, and building the 4.js scene graph.
+USDComposer handles scene composition from parsed USD data. This includes reference resolution, variant selection, transform handling, and building the Three.js scene graph.
 
 Works with specsByPath format from USDCParser.
 
@@ -66,9 +66,13 @@ Get the base path (directory) from a file path.
 
 Extract variant selections from a spec's fields.
 
+### ._getMaterialBindingSpec()
+
+Get the material binding relationship for a prim, including overrides from active variants.
+
 ### ._getMaterialBindingTarget()
 
-Get material binding target path, checking variant paths if needed.
+Get the resolved material binding target for a prim. Material bindings are inherited, and an ancestor marked strongerThanDescendants takes precedence over bindings authored on its descendants.
 
 ### ._getMaterialPath()
 
@@ -92,6 +96,10 @@ Check if an object has a non-identity local transform.
 
 Check if a path is a direct child of parentPath.
 
+### ._resolveAttributeValue()
+
+Resolve an attribute's authored value, following connections before using local fallback values.
+
 ### ._resolveFilePath()
 
 Resolve a file path relative to basePath.
@@ -112,11 +120,11 @@ Variant selections to apply
 
 ### .applyTransform()
 
-Apply USD transforms to a 4.js object. Handles xformOpOrder with proper matrix composition. USD uses row-vector convention, 4.js uses column-vector.
+Apply USD transforms to a Three.js object. Handles xformOpOrder with proper matrix composition. USD uses row-vector convention, Three.js uses column-vector.
 
 ### .compose( parsedData : Object, assets : Object, variantSelections : Object, basePath : string ) : Group
 
-Compose a 4.js scene from parsed USD data.
+Compose a Three.js scene from parsed USD data.
 
 **parsedData**
 
@@ -134,8 +142,8 @@ External variant selections
 
 Base path for resolving relative references
 
-**Returns:** 4.js scene graph
+**Returns:** Three.js scene graph
 
 ## Source
 
-[examples/jsm/loaders/usd/USDComposer.js](../../examples/jsm/loaders/usd/USDComposer.js)
+[examples/jsm/loaders/usd/USDComposer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/usd/USDComposer.js)

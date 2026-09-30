@@ -23,22 +23,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, luminance, saturation } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { pass, luminance, saturation } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			const params = {
 				speed: 0
@@ -51,38 +51,38 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
 				camera.position.set( 1, 2, 3 );
 
-				const scene = new FOUR.Scene();
-				scene.fog = new FOUR.Fog( 0x0487e2, 7, 25 );
-				scene.background = new FOUR.Color( 0x0487e2 );
+				const scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0x0487e2, 7, 25 );
+				scene.background = new THREE.Color( 0x0487e2 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const texture = new FOUR.TextureLoader().load( 'textures/crate.gif' );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				const texture = new THREE.TextureLoader().load( 'textures/crate.gif' );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				const geometry = new FOUR.BoxGeometry();
-				const material = new FOUR.MeshBasicMaterial( { map: texture } );
+				const geometry = new THREE.BoxGeometry();
+				const material = new THREE.MeshBasicMaterial( { map: texture } );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera );
 

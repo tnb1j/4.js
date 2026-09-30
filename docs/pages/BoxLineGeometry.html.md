@@ -7,18 +7,18 @@ A special type of box geometry intended for [LineSegments](LineSegments.html).
 ## Code Example
 
 ```js
-const geometry = new FOUR.BoxLineGeometry();
-const material = new FOUR.LineBasicMaterial( { color: 0x00ff00 } );
-const lines = new FOUR.LineSegments( geometry, material );
+const geometry = new BoxLineGeometry();
+const material = new THREE.LineBasicMaterial( { color: 0x00ff00 } );
+const lines = new THREE.LineSegments( geometry, material );
 scene.add( lines );
 ```
 
 ## Import
 
-BoxLineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BoxLineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
+import { BoxLineGeometry } from 'three/addons/geometries/BoxLineGeometry.js';
 ```
 
 ## Constructor
@@ -65,4 +65,4 @@ Default is `1`.
 
 ## Source
 
-[examples/jsm/geometries/BoxLineGeometry.js](../../examples/jsm/geometries/BoxLineGeometry.js)
+[examples/jsm/geometries/BoxLineGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/BoxLineGeometry.js)

@@ -28,7 +28,7 @@ Default is `true`.
 
 ### .direct( lightData : Object )
 
-Implements the direct lighting. The specular portion is optional an can be controlled with the [PhongLightingModel#specular](PhongLightingModel.html#specular) flag.
+Implements the direct lighting. The specular portion is optional and can be controlled with the [PhongLightingModel#specular](PhongLightingModel.html#specular) flag.
 
 **lightData**
 
@@ -48,4 +48,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/functions/PhongLightingModel.js](../../src/nodes/functions/PhongLightingModel.js)
+[src/nodes/functions/PhongLightingModel.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/functions/PhongLightingModel.js)

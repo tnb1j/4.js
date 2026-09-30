@@ -6,7 +6,7 @@ import {
 	RGBAFormat,
 	ShaderMaterial,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 
 import { FullScreenQuad } from '../postprocessing/Pass.js';
 
@@ -25,7 +25,7 @@ import { FullScreenQuad } from '../postprocessing/Pass.js';
  *
  * The render targets of the variables can be used as input textures for your visualization shaders.
  *
- * Variable names should be valid identifiers and should not collide with FOUR GLSL used identifiers.
+ * Variable names should be valid identifiers and should not collide with THREE GLSL used identifiers.
  * a common approach could be to use 'texture' prefixing the variable name; i.e texturePosition, textureVelocity...
  *
  * The size of the computation (sizeX * sizeY) is defined as 'resolution' automatically in the shader. For example:
@@ -99,7 +99,7 @@ import { FullScreenQuad } from '../postprocessing/Pass.js';
  * gpuCompute.doRenderTarget( myFilter2, outputRenderTarget );
  * ```
  *
- * @four_import import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
+ * @three_import import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
  */
 class GPUComputationRenderer {
 

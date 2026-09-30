@@ -141,4 +141,4 @@ The mipmaps.
 
 ## Source
 
-[src/loaders/DataTextureLoader.js](../../src/loaders/DataTextureLoader.js)
+[src/loaders/DataTextureLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/DataTextureLoader.js)

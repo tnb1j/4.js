@@ -33,14 +33,6 @@
 				<div id="inputWrapper">
 					<input placeholder="" type="text" id="filterInput" autocorrect="off" autocapitalize="off" spellcheck="false" />
 					<div id="clearSearchButton"></div>
-					<select id="language">
-						<option value="en">en</option>
-						<option value="fr">fr</option>
-						<option value="ru">ru</option>
-						<option value="ko">한국어</option>
-						<option value="zh">中文</option>
-						<option value="ja">日本語</option>
-					</select>
 				</div>
 				<br/>
 				<div id="content"></div>
@@ -73,38 +65,7 @@
 
 			const list = await ( await fetch( 'list.json' ) ).json();
 
-			const hash = window.location.hash.substring( 1 );
-
-			// Localization
-
-			let language = 'en';
-
-			const hashLanguage = /^(.*?)\//.exec( hash );
-
-			if ( hashLanguage ) {
-
-				language = hashLanguage[ 1 ];
-
-			}
-
-			const languageSelect = document.querySelector( '#language' );
-			if ( Object.hasOwn( list, language ) === false ) language = 'en';
-			languageSelect.value = language;
-			languageSelect.addEventListener( 'change', function () {
-
-				setLanguage( this.value );
-
-			} );
-
-			function setLanguage( value ) {
-
-				language = value;
-
-				createNavigation( list, language );
-				updateFilter();
-				autoChangeUrlLanguage( language );
-
-			}
+			redirectLegacyLanguage();
 
 			// Functionality for hamburger button (on small devices)
 
@@ -159,14 +120,28 @@
 
 			window.onpopstate = function () {
 
+				redirectLegacyLanguage();
 				updateNavigation();
 				createNewIframe();
 
 			};
 
+			// Redirect legacy localized deep links entered directly in the address bar
+
+			window.addEventListener( 'hashchange', function () {
+
+				if ( redirectLegacyLanguage() ) {
+
+					updateNavigation();
+					createNewIframe();
+
+				}
+
+			} );
+
 			// Create the navigation panel and configure the iframe
 
-			createNavigation( list, language );
+			createNavigation( list );
 			createNewIframe();
 
 			// Handle search query
@@ -188,7 +163,7 @@
 		function createLink( pageName, pageURL ) {
 
 			const link = document.createElement( 'a' );
-			const url = new URL( pageURL, window.location.href );
+			const url = new URL( 'pages/' + pageURL, window.location.href );
 			url.pathname += '.html';
 			link.href = url.href;
 			link.textContent = pageName;
@@ -208,7 +183,7 @@
 
 		}
 
-		function createNavigation( list, language ) {
+		function createNavigation( list ) {
 
 			if ( navigation !== undefined ) {
 
@@ -216,19 +191,13 @@
 
 			}
 
-			// Create the navigation panel using data from list.js
+			// Create the navigation panel using data from list.json
 
 			navigation = document.createElement( 'div' );
 			content.appendChild( navigation );
 			pageLinks.clear();
 
-			if ( language === 'ar' ) {
-
-				navigation.style.direction = 'rtl';
-
-			}
-
-			const categories = list[ language ];
+			const categories = list;
 			const selectedPage = window.location.hash.substring( 1 ).replace( /\.html$/, '' );
 
 			for ( const category in categories ) {
@@ -260,8 +229,6 @@
 					// Create page links
 
 					const pageURL = pages[ pageName ];
-
-					// Localisation
 
 					const listElement = document.createElement( 'li' );
 					categoryContent.appendChild( listElement );
@@ -322,18 +289,6 @@
 				}
 
 			} );
-
-		}
-
-		// Auto change language url. If a reader open a document in English, when they click "zh", the document they read will auto change into Chinese version
-
-		function autoChangeUrlLanguage( language ) {
-
-			const hash = location.hash;
-			if ( hash === '' ) return;
-			const slashIndex = hash.indexOf( '/' );
-			if ( slashIndex === - 1 ) return;
-			location.hash = language + hash.slice( slashIndex );
 
 		}
 
@@ -488,6 +443,25 @@
 		function setTitle( title ) {
 
 			document.title = `${title} - 4.js manual`;
+
+		}
+
+		function redirectLegacyLanguage() {
+
+			// Legacy language-qualified deep links (e.g. #en/installation, #fr/installation)
+			// now resolve to the language-neutral URL (e.g. #installation).
+
+			const legacyLanguage = /^#(en|fr|ja|ko|ru|zh)(\/|$)/;
+
+			if ( legacyLanguage.test( window.location.hash ) ) {
+
+				window.history.replaceState( null, '', window.location.hash.replace( legacyLanguage, '#' ) );
+
+				return true;
+
+			}
+
+			return false;
 
 		}
 

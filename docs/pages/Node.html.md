@@ -294,21 +294,33 @@ The current node builder.
 
 **Returns:** The shared node if possible. Otherwise `this` is returned.
 
-### .getUpdateAfterType() : NodeUpdateType
+### .getUpdateAfterType( frame : NodeFrame ) : NodeUpdateType
 
 Returns the update type of [Node#updateAfter](Node.html#updateAfter).
 
+**frame**
+
+The current node frame.
+
 **Returns:** The update type.
 
-### .getUpdateBeforeType() : NodeUpdateType
+### .getUpdateBeforeType( frame : NodeFrame ) : NodeUpdateType
 
 Returns the update type of [Node#updateBefore](Node.html#updateBefore).
 
+**frame**
+
+The current node frame.
+
 **Returns:** The update type.
 
-### .getUpdateType() : NodeUpdateType
+### .getUpdateType( frame : NodeFrame ) : NodeUpdateType
 
 Returns the update type of [Node#update](Node.html#update).
+
+**frame**
+
+The current node frame.
 
 **Returns:** The update type.
 
@@ -396,7 +408,7 @@ The current node builder.
 
 ### .toJSON( meta : Object ) : Object
 
-Serializes the node into the 4.js JSON Object/Scene format.
+Serializes the node into the three.js JSON Object/Scene format.
 
 **meta**
 
@@ -454,4 +466,4 @@ This method can be invocated in different contexts so `state` can refer to any o
 
 ## Source
 
-[src/nodes/core/Node.js](../../src/nodes/core/Node.js)
+[src/nodes/core/Node.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/Node.js)

@@ -4,7 +4,7 @@ import {
 	MeshBasicMaterial,
 	SphereGeometry,
 	Scene
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class represents a scene with a uniform color that can be used as
@@ -14,14 +14,14 @@ import {
  *
  * ```js
  * const environment = new ColorEnvironment( 0x00ff00 );
- * const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+ * const pmremGenerator = new THREE.PMREMGenerator( renderer );
  *
  * const envMap = pmremGenerator.fromScene( environment ).texture;
  * scene.environment = envMap;
  * ```
  *
  * @augments Scene
- * @four_import import { ColorEnvironment } from '@tnb1j/4js/addons/environments/ColorEnvironment.js';
+ * @three_import import { ColorEnvironment } from 'three/addons/environments/ColorEnvironment.js';
  */
 class ColorEnvironment extends Scene {
 

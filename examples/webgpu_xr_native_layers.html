@@ -17,34 +17,34 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
+			import { BoxLineGeometry } from 'three/addons/geometries/BoxLineGeometry.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { InteractiveGroup } from 'three/addons/interactive/InteractiveGroup.js';
 			import {
 				RollerCoasterGeometry,
 				RollerCoasterShadowGeometry,
 				RollerCoasterLiftersGeometry,
 				TreesGeometry,
 				SkyGeometry
-			} from '@tnb1j/4js/addons/misc/RollerCoaster.js';
-			import { HTMLMesh } from '@tnb1j/4js/addons/interactive/HTMLMesh.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			} from 'three/addons/misc/RollerCoaster.js';
+			import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			let camera, scene, renderer;
+			let camera, scene, renderer, renderPipeline;
 			let controller1, controller2;
 			let controllerGrip1, controllerGrip2;
 
@@ -52,25 +52,25 @@
 
 			let count = 0;
 			const radius = 0.08;
-			let normal = new FOUR.Vector3();
-			const relativeVelocity = new FOUR.Vector3();
+			let normal = new THREE.Vector3();
+			const relativeVelocity = new THREE.Vector3();
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			const funfairs = [];
-			const train = new FOUR.Object3D();
+			const train = new THREE.Object3D();
 			const rcdelta = timer.getDelta() * 0.8; // slow down simulation
 			const PI2 = Math.PI * 2;
 			let rccamera = null;
 			let rcscene = null;
 
-			const tempMatrix = new FOUR.Matrix4();
+			const tempMatrix = new THREE.Matrix4();
 			let raycaster = null;
 
 			const curve = ( function () {
 
-				const vector = new FOUR.Vector3();
-				const vector2 = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
+				const vector2 = new THREE.Vector3();
 
 				return {
 
@@ -141,38 +141,38 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x505050 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x505050 );
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 
-				room = new FOUR.LineSegments(
+				room = new THREE.LineSegments(
 					new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ),
-					new FOUR.LineBasicMaterial( { color: 0x808080 } )
+					new THREE.LineBasicMaterial( { color: 0x808080 } )
 				);
 				room.geometry.translate( 0, 3, 0 );
 				scene.add( room );
 
-				scene.add( new FOUR.HemisphereLight( 0x606060, 0x404040 ) );
+				scene.add( new THREE.HemisphereLight( 0x606060, 0x404040 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff );
+				const light = new THREE.DirectionalLight( 0xffffff );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 
-				const geometry = new FOUR.IcosahedronGeometry( radius, 3 );
+				const geometry = new THREE.IcosahedronGeometry( radius, 3 );
 
 				for ( let i = 0; i < 200; i ++ ) {
 
-					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 
 					object.position.x = Math.random() * 4 - 2;
 					object.position.y = Math.random() * 4;
 					object.position.z = Math.random() * 4 - 2;
 
-					object.userData.velocity = new FOUR.Vector3();
+					object.userData.velocity = new THREE.Vector3();
 					object.userData.velocity.x = Math.random() * 0.01 - 0.005;
 					object.userData.velocity.y = Math.random() * 0.01 - 0.005;
 					object.userData.velocity.z = Math.random() * 0.01 - 0.005;
@@ -183,12 +183,13 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL: true, outputBufferType: FOUR.UnsignedByteType, multiview: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL: true, outputBufferType: THREE.UnsignedByteType, multiview: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 				renderer.setAnimationLoop( render );
 				renderer.xr.enabled = true;
+				renderPipeline = new THREE.DirectRenderPipeline( renderer );
 
 				//
 
@@ -308,28 +309,28 @@
 				window.addEventListener( 'resize', onWindowResize );
 
 				// set up rollercoaster
-				rollercoasterLayer = renderer.xr.createCylinderLayer( 1, Math.PI / 2, 2, new FOUR.Vector3( 0, 1.5, - 0.5 ), new FOUR.Quaternion(), 1500, 1000, renderRollercoaster );
+				rollercoasterLayer = renderer.xr.createCylinderLayer( 1, Math.PI / 2, 2, new THREE.Vector3( 0, 1.5, - 0.5 ), new THREE.Quaternion(), 1500, 1000, renderRollercoaster );
 				scene.add( rollercoasterLayer );
 
-				rcscene = new FOUR.Scene();
-				rcscene.background = new FOUR.Color( 0xf0f0ff );
+				rcscene = new THREE.Scene();
+				rcscene.background = new THREE.Color( 0xf0f0ff );
 
-				const rclight = new FOUR.HemisphereLight( 0xfff0f0, 0x606066 );
+				const rclight = new THREE.HemisphereLight( 0xfff0f0, 0x606066 );
 				rclight.position.set( 1, 1, 1 );
 				rcscene.add( rclight );
 
 				rcscene.add( train );
 
-				rccamera = new FOUR.PerspectiveCamera( 50, 1, 0.1, 500 );
+				rccamera = new THREE.PerspectiveCamera( 50, 1, 0.1, 500 );
 				train.add( rccamera );
 
 				// environment
 
-				let rcgeometry = new FOUR.PlaneGeometry( 500, 500, 15, 15 );
+				let rcgeometry = new THREE.PlaneGeometry( 500, 500, 15, 15 );
 				rcgeometry.rotateX( - Math.PI / 2 );
 
 				const positions = rcgeometry.attributes.position.array;
-				const vertex = new FOUR.Vector3();
+				const vertex = new THREE.Vector3();
 
 				for ( let i = 0; i < positions.length; i += 3 ) {
 
@@ -347,90 +348,90 @@
 
 				rcgeometry.computeVertexNormals();
 
-				let rcmaterial = new FOUR.MeshLambertMaterial( {
+				let rcmaterial = new THREE.MeshLambertMaterial( {
 					color: 0x407000
 				} );
 
-				let rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				let rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcscene.add( rcmesh );
 
 				rcgeometry = new TreesGeometry( rcmesh );
-				rcmaterial = new FOUR.MeshBasicMaterial( {
-					side: FOUR.DoubleSide, vertexColors: true
+				rcmaterial = new THREE.MeshBasicMaterial( {
+					side: THREE.DoubleSide, vertexColors: true
 				} );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcscene.add( rcmesh );
 
 				rcgeometry = new SkyGeometry();
-				rcmaterial = new FOUR.MeshBasicMaterial( { color: 0xffffff } );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmaterial = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcscene.add( rcmesh );
 
 				//
 
 				rcgeometry = new RollerCoasterGeometry( curve, 1500 );
-				rcmaterial = new FOUR.MeshPhongMaterial( {
+				rcmaterial = new THREE.MeshPhongMaterial( {
 					vertexColors: true
 				} );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcscene.add( rcmesh );
 
 				rcgeometry = new RollerCoasterLiftersGeometry( curve, 100 );
-				rcmaterial = new FOUR.MeshPhongMaterial();
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmaterial = new THREE.MeshPhongMaterial();
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcmesh.position.y = 0.1;
 				rcscene.add( rcmesh );
 
 				rcgeometry = new RollerCoasterShadowGeometry( curve, 500 );
-				rcmaterial = new FOUR.MeshBasicMaterial( {
+				rcmaterial = new THREE.MeshBasicMaterial( {
 					color: 0x305000, depthWrite: false, transparent: true
 				} );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcmesh.position.y = 0.1;
 				rcscene.add( rcmesh );
 
 				//
 
-				rcgeometry = new FOUR.CylinderGeometry( 10, 10, 5, 15 );
-				rcmaterial = new FOUR.MeshLambertMaterial( {
+				rcgeometry = new THREE.CylinderGeometry( 10, 10, 5, 15 );
+				rcmaterial = new THREE.MeshLambertMaterial( {
 					color: 0xff8080
 				} );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcmesh.position.set( - 80, 10, - 70 );
 				rcmesh.rotation.x = Math.PI / 2;
 				rcscene.add( rcmesh );
 
 				funfairs.push( rcmesh );
 
-				rcgeometry = new FOUR.CylinderGeometry( 5, 6, 4, 10 );
-				rcmaterial = new FOUR.MeshLambertMaterial( {
+				rcgeometry = new THREE.CylinderGeometry( 5, 6, 4, 10 );
+				rcmaterial = new THREE.MeshLambertMaterial( {
 					color: 0x8080ff
 				} );
-				rcmesh = new FOUR.Mesh( rcgeometry, rcmaterial );
+				rcmesh = new THREE.Mesh( rcgeometry, rcmaterial );
 				rcmesh.position.set( 50, 2, 30 );
 				rcscene.add( rcmesh );
 
 				funfairs.push( rcmesh );
 
 				// set up horse animation
-				horseLayer = renderer.xr.createQuadLayer( 1, 1, new FOUR.Vector3( - 1.5, 1.5, - 1.5 ), new FOUR.Quaternion(), 800, 800, renderQuad );
+				horseLayer = renderer.xr.createQuadLayer( 1, 1, new THREE.Vector3( - 1.5, 1.5, - 1.5 ), new THREE.Quaternion(), 800, 800, renderQuad );
 				scene.add( horseLayer );
 
-				horseLayer.geometry = new FOUR.CircleGeometry( .5, 64 );
+				horseLayer.geometry = new THREE.CircleGeometry( .5, 64 );
 
-				horseCamera = new FOUR.PerspectiveCamera( 50, 1, 1, 10000 );
+				horseCamera = new THREE.PerspectiveCamera( 50, 1, 1, 10000 );
 				horseCamera.position.y = 300;
 
-				horseScene = new FOUR.Scene();
-				horseScene.background = new FOUR.Color( 0xf0f0f0 );
+				horseScene = new THREE.Scene();
+				horseScene.background = new THREE.Color( 0xf0f0f0 );
 
 				//
 
-				const light1 = new FOUR.DirectionalLight( 0xefefff, 1.5 );
+				const light1 = new THREE.DirectionalLight( 0xefefff, 1.5 );
 				light1.position.set( 1, 1, 1 ).normalize();
 				horseScene.add( light1 );
 
-				const light2 = new FOUR.DirectionalLight( 0xffefef, 1.5 );
+				const light2 = new THREE.DirectionalLight( 0xffefef, 1.5 );
 				light2.position.set( - 1, - 1, - 1 ).normalize();
 				horseScene.add( light2 );
 
@@ -441,7 +442,7 @@
 					horseMesh.scale.set( 1.5, 1.5, 1.5 );
 					horseScene.add( horseMesh );
 
-					horseMixer = new FOUR.AnimationMixer( horseMesh );
+					horseMixer = new THREE.AnimationMixer( horseMesh );
 
 					horseMixer.clipAction( gltf.animations[ 0 ] ).setDuration( 1 ).play();
 
@@ -452,10 +453,10 @@
 				function onThicknessChange() { }
 
 				// set up ui
-				guiScene = new FOUR.Scene();
-				guiScene.background = new FOUR.Color( 0x0 );
+				guiScene = new THREE.Scene();
+				guiScene.background = new THREE.Color( 0x0 );
 
-				guiCamera = new FOUR.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+				guiCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
 				guiScene.add( guiCamera );
 
 				const gui = new GUI( { width: 300 } );
@@ -474,9 +475,9 @@
 				const mesh = new HTMLMesh( gui.domElement );
 				guiGroup.add( mesh );
 
-				const bbox = new FOUR.Box3().setFromObject( guiScene );
+				const bbox = new THREE.Box3().setFromObject( guiScene );
 
-				guiLayer = renderer.xr.createQuadLayer( 1.2, .8, new FOUR.Vector3( 1.5, 1.5, - 1.5 ), new FOUR.Quaternion(), 1280, 800, renderGui );
+				guiLayer = renderer.xr.createQuadLayer( 1.2, .8, new THREE.Vector3( 1.5, 1.5, - 1.5 ), new THREE.Quaternion(), 1280, 800, renderGui );
 				scene.add( guiLayer );
 
 				guiCamera.left = bbox.min.x;
@@ -497,8 +498,8 @@
 
 				horseTheta += 0.1;
 
-				horseCamera.position.x = horseRadius * Math.sin( FOUR.MathUtils.degToRad( horseTheta ) );
-				horseCamera.position.z = horseRadius * Math.cos( FOUR.MathUtils.degToRad( horseTheta ) );
+				horseCamera.position.x = horseRadius * Math.sin( THREE.MathUtils.degToRad( horseTheta ) );
+				horseCamera.position.z = horseRadius * Math.cos( THREE.MathUtils.degToRad( horseTheta ) );
 
 				horseCamera.lookAt( 0, 150, 0 );
 
@@ -516,10 +517,10 @@
 
 			}
 
-			const rcposition = new FOUR.Vector3();
-			const tangent = new FOUR.Vector3();
+			const rcposition = new THREE.Vector3();
+			const tangent = new THREE.Vector3();
 
-			const lookAt = new FOUR.Vector3();
+			const lookAt = new THREE.Vector3();
 
 			let rcvelocity = 0;
 			let progress = 0;
@@ -566,19 +567,19 @@
 
 					case 'tracked-pointer':
 
-						geometry = new FOUR.BufferGeometry();
-						geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
-						geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
+						geometry = new THREE.BufferGeometry();
+						geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
+						geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
 
-						material = new FOUR.LineBasicMaterial( { vertexColors: true, blending: FOUR.AdditiveBlending } );
+						material = new THREE.LineBasicMaterial( { vertexColors: true, blending: THREE.AdditiveBlending } );
 
-						return new FOUR.Line( geometry, material );
+						return new THREE.Line( geometry, material );
 
 					case 'gaze':
 
-						geometry = new FOUR.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
-						material = new FOUR.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
-						return new FOUR.Mesh( geometry, material );
+						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
+						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
+						return new THREE.Mesh( geometry, material );
 
 				}
 
@@ -631,8 +632,6 @@
 
 				timer.update();
 
-				renderer.xr.renderLayers( );
-
 				handleController( controller1 );
 				handleController( controller2 );
 
@@ -656,7 +655,7 @@
 
 					if ( object.position.x < - range || object.position.x > range ) {
 
-						object.position.x = FOUR.MathUtils.clamp( object.position.x, - range, range );
+						object.position.x = THREE.MathUtils.clamp( object.position.x, - range, range );
 						object.userData.velocity.x = - object.userData.velocity.x;
 
 					}
@@ -673,7 +672,7 @@
 
 					if ( object.position.z < - range || object.position.z > range ) {
 
-						object.position.z = FOUR.MathUtils.clamp( object.position.z, - range, range );
+						object.position.z = THREE.MathUtils.clamp( object.position.z, - range, range );
 						object.userData.velocity.z = - object.userData.velocity.z;
 
 					}
@@ -710,7 +709,7 @@
 
 				}
 
-				renderer.render( scene, camera );
+				renderPipeline.render( scene, camera );
 
 			}
 

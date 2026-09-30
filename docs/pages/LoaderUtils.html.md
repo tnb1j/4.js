@@ -34,4 +34,4 @@ The base path for relative URLs to be resolved against.
 
 ## Source
 
-[src/loaders/LoaderUtils.js](../../src/loaders/LoaderUtils.js)
+[src/loaders/LoaderUtils.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/LoaderUtils.js)

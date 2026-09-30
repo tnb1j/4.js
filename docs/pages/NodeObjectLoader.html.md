@@ -104,4 +104,4 @@ The node library defined as `<classname,class>`.
 
 ## Source
 
-[src/loaders/nodes/NodeObjectLoader.js](../../src/loaders/nodes/NodeObjectLoader.js)
+[src/loaders/nodes/NodeObjectLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/nodes/NodeObjectLoader.js)

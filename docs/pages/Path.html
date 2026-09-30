@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Path - 4.js Docs</title>
+	<title>Path - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -16,14 +16,14 @@
 				<div class="class-description"><p>A 2D path representation. The class provides methods for creating paths
 and contours of 2D shapes similar to the 2D Canvas API.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const path = new FOUR.Path();
+				<div translate="no"><pre><code class="language-js">const path = new THREE.Path();
 path.lineTo( 0, 0.8 );
 path.quadraticCurveTo( 0, 1, 0.2, 1 );
 path.lineTo( 1, 1 );
 const points = path.getPoints();
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const material = new FOUR.LineBasicMaterial( { color: 0xffffff } );
-const line = new FOUR.Line( geometry, material );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const line = new THREE.Line( geometry, material );
 scene.add( line );
 </code></pre></div>
 			</header>
@@ -576,7 +576,7 @@ the current point with the given list of points.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/extras/core/Path.js" translate="no">src/extras/core/Path.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/extras/core/Path.js" translate="no" target="_blank" rel="noopener">src/extras/core/Path.js</a>
 				</p>
 			</article>
 		</section>

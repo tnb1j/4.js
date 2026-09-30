@@ -14,11 +14,11 @@ import { getTypedArray, error } from '../utils.js';
  * loaded via {@link FileLoader}.
  *
  * ```js
- * const loader = new FOUR.BufferGeometryLoader();
+ * const loader = new THREE.BufferGeometryLoader();
  * const geometry = await loader.loadAsync( 'models/json/pressure.json' );
  *
- * const material = new FOUR.MeshBasicMaterial( { color: 0xF5F5F5 } );
- * const object = new FOUR.Mesh( geometry, material );
+ * const material = new THREE.MeshBasicMaterial( { color: 0xF5F5F5 } );
+ * const object = new THREE.Mesh( geometry, material );
  * scene.add( object );
  * ```
  *
@@ -103,6 +103,8 @@ class BufferGeometryLoader extends Loader {
 			const ib = new InterleavedBuffer( array, interleavedBuffer.stride );
 			ib.uuid = interleavedBuffer.uuid;
 
+			if ( interleavedBuffer.usage !== undefined ) ib.setUsage( interleavedBuffer.usage );
+
 			interleavedBufferMap[ uuid ] = ib;
 
 			return ib;
@@ -157,6 +159,7 @@ class BufferGeometryLoader extends Loader {
 
 			if ( attribute.name !== undefined ) bufferAttribute.name = attribute.name;
 			if ( attribute.usage !== undefined ) bufferAttribute.setUsage( attribute.usage );
+			if ( attribute.gpuType !== undefined ) bufferAttribute.gpuType = attribute.gpuType;
 
 			geometry.setAttribute( key, bufferAttribute );
 
@@ -190,6 +193,8 @@ class BufferGeometryLoader extends Loader {
 					}
 
 					if ( attribute.name !== undefined ) bufferAttribute.name = attribute.name;
+					if ( attribute.usage !== undefined ) bufferAttribute.setUsage( attribute.usage );
+					if ( attribute.gpuType !== undefined ) bufferAttribute.gpuType = attribute.gpuType;
 					array.push( bufferAttribute );
 
 				}

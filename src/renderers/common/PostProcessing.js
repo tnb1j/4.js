@@ -17,7 +17,7 @@ class PostProcessing extends RenderPipeline {
 	 */
 	constructor( renderer, outputNode ) {
 
-		warnOnce( 'PostProcessing: "PostProcessing" has been renamed to "RenderPipeline". Please update your code to use "FOUR.RenderPipeline" instead.' ); // @deprecated, r183
+		warnOnce( 'PostProcessing: "PostProcessing" has been renamed to "RenderPipeline". Please update your code to use "THREE.RenderPipeline" instead.' ); // @deprecated, r183
 
 		super( renderer, outputNode );
 

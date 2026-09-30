@@ -15,10 +15,10 @@ scene.add( helper );
 
 ## Import
 
-VertexTangentsHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VertexTangentsHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VertexTangentsHelper } from '@tnb1j/4js/addons/helpers/VertexTangentsHelper.js';
+import { VertexTangentsHelper } from 'three/addons/helpers/VertexTangentsHelper.js';
 ```
 
 ## Constructor
@@ -69,10 +69,12 @@ Default is `1`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .update()
 
 Updates the vertex normals preview based on the object's world transform.
 
 ## Source
 
-[examples/jsm/helpers/VertexTangentsHelper.js](../../examples/jsm/helpers/VertexTangentsHelper.js)
+[examples/jsm/helpers/VertexTangentsHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/VertexTangentsHelper.js)

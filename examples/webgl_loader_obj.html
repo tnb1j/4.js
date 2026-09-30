@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { MTLLoader } from '@tnb1j/4js/addons/loaders/MTLLoader.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, controls;
 
@@ -37,17 +37,17 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20 );
 				camera.position.z = 2.5;
 
 				// scene
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffff );
+				const ambientLight = new THREE.AmbientLight( 0xffffff );
 				scene.add( ambientLight );
 
-				const pointLight = new FOUR.PointLight( 0xffffff, 15 );
+				const pointLight = new THREE.PointLight( 0xffffff, 15 );
 				camera.add( pointLight );
 				scene.add( camera );
 
@@ -68,7 +68,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

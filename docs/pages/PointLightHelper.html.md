@@ -7,11 +7,11 @@ This displays a helper object consisting of a spherical mesh for visualizing an 
 ## Code Example
 
 ```js
-const pointLight = new FOUR.PointLight( 0xff0000, 1, 100 );
+const pointLight = new THREE.PointLight( 0xff0000, 1, 100 );
 pointLight.position.set( 10, 10, 10 );
 scene.add( pointLight );
 const sphereSize = 1;
-const pointLightHelper = new FOUR.PointLightHelper( pointLight, sphereSize );
+const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
 scene.add( pointLightHelper );
 ```
 
@@ -51,10 +51,12 @@ The light being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ### .update()
 
 Updates the helper to match the position of the light being visualized.
 
 ## Source
 
-[src/helpers/PointLightHelper.js](../../src/helpers/PointLightHelper.js)
+[src/helpers/PointLightHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/PointLightHelper.js)

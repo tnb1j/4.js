@@ -23,24 +23,24 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.webgpu.js",
-				"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-				"@tnb1j/4js/tsl": "../build/4.tsl.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.webgpu.js",
+				"three/webgpu": "../build/three.webgpu.js",
+				"three/tsl": "../build/three.tsl.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from '@tnb1j/4js/webgpu';
+		import * as THREE from 'three/webgpu';
 
-		import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+		import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-		import { radixSort } from '@tnb1j/4js/addons/utils/SortUtils.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { radixSort } from 'three/addons/utils/SortUtils.js';
 
-		import { normalView, packNormalToRGB, diffuseColor, vec4 } from '@tnb1j/4js/tsl';
+		import { normalView, packNormalToRGB, diffuseColor, vec4 } from 'three/tsl';
 
 		let camera, scene, renderer;
 		let controls;
@@ -48,14 +48,14 @@
 		let geometries, mesh, material;
 		const ids = [];
 
-		const matrix = new FOUR.Matrix4();
+		const matrix = new THREE.Matrix4();
 
 		//
 
-		const position = new FOUR.Vector3();
-		const rotation = new FOUR.Euler();
-		const quaternion = new FOUR.Quaternion();
-		const scale = new FOUR.Vector3();
+		const position = new THREE.Vector3();
+		const rotation = new THREE.Euler();
+		const quaternion = new THREE.Quaternion();
+		const scale = new THREE.Vector3();
 
 		//
 
@@ -116,9 +116,9 @@
 		function initGeometries() {
 
 			geometries = [
-				new FOUR.ConeGeometry( 1.0, 2.0 ),
-				new FOUR.BoxGeometry( 2.0, 2.0, 2.0 ),
-				new FOUR.SphereGeometry( 1.0, 16, 8 ),
+				new THREE.ConeGeometry( 1.0, 2.0 ),
+				new THREE.BoxGeometry( 2.0, 2.0, 2.0 ),
+				new THREE.SphereGeometry( 1.0, 16, 8 ),
 			];
 
 		}
@@ -127,7 +127,7 @@
 
 			if ( ! material ) {
 
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.outputNode = vec4(
 					diffuseColor.mul( packNormalToRGB( normalView ).y.add( 0.5 ) ).rgb,
 					diffuseColor.a,
@@ -168,9 +168,9 @@
 			const vertexCount = geometries.length * 512;
 			const indexCount = geometries.length * 1024;
 
-			const euler = new FOUR.Euler();
-			const matrix = new FOUR.Matrix4();
-			mesh = new FOUR.BatchedMesh( geometryCount, vertexCount, indexCount, createMaterial() );
+			const euler = new THREE.Euler();
+			const matrix = new THREE.Matrix4();
+			mesh = new THREE.BatchedMesh( geometryCount, vertexCount, indexCount, createMaterial() );
 			mesh.userData.rotationSpeeds = [];
 
 			// disable full-object frustum culling since all of the objects can be dynamic.
@@ -187,9 +187,9 @@
 
 				const id = mesh.addInstance( geometryIds[ i % geometryIds.length ] );
 				mesh.setMatrixAt( id, randomizeMatrix( matrix ) );
-				mesh.setColorAt( id, new FOUR.Color( Math.random() * 0xffffff ) );
+				mesh.setColorAt( id, new THREE.Color( Math.random() * 0xffffff ) );
 
-				const rotationMatrix = new FOUR.Matrix4();
+				const rotationMatrix = new THREE.Matrix4();
 				rotationMatrix.makeRotationFromEuler( randomizeRotationSpeed( euler ) );
 				mesh.userData.rotationSpeeds.push( rotationMatrix );
 
@@ -215,12 +215,12 @@
 
 			const aspect = window.innerWidth / window.innerHeight;
 
-			camera = new FOUR.PerspectiveCamera( 70, aspect, 1, 100 );
+			camera = new THREE.PerspectiveCamera( 70, aspect, 1, 100 );
 			camera.position.z = 30;
 
 			// renderer
 
-			renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL } );
+			renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.inspector = new Inspector();
@@ -228,8 +228,8 @@
 
 			// scene
 
-			scene = new FOUR.Scene();
-			scene.background = forceWebGL ? new FOUR.Color( 0xffc1c1 ) : new FOUR.Color( 0xc1c1ff );
+			scene = new THREE.Scene();
+			scene.background = forceWebGL ? new THREE.Color( 0xffc1c1 ) : new THREE.Color( 0xc1c1ff );
 
 			document.body.appendChild( renderer.domElement );
 

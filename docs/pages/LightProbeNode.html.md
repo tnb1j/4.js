@@ -36,4 +36,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/lighting/LightProbeNode.js](../../src/nodes/lighting/LightProbeNode.js)
+[src/nodes/lighting/LightProbeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/LightProbeNode.js)

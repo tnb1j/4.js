@@ -9,7 +9,7 @@ In this projection mode, an object's size in the rendered image stays constant r
 ## Code Example
 
 ```js
-const camera = new FOUR.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+const camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
 scene.add( camera );
 ```
 
@@ -157,4 +157,4 @@ Updates the camera's projection matrix. Must be called after any change of camer
 
 ## Source
 
-[src/cameras/OrthographicCamera.js](../../src/cameras/OrthographicCamera.js)
+[src/cameras/OrthographicCamera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/OrthographicCamera.js)

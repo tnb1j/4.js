@@ -2,10 +2,10 @@
 
 ## Import
 
-UnpackDepthRGBAShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+UnpackDepthRGBAShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { UnpackDepthRGBAShader } from '@tnb1j/4js/addons/shaders/UnpackDepthRGBAShader.js';
+import { UnpackDepthRGBAShader } from 'three/addons/shaders/UnpackDepthRGBAShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Depth visualization shader that shows depth values as monochrome color.
 
 ## Source
 
-[examples/jsm/shaders/UnpackDepthRGBAShader.js](../../examples/jsm/shaders/UnpackDepthRGBAShader.js)
+[examples/jsm/shaders/UnpackDepthRGBAShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/UnpackDepthRGBAShader.js)

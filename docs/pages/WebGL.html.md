@@ -4,10 +4,10 @@ A utility module with basic WebGL 2 capability testing.
 
 ## Import
 
-WebGL is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+WebGL is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import WebGL from '@tnb1j/4js/addons/capabilities/WebGL.js';
+import WebGL from 'three/addons/capabilities/WebGL.js';
 ```
 
 ## Static Methods
@@ -36,4 +36,4 @@ Returns `true` if WebGL 2 is available.
 
 ## Source
 
-[examples/jsm/capabilities/WebGL.js](../../examples/jsm/capabilities/WebGL.js)
+[examples/jsm/capabilities/WebGL.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/capabilities/WebGL.js)

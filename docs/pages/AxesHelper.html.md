@@ -7,7 +7,7 @@ An axis object to visualize the 3 axes in a simple way. The X axis is red. The Y
 ## Code Example
 
 ```js
-const axesHelper = new FOUR.AxesHelper( 5 );
+const axesHelper = new THREE.AxesHelper( 5 );
 scene.add( axesHelper );
 ```
 
@@ -29,6 +29,8 @@ Default is `1`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .setColors( xAxisColor : number | Color | string, yAxisColor : number | Color | string, zAxisColor : number | Color | string ) : AxesHelper
 
 Defines the colors of the axes helper.
@@ -49,4 +51,4 @@ The color for the z axis.
 
 ## Source
 
-[src/helpers/AxesHelper.js](../../src/helpers/AxesHelper.js)
+[src/helpers/AxesHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/AxesHelper.js)

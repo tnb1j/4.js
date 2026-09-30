@@ -21,24 +21,24 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+		import Stats from 'three/addons/libs/stats.module.js';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 		// Graphics variables
 		let container, stats;
 		let camera, controls, scene, renderer;
 		let textureLoader;
-		const timer = new FOUR.Timer();
+		const timer = new THREE.Timer();
 		timer.connect( document );
 
 		// Physics variables
@@ -59,7 +59,7 @@
 
 		Ammo().then( function ( AmmoLib ) {
 
-			globalThis.Ammo = AmmoLib;
+			Ammo = AmmoLib;
 
 			init();
 
@@ -81,14 +81,14 @@
 
 			container = document.getElementById( 'container' );
 
-			camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
+			camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
 
-			scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0xbfd1e5 );
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0xbfd1e5 );
 
 			camera.position.set( - 7, 5, 8 );
 
-			renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
@@ -99,12 +99,12 @@
 			controls.target.set( 0, 2, 0 );
 			controls.update();
 
-			textureLoader = new FOUR.TextureLoader();
+			textureLoader = new THREE.TextureLoader();
 
-			const ambientLight = new FOUR.AmbientLight( 0xbbbbbb );
+			const ambientLight = new THREE.AmbientLight( 0xbbbbbb );
 			scene.add( ambientLight );
 
-			const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+			const light = new THREE.DirectionalLight( 0xffffff, 3 );
 			light.position.set( - 10, 10, 5 );
 			light.castShadow = true;
 			const d = 10;
@@ -151,20 +151,20 @@
 
 		function createObjects() {
 
-			const pos = new FOUR.Vector3();
-			const quat = new FOUR.Quaternion();
+			const pos = new THREE.Vector3();
+			const quat = new THREE.Quaternion();
 
 			// Ground
 			pos.set( 0, - 0.5, 0 );
 			quat.set( 0, 0, 0, 1 );
-			const ground = createParalellepiped( 40, 1, 40, 0, pos, quat, new FOUR.MeshPhongMaterial( { color: 0xFFFFFF } ) );
+			const ground = createParalellepiped( 40, 1, 40, 0, pos, quat, new THREE.MeshPhongMaterial( { color: 0xFFFFFF } ) );
 			ground.castShadow = true;
 			ground.receiveShadow = true;
 			textureLoader.load( 'textures/grid.png', function ( texture ) {
 
-				texture.colorSpace = FOUR.SRGBColorSpace;
-				texture.wrapS = FOUR.RepeatWrapping;
-				texture.wrapT = FOUR.RepeatWrapping;
+				texture.colorSpace = THREE.SRGBColorSpace;
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
 				texture.repeat.set( 40, 40 );
 				ground.material.map = texture;
 				ground.material.needsUpdate = true;
@@ -176,7 +176,7 @@
 			const ballMass = 1.2;
 			const ballRadius = 0.6;
 
-			const ball = new FOUR.Mesh( new FOUR.SphereGeometry( ballRadius, 20, 20 ), new FOUR.MeshPhongMaterial( { color: 0x202020 } ) );
+			const ball = new THREE.Mesh( new THREE.SphereGeometry( ballRadius, 20, 20 ), new THREE.MeshPhongMaterial( { color: 0x202020 } ) );
 			ball.castShadow = true;
 			ball.receiveShadow = true;
 			const ballShape = new Ammo.btSphereShape( ballRadius );
@@ -251,8 +251,8 @@
 			ropePos.y += ballRadius;
 
 			const segmentLength = ropeLength / ropeNumSegments;
-			const ropeGeometry = new FOUR.BufferGeometry();
-			const ropeMaterial = new FOUR.LineBasicMaterial( { color: 0x000000 } );
+			const ropeGeometry = new THREE.BufferGeometry();
+			const ropeMaterial = new THREE.LineBasicMaterial( { color: 0x000000 } );
 			const ropePositions = [];
 			const ropeIndices = [];
 
@@ -268,10 +268,10 @@
 
 			}
 
-			ropeGeometry.setIndex( new FOUR.BufferAttribute( new Uint16Array( ropeIndices ), 1 ) );
-			ropeGeometry.setAttribute( 'position', new FOUR.BufferAttribute( new Float32Array( ropePositions ), 3 ) );
+			ropeGeometry.setIndex( new THREE.BufferAttribute( new Uint16Array( ropeIndices ), 1 ) );
+			ropeGeometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( ropePositions ), 3 ) );
 			ropeGeometry.computeBoundingSphere();
-			rope = new FOUR.LineSegments( ropeGeometry, ropeMaterial );
+			rope = new THREE.LineSegments( ropeGeometry, ropeMaterial );
 			rope.castShadow = true;
 			rope.receiveShadow = true;
 			scene.add( rope );
@@ -295,7 +295,7 @@
 			const armMass = 2;
 			const armLength = 3;
 			const pylonHeight = ropePos.y + ropeLength;
-			const baseMaterial = new FOUR.MeshPhongMaterial( { color: 0x606060 } );
+			const baseMaterial = new THREE.MeshPhongMaterial( { color: 0x606060 } );
 			pos.set( ropePos.x, 0.1, ropePos.z - armLength );
 			quat.set( 0, 0, 0, 1 );
 			const base = createParalellepiped( 1, 0.2, 1, 0, pos, quat, baseMaterial );
@@ -327,7 +327,7 @@
 
 		function createParalellepiped( sx, sy, sz, mass, pos, quat, material ) {
 
-			const threeObject = new FOUR.Mesh( new FOUR.BoxGeometry( sx, sy, sz, 1, 1, 1 ), material );
+			const threeObject = new THREE.Mesh( new THREE.BoxGeometry( sx, sy, sz, 1, 1, 1 ), material );
 			const shape = new Ammo.btBoxShape( new Ammo.btVector3( sx * 0.5, sy * 0.5, sz * 0.5 ) );
 			shape.setMargin( margin );
 
@@ -379,7 +379,7 @@
 
 		function createMaterial() {
 
-			return new FOUR.MeshPhongMaterial( { color: createRandomColor() } );
+			return new THREE.MeshPhongMaterial( { color: createRandomColor() } );
 
 		}
 

@@ -10,10 +10,10 @@ This class is intended for transforming a camera over a map from bird's eye pers
 
 ## Import
 
-MapControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MapControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';
+import { MapControls } from 'three/addons/controls/MapControls.js';
 ```
 
 ## Constructor
@@ -28,9 +28,9 @@ This object contains references to the mouse actions used by the controls.
 
 ```js
 controls.mouseButtons = {
-	LEFT: FOUR.MOUSE.PAN,
-	MIDDLE: FOUR.MOUSE.DOLLY,
-	RIGHT: FOUR.MOUSE.ROTATE
+	LEFT: THREE.MOUSE.PAN,
+	MIDDLE: THREE.MOUSE.DOLLY,
+	RIGHT: THREE.MOUSE.ROTATE
 }
 ```
 
@@ -50,8 +50,8 @@ This object contains references to the touch actions used by the controls.
 
 ```js
 controls.mouseButtons = {
-	ONE: FOUR.TOUCH.PAN,
-	TWO: FOUR.TOUCH.DOLLY_ROTATE
+	ONE: THREE.TOUCH.PAN,
+	TWO: THREE.TOUCH.DOLLY_ROTATE
 }
 ```
 
@@ -59,4 +59,4 @@ controls.mouseButtons = {
 
 ## Source
 
-[examples/jsm/controls/MapControls.js](../../examples/jsm/controls/MapControls.js)
+[examples/jsm/controls/MapControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/MapControls.js)

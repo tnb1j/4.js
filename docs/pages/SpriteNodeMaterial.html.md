@@ -86,4 +86,4 @@ The current node builder.
 
 ## Source
 
-[src/materials/nodes/SpriteNodeMaterial.js](../../src/materials/nodes/SpriteNodeMaterial.js)
+[src/materials/nodes/SpriteNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/SpriteNodeMaterial.js)

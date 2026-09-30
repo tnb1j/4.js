@@ -38,7 +38,7 @@ import {
 	VectorKeyframeTrack,
 	SRGBColorSpace,
 	ShapeUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 import { getElementsByTagName, parseFloats } from './ColladaParser.js';
 
@@ -1116,7 +1116,7 @@ class ColladaComposer {
 
 		}
 
-		console.warn( 'FOUR.ColladaLoader: Couldn\'t find image with ID:', id );
+		console.warn( 'THREE.ColladaLoader: Couldn\'t find image with ID:', id );
 
 		return null;
 
@@ -1200,7 +1200,7 @@ class ColladaComposer {
 
 			} else {
 
-				console.warn( 'FOUR.ColladaLoader: Undefined sampler. Access image directly (see #12530).' );
+				console.warn( 'THREE.ColladaLoader: Undefined sampler. Access image directly (see #12530).' );
 				image = self.getImage( textureObject.id );
 
 			}
@@ -1244,7 +1244,7 @@ class ColladaComposer {
 
 				} else {
 
-					console.warn( 'FOUR.ColladaLoader: Loader for texture %s not found.', image );
+					console.warn( 'THREE.ColladaLoader: Loader for texture %s not found.', image );
 
 					return null;
 
@@ -1252,7 +1252,7 @@ class ColladaComposer {
 
 			} else {
 
-				console.warn( 'FOUR.ColladaLoader: Couldn\'t create texture with ID:', textureObject.id );
+				console.warn( 'THREE.ColladaLoader: Couldn\'t create texture with ID:', textureObject.id );
 
 				return null;
 
@@ -1354,7 +1354,7 @@ class ColladaComposer {
 						material.opacity = color[ 0 ] * transparency.float;
 						break;
 					default:
-						console.warn( 'FOUR.ColladaLoader: Invalid opaque type "%s" of transparent tag.', transparent.opaque );
+						console.warn( 'THREE.ColladaLoader: Invalid opaque type "%s" of transparent tag.', transparent.opaque );
 
 				}
 
@@ -1458,7 +1458,7 @@ class ColladaComposer {
 
 		}
 
-		console.warn( 'FOUR.ColladaLoader: Couldn\'t find camera with ID:', id );
+		console.warn( 'THREE.ColladaLoader: Couldn\'t find camera with ID:', id );
 
 		return null;
 
@@ -1507,7 +1507,7 @@ class ColladaComposer {
 
 		}
 
-		console.warn( 'FOUR.ColladaLoader: Couldn\'t find light with ID:', id );
+		console.warn( 'THREE.ColladaLoader: Couldn\'t find light with ID:', id );
 
 		return null;
 
@@ -1656,7 +1656,7 @@ class ColladaComposer {
 					break;
 
 				default:
-					console.warn( 'FOUR.ColladaLoader: Unknown primitive type:', primitive.type );
+					console.warn( 'THREE.ColladaLoader: Unknown primitive type:', primitive.type );
 
 			}
 
@@ -1737,7 +1737,7 @@ class ColladaComposer {
 									break;
 
 								default:
-									console.warn( 'FOUR.ColladaLoader: Semantic "%s" not handled in geometry build process.', key );
+									console.warn( 'THREE.ColladaLoader: Semantic "%s" not handled in geometry build process.', key );
 
 							}
 
@@ -2092,7 +2092,7 @@ class ColladaComposer {
 
 				} else {
 
-					console.warn( 'FOUR.ColladaLoader: Joint ' + jointIndex + ' doesn\'t exist.' );
+					console.warn( 'THREE.ColladaLoader: Joint ' + jointIndex + ' doesn\'t exist.' );
 
 				}
 
@@ -2108,11 +2108,11 @@ class ColladaComposer {
 
 					if ( value > joint.limits.max || value < joint.limits.min ) {
 
-						console.warn( 'FOUR.ColladaLoader: Joint ' + jointIndex + ' value ' + value + ' outside of limits (min: ' + joint.limits.min + ', max: ' + joint.limits.max + ').' );
+						console.warn( 'THREE.ColladaLoader: Joint ' + jointIndex + ' value ' + value + ' outside of limits (min: ' + joint.limits.min + ', max: ' + joint.limits.max + ').' );
 
 					} else if ( joint.static ) {
 
-						console.warn( 'FOUR.ColladaLoader: Joint ' + jointIndex + ' is static.' );
+						console.warn( 'THREE.ColladaLoader: Joint ' + jointIndex + ' is static.' );
 
 					} else {
 
@@ -2143,7 +2143,7 @@ class ColladaComposer {
 										break;
 
 									default:
-										console.warn( 'FOUR.ColladaLoader: Unknown joint type: ' + joint.type );
+										console.warn( 'THREE.ColladaLoader: Unknown joint type: ' + joint.type );
 										break;
 
 								}
@@ -2183,7 +2183,7 @@ class ColladaComposer {
 
 				} else {
 
-					console.warn( 'FOUR.ColladaLoader: Joint ' + jointIndex + ' does not exist.' );
+					console.warn( 'THREE.ColladaLoader: Joint ' + jointIndex + ' does not exist.' );
 
 				}
 
@@ -2294,7 +2294,7 @@ class ColladaComposer {
 
 			} else {
 
-				console.error( 'FOUR.ColladaLoader: Unable to find root bone of skeleton with ID:', skeleton );
+				console.error( 'THREE.ColladaLoader: Unable to find root bone of skeleton with ID:', skeleton );
 
 			}
 
@@ -2613,7 +2613,7 @@ class ColladaComposer {
 
 			if ( id === undefined ) {
 
-				console.warn( 'FOUR.ColladaLoader: Material with key %s not found. Apply fallback material.', keys[ i ] );
+				console.warn( 'THREE.ColladaLoader: Material with key %s not found. Apply fallback material.', keys[ i ] );
 				materials.push( this.fallbackMaterial );
 
 			} else {
@@ -2864,7 +2864,7 @@ class ColladaComposer {
 
 		if ( ! transformNodes ) {
 
-			console.warn( 'FOUR.ColladaLoader: Transform hierarchy not found for node:', nodeId );
+			console.warn( 'THREE.ColladaLoader: Transform hierarchy not found for node:', nodeId );
 			return;
 
 		}

@@ -27,7 +27,7 @@ const ktx2Loader = new KTX2Loader();
 ktx2Loader.detectSupport( renderer );
 ktx2Loader.load( 'diffuse.ktx2', function ( texture ) {
 
-	const material = new FOUR.MeshStandardMaterial( { map: texture } );
+	const material = new THREE.MeshStandardMaterial( { map: texture } );
 
 }, function () {
 

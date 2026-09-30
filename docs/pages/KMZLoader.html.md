@@ -14,10 +14,10 @@ scene.add( kmz.scene );
 
 ## Import
 
-KMZLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+KMZLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { KMZLoader } from '@tnb1j/4js/addons/loaders/KMZLoader.js';
+import { KMZLoader } from 'three/addons/loaders/KMZLoader.js';
 ```
 
 ## Constructor
@@ -68,4 +68,4 @@ The raw KMZ data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/KMZLoader.js](../../examples/jsm/loaders/KMZLoader.js)
+[examples/jsm/loaders/KMZLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/KMZLoader.js)

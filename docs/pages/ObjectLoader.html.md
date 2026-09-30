@@ -7,7 +7,7 @@ A loader for loading a JSON resource in the [JSON Object/Scene format](https://g
 ## Code Example
 
 ```js
-const loader = new FOUR.ObjectLoader();
+const loader = new THREE.ObjectLoader();
 const obj = await loader.loadAsync( 'models/json/example.json' );
 scene.add( obj );
 // Alternatively, to parse a previously loaded JSON structure
@@ -107,4 +107,4 @@ The geometry class.
 
 ## Source
 
-[src/loaders/ObjectLoader.js](../../src/loaders/ObjectLoader.js)
+[src/loaders/ObjectLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/ObjectLoader.js)

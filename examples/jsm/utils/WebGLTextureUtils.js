@@ -8,11 +8,11 @@ import {
 	WebGLRenderer,
 	CanvasTexture,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module WebGLTextureUtils
- * @four_import import * as WebGLTextureUtils from '@tnb1j/4js/addons/utils/WebGLTextureUtils.js';
+ * @three_import import * as WebGLTextureUtils from 'three/addons/utils/WebGLTextureUtils.js';
  */
 
 let _renderer;
@@ -24,7 +24,7 @@ let fullscreenQuad;
  * Returns an uncompressed version of the given compressed texture.
  *
  * This module can only be used with {@link WebGLRenderer}. When using {@link WebGPURenderer},
- * import the function from {@link WebGPUTextureUtils}.
+ * import the function from {@link module:WebGPUTextureUtils}.
  *
  * @param {CompressedTexture} texture - The compressed texture.
  * @param {number} [maxTextureSize=Infinity] - The maximum size of the uncompressed texture.

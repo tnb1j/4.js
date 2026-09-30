@@ -19,14 +19,14 @@ import {
 	RGBAFormat,
 	RepeatWrapping,
 	Scene,
-	Source,
 	SRGBColorSpace,
+	TextureSource,
 	CompressedTexture,
 	Vector3,
 	Quaternion,
 	REVISION,
 	ImageUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * The KHR_mesh_quantization extension allows these extra attribute component types
@@ -99,7 +99,7 @@ const KHR_mesh_quantization_ExtraAttrTypes = {
  * const data = await exporter.parseAsync( scene, options );
  * ```
  *
- * @four_import import { GLTFExporter } from '@tnb1j/4js/addons/exporters/GLTFExporter.js';
+ * @three_import import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
  */
 class GLTFExporter {
 
@@ -246,7 +246,7 @@ class GLTFExporter {
 	 * Sets the texture utils for this exporter. Only relevant when compressed textures have to be exported.
 	 *
 	 * Depending on whether you use {@link WebGLRenderer} or {@link WebGPURenderer}, you must inject the
-	 * corresponding texture utils {@link WebGLTextureUtils} or {@link WebGPUTextureUtils}.
+	 * corresponding texture utils {@link module:WebGLTextureUtils} or {@link module:WebGPUTextureUtils}.
 	 *
 	 * @param {WebGLTextureUtils|WebGPUTextureUtils} utils - The texture utils.
 	 * @return {GLTFExporter} A reference to this exporter.
@@ -606,7 +606,7 @@ class GLTFWriter {
 		this.json = {
 			asset: {
 				version: '2.0',
-				generator: 'FOUR.GLTFExporter r' + REVISION
+				generator: 'THREE.GLTFExporter r' + REVISION
 			}
 		};
 
@@ -616,7 +616,8 @@ class GLTFWriter {
 			attributesNormalized: new Map(),
 			materials: new Map(),
 			textures: new Map(),
-			images: new Map()
+			images: new Map(),
+			normalMaps: new Map()
 		};
 
 		this.textureUtils = null;
@@ -638,7 +639,7 @@ class GLTFWriter {
 	/**
 	 * Parse scenes and generate GLTF output
 	 *
-	 * @param {Scene|Array<Scene>} input Scene or Array of FOUR.Scenes
+	 * @param {Scene|Array<Scene>} input Scene or Array of THREE.Scenes
 	 * @param {Function} onDone Callback on completed
 	 * @param {Object} options options
 	 */
@@ -651,7 +652,8 @@ class GLTFWriter {
 			onlyVisible: true,
 			maxTextureSize: Infinity,
 			animations: [],
-			includeCustomExtensions: false
+			includeCustomExtensions: false,
+			copyright: null
 		}, options );
 
 		if ( this.options.animations.length > 0 ) {
@@ -685,6 +687,8 @@ class GLTFWriter {
 
 		// Update bytelength of the single buffer.
 		if ( json.buffers && json.buffers.length > 0 ) json.buffers[ 0 ].byteLength = blob.size;
+
+		if ( options.copyright ) json.asset.copyright = options.copyright;
 
 		if ( options.binary === true ) {
 
@@ -762,7 +766,7 @@ class GLTFWriter {
 	/**
 	 * Serializes a userData.
 	 *
-	 * @param {FOUR.Object3D|FOUR.Material|FOUR.BufferGeometry|FOUR.AnimationClip} object
+	 * @param {THREE.Object3D|THREE.Material|THREE.BufferGeometry|THREE.AnimationClip} object
 	 * @param {Object} objectDef
 	 */
 	serializeUserData( object, objectDef ) {
@@ -795,7 +799,7 @@ class GLTFWriter {
 
 		} catch ( error ) {
 
-			console.warn( 'FOUR.GLTFExporter: userData of \'' + object.name + '\' ' +
+			console.warn( 'THREE.GLTFExporter: userData of \'' + object.name + '\' ' +
 				'won\'t be serialized because of JSON.stringify error - ' + error.message );
 
 		}
@@ -899,7 +903,7 @@ class GLTFWriter {
 	 * the KHR_texture_transform extension.
 	 *
 	 * @param {Object} mapDef
-	 * @param {FOUR.Texture} texture
+	 * @param {THREE.Texture} texture
 	 */
 	applyTextureTransform( mapDef, texture ) {
 
@@ -1029,17 +1033,17 @@ class GLTFWriter {
 
 		const texture = reference.clone();
 
-		texture.source = new Source( canvas );
+		texture.source = new TextureSource( canvas );
 		texture.colorSpace = NoColorSpace;
 		texture.channel = ( metalnessMap || roughnessMap ).channel;
 
 		if ( metalnessMap && roughnessMap && metalnessMap.channel !== roughnessMap.channel ) {
 
-			console.warn( 'FOUR.GLTFExporter: UV channels for metalnessMap and roughnessMap textures must match.' );
+			console.warn( 'THREE.GLTFExporter: UV channels for metalnessMap and roughnessMap textures must match.' );
 
 		}
 
-		console.warn( 'FOUR.GLTFExporter: Merged metalnessMap and roughnessMap textures.' );
+		console.warn( 'THREE.GLTFExporter: Merged metalnessMap and roughnessMap textures.' );
 
 		return texture;
 
@@ -1053,10 +1057,10 @@ class GLTFWriter {
 	 * since glTF only supports OpenGL-style normal maps with a univariate,
 	 * positive scale.
 	 *
-	 * @param {FOUR.Texture} normalMap The source normal map.
+	 * @param {THREE.Texture} normalMap The source normal map.
 	 * @param {boolean} flipX Whether to invert the red channel (normal X).
 	 * @param {boolean} flipY Whether to invert the green channel (normal Y).
-	 * @return {Promise<FOUR.Texture>} The derived normal map texture.
+	 * @return {Promise<THREE.Texture>} The derived normal map texture.
 	 */
 	async buildNormalMapTextureAsync( normalMap, flipX, flipY ) {
 
@@ -1091,7 +1095,7 @@ class GLTFWriter {
 		context.putImageData( imageData, 0, 0 );
 
 		const texture = normalMap.clone();
-		texture.source = new Source( canvas );
+		texture.source = new TextureSource( canvas );
 
 		return texture;
 
@@ -1101,7 +1105,7 @@ class GLTFWriter {
 
 		if ( this.textureUtils === null ) {
 
-			throw new Error( 'FOUR.GLTFExporter: setTextureUtils() must be called to process compressed textures.' );
+			throw new Error( 'THREE.GLTFExporter: setTextureUtils() must be called to process compressed textures.' );
 
 		}
 
@@ -1376,7 +1380,7 @@ class GLTFWriter {
 
 		} else {
 
-			throw new Error( 'FOUR.GLTFExporter: Unsupported bufferAttribute component type: ' + attribute.array.constructor.name );
+			throw new Error( 'THREE.GLTFExporter: Unsupported bufferAttribute component type: ' + attribute.array.constructor.name );
 
 		}
 
@@ -1464,7 +1468,7 @@ class GLTFWriter {
 
 			}
 
-			if ( image.data !== undefined ) { // FOUR.DataTexture
+			if ( image.data !== undefined ) { // THREE.DataTexture
 
 				if ( format !== RGBAFormat ) {
 
@@ -1502,7 +1506,7 @@ class GLTFWriter {
 
 				} else {
 
-					throw new Error( 'FOUR.GLTFExporter: Invalid image type. Use HTMLImageElement, HTMLCanvasElement, ImageBitmap or OffscreenCanvas.' );
+					throw new Error( 'THREE.GLTFExporter: Invalid image type. Use HTMLImageElement, HTMLCanvasElement, ImageBitmap or OffscreenCanvas.' );
 
 				}
 
@@ -1534,7 +1538,7 @@ class GLTFWriter {
 
 		} else {
 
-			throw new Error( 'FOUR.GLTFExporter: No valid image data found. Unable to process texture.' );
+			throw new Error( 'THREE.GLTFExporter: No valid image data found. Unable to process texture.' );
 
 		}
 
@@ -1625,8 +1629,8 @@ class GLTFWriter {
 
 	/**
 	 * Process material
-	 * @param {FOUR.Material} material Material to process
-	 * @param {FOUR.BufferGeometry} [geometry] Geometry the material is used with.
+	 * @param {THREE.Material} material Material to process
+	 * @param {THREE.BufferGeometry} [geometry] Geometry the material is used with.
 	 * @return {Promise<?number>} Index of the processed material in the "materials" array
 	 */
 	async processMaterialAsync( material, geometry ) {
@@ -1643,7 +1647,7 @@ class GLTFWriter {
 
 		if ( material.isShaderMaterial ) {
 
-			console.warn( 'GLTFExporter: FOUR.ShaderMaterial not supported.' );
+			console.warn( 'GLTFExporter: THREE.ShaderMaterial not supported.' );
 			return null;
 
 		}
@@ -1750,7 +1754,18 @@ class GLTFWriter {
 
 			if ( flipX || flipY ) {
 
-				normalMap = await this.buildNormalMapTextureAsync( material.normalMap, flipX, flipY );
+				if ( cache.normalMaps.has( material.normalMap ) === false ) cache.normalMaps.set( material.normalMap, {} );
+
+				const cachedVariants = cache.normalMaps.get( material.normalMap );
+				const cacheKey = `${flipX}:${flipY}`;
+
+				if ( cachedVariants[ cacheKey ] === undefined ) {
+
+					cachedVariants[ cacheKey ] = await this.buildNormalMapTextureAsync( material.normalMap, flipX, flipY );
+
+				}
+
+				normalMap = cachedVariants[ cacheKey ];
 
 			}
 
@@ -1827,7 +1842,7 @@ class GLTFWriter {
 
 	/**
 	 * Process mesh
-	 * @param {FOUR.Mesh} mesh Mesh to process
+	 * @param {THREE.Mesh} mesh Mesh to process
 	 * @return {Promise<?number>} Index of the processed mesh in the "meshes" array
 	 */
 	async processMeshAsync( mesh ) {
@@ -1902,7 +1917,7 @@ class GLTFWriter {
 
 		if ( originalNormal !== undefined && ! this.isNormalizedNormalAttribute( originalNormal ) ) {
 
-			console.warn( 'FOUR.GLTFExporter: Creating normalized normal attribute from the non-normalized one.' );
+			console.warn( 'THREE.GLTFExporter: Creating normalized normal attribute from the non-normalized one.' );
 
 			geometry.setAttribute( 'normal', this.createNormalizedNormalAttribute( originalNormal ) );
 
@@ -2177,7 +2192,7 @@ class GLTFWriter {
 	 * In this case the extension is automatically added to the list of used extensions.
 	 *
 	 * @param {string} attributeName
-	 * @param {FOUR.BufferAttribute} attribute
+	 * @param {THREE.BufferAttribute} attribute
 	 */
 	detectMeshQuantization( attributeName, attribute ) {
 
@@ -2232,7 +2247,7 @@ class GLTFWriter {
 
 	/**
 	 * Process camera
-	 * @param {FOUR.Camera} camera Camera to process
+	 * @param {THREE.Camera} camera Camera to process
 	 * @return {number} Index of the processed mesh in the "camera" array
 	 */
 	processCamera( camera ) {
@@ -2280,8 +2295,8 @@ class GLTFWriter {
 	 * Status:
 	 * - Only properties listed in PATH_PROPERTIES may be animated.
 	 *
-	 * @param {FOUR.AnimationClip} clip
-	 * @param {FOUR.Object3D} root
+	 * @param {THREE.AnimationClip} clip
+	 * @param {THREE.Object3D} root
 	 * @return {?number}
 	 */
 	processAnimation( clip, root ) {
@@ -2320,7 +2335,7 @@ class GLTFWriter {
 
 			if ( ! trackNode || ! trackProperty ) {
 
-				console.warn( 'FOUR.GLTFExporter: Could not export animation track "%s".', track.name );
+				console.warn( 'THREE.GLTFExporter: Could not export animation track "%s".', track.name );
 				continue;
 
 			}
@@ -2391,7 +2406,7 @@ class GLTFWriter {
 	}
 
 	/**
-	 * @param {FOUR.Object3D} object
+	 * @param {THREE.Object3D} object
 	 * @return {?number}
 	 */
 	 processSkin( object ) {
@@ -2437,7 +2452,7 @@ class GLTFWriter {
 
 	/**
 	 * Process Object3D node
-	 * @param {FOUR.Object3D} object Object3D to processNodeAsync
+	 * @param {THREE.Object3D} object Object3D to processNodeAsync
 	 * @return {Promise<number>} Index of the node in the nodes list
 	 */
 	async processNodeAsync( object ) {
@@ -2553,7 +2568,7 @@ class GLTFWriter {
 
 	/**
 	 * Process Object3D node with pivot using container approach
-	 * @param {FOUR.Object3D} object Object3D with pivot
+	 * @param {THREE.Object3D} object Object3D with pivot
 	 * @return {Promise<number>} Index of the container node
 	 */
 	async _processNodeWithPivotAsync( object ) {
@@ -2717,7 +2732,7 @@ class GLTFWriter {
 
 	/**
 	 * Creates a Scene to hold a list of objects and parse it
-	 * @param {Array<FOUR.Object3D>} objects List of objects to process
+	 * @param {Array<THREE.Object3D>} objects List of objects to process
 	 */
 	async processObjectsAsync( objects ) {
 
@@ -2737,7 +2752,7 @@ class GLTFWriter {
 	}
 
 	/**
-	 * @param {FOUR.Object3D|Array<FOUR.Object3D>} input
+	 * @param {THREE.Object3D|Array<THREE.Object3D>} input
 	 */
 	async processInputAsync( input ) {
 
@@ -2851,7 +2866,7 @@ class GLTFLightExtension {
 
 		if ( ! light.isDirectionalLight && ! light.isPointLight && ! light.isSpotLight ) {
 
-			console.warn( 'FOUR.GLTFExporter: Only directional, point, and spot lights are supported.', light );
+			console.warn( 'THREE.GLTFExporter: Only directional, point, and spot lights are supported.', light );
 			return;
 
 		}
@@ -2892,7 +2907,7 @@ class GLTFLightExtension {
 
 		if ( light.decay !== undefined && light.decay !== 2 ) {
 
-			console.warn( 'FOUR.GLTFExporter: Light decay may be lost. glTF is physically-based, '
+			console.warn( 'THREE.GLTFExporter: Light decay may be lost. glTF is physically-based, '
 				+ 'and expects light.decay=2.' );
 
 		}
@@ -2903,7 +2918,7 @@ class GLTFLightExtension {
 				|| light.target.position.y !== 0
 				|| light.target.position.z !== - 1 ) ) {
 
-			console.warn( 'FOUR.GLTFExporter: Light direction may be lost. For best results, '
+			console.warn( 'THREE.GLTFExporter: Light direction may be lost. For best results, '
 				+ 'make light.target a child of the light with position 0,0,-1.' );
 
 		}
@@ -3704,11 +3719,11 @@ GLTFExporter.Utils = {
 
 					// This should never happen, because glTF morph target animations
 					// affect all targets already.
-					throw new Error( 'FOUR.GLTFExporter: Cannot merge tracks with glTF CUBICSPLINE interpolation.' );
+					throw new Error( 'THREE.GLTFExporter: Cannot merge tracks with glTF CUBICSPLINE interpolation.' );
 
 				}
 
-				console.warn( 'FOUR.GLTFExporter: Morph target interpolation mode not yet supported. Using LINEAR instead.' );
+				console.warn( 'THREE.GLTFExporter: Morph target interpolation mode not yet supported. Using LINEAR instead.' );
 
 				sourceTrack = sourceTrack.clone();
 				sourceTrack.setInterpolation( InterpolateLinear );
@@ -3720,7 +3735,7 @@ GLTFExporter.Utils = {
 
 			if ( targetIndex === undefined ) {
 
-				throw new Error( 'FOUR.GLTFExporter: Morph target name not found: ' + sourceTrackBinding.propertyIndex );
+				throw new Error( 'THREE.GLTFExporter: Morph target name not found: ' + sourceTrackBinding.propertyIndex );
 
 			}
 
@@ -3821,6 +3836,7 @@ GLTFExporter.Utils = {
  * @property {Array<AnimationClip>|Array<Array<AnimationClip>>} [animations=[]] - List of animations to be included in the export. When exporting a single 3D object or scene, this is a flat list of clips.
  * When exporting an array of multiple scenes, this must be a nested array with one list of clips per scene, matched to the input by index.
  * @property {boolean} [includeCustomExtensions=false] - Export custom glTF extensions defined on an object's `userData.gltfExtensions` property.
+ * @property {string} [copyright=null] - Export with a copyright notice embedded in the glTF.
  **/
 
 /**

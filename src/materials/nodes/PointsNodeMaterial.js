@@ -5,6 +5,7 @@ import { modelViewMatrix } from '../../nodes/accessors/ModelNode.js';
 import { materialPointSize } from '../../nodes/accessors/MaterialNode.js';
 import { rotate } from '../../nodes/utils/RotateNode.js';
 import { float, uniform, vec2, vec3, vec4 } from '../../nodes/tsl/TSLBase.js';
+import { renderGroup } from '../../nodes/core/UniformGroupNode.js';
 
 import { PointsMaterial } from '../PointsMaterial.js';
 import { Vector2 } from '../../math/Vector2.js';
@@ -21,14 +22,14 @@ const _size = /*@__PURE__*/ new Vector2();
  * with a pixel size of `1`, it's not possible to define a size.
  *
  * ```js
- * const pointCloud = new FOUR.Points( geometry, new FOUR.PointsNodeMaterial() );
+ * const pointCloud = new THREE.Points( geometry, new THREE.PointsNodeMaterial() );
  * ```
  *
  * - By rendering point primitives with {@link Sprites}. In this case, size is honored,
  * see {@link PointsNodeMaterial#sizeNode}.
  *
  * ```js
- * const instancedPoints = new FOUR.Sprite( new FOUR.PointsNodeMaterial( { positionNode: instancedBufferAttribute( positionAttribute ) } ) );
+ * const instancedPoints = new THREE.Sprite( new THREE.PointsNodeMaterial( { positionNode: instancedBufferAttribute( positionAttribute ) } ) );
  * ```
  *
  * @augments SpriteNodeMaterial
@@ -200,7 +201,7 @@ class PointsNodeMaterial extends SpriteNodeMaterial {
 
 }
 
-const scale = /*@__PURE__*/ uniform( 1 ).onFrameUpdate( function ( { renderer } ) {
+const scale = /*@__PURE__*/ uniform( 1 ).setGroup( renderGroup ).onRenderUpdate( function ( { renderer } ) {
 
 	const size = renderer.getSize( _size ); // logical units
 

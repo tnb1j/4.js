@@ -13,28 +13,28 @@
 		<div id="container"></div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">threejs</a> - High dynamic range (RGBE) Image-based Lighting (IBL)<br />using run-time generated pre-filtered roughness mipmaps (PMREM)<br/>
-			Created by Prashant Sharma and <a href="http://clara.io/" target="_blank" rel="noopener">Ben Houston</a>.
+			Created by Prashant Sharma and <a href="https://ben3d.ca/" target="_blank" rel="noopener">Ben Houston</a>.
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
-			import { DebugEnvironment } from '@tnb1j/4js/addons/environments/DebugEnvironment.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRCubeTextureLoader } from 'three/addons/loaders/HDRCubeTextureLoader.js';
+			import { DebugEnvironment } from 'three/addons/environments/DebugEnvironment.js';
 
 			const params = {
 				envMap: 'HDR',
@@ -57,38 +57,38 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 0, 120 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				renderer = new FOUR.WebGLRenderer();
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer = new THREE.WebGLRenderer();
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				//
 
-				let geometry = new FOUR.TorusKnotGeometry( 18, 8, 150, 20 );
-				// let geometry = new FOUR.SphereGeometry( 26, 64, 32 );
-				let material = new FOUR.MeshStandardMaterial( {
+				let geometry = new THREE.TorusKnotGeometry( 18, 8, 150, 20 );
+				// let geometry = new THREE.SphereGeometry( 26, 64, 32 );
+				let material = new THREE.MeshStandardMaterial( {
 					color: 0xffffff,
 					metalness: params.metalness,
 					roughness: params.roughness
 				} );
 
-				torusMesh = new FOUR.Mesh( geometry, material );
+				torusMesh = new THREE.Mesh( geometry, material );
 				scene.add( torusMesh );
 
 
-				geometry = new FOUR.PlaneGeometry( 200, 200 );
-				material = new FOUR.MeshBasicMaterial();
+				geometry = new THREE.PlaneGeometry( 200, 200 );
+				material = new THREE.MeshBasicMaterial();
 
-				planeMesh = new FOUR.Mesh( geometry, material );
+				planeMesh = new THREE.Mesh( geometry, material );
 				planeMesh.position.y = - 50;
 				planeMesh.rotation.x = - Math.PI * 0.5;
 				scene.add( planeMesh );
 
-				FOUR.DefaultLoadingManager.onLoad = function ( ) {
+				THREE.DefaultLoadingManager.onLoad = function ( ) {
 
 					pmremGenerator.dispose();
 
@@ -101,13 +101,13 @@
 
 						hdrCubeRenderTarget = pmremGenerator.fromCubemap( hdrCubeMap );
 
-						hdrCubeMap.magFilter = FOUR.LinearFilter;
+						hdrCubeMap.magFilter = THREE.LinearFilter;
 						hdrCubeMap.needsUpdate = true;
 
 					} );
 
 				const ldrUrls = [ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ];
-				ldrCubeMap = new FOUR.CubeTextureLoader()
+				ldrCubeMap = new THREE.CubeTextureLoader()
 					.setPath( './textures/cube/pisa/' )
 					.load( ldrUrls, function () {
 
@@ -115,7 +115,7 @@
 
 					} );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				pmremGenerator.compileCubemapShader();
 
 				const envScene = new DebugEnvironment();

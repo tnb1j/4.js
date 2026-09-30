@@ -27,40 +27,40 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { mix, pass, renderOutput, smoothstep, uniform, vec3 } from '@tnb1j/4js/tsl';
-			import { boxBlur } from '@tnb1j/4js/addons/tsl/display/boxBlur.js';
-			import { fxaa } from '@tnb1j/4js/addons/tsl/display/FXAANode.js';
+			import * as THREE from 'three/webgpu';
+			import { mix, pass, renderOutput, smoothstep, uniform, vec3 } from 'three/tsl';
+			import { boxBlur } from 'three/addons/tsl/display/boxBlur.js';
+			import { fxaa } from 'three/addons/tsl/display/FXAANode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
 
 			let camera, controls, scene, timer, renderer, model, mixer, raycaster, renderPipeline;
 
-			const pointerCoords = new FOUR.Vector2();
-			const focusPoint = new FOUR.Vector3( 1, 1.75, - 0.4 );
+			const pointerCoords = new THREE.Vector2();
+			const focusPoint = new THREE.Vector3( 1, 1.75, - 0.4 );
 			const focusPointView = uniform( vec3() );
 
 			init();
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( - 6, 5, 6 );
 
 				controls = new OrbitControls( camera );
@@ -68,12 +68,12 @@
 				controls.enableDamping = true;
 				controls.update();
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x90D5FF );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x90D5FF );
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
 				const dracoLoader = new DRACOLoader();
 				dracoLoader.setDecoderPath( DRACO_GLTF_CONFIG );
@@ -85,7 +85,7 @@
 				model = gltf.scene;
 				scene.add( model );
 
-				mixer = new FOUR.AnimationMixer( model );
+				mixer = new THREE.AnimationMixer( model );
 				const action = mixer.clipAction( gltf.animations[ 0 ] );
 				action.play();
 
@@ -93,23 +93,23 @@
 
 				const hdrLoader = new UltraHDRLoader();
 				const envMap = await hdrLoader.loadAsync( 'textures/equirectangular/spruit_sunrise_2k.hdr.jpg' );
-				envMap.mapping = FOUR.EquirectangularReflectionMapping;
+				envMap.mapping = THREE.EquirectangularReflectionMapping;
 				scene.environmentRotation.y = Math.PI * - 0.5;
 				scene.environment = envMap;
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputColorTransform = false;
 
 				// DOF uniforms

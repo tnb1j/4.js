@@ -4,7 +4,7 @@ import {
 	UniformsLib,
 	UniformsUtils,
 	Vector2,
-} from '@tnb1j/4js';
+} from 'three';
 
 UniformsLib.line = {
 
@@ -435,7 +435,7 @@ ShaderLib[ 'line' ] = {
  * use {@link Line2NodeMaterial}.
  *
  * @augments ShaderMaterial
- * @four_import import { LineMaterial } from '@tnb1j/4js/addons/lines/LineMaterial.js';
+ * @three_import import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
  */
 class LineMaterial extends ShaderMaterial {
 

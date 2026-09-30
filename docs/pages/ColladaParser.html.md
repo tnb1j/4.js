@@ -8,4 +8,4 @@ ColladaParser handles XML parsing and converts Collada XML to intermediate data 
 
 ## Source
 
-[examples/jsm/loaders/collada/ColladaParser.js](../../examples/jsm/loaders/collada/ColladaParser.js)
+[examples/jsm/loaders/collada/ColladaParser.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/collada/ColladaParser.js)

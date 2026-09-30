@@ -39,42 +39,44 @@
 		<small>
 			Screen Space Reflections with Spatiotemporal Denoising by <a href="https://x.com/0beqz" target="_blank" rel="noopener">0beqz</a>.<br />
 			Dungeon - Low Poly Game Level Challenge by
-			<a href="https://sketchfab.com/warkarma" target="_blank" rel="noopener">Warkarma</a>.<br />
+			Warkarma.<br />
 		</small>
 	</div>
 
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.webgpu.js",
-				"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-				"@tnb1j/4js/tsl": "../build/4.tsl.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.webgpu.js",
+				"three/webgpu": "../build/three.webgpu.js",
+				"three/tsl": "../build/three.tsl.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
 
-		import * as FOUR from '@tnb1j/4js/webgpu';
-		import { pass, mrt, output, normalView, materialMetalness, materialRoughness, screenUV, sample, packNormalToRGB, unpackRGBToNormal, vec2, velocity, diffuseColor, vec3, vec4, uniform, mix, step, abs, float, renderOutput, saturation } from '@tnb1j/4js/tsl';
-		import { ssr } from '@tnb1j/4js/addons/tsl/display/SSRNode.js';
-		import { temporalReproject } from '@tnb1j/4js/addons/tsl/display/TemporalReprojectNode.js';
-		import { recurrentDenoise } from '@tnb1j/4js/addons/tsl/display/RecurrentDenoiseNode.js';
-		import { sharpen } from '@tnb1j/4js/addons/tsl/display/SharpenNode.js';
-		import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
+		import * as THREE from 'three/webgpu';
+		import { pass, mrt, output, normalView, materialMetalness, materialRoughness, screenUV, sample, packNormalToRGB, unpackRGBToNormal, vec2, velocity, diffuseColor, vec3, vec4, uniform, mix, step, abs, float, renderOutput, saturation } from 'three/tsl';
+		import { SunLight } from 'three/addons/lights/SunLight.js';
+		import { SunLightNode } from 'three/addons/lights/SunLightNode.js';
+		import { ssr } from 'three/addons/tsl/display/SSRNode.js';
+		import { temporalReproject } from 'three/addons/tsl/display/TemporalReprojectNode.js';
+		import { recurrentDenoise } from 'three/addons/tsl/display/RecurrentDenoiseNode.js';
+		import { sharpen } from 'three/addons/tsl/display/SharpenNode.js';
+		import { traa } from 'three/addons/tsl/display/TRAANode.js';
 
-		import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-		import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
-		import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+		import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { Inspector } from 'three/addons/inspector/Inspector.js';
+		import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
 		// Disable env map specular (radiance and clearcoat radiance) for every PBR material
 		// in this scene, since SSR provides the specular reflections instead. Diffuse env
 		// (irradiance) is left untouched. Equivalent to zeroing EnvironmentNode contributions,
 		// but scoped to this example rather than modifying the core library.
-		const _indirectSpecular = FOUR.PhysicalLightingModel.prototype.indirectSpecular;
-		FOUR.PhysicalLightingModel.prototype.indirectSpecular = function ( builder ) {
+		const _indirectSpecular = THREE.PhysicalLightingModel.prototype.indirectSpecular;
+		THREE.PhysicalLightingModel.prototype.indirectSpecular = function ( builder ) {
 
 			builder.context.radiance = vec3( 0 );
 
@@ -108,7 +110,7 @@
 		}
 
 		const compareSplit = uniform( 0.5 );
-		const compareResolution = uniform( new FOUR.Vector2( window.innerWidth, window.innerHeight ) );
+		const compareResolution = uniform( new THREE.Vector2( window.innerWidth, window.innerHeight ) );
 
 		function buildCompareNode( noisy, denoised ) {
 
@@ -176,11 +178,11 @@
 
 		async function init() {
 
-			camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 8 );
+			camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 8 );
 
 			camera.position.set( 0.9210513838983053, 0.16195074025403253, 0.431687274895316 );
 
-			scene = new FOUR.Scene();
+			scene = new THREE.Scene();
 
 			const loader = new GLTFLoader();
 			loader.load( 'models/gltf/dungeon_warkarma.glb', function ( gltf ) {
@@ -203,43 +205,37 @@
 
 			} );
 
-			renderer = new FOUR.WebGPURenderer();
+			renderer = new THREE.WebGPURenderer();
+			renderer.library.addLight( SunLightNode, SunLight );
 			renderer.inspector = new Inspector();
 			renderer.setSize( window.innerWidth, window.innerHeight );
-			renderer.toneMapping = FOUR.AgXToneMapping;
+			renderer.toneMapping = THREE.AgXToneMapping;
 			renderer.toneMappingExposure = params.post.grading.exposure;
 			renderer.shadowMap.enabled = true;
 			document.body.appendChild( renderer.domElement );
 
 			const hdrLoader = new HDRLoader().setPath( 'textures/equirectangular/' );
 			const hdrTexture = await hdrLoader.loadAsync( 'quarry_01_1k.hdr' );
-			hdrTexture.mapping = FOUR.EquirectangularReflectionMapping;
+			hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
 			scene.background = hdrTexture;
 			scene.environment = hdrTexture;
 			hdrTexture.generateMipmaps = true;
 			hdrTexture.needsUpdate = true;
 
-			const directionalLight = new FOUR.DirectionalLight( '#ffffff', 20 );
-			directionalLight.position.set( - 10.9, 2.2, 10.75 );
-			directionalLight.castShadow = true;
-			directionalLight.shadow.autoUpdate = false;
-			directionalLight.shadow.needsUpdate = true;
-			directionalLight.shadow.mapSize.width = 4096;
-			directionalLight.shadow.mapSize.height = 4096;
-			directionalLight.shadow.camera.left = - 1.75;
-			directionalLight.shadow.camera.right = 1.75;
-			directionalLight.shadow.camera.top = 1.75;
-			directionalLight.shadow.camera.bottom = - 1.75;
-			directionalLight.shadow.camera.near = 0.1;
-			directionalLight.shadow.camera.far = 50;
-			directionalLight.shadow.bias = - 0.0005;
-			scene.add( directionalLight );
+			const sunLight = new SunLight( '#ffffff', 20 );
+			sunLight.position.set( - 10.9, 2.2, 10.75 );
+			sunLight.castShadow = true;
+			sunLight.shadow.mapSize.width = 4096;
+			sunLight.shadow.mapSize.height = 4096;
+			sunLight.shadow.camera.far = 50;
+			sunLight.shadow.normalBias = 0.0015;
+			scene.add( sunLight );
 
 			await renderer.init();
 
 			scene.environmentIntensity = 1;
 
-			postProcessing = new FOUR.RenderPipeline( renderer );
+			postProcessing = new THREE.RenderPipeline( renderer );
 
 			const scenePass = pass( scene, camera );
 			scenePassNode = scenePass;
@@ -265,10 +261,10 @@
 			const scenePassDiffuseColor = scenePass.getTextureNode( 'diffuseColor' ).toInspector( 'Diffuse Color' );
 
 			const normalTexture = scenePass.getTexture( 'normal' );
-			normalTexture.type = FOUR.UnsignedByteType;
+			normalTexture.type = THREE.UnsignedByteType;
 
 			const diffuseTexture = scenePass.getTexture( 'diffuseColor' );
-			diffuseTexture.type = FOUR.UnsignedByteType;
+			diffuseTexture.type = THREE.UnsignedByteType;
 
 			const sceneNormal = sample( ( uv ) => unpackRGBToNormal( scenePassNormal.sample( uv ).rgb ) );
 
@@ -286,9 +282,7 @@
 				environmentNode: hdrTexture,
 				envImportanceSampling: params.ssr.envImportanceSampling,
 				binaryRefine: params.ssr.binaryRefine
-			} );
-			ssrNode.setEnvMap( hdrTexture );
-			ssrNode.toInspector( 'SSR' );
+			} ).toInspector( 'SSR' );
 
 			temporalReprojectNode = temporalReproject( ssrNode, scenePassDepth, scenePassNormal, scenePassVelocity, camera, {
 				mode: 'specular',
@@ -400,11 +394,10 @@
 			const lightGui = renderer.inspector.createParameters( 'Light' ).close();
 			[ 'x', 'y', 'z' ].forEach( axis => {
 
-				lightGui.add( directionalLight.position, axis, - 30, 30 ).name( axis.toUpperCase() )
-					.onChange( () => directionalLight.shadow.needsUpdate = true );
+				lightGui.add( sunLight.position, axis, - 30, 30 ).name( axis.toUpperCase() );
 
 			} );
-			lightGui.add( directionalLight, 'intensity', 0, 50 ).name( 'Intensity' );
+			lightGui.add( sunLight, 'intensity', 0, 50 ).name( 'Intensity' );
 
 			updateOutputNode();
 			renderer.setAnimationLoop( animate );
@@ -453,7 +446,7 @@
 				denoiseNode.flickerSuppression.value = params.denoise.flickerSuppression;
 				denoiseNode.adaptiveTrust.value = params.denoise.adaptiveTrust;
 
-	}
+			}
 
 		}
 
@@ -461,7 +454,7 @@
 
 			let rgb = source.rgb;
 
-			rgb = renderOutput( vec4( rgb, 1 ), FOUR.AgXToneMapping, FOUR.SRGBColorSpace ).rgb;
+			rgb = renderOutput( vec4( rgb, 1 ), THREE.AgXToneMapping, THREE.SRGBColorSpace ).rgb;
 			rgb = rgb.sub( 0.5 ).mul( contrastUniform ).add( 0.5 );
 			rgb = saturation( rgb, saturationUniform );
 			rgb = rgb.max( 0.0 ).pow( float( 1 ).div( gammaUniform ) );
@@ -483,7 +476,7 @@
 			contrastUniform.value = g.contrast;
 			saturationUniform.value = g.saturation;
 
-			renderer.toneMapping = FOUR.AgXToneMapping;
+			renderer.toneMapping = THREE.AgXToneMapping;
 			renderer.toneMappingExposure = g.exposure;
 
 		}
@@ -517,7 +510,7 @@
 
 				}
 
-	}
+			}
 
 			if ( ! isCompareMode( params.output ) ) controls.enabled = true;
 

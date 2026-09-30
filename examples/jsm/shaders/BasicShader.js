@@ -1,6 +1,6 @@
 /**
  * @module BasicShader
- * @four_import import { BasicShader } from '@tnb1j/4js/addons/shaders/BasicShader.js';
+ * @three_import import { BasicShader } from 'three/addons/shaders/BasicShader.js';
  */
 
 /**

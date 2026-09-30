@@ -29,17 +29,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { DragControls } from '@tnb1j/4js/addons/controls/DragControls.js';
+			import { DragControls } from 'three/addons/controls/DragControls.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -48,7 +48,7 @@
 
 			const objects = [];
 
-			const mouse = new FOUR.Vector2(), raycaster = new FOUR.Raycaster();
+			const mouse = new THREE.Vector2(), raycaster = new THREE.Raycaster();
 
 			init();
 
@@ -57,15 +57,15 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 500 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 500 );
 				camera.position.z = 25;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
-				scene.add( new FOUR.AmbientLight( 0xaaaaaa ) );
+				scene.add( new THREE.AmbientLight( 0xaaaaaa ) );
 
-				const light = new FOUR.SpotLight( 0xffffff, 10000 );
+				const light = new THREE.SpotLight( 0xffffff, 10000 );
 				light.position.set( 0, 25, 50 );
 				light.angle = Math.PI / 9;
 
@@ -77,14 +77,14 @@
 
 				scene.add( light );
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				scene.add( group );
 
-				const geometry = new FOUR.BoxGeometry();
+				const geometry = new THREE.BoxGeometry();
 
 				for ( let i = 0; i < 200; i ++ ) {
 
-					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 
 					object.position.x = Math.random() * 30 - 15;
 					object.position.y = Math.random() * 15 - 7.5;
@@ -107,11 +107,11 @@
 
 				}
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 
 				container.appendChild( renderer.domElement );
 
@@ -148,7 +148,7 @@
 			
 				if ( event.keyCode === 77 ) {
 
-					controls.touches.ONE = ( controls.touches.ONE === FOUR.TOUCH.PAN ) ? FOUR.TOUCH.ROTATE : FOUR.TOUCH.PAN;
+					controls.touches.ONE = ( controls.touches.ONE === THREE.TOUCH.PAN ) ? THREE.TOUCH.ROTATE : THREE.TOUCH.PAN;
 			
 				}
 

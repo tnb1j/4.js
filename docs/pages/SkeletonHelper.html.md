@@ -7,7 +7,7 @@ A helper object to assist with visualizing a [Skeleton](Skeleton.html).
 ## Code Example
 
 ```js
-const helper = new FOUR.SkeletonHelper( skinnedMesh );
+const helper = new THREE.SkeletonHelper( skinnedMesh );
 scene.add( helper );
 ```
 
@@ -43,6 +43,8 @@ The object being visualized.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .setColors( color1 : Color, color2 : Color ) : SkeletonHelper
 
 Defines the colors of the helper.
@@ -59,4 +61,4 @@ The second line color for each bone.
 
 ## Source
 
-[src/helpers/SkeletonHelper.js](../../src/helpers/SkeletonHelper.js)
+[src/helpers/SkeletonHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/SkeletonHelper.js)

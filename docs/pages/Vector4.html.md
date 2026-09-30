@@ -3,19 +3,19 @@
 Class representing a 4D vector. A 4D vector is an ordered quadruplet of numbers (labeled x, y, z and w), which can be used to represent a number of things, such as:
 
 *   A point in 4D space.
-*   A direction and length in 4D space. In 4.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0, 0, 0)` to `(x, y, z, w)` and the direction is also measured from `(0, 0, 0, 0)` towards `(x, y, z, w)`.
+*   A direction and length in 4D space. In three.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0, 0, 0)` to `(x, y, z, w)` and the direction is also measured from `(0, 0, 0, 0)` towards `(x, y, z, w)`.
 *   Any arbitrary ordered quadruplet of numbers.
 
-There are other things a 4D vector can be used to represent, however these are the most common uses in _4.js_.
+There are other things a 4D vector can be used to represent, however these are the most common uses in _three.js_.
 
 Iterating through a vector instance will yield its components `(x, y, z, w)` in the corresponding order.
 
 ## Code Example
 
 ```js
-const a = new FOUR.Vector4( 0, 1, 0, 0 );
+const a = new THREE.Vector4( 0, 1, 0, 0 );
 //no arguments; will be initialised to (0, 0, 0, 1)
-const b = new FOUR.Vector4( );
+const b = new THREE.Vector4( );
 const d = a.dot( b );
 ```
 
@@ -585,4 +585,4 @@ Default is `0`.
 
 ## Source
 
-[src/math/Vector4.js](../../src/math/Vector4.js)
+[src/math/Vector4.js](https://github.com/mrdoob/three.js/blob/master/src/math/Vector4.js)

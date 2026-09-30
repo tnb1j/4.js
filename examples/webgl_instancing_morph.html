@@ -12,19 +12,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 			
 			let camera, scene, renderer, stats, mesh, mixer, dummy;
 
@@ -38,46 +39,40 @@
 
 			}
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			init();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 100, 10000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 100, 10000 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				scene.background = new FOUR.Color( 0x99DDFF );
+				scene.background = new THREE.Color( 0x99DDFF );
 
-				scene.fog = new FOUR.Fog( 0x99DDFF, 5000, 10000 );
+				scene.fog = new THREE.Fog( 0x99DDFF, 5000, 10000 );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 1 );
+				const light = new SunLight( 0xffffff, 2 );
 
 				light.position.set( 200, 1000, 50 );
 
 				light.castShadow = true;
 
-				light.shadow.camera.left = - 5000;
-				light.shadow.camera.right = 5000;
-				light.shadow.camera.top = 5000;
-				light.shadow.camera.bottom = - 5000;
-				light.shadow.camera.far = 2000;
+				light.shadow.camera.far = 10000;
 
-				light.shadow.bias = - 0.01;
-
-				light.shadow.camera.updateProjectionMatrix();
+				light.shadow.mapSize.setScalar( 2048 );
 
 				scene.add( light );
 
-				const hemi = new FOUR.HemisphereLight( 0x99DDFF, 0x669933, 1 / 3 );
+				const hemi = new THREE.HemisphereLight( 0x99DDFF, 0x669933, 0.5 );
 
 				scene.add( hemi );
 
-				const ground = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 1000000, 1000000 ),
-					new FOUR.MeshStandardMaterial( { color: 0x669933, depthWrite: true } )
+				const ground = new THREE.Mesh(
+					new THREE.PlaneGeometry( 1000000, 1000000 ),
+					new THREE.MeshStandardMaterial( { color: 0x669933, depthWrite: true } )
 				);
 
 				ground.rotation.x = - Math.PI / 2;
@@ -92,7 +87,7 @@
 
 					dummy = glb.scene.children[ 0 ];
 
-					mesh = new FOUR.InstancedMesh( dummy.geometry, dummy.material, 1024 );
+					mesh = new THREE.InstancedMesh( dummy.geometry, dummy.material, 1024 );
 
 					mesh.castShadow = true;
 
@@ -106,7 +101,7 @@
 
 							mesh.setMatrixAt( i, dummy.matrix );
 
-							mesh.setColorAt( i, new FOUR.Color( `hsl(${Math.random() * 360}, 50%, 66%)` ) );
+							mesh.setColorAt( i, new THREE.Color( `hsl(${Math.random() * 360}, 50%, 66%)` ) );
 
 							i ++;
 			
@@ -117,7 +112,7 @@
 
 					scene.add( mesh );
 
-					mixer = new FOUR.AnimationMixer( glb.scene );
+					mixer = new THREE.AnimationMixer( glb.scene );
 
 					const action = mixer.clipAction( glb.animations[ 0 ] );
 
@@ -127,13 +122,12 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.VSMShadowMap;
 				//
 
 				stats = new Stats();

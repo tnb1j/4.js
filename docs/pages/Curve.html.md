@@ -204,4 +204,4 @@ Update the cumulative segment distance cache. The method must be called every ti
 
 ## Source
 
-[src/extras/core/Curve.js](../../src/extras/core/Curve.js)
+[src/extras/core/Curve.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/Curve.js)

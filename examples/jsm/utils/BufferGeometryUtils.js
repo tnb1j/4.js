@@ -9,11 +9,11 @@ import {
 	TriangleStripDrawMode,
 	TrianglesDrawMode,
 	Vector3,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module BufferGeometryUtils
- * @four_import import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+ * @three_import import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
  */
 
 /**
@@ -39,13 +39,13 @@ function computeMikkTSpaceTangents( geometry, MikkTSpace, negateSign = true ) {
 
 	if ( ! MikkTSpace || ! MikkTSpace.isReady ) {
 
-		throw new Error( 'FOUR.BufferGeometryUtils: Initialized MikkTSpace library required.' );
+		throw new Error( 'THREE.BufferGeometryUtils: Initialized MikkTSpace library required.' );
 
 	}
 
 	if ( ! geometry.hasAttribute( 'position' ) || ! geometry.hasAttribute( 'normal' ) || ! geometry.hasAttribute( 'uv' ) ) {
 
-		throw new Error( 'FOUR.BufferGeometryUtils: Tangents require "position", "normal", and "uv" attributes.' );
+		throw new Error( 'THREE.BufferGeometryUtils: Tangents require "position", "normal", and "uv" attributes.' );
 
 	}
 
@@ -155,7 +155,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 		if ( isIndexed !== ( geometry.index !== null ) ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. All geometries must have compatible attributes; make sure index attribute exists among all geometries, or in none of them.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. All geometries must have compatible attributes; make sure index attribute exists among all geometries, or in none of them.' );
 			return null;
 
 		}
@@ -166,7 +166,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 			if ( ! attributesUsed.has( name ) ) {
 
-				console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. All geometries must have compatible attributes; make sure "' + name + '" attribute exists among all geometries, or in none of them.' );
+				console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. All geometries must have compatible attributes; make sure "' + name + '" attribute exists among all geometries, or in none of them.' );
 				return null;
 
 			}
@@ -183,7 +183,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 		if ( attributesCount !== attributesUsed.size ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. Make sure all geometries have the same number of attributes.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. Make sure all geometries have the same number of attributes.' );
 			return null;
 
 		}
@@ -192,7 +192,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 		if ( morphTargetsRelative !== geometry.morphTargetsRelative ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. .morphTargetsRelative must be consistent throughout all geometries.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. .morphTargetsRelative must be consistent throughout all geometries.' );
 			return null;
 
 		}
@@ -201,7 +201,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 			if ( ! morphAttributesUsed.has( name ) ) {
 
-				console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '.  .morphAttributes must be consistent throughout all geometries.' );
+				console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '.  .morphAttributes must be consistent throughout all geometries.' );
 				return null;
 
 			}
@@ -226,7 +226,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 			} else {
 
-				console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. The geometry must have either an index or a position attribute' );
+				console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index ' + i + '. The geometry must have either an index or a position attribute' );
 				return null;
 
 			}
@@ -272,7 +272,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 		if ( ! mergedAttribute ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed while trying to merge the ' + name + ' attribute.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed while trying to merge the ' + name + ' attribute.' );
 			return null;
 
 		}
@@ -305,7 +305,7 @@ function mergeGeometries( geometries, useGroups = false ) {
 
 			if ( ! mergedMorphAttribute ) {
 
-				console.error( 'FOUR.BufferGeometryUtils: .mergeGeometries() failed while trying to merge the ' + name + ' morphAttribute.' );
+				console.error( 'THREE.BufferGeometryUtils: .mergeGeometries() failed while trying to merge the ' + name + ' morphAttribute.' );
 				return null;
 
 			}
@@ -342,7 +342,7 @@ function mergeAttributes( attributes ) {
 		if ( TypedArray === undefined ) TypedArray = attribute.array.constructor;
 		if ( TypedArray !== attribute.array.constructor ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.array must be of consistent array types across matching attributes.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.array must be of consistent array types across matching attributes.' );
 			return null;
 
 		}
@@ -350,7 +350,7 @@ function mergeAttributes( attributes ) {
 		if ( itemSize === undefined ) itemSize = attribute.itemSize;
 		if ( itemSize !== attribute.itemSize ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.itemSize must be consistent across matching attributes.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.itemSize must be consistent across matching attributes.' );
 			return null;
 
 		}
@@ -358,7 +358,7 @@ function mergeAttributes( attributes ) {
 		if ( normalized === undefined ) normalized = attribute.normalized;
 		if ( normalized !== attribute.normalized ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.normalized must be consistent across matching attributes.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.normalized must be consistent across matching attributes.' );
 			return null;
 
 		}
@@ -366,7 +366,7 @@ function mergeAttributes( attributes ) {
 		if ( gpuType === - 1 ) gpuType = attribute.gpuType;
 		if ( gpuType !== attribute.gpuType ) {
 
-			console.error( 'FOUR.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.gpuType must be consistent across matching attributes.' );
+			console.error( 'THREE.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.gpuType must be consistent across matching attributes.' );
 			return null;
 
 		}
@@ -709,8 +709,8 @@ function mergeVertices( geometry, tolerance = 1e-4 ) {
 
 			for ( let k = 0; k < itemSize; k ++ ) {
 
-				// double tilde truncates the decimal value
-				hash += `${ ~ ~ ( attribute[ getters[ k ] ]( index ) * hashMultiplier + hashAdditive ) },`;
+				// Math.trunc() preserves the full Number range, ~~ would wrap to int32
+				hash += `${ Math.trunc( attribute[ getters[ k ] ]( index ) * hashMultiplier + hashAdditive ) },`;
 
 			}
 
@@ -799,18 +799,19 @@ function mergeVertices( geometry, tolerance = 1e-4 ) {
 }
 
 /**
- * Returns a new indexed geometry based on `TrianglesDrawMode` draw mode.
- * This mode corresponds to the `gl.TRIANGLES` primitive in WebGL.
+ * Converts the given geometry to the `TrianglesDrawMode` draw mode, which
+ * corresponds to the `gl.TRIANGLES` primitive in WebGL. The conversion only
+ * rewrites the index, so the geometry is modified in place and returned.
  *
  * @param {BufferGeometry} geometry - The geometry to convert.
  * @param {number} drawMode - The current draw mode.
- * @return {BufferGeometry} The new geometry using `TrianglesDrawMode`.
+ * @return {BufferGeometry} The converted geometry using `TrianglesDrawMode`.
  */
 function toTrianglesDrawMode( geometry, drawMode ) {
 
 	if ( drawMode === TrianglesDrawMode ) {
 
-		console.warn( 'FOUR.BufferGeometryUtils.toTrianglesDrawMode(): Geometry already defined as triangles.' );
+		console.warn( 'THREE.BufferGeometryUtils.toTrianglesDrawMode(): Geometry already defined as triangles.' );
 		return geometry;
 
 	}
@@ -840,7 +841,7 @@ function toTrianglesDrawMode( geometry, drawMode ) {
 
 			} else {
 
-				console.error( 'FOUR.BufferGeometryUtils.toTrianglesDrawMode(): Undefined position attribute. Processing not possible.' );
+				console.error( 'THREE.BufferGeometryUtils.toTrianglesDrawMode(): Undefined position attribute. Processing not possible.' );
 				return geometry;
 
 			}
@@ -890,21 +891,20 @@ function toTrianglesDrawMode( geometry, drawMode ) {
 
 		if ( ( newIndices.length / 3 ) !== numberOfTriangles ) {
 
-			console.error( 'FOUR.BufferGeometryUtils.toTrianglesDrawMode(): Unable to generate correct amount of triangles.' );
+			console.error( 'THREE.BufferGeometryUtils.toTrianglesDrawMode(): Unable to generate correct amount of triangles.' );
 
 		}
 
-		// build final geometry
+		// updated indices
 
-		const newGeometry = geometry.clone();
-		newGeometry.setIndex( newIndices );
-		newGeometry.clearGroups();
+		geometry.setIndex( newIndices );
+		geometry.clearGroups();
 
-		return newGeometry;
+		return geometry;
 
 	} else {
 
-		console.error( 'FOUR.BufferGeometryUtils.toTrianglesDrawMode(): Unknown draw mode:', drawMode );
+		console.error( 'THREE.BufferGeometryUtils.toTrianglesDrawMode(): Unknown draw mode:', drawMode );
 		return geometry;
 
 	}
@@ -1205,7 +1205,7 @@ function mergeGroups( geometry ) {
 
 	if ( geometry.groups.length === 0 ) {
 
-		console.warn( 'FOUR.BufferGeometryUtils.mergeGroups(): No groups are defined. Nothing to merge.' );
+		console.warn( 'THREE.BufferGeometryUtils.mergeGroups(): No groups are defined. Nothing to merge.' );
 		return geometry;
 
 	}
@@ -1371,7 +1371,7 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 	// assign an id to each vertex, sharing the id between vertices with the same
 	// quantized position via an open-addressed hash table (slots hold id + 1, 0 means empty)
 	const vertexIds = new Int32Array( vertexCount );
-	const quantized = new Int32Array( vertexCount * 3 );
+	const quantized = new Float64Array( vertexCount * 3 );
 
 	let tableSize = 1;
 	while ( tableSize < vertexCount * 2 ) tableSize <<= 1;
@@ -1382,9 +1382,9 @@ function toCreasedNormals( geometry, creaseAngle = Math.PI / 3 /* 60 degrees */ 
 	for ( let i = 0; i < vertexCount; i ++ ) {
 
 		const i3 = 3 * i;
-		const qx = ~ ~ ( positions[ i3 + 0 ] * hashMultiplier );
-		const qy = ~ ~ ( positions[ i3 + 1 ] * hashMultiplier );
-		const qz = ~ ~ ( positions[ i3 + 2 ] * hashMultiplier );
+		const qx = Math.trunc( positions[ i3 + 0 ] * hashMultiplier );
+		const qy = Math.trunc( positions[ i3 + 1 ] * hashMultiplier );
+		const qz = Math.trunc( positions[ i3 + 2 ] * hashMultiplier );
 
 		let slot = ( Math.imul( qx, 73856093 ) ^ Math.imul( qy, 19349663 ) ^ Math.imul( qz, 83492791 ) ) & tableMask;
 

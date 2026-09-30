@@ -3,7 +3,7 @@ import {
 	Float32BufferAttribute,
 	OrthographicCamera,
 	Mesh
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Abstract base class for all post processing passes.
@@ -11,7 +11,7 @@ import {
  * This module is only relevant for post processing with {@link WebGLRenderer}.
  *
  * @abstract
- * @four_import import { Pass } from '@tnb1j/4js/addons/postprocessing/Pass.js';
+ * @three_import import { Pass } from 'three/addons/postprocessing/Pass.js';
  */
 class Pass {
 
@@ -87,7 +87,7 @@ class Pass {
 	 */
 	render( /* renderer, writeBuffer, readBuffer, deltaTime, maskActive */ ) {
 
-		console.error( 'FOUR.Pass: .render() must be implemented in derived pass.' );
+		console.error( 'THREE.Pass: .render() must be implemented in derived pass.' );
 
 	}
 
@@ -133,7 +133,7 @@ const _geometry = new FullscreenTriangleGeometry();
  * This module can only be used with {@link WebGLRenderer}.
  *
  * @augments Mesh
- * @four_import import { FullScreenQuad } from '@tnb1j/4js/addons/postprocessing/Pass.js';
+ * @three_import import { FullScreenQuad } from 'three/addons/postprocessing/Pass.js';
  */
 class FullScreenQuad {
 

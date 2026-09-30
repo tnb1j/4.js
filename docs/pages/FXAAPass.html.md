@@ -13,10 +13,10 @@ composer.addPass( fxaaPass );
 
 ## Import
 
-FXAAPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FXAAPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FXAAPass } from '@tnb1j/4js/addons/postprocessing/FXAAPass.js';
+import { FXAAPass } from 'three/addons/postprocessing/FXAAPass.js';
 ```
 
 ## Constructor
@@ -43,4 +43,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/FXAAPass.js](../../examples/jsm/postprocessing/FXAAPass.js)
+[examples/jsm/postprocessing/FXAAPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/FXAAPass.js)

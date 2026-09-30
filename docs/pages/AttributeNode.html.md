@@ -54,4 +54,4 @@ The name of the attribute.
 
 ## Source
 
-[src/nodes/core/AttributeNode.js](../../src/nodes/core/AttributeNode.js)
+[src/nodes/core/AttributeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/AttributeNode.js)

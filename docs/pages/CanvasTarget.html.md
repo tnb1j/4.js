@@ -201,4 +201,4 @@ Default is `1`.
 
 ## Source
 
-[src/renderers/common/CanvasTarget.js](../../src/renderers/common/CanvasTarget.js)
+[src/renderers/common/CanvasTarget.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/CanvasTarget.js)

@@ -172,4 +172,4 @@ Retrieves the value from the referred object property and uses it to updated the
 
 ## Source
 
-[src/nodes/accessors/ReferenceBaseNode.js](../../src/nodes/accessors/ReferenceBaseNode.js)
+[src/nodes/accessors/ReferenceBaseNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/ReferenceBaseNode.js)

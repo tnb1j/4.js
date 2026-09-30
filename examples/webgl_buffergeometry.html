@@ -16,17 +16,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let container, stats;
 
@@ -43,22 +43,22 @@
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 3500 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 3500 );
 				camera.position.z = 2750;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x050505 );
-				scene.fog = new FOUR.Fog( 0x050505, 2000, 3500 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x050505 );
+				scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
 
 				//
 
-				scene.add( new FOUR.AmbientLight( 0xcccccc ) );
+				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				const light1 = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const light1 = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				light1.position.set( 1, 1, 1 );
 				scene.add( light1 );
 
-				const light2 = new FOUR.DirectionalLight( 0xffffff, 4.5 );
+				const light2 = new THREE.DirectionalLight( 0xffffff, 4.5 );
 				light2.position.set( 0, - 1, 0 );
 				scene.add( light2 );
 
@@ -66,23 +66,23 @@
 
 				const triangles = 160000;
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 
 				const positions = [];
 				const normals = [];
 				const colors = [];
 
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 
 				const n = 800, n2 = n / 2;	// triangles spread in the cube
 				const d = 12, d2 = d / 2;	// individual triangle size
 
-				const pA = new FOUR.Vector3();
-				const pB = new FOUR.Vector3();
-				const pC = new FOUR.Vector3();
+				const pA = new THREE.Vector3();
+				const pB = new THREE.Vector3();
+				const pC = new THREE.Vector3();
 
-				const cb = new FOUR.Vector3();
-				const ab = new FOUR.Vector3();
+				const cb = new THREE.Vector3();
+				const ab = new THREE.Vector3();
 
 				for ( let i = 0; i < triangles; i ++ ) {
 
@@ -150,23 +150,23 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ).onUpload( disposeArray ) );
-				geometry.setAttribute( 'normal', new FOUR.Float32BufferAttribute( normals, 3 ).onUpload( disposeArray ) );
-				geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 4 ).onUpload( disposeArray ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ).onUpload( disposeArray ) );
+				geometry.setAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ).onUpload( disposeArray ) );
+				geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 4 ).onUpload( disposeArray ) );
 
 				geometry.computeBoundingSphere();
 
-				const material = new FOUR.MeshPhongMaterial( {
+				const material = new THREE.MeshPhongMaterial( {
 					color: 0xd5d5d5, specular: 0xffffff, shininess: 250,
-					side: FOUR.DoubleSide, vertexColors: true, transparent: true
+					side: THREE.DoubleSide, vertexColors: true, transparent: true
 				} );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

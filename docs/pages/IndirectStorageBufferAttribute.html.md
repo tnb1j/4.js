@@ -30,4 +30,4 @@ Default is `true`.
 
 ## Source
 
-[src/renderers/common/IndirectStorageBufferAttribute.js](../../src/renderers/common/IndirectStorageBufferAttribute.js)
+[src/renderers/common/IndirectStorageBufferAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/IndirectStorageBufferAttribute.js)

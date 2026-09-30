@@ -6,10 +6,10 @@ A specialized version of [CSS3DObject](CSS3DObject.html) that represents DOM ele
 
 ## Import
 
-CSS3DSprite is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSS3DSprite is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSS3DSprite } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+import { CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js';
 ```
 
 ## Constructor
@@ -38,4 +38,4 @@ Default is `0`.
 
 ## Source
 
-[examples/jsm/renderers/CSS3DRenderer.js](../../examples/jsm/renderers/CSS3DRenderer.js)
+[examples/jsm/renderers/CSS3DRenderer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/renderers/CSS3DRenderer.js)

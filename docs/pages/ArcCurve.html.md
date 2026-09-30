@@ -56,4 +56,4 @@ Default is `true`.
 
 ## Source
 
-[src/extras/curves/ArcCurve.js](../../src/extras/curves/ArcCurve.js)
+[src/extras/curves/ArcCurve.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/ArcCurve.js)

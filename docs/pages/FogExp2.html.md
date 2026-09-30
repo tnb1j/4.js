@@ -5,8 +5,8 @@ This class can be used to define an exponential squared fog, which gives a clear
 ## Code Example
 
 ```js
-const scene = new FOUR.Scene();
-scene.fog = new FOUR.FogExp2( 0xcccccc, 0.002 );
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 ```
 
 ## Constructor
@@ -67,4 +67,4 @@ An optional value holding meta information about the serialization.
 
 ## Source
 
-[src/scenes/FogExp2.js](../../src/scenes/FogExp2.js)
+[src/scenes/FogExp2.js](https://github.com/mrdoob/three.js/blob/master/src/scenes/FogExp2.js)

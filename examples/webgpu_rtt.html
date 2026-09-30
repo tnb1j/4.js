@@ -22,23 +22,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { texture, uniform, saturation, hue } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { texture, uniform, saturation, hue } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
-			const mouse = new FOUR.Vector2();
+			const mouse = new THREE.Vector2();
 
 			let quadMesh, renderTarget;
 
@@ -50,29 +50,29 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.z = 3;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x0066FF );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x0066FF );
 
 				// textured mesh
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				const uvTexture = loader.load( './textures/uv_grid_opengl.jpg' );
 
-				const geometryBox = new FOUR.BoxGeometry();
-				const materialBox = new FOUR.MeshBasicNodeMaterial();
+				const geometryBox = new THREE.BoxGeometry();
+				const materialBox = new THREE.MeshBasicNodeMaterial();
 				materialBox.colorNode = texture( uvTexture );
 
 				//
 
-				box = new FOUR.Mesh( geometryBox, materialBox );
+				box = new THREE.Mesh( geometryBox, materialBox );
 				scene.add( box );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( dpr );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -80,7 +80,7 @@
 
 				renderer.inspector = new Inspector();
 
-				renderTarget = new FOUR.RenderTarget( window.innerWidth * dpr, window.innerHeight * dpr );
+				renderTarget = new THREE.RenderTarget( window.innerWidth * dpr, window.innerHeight * dpr );
 
 				window.addEventListener( 'mousemove', onWindowMouseMove );
 				window.addEventListener( 'resize', onWindowResize );
@@ -91,12 +91,12 @@
 
 				const screenFXNode = uniform( mouse );
 
-				const materialFX = new FOUR.MeshBasicNodeMaterial();
+				const materialFX = new THREE.MeshBasicNodeMaterial();
 
 				const scenePassTexture = texture( renderTarget.texture ).toInspector( 'Scene Pass' );
 				materialFX.colorNode = hue( saturation( scenePassTexture.rgb, screenFXNode.x.oneMinus() ), screenFXNode.y );
 
-				quadMesh = new FOUR.QuadMesh( materialFX );
+				quadMesh = new THREE.QuadMesh( materialFX );
 				quadMesh.name = 'Post-Processing';
 
 			}

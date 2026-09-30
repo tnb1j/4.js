@@ -13,7 +13,7 @@ See the [FontLoader](FontLoader.html) page for additional details.
 ```js
 const loader = new FontLoader();
 const font = await loader.loadAsync( 'fonts/helvetiker_regular.typeface.json' );
-const geometry = new TextGeometry( 'Hello 4.js!', {
+const geometry = new TextGeometry( 'Hello three.js!', {
 	font: font,
 	size: 80,
 	depth: 5,
@@ -23,10 +23,10 @@ const geometry = new TextGeometry( 'Hello 4.js!', {
 
 ## Import
 
-TextGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TextGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 ```
 
 ## Constructor
@@ -138,4 +138,4 @@ An object that provides UV generator functions for custom UV generation.
 
 ## Source
 
-[examples/jsm/geometries/TextGeometry.js](../../examples/jsm/geometries/TextGeometry.js)
+[examples/jsm/geometries/TextGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/TextGeometry.js)

@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GCodeLoader } from '@tnb1j/4js/addons/loaders/GCodeLoader.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GCodeLoader } from 'three/addons/loaders/GCodeLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, controls, loader;
 
@@ -46,9 +46,9 @@
 			];
 
 			const positions = [
-				new FOUR.Vector3( - 100, - 20, 100 ),
-				new FOUR.Vector3( 0, 0, 0 ),
-				new FOUR.Vector3( 0, 0, 0 ),
+				new THREE.Vector3( - 100, - 20, 100 ),
+				new THREE.Vector3( 0, 0, 0 ),
+				new THREE.Vector3( 0, 0, 0 ),
 			];
 
 			init();
@@ -56,15 +56,15 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 0, 70 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				loader = new GCodeLoader();
 				loadAsset( params.asset );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );

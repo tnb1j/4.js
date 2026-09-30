@@ -4,10 +4,10 @@ A utility class with factory methods for creating basic animation clips.
 
 ## Import
 
-AnimationClipCreator is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AnimationClipCreator is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AnimationClipCreator } from '@tnb1j/4js/addons/animation/AnimationClipCreator.js';
+import { AnimationClipCreator } from 'three/addons/animation/AnimationClipCreator.js';
 ```
 
 ## Static Methods
@@ -98,4 +98,4 @@ The duration of the animation.
 
 ## Source
 
-[examples/jsm/animation/AnimationClipCreator.js](../../examples/jsm/animation/AnimationClipCreator.js)
+[examples/jsm/animation/AnimationClipCreator.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/animation/AnimationClipCreator.js)

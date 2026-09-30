@@ -25,21 +25,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, mix, range, color, oscSine, time } from '@tnb1j/4js/tsl';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, mix, range, color, oscSine, time } from 'three/tsl';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer;
 			let renderPipeline;
@@ -50,32 +50,32 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 40 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 40 );
 				camera.position.set( 1, 2, 3 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				camera.lookAt( 0, 1, 0 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// lights
 
-				const centerLight = new FOUR.PointLight( 0xff9900, 1, 100 );
+				const centerLight = new THREE.PointLight( 0xff9900, 1, 100 );
 				centerLight.position.y = 4.5;
 				centerLight.position.z = - 2;
 				centerLight.power = 400;
 				scene.add( centerLight );
 
-				const cameraLight = new FOUR.PointLight( 0x0099ff, 1, 100 );
+				const cameraLight = new THREE.PointLight( 0x0099ff, 1, 100 );
 				cameraLight.power = 400;
 				camera.add( cameraLight );
 				scene.add( camera );
 
-				const geometry = new FOUR.PlaneGeometry( 1000, 1000 );
+				const geometry = new THREE.PlaneGeometry( 1000, 1000 );
 				geometry.rotateX( - Math.PI / 2 );
 
-				const plane = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial( { color: 0x000000, visible: true } ) );
+				const plane = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x000000, visible: true } ) );
 				scene.add( plane );
 
 				const loader = new GLTFLoader();
@@ -83,13 +83,13 @@
 
 					const object = gltf.scene;
 
-					mixer = new FOUR.AnimationMixer( object );
+					mixer = new THREE.AnimationMixer( object );
 
 					const action = mixer.clipAction( gltf.animations[ 0 ] );
 					action.play();
 
 					const instanceCount = 30;
-					const dummy = new FOUR.Object3D();
+					const dummy = new THREE.Object3D();
 
 					object.traverse( ( child ) => {
 
@@ -98,18 +98,18 @@
 							const oscNode = oscSine( time.mul( .1 ) );
 
 							// random colors between instances from 0x000000 to 0xFFFFFF
-							const randomColors = range( new FOUR.Color( 0x000000 ), new FOUR.Color( 0xFFFFFF ) );
+							const randomColors = range( new THREE.Color( 0x000000 ), new THREE.Color( 0xFFFFFF ) );
 
 							// random [ 0, 1 ] values between instances
 							const randomMetalness = range( 0, 1 );
 
-							child.material = new FOUR.MeshStandardNodeMaterial();
+							child.material = new THREE.MeshStandardNodeMaterial();
 							child.material.roughness = .1;
 							child.material.metalnessNode = mix( 0.0, randomMetalness, oscNode );
 							child.material.colorNode = mix( color( 0xFFFFFF ), randomColors, oscNode );
 
 							child.isInstancedMesh = true;
-							child.instanceMatrix = new FOUR.InstancedBufferAttribute( new Float32Array( instanceCount * 16 ), 16 );
+							child.instanceMatrix = new THREE.InstancedBufferAttribute( new Float32Array( instanceCount * 16 ), 16 );
 							child.count = instanceCount;
 
 							for ( let i = 0; i < instanceCount; i ++ ) {
@@ -133,7 +133,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -148,7 +148,7 @@
 				const scenePassColorBlurred = gaussianBlur( scenePassColor );
 				scenePassColorBlurred.directionNode = scenePassDepth;
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputNode = scenePassColorBlurred;
 
 

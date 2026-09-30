@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { NURBSCurve } from '@tnb1j/4js/addons/curves/NURBSCurve.js';
-			import { NURBSSurface } from '@tnb1j/4js/addons/curves/NURBSSurface.js';
-			import { NURBSVolume } from '@tnb1j/4js/addons/curves/NURBSVolume.js';
-			import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
+			import { NURBSCurve } from 'three/addons/curves/NURBSCurve.js';
+			import { NURBSSurface } from 'three/addons/curves/NURBSSurface.js';
+			import { NURBSVolume } from 'three/addons/curves/NURBSVolume.js';
+			import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';
 
 			let container, stats;
 
@@ -62,19 +62,19 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 0, 150, 750 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
-				scene.add( new FOUR.AmbientLight( 0xffffff ) );
+				scene.add( new THREE.AmbientLight( 0xffffff ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 );
 				scene.add( light );
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				group.position.y = 50;
 				scene.add( group );
 
@@ -93,7 +93,7 @@
 				for ( let i = 0, j = 20; i < j; i ++ ) {
 
 					nurbsControlPoints.push(
-						new FOUR.Vector4(
+						new THREE.Vector4(
 							Math.random() * 400 - 200,
 							Math.random() * 400,
 							Math.random() * 400 - 200,
@@ -102,27 +102,27 @@
 					);
 
 					const knot = ( i + 1 ) / ( j - nurbsDegree );
-					nurbsKnots.push( FOUR.MathUtils.clamp( knot, 0, 1 ) );
+					nurbsKnots.push( THREE.MathUtils.clamp( knot, 0, 1 ) );
 
 				}
 
 				const nurbsCurve = new NURBSCurve( nurbsDegree, nurbsKnots, nurbsControlPoints );
 
-				const nurbsGeometry = new FOUR.BufferGeometry();
+				const nurbsGeometry = new THREE.BufferGeometry();
 				nurbsGeometry.setFromPoints( nurbsCurve.getPoints( 200 ) );
 
-				const nurbsMaterial = new FOUR.LineBasicMaterial( { color: 0x333333 } );
+				const nurbsMaterial = new THREE.LineBasicMaterial( { color: 0x333333 } );
 
-				const nurbsLine = new FOUR.Line( nurbsGeometry, nurbsMaterial );
+				const nurbsLine = new THREE.Line( nurbsGeometry, nurbsMaterial );
 				nurbsLine.position.set( 0, - 100, 0 );
 				group.add( nurbsLine );
 
-				const nurbsControlPointsGeometry = new FOUR.BufferGeometry();
+				const nurbsControlPointsGeometry = new THREE.BufferGeometry();
 				nurbsControlPointsGeometry.setFromPoints( nurbsCurve.controlPoints );
 
-				const nurbsControlPointsMaterial = new FOUR.LineBasicMaterial( { color: 0x333333, opacity: 0.25, transparent: true } );
+				const nurbsControlPointsMaterial = new THREE.LineBasicMaterial( { color: 0x333333, opacity: 0.25, transparent: true } );
 
-				const nurbsControlPointsLine = new FOUR.Line( nurbsControlPointsGeometry, nurbsControlPointsMaterial );
+				const nurbsControlPointsLine = new THREE.Line( nurbsControlPointsGeometry, nurbsControlPointsMaterial );
 				nurbsControlPointsLine.position.copy( nurbsLine.position );
 				group.add( nurbsControlPointsLine );
 
@@ -131,22 +131,22 @@
 
 					const nsControlPoints = [
 						[
-							new FOUR.Vector4( - 200, - 200, 100, 1 ),
-							new FOUR.Vector4( - 200, - 100, - 200, 1 ),
-							new FOUR.Vector4( - 200, 100, 250, 1 ),
-							new FOUR.Vector4( - 200, 200, - 100, 1 )
+							new THREE.Vector4( - 200, - 200, 100, 1 ),
+							new THREE.Vector4( - 200, - 100, - 200, 1 ),
+							new THREE.Vector4( - 200, 100, 250, 1 ),
+							new THREE.Vector4( - 200, 200, - 100, 1 )
 						],
 						[
-							new FOUR.Vector4( 0, - 200, 0, 1 ),
-							new FOUR.Vector4( 0, - 100, - 100, 5 ),
-							new FOUR.Vector4( 0, 100, 150, 5 ),
-							new FOUR.Vector4( 0, 200, 0, 1 )
+							new THREE.Vector4( 0, - 200, 0, 1 ),
+							new THREE.Vector4( 0, - 100, - 100, 5 ),
+							new THREE.Vector4( 0, 100, 150, 5 ),
+							new THREE.Vector4( 0, 200, 0, 1 )
 						],
 						[
-							new FOUR.Vector4( 200, - 200, - 100, 1 ),
-							new FOUR.Vector4( 200, - 100, 200, 1 ),
-							new FOUR.Vector4( 200, 100, - 250, 1 ),
-							new FOUR.Vector4( 200, 200, 100, 1 )
+							new THREE.Vector4( 200, - 200, - 100, 1 ),
+							new THREE.Vector4( 200, - 100, 200, 1 ),
+							new THREE.Vector4( 200, 100, - 250, 1 ),
+							new THREE.Vector4( 200, 200, 100, 1 )
 						]
 					];
 					const degree1 = 2;
@@ -155,10 +155,10 @@
 					const knots2 = [ 0, 0, 0, 0, 1, 1, 1, 1 ];
 					const nurbsSurface = new NURBSSurface( degree1, degree2, knots1, knots2, nsControlPoints );
 
-					const map = new FOUR.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
-					map.wrapS = map.wrapT = FOUR.RepeatWrapping;
+					const map = new THREE.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
+					map.wrapS = map.wrapT = THREE.RepeatWrapping;
 					map.anisotropy = 16;
-					map.colorSpace = FOUR.SRGBColorSpace;
+					map.colorSpace = THREE.SRGBColorSpace;
 
 					function getSurfacePoint( u, v, target ) {
 
@@ -167,8 +167,8 @@
 					}
 
 					const geometry = new ParametricGeometry( getSurfacePoint, 20, 20 );
-					const material = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const object = new FOUR.Mesh( geometry, material );
+					const material = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const object = new THREE.Mesh( geometry, material );
 					object.position.set( - 400, 100, 0 );
 					object.scale.multiplyScalar( 1 );
 					group.add( object );
@@ -181,56 +181,56 @@
 					const nsControlPoints = [
 						[
 							[
-								new FOUR.Vector4( - 200, - 200, - 200, 1 ),
-								new FOUR.Vector4( - 200, - 200, 200, 1 )
+								new THREE.Vector4( - 200, - 200, - 200, 1 ),
+								new THREE.Vector4( - 200, - 200, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( - 200, - 100, - 200, 1 ),
-								new FOUR.Vector4( - 200, - 100, 200, 1 )
+								new THREE.Vector4( - 200, - 100, - 200, 1 ),
+								new THREE.Vector4( - 200, - 100, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( - 200, 100, - 200, 1 ),
-								new FOUR.Vector4( - 200, 100, 200, 1 )
+								new THREE.Vector4( - 200, 100, - 200, 1 ),
+								new THREE.Vector4( - 200, 100, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( - 200, 200, - 200, 1 ),
-								new FOUR.Vector4( - 200, 200, 200, 1 )
+								new THREE.Vector4( - 200, 200, - 200, 1 ),
+								new THREE.Vector4( - 200, 200, 200, 1 )
 							]
 						],
 						[
 							[
-								new FOUR.Vector4( 0, - 200, - 200, 1 ),
-								new FOUR.Vector4( 0, - 200, 200, 1 )
+								new THREE.Vector4( 0, - 200, - 200, 1 ),
+								new THREE.Vector4( 0, - 200, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( 0, - 100, - 200, 1 ),
-								new FOUR.Vector4( 0, - 100, 200, 1 )
+								new THREE.Vector4( 0, - 100, - 200, 1 ),
+								new THREE.Vector4( 0, - 100, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( 0, 100, - 200, 1 ),
-								new FOUR.Vector4( 0, 100, 200, 1 )
+								new THREE.Vector4( 0, 100, - 200, 1 ),
+								new THREE.Vector4( 0, 100, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( 0, 200, - 200, 1 ),
-								new FOUR.Vector4( 0, 200, 200, 1 )
+								new THREE.Vector4( 0, 200, - 200, 1 ),
+								new THREE.Vector4( 0, 200, 200, 1 )
 							]
 						],
 						[
 							[
-								new FOUR.Vector4( 200, - 200, - 200, 1 ),
-								new FOUR.Vector4( 200, - 200, 200, 1 )
+								new THREE.Vector4( 200, - 200, - 200, 1 ),
+								new THREE.Vector4( 200, - 200, 200, 1 )
 							],
 							[
-								new FOUR.Vector4( 200, - 100, 0, 1 ),
-								new FOUR.Vector4( 200, - 100, 100, 1 )
+								new THREE.Vector4( 200, - 100, 0, 1 ),
+								new THREE.Vector4( 200, - 100, 100, 1 )
 							],
 							[
-								new FOUR.Vector4( 200, 100, 0, 1 ),
-								new FOUR.Vector4( 200, 100, 100, 1 )
+								new THREE.Vector4( 200, 100, 0, 1 ),
+								new THREE.Vector4( 200, 100, 100, 1 )
 							],
 							[
-								new FOUR.Vector4( 200, 200, 0, 1 ),
-								new FOUR.Vector4( 200, 200, 100, 1 )
+								new THREE.Vector4( 200, 200, 0, 1 ),
+								new THREE.Vector4( 200, 200, 100, 1 )
 							]
 						]
 					];
@@ -242,14 +242,14 @@
 					const knots3 = [ 0, 0, 1, 1 ];
 					const nurbsVolume = new NURBSVolume( degree1, degree2, degree3, knots1, knots2, knots3, nsControlPoints );
 
-					const map = new FOUR.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
-					map.wrapS = map.wrapT = FOUR.RepeatWrapping;
+					const map = new THREE.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
+					map.wrapS = map.wrapT = THREE.RepeatWrapping;
 					map.anisotropy = 16;
-					map.colorSpace = FOUR.SRGBColorSpace;
+					map.colorSpace = THREE.SRGBColorSpace;
 
 					// Since ParametricGeometry() only support bi-variate parametric geometries
 					// we create evaluation functions for different surfaces with one of the three
-					// parameter values (u, v, w) kept constant and create multiple FOUR.Mesh
+					// parameter values (u, v, w) kept constant and create multiple THREE.Mesh
 					// objects one for each surface
 					function getSurfacePointFront( u, v, target ) {
 
@@ -282,36 +282,36 @@
 					}
 
 					const geometryFront = new ParametricGeometry( getSurfacePointFront, 20, 20 );
-					const materialFront = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const objectFront = new FOUR.Mesh( geometryFront, materialFront );
+					const materialFront = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const objectFront = new THREE.Mesh( geometryFront, materialFront );
 					objectFront.position.set( 400, 100, 0 );
 					objectFront.scale.multiplyScalar( 0.5 );
 					group.add( objectFront );
 
 					const geometryMiddle = new ParametricGeometry( getSurfacePointMiddle, 20, 20 );
-					const materialMiddle = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const objectMiddle = new FOUR.Mesh( geometryMiddle, materialMiddle );
+					const materialMiddle = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const objectMiddle = new THREE.Mesh( geometryMiddle, materialMiddle );
 					objectMiddle.position.set( 400, 100, 0 );
 					objectMiddle.scale.multiplyScalar( 0.5 );
 					group.add( objectMiddle );
 
 					const geometryBack = new ParametricGeometry( getSurfacePointBack, 20, 20 );
-					const materialBack = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const objectBack = new FOUR.Mesh( geometryBack, materialBack );
+					const materialBack = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const objectBack = new THREE.Mesh( geometryBack, materialBack );
 					objectBack.position.set( 400, 100, 0 );
 					objectBack.scale.multiplyScalar( 0.5 );
 					group.add( objectBack );
 
 					const geometryTop = new ParametricGeometry( getSurfacePointTop, 20, 20 );
-					const materialTop = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const objectTop = new FOUR.Mesh( geometryTop, materialTop );
+					const materialTop = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const objectTop = new THREE.Mesh( geometryTop, materialTop );
 					objectTop.position.set( 400, 100, 0 );
 					objectTop.scale.multiplyScalar( 0.5 );
 					group.add( objectTop );
 
 					const geometrySide = new ParametricGeometry( getSurfacePointSide, 20, 20 );
-					const materialSide = new FOUR.MeshLambertMaterial( { map: map, side: FOUR.DoubleSide } );
-					const objectSide = new FOUR.Mesh( geometrySide, materialSide );
+					const materialSide = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+					const objectSide = new THREE.Mesh( geometrySide, materialSide );
 					objectSide.position.set( 400, 100, 0 );
 					objectSide.scale.multiplyScalar( 0.5 );
 					group.add( objectSide );
@@ -320,7 +320,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

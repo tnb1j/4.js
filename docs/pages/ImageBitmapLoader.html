@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ImageBitmapLoader - 4.js Docs</title>
+	<title>ImageBitmapLoader - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -23,10 +23,10 @@ unlike regular images which can be configured on the Texture to set these option
 <pre><code class="language-js">{ imageOrientation: 'flipY', premultiplyAlpha: 'none' }
 </code></pre>
 <p>Also note that unlike <a href="FileLoader.html">FileLoader</a>, this loader will only avoid multiple concurrent requests to the same URL if <a href="Cache.html">Cache</a> is enabled.</p>
-<pre><code class="language-js">const loader = new FOUR.ImageBitmapLoader();
+<pre><code class="language-js">const loader = new THREE.ImageBitmapLoader();
 loader.setOptions( { imageOrientation: 'flipY' } ); // set options if needed
 const imageBitmap = await loader.loadAsync( 'image.png' );
-const texture = new FOUR.Texture( imageBitmap );
+const texture = new THREE.Texture( imageBitmap );
 texture.needsUpdate = true;
 </code></pre></div>
 			</header>
@@ -151,7 +151,7 @@ different options will return the cached result of the first request.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/loaders/ImageBitmapLoader.js" translate="no">src/loaders/ImageBitmapLoader.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/loaders/ImageBitmapLoader.js" translate="no" target="_blank" rel="noopener">src/loaders/ImageBitmapLoader.js</a>
 				</p>
 			</article>
 		</section>

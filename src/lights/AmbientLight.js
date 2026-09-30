@@ -6,7 +6,7 @@ import { Light } from './Light.js';
  * It cannot be used to cast shadows as it does not have a direction.
  *
  * ```js
- * const light = new FOUR.AmbientLight( 0x404040 ); // soft white light
+ * const light = new THREE.AmbientLight( 0x404040 ); // soft white light
  * scene.add( light );
  * ```
  *

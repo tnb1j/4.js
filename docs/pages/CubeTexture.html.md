@@ -7,12 +7,12 @@ Creates a cube texture made up of six images.
 ## Code Example
 
 ```js
-const loader = new FOUR.CubeTextureLoader();
+const loader = new THREE.CubeTextureLoader();
 loader.setPath( 'textures/cube/pisa/' );
 const textureCube = loader.load( [
 	'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'
 ] );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+const material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
 ```
 
 ## Constructor
@@ -105,4 +105,4 @@ Default is `true`.
 
 ## Source
 
-[src/textures/CubeTexture.js](../../src/textures/CubeTexture.js)
+[src/textures/CubeTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/CubeTexture.js)

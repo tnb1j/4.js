@@ -36,4 +36,4 @@ The struct node.
 
 ## Source
 
-[src/nodes/utils/MemberNode.js](../../src/nodes/utils/MemberNode.js)
+[src/nodes/utils/MemberNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/MemberNode.js)

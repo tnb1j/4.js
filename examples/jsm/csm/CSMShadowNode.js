@@ -7,10 +7,10 @@ import {
 	Object3D,
 	WebGLCoordinateSystem,
 	ShadowBaseNode
-} from '@tnb1j/4js/webgpu';
+} from 'three/webgpu';
 
 import { CSMFrustum } from './CSMFrustum.js';
-import { viewZToOrthographicDepth, reference, uniform, float, vec4, vec2, If, Fn, min, renderGroup, positionView, shadow } from '@tnb1j/4js/tsl';
+import { viewZToOrthographicDepth, reference, uniform, float, vec4, vec2, If, Fn, min, renderGroup, positionView, shadow } from 'three/tsl';
 
 const _cameraToLightMatrix = new Matrix4();
 const _lightSpaceFrustum = new CSMFrustum();
@@ -42,7 +42,7 @@ class LwLight extends Object3D {
  * use {@link CSM} instead.
  *
  * @augments ShadowBaseNode
- * @four_import import { CSMShadowNode } from '@tnb1j/4js/addons/csm/CSMShadowNode.js';
+ * @three_import import { CSMShadowNode } from 'three/addons/csm/CSMShadowNode.js';
  */
 class CSMShadowNode extends ShadowBaseNode {
 
@@ -491,6 +491,16 @@ class CSMShadowNode extends ShadowBaseNode {
 
 	}
 
+	build( builder ) {
+
+		// register before the shadow nodes so `updateBefore()` runs first
+
+		builder.addSequentialNode( this );
+
+		return super.build( builder );
+
+	}
+
 	setup( builder ) {
 
 		if ( this.camera === null ) this._init( builder );
@@ -561,6 +571,9 @@ class CSMShadowNode extends ShadowBaseNode {
 			lwLight.position.copy( _center );
 			lwLight.target.position.copy( _center );
 			lwLight.target.position.add( _lightDirection );
+
+			lwLight.updateMatrixWorld();
+			lwLight.target.updateMatrixWorld();
 
 		}
 

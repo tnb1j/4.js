@@ -58,4 +58,4 @@ The BRDF approximation texture data.
 
 ## Source
 
-[src/nodes/lighting/RectAreaLightNode.js](../../src/nodes/lighting/RectAreaLightNode.js)
+[src/nodes/lighting/RectAreaLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/RectAreaLightNode.js)

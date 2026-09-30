@@ -16,24 +16,25 @@
 	<body>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> -
-			<a href="http://3mf.io" target="_blank" rel="noopener">3MF</a> file with materials
+			<a href="https://3mf.io" target="_blank" rel="noopener">3MF</a> file with materials
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ThreeMFLoader } from '@tnb1j/4js/addons/loaders/3MFLoader.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ThreeMFLoader } from 'three/addons/loaders/3MFLoader.js';
 
 			let camera, scene, renderer;
 
@@ -41,37 +42,29 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xa0a0a0 );
-				scene.fog = new FOUR.Fog( 0xa0a0a0, 10, 500 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xa0a0a0 );
+				scene.fog = new THREE.Fog( 0xa0a0a0, 10, 500 );
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
 				camera.position.set( - 50, 40, 50 );
 				scene.add( camera );
 
 				//
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
 				hemiLight.position.set( 0, 100, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
-				dirLight.position.set( - 0, 40, 50 );
-				dirLight.castShadow = true;
-				dirLight.shadow.camera.top = 50;
-				dirLight.shadow.camera.bottom = - 25;
-				dirLight.shadow.camera.left = - 25;
-				dirLight.shadow.camera.right = 25;
-				dirLight.shadow.camera.near = 0.1;
-				dirLight.shadow.camera.far = 200;
-				dirLight.shadow.mapSize.set( 1024, 1024 );
-				scene.add( dirLight );
-
-				// scene.add( new FOUR.CameraHelper( dirLight.shadow.camera ) );
+				const sunLight = new SunLight( 0xffffff, 3 );
+				sunLight.position.set( 0, 40, 50 );
+				sunLight.castShadow = true;
+				sunLight.shadow.camera.far = 100;
+				scene.add( sunLight );
 
 				//
 
-				const manager = new FOUR.LoadingManager();
+				const manager = new THREE.LoadingManager();
 
 				const loader = new ThreeMFLoader( manager );
 				loader.load( './models/3mf/truck.3mf', function ( object ) {
@@ -98,7 +91,7 @@
 
 				//
 
-				const ground = new FOUR.Mesh( new FOUR.PlaneGeometry( 1000, 1000 ), new FOUR.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
+				const ground = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000 ), new THREE.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
 				ground.rotation.x = - Math.PI / 2;
 				ground.position.y = 11;
 				ground.receiveShadow = true;
@@ -106,11 +99,11 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 				document.body.appendChild( renderer.domElement );
 
 				//

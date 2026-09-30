@@ -17,31 +17,31 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
-			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
-			import { setupWebGLXRFallback } from '@tnb1j/4js/addons/webxr/WebGLXRFallback.js';
+			import { BoxLineGeometry } from 'three/addons/geometries/BoxLineGeometry.js';
+			import { XRButton } from 'three/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { setupWebGLXRFallback } from 'three/addons/webxr/WebGLXRFallback.js';
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
-			const rendererParameters = { antialias: true, outputBufferType: FOUR.UnsignedByteType, multiview: true };
+			const rendererParameters = { antialias: true, outputBufferType: THREE.UnsignedByteType, multiview: true };
 			const controllerModelFactory = new XRControllerModelFactory();
 
 			let container;
-			let camera, scene, raycaster, renderer;
+			let camera, scene, raycaster, renderer, renderPipeline;
 
 			let room;
 
@@ -55,30 +55,30 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x505050 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x505050 );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 				scene.add( camera );
 
-				room = new FOUR.LineSegments(
+				room = new THREE.LineSegments(
 					new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
-					new FOUR.LineBasicMaterial( { color: 0xbcbcbc } )
+					new THREE.LineBasicMaterial( { color: 0xbcbcbc } )
 				);
 				scene.add( room );
 
-				scene.add( new FOUR.HemisphereLight( 0xa5a5a5, 0x898989, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xa5a5a5, 0x898989, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 
-				const geometry = new FOUR.BoxGeometry( 0.15, 0.15, 0.15 );
+				const geometry = new THREE.BoxGeometry( 0.15, 0.15, 0.15 );
 
 				for ( let i = 0; i < 200; i ++ ) {
 
-					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 
 					object.position.x = Math.random() * 4 - 2;
 					object.position.y = Math.random() * 4;
@@ -92,7 +92,7 @@
 					object.scale.y = Math.random() + 0.5;
 					object.scale.z = Math.random() + 0.5;
 
-					object.userData.velocity = new FOUR.Vector3();
+					object.userData.velocity = new THREE.Vector3();
 					object.userData.velocity.x = Math.random() * 0.01 - 0.005;
 					object.userData.velocity.y = Math.random() * 0.01 - 0.005;
 					object.userData.velocity.z = Math.random() * 0.01 - 0.005;
@@ -101,7 +101,7 @@
 
 				}
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
 				renderer = createRenderer();
 				setRenderer( renderer );
@@ -123,7 +123,7 @@
 
 				if ( forceWebGL === true ) parameters.forceWebGL = true;
 
-				const renderer = new FOUR.WebGPURenderer( parameters );
+				const renderer = new THREE.WebGPURenderer( parameters );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -150,6 +150,7 @@
 				}
 
 				renderer = newRenderer;
+				renderPipeline = new THREE.DirectRenderPipeline( renderer );
 				setupControllers();
 
 			}
@@ -203,19 +204,19 @@
 
 					case 'tracked-pointer':
 
-						geometry = new FOUR.BufferGeometry();
-						geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
-						geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
+						geometry = new THREE.BufferGeometry();
+						geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
+						geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
 
-						material = new FOUR.LineBasicMaterial( { vertexColors: true, blending: FOUR.AdditiveBlending } );
+						material = new THREE.LineBasicMaterial( { vertexColors: true, blending: THREE.AdditiveBlending } );
 
-						return new FOUR.Line( geometry, material );
+						return new THREE.Line( geometry, material );
 
 					case 'gaze':
 
-						geometry = new FOUR.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
-						material = new FOUR.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
-						return new FOUR.Mesh( geometry, material );
+						geometry = new THREE.RingGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
+						material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
+						return new THREE.Mesh( geometry, material );
 
 				}
 
@@ -290,21 +291,21 @@
 
 					if ( cube.position.x < - 3 || cube.position.x > 3 ) {
 
-						cube.position.x = FOUR.MathUtils.clamp( cube.position.x, - 3, 3 );
+						cube.position.x = THREE.MathUtils.clamp( cube.position.x, - 3, 3 );
 						cube.userData.velocity.x = - cube.userData.velocity.x;
 
 					}
 
 					if ( cube.position.y < 0 || cube.position.y > 6 ) {
 
-						cube.position.y = FOUR.MathUtils.clamp( cube.position.y, 0, 6 );
+						cube.position.y = THREE.MathUtils.clamp( cube.position.y, 0, 6 );
 						cube.userData.velocity.y = - cube.userData.velocity.y;
 
 					}
 
 					if ( cube.position.z < - 3 || cube.position.z > 3 ) {
 
-						cube.position.z = FOUR.MathUtils.clamp( cube.position.z, - 3, 3 );
+						cube.position.z = THREE.MathUtils.clamp( cube.position.z, - 3, 3 );
 						cube.userData.velocity.z = - cube.userData.velocity.z;
 
 					}
@@ -315,7 +316,7 @@
 
 				}
 
-				renderer.render( scene, camera );
+				renderPipeline.render( scene, camera );
 
 			}
 

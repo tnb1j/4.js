@@ -16,10 +16,10 @@ import { clamp } from './MathUtils.js';
  * Iterating through a vector instance will yield its components `(x, y, z, w)` in
  * the corresponding order.
  * ```js
- * const a = new FOUR.Vector4( 0, 1, 0, 0 );
+ * const a = new THREE.Vector4( 0, 1, 0, 0 );
  *
  * //no arguments; will be initialised to (0, 0, 0, 1)
- * const b = new FOUR.Vector4( );
+ * const b = new THREE.Vector4( );
  *
  * const d = a.dot( b );
  * ```
@@ -222,7 +222,7 @@ class Vector4 {
 			case 1: this.y = value; break;
 			case 2: this.z = value; break;
 			case 3: this.w = value; break;
-			default: throw new Error( 'FOUR.Vector4: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector4: index is out of range: ' + index );
 
 		}
 
@@ -245,7 +245,7 @@ class Vector4 {
 			case 1: return this.y;
 			case 2: return this.z;
 			case 3: return this.w;
-			default: throw new Error( 'FOUR.Vector4: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector4: index is out of range: ' + index );
 
 		}
 
@@ -493,8 +493,6 @@ class Vector4 {
 	 */
 	setAxisAngleFromQuaternion( q ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
-
 		// q is assumed to be normalized
 
 		this.w = 2 * Math.acos( q.w );
@@ -527,8 +525,6 @@ class Vector4 {
 	 * @return {Vector4} A reference to this vector.
 	 */
 	setAxisAngleFromRotationMatrix( m ) {
-
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 

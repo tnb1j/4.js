@@ -2,10 +2,10 @@
 
 ## Import
 
-Text2D is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Text2D is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as Text2D from '@tnb1j/4js/addons/webxr/Text2D.js';
+import * as Text2D from 'three/addons/webxr/Text2D.js';
 ```
 
 ## Methods
@@ -26,4 +26,4 @@ The labels height.
 
 ## Source
 
-[examples/jsm/webxr/Text2D.js](../../examples/jsm/webxr/Text2D.js)
+[examples/jsm/webxr/Text2D.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/Text2D.js)

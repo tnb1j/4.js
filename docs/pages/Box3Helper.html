@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Box3Helper - 4.js Docs</title>
+	<title>Box3Helper - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
 			<header>
 				<div class="class-description"><p>A helper object to visualize an instance of <a href="Box3.html">Box3</a>.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const box = new FOUR.Box3();
-box.setFromCenterAndSize( new FOUR.Vector3( 1, 1, 1 ), new FOUR.Vector3( 2, 1, 3 ) );
-const helper = new FOUR.Box3Helper( box, 0xffff00 );
+				<div translate="no"><pre><code class="language-js">const box = new THREE.Box3();
+box.setFromCenterAndSize( new THREE.Vector3( 1, 1, 1 ), new THREE.Vector3( 2, 1, 3 ) );
+const helper = new THREE.Box3Helper( box, 0xffff00 );
 scene.add( helper )
 </code></pre></div>
 			</header>
@@ -66,10 +66,13 @@ scene.add( helper )
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="LineSegments.html#dispose">LineSegments#dispose</a></dt>
+						</dl>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/helpers/Box3Helper.js" translate="no">src/helpers/Box3Helper.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/helpers/Box3Helper.js" translate="no" target="_blank" rel="noopener">src/helpers/Box3Helper.js</a>
 				</p>
 			</article>
 		</section>

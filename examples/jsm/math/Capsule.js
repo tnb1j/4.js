@@ -1,6 +1,6 @@
 import {
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A capsule is essentially a cylinder with hemispherical caps at both ends.
@@ -8,7 +8,7 @@ import {
  *
  * Capsules are often used as bounding volumes (next to AABBs and bounding spheres).
  *
- * @four_import import { Capsule } from '@tnb1j/4js/addons/math/Capsule.js';
+ * @three_import import { Capsule } from 'three/addons/math/Capsule.js';
  */
 class Capsule {
 

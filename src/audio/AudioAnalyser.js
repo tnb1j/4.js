@@ -3,14 +3,14 @@
  *
  * ```js
  * // create an AudioListener and add it to the camera
- * const listener = new FOUR.AudioListener();
+ * const listener = new THREE.AudioListener();
  * camera.add( listener );
  *
  * // create an Audio source
- * const sound = new FOUR.Audio( listener );
+ * const sound = new THREE.Audio( listener );
  *
  * // load a sound and set it as the Audio object's buffer
- * const audioLoader = new FOUR.AudioLoader();
+ * const audioLoader = new THREE.AudioLoader();
  * audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
  * 	sound.setBuffer( buffer );
  * 	sound.setLoop(true);
@@ -19,7 +19,7 @@
  * });
  *
  * // create an AudioAnalyser, passing in the sound and desired fftSize
- * const analyser = new FOUR.AudioAnalyser( sound, 32 );
+ * const analyser = new THREE.AudioAnalyser( sound, 32 );
  *
  * // get the average frequency of the sound
  * const data = analyser.getAverageFrequency();

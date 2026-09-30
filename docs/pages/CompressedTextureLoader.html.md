@@ -80,4 +80,4 @@ The texture format.
 
 ## Source
 
-[src/loaders/CompressedTextureLoader.js](../../src/loaders/CompressedTextureLoader.js)
+[src/loaders/CompressedTextureLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/CompressedTextureLoader.js)

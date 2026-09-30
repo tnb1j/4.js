@@ -16,20 +16,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { TGALoader } from '@tnb1j/4js/addons/loaders/TGALoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { TGALoader } from 'three/addons/loaders/TGALoader.js';
 
 			let camera, scene, renderer, stats;
 
@@ -40,23 +40,23 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 1, 5 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				//
 
 				const loader = new TGALoader();
-				const geometry = new FOUR.BoxGeometry();
+				const geometry = new THREE.BoxGeometry();
 
 				// add box 1 - grey8 texture
 
 				const texture1 = loader.load( 'textures/crate_grey8.tga' );
-				texture1.colorSpace = FOUR.SRGBColorSpace;
-				const material1 = new FOUR.MeshPhongMaterial( { color: 0xffffff, map: texture1 } );
+				texture1.colorSpace = THREE.SRGBColorSpace;
+				const material1 = new THREE.MeshPhongMaterial( { color: 0xffffff, map: texture1 } );
 
-				const mesh1 = new FOUR.Mesh( geometry, material1 );
+				const mesh1 = new THREE.Mesh( geometry, material1 );
 				mesh1.position.x = - 1;
 
 				scene.add( mesh1 );
@@ -64,26 +64,26 @@
 				// add box 2 - tga texture
 
 				const texture2 = loader.load( 'textures/crate_color8.tga' );
-				texture2.colorSpace = FOUR.SRGBColorSpace;
-				const material2 = new FOUR.MeshPhongMaterial( { color: 0xffffff, map: texture2 } );
+				texture2.colorSpace = THREE.SRGBColorSpace;
+				const material2 = new THREE.MeshPhongMaterial( { color: 0xffffff, map: texture2 } );
 
-				const mesh2 = new FOUR.Mesh( geometry, material2 );
+				const mesh2 = new THREE.Mesh( geometry, material2 );
 				mesh2.position.x = 1;
 
 				scene.add( mesh2 );
 
 				//
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffff, 1.5 );
+				const ambientLight = new THREE.AmbientLight( 0xffffff, 1.5 );
 				scene.add( ambientLight );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+				const light = new THREE.DirectionalLight( 0xffffff, 2.5 );
 				light.position.set( 1, 1, 1 );
 				scene.add( light );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

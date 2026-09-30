@@ -7,21 +7,21 @@ import {
 	ShaderLib,
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass } from './Pass.js';
 
 /**
  * This pass can be used to render a cube texture over the entire screen.
  *
  * ```js
- * const cubeMap = new FOUR.CubeTextureLoader().load( urls );
+ * const cubeMap = new THREE.CubeTextureLoader().load( urls );
  *
  * const cubeTexturePass = new CubeTexturePass( camera, cubemap );
  * composer.addPass( cubeTexturePass );
  * ```
  *
  * @augments Pass
- * @four_import import { CubeTexturePass } from '@tnb1j/4js/addons/postprocessing/CubeTexturePass.js';
+ * @three_import import { CubeTexturePass } from 'three/addons/postprocessing/CubeTexturePass.js';
  */
 class CubeTexturePass extends Pass {
 

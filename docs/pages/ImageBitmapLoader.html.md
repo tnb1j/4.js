@@ -15,10 +15,10 @@ To match the default behaviour of [Texture](Texture.html), the following options
 Also note that unlike [FileLoader](FileLoader.html), this loader will only avoid multiple concurrent requests to the same URL if [Cache](Cache.html) is enabled.
 
 ```js
-const loader = new FOUR.ImageBitmapLoader();
+const loader = new THREE.ImageBitmapLoader();
 loader.setOptions( { imageOrientation: 'flipY' } ); // set options if needed
 const imageBitmap = await loader.loadAsync( 'image.png' );
-const texture = new FOUR.Texture( imageBitmap );
+const texture = new THREE.Texture( imageBitmap );
 texture.needsUpdate = true;
 ```
 
@@ -92,4 +92,4 @@ The loader options to set.
 
 ## Source
 
-[src/loaders/ImageBitmapLoader.js](../../src/loaders/ImageBitmapLoader.js)
+[src/loaders/ImageBitmapLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/ImageBitmapLoader.js)

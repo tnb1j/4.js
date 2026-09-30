@@ -4,12 +4,12 @@
 
 A low level class for loading resources with the Fetch API, used internally by most loaders. It can also be used directly to load any file type that does not have a loader.
 
-This loader supports caching. If you want to use it, add `FOUR.Cache.enabled = true;` once to your application.
+This loader supports caching. If you want to use it, add `THREE.Cache.enabled = true;` once to your application.
 
 ## Code Example
 
 ```js
-const loader = new FOUR.FileLoader();
+const loader = new THREE.FileLoader();
 const data = await loader.loadAsync( 'example.txt' );
 ```
 
@@ -89,4 +89,4 @@ The response type.
 
 ## Source
 
-[src/loaders/FileLoader.js](../../src/loaders/FileLoader.js)
+[src/loaders/FileLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/FileLoader.js)

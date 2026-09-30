@@ -18,26 +18,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color } from 'three/tsl';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Line2 } from '@tnb1j/4js/addons/lines/webgpu/Line2.js';
-			import { LineGeometry } from '@tnb1j/4js/addons/lines/LineGeometry.js';
-			import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Line2 } from 'three/addons/lines/webgpu/Line2.js';
+			import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
+			import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 
 			let line, renderer, scene, camera, camera2, controls, backgroundNode;
 			let line1;
@@ -53,19 +53,19 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setClearColor( 0x000000 );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( - 40, 0, 60 );
 
-				camera2 = new FOUR.PerspectiveCamera( 40, 1, 1, 1000 );
+				camera2 = new THREE.PerspectiveCamera( 40, 1, 1, 1000 );
 				camera2.position.copy( camera.position );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -75,17 +75,17 @@
 
 				backgroundNode = color( 0x222222 );
 
-				// Position and FOUR.Color Data
+				// Position and THREE.Color Data
 
 				const positions = [];
 				const colors = [];
 
-				const points = GeometryUtils.hilbert3D( new FOUR.Vector3( 0, 0, 0 ), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7 );
+				const points = GeometryUtils.hilbert3D( new THREE.Vector3( 0, 0, 0 ), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7 );
 
-				const spline = new FOUR.CatmullRomCurve3( points );
+				const spline = new THREE.CatmullRomCurve3( points );
 				const divisions = Math.round( 12 * points.length );
-				const point = new FOUR.Vector3();
-				const lineColor = new FOUR.Color();
+				const point = new THREE.Vector3();
+				const lineColor = new THREE.Color();
 
 				for ( let i = 0, l = divisions; i < l; i ++ ) {
 
@@ -94,7 +94,7 @@
 					spline.getPoint( t, point );
 					positions.push( point.x, point.y, point.z );
 
-					lineColor.setHSL( t, 1.0, 0.5, FOUR.SRGBColorSpace );
+					lineColor.setHSL( t, 1.0, 0.5, THREE.SRGBColorSpace );
 					colors.push( lineColor.r, lineColor.g, lineColor.b );
 
 				}
@@ -106,7 +106,7 @@
 				geometry.setPositions( positions );
 				geometry.setColors( colors );
 
-				matLine = new FOUR.Line2NodeMaterial( {
+				matLine = new THREE.Line2NodeMaterial( {
 
 					color: 0xffffff,
 					linewidth: 5, // in world units with size attenuation, pixels otherwise
@@ -122,16 +122,16 @@
 				scene.add( line );
 
 
-				// FOUR.Line ( FOUR.BufferGeometry, FOUR.LineBasicNodeMaterial ) - rendered with gl.LINE_STRIP
+				// THREE.Line ( THREE.BufferGeometry, THREE.LineBasicNodeMaterial ) - rendered with gl.LINE_STRIP
 
-				const geo = new FOUR.BufferGeometry();
-				geo.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
-				geo.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 3 ) );
+				const geo = new THREE.BufferGeometry();
+				geo.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+				geo.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 
-				matLineBasic = new FOUR.LineBasicNodeMaterial( { vertexColors: true } );
-				matLineDashed = new FOUR.LineDashedNodeMaterial( { vertexColors: true, scale: 2, dashSize: 1, gapSize: 1 } );
+				matLineBasic = new THREE.LineBasicNodeMaterial( { vertexColors: true } );
+				matLineDashed = new THREE.LineDashedNodeMaterial( { vertexColors: true, scale: 2, dashSize: 1, gapSize: 1 } );
 
-				line1 = new FOUR.Line( geo, matLineBasic );
+				line1 = new THREE.Line( geo, matLineBasic );
 				line1.computeLineDistances();
 				line1.visible = false;
 				scene.add( line1 );

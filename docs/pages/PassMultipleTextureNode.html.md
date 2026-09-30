@@ -48,4 +48,4 @@ Updates the texture reference of this node.
 
 ## Source
 
-[src/nodes/display/PassNode.js](../../src/nodes/display/PassNode.js)
+[src/nodes/display/PassNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/PassNode.js)

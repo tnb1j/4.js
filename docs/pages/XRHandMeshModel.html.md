@@ -4,10 +4,10 @@ Represents one of the hand model types [XRHandModelFactory](XRHandModelFactory.h
 
 ## Import
 
-XRHandMeshModel is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+XRHandMeshModel is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { XRHandMeshModel } from '@tnb1j/4js/addons/webxr/XRHandMeshModel.js';
+import { XRHandMeshModel } from 'three/addons/webxr/XRHandMeshModel.js';
 ```
 
 ## Constructor
@@ -72,4 +72,4 @@ Updates the mesh based on the tracked XR joints data.
 
 ## Source
 
-[examples/jsm/webxr/XRHandMeshModel.js](../../examples/jsm/webxr/XRHandMeshModel.js)
+[examples/jsm/webxr/XRHandMeshModel.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XRHandMeshModel.js)

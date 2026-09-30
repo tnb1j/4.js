@@ -44,22 +44,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { vec2, uniform, screenUV, color, texture, diffuseColor, attribute, vec3, vec4 } from 'three/tsl';
 
-			import { TextureHelper } from '@tnb1j/4js/addons/helpers/TextureHelperGPU.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { unzipSync } from '@tnb1j/4js/addons/libs/fflate.module.js';
+			import { TextureHelper } from 'three/addons/helpers/TextureHelperGPU.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { unzipSync } from 'three/addons/libs/fflate.module.js';
 
 			let renderer;
 			let views = [];
@@ -76,12 +76,12 @@
 					const aspect = ( window.innerWidth * width ) / ( window.innerHeight * height );
 
 					// Set up perspective camera
-					this.camera = new FOUR.PerspectiveCamera( 50, aspect, 0.1, 100 );
+					this.camera = new THREE.PerspectiveCamera( 50, aspect, 0.1, 100 );
 					this.camera.position.set( - 7, 0, 10 );
 					this.camera.lookAt( 0, 0, 0 );
 					this.camera.updateProjectionMatrix();
 
-					this.scene = new FOUR.Scene();
+					this.scene = new THREE.Scene();
 
 
 					const normalizedUV = screenUV.mul( vec2( 1, - 1 ) ).add( vec2( 0, 1 ) ); // Flip Y and offset
@@ -121,7 +121,7 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.autoClear = false;
@@ -158,18 +158,18 @@
 					depth: 109
 				};
 
-				new FOUR.FileLoader()
+				new THREE.FileLoader()
 					.setResponseType( 'arraybuffer' )
 					.load( 'textures/3d/head256x256x109.zip', function ( data ) {
 
 						const zip = unzipSync( new Uint8Array( data ) );
 						const array = new Uint8Array( zip[ 'head256x256x109' ].buffer );
 
-						const map3D = new FOUR.Data3DTexture( array, size.width, size.height, size.depth );
+						const map3D = new THREE.Data3DTexture( array, size.width, size.height, size.depth );
 						map3D.name = 'Data3DTexture';
-						map3D.format = FOUR.RedFormat;
-						map3D.minFilter = FOUR.LinearFilter;
-						map3D.magFilter = FOUR.LinearFilter;
+						map3D.format = THREE.RedFormat;
+						map3D.minFilter = THREE.LinearFilter;
+						map3D.magFilter = THREE.LinearFilter;
 						map3D.unpackAlignment = 1;
 						map3D.needsUpdate = true;
 
@@ -184,7 +184,7 @@
 						);
 						views[ 1 ].scene.add( helper3D );
 
-						const fbo3D = new FOUR.RenderTarget3D( size.width, size.height, size.depth, {
+						const fbo3D = new THREE.RenderTarget3D( size.width, size.height, size.depth, {
 							depthBuffer: false,
 						} );
 						fbo3D.texture.name = 'RenderTarget3D';
@@ -202,11 +202,11 @@
 
 						// 2D Array
 
-						const mapArray = new FOUR.DataArrayTexture( array, size.width, size.height, size.depth );
+						const mapArray = new THREE.DataArrayTexture( array, size.width, size.height, size.depth );
 						mapArray.name = 'DataArrayTexture';
-						mapArray.format = FOUR.RedFormat;
-						mapArray.minFilter = FOUR.LinearFilter;
-						mapArray.magFilter = FOUR.LinearFilter;
+						mapArray.format = THREE.RedFormat;
+						mapArray.minFilter = THREE.LinearFilter;
+						mapArray.magFilter = THREE.LinearFilter;
 						mapArray.unpackAlignment = 1;
 						mapArray.needsUpdate = true;
 
@@ -218,12 +218,12 @@
 						views[ 0 ].scene.add( helperArray );
 
 						// Setup render targets
-						const materialQuad = new FOUR.NodeMaterial();
+						const materialQuad = new THREE.NodeMaterial();
 						const uZCoord = uniform( 0 );
 						materialQuad.depthTest = false;
 						materialQuad.outputNode = vec4( texture( mapArray ).depth( uZCoord ).rgb, 1 );
 
-						const fboArray = new FOUR.RenderTarget( size.width, size.height, {
+						const fboArray = new THREE.RenderTarget( size.width, size.height, {
 							depthBuffer: false,
 							depth: size.depth
 						} );
@@ -237,16 +237,16 @@
 						views[ 2 ].scene.add( fboArrayHelper );
 
 
-						const quadMesh = new FOUR.QuadMesh( materialQuad );
+						const quadMesh = new THREE.QuadMesh( materialQuad );
 
 
 
 						// In WebGPU we need to clear all the layers of the 3D render target before rendering to it (WebGPU limitation?)
 						if ( renderer.backend.isWebGPUBackend ) {
 
-							const materialClear = new FOUR.NodeMaterial();
+							const materialClear = new THREE.NodeMaterial();
 							materialClear.outputNode = vec4( 0 );
-							const clearQuadMesh = new FOUR.QuadMesh( materialClear );
+							const clearQuadMesh = new THREE.QuadMesh( materialClear );
 							for ( let i = 0; i < size.depth; i ++ ) {
 			
 								renderer.setRenderTarget( fbo3D, i );

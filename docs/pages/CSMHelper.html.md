@@ -6,10 +6,10 @@ A helper for visualizing the cascades of a CSM instance.
 
 ## Import
 
-CSMHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSMHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSMHelper } from '@tnb1j/4js/addons/csm/CSMHelper.js';
+import { CSMHelper } from 'three/addons/csm/CSMHelper.js';
 ```
 
 ## Constructor
@@ -52,6 +52,8 @@ Default is `true`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Group#dispose](Group.html#dispose)
+
 ### .update()
 
 Updates the helper. This method should be called in the app's animation loop.
@@ -62,4 +64,4 @@ This method must be called if one of the `display*` properties is changed at run
 
 ## Source
 
-[examples/jsm/csm/CSMHelper.js](../../examples/jsm/csm/CSMHelper.js)
+[examples/jsm/csm/CSMHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/csm/CSMHelper.js)

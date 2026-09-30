@@ -30,4 +30,4 @@ The result buffer.
 
 ## Source
 
-[src/math/interpolants/CubicInterpolant.js](../../src/math/interpolants/CubicInterpolant.js)
+[src/math/interpolants/CubicInterpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/interpolants/CubicInterpolant.js)

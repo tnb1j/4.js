@@ -25,20 +25,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { storageTexture, textureStore, Fn, instanceIndex, uniform, float, vec2, vec4, uvec2, ivec2, int, NodeAccess } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { storageTexture, textureStore, Fn, instanceIndex, uniform, float, vec2, vec4, uvec2, ivec2, int, NodeAccess } from 'three/tsl';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			let camera, scene, renderer;
 			let computeInitNode, computeToPing, computeToPong;
@@ -49,7 +49,7 @@
 
 			const width = 512, height = 512;
 
-			const seed = uniform( new FOUR.Vector2() );
+			const seed = uniform( new THREE.Vector2() );
 
 			init();
 
@@ -64,22 +64,22 @@
 				}
 
 				const aspect = window.innerWidth / window.innerHeight;
-				camera = new FOUR.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
+				camera = new THREE.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
 				camera.position.z = 1;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// texture
 
 				const hdr = true;
 
-				pingTexture = new FOUR.StorageTexture( width, height );
-				pongTexture = new FOUR.StorageTexture( width, height );
+				pingTexture = new THREE.StorageTexture( width, height );
+				pongTexture = new THREE.StorageTexture( width, height );
 
 				if ( hdr ) {
 
-					pingTexture.type = FOUR.HalfFloatType;
-					pongTexture.type = FOUR.HalfFloatType;
+					pingTexture.type = THREE.HalfFloatType;
+					pongTexture.type = THREE.HalfFloatType;
 
 				}
 
@@ -143,12 +143,12 @@
 
 				//
 
-				material = new FOUR.MeshBasicMaterial( { color: 0xffffff, map: pongTexture } );
+				material = new THREE.MeshBasicMaterial( { color: 0xffffff, map: pongTexture } );
 
-				const plane = new FOUR.Mesh( new FOUR.PlaneGeometry( 1, 1 ), material );
+				const plane = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1 ), material );
 				scene.add( plane );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );

@@ -96,19 +96,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DObject } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 
 			const table = [
 				'H', 'Hydrogen', '1.00794', 1, 1,
@@ -242,10 +242,10 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 3000;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// table
 
@@ -280,7 +280,7 @@
 
 					//
 
-					const object = new FOUR.Object3D();
+					const object = new THREE.Object3D();
 					object.position.x = ( table[ i + 3 ] * 140 ) - 1330;
 					object.position.y = - ( table[ i + 4 ] * 180 ) + 990;
 
@@ -290,14 +290,14 @@
 
 				// sphere
 
-				const vector = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
 
 				for ( let i = 0, l = objects.length; i < l; i ++ ) {
 
 					const phi = Math.acos( - 1 + ( 2 * i ) / l );
 					const theta = Math.sqrt( l * Math.PI ) * phi;
 
-					const object = new FOUR.Object3D();
+					const object = new THREE.Object3D();
 
 					object.position.setFromSphericalCoords( 800, phi, theta );
 
@@ -316,7 +316,7 @@
 					const theta = i * 0.175 + Math.PI;
 					const y = - ( i * 8 ) + 450;
 
-					const object = new FOUR.Object3D();
+					const object = new THREE.Object3D();
 
 					object.position.setFromCylindricalCoords( 900, theta, y );
 
@@ -334,7 +334,7 @@
 
 				for ( let i = 0; i < objects.length; i ++ ) {
 
-					const object = new FOUR.Object3D();
+					const object = new THREE.Object3D();
 
 					object.position.x = ( ( i % 5 ) * 400 ) - 800;
 					object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;

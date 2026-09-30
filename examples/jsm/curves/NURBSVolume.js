@@ -1,6 +1,6 @@
 import {
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 import * as NURBSUtils from '../curves/NURBSUtils.js';
 
 /**
@@ -8,7 +8,7 @@ import * as NURBSUtils from '../curves/NURBSUtils.js';
  *
  * Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weight`.
  *
- * @four_import import { NURBSVolume } from '@tnb1j/4js/addons/curves/NURBSVolume.js';
+ * @three_import import { NURBSVolume } from 'three/addons/curves/NURBSVolume.js';
  */
 class NURBSVolume {
 

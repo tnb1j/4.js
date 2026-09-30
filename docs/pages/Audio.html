@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Audio - 4.js Docs</title>
+	<title>Audio - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,12 +17,12 @@
 <p>This and related audio modules make use of the <a href="https://www.w3.org/TR/webaudio-1.1/" target="_blank" rel="noopener">Web Audio API</a>.</p></div>
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">// create an AudioListener and add it to the camera
-const listener = new FOUR.AudioListener();
+const listener = new THREE.AudioListener();
 camera.add( listener );
 // create a global audio source
-const sound = new FOUR.Audio( listener );
+const sound = new THREE.Audio( listener );
 // load a sound and set it as the Audio object's buffer
-const audioLoader = new FOUR.AudioLoader();
+const audioLoader = new THREE.AudioLoader();
 audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
 	sound.setBuffer( buffer );
 	sound.setLoop( true );
@@ -595,7 +595,7 @@ start, in seconds.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/audio/Audio.js" translate="no">src/audio/Audio.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/audio/Audio.js" translate="no" target="_blank" rel="noopener">src/audio/Audio.js</a>
 				</p>
 			</article>
 		</section>

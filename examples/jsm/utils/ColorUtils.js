@@ -1,8 +1,8 @@
-import { MathUtils, SRGBColorSpace } from '@tnb1j/4js';
+import { MathUtils, SRGBColorSpace } from 'three';
 
 /**
  * @module ColorUtils
- * @four_import import * as ColorUtils from '@tnb1j/4js/addons/utils/ColorUtils.js';
+ * @three_import import * as ColorUtils from 'three/addons/utils/ColorUtils.js';
  */
 
 /**

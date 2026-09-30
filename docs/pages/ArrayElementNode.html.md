@@ -66,4 +66,4 @@ The member name.
 
 ## Source
 
-[src/nodes/utils/ArrayElementNode.js](../../src/nodes/utils/ArrayElementNode.js)
+[src/nodes/utils/ArrayElementNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/ArrayElementNode.js)

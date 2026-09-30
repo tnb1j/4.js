@@ -10,9 +10,9 @@ This is used in [Line2](Line2.html) to describe the shape.
 
 ```js
 const points = [
-	new FOUR.Vector3( - 10, 0, 0 ),
-	new FOUR.Vector3( 0, 5, 0 ),
-	new FOUR.Vector3( 10, 0, 0 ),
+	new THREE.Vector3( - 10, 0, 0 ),
+	new THREE.Vector3( 0, 5, 0 ),
+	new THREE.Vector3( 10, 0, 0 ),
 ];
 const geometry = new LineGeometry();
 geometry.setFromPoints( points );
@@ -20,10 +20,10 @@ geometry.setFromPoints( points );
 
 ## Import
 
-LineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LineGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LineLineGeometry2 } from '@tnb1j/4js/addons/lines/LineGeometry.js';
+import { LineLineGeometry2 } from 'three/addons/lines/LineGeometry.js';
 ```
 
 ## Constructor
@@ -88,4 +88,4 @@ The position data to set.
 
 ## Source
 
-[examples/jsm/lines/LineGeometry.js](../../examples/jsm/lines/LineGeometry.js)
+[examples/jsm/lines/LineGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/LineGeometry.js)

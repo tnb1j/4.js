@@ -13,10 +13,10 @@ const result = await exporter.parse( renderer, options );
 
 ## Import
 
-EXRExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+EXRExporter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { EXRExporter } from '@tnb1j/4js/addons/exporters/EXRExporter.js';
+import { EXRExporter } from 'three/addons/exporters/EXRExporter.js';
 ```
 
 ## Constructor
@@ -68,4 +68,4 @@ Default is `ZIP_COMPRESSION`.
 
 ## Source
 
-[examples/jsm/exporters/EXRExporter.js](../../examples/jsm/exporters/EXRExporter.js)
+[examples/jsm/exporters/EXRExporter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/EXRExporter.js)

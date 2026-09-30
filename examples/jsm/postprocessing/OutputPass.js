@@ -10,7 +10,7 @@ import {
 	NeutralToneMapping,
 	CustomToneMapping,
 	SRGBTransfer
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { OutputShader } from '../shaders/OutputShader.js';
 
@@ -28,7 +28,7 @@ import { OutputShader } from '../shaders/OutputShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+ * @three_import import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
  */
 class OutputPass extends Pass {
 

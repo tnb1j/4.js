@@ -54,4 +54,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/curves/LineCurve.js](../../src/extras/curves/LineCurve.js)
+[src/extras/curves/LineCurve.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/LineCurve.js)

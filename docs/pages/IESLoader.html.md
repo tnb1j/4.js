@@ -11,16 +11,16 @@ The loaded texture should be assigned to [IESSpotLight#map](IESSpotLight.html#ma
 ```js
 const loader = new IESLoader();
 const texture = await loader.loadAsync( 'ies/007cfb11e343e2f42e3b476be4ab684e.ies' );
-const spotLight = new FOUR.IESSpotLight( 0xff0000, 500 );
+const spotLight = new THREE.IESSpotLight( 0xff0000, 500 );
 spotLight.iesMap = texture;
 ```
 
 ## Import
 
-IESLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+IESLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { IESLoader } from '@tnb1j/4js/addons/loaders/IESLoader.js';
+import { IESLoader } from 'three/addons/loaders/IESLoader.js';
 ```
 
 ## Constructor
@@ -79,4 +79,4 @@ The raw IES data.
 
 ## Source
 
-[examples/jsm/loaders/IESLoader.js](../../examples/jsm/loaders/IESLoader.js)
+[examples/jsm/loaders/IESLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/IESLoader.js)

@@ -5,7 +5,7 @@ import {
 	LineBasicMaterial,
 	Matrix3,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 const _v1 = new Vector3();
 const _v2 = new Vector3();
@@ -17,9 +17,9 @@ const _normalMatrix = new Matrix3();
  * Requires that normals have been specified in the geometry as a buffer attribute or
  * have been calculated using {@link BufferGeometry#computeVertexNormals}.
  * ```js
- * const geometry = new FOUR.BoxGeometry( 10, 10, 10, 2, 2, 2 );
- * const material = new FOUR.MeshStandardMaterial();
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const geometry = new THREE.BoxGeometry( 10, 10, 10, 2, 2, 2 );
+ * const material = new THREE.MeshStandardMaterial();
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  *
  * const helper = new VertexNormalsHelper( mesh, 1, 0xff0000 );
@@ -27,7 +27,7 @@ const _normalMatrix = new Matrix3();
  * ```
  *
  * @augments LineSegments
- * @four_import import { VertexNormalsHelper } from '@tnb1j/4js/addons/helpers/VertexNormalsHelper.js';
+ * @three_import import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';
  */
 class VertexNormalsHelper extends LineSegments {
 

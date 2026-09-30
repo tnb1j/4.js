@@ -60,4 +60,4 @@ Sets up the node by sampling with the default UV accessor.
 
 ## Source
 
-[src/nodes/utils/SampleNode.js](../../src/nodes/utils/SampleNode.js)
+[src/nodes/utils/SampleNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/SampleNode.js)

@@ -18,10 +18,10 @@ import { Quaternion } from './Quaternion.js';
  * Iterating through a vector instance will yield its components `(x, y, z)` in
  * the corresponding order.
  * ```js
- * const a = new FOUR.Vector3( 0, 1, 0 );
+ * const a = new THREE.Vector3( 0, 1, 0 );
  *
  * //no arguments; will be initialised to (0, 0, 0)
- * const b = new FOUR.Vector3( );
+ * const b = new THREE.Vector3( );
  *
  * const d = a.distanceTo( b );
  * ```
@@ -165,7 +165,7 @@ class Vector3 {
 			case 0: this.x = value; break;
 			case 1: this.y = value; break;
 			case 2: this.z = value; break;
-			default: throw new Error( 'FOUR.Vector3: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector3: index is out of range: ' + index );
 
 		}
 
@@ -186,7 +186,7 @@ class Vector3 {
 			case 0: return this.x;
 			case 1: return this.y;
 			case 2: return this.z;
-			default: throw new Error( 'FOUR.Vector3: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector3: index is out of range: ' + index );
 
 		}
 
@@ -516,15 +516,15 @@ class Vector3 {
 	}
 
 	/**
-	 * Transforms the direction of this vector by a matrix (the upper left 3 x 3
-	 * subset of the given 4x4 matrix and then normalizes the result.
+	 * Transforms this vector by the upper left 3x3 sub-matrix of the given 4x4 matrix,
+	 * and normalizes the result.
 	 *
 	 * @param {Matrix4} m - The matrix.
 	 * @return {Vector3} A reference to this vector.
 	 */
 	transformDirection( m ) {
 
-		// input: FOUR.Matrix4 affine matrix
+		// input: THREE.Matrix4 affine matrix
 		// vector interpreted as a direction
 
 		const x = this.x, y = this.y, z = this.z;

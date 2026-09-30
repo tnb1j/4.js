@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module SobelOperatorShader
- * @four_import import { SobelOperatorShader } from '@tnb1j/4js/addons/shaders/SobelOperatorShader.js';
+ * @three_import import { SobelOperatorShader } from 'three/addons/shaders/SobelOperatorShader.js';
  */
 
 /**

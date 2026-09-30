@@ -2,10 +2,10 @@
 
 ## Import
 
-SAOShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SAOShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SAOShader } from '@tnb1j/4js/addons/shaders/SAOShader.js';
+import { SAOShader } from 'three/addons/shaders/SAOShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ Used by [SAOPass](SAOPass.html).
 
 ## Source
 
-[examples/jsm/shaders/SAOShader.js](../../examples/jsm/shaders/SAOShader.js)
+[examples/jsm/shaders/SAOShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SAOShader.js)

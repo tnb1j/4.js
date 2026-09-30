@@ -1,6 +1,6 @@
 /**
  * @module DOFMipMapShader
- * @four_import import { DOFMipMapShader } from '@tnb1j/4js/addons/shaders/DOFMipMapShader.js';
+ * @three_import import { DOFMipMapShader } from 'three/addons/shaders/DOFMipMapShader.js';
  */
 
 /**

@@ -10,7 +10,7 @@ import {
 	InterleavedBuffer,
 	InterleavedBufferAttribute,
 	LoaderUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 const _taskCache = new WeakMap();
 
@@ -51,7 +51,7 @@ const DRACO_GLTF_CONFIG = {
  * ```
  *
  * @augments Loader
- * @four_import import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+ * @three_import import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
  */
 class DRACOLoader extends Loader {
 
@@ -129,7 +129,7 @@ class DRACOLoader extends Loader {
 	 */
 	setDecoderConfig( config ) {
 
-		console.warn( 'FOUR.DRACOLoader: setDecoderConfig to has been deprecated and will be removed in r194.' );
+		console.warn( 'THREE.DRACOLoader: setDecoderConfig to has been deprecated and will be removed in r194.' );
 		this.decoderConfig = config;
 
 		return this;
@@ -227,7 +227,7 @@ class DRACOLoader extends Loader {
 				// different ways, so this is left unimplemented.
 				throw new Error(
 
-					'FOUR.DRACOLoader: Unable to re-decode a buffer with different ' +
+					'THREE.DRACOLoader: Unable to re-decode a buffer with different ' +
 					'settings. Buffer has already been transferred.'
 
 				);
@@ -389,7 +389,7 @@ class DRACOLoader extends Loader {
 
 			if ( decoderPaths.dep_js === null ) {
 
-				throw new Error( 'FOUR.DRACOLoader: WebAssembly is required when using a custom decoder paths.' );
+				throw new Error( 'THREE.DRACOLoader: WebAssembly is required when using a custom decoder paths.' );
 
 			}
 
@@ -460,7 +460,7 @@ class DRACOLoader extends Loader {
 							break;
 
 						default:
-							console.error( 'FOUR.DRACOLoader: Unexpected message, "' + message.type + '"' );
+							console.error( 'THREE.DRACOLoader: Unexpected message, "' + message.type + '"' );
 
 					}
 
@@ -611,13 +611,13 @@ function DRACOWorker() {
 
 		} else {
 
-			throw new Error( 'FOUR.DRACOLoader: Unexpected geometry type.' );
+			throw new Error( 'THREE.DRACOLoader: Unexpected geometry type.' );
 
 		}
 
 		if ( ! decodingStatus.ok() || dracoGeometry.ptr === 0 ) {
 
-			throw new Error( 'FOUR.DRACOLoader: Decoding failed: ' + decodingStatus.error_msg() );
+			throw new Error( 'THREE.DRACOLoader: Decoding failed: ' + decodingStatus.error_msg() );
 
 		}
 
@@ -713,13 +713,13 @@ function DRACOWorker() {
 
 		if ( srcByteStride === dstByteStride ) {
 
-			// FOUR.BufferAttribute
+			// THREE.BufferAttribute
 
 			dstArray = srcArray.slice();
 
 		} else {
 
-			// FOUR.InterleavedBufferAttribute
+			// THREE.InterleavedBufferAttribute
 
 			dstArray = new TypedArray( dstByteLength / TypedArray.BYTES_PER_ELEMENT );
 

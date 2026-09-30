@@ -26,26 +26,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
+			import * as THREE from 'three/webgpu';
+			import { TransformControls } from 'three/addons/controls/TransformControls.js';
 
-			import { Flow } from '@tnb1j/4js/addons/modifiers/CurveModifierGPU.js';
-			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+			import { Flow } from 'three/addons/modifiers/CurveModifierGPU.js';
+			import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			const ACTION_SELECT = 1, ACTION_NONE = 0;
 			const curveHandles = [];
-			const mouse = new FOUR.Vector2();
+			const mouse = new THREE.Vector2();
 
 			let scene,
 				camera,
@@ -59,9 +59,9 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera(
+				camera = new THREE.PerspectiveCamera(
 					40,
 					window.innerWidth / window.innerHeight,
 					1,
@@ -77,39 +77,39 @@
 					{ x: - 1, y: 0, z: - 1 },
 				];
 
-				const boxGeometry = new FOUR.BoxGeometry( 0.1, 0.1, 0.1 );
-				const boxMaterial = new FOUR.MeshBasicNodeMaterial();
+				const boxGeometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+				const boxMaterial = new THREE.MeshBasicNodeMaterial();
 
 				for ( const handlePos of initialPoints ) {
 
-					const handle = new FOUR.Mesh( boxGeometry, boxMaterial );
+					const handle = new THREE.Mesh( boxGeometry, boxMaterial );
 					handle.position.copy( handlePos );
 					curveHandles.push( handle );
 					scene.add( handle );
 
 				}
 
-				const curve = new FOUR.CatmullRomCurve3(
+				const curve = new THREE.CatmullRomCurve3(
 					curveHandles.map( ( handle ) => handle.position )
 				);
 				curve.curveType = 'centripetal';
 				curve.closed = true;
 
 				const points = curve.getPoints( 50 );
-				const line = new FOUR.Line(
-					new FOUR.BufferGeometry().setFromPoints( points ),
-					new FOUR.LineBasicMaterial( { color: 0x00ff00 } )
+				const line = new THREE.Line(
+					new THREE.BufferGeometry().setFromPoints( points ),
+					new THREE.LineBasicMaterial( { color: 0x00ff00 } )
 				);
 
 				scene.add( line );
 
 				//
 
-				const light = new FOUR.DirectionalLight( 0xffaa33, 3 );
+				const light = new THREE.DirectionalLight( 0xffaa33, 3 );
 				light.position.set( - 10, 10, 10 );
 				scene.add( light );
 
-				const light2 = new FOUR.AmbientLight( 0x003973, 3 );
+				const light2 = new THREE.AmbientLight( 0x003973, 3 );
 				scene.add( light2 );
 
 				//
@@ -131,11 +131,11 @@
 
 					geometry.rotateX( Math.PI );
 
-					const material = new FOUR.MeshStandardNodeMaterial( {
+					const material = new THREE.MeshStandardNodeMaterial( {
 						color: 0x99ffff
 					} );
 
-					const objectToCurve = new FOUR.Mesh( geometry, material );
+					const objectToCurve = new THREE.Mesh( geometry, material );
 
 					flow = new Flow( objectToCurve );
 					flow.updateCurve( 0, curve );
@@ -145,7 +145,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -153,7 +153,7 @@
 
 				renderer.domElement.addEventListener( 'pointerdown', onPointerDown );
 
-				rayCaster = new FOUR.Raycaster();
+				rayCaster = new THREE.Raycaster();
 				control = new TransformControls( camera, renderer.domElement );
 				control.addEventListener( 'dragging-changed', function ( event ) {
 

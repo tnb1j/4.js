@@ -24,33 +24,33 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+		import Stats from 'three/addons/libs/stats.module.js';
+		import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-		import { radixSort } from '@tnb1j/4js/addons/utils/SortUtils.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { radixSort } from 'three/addons/utils/SortUtils.js';
 
 		let stats, gui, guiStatsEl;
 		let camera, controls, scene, renderer;
 		let geometries, mesh;
 		const ids = [];
-		const matrix = new FOUR.Matrix4();
+		const matrix = new THREE.Matrix4();
 
 		//
 
-		const position = new FOUR.Vector3();
-		const rotation = new FOUR.Euler();
-		const quaternion = new FOUR.Quaternion();
-		const scale = new FOUR.Vector3();
+		const position = new THREE.Vector3();
+		const rotation = new THREE.Euler();
+		const quaternion = new THREE.Quaternion();
+		const scale = new THREE.Vector3();
 
 		//
 
@@ -120,9 +120,9 @@
 
 		function initGeometries() {
 
-			const cone = new FOUR.ConeGeometry( 1.0, 2.0 );
-			const box = new FOUR.BoxGeometry( 2.0, 2.0, 2.0 );
-			const sphere = new FOUR.SphereGeometry( 1.0, 16, 8 );
+			const cone = new THREE.ConeGeometry( 1.0, 2.0 );
+			const box = new THREE.BoxGeometry( 2.0, 2.0, 2.0 );
+			const sphere = new THREE.SphereGeometry( 1.0, 16, 8 );
 
 			geometries = [ cone, box, sphere ];
 
@@ -130,7 +130,7 @@
 
 				// add vertex colors for testing
 				const count = geometry.getAttribute( 'position' ).count;
-				const attribute = new FOUR.BufferAttribute( new Float32Array( count * 3 ), 3 );
+				const attribute = new THREE.BufferAttribute( new Float32Array( count * 3 ), 3 );
 				geometry.setAttribute( 'color', attribute );
 
 				for ( let i = 0, l = attribute.array.length; i < l; ++ i ) {
@@ -145,7 +145,7 @@
 
 		function createMaterial() {
 
-			return new FOUR.MeshPhongMaterial( {
+			return new THREE.MeshPhongMaterial( {
 				vertexColors: true,
 				transparent: api.transparent,
 				depthWrite: ! api.transparent
@@ -159,7 +159,7 @@
 
 				mesh.traverse( node => {
 
-					if ( node instanceof FOUR.Mesh ) {
+					if ( node instanceof THREE.Mesh ) {
 
 						node.material.dispose();
 
@@ -197,7 +197,7 @@
 
 		function initRegularMesh() {
 
-			mesh = new FOUR.Group();
+			mesh = new THREE.Group();
 
 			for ( let i = 0; i < api.count; i ++ ) {
 
@@ -205,10 +205,10 @@
 				randomizeColor( material.color );
 				material.opacity = randomizeAlpha();
 
-				const child = new FOUR.Mesh( geometries[ i % geometries.length ], material );
+				const child = new THREE.Mesh( geometries[ i % geometries.length ], material );
 				randomizeMatrix( child.matrix );
 				child.matrix.decompose( child.position, child.quaternion, child.scale );
-				child.userData.rotationSpeed = randomizeRotationSpeed( new FOUR.Euler() );
+				child.userData.rotationSpeed = randomizeRotationSpeed( new THREE.Euler() );
 				mesh.add( child );
 
 			}
@@ -223,11 +223,11 @@
 			const vertexCount = geometries.length * 512;
 			const indexCount = geometries.length * 1024;
 
-			const euler = new FOUR.Euler();
-			const matrix = new FOUR.Matrix4();
-			const color = new FOUR.Color();
-			const colorWithAlpha = new FOUR.Vector4();
-			mesh = new FOUR.BatchedMesh( geometryCount, vertexCount, indexCount, createMaterial() );
+			const euler = new THREE.Euler();
+			const matrix = new THREE.Matrix4();
+			const color = new THREE.Color();
+			const colorWithAlpha = new THREE.Vector4();
+			mesh = new THREE.BatchedMesh( geometryCount, vertexCount, indexCount, createMaterial() );
 			mesh.userData.rotationSpeeds = [];
 
 			// disable full-object frustum culling since all of the objects can be dynamic.
@@ -250,7 +250,7 @@
 				mesh.setMatrixAt( id, randomizeMatrix( matrix ) );
 				mesh.setColorAt( id, colorWithAlpha );
 
-				const rotationMatrix = new FOUR.Matrix4();
+				const rotationMatrix = new THREE.Matrix4();
 				rotationMatrix.makeRotationFromEuler( randomizeRotationSpeed( euler ) );
 				mesh.userData.rotationSpeeds.push( rotationMatrix );
 
@@ -269,12 +269,12 @@
 
 			// camera
 
-			camera = new FOUR.PerspectiveCamera( 70, width / height, 1, 100 );
+			camera = new THREE.PerspectiveCamera( 70, width / height, 1, 100 );
 			camera.position.z = 30;
 
 			// renderer
 
-			renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( width, height );
 			renderer.setAnimationLoop( animate );
@@ -282,8 +282,8 @@
 
 			// scene
 
-			scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0xffffff );
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0xffffff );
 
 			// controls
 
@@ -293,8 +293,8 @@
 
 			// light
 
-			const ambientLight = new FOUR.AmbientLight( 0xffffff, 2 );
-			const directionalLight = new FOUR.DirectionalLight( 0xffffff, 2 );
+			const ambientLight = new THREE.AmbientLight( 0xffffff, 2 );
+			const directionalLight = new THREE.DirectionalLight( 0xffffff, 2 );
 			directionalLight.position.set( 1, 1, 1 );
 			scene.add( directionalLight, ambientLight );
 
@@ -312,7 +312,7 @@
 
 			gui.add( api, 'transparent' ).onChange( v => mesh.traverse( node => {
 
-				if ( node instanceof FOUR.Mesh ) {
+				if ( node instanceof THREE.Mesh ) {
 
 					const material = node.material;
 					material.transparent = v;

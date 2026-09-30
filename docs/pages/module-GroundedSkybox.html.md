@@ -2,10 +2,10 @@
 
 ## Import
 
-GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { getGroundProjectedNormal } from '@tnb1j/4js/addons/tsl/utils/GroundedSkybox.js';
+import { getGroundProjectedNormal } from 'three/addons/tsl/utils/GroundedSkybox.js';
 ```
 
 ## Static Methods
@@ -26,4 +26,4 @@ The height is how far the camera that took the photo was above the ground. A lar
 
 ## Source
 
-[examples/jsm/tsl/utils/GroundedSkybox.js](../../examples/jsm/tsl/utils/GroundedSkybox.js)
+[examples/jsm/tsl/utils/GroundedSkybox.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/utils/GroundedSkybox.js)

@@ -4,7 +4,7 @@ import {
 	LineBasicMaterial,
 	Line,
 	MathUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This helper displays the directional cone of a positional audio.
@@ -12,7 +12,7 @@ import {
  * `PositionalAudioHelper` must be added as a child of the positional audio.
  *
  * ```js
- * const positionalAudio = new FOUR.PositionalAudio( listener );
+ * const positionalAudio = new THREE.PositionalAudio( listener );
  * positionalAudio.setDirectionalCone( 180, 230, 0.1 );
  * scene.add( positionalAudio );
  *
@@ -21,7 +21,7 @@ import {
  * ```
  *
  * @augments Line
- * @four_import import { PositionalAudioHelper } from '@tnb1j/4js/addons/helpers/PositionalAudioHelper.js';
+ * @three_import import { PositionalAudioHelper } from 'three/addons/helpers/PositionalAudioHelper.js';
  */
 class PositionalAudioHelper extends Line {
 

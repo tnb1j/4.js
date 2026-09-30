@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
-			import { XRHandModelFactory } from '@tnb1j/4js/addons/webxr/XRHandModelFactory.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -51,27 +51,27 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				window.scene = scene;
-				scene.background = new FOUR.Color( 0x444444 );
+				scene.background = new THREE.Color( 0x444444 );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 
 				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
-				const floorGeometry = new FOUR.PlaneGeometry( 4, 4 );
-				const floorMaterial = new FOUR.MeshStandardMaterial( { color: 0x666666 } );
-				const floor = new FOUR.Mesh( floorGeometry, floorMaterial );
+				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
+				const floorMaterial = new THREE.MeshStandardMaterial( { color: 0x666666 } );
+				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
 
-				scene.add( new FOUR.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
 				light.castShadow = true;
 				light.shadow.camera.top = 2;
@@ -83,7 +83,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -175,9 +175,9 @@
 
 				//
 
-				const geometry = new FOUR.BufferGeometry().setFromPoints( [ new FOUR.Vector3( 0, 0, 0 ), new FOUR.Vector3( 0, 0, - 1 ) ] );
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-				const line = new FOUR.Line( geometry );
+				const line = new THREE.Line( geometry );
 				line.name = 'line';
 				line.scale.z = 5;
 

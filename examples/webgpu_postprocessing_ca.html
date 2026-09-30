@@ -24,30 +24,30 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, renderOutput, uniform } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { pass, renderOutput, uniform } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { chromaticAberration } from '@tnb1j/4js/addons/tsl/display/ChromaticAberrationNode.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { chromaticAberration } from 'three/addons/tsl/display/ChromaticAberrationNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			const params = {
 				enabled: true,
 				animated: true,
 				strength: 1.5,
-				center: new FOUR.Vector2( 0.5, 0.5 ),
+				center: new THREE.Vector2( 0.5, 0.5 ),
 				scale: 1.2,
 				autoRotate: true,
 				cameraDistance: 40
@@ -60,7 +60,7 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -69,7 +69,7 @@
 
 				await renderer.init();
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
 				camera.position.set( 0, 15, params.cameraDistance );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -80,29 +80,29 @@
 				controls.target.set( 0, 0.5, 0 );
 				controls.update();
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x0a0a0a );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x0a0a0a );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// Create main group
-				mainGroup = new FOUR.Group();
+				mainGroup = new THREE.Group();
 				scene.add( mainGroup );
 
 				// Create shapes
 				createShapes();
 
 				// Add a grid for reference
-				const gridHelper = new FOUR.GridHelper( 40, 20, 0x444444, 0x222222 );
+				const gridHelper = new THREE.GridHelper( 40, 20, 0x444444, 0x222222 );
 				gridHelper.position.y = - 10;
 				scene.add( gridHelper );
 
 				// post processing
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputColorTransform = false;
 
 				// scene pass
@@ -111,7 +111,7 @@
 
 				// Create uniform nodes for the static version that can be updated
 				const staticStrength = uniform( params.strength );
-				const staticCenter = uniform( new FOUR.Vector2( params.center.x, params.center.y ) );
+				const staticCenter = uniform( new THREE.Vector2( params.center.x, params.center.y ) );
 				const staticScale = uniform( params.scale );
 
 				// With static values (using uniform nodes)
@@ -170,7 +170,7 @@
 				// Create materials
 				colors.forEach( color => {
 
-					materials.push( new FOUR.MeshStandardMaterial( {
+					materials.push( new THREE.MeshStandardMaterial( {
 						color: color,
 						roughness: 0.2,
 						metalness: 0.8
@@ -180,23 +180,23 @@
 
 				// Create geometries
 				const geometries = [
-					new FOUR.BoxGeometry( 3, 3, 3 ),
-					new FOUR.SphereGeometry( 2, 32, 16 ),
-					new FOUR.ConeGeometry( 2, 4, 8 ),
-					new FOUR.CylinderGeometry( 1.5, 1.5, 4, 8 ),
-					new FOUR.TorusGeometry( 2, 0.8, 8, 16 ),
-					new FOUR.OctahedronGeometry( 2.5 ),
-					new FOUR.IcosahedronGeometry( 2.5 ),
-					new FOUR.TorusKnotGeometry( 1.5, 0.5, 64, 8 )
+					new THREE.BoxGeometry( 3, 3, 3 ),
+					new THREE.SphereGeometry( 2, 32, 16 ),
+					new THREE.ConeGeometry( 2, 4, 8 ),
+					new THREE.CylinderGeometry( 1.5, 1.5, 4, 8 ),
+					new THREE.TorusGeometry( 2, 0.8, 8, 16 ),
+					new THREE.OctahedronGeometry( 2.5 ),
+					new THREE.IcosahedronGeometry( 2.5 ),
+					new THREE.TorusKnotGeometry( 1.5, 0.5, 64, 8 )
 				];
 
 				// Create central showcase
-				const centralGroup = new FOUR.Group();
+				const centralGroup = new THREE.Group();
 
 				// Large central torus
-				const centralTorus = new FOUR.Mesh(
-					new FOUR.TorusGeometry( 5, 1.5, 16, 32 ),
-					new FOUR.MeshStandardMaterial( {
+				const centralTorus = new THREE.Mesh(
+					new THREE.TorusGeometry( 5, 1.5, 16, 32 ),
+					new THREE.MeshStandardMaterial( {
 						color: 0xffffff,
 						roughness: 0.1,
 						metalness: 1,
@@ -211,7 +211,7 @@
 					const angle = ( i / 6 ) * Math.PI * 2;
 					const radius = 3;
 
-					const mesh = new FOUR.Mesh(
+					const mesh = new THREE.Mesh(
 						geometries[ i % geometries.length ],
 						materials[ i % materials.length ]
 					);
@@ -238,12 +238,12 @@
 				for ( let i = 0; i < numShapes; i ++ ) {
 
 					const angle = ( i / numShapes ) * Math.PI * 2;
-					const shapesGroup = new FOUR.Group();
+					const shapesGroup = new THREE.Group();
 
 					const geometry = geometries[ i % geometries.length ];
 					const material = materials[ i % materials.length ];
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
 
@@ -260,7 +260,7 @@
 				}
 
 				// Add floating particles
-				const particlesGeometry = new FOUR.BufferGeometry();
+				const particlesGeometry = new THREE.BufferGeometry();
 				const particlesCount = 200;
 				const positions = new Float32Array( particlesCount * 3 );
 
@@ -276,15 +276,15 @@
 
 				}
 
-				particlesGeometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
+				particlesGeometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
 
-				const particlesMaterial = new FOUR.PointsMaterial( {
+				const particlesMaterial = new THREE.PointsMaterial( {
 					color: 0xffffff,
 					size: 0.5,
 					sizeAttenuation: true
 				} );
 
-				const particles = new FOUR.Points( particlesGeometry, particlesMaterial );
+				const particles = new THREE.Points( particlesGeometry, particlesMaterial );
 				mainGroup.add( particles );
 
 			}

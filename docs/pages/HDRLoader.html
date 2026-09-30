@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>HDRLoader - 4.js Docs</title>
+	<title>HDRLoader - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,14 +17,14 @@
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">const loader = new HDRLoader();
 const envMap = await loader.loadAsync( 'textures/equirectangular/blouberg_sunrise_2_1k.hdr' );
-envMap.mapping = FOUR.EquirectangularReflectionMapping;
+envMap.mapping = THREE.EquirectangularReflectionMapping;
 scene.environment = envMap;
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">HDRLoader</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';</code></pre>
+				<p><span translate="no">HDRLoader</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="HDRLoader" translate="no">new <a href="#HDRLoader">HDRLoader</a><span class="signature">( manager : <span class="param-type"><a href="LoadingManager.html">LoadingManager</a></span> )</span> </h3>
@@ -102,7 +102,7 @@ scene.environment = envMap;
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/loaders/HDRLoader.js" translate="no">examples/jsm/loaders/HDRLoader.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/HDRLoader.js" translate="no" target="_blank" rel="noopener">examples/jsm/loaders/HDRLoader.js</a>
 				</p>
 			</article>
 		</section>

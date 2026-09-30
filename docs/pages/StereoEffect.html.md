@@ -6,10 +6,10 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 
 ## Import
 
-StereoEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+StereoEffect is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { StereoEffect } from '@tnb1j/4js/addons/effects/StereoEffect.js';
+import { StereoEffect } from 'three/addons/effects/StereoEffect.js';
 ```
 
 ## Constructor
@@ -58,4 +58,4 @@ The height of the effect in logical pixels.
 
 ## Source
 
-[examples/jsm/effects/StereoEffect.js](../../examples/jsm/effects/StereoEffect.js)
+[examples/jsm/effects/StereoEffect.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/effects/StereoEffect.js)

@@ -7,7 +7,7 @@ A representation of mesh, line, or point geometry. Includes vertex positions, fa
 ## Code Example
 
 ```js
-const geometry = new FOUR.BufferGeometry();
+const geometry = new THREE.BufferGeometry();
 // create a simple square shape. We duplicate the top left and bottom right
 // vertices because each vertex needs to appear once per triangle.
 const vertices = new Float32Array( [
@@ -19,9 +19,9 @@ const vertices = new Float32Array( [
 	-1.0, -1.0,  1.0  // v5
 ] );
 // itemSize = 3 because there are 3 values (components) per vertex
-geometry.setAttribute( 'position', new FOUR.BufferAttribute( vertices, 3 ) );
-const material = new FOUR.MeshBasicMaterial( { color: 0xff0000 } );
-const mesh = new FOUR.Mesh( geometry, material );
+geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+const mesh = new THREE.Mesh( geometry, material );
 ```
 
 ## Constructor
@@ -408,4 +408,4 @@ The z offset.
 
 ## Source
 
-[src/core/BufferGeometry.js](../../src/core/BufferGeometry.js)
+[src/core/BufferGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/core/BufferGeometry.js)

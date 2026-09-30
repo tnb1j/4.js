@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>TrackballControls - 4.js Docs</title>
+	<title>TrackballControls - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -19,8 +19,8 @@ to stay &quot;right side up&quot;.</p></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">TrackballControls</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';</code></pre>
+				<p><span translate="no">TrackballControls</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { TrackballControls } from 'three/addons/controls/TrackballControls.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="TrackballControls" translate="no">new <a href="#TrackballControls">TrackballControls</a><span class="signature">( object : <span class="param-type"><a href="Object3D.html">Object3D</a></span>, domElement : <span class="param-type">HTMLElement</span> )</span> </h3>
@@ -107,15 +107,23 @@ to stay &quot;right side up&quot;.</p></div>
 					<div class="description">
 						<p>This object contains references to the mouse actions used by the controls.</p>
 <pre><code class="language-js">controls.mouseButtons = {
-	LEFT: FOUR.MOUSE.ROTATE,
-	MIDDLE: FOUR.MOUSE.DOLLY,
-	RIGHT: FOUR.MOUSE.PAN
+	LEFT: THREE.MOUSE.ROTATE,
+	MIDDLE: THREE.MOUSE.DOLLY,
+	RIGHT: THREE.MOUSE.PAN
 }
 </code></pre>
 					</div>
 						<dl class="details">
 							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Controls.html#mouseButtons">Controls#mouseButtons</a></dt>
 						</dl>
+				</div>
+				<div class="member">
+					<h3 class="name" id="multiTouchRoll" translate="no">.<a href="#multiTouchRoll">multiTouchRoll</a><span class="type-signature"> : boolean</span> </h3>
+					<div class="description">
+						<p>Whether two finger twist gesture rolls
+the camera around its view axis or not.</p>
+						<p>Default is <code>false</code>.</p>
+					</div>
 				</div>
 				<div class="member">
 					<h3 class="name" id="noPan" translate="no">.<a href="#noPan">noPan</a><span class="type-signature"> : boolean</span> </h3>
@@ -143,6 +151,13 @@ to stay &quot;right side up&quot;.</p></div>
 					<div class="description">
 						<p>The pan speed.</p>
 						<p>Default is <code>0.3</code>.</p>
+					</div>
+				</div>
+				<div class="member">
+					<h3 class="name" id="rollSpeed" translate="no">.<a href="#rollSpeed">rollSpeed</a><span class="type-signature"> : number</span> </h3>
+					<div class="description">
+						<p>The roll speed used for multi-touch roll.</p>
+						<p>Default is <code>1</code>.</p>
 					</div>
 				</div>
 				<div class="member">
@@ -230,7 +245,7 @@ to stay &quot;right side up&quot;.</p></div>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/controls/TrackballControls.js" translate="no">examples/jsm/controls/TrackballControls.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/TrackballControls.js" translate="no" target="_blank" rel="noopener">examples/jsm/controls/TrackballControls.js</a>
 				</p>
 			</article>
 		</section>

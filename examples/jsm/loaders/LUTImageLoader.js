@@ -6,7 +6,7 @@ import {
 	UnsignedByteType,
 	ClampToEdgeWrapping,
 	LinearFilter,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for loading LUT images.
@@ -17,7 +17,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUTImageLoader } from '@tnb1j/4js/addons/loaders/LUTImageLoader.js';
+ * @three_import import { LUTImageLoader } from 'three/addons/loaders/LUTImageLoader.js';
  */
 export class LUTImageLoader extends Loader {
 

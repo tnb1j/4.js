@@ -10,10 +10,10 @@ document.body.appendChild( ARButton.createButton( renderer ) );
 
 ## Import
 
-ARButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ARButton is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ARButton } from '@tnb1j/4js/addons/webxr/ARButton.js';
+import { ARButton } from 'three/addons/webxr/ARButton.js';
 ```
 
 ## Static Methods
@@ -34,4 +34,4 @@ The a configuration object for the AR session.
 
 ## Source
 
-[examples/jsm/webxr/ARButton.js](../../examples/jsm/webxr/ARButton.js)
+[examples/jsm/webxr/ARButton.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/ARButton.js)

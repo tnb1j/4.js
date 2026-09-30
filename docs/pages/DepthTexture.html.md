@@ -108,4 +108,4 @@ Default is `true`.
 
 ## Source
 
-[src/textures/DepthTexture.js](../../src/textures/DepthTexture.js)
+[src/textures/DepthTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/DepthTexture.js)

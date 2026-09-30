@@ -6,10 +6,10 @@ A special render pass node that renders the scene as a stereoscopic image.
 
 ## Import
 
-StereoPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+StereoPassNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { stereoPass } from '@tnb1j/4js/addons/tsl/display/StereoPassNode.js';
+import { stereoPass } from 'three/addons/tsl/display/StereoPassNode.js';
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/StereoPassNode.js](../../examples/jsm/tsl/display/StereoPassNode.js)
+[examples/jsm/tsl/display/StereoPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/StereoPassNode.js)

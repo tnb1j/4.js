@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
-			import { RapierHelper } from '@tnb1j/4js/addons/helpers/RapierHelper.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
+			import { RapierHelper } from 'three/addons/helpers/RapierHelper.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let physics, physicsHelper, controls;
@@ -47,17 +47,17 @@
 
 			async function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 4, 10 );
 
-				const ambient = new FOUR.HemisphereLight( 0x555555, 0xFFFFFF );
+				const ambient = new THREE.HemisphereLight( 0x555555, 0xFFFFFF );
 
 				scene.add( ambient );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 4 );
+				const light = new THREE.DirectionalLight( 0xffffff, 4 );
 
 				light.position.set( 0, 12.5, 12.5 );
 				light.castShadow = true;
@@ -76,7 +76,7 @@
 
 				scene.add( light );
 			
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
@@ -84,13 +84,13 @@
 				renderer.setAnimationLoop( animate );
 
 				controls = new OrbitControls( camera, renderer.domElement );
-				controls.target = new FOUR.Vector3( 0, 2, 0 );
+				controls.target = new THREE.Vector3( 0, 2, 0 );
 				controls.update();
 
-				const geometry = new FOUR.BoxGeometry( 100, 0.5, 100 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0xFFFFFF } );
+				const geometry = new THREE.BoxGeometry( 100, 0.5, 100 );
+				const material = new THREE.MeshStandardMaterial( { color: 0xFFFFFF } );
 			
-				const ground = new FOUR.Mesh( geometry, material );
+				const ground = new THREE.Mesh( geometry, material );
 				ground.receiveShadow = true;
 
 				ground.position.set( 0, - 0.25, - 20 );
@@ -98,10 +98,10 @@
 
   				scene.add( ground );
 
-				new FOUR.TextureLoader().load( 'textures/grid.png', function ( texture ) {
+				new THREE.TextureLoader().load( 'textures/grid.png', function ( texture ) {
 
-					texture.wrapS = FOUR.RepeatWrapping;
-					texture.wrapT = FOUR.RepeatWrapping;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
 					texture.repeat.set( 80, 80 );
 					ground.material.map = texture;
 					ground.material.needsUpdate = true;
@@ -167,9 +167,9 @@
 
 			function createCar( ) {
 
-				const geometry = new FOUR.BoxGeometry( 2, 1, 4 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0xFF0000 } );
-				const mesh = new FOUR.Mesh( geometry, material );
+				const geometry = new THREE.BoxGeometry( 2, 1, 4 );
+				const material = new THREE.MeshStandardMaterial( { color: 0xFF0000 } );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.castShadow = true;
 				scene.add( mesh );
 				car = mesh;
@@ -222,10 +222,10 @@
 				vehicleController.setWheelSteering( index, pos.z < 0 );
 
 				// Create a wheel mesh
-				const geometry = new FOUR.CylinderGeometry( wheelRadius, wheelRadius, wheelWidth, 16 );
+				const geometry = new THREE.CylinderGeometry( wheelRadius, wheelRadius, wheelWidth, 16 );
 				geometry.rotateZ( Math.PI * 0.5 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0x000000 } );
-				const wheel = new FOUR.Mesh( geometry, material );
+				const material = new THREE.MeshStandardMaterial( { color: 0x000000 } );
+				const wheel = new THREE.Mesh( geometry, material );
 
 				wheel.castShadow = true;
 
@@ -240,9 +240,9 @@
 
 				if ( vehicleController === undefined ) return;
 
-				const wheelSteeringQuat = new FOUR.Quaternion();
-				const wheelRotationQuat = new FOUR.Quaternion();
-				const up = new FOUR.Vector3( 0, 1, 0 );
+				const wheelSteeringQuat = new THREE.Quaternion();
+				const wheelRotationQuat = new THREE.Quaternion();
+				const up = new THREE.Vector3( 0, 1, 0 );
 
 				//const chassisPosition = chassis.translation();
 
@@ -326,7 +326,7 @@
 				const steerDirection = movement.right;
 				const steerAngle = Math.PI / 4;
 
-				const steering = FOUR.MathUtils.lerp( currentSteering, steerAngle * steerDirection, 0.25 );
+				const steering = THREE.MathUtils.lerp( currentSteering, steerAngle * steerDirection, 0.25 );
 
 				vehicleController.setWheelSteering( 0, steering );
 				vehicleController.setWheelSteering( 1, steering );

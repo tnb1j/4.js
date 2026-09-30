@@ -55,6 +55,7 @@ export { default as ModelNode } from './accessors/ModelNode.js';
 export { default as Object3DNode } from './accessors/Object3DNode.js';
 export { default as PointUVNode } from './accessors/PointUVNode.js';
 export { default as ReferenceBaseNode } from './accessors/ReferenceBaseNode.js';
+export { default as ReferenceElementNode } from './accessors/ReferenceElementNode.js';
 export { default as ReferenceNode } from './accessors/ReferenceNode.js';
 export { default as RendererReferenceNode } from './accessors/RendererReferenceNode.js';
 export { default as StorageBufferNode } from './accessors/StorageBufferNode.js';
@@ -82,8 +83,6 @@ export { default as NormalMapNode } from './display/NormalMapNode.js';
 export { default as PassNode } from './display/PassNode.js';
 export { default as RenderOutputNode } from './display/RenderOutputNode.js';
 export { default as ScreenNode } from './display/ScreenNode.js';
-export { default as SharpenNode, sharpen } from './display/SharpenNode.js';
-export { default as TAAUNode, taau } from './display/TAAUNode.js';
 export { default as ToneMappingNode } from './display/ToneMappingNode.js';
 export { default as ToonOutlinePassNode } from './display/ToonOutlinePassNode.js';
 export { default as ViewportDepthNode } from './display/ViewportDepthNode.js';
@@ -132,6 +131,7 @@ export { default as ConditionalNode } from './math/ConditionalNode.js';
 export { default as MathNode } from './math/MathNode.js';
 export { default as OperatorNode } from './math/OperatorNode.js';
 export { default as PackFloatNode } from './math/PackFloatNode.js';
+export { default as Packed4x8IntegerNode } from './math/Packed4x8IntegerNode.js';
 export { default as UnpackFloatNode } from './math/UnpackFloatNode.js';
 
 // parsers
@@ -163,3 +163,6 @@ export { default as StorageArrayElementNode } from './utils/StorageArrayElementN
 // lighting models
 export { default as PhongLightingModel } from './functions/PhongLightingModel.js';
 export { default as PhysicalLightingModel } from './functions/PhysicalLightingModel.js';
+
+export { default as SharpenNode, sharpen } from './display/SharpenNode.js';
+export { default as TAAUNode, taau } from './display/TAAUNode.js';

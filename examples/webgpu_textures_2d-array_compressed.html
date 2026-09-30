@@ -27,21 +27,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { texture, uniform, uv } from '@tnb1j/4js/tsl';
+			import { texture, uniform, uv } from 'three/tsl';
 
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 
 			//
 
@@ -61,16 +61,16 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
 				camera.position.z = 70;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				//
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -85,12 +85,12 @@
 
 				ktx2Loader.load( 'textures/spiritedaway.ktx2', function ( texturearray ) {
 
-					const material = new FOUR.NodeMaterial();
+					const material = new THREE.NodeMaterial();
 
 					material.colorNode = texture( texturearray, uv().flipY() ).depth( depth );
-					const geometry = new FOUR.PlaneGeometry( planeWidth, planeHeight );
+					const geometry = new THREE.PlaneGeometry( planeWidth, planeHeight );
 
-					mesh = new FOUR.Mesh( geometry, material );
+					mesh = new THREE.Mesh( geometry, material );
 
 					scene.add( mesh );
 

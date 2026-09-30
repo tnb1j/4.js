@@ -40,4 +40,4 @@ Represents the bump map data.
 
 ## Source
 
-[src/nodes/display/BumpMapNode.js](../../src/nodes/display/BumpMapNode.js)
+[src/nodes/display/BumpMapNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/BumpMapNode.js)

@@ -9,9 +9,10 @@ An extension of the [MeshStandardMaterial](MeshStandardMaterial.html), providing
 *   Iridescence: Allows to render the effect where hue varies depending on the viewing angle and illumination angle. This can be seen on soap bubbles, oil films, or on the wings of many insects.
 *   Physically-based transparency: One limitation of [Material#opacity](Material.html#opacity) is that highly transparent materials are less reflective. Physically-based transmission provides a more realistic option for thin, transparent surfaces like glass.
 *   Advanced reflectivity: More flexible reflectivity for non-metallic materials.
+*   Retroreflection: Redirects specular light back toward the light source for safety materials like road markings and reflective tape.
 *   Sheen: Can be used for representing cloth and fabric materials.
 
-As a result of these complex shading features, `MeshPhysicalMaterial` has a higher performance cost, per pixel, than other 4.js materials. Most effects are disabled by default, and add cost as they are enabled. For best results, always specify an environment map when using this material.
+As a result of these complex shading features, `MeshPhysicalMaterial` has a higher performance cost, per pixel, than other three.js materials. Most effects are disabled by default, and add cost as they are enabled. For best results, always specify an environment map when using this material.
 
 ## Constructor
 
@@ -163,6 +164,12 @@ This models the reflectivity of non-metallic materials. It has no effect when `m
 
 Default is `0.5`.
 
+### .retroreflectivity : number
+
+The strength of retroreflection, from `0.0` to `1.0`. A value of `1.0` evaluates the material's microfacet reflection with the view direction reflected about the surface normal, redirecting the specular lobe back toward the light source.
+
+Default is `0`.
+
 ### .sheen : number
 
 The intensity of the sheen layer, from `0.0` to `1.0`.
@@ -259,4 +266,4 @@ Default is `null`.
 
 ## Source
 
-[src/materials/MeshPhysicalMaterial.js](../../src/materials/MeshPhysicalMaterial.js)
+[src/materials/MeshPhysicalMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshPhysicalMaterial.js)

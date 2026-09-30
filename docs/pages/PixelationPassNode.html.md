@@ -6,10 +6,10 @@ A special render pass node that renders the scene with a pixelation effect.
 
 ## Import
 
-PixelationPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PixelationPassNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { pixelationPass } from '@tnb1j/4js/addons/tsl/display/PixelationPassNode.js';
+import { pixelationPass } from 'three/addons/tsl/display/PixelationPassNode.js';
 ```
 
 ## Constructor
@@ -98,4 +98,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/PixelationPassNode.js](../../examples/jsm/tsl/display/PixelationPassNode.js)
+[examples/jsm/tsl/display/PixelationPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/PixelationPassNode.js)

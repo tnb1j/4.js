@@ -9,7 +9,7 @@ Materials define the appearance of renderable 3D objects.
 ## Code Example
 
 ```js
-const material = new FOUR.LineBasicMaterial( { color: 0xffffff } );
+const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
 ```
 
 ## Constructor
@@ -76,4 +76,4 @@ Default is `null`.
 
 ## Source
 
-[src/materials/LineBasicMaterial.js](../../src/materials/LineBasicMaterial.js)
+[src/materials/LineBasicMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/LineBasicMaterial.js)

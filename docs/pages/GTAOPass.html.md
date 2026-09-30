@@ -16,10 +16,10 @@ composer.addPass( gtaoPass );
 
 ## Import
 
-GTAOPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GTAOPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { GTAOPass } from '@tnb1j/4js/addons/postprocessing/GTAOPass.js';
+import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 ```
 
 ## Constructor
@@ -210,4 +210,4 @@ The denoise parameters.
 
 ## Source
 
-[examples/jsm/postprocessing/GTAOPass.js](../../examples/jsm/postprocessing/GTAOPass.js)
+[examples/jsm/postprocessing/GTAOPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/GTAOPass.js)

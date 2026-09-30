@@ -4,7 +4,7 @@ import {
 	Timer,
 	Vector2,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { ShaderPass } from './ShaderPass.js';
 import { ClearMaskPass, MaskPass } from './MaskPass.js';
@@ -37,7 +37,7 @@ import { ClearMaskPass, MaskPass } from './MaskPass.js';
  * }
  * ```
  *
- * @four_import import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+ * @three_import import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
  */
 class EffectComposer {
 

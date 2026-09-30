@@ -12,20 +12,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { MeshSurfaceSampler } from '@tnb1j/4js/addons/math/MeshSurfaceSampler.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, stats;
 
@@ -47,16 +47,16 @@
 			const count = api.count;
 			const ages = new Float32Array( count );
 			const scales = new Float32Array( count );
-			const dummy = new FOUR.Object3D();
+			const dummy = new THREE.Object3D();
 
-			const _position = new FOUR.Vector3();
-			const _normal = new FOUR.Vector3();
-			const _scale = new FOUR.Vector3();
+			const _position = new THREE.Vector3();
+			const _normal = new THREE.Vector3();
+			const _scale = new THREE.Vector3();
 
-			// let surfaceGeometry = new FOUR.BoxGeometry( 10, 10, 10 ).toNonIndexed();
-			const surfaceGeometry = new FOUR.TorusKnotGeometry( 10, 3, 100, 16 ).toNonIndexed();
-			const surfaceMaterial = new FOUR.MeshLambertMaterial( { color: api.surfaceColor, wireframe: false } );
-			const surface = new FOUR.Mesh( surfaceGeometry, surfaceMaterial );
+			// let surfaceGeometry = new THREE.BoxGeometry( 10, 10, 10 ).toNonIndexed();
+			const surfaceGeometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 ).toNonIndexed();
+			const surfaceMaterial = new THREE.MeshLambertMaterial( { color: api.surfaceColor, wireframe: false } );
+			const surface = new THREE.Mesh( surfaceGeometry, surfaceMaterial );
 
 			// Source: https://gist.github.com/gre/1650294
 			const easeOutCubic = function ( t ) {
@@ -83,9 +83,9 @@
 				stemGeometry = _stemMesh.geometry.clone();
 				blossomGeometry = _blossomMesh.geometry.clone();
 
-				const defaultTransform = new FOUR.Matrix4()
+				const defaultTransform = new THREE.Matrix4()
 					.makeRotationX( Math.PI )
-					.multiply( new FOUR.Matrix4().makeScale( 7, 7, 7 ) );
+					.multiply( new THREE.Matrix4().makeScale( 7, 7, 7 ) );
 
 				stemGeometry.applyMatrix4( defaultTransform );
 				blossomGeometry.applyMatrix4( defaultTransform );
@@ -93,11 +93,11 @@
 				stemMaterial = _stemMesh.material;
 				blossomMaterial = _blossomMesh.material;
 
-				stemMesh = new FOUR.InstancedMesh( stemGeometry, stemMaterial, count );
-				blossomMesh = new FOUR.InstancedMesh( blossomGeometry, blossomMaterial, count );
+				stemMesh = new THREE.InstancedMesh( stemGeometry, stemMaterial, count );
+				blossomMesh = new THREE.InstancedMesh( blossomGeometry, blossomMaterial, count );
 
 				// Assign random colors to the blossoms.
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 				const blossomPalette = [ 0xF20587, 0xF2D479, 0xF2C879, 0xF2B077, 0xF24405 ];
 
 				for ( let i = 0; i < count; i ++ ) {
@@ -108,8 +108,8 @@
 				}
 
 				// Instance matrices will be updated every frame.
-				stemMesh.instanceMatrix.setUsage( FOUR.DynamicDrawUsage );
-				blossomMesh.instanceMatrix.setUsage( FOUR.DynamicDrawUsage );
+				stemMesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage );
+				blossomMesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage );
 
 				resample();
 
@@ -119,20 +119,20 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 25, 25, 25 );
 				camera.lookAt( 0, 0, 0 );
 
 				//
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( api.backgroundColor );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( api.backgroundColor );
 
-				const pointLight = new FOUR.PointLight( 0xAA8899, 2.5, 0, 0 );
+				const pointLight = new THREE.PointLight( 0xAA8899, 2.5, 0, 0 );
 				pointLight.position.set( 50, - 25, 75 );
 				scene.add( pointLight );
 
-				scene.add( new FOUR.AmbientLight( 0xffffff, 3 ) );
+				scene.add( new THREE.AmbientLight( 0xffffff, 3 ) );
 
 				//
 
@@ -168,7 +168,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

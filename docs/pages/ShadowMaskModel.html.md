@@ -40,4 +40,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/functions/ShadowMaskModel.js](../../src/nodes/functions/ShadowMaskModel.js)
+[src/nodes/functions/ShadowMaskModel.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/functions/ShadowMaskModel.js)

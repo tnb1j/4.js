@@ -24,17 +24,17 @@ Current feature set:
 ```js
 const loader = new UltraHDRLoader();
 const texture = await loader.loadAsync( 'textures/equirectangular/ice_planet_close.jpg' );
-texture.mapping = FOUR.EquirectangularReflectionMapping;
+texture.mapping = THREE.EquirectangularReflectionMapping;
 scene.background = texture;
 scene.environment = texture;
 ```
 
 ## Import
 
-UltraHDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+UltraHDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
 ```
 
 ## Constructor
@@ -107,4 +107,4 @@ The texture type to set.
 
 ## Source
 
-[examples/jsm/loaders/UltraHDRLoader.js](../../examples/jsm/loaders/UltraHDRLoader.js)
+[examples/jsm/loaders/UltraHDRLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/UltraHDRLoader.js)

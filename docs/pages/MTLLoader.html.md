@@ -17,10 +17,10 @@ objLoader.setMaterials( materials );
 
 ## Import
 
-MTLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MTLLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MTLLoader } from '@tnb1j/4js/addons/loaders/MTLLoader.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 ```
 
 ## Constructor
@@ -113,4 +113,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/loaders/MTLLoader.js](../../examples/jsm/loaders/MTLLoader.js)
+[examples/jsm/loaders/MTLLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/MTLLoader.js)

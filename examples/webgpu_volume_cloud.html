@@ -26,25 +26,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { float, vec3, vec4, If, Break, Fn, smoothstep, texture3D, uniform } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { float, vec3, vec4, If, Break, Fn, smoothstep, texture3D, uniform } from 'three/tsl';
 
-			import { RaymarchingBox } from '@tnb1j/4js/addons/tsl/utils/Raymarching.js';
+			import { RaymarchingBox } from 'three/addons/tsl/utils/Raymarching.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let renderer, scene, camera;
 			let mesh;
@@ -53,16 +53,16 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 1.5 );
 
 				new OrbitControls( camera, renderer.domElement );
@@ -81,12 +81,12 @@
 				context.fillStyle = gradient;
 				context.fillRect( 0, 0, 1, 32 );
 
-				const skyMap = new FOUR.CanvasTexture( canvas );
-				skyMap.colorSpace = FOUR.SRGBColorSpace;
+				const skyMap = new THREE.CanvasTexture( canvas );
+				skyMap.colorSpace = THREE.SRGBColorSpace;
 
-				const sky = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 10 ),
-					new FOUR.MeshBasicNodeMaterial( { map: skyMap, side: FOUR.BackSide } )
+				const sky = new THREE.Mesh(
+					new THREE.SphereGeometry( 10 ),
+					new THREE.MeshBasicNodeMaterial( { map: skyMap, side: THREE.BackSide } )
 				);
 				scene.add( sky );
 
@@ -98,7 +98,7 @@
 				let i = 0;
 				const scale = 0.05;
 				const perlin = new ImprovedNoise();
-				const vector = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
 
 				for ( let z = 0; z < size; z ++ ) {
 
@@ -116,10 +116,10 @@
 
 				}
 
-				const texture = new FOUR.Data3DTexture( data, size, size, size );
-				texture.format = FOUR.RedFormat;
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
+				const texture = new THREE.Data3DTexture( data, size, size, size );
+				texture.format = THREE.RedFormat;
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
 				texture.unpackAlignment = 1;
 				texture.needsUpdate = true;
 
@@ -163,7 +163,7 @@
 
 				// Material
 
-				const baseColor = uniform( new FOUR.Color( 0x798aa0 ) );
+				const baseColor = uniform( new THREE.Color( 0x798aa0 ) );
 				const range = uniform( 0.1 );
 				const threshold = uniform( 0.25 );
 				const opacity = uniform( 0.25 );
@@ -179,12 +179,12 @@
 
 				const finalCloud = cloud3d.setRGB( cloud3d.rgb.add( baseColor ) );
 
-				const material = new FOUR.NodeMaterial();
+				const material = new THREE.NodeMaterial();
 				material.colorNode = finalCloud;
-				material.side = FOUR.BackSide;
+				material.side = THREE.BackSide;
 				material.transparent = true;
 
-				mesh = new FOUR.Mesh( new FOUR.BoxGeometry( 1, 1, 1 ), material );
+				mesh = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), material );
 				scene.add( mesh );
 
 				//

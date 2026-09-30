@@ -6,7 +6,7 @@ import {
 	Loader,
 	UnsignedByteType,
 	Vector3,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the Cube LUT format.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUTCubeLoader } from '@tnb1j/4js/addons/loaders/LUTCubeLoader.js';
+ * @three_import import { LUTCubeLoader } from 'three/addons/loaders/LUTCubeLoader.js';
  */
 export class LUTCubeLoader extends Loader {
 
@@ -118,7 +118,7 @@ export class LUTCubeLoader extends Loader {
 
 		if ( result === null ) {
 
-			throw new Error( 'FOUR.LUTCubeLoader: Missing LUT_3D_SIZE information' );
+			throw new Error( 'THREE.LUTCubeLoader: Missing LUT_3D_SIZE information' );
 
 		}
 
@@ -147,7 +147,7 @@ export class LUTCubeLoader extends Loader {
 
 		if ( domainMin.x > domainMax.x || domainMin.y > domainMax.y || domainMin.z > domainMax.z ) {
 
-			throw new Error( 'FOUR.LUTCubeLoader: Invalid input domain' );
+			throw new Error( 'THREE.LUTCubeLoader: Invalid input domain' );
 
 		}
 

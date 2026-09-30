@@ -6,10 +6,10 @@ Port of: [http://webglsamples.org/blob/blob.html](http://webglsamples.org/blob/b
 
 ## Import
 
-MarchingCubes is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MarchingCubes is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MarchingCubes } from '@tnb1j/4js/addons/objects/MarchingCubes.js';
+import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
 ```
 
 ## Constructor
@@ -188,4 +188,4 @@ Updates the effect.
 
 ## Source
 
-[examples/jsm/objects/MarchingCubes.js](../../examples/jsm/objects/MarchingCubes.js)
+[examples/jsm/objects/MarchingCubes.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/MarchingCubes.js)

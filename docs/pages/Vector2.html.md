@@ -3,19 +3,19 @@
 Class representing a 2D vector. A 2D vector is an ordered pair of numbers (labeled x and y), which can be used to represent a number of things, such as:
 
 *   A point in 2D space (i.e. a position on a plane).
-*   A direction and length across a plane. In 4.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0)` to `(x, y)` and the direction is also measured from `(0, 0)` towards `(x, y)`.
+*   A direction and length across a plane. In three.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0)` to `(x, y)` and the direction is also measured from `(0, 0)` towards `(x, y)`.
 *   Any arbitrary ordered pair of numbers.
 
-There are other things a 2D vector can be used to represent, such as momentum vectors, complex numbers and so on, however these are the most common uses in 4.js.
+There are other things a 2D vector can be used to represent, such as momentum vectors, complex numbers and so on, however these are the most common uses in three.js.
 
 Iterating through a vector instance will yield its components `(x, y)` in the corresponding order.
 
 ## Code Example
 
 ```js
-const a = new FOUR.Vector2( 0, 1 );
+const a = new THREE.Vector2( 0, 1 );
 //no arguments; will be initialised to (0, 0)
-const b = new FOUR.Vector2( );
+const b = new THREE.Vector2( );
 const d = a.distanceTo( b );
 ```
 
@@ -577,4 +577,4 @@ Default is `0`.
 
 ## Source
 
-[src/math/Vector2.js](../../src/math/Vector2.js)
+[src/math/Vector2.js](https://github.com/mrdoob/three.js/blob/master/src/math/Vector2.js)

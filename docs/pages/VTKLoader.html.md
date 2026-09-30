@@ -12,16 +12,16 @@ This loader only supports the `POLYDATA` dataset format so far. Other formats (s
 const loader = new VTKLoader();
 const geometry = await loader.loadAsync( 'models/vtk/liver.vtk' );
 geometry.computeVertexNormals();
-const mesh = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial() );
+const mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial() );
 scene.add( mesh );
 ```
 
 ## Import
 
-VTKLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VTKLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VTKLoader } from '@tnb1j/4js/addons/loaders/VTKLoader.js';
+import { VTKLoader } from 'three/addons/loaders/VTKLoader.js';
 ```
 
 ## Constructor
@@ -74,4 +74,4 @@ The raw VTK data as an array buffer
 
 ## Source
 
-[examples/jsm/loaders/VTKLoader.js](../../examples/jsm/loaders/VTKLoader.js)
+[examples/jsm/loaders/VTKLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/VTKLoader.js)

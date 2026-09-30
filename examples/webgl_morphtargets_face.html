@@ -23,27 +23,27 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
-			import { MeshoptDecoder } from '@tnb1j/4js/addons/libs/meshopt_decoder.module.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
+			import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, stats, mixer, timer, controls;
 
@@ -51,22 +51,22 @@
 
 			function init() {
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20 );
 				camera.position.set( - 1.8, 0.8, 3 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				container.appendChild( renderer.domElement );
 
@@ -82,7 +82,7 @@
 
 						scene.add( mesh );
 
-						mixer = new FOUR.AnimationMixer( mesh );
+						mixer = new THREE.AnimationMixer( mesh );
 
 						mixer.clipAction( gltf.animations[ 0 ] ).play();
 
@@ -105,9 +105,9 @@
 					} );
 
 				const environment = new RoomEnvironment();
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene.background = new FOUR.Color( 0x666666 );
+				scene.background = new THREE.Color( 0x666666 );
 				scene.environment = pmremGenerator.fromScene( environment, 0.04 ).texture;
 
 				controls = new OrbitControls( camera, renderer.domElement );

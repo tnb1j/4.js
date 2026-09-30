@@ -25,46 +25,46 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
 			let camera, scene, renderer, timer, dataTexture, diffuseMap;
 
 			let last = 0;
-			const position = new FOUR.Vector2();
-			const color = new FOUR.Color();
+			const position = new THREE.Vector2();
+			const color = new THREE.Color();
 
 			init();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.z = 2;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				diffuseMap = loader.load( 'textures/carbon/Carbon.png' );
-				diffuseMap.colorSpace = FOUR.SRGBColorSpace;
-				diffuseMap.minFilter = FOUR.LinearFilter;
+				diffuseMap.colorSpace = THREE.SRGBColorSpace;
+				diffuseMap.minFilter = THREE.LinearFilter;
 				diffuseMap.generateMipmaps = false;
 
-				const geometry = new FOUR.PlaneGeometry( 2, 2 );
-				const material = new FOUR.MeshBasicMaterial( { map: diffuseMap } );
+				const geometry = new THREE.PlaneGeometry( 2, 2 );
+				const material = new THREE.MeshBasicMaterial( { map: diffuseMap } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//
@@ -73,12 +73,12 @@
 				const height = 32;
 
 				const data = new Uint8Array( width * height * 4 );
-				dataTexture = new FOUR.DataTexture( data, width, height );
-				dataTexture.colorSpace = FOUR.SRGBColorSpace;
+				dataTexture = new THREE.DataTexture( data, width, height );
+				dataTexture.colorSpace = THREE.SRGBColorSpace;
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL: false } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL: false } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -113,8 +113,8 @@
 
 					last = elapsedTime;
 
-					position.x = ( 32 * FOUR.MathUtils.randInt( 1, 16 ) ) - 32;
-					position.y = ( 32 * FOUR.MathUtils.randInt( 1, 16 ) ) - 32;
+					position.x = ( 32 * THREE.MathUtils.randInt( 1, 16 ) ) - 32;
+					position.y = ( 32 * THREE.MathUtils.randInt( 1, 16 ) ) - 32;
 
 					// generate new color data
 					updateDataTexture( dataTexture );

@@ -33,7 +33,7 @@ class BufferAttribute extends EventDispatcher {
 
 		if ( Array.isArray( array ) ) {
 
-			throw new TypeError( 'FOUR.BufferAttribute: array should be a Typed Array.' );
+			throw new TypeError( 'THREE.BufferAttribute: array should be a Typed Array.' );
 
 		}
 
@@ -670,8 +670,9 @@ class BufferAttribute extends EventDispatcher {
 			normalized: this.normalized
 		};
 
-		if ( this.name !== '' ) data.name = this.name;
-		if ( this.usage !== StaticDrawUsage ) data.usage = this.usage;
+		data.name = this.name;
+		data.usage = this.usage;
+		data.gpuType = this.gpuType;
 
 		return data;
 

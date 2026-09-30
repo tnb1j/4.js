@@ -21,24 +21,24 @@
 	<div id="container"></div>
 	<div id="info">
 		<a href="../" target="_blank" rel="noopener noreferrer">4.js</a> webaudio - orientation<br/>
-		music by <a href="http://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener noreferrer">skullbeatz</a>
+		music by <a href="https://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener noreferrer">skullbeatz</a>
 	</div>
 
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-		import { PositionalAudioHelper } from '@tnb1j/4js/addons/helpers/PositionalAudioHelper.js';
-		import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { PositionalAudioHelper } from 'three/addons/helpers/PositionalAudioHelper.js';
+		import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 		let scene, camera, renderer;
 
@@ -54,24 +54,24 @@
 
 			//
 
-			camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+			camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 			camera.position.set( 3, 2, 3 );
 
-			const reflectionCube = new FOUR.CubeTextureLoader()
+			const reflectionCube = new THREE.CubeTextureLoader()
 				.setPath( 'textures/cube/SwedishRoyalCastle/' )
 				.load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] );
 
-			scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0xa0a0a0 );
-			scene.fog = new FOUR.Fog( 0xa0a0a0, 2, 20 );
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0xa0a0a0 );
+			scene.fog = new THREE.Fog( 0xa0a0a0, 2, 20 );
 
 			//
 
-			const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
+			const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
 			hemiLight.position.set( 0, 20, 0 );
 			scene.add( hemiLight );
 
-			const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+			const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 			dirLight.position.set( 5, 5, 0 );
 			dirLight.castShadow = true;
 			dirLight.shadow.camera.top = 1;
@@ -82,27 +82,27 @@
 			dirLight.shadow.camera.far = 20;
 			scene.add( dirLight );
 
-			// scene.add( new FOUR.CameraHelper( dirLight.shadow.camera ) );
+			// scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
 
 			//
 
-			const mesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 50, 50 ), new FOUR.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
+			const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 50, 50 ), new THREE.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
 			mesh.rotation.x = - Math.PI / 2;
 			mesh.receiveShadow = true;
 			scene.add( mesh );
 
-			const grid = new FOUR.GridHelper( 50, 50, 0xc1c1c1, 0xc1c1c1 );
+			const grid = new THREE.GridHelper( 50, 50, 0xc1c1c1, 0xc1c1c1 );
 			scene.add( grid );
 
 			//
 
-			const listener = new FOUR.AudioListener();
+			const listener = new THREE.AudioListener();
 			camera.add( listener );
 
 			const audioElement = document.getElementById( 'music' );
 			audioElement.play();
 
-			const positionalAudio = new FOUR.PositionalAudio( listener );
+			const positionalAudio = new THREE.PositionalAudio( listener );
 			positionalAudio.setMediaElementSource( audioElement );
 			positionalAudio.setRefDistance( 1 );
 			positionalAudio.setDirectionalCone( 180, 230, 0.1 );
@@ -140,17 +140,17 @@
 
 			// sound is damped behind this wall
 
-			const wallGeometry = new FOUR.BoxGeometry( 2, 1, 0.1 );
-			const wallMaterial = new FOUR.MeshBasicMaterial( { color: 0xff0000, transparent: true, opacity: 0.5 } );
+			const wallGeometry = new THREE.BoxGeometry( 2, 1, 0.1 );
+			const wallMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, transparent: true, opacity: 0.5 } );
 
-			const wall = new FOUR.Mesh( wallGeometry, wallMaterial );
+			const wall = new THREE.Mesh( wallGeometry, wallMaterial );
 			wall.position.set( 0, 0.5, - 0.5 );
 			scene.add( wall );
 
 
 			//
 
-			renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.shadowMap.enabled = true;

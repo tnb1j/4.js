@@ -34,4 +34,4 @@ Default is `2`.
 
 ## Source
 
-[src/extras/Earcut.js](../../src/extras/Earcut.js)
+[src/extras/Earcut.js](https://github.com/mrdoob/three.js/blob/master/src/extras/Earcut.js)

@@ -62,4 +62,4 @@ Resets the module
 
 ## Source
 
-[src/renderers/webxr/WebXRDepthSensing.js](../../src/renderers/webxr/WebXRDepthSensing.js)
+[src/renderers/webxr/WebXRDepthSensing.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webxr/WebXRDepthSensing.js)

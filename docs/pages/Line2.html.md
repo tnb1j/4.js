@@ -21,10 +21,10 @@ scene.add( line );
 
 ## Import
 
-Line2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Line2 is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Line2 } from '@tnb1j/4js/addons/lines/Line2.js';
+import { Line2 } from 'three/addons/lines/Line2.js';
 ```
 
 ## Constructor
@@ -51,4 +51,4 @@ Default is `true`.
 
 ## Source
 
-[examples/jsm/lines/Line2.js](../../examples/jsm/lines/Line2.js)
+[examples/jsm/lines/Line2.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/Line2.js)

@@ -25,34 +25,34 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { uniform, cubeTexture } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { uniform, cubeTexture } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			class InstanceUniformNode extends FOUR.Node {
+			class InstanceUniformNode extends THREE.Node {
 
 				constructor() {
 
 					super( 'vec3' );
 
-					this.updateType = FOUR.NodeUpdateType.OBJECT;
+					this.updateType = THREE.NodeUpdateType.OBJECT;
 
-					this.uniformNode = uniform( new FOUR.Color() );
+					this.uniformNode = uniform( new THREE.Color() );
 
 				}
 
@@ -86,14 +86,14 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
 				camera.position.set( 0, 200, 1200 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// Grid
 
-				const helper = new FOUR.GridHelper( 1000, 40, 0x303030, 0x303030 );
+				const helper = new THREE.GridHelper( 1000, 40, 0x303030, 0x303030 );
 				helper.position.y = - 75;
 				scene.add( helper );
 
@@ -107,14 +107,14 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const cTexture = new FOUR.CubeTextureLoader().load( urls );
+				const cTexture = new THREE.CubeTextureLoader().load( urls );
 
 				// Materials
 
 				const instanceUniform = new InstanceUniformNode();
 				const cubeTextureNode = cubeTexture( cTexture );
 
-				const material = new FOUR.MeshBasicNodeMaterial();
+				const material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = instanceUniform.add( cubeTextureNode );
 				material.emissiveNode = instanceUniform.mul( cubeTextureNode );
 
@@ -130,7 +130,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -151,9 +151,9 @@
 
 			function addMesh( geometry, material ) {
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 
-				mesh.color = new FOUR.Color( Math.random() * 0xffffff );
+				mesh.color = new THREE.Color( Math.random() * 0xffffff );
 
 				mesh.position.x = ( objects.length % 4 ) * 200 - 300;
 				mesh.position.z = Math.floor( objects.length / 4 ) * 200 - 200;

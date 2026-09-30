@@ -5,13 +5,13 @@ import {
 	NumberKeyframeTrack,
 	Vector3,
 	VectorKeyframeTrack
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A utility class with factory methods for creating basic animation clips.
  *
  * @hideconstructor
- * @four_import import { AnimationClipCreator } from '@tnb1j/4js/addons/animation/AnimationClipCreator.js';
+ * @three_import import { AnimationClipCreator } from 'three/addons/animation/AnimationClipCreator.js';
  */
 class AnimationClipCreator {
 

@@ -19,22 +19,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
-			import { MeshoptDecoder } from '@tnb1j/4js/addons/libs/meshopt_decoder.module.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
+			import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
 			let camera, scene, renderer;
 
@@ -46,25 +46,25 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 				container.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 0, 100, 0 );
 
 				const environment = new RoomEnvironment();
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbbbbbb );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbbbbbb );
 				scene.environment = pmremGenerator.fromScene( environment, 0.04 ).texture;
 				environment.dispose();
 
-				const grid = new FOUR.GridHelper( 500, 10, 0xffffff, 0xffffff );
+				const grid = new THREE.GridHelper( 500, 10, 0xffffff, 0xffffff );
 				grid.material.opacity = 0.5;
 				grid.material.depthWrite = false;
 				grid.material.transparent = true;

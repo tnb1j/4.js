@@ -2,10 +2,10 @@
 
 ## Import
 
-SubsurfaceScatteringShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SubsurfaceScatteringShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SubsurfaceScatteringShader } from '@tnb1j/4js/addons/shaders/SubsurfaceScatteringShader.js';
+import { SubsurfaceScatteringShader } from 'three/addons/shaders/SubsurfaceScatteringShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ Based on GDC 2011 – [Approximating Translucency for a Fast, Cheap and Convinci
 
 ## Source
 
-[examples/jsm/shaders/SubsurfaceScatteringShader.js](../../examples/jsm/shaders/SubsurfaceScatteringShader.js)
+[examples/jsm/shaders/SubsurfaceScatteringShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SubsurfaceScatteringShader.js)

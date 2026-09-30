@@ -42,4 +42,4 @@ The output node.
 
 ## Source
 
-[src/nodes/core/BypassNode.js](../../src/nodes/core/BypassNode.js)
+[src/nodes/core/BypassNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/BypassNode.js)

@@ -4,10 +4,10 @@ This class represents a management component for animated MD2 character assets.
 
 ## Import
 
-MD2Character is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MD2Character is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MD2Character } from '@tnb1j/4js/addons/misc/MD2Character.js';
+import { MD2Character } from 'three/addons/misc/MD2Character.js';
 ```
 
 ## Constructor
@@ -138,4 +138,4 @@ The delta time in seconds.
 
 ## Source
 
-[examples/jsm/misc/MD2Character.js](../../examples/jsm/misc/MD2Character.js)
+[examples/jsm/misc/MD2Character.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/MD2Character.js)

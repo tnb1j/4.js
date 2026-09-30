@@ -14,7 +14,7 @@ import {
 	UnsignedShortType,
 	WebGLRenderTarget,
 	HalfFloatType,
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SSRBlurShader, SSRDepthShader, SSRShader } from '../shaders/SSRShader.js';
 import { CopyShader } from '../shaders/CopyShader.js';
@@ -34,7 +34,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SSRPass } from '@tnb1j/4js/addons/postprocessing/SSRPass.js';
+ * @three_import import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
  */
 class SSRPass extends Pass {
 
@@ -315,7 +315,8 @@ class SSRPass extends Pass {
 		//for bouncing
 		this.prevRenderTarget = new WebGLRenderTarget( this.width, this.height, {
 			minFilter: NearestFilter,
-			magFilter: NearestFilter
+			magFilter: NearestFilter,
+			depthBuffer: false
 		} );
 
 		// normal render target
@@ -340,7 +341,8 @@ class SSRPass extends Pass {
 
 		this.ssrRenderTarget = new WebGLRenderTarget( this.width, this.height, {
 			minFilter: NearestFilter,
-			magFilter: NearestFilter
+			magFilter: NearestFilter,
+			depthBuffer: false
 		} );
 
 		this.blurRenderTarget = this.ssrRenderTarget.clone();
@@ -669,7 +671,7 @@ class SSRPass extends Pass {
 				break;
 
 			default:
-				console.warn( 'FOUR.SSRPass: Unknown output type.' );
+				console.warn( 'THREE.SSRPass: Unknown output type.' );
 
 		}
 

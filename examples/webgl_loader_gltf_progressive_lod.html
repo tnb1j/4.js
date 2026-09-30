@@ -32,12 +32,11 @@
 			<a href="https://hdrihaven.com/hdri/?h=quarry_01" target="_blank" rel="noopener">Quarry 01</a> from <a href="https://hdrihaven.com/" target="_blank" rel="noopener">HDRI Haven</a>
 		</div>
 
-		<!-- four-migrate-preserve: three/examples/ -->
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three/examples/": "./",
 					"@needle-tools/gltf-progressive": "https://cdn.jsdelivr.net/npm/@needle-tools/gltf-progressive@3.2.0/gltf-progressive.min.js"
 				}
@@ -46,11 +45,11 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
       		import { useNeedleProgressive } from '@needle-tools/gltf-progressive';
 
 			let camera, scene, renderer, mixer;
@@ -63,18 +62,18 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 40 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 40 );
 				camera.position.set( - 9, 2, - 13 );
 
-				const fog = new FOUR.Fog( '#131055', 15, 50 );
+				const fog = new THREE.Fog( '#131055', 15, 50 );
 				scene.fog = fog;
 
 				const controls = new OrbitControls( camera, renderer.domElement );
@@ -87,17 +86,17 @@
 					.setPath( 'textures/equirectangular/' )
 					.load( 'quarry_01_1k.hdr', function ( texture ) {
 
-						texture.mapping = FOUR.EquirectangularReflectionMapping;
+						texture.mapping = THREE.EquirectangularReflectionMapping;
 
-						scene.background = new FOUR.Color( '#192022' );
+						scene.background = new THREE.Color( '#192022' );
 						scene.backgroundBlurriness = .5;
 						scene.environment = texture;
-						scene.environmentRotation = new FOUR.Euler( 0, Math.PI / - 2, 0, 'XYZ' );
+						scene.environmentRotation = new THREE.Euler( 0, Math.PI / - 2, 0, 'XYZ' );
 
 					} );
 			
 
-				mixer = new FOUR.AnimationMixer( scene );
+				mixer = new THREE.AnimationMixer( scene );
 
 				const loader = new GLTFLoader();
 
@@ -195,7 +194,7 @@
 
 			//
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			let time = 0;
 

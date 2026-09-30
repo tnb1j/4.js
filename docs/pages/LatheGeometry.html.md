@@ -9,11 +9,11 @@ Creates meshes with axial symmetry like vases. The lathe rotates around the Y ax
 ```js
 const points = [];
 for ( let i = 0; i < 10; i ++ ) {
-	points.push( new FOUR.Vector2( Math.sin( i * 0.2 ) * 10 + 5, ( i - 5 ) * 2 ) );
+	points.push( new THREE.Vector2( Math.sin( i * 0.2 ) * 10 + 5, ( i - 5 ) * 2 ) );
 }
-const geometry = new FOUR.LatheGeometry( points );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const lathe = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.LatheGeometry( points );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const lathe = new THREE.Mesh( geometry, material );
 scene.add( lathe );
 ```
 
@@ -65,4 +65,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/LatheGeometry.js](../../src/geometries/LatheGeometry.js)
+[src/geometries/LatheGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/LatheGeometry.js)

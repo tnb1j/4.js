@@ -6,7 +6,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 import { unzlibSync } from '../libs/fflate.module.js';
 
 /**
@@ -21,12 +21,12 @@ import { unzlibSync } from '../libs/fflate.module.js';
  * const geometry = await loader.loadAsync( 'models/vtk/liver.vtk' );
  * geometry.computeVertexNormals();
  *
- * const mesh = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial() );
+ * const mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial() );
  * scene.add( mesh );
  * ```
  *
  * @augments Loader
- * @four_import import { VTKLoader } from '@tnb1j/4js/addons/loaders/VTKLoader.js';
+ * @three_import import { VTKLoader } from 'three/addons/loaders/VTKLoader.js';
  * @deprecated since r184.
  */
 class VTKLoader extends Loader {
@@ -41,7 +41,7 @@ class VTKLoader extends Loader {
 
 		super( manager );
 
-		console.warn( 'FOUR.VTKLoader: The loader has been deprecated and will be removed with r194. Export your VTK files to glTF before using them on the web.' ); // @deprecated, r184
+		console.warn( 'THREE.VTKLoader: The loader has been deprecated and will be removed with r194. Export your VTK files to glTF before using them on the web.' ); // @deprecated, r184
 
 	}
 

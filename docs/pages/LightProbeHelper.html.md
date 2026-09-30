@@ -15,10 +15,10 @@ scene.add( helper );
 
 ## Import
 
-LightProbeHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LightProbeHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LightProbeHelper } from '@tnb1j/4js/addons/helpers/LightProbeHelper.js';
+import { LightProbeHelper } from 'three/addons/helpers/LightProbeHelper.js';
 ```
 
 ## Constructor
@@ -55,6 +55,8 @@ Default is `1`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ## Source
 
-[examples/jsm/helpers/LightProbeHelper.js](../../examples/jsm/helpers/LightProbeHelper.js)
+[examples/jsm/helpers/LightProbeHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/LightProbeHelper.js)

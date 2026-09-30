@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>MapControls - 4.js Docs</title>
+	<title>MapControls - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -24,8 +24,8 @@ for mouse/touch interaction and disables screen space panning by default.</p>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">MapControls</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';</code></pre>
+				<p><span translate="no">MapControls</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { MapControls } from 'three/addons/controls/MapControls.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="MapControls" translate="no">new <a href="#MapControls">MapControls</a><span class="signature">()</span> </h3>
@@ -38,9 +38,9 @@ for mouse/touch interaction and disables screen space panning by default.</p>
 					<div class="description">
 						<p>This object contains references to the mouse actions used by the controls.</p>
 <pre><code class="language-js">controls.mouseButtons = {
-	LEFT: FOUR.MOUSE.PAN,
-	MIDDLE: FOUR.MOUSE.DOLLY,
-	RIGHT: FOUR.MOUSE.ROTATE
+	LEFT: THREE.MOUSE.PAN,
+	MIDDLE: THREE.MOUSE.DOLLY,
+	RIGHT: THREE.MOUSE.ROTATE
 }
 </code></pre>
 					</div>
@@ -63,8 +63,8 @@ for mouse/touch interaction and disables screen space panning by default.</p>
 					<div class="description">
 						<p>This object contains references to the touch actions used by the controls.</p>
 <pre><code class="language-js">controls.mouseButtons = {
-	ONE: FOUR.TOUCH.PAN,
-	TWO: FOUR.TOUCH.DOLLY_ROTATE
+	ONE: THREE.TOUCH.PAN,
+	TWO: THREE.TOUCH.DOLLY_ROTATE
 }
 </code></pre>
 					</div>
@@ -74,7 +74,7 @@ for mouse/touch interaction and disables screen space panning by default.</p>
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/controls/MapControls.js" translate="no">examples/jsm/controls/MapControls.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/MapControls.js" translate="no" target="_blank" rel="noopener">examples/jsm/controls/MapControls.js</a>
 				</p>
 			</article>
 		</section>

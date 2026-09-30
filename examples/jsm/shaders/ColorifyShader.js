@@ -1,10 +1,10 @@
 import {
 	Color
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module ColorifyShader
- * @four_import import { ColorifyShader } from '@tnb1j/4js/addons/shaders/ColorifyShader.js';
+ * @three_import import { ColorifyShader } from 'three/addons/shaders/ColorifyShader.js';
  */
 
 /**

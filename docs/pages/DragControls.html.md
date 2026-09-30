@@ -19,10 +19,10 @@ controls.addEventListener( 'dragend', function ( event ) {
 
 ## Import
 
-DragControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DragControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DragControls } from '@tnb1j/4js/addons/controls/DragControls.js';
+import { DragControls } from 'three/addons/controls/DragControls.js';
 ```
 
 ## Constructor
@@ -109,4 +109,4 @@ Fires when the pointer is moved onto a 3D object, or onto one of its children.
 
 ## Source
 
-[examples/jsm/controls/DragControls.js](../../examples/jsm/controls/DragControls.js)
+[examples/jsm/controls/DragControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/DragControls.js)

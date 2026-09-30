@@ -16,10 +16,10 @@ There are the following notes to bear in mind when using a `ShaderMaterial`:
 ## Code Example
 
 ```js
-const material = new FOUR.ShaderMaterial( {
+const material = new THREE.ShaderMaterial( {
 	uniforms: {
 		time: { value: 1.0 },
-		resolution: { value: new FOUR.Vector2() }
+		resolution: { value: new THREE.Vector2() }
 	},
 	vertexShader: document.getElementById( 'vertexShader' ).textContent,
 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent
@@ -238,4 +238,4 @@ The fragment shader code.
 
 ## Source
 
-[src/materials/ShaderMaterial.js](../../src/materials/ShaderMaterial.js)
+[src/materials/ShaderMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/ShaderMaterial.js)

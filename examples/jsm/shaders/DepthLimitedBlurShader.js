@@ -1,14 +1,17 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module DepthLimitedBlurShader
- * @four_import import { DepthLimitedBlurShader, BlurShaderUtils } from '@tnb1j/4js/addons/shaders/DepthLimitedBlurShader.js';
+ * @three_import import { DepthLimitedBlurShader, BlurShaderUtils } from 'three/addons/shaders/DepthLimitedBlurShader.js';
  */
 
 /**
- * TODO
+ * A separable Gaussian blur shader that limits blurring across depth
+ * discontinuities, stopping when the view-space depth difference to a
+ * neighboring sample exceeds `depthCutoff`. This preserves edges and
+ * avoids bleeding across them.
  *
  * Used by {@link SAOPass}.
  *

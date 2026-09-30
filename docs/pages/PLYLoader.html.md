@@ -13,15 +13,15 @@ Limitations:
 ```js
 const loader = new PLYLoader();
 const geometry = await loader.loadAsync( './models/ply/ascii/dolphins.ply' );
-scene.add( new FOUR.Mesh( geometry ) );
+scene.add( new THREE.Mesh( geometry ) );
 ```
 
 ## Import
 
-PLYLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PLYLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
+import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 ```
 
 ## Constructor
@@ -102,4 +102,4 @@ The mapping dictionary.
 
 ## Source
 
-[examples/jsm/loaders/PLYLoader.js](../../examples/jsm/loaders/PLYLoader.js)
+[examples/jsm/loaders/PLYLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/PLYLoader.js)

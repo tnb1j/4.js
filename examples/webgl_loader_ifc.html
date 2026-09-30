@@ -24,8 +24,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"web-ifc": "https://cdn.jsdelivr.net/npm/web-ifc@0.0.77/web-ifc-api.js"
 				}
 			}
@@ -33,9 +33,9 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
 			import { IfcAPI } from 'web-ifc';
 
@@ -48,24 +48,24 @@
 
 			async function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x8cc7de );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x8cc7de );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( 82.48, 22.09, - 45.24 );
 
-				const directionalLight1 = new FOUR.DirectionalLight( 0xffeeff, 2.5 );
+				const directionalLight1 = new THREE.DirectionalLight( 0xffeeff, 2.5 );
 				directionalLight1.position.set( 1, 1, 1 );
 				scene.add( directionalLight1 );
 
-				const directionalLight2 = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+				const directionalLight2 = new THREE.DirectionalLight( 0xffffff, 2.5 );
 				directionalLight2.position.set( - 1, 0.5, - 1 );
 				scene.add( directionalLight2 );
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffee, 0.75 );
+				const ambientLight = new THREE.AmbientLight( 0xffffee, 0.75 );
 				scene.add( ambientLight );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				document.body.appendChild( renderer.domElement );
@@ -125,20 +125,20 @@
 				if ( opaqueGeometries.length > 0 ) {
 
 					const merged = BufferGeometryUtils.mergeGeometries( opaqueGeometries );
-					const material = new FOUR.MeshPhongMaterial( { side: FOUR.DoubleSide, vertexColors: true } );
-					scene.add( new FOUR.Mesh( merged, material ) );
+					const material = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, vertexColors: true } );
+					scene.add( new THREE.Mesh( merged, material ) );
 
 				}
 
 				if ( transparentGeometries.length > 0 ) {
 
 					const merged = BufferGeometryUtils.mergeGeometries( transparentGeometries );
-					const material = new FOUR.MeshPhongMaterial( {
-						side: FOUR.DoubleSide,
+					const material = new THREE.MeshPhongMaterial( {
+						side: THREE.DoubleSide,
 						vertexColors: true,
 						transparent: true,
 					} );
-					scene.add( new FOUR.Mesh( merged, material ) );
+					scene.add( new THREE.Mesh( merged, material ) );
 
 				}
 
@@ -148,8 +148,8 @@
 
 				const geometry = getBufferGeometry( ifcAPI, modelID, placedGeometry );
 				const material = getMeshMaterial( placedGeometry.color, materialCache );
-				const mesh = new FOUR.Mesh( geometry, material );
-				mesh.matrix = new FOUR.Matrix4().fromArray( placedGeometry.flatTransformation );
+				const mesh = new THREE.Mesh( geometry, material );
+				mesh.matrix = new THREE.Matrix4().fromArray( placedGeometry.flatTransformation );
 				mesh.matrixAutoUpdate = false;
 				return mesh;
 
@@ -175,9 +175,9 @@
 				const cached = materialCache[ id ];
 				if ( cached ) return cached;
 
-				const material = new FOUR.MeshPhongMaterial( {
-					color: new FOUR.Color( color.x, color.y, color.z ),
-					side: FOUR.DoubleSide,
+				const material = new THREE.MeshPhongMaterial( {
+					color: new THREE.Color( color.x, color.y, color.z ),
+					side: THREE.DoubleSide,
 				} );
 
 				if ( color.w !== 1 ) {
@@ -192,7 +192,7 @@
 
 			}
 
-			const _tmpColor = new FOUR.Color();
+			const _tmpColor = new THREE.Color();
 
 			function ifcGeometryToBuffer( color, vertexData, indexData ) {
 
@@ -203,7 +203,7 @@
 				const colors = new Float32Array( vertexCount * 4 );
 
 				// IFC stores colors in sRGB display space; convert to linear once per geometry.
-				_tmpColor.setRGB( color.x, color.y, color.z, FOUR.SRGBColorSpace );
+				_tmpColor.setRGB( color.x, color.y, color.z, THREE.SRGBColorSpace );
 
 				for ( let v = 0; v < vertexCount; v ++ ) {
 
@@ -226,11 +226,11 @@
 
 				}
 
-				const geometry = new FOUR.BufferGeometry();
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'normal', new FOUR.BufferAttribute( normals, 3 ) );
-				geometry.setAttribute( 'color', new FOUR.BufferAttribute( colors, 4 ) );
-				geometry.setIndex( new FOUR.BufferAttribute( indexData, 1 ) );
+				const geometry = new THREE.BufferGeometry();
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'normal', new THREE.BufferAttribute( normals, 3 ) );
+				geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 4 ) );
+				geometry.setIndex( new THREE.BufferAttribute( indexData, 1 ) );
 				return geometry;
 
 			}

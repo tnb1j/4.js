@@ -76,22 +76,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+			import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			// 1 micrometer to 100 billion light years in one scene, with 1 unit = 1 meter?  preposterous!  and yet...
 			const NEAR = 1e-6, FAR = 1e27;
@@ -153,10 +153,10 @@
 
 				const framecontainer = document.getElementById( 'container_' + name );
 
-				const camera = new FOUR.PerspectiveCamera( 50, screensplit * SCREEN_WIDTH / SCREEN_HEIGHT, NEAR, FAR );
+				const camera = new THREE.PerspectiveCamera( 50, screensplit * SCREEN_WIDTH / SCREEN_HEIGHT, NEAR, FAR );
 				scene.add( camera );
 
-				const renderer = new FOUR.WebGPURenderer( { antialias: true, logarithmicDepthBuffer: logDepthBuf } );
+				const renderer = new THREE.WebGPURenderer( { antialias: true, logarithmicDepthBuffer: logDepthBuf } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH / 2, SCREEN_HEIGHT );
 				renderer.domElement.style.position = 'relative';
@@ -172,12 +172,12 @@
 
 			function initScene( font ) {
 
-				const scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				const scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				scene.add( new FOUR.AmbientLight( 0x777777 ) );
+				scene.add( new THREE.AmbientLight( 0x777777 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 100, 100, 100 );
 				scene.add( light );
 
@@ -188,7 +188,7 @@
 					emissive: 0x000000
 				};
 
-				const geometry = new FOUR.SphereGeometry( 0.5, 24, 12 );
+				const geometry = new THREE.SphereGeometry( 0.5, 24, 12 );
 
 				for ( let i = 0; i < labeldata.length; i ++ ) {
 
@@ -205,21 +205,21 @@
 					// center text
 					labelgeo.translate( - labelgeo.boundingSphere.radius, 0, 0 );
 
-					materialargs.color = new FOUR.Color().setHSL( Math.random(), 0.5, 0.5 );
+					materialargs.color = new THREE.Color().setHSL( Math.random(), 0.5, 0.5 );
 
-					const material = new FOUR.MeshPhongMaterial( materialargs );
+					const material = new THREE.MeshPhongMaterial( materialargs );
 
-					const group = new FOUR.Group();
+					const group = new THREE.Group();
 					group.position.z = - labeldata[ i ].size * scale;
 					scene.add( group );
 
-					const textmesh = new FOUR.Mesh( labelgeo, material );
+					const textmesh = new THREE.Mesh( labelgeo, material );
 					textmesh.scale.set( scale, scale, scale );
 					textmesh.position.z = - labeldata[ i ].size * scale;
 					textmesh.position.y = labeldata[ i ].size / 4 * scale;
 					group.add( textmesh );
 
-					const dotmesh = new FOUR.Mesh( geometry, material );
+					const dotmesh = new THREE.Mesh( geometry, material );
 					dotmesh.position.y = - labeldata[ i ].size / 4 * scale;
 					dotmesh.scale.multiplyScalar( labeldata[ i ].size * scale );
 					group.add( dotmesh );
@@ -265,7 +265,7 @@
 				let damping = ( Math.abs( zoomspeed ) > minzoomspeed ? .95 : 1.0 );
 
 				// Zoom out faster the further out you go
-				const zoom = FOUR.MathUtils.clamp( Math.pow( Math.E, zoompos ), minzoom, maxzoom );
+				const zoom = THREE.MathUtils.clamp( Math.pow( Math.E, zoompos ), minzoom, maxzoom );
 				zoompos = Math.log( zoom );
 
 				// Slow down quickly at the zoom limits

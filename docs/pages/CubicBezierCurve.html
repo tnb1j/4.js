@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>CubicBezierCurve - 4.js Docs</title>
+	<title>CubicBezierCurve - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,17 +15,17 @@
 			<header>
 				<div class="class-description"><p>A curve representing a 2D Cubic Bezier curve.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const curve = new FOUR.CubicBezierCurve(
-	new FOUR.Vector2( - 0, 0 ),
-	new FOUR.Vector2( - 5, 15 ),
-	new FOUR.Vector2( 20, 15 ),
-	new FOUR.Vector2( 10, 0 )
+				<div translate="no"><pre><code class="language-js">const curve = new THREE.CubicBezierCurve(
+	new THREE.Vector2( - 0, 0 ),
+	new THREE.Vector2( - 5, 15 ),
+	new THREE.Vector2( 20, 15 ),
+	new THREE.Vector2( 10, 0 )
 );
 const points = curve.getPoints( 50 );
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const material = new FOUR.LineBasicMaterial( { color: 0xff0000 } );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
 // Create the final object to add to the scene
-const curveObject = new FOUR.Line( geometry, material );
+const curveObject = new THREE.Line( geometry, material );
 </code></pre></div>
 			</header>
 			<article>
@@ -141,7 +141,7 @@ const curveObject = new FOUR.Line( geometry, material );
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/extras/curves/CubicBezierCurve.js" translate="no">src/extras/curves/CubicBezierCurve.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/extras/curves/CubicBezierCurve.js" translate="no" target="_blank" rel="noopener">src/extras/curves/CubicBezierCurve.js</a>
 				</p>
 			</article>
 		</section>

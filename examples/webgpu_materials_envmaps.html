@@ -18,28 +18,28 @@
 			</div>
 
 			<small>
-				Equirectangular Map by <a href="http://www.flickr.com/photos/jonragnarsson/2294472375/" target="_blank" rel="noopener">J&oacute;n Ragnarsson</a>.
+				Equirectangular Map by <a href="https://www.flickr.com/photos/jonragnarsson/2294472375/" target="_blank" rel="noopener">J&oacute;n Ragnarsson</a>.
 			</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let controls, camera, scene, renderer;
 			let textureEquirec, textureCube;
@@ -51,38 +51,38 @@
 
 				// CAMERAS
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 2.5 );
 
 				// SCENE
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// Textures
 
-				const loader = new FOUR.CubeTextureLoader();
+				const loader = new THREE.CubeTextureLoader();
 				loader.setPath( 'textures/cube/Bridge2/' );
 
 				textureCube = loader.load( [ 'posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg' ] );
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				textureEquirec = textureLoader.load( 'textures/2294472375_24a3b8ef46_o.jpg' );
-				textureEquirec.mapping = FOUR.EquirectangularReflectionMapping;
-				textureEquirec.colorSpace = FOUR.SRGBColorSpace;
+				textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
+				textureEquirec.colorSpace = THREE.SRGBColorSpace;
 
 				scene.background = textureCube;
 
 				//
 
-				const geometry = new FOUR.IcosahedronGeometry( 1, 15 );
-				sphereMaterial = new FOUR.MeshBasicMaterial( { envMap: textureCube } );
-				sphereMesh = new FOUR.Mesh( geometry, sphereMaterial );
+				const geometry = new THREE.IcosahedronGeometry( 1, 15 );
+				sphereMaterial = new THREE.MeshBasicMaterial( { envMap: textureCube } );
+				sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
 				scene.add( sphereMesh );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -130,13 +130,13 @@
 
 					if ( value ) {
 
-						textureEquirec.mapping = FOUR.EquirectangularRefractionMapping;
-						textureCube.mapping = FOUR.CubeRefractionMapping;
+						textureEquirec.mapping = THREE.EquirectangularRefractionMapping;
+						textureCube.mapping = THREE.CubeRefractionMapping;
 
 					} else {
 
-						textureEquirec.mapping = FOUR.EquirectangularReflectionMapping;
-						textureCube.mapping = FOUR.CubeReflectionMapping;
+						textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
+						textureCube.mapping = THREE.CubeReflectionMapping;
 
 					}
 

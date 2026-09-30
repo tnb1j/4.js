@@ -102,4 +102,4 @@ The blending configuration to copy from.
 
 ## Source
 
-[src/renderers/common/BlendMode.js](../../src/renderers/common/BlendMode.js)
+[src/renderers/common/BlendMode.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/BlendMode.js)

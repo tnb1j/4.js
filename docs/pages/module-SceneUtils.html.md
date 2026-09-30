@@ -2,10 +2,10 @@
 
 ## Import
 
-SceneUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SceneUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as SceneUtils from '@tnb1j/4js/addons/utils/SceneUtils.js';
+import * as SceneUtils from 'three/addons/utils/SceneUtils.js';
 ```
 
 ## Methods
@@ -112,4 +112,4 @@ Objects that passed the filter condition.
 
 ## Source
 
-[examples/jsm/utils/SceneUtils.js](../../examples/jsm/utils/SceneUtils.js)
+[examples/jsm/utils/SceneUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/SceneUtils.js)

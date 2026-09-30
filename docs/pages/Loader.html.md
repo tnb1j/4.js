@@ -96,7 +96,7 @@ Executed while the loading is in progress.
 
 ### .parse( data : any ) (abstract)
 
-This method needs to be implemented by all concrete loaders. It holds the logic for parsing the asset into 4.js entities.
+This method needs to be implemented by all concrete loaders. It holds the logic for parsing the asset into three.js entities.
 
 **data**
 
@@ -156,4 +156,4 @@ The `withCredentials` value.
 
 ## Source
 
-[src/loaders/Loader.js](../../src/loaders/Loader.js)
+[src/loaders/Loader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/Loader.js)

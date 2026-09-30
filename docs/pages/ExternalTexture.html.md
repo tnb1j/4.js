@@ -34,4 +34,4 @@ Default is `null`.
 
 ## Source
 
-[src/textures/ExternalTexture.js](../../src/textures/ExternalTexture.js)
+[src/textures/ExternalTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/ExternalTexture.js)

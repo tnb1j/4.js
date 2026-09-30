@@ -47,13 +47,12 @@
 			<a href="https://ion.cesium.com/" target="_blank" rel="noopener"><img src="./textures/cesiumion.png" /></a>
 		</div>
 
-		<!-- four-migrate-preserve: three/examples/ -->
-		<!-- Legacy import map entry required by 3d-tiles-renderer. -->
+		<!-- "three/examples/" import map entry required by 3d-tiles-renderer -->
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three/examples/": "./",
 					"3d-tiles-renderer": "https://cdn.jsdelivr.net/npm/3d-tiles-renderer@0.4.27/build/index.js",
 					"3d-tiles-renderer/core/plugins": "https://cdn.jsdelivr.net/npm/3d-tiles-renderer@0.4.27/build/index.core-plugins.js",
@@ -71,9 +70,9 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
-			import { TileCreasedNormalsPlugin } from '@tnb1j/4js/addons/misc/TileCreasedNormalsPlugin.js';
+			import * as THREE from 'three';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
+			import { TileCreasedNormalsPlugin } from 'three/addons/misc/TileCreasedNormalsPlugin.js';
 			import { TilesRenderer, GlobeControls, CAMERA_FRAME } from '3d-tiles-renderer';
 			import { CesiumIonAuthPlugin } from '3d-tiles-renderer/core/plugins';
 			import { GLTFExtensionsPlugin, TilesFadePlugin, UpdateOnChangePlugin } from '3d-tiles-renderer/three/plugins';
@@ -106,16 +105,16 @@
 			async function init() {
 
 				// camera
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 10, 1e6 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 10, 1e6 );
 
 				// scene
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { outputBufferType: FOUR.HalfFloatType } );
+				renderer = new THREE.WebGLRenderer( { outputBufferType: THREE.HalfFloatType } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.AgXToneMapping;
+				renderer.toneMapping = THREE.AgXToneMapping;
 				renderer.toneMappingExposure = 10;
 				document.body.appendChild( renderer.domElement );
 
@@ -166,7 +165,7 @@
 				renderer.domElement.addEventListener( 'wheel', enableAdjustHeight );
 
 				// sun direction
-				const sunDirection = new FOUR.Vector3();
+				const sunDirection = new THREE.Vector3();
 				const params = { hourUTC: 0 }; // 0:00 UTC = 9:00 AM Tokyo
 
 				function updateSunDirection() {
@@ -225,7 +224,7 @@
 
 						if ( ! this._initialized ) {
 
-							this.pass.initialize( renderer, false, FOUR.HalfFloatType );
+							this.pass.initialize( renderer, false, THREE.HalfFloatType );
 							this.pass.setSize( readBuffer.width, readBuffer.height );
 
 							if ( readBuffer.depthTexture && this.pass.setDepthTexture ) {
@@ -272,17 +271,17 @@
 				Object.assign( clouds, textures );
 
 				// load cloud textures
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				function loadCloudTexture( url, property ) {
 
 					textureLoader.load( url, ( texture ) => {
 
-						texture.minFilter = FOUR.LinearMipMapLinearFilter;
-						texture.magFilter = FOUR.LinearFilter;
-						texture.wrapS = FOUR.RepeatWrapping;
-						texture.wrapT = FOUR.RepeatWrapping;
-						texture.colorSpace = FOUR.NoColorSpace;
+						texture.minFilter = THREE.LinearMipMapLinearFilter;
+						texture.magFilter = THREE.LinearFilter;
+						texture.wrapS = THREE.RepeatWrapping;
+						texture.wrapT = THREE.RepeatWrapping;
+						texture.colorSpace = THREE.NoColorSpace;
 						texture.needsUpdate = true;
 						clouds[ property ] = texture;
 
@@ -298,14 +297,14 @@
 					fetch( url ).then( res => res.arrayBuffer() ).then( buffer => {
 
 						const data = new Uint8Array( buffer );
-						const texture = new FOUR.Data3DTexture( data, size, size, size );
-						texture.format = FOUR.RedFormat;
-						texture.minFilter = FOUR.LinearFilter;
-						texture.magFilter = FOUR.LinearFilter;
-						texture.wrapS = FOUR.RepeatWrapping;
-						texture.wrapT = FOUR.RepeatWrapping;
-						texture.wrapR = FOUR.RepeatWrapping;
-						texture.colorSpace = FOUR.NoColorSpace;
+						const texture = new THREE.Data3DTexture( data, size, size, size );
+						texture.format = THREE.RedFormat;
+						texture.minFilter = THREE.LinearFilter;
+						texture.magFilter = THREE.LinearFilter;
+						texture.wrapS = THREE.RepeatWrapping;
+						texture.wrapT = THREE.RepeatWrapping;
+						texture.wrapR = THREE.RepeatWrapping;
+						texture.colorSpace = THREE.NoColorSpace;
 						texture.needsUpdate = true;
 						clouds[ property ] = texture;
 

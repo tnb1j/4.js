@@ -22,7 +22,7 @@ class Data3DTexture extends Texture {
 		// We're going to add .setXXX() methods for setting properties later.
 		// Users can still set in Data3DTexture directly.
 		//
-		//	const texture = new FOUR.Data3DTexture( data, width, height, depth );
+		//	const texture = new THREE.Data3DTexture( data, width, height, depth );
 		// 	texture.anisotropy = 16;
 		//
 		// See #14839
@@ -104,6 +104,22 @@ class Data3DTexture extends Texture {
 		 * @default 1
 		 */
 		this.unpackAlignment = 1;
+
+	}
+
+	/**
+	 * Copies the values of the given texture to this instance.
+	 *
+	 * @param {Data3DTexture} source - The texture to copy.
+	 * @return {Data3DTexture} A reference to this instance.
+	 */
+	copy( source ) {
+
+		super.copy( source );
+
+		this.wrapR = source.wrapR;
+
+		return this;
 
 	}
 

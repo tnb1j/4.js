@@ -82,4 +82,4 @@ Returns the vector length which is computed based on the requested components.
 
 ## Source
 
-[src/nodes/utils/SplitNode.js](../../src/nodes/utils/SplitNode.js)
+[src/nodes/utils/SplitNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/SplitNode.js)

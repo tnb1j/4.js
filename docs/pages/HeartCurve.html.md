@@ -6,10 +6,10 @@ A heart curve.
 
 ## Import
 
-HeartCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HeartCurve is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HeartCurve } from '@tnb1j/4js/addons/curves/CurveExtras.js';
+import { HeartCurve } from 'three/addons/curves/CurveExtras.js';
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[examples/jsm/curves/CurveExtras.js](../../examples/jsm/curves/CurveExtras.js)
+[examples/jsm/curves/CurveExtras.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/curves/CurveExtras.js)

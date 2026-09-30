@@ -111,4 +111,4 @@ Default is `HalfFloatType`.
 
 ## Source
 
-[src/renderers/webgpu/WebGPURenderer.js](../../src/renderers/webgpu/WebGPURenderer.js)
+[src/renderers/webgpu/WebGPURenderer.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webgpu/WebGPURenderer.js)

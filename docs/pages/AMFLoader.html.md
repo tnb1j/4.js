@@ -16,10 +16,10 @@ scene.add( object );
 
 ## Import
 
-AMFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AMFLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AMFLoader } from '@tnb1j/4js/addons/loaders/AMFLoader.js';
+import { AMFLoader } from 'three/addons/loaders/AMFLoader.js';
 ```
 
 ## Constructor
@@ -70,4 +70,4 @@ The raw AMF asset data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/AMFLoader.js](../../examples/jsm/loaders/AMFLoader.js)
+[examples/jsm/loaders/AMFLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/AMFLoader.js)

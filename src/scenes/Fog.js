@@ -5,8 +5,8 @@ import { Color } from '../math/Color.js';
  * with the distance.
  *
  * ```js
- * const scene = new FOUR.Scene();
- * scene.fog = new FOUR.Fog( 0xcccccc, 10, 15 );
+ * const scene = new THREE.Scene();
+ * scene.fog = new THREE.Fog( 0xcccccc, 10, 15 );
  * ```
  */
 class Fog {

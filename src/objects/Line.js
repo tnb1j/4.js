@@ -23,16 +23,16 @@ const _intersectPointOnSegment = /*@__PURE__*/ new Vector3();
  * vertices with straight lines.
  *
  * ```js
- * const material = new FOUR.LineBasicMaterial( { color: 0x0000ff } );
+ * const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
  *
  * const points = [];
- * points.push( new FOUR.Vector3( - 10, 0, 0 ) );
- * points.push( new FOUR.Vector3( 0, 10, 0 ) );
- * points.push( new FOUR.Vector3( 10, 0, 0 ) );
+ * points.push( new THREE.Vector3( - 10, 0, 0 ) );
+ * points.push( new THREE.Vector3( 0, 10, 0 ) );
+ * points.push( new THREE.Vector3( 10, 0, 0 ) );
  *
- * const geometry = new FOUR.BufferGeometry().setFromPoints( points );
+ * const geometry = new THREE.BufferGeometry().setFromPoints( points );
  *
- * const line = new FOUR.Line( geometry, material );
+ * const line = new THREE.Line( geometry, material );
  * scene.add( line );
  * ```
  *
@@ -148,6 +148,18 @@ class Line extends Object3D {
 		}
 
 		return this;
+
+	}
+
+	/**
+	 * Returns `true` if this line intersects the given frustum.
+	 *
+	 * @param {Frustum|FrustumArray} frustum - The frustum to test.
+	 * @return {boolean} Whether this line intersects the given frustum or not.
+	 */
+	intersectsFrustum( frustum ) {
+
+		return frustum.intersectsObject( this );
 
 	}
 

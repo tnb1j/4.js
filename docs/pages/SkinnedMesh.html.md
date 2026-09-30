@@ -102,4 +102,4 @@ This method sets the skinned mesh in the rest pose).
 
 ## Source
 
-[src/objects/SkinnedMesh.js](../../src/objects/SkinnedMesh.js)
+[src/objects/SkinnedMesh.js](https://github.com/mrdoob/three.js/blob/master/src/objects/SkinnedMesh.js)

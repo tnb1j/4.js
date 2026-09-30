@@ -9,12 +9,12 @@ Every LOD level is associated with an object, and rendering can be switched betw
 ## Code Example
 
 ```js
-const lod = new FOUR.LOD();
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
+const lod = new THREE.LOD();
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 //Create spheres with 3 levels of detail and create new LOD levels for them
 for( let i = 0; i < 3; i++ ) {
-	const geometry = new FOUR.IcosahedronGeometry( 10, 3 - i );
-	const mesh = new FOUR.Mesh( geometry, material );
+	const geometry = new THREE.IcosahedronGeometry( 10, 3 - i );
+	const mesh = new THREE.Mesh( geometry, material );
 	lod.addLevel( mesh, i * 75 );
 }
 scene.add( lod );
@@ -118,4 +118,4 @@ The camera the scene is rendered with.
 
 ## Source
 
-[src/objects/LOD.js](../../src/objects/LOD.js)
+[src/objects/LOD.js](https://github.com/mrdoob/three.js/blob/master/src/objects/LOD.js)

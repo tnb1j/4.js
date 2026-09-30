@@ -57,4 +57,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/MaskPass.js](../../examples/jsm/postprocessing/MaskPass.js)
+[examples/jsm/postprocessing/MaskPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/MaskPass.js)

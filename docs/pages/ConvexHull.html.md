@@ -6,10 +6,10 @@ This Quickhull 3D implementation is a port of [quickhull3d](https://github.com/m
 
 ## Import
 
-ConvexHull is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ConvexHull is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ConvexHull } from '@tnb1j/4js/addons/math/ConvexHull.js';
+import { ConvexHull } from 'three/addons/math/ConvexHull.js';
 ```
 
 ## Constructor
@@ -82,4 +82,4 @@ The array of points in 3D space.
 
 ## Source
 
-[examples/jsm/math/ConvexHull.js](../../examples/jsm/math/ConvexHull.js)
+[examples/jsm/math/ConvexHull.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/ConvexHull.js)

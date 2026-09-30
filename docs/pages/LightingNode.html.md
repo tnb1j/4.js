@@ -20,4 +20,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/lighting/LightingNode.js](../../src/nodes/lighting/LightingNode.js)
+[src/nodes/lighting/LightingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/LightingNode.js)

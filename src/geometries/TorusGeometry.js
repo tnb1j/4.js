@@ -6,9 +6,9 @@ import { Vector3 } from '../math/Vector3.js';
  * A geometry class for representing an torus.
  *
  * ```js
- * const geometry = new FOUR.TorusGeometry( 10, 3, 16, 100 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
- * const torus = new FOUR.Mesh( geometry, material );
+ * const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+ * const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+ * const torus = new THREE.Mesh( geometry, material );
  * scene.add( torus );
  * ```
  *
@@ -152,7 +152,7 @@ class TorusGeometry extends BufferGeometry {
 	 */
 	static fromJSON( data ) {
 
-		return new TorusGeometry( data.radius, data.tube, data.radialSegments, data.tubularSegments, data.arc );
+		return new TorusGeometry( data.radius, data.tube, data.radialSegments, data.tubularSegments, data.arc, data.thetaStart, data.thetaLength );
 
 	}
 

@@ -19,17 +19,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, video;
 
@@ -37,19 +37,19 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.z = 0.01;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				video = document.getElementById( 'video' );
 
-				const texture = new FOUR.VideoTexture( video );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				const texture = new THREE.VideoTexture( video );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				const geometry = new FOUR.PlaneGeometry( 16, 9 );
+				const geometry = new THREE.PlaneGeometry( 16, 9 );
 				geometry.scale( 0.5, 0.5, 0.5 );
-				const material = new FOUR.MeshBasicMaterial( { map: texture } );
+				const material = new THREE.MeshBasicMaterial( { map: texture } );
 
 				const count = 128;
 				const radius = 32;
@@ -59,14 +59,14 @@
 					const phi = Math.acos( - 1 + ( 2 * i ) / l );
 					const theta = Math.sqrt( l * Math.PI ) * phi;
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.position.setFromSphericalCoords( radius, phi, theta );
 					mesh.lookAt( camera.position );
 					scene.add( mesh );
 
 				}
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

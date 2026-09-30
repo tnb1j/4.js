@@ -3,7 +3,7 @@ import {
 	Group,
 	Loader,
 	LoadingManager
-} from '@tnb1j/4js';
+} from 'three';
 import { ColladaLoader } from '../loaders/ColladaLoader.js';
 import { unzipSync } from '../libs/fflate.module.js';
 
@@ -18,7 +18,7 @@ import { unzipSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments Loader
- * @four_import import { KMZLoader } from '@tnb1j/4js/addons/loaders/KMZLoader.js';
+ * @three_import import { KMZLoader } from 'three/addons/loaders/KMZLoader.js';
  */
 class KMZLoader extends Loader {
 

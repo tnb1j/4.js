@@ -13,10 +13,10 @@ Note: MSAA must be disabled when TRAA is in use.
 
 ## Import
 
-TRAANode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TRAANode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
+import { traa } from 'three/addons/tsl/display/TRAANode.js';
 ```
 
 ## Constructor
@@ -161,4 +161,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/TRAANode.js](../../examples/jsm/tsl/display/TRAANode.js)
+[examples/jsm/tsl/display/TRAANode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/TRAANode.js)

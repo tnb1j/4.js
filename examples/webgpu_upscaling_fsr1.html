@@ -26,25 +26,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass } from '@tnb1j/4js/tsl';
-			import { fsr1 } from '@tnb1j/4js/addons/tsl/display/FSR1Node.js';
+			import * as THREE from 'three/webgpu';
+			import { pass } from 'three/tsl';
+			import { fsr1 } from 'three/addons/tsl/display/FSR1Node.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { DRACOLoader } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 			const params = {
 				upscaleMethod: 'FSR1',
@@ -57,12 +57,12 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( - 0.5, 0, 12 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 			
 				// model
@@ -77,14 +77,14 @@
 					model.scale.set( 0.01, 0.01, 0.01 );
 					scene.add( model );
 
-					mixer = new FOUR.AnimationMixer( model );
+					mixer = new THREE.AnimationMixer( model );
 					mixer.clipAction( gltf.animations[ 0 ] ).play();
 
 				} );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -93,10 +93,10 @@
 
 				await renderer.init();
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfe3dd );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfe3dd );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
 				// controls
@@ -107,7 +107,7 @@
 
 				// render pipeline
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera ).toInspector( 'Color' );
 				scenePass.setResolutionScale( params.resolutionScale );

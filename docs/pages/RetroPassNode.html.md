@@ -39,4 +39,4 @@ Default is `null`.
 
 ## Source
 
-[examples/jsm/tsl/display/RetroPassNode.js](../../examples/jsm/tsl/display/RetroPassNode.js)
+[examples/jsm/tsl/display/RetroPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/RetroPassNode.js)

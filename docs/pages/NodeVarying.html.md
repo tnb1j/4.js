@@ -58,4 +58,4 @@ Default is `false`.
 
 ## Source
 
-[src/nodes/core/NodeVarying.js](../../src/nodes/core/NodeVarying.js)
+[src/nodes/core/NodeVarying.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeVarying.js)

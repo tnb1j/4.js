@@ -7,7 +7,7 @@ A Note on Row-Major and Column-Major Ordering:
 The constructor and [Matrix3#set](Matrix3.html#set) method take arguments in [row-major](https://en.wikipedia.org/wiki/Row-_and_column-major_order#Column-major_order) order, while internally they are stored in the [Matrix3#elements](Matrix3.html#elements) array in column-major order. This means that calling:
 
 ```js
-const m = new FOUR.Matrix();
+const m = new THREE.Matrix();
 m.set( 11, 12, 13,
        21, 22, 23,
        31, 32, 33 );
@@ -21,7 +21,7 @@ m.elements = [ 11, 21, 31,
                13, 23, 33 ];
 ```
 
-and internally all calculations are performed using column-major ordering. However, as the actual ordering makes no difference mathematically and most people are used to thinking about matrices in row-major order, the 4.js documentation shows matrices in row-major order. Just bear in mind that if you are reading the source code, you'll have to take the transpose of any matrices outlined here to make sense of the calculations.
+and internally all calculations are performed using column-major ordering. However, as the actual ordering makes no difference mathematically and most people are used to thinking about matrices in row-major order, the three.js documentation shows matrices in row-major order. Just bear in mind that if you are reading the source code, you'll have to take the transpose of any matrices outlined here to make sense of the calculations.
 
 ## Constructor
 
@@ -409,4 +409,4 @@ An array to store the transposed matrix elements.
 
 ## Source
 
-[src/math/Matrix3.js](../../src/math/Matrix3.js)
+[src/math/Matrix3.js](https://github.com/mrdoob/three.js/blob/master/src/math/Matrix3.js)

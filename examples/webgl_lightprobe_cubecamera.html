@@ -17,19 +17,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { LightProbeHelper } from '@tnb1j/4js/addons/helpers/LightProbeHelper.js';
-			import { LightProbeGenerator } from '@tnb1j/4js/addons/lights/LightProbeGenerator.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { LightProbeHelper } from 'three/addons/helpers/LightProbeHelper.js';
+			import { LightProbeGenerator } from 'three/addons/lights/LightProbeGenerator.js';
 
 			let renderer, scene, camera, cubeCamera;
 
@@ -40,21 +40,21 @@
 			function init() {
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
 				// scene
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 0, 30 );
 
-				const cubeRenderTarget = new FOUR.WebGLCubeRenderTarget( 256 );
+				const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 256 );
 
-				cubeCamera = new FOUR.CubeCamera( 1, 1000, cubeRenderTarget );
+				cubeCamera = new THREE.CubeCamera( 1, 1000, cubeRenderTarget );
 
 				// controls
 				const controls = new OrbitControls( camera, renderer.domElement );
@@ -64,7 +64,7 @@
 				controls.enablePan = false;
 
 				// probe
-				lightProbe = new FOUR.LightProbe();
+				lightProbe = new THREE.LightProbe();
 				scene.add( lightProbe );
 
 				// envmap
@@ -80,7 +80,7 @@
 
 				const urls = genCubeUrls( 'textures/cube/pisa/', '.png' );
 
-				new FOUR.CubeTextureLoader().load( urls, async function ( cubeTexture ) {
+				new THREE.CubeTextureLoader().load( urls, async function ( cubeTexture ) {
 
 					scene.background = cubeTexture;
 

@@ -34,4 +34,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/functions/BasicLightingModel.js](../../src/nodes/functions/BasicLightingModel.js)
+[src/nodes/functions/BasicLightingModel.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/functions/BasicLightingModel.js)

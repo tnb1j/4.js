@@ -9,7 +9,7 @@ import {
 	Vector4,
 	WebGLRenderTarget,
 	HalfFloatType
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Can be used to create a flat, reflective surface like a mirror.
@@ -18,7 +18,7 @@ import {
  * When using {@link WebGPURenderer}, use {@link ReflectorNode}.
  *
  * ```js
- * const geometry = new FOUR.PlaneGeometry( 100, 100 );
+ * const geometry = new THREE.PlaneGeometry( 100, 100 );
  *
  * const reflector = new Reflector( geometry, {
  * 	clipBias: 0.003,
@@ -31,7 +31,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Reflector } from '@tnb1j/4js/addons/objects/Reflector.js';
+ * @three_import import { Reflector } from 'three/addons/objects/Reflector.js';
  */
 class Reflector extends Mesh {
 

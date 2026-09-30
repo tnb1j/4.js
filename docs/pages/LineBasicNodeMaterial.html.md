@@ -24,4 +24,4 @@ Default is `true`.
 
 ## Source
 
-[src/materials/nodes/LineBasicNodeMaterial.js](../../src/materials/nodes/LineBasicNodeMaterial.js)
+[src/materials/nodes/LineBasicNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/LineBasicNodeMaterial.js)

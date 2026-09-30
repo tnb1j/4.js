@@ -9,16 +9,16 @@ A loader for the RGBE HDR texture format.
 ```js
 const loader = new HDRLoader();
 const envMap = await loader.loadAsync( 'textures/equirectangular/blouberg_sunrise_2_1k.hdr' );
-envMap.mapping = FOUR.EquirectangularReflectionMapping;
+envMap.mapping = THREE.EquirectangularReflectionMapping;
 scene.environment = envMap;
 ```
 
 ## Import
 
-HDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HDRLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 ```
 
 ## Constructor
@@ -65,4 +65,4 @@ The texture type to set.
 
 ## Source
 
-[examples/jsm/loaders/HDRLoader.js](../../examples/jsm/loaders/HDRLoader.js)
+[examples/jsm/loaders/HDRLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/HDRLoader.js)

@@ -67,4 +67,4 @@ The 3D objects to uncache.
 
 ## Source
 
-[src/animation/AnimationObjectGroup.js](../../src/animation/AnimationObjectGroup.js)
+[src/animation/AnimationObjectGroup.js](https://github.com/mrdoob/three.js/blob/master/src/animation/AnimationObjectGroup.js)

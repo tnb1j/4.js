@@ -1,6 +1,6 @@
 /**
  * @module MirrorShader
- * @four_import import { MirrorShader } from '@tnb1j/4js/addons/shaders/MirrorShader.js';
+ * @three_import import { MirrorShader } from 'three/addons/shaders/MirrorShader.js';
  */
 
 /**

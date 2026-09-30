@@ -73,4 +73,4 @@ Default is `NearestFilter`.
 
 ## Source
 
-[src/textures/FramebufferTexture.js](../../src/textures/FramebufferTexture.js)
+[src/textures/FramebufferTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/FramebufferTexture.js)

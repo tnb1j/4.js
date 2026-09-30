@@ -10,10 +10,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html).
 
 ## Import
 
-FullScreenQuad is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FullScreenQuad is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FullScreenQuad } from '@tnb1j/4js/addons/postprocessing/Pass.js';
+import { FullScreenQuad } from 'three/addons/postprocessing/Pass.js';
 ```
 
 ## Constructor
@@ -40,6 +40,8 @@ The quad's material.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever the instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ### .render( renderer : WebGLRenderer )
 
 Renders the full screen quad.
@@ -50,4 +52,4 @@ The renderer.
 
 ## Source
 
-[examples/jsm/postprocessing/Pass.js](../../examples/jsm/postprocessing/Pass.js)
+[examples/jsm/postprocessing/Pass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/Pass.js)

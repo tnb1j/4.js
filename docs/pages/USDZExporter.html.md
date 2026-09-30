@@ -11,10 +11,10 @@ const arraybuffer = await exporter.parseAsync( scene );
 
 ## Import
 
-USDZExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+USDZExporter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { USDZExporter } from '@tnb1j/4js/addons/exporters/USDZExporter.js';
+import { USDZExporter } from 'three/addons/exporters/USDZExporter.js';
 ```
 
 ## Constructor
@@ -71,7 +71,7 @@ The export options.
 
 Sets the texture utils for this exporter. Only relevant when compressed textures have to be exported.
 
-Depending on whether you use [WebGLRenderer](WebGLRenderer.html) or [WebGPURenderer](WebGPURenderer.html), you must inject the corresponding texture utils [WebGLTextureUtils](WebGLTextureUtils.html) or [WebGPUTextureUtils](WebGPUTextureUtils.html).
+Depending on whether you use [WebGLRenderer](WebGLRenderer.html) or [WebGPURenderer](WebGPURenderer.html), you must inject the corresponding texture utils [module:WebGLTextureUtils](module-WebGLTextureUtils.html) or [module:WebGPUTextureUtils](module-WebGPUTextureUtils.html).
 
 **utils**
 
@@ -148,4 +148,4 @@ Default is `60`.
 
 ## Source
 
-[examples/jsm/exporters/USDZExporter.js](../../examples/jsm/exporters/USDZExporter.js)
+[examples/jsm/exporters/USDZExporter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/USDZExporter.js)

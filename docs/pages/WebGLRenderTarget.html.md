@@ -36,4 +36,4 @@ Default is `true`.
 
 ## Source
 
-[src/renderers/WebGLRenderTarget.js](../../src/renderers/WebGLRenderTarget.js)
+[src/renderers/WebGLRenderTarget.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/WebGLRenderTarget.js)

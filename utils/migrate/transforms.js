@@ -30,6 +30,11 @@ function replacePackageSpecifiers( source ) {
 	}
 
 	source = source.replace(
+		/(\/\/\/\s*<reference\s+types=(['"]))three(?=\/|\2)/g,
+		`$1${FOUR_PACKAGE}`
+	);
+
+	source = source.replace(
 		/(["'])three((?:\/[^"']*)?)(\1\s*:)/g,
 		`$1${FOUR_PACKAGE}$2$3`
 	);

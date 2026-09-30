@@ -64,4 +64,4 @@ The input type.
 
 ## Source
 
-[src/nodes/core/NodeFunctionInput.js](../../src/nodes/core/NodeFunctionInput.js)
+[src/nodes/core/NodeFunctionInput.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeFunctionInput.js)

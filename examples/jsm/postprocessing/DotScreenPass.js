@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { DotScreenShader } from '../shaders/DotScreenShader.js';
 
@@ -9,12 +9,12 @@ import { DotScreenShader } from '../shaders/DotScreenShader.js';
  * Pass for creating a dot-screen effect.
  *
  * ```js
- * const pass = new DotScreenPass( new FOUR.Vector2( 0, 0 ), 0.5, 0.8 );
+ * const pass = new DotScreenPass( new THREE.Vector2( 0, 0 ), 0.5, 0.8 );
  * composer.addPass( pass );
  * ```
  *
  * @augments Pass
- * @four_import import { DotScreenPass } from '@tnb1j/4js/addons/postprocessing/DotScreenPass.js';
+ * @three_import import { DotScreenPass } from 'three/addons/postprocessing/DotScreenPass.js';
  */
 class DotScreenPass extends Pass {
 

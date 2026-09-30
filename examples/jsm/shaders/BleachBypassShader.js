@@ -1,7 +1,7 @@
 
 /**
  * @module BleachBypassShader
- * @four_import import { BleachBypassShader } from '@tnb1j/4js/addons/shaders/BleachBypassShader.js';
+ * @three_import import { BleachBypassShader } from 'three/addons/shaders/BleachBypassShader.js';
  */
 
 /**

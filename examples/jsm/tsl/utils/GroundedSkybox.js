@@ -1,8 +1,8 @@
-import { Fn, If, vec3, float, min, cameraPosition, positionWorld } from '@tnb1j/4js/tsl';
+import { Fn, If, vec3, float, min, cameraPosition, positionWorld } from 'three/tsl';
 
 /**
  * @module GroundedSkybox
- * @four_import import { getGroundProjectedNormal } from '@tnb1j/4js/addons/tsl/utils/GroundedSkybox.js';
+ * @three_import import { getGroundProjectedNormal } from 'three/addons/tsl/utils/GroundedSkybox.js';
  */
 
 /**

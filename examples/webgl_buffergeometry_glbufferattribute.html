@@ -16,17 +16,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let container, stats;
 
@@ -46,7 +46,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -55,22 +55,22 @@
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 3500 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 3500 );
 				camera.position.z = 2750;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x050505 );
-				scene.fog = new FOUR.Fog( 0x050505, 2000, 3500 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x050505 );
+				scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
 
 				//
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 
 				const positions = [];
 				const positions2 = [];
 				const colors = [];
 
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 
 				const n = 1000, n2 = n / 2; // particles spread in the cube
 
@@ -91,9 +91,9 @@
 					const vy = ( y / n ) + 0.5;
 					const vz = ( z / n ) + 0.5;
 
-					color.setRGB( vx, vy, vz, FOUR.SRGBColorSpace );
+					color.setRGB( vx, vy, vz, THREE.SRGBColorSpace );
 
-					const hex = color.getHex( FOUR.LinearSRGBColorSpace );
+					const hex = color.getHex( THREE.LinearSRGBColorSpace );
 					colors.push( hex >> 16 & 255, hex >> 8 & 255, hex & 255 );
 
 				}
@@ -112,8 +112,8 @@
 				gl.bindBuffer( gl.ARRAY_BUFFER, rgb );
 				gl.bufferData( gl.ARRAY_BUFFER, new Uint8Array( colors ), gl.STATIC_DRAW );
 
-				const posAttr1 = new FOUR.GLBufferAttribute( pos, gl.FLOAT, 3, 4, particles );
-				const posAttr2 = new FOUR.GLBufferAttribute( pos2, gl.FLOAT, 3, 4, particles );
+				const posAttr1 = new THREE.GLBufferAttribute( pos, gl.FLOAT, 3, 4, particles );
+				const posAttr2 = new THREE.GLBufferAttribute( pos2, gl.FLOAT, 3, 4, particles );
 				geometry.setAttribute( 'position', posAttr1 );
 
 				setInterval( function () {
@@ -124,15 +124,15 @@
 
 				}, 2000 );
 
-				geometry.setAttribute( 'color', new FOUR.GLBufferAttribute( rgb, gl.UNSIGNED_BYTE, 3, 1, particles, true ) );
+				geometry.setAttribute( 'color', new THREE.GLBufferAttribute( rgb, gl.UNSIGNED_BYTE, 3, 1, particles, true ) );
 
 				//
 
-				const material = new FOUR.PointsMaterial( { size: 15, vertexColors: true } );
+				const material = new THREE.PointsMaterial( { size: 15, vertexColors: true } );
 
-				points = new FOUR.Points( geometry, material );
+				points = new THREE.Points( geometry, material );
 
-				geometry.boundingSphere = new FOUR.Sphere().set( new FOUR.Vector3(), 500 );
+				geometry.boundingSphere = new THREE.Sphere().set( new THREE.Vector3(), 500 );
 
 				scene.add( points );
 

@@ -6,11 +6,11 @@ import { Vector3 } from '../math/Vector3.js';
  * Can be used as a helper object to visualize a geometry as a wireframe.
  *
  * ```js
- * const geometry = new FOUR.SphereGeometry();
+ * const geometry = new THREE.SphereGeometry();
  *
- * const wireframe = new FOUR.WireframeGeometry( geometry );
+ * const wireframe = new THREE.WireframeGeometry( geometry );
  *
- * const line = new FOUR.LineSegments( wireframe );
+ * const line = new THREE.LineSegments( wireframe );
  * line.material.depthWrite = false;
  * line.material.opacity = 0.25;
  * line.material.transparent = true;

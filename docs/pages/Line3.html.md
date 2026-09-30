@@ -180,4 +180,4 @@ The end point.
 
 ## Source
 
-[src/math/Line3.js](../../src/math/Line3.js)
+[src/math/Line3.js](https://github.com/mrdoob/three.js/blob/master/src/math/Line3.js)

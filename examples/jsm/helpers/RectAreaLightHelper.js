@@ -6,7 +6,7 @@ import {
 	LineBasicMaterial,
 	Mesh,
 	MeshBasicMaterial
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Creates a visual aid for rect area lights.
@@ -14,13 +14,13 @@ import {
  * `RectAreaLightHelper` must be added as a child of the light.
  *
  * ```js
- * const light = new FOUR.RectAreaLight( 0xffffbb, 1.0, 5, 5 );
+ * const light = new THREE.RectAreaLight( 0xffffbb, 1.0, 5, 5 );
  * const helper = new RectAreaLightHelper( light );
  * light.add( helper );
  * ```
  *
  * @augments Line
- * @four_import import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
+ * @three_import import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
  */
 class RectAreaLightHelper extends Line {
 

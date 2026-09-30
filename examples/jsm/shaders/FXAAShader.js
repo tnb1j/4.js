@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module FXAAShader
- * @four_import import { FXAAShader } from '@tnb1j/4js/addons/shaders/FXAAShader.js';
+ * @three_import import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
  */
 
 /**

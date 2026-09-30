@@ -17,10 +17,10 @@ scene.add( skybox );
 
 ## Import
 
-GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GroundedSkybox is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { GroundedSkybox } from '@tnb1j/4js/addons/objects/GroundedSkybox.js';
+import { GroundedSkybox } from 'three/addons/objects/GroundedSkybox.js';
 ```
 
 ## Constructor
@@ -49,4 +49,4 @@ Default is `128`.
 
 ## Source
 
-[examples/jsm/objects/GroundedSkybox.js](../../examples/jsm/objects/GroundedSkybox.js)
+[examples/jsm/objects/GroundedSkybox.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/GroundedSkybox.js)

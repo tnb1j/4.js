@@ -32,4 +32,4 @@ Overwrites the default implementation by computing the diffuse color based on th
 
 ## Source
 
-[src/materials/nodes/MeshNormalNodeMaterial.js](../../src/materials/nodes/MeshNormalNodeMaterial.js)
+[src/materials/nodes/MeshNormalNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshNormalNodeMaterial.js)

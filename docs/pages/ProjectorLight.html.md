@@ -56,4 +56,4 @@ Default is `null`.
 
 ## Source
 
-[src/lights/webgpu/ProjectorLight.js](../../src/lights/webgpu/ProjectorLight.js)
+[src/lights/webgpu/ProjectorLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/webgpu/ProjectorLight.js)

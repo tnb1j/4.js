@@ -178,8 +178,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
@@ -188,7 +188,7 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer, timer;
 
@@ -198,46 +198,46 @@
 
 				const container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 25 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				camera.lookAt( scene.position );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// geometry
 
-				const geometry1 = new FOUR.TetrahedronGeometry();
-				const geometry2 = new FOUR.BoxGeometry();
+				const geometry1 = new THREE.TetrahedronGeometry();
+				const geometry2 = new THREE.BoxGeometry();
 
 				// texture
 
-				const texture = new FOUR.TextureLoader().load( 'textures/crate.gif' );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				const texture = new THREE.TextureLoader().load( 'textures/crate.gif' );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
 				// uniforms groups
 
 				// Camera and lighting related data are perfect examples of using UBOs since you have to store these
 				// data just once. They can be shared across all shader programs.
 
-				const cameraUniformsGroup = new FOUR.UniformsGroup();
+				const cameraUniformsGroup = new THREE.UniformsGroup();
 				cameraUniformsGroup.setName( 'ViewData' );
-				cameraUniformsGroup.add( new FOUR.Uniform( camera.projectionMatrix ) ); // projection matrix
-				cameraUniformsGroup.add( new FOUR.Uniform( camera.matrixWorldInverse ) ); // view matrix
+				cameraUniformsGroup.add( new THREE.Uniform( camera.projectionMatrix ) ); // projection matrix
+				cameraUniformsGroup.add( new THREE.Uniform( camera.matrixWorldInverse ) ); // view matrix
 
-				const lightingUniformsGroup = new FOUR.UniformsGroup();
+				const lightingUniformsGroup = new THREE.UniformsGroup();
 				lightingUniformsGroup.setName( 'LightingData' );
-				lightingUniformsGroup.add( new FOUR.Uniform( new FOUR.Vector3( 0, 0, 10 ) ) ); // light position
-				lightingUniformsGroup.add( new FOUR.Uniform( new FOUR.Color( 0x7c7c7c ) ) ); // ambient color
-				lightingUniformsGroup.add( new FOUR.Uniform( new FOUR.Color( 0xd5d5d5 ) ) ); // diffuse color
-				lightingUniformsGroup.add( new FOUR.Uniform( new FOUR.Color( 0xe7e7e7 ) ) ); // specular color
-				lightingUniformsGroup.add( new FOUR.Uniform( 64 ) ); // shininess
+				lightingUniformsGroup.add( new THREE.Uniform( new THREE.Vector3( 0, 0, 10 ) ) ); // light position
+				lightingUniformsGroup.add( new THREE.Uniform( new THREE.Color( 0x7c7c7c ) ) ); // ambient color
+				lightingUniformsGroup.add( new THREE.Uniform( new THREE.Color( 0xd5d5d5 ) ) ); // diffuse color
+				lightingUniformsGroup.add( new THREE.Uniform( new THREE.Color( 0xe7e7e7 ) ) ); // specular color
+				lightingUniformsGroup.add( new THREE.Uniform( 64 ) ); // shininess
 
 				// materials
 
-				const material1 = new FOUR.RawShaderMaterial( {
+				const material1 = new THREE.RawShaderMaterial( {
 					uniforms: {
 						modelMatrix: { value: null },
 						normalMatrix: { value: null },
@@ -245,17 +245,17 @@
 					},
 					vertexShader: document.getElementById( 'vertexShader1' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentShader1' ).textContent,
-					glslVersion: FOUR.GLSL3
+					glslVersion: THREE.GLSL3
 				} );
 
-				const material2 = new FOUR.RawShaderMaterial( {
+				const material2 = new THREE.RawShaderMaterial( {
 					uniforms: {
 						modelMatrix: { value: null },
 						diffuseMap: { value: null },
 					},
 					vertexShader: document.getElementById( 'vertexShader2' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentShader2' ).textContent,
-					glslVersion: FOUR.GLSL3
+					glslVersion: THREE.GLSL3
 				} );
 
 				// meshes
@@ -266,16 +266,16 @@
 
 					if ( i % 2 === 0 ) {
 
-						mesh = new FOUR.Mesh( geometry1, material1.clone() );
+						mesh = new THREE.Mesh( geometry1, material1.clone() );
 
 						mesh.material.uniformsGroups = [ cameraUniformsGroup, lightingUniformsGroup ];
 						mesh.material.uniforms.modelMatrix.value = mesh.matrixWorld;
 						mesh.material.uniforms.normalMatrix.value = mesh.normalMatrix;
-						mesh.material.uniforms.color.value = new FOUR.Color( 0xffffff * Math.random() );
+						mesh.material.uniforms.color.value = new THREE.Color( 0xffffff * Math.random() );
 
 					} else {
 
-						mesh = new FOUR.Mesh( geometry2, material2.clone() );
+						mesh = new THREE.Mesh( geometry2, material2.clone() );
 
 						mesh.material.uniformsGroups = [ cameraUniformsGroup, lightingUniformsGroup ];
 						mesh.material.uniforms.modelMatrix.value = mesh.matrixWorld;
@@ -303,7 +303,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

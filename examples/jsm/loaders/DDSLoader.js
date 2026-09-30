@@ -7,7 +7,7 @@ import {
 	RGB_S3TC_DXT1_Format,
 	RGB_BPTC_SIGNED_Format,
 	RGB_BPTC_UNSIGNED_Format
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the S3TC texture compression format.
@@ -16,11 +16,11 @@ import {
  * const loader = new DDSLoader();
  *
  * const map = loader.load( 'textures/compressed/disturb_dxt1_nomip.dds' );
- * map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+ * map.colorSpace = THREE.SRGBColorSpace; // only for color textures
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { DDSLoader } from '@tnb1j/4js/addons/loaders/DDSLoader.js';
+ * @three_import import { DDSLoader } from 'three/addons/loaders/DDSLoader.js';
  */
 class DDSLoader extends CompressedTextureLoader {
 
@@ -203,7 +203,7 @@ class DDSLoader extends CompressedTextureLoader {
 
 		if ( header[ off_magic ] !== DDS_MAGIC ) {
 
-			console.error( 'FOUR.DDSLoader.parse: Invalid magic number in DDS header.' );
+			console.error( 'THREE.DDSLoader.parse: Invalid magic number in DDS header.' );
 			return dds;
 
 		}
@@ -268,7 +268,7 @@ class DDSLoader extends CompressedTextureLoader {
 
 					default: {
 
-						console.error( 'FOUR.DDSLoader.parse: Unsupported DXGI_FORMAT code ', dxgiFormat );
+						console.error( 'THREE.DDSLoader.parse: Unsupported DXGI_FORMAT code ', dxgiFormat );
 						return dds;
 
 					}
@@ -300,7 +300,7 @@ class DDSLoader extends CompressedTextureLoader {
 
 				} else {
 
-					console.error( 'FOUR.DDSLoader.parse: Unsupported FourCC code ', int32ToFourCC( fourCC ) );
+					console.error( 'THREE.DDSLoader.parse: Unsupported FourCC code ', int32ToFourCC( fourCC ) );
 					return dds;
 
 				}
@@ -326,7 +326,7 @@ class DDSLoader extends CompressedTextureLoader {
 			! ( caps2 & DDSCAPS2_CUBEMAP_NEGATIVEZ )
 		) ) {
 
-			console.error( 'FOUR.DDSLoader.parse: Incomplete cubemap faces' );
+			console.error( 'THREE.DDSLoader.parse: Incomplete cubemap faces' );
 			return dds;
 
 		}

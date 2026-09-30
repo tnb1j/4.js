@@ -1,4 +1,4 @@
-import { MOUSE, TOUCH, Plane, Raycaster, Vector2, Vector3 } from '@tnb1j/4js';
+import { MOUSE, TOUCH, Plane, Raycaster, Vector2, Vector3 } from 'three';
 
 import { OrbitControls } from './OrbitControls.js';
 
@@ -17,7 +17,7 @@ const _panCurrent = new Vector3();
  * - Pan: Left mouse, or arrow keys / touch: one-finger move.
  *
  * @augments OrbitControls
- * @four_import import { MapControls } from '@tnb1j/4js/addons/controls/MapControls.js';
+ * @three_import import { MapControls } from 'three/addons/controls/MapControls.js';
  */
 class MapControls extends OrbitControls {
 
@@ -38,9 +38,9 @@ class MapControls extends OrbitControls {
 		 *
 		 * ```js
 		 * controls.mouseButtons = {
-		 * 	LEFT: FOUR.MOUSE.PAN,
-		 * 	MIDDLE: FOUR.MOUSE.DOLLY,
-		 * 	RIGHT: FOUR.MOUSE.ROTATE
+		 * 	LEFT: THREE.MOUSE.PAN,
+		 * 	MIDDLE: THREE.MOUSE.DOLLY,
+		 * 	RIGHT: THREE.MOUSE.ROTATE
 		 * }
 		 * ```
 		 * @type {Object}
@@ -52,8 +52,8 @@ class MapControls extends OrbitControls {
 		 *
 		 * ```js
 		 * controls.mouseButtons = {
-		 * 	ONE: FOUR.TOUCH.PAN,
-		 * 	TWO: FOUR.TOUCH.DOLLY_ROTATE
+		 * 	ONE: THREE.TOUCH.PAN,
+		 * 	TWO: THREE.TOUCH.DOLLY_ROTATE
 		 * }
 		 * ```
 		 * @type {Object}

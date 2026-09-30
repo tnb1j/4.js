@@ -2,10 +2,10 @@
 
 ## Import
 
-SkeletonUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SkeletonUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 ```
 
 ## Methods
@@ -149,4 +149,4 @@ An additional position offset applied to the hip bone.
 
 ## Source
 
-[examples/jsm/utils/SkeletonUtils.js](../../examples/jsm/utils/SkeletonUtils.js)
+[examples/jsm/utils/SkeletonUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/SkeletonUtils.js)

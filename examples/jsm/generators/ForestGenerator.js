@@ -6,27 +6,21 @@ import {
 	InstancedMesh,
 	Object3D,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
-import { MeshStandardNodeMaterial } from '@tnb1j/4js/webgpu';
-import { attribute, color, float, Fn, If, mix, mx_noise_float, normalView, positionLocal, positionView, positionWorld, smoothstep, step, uniform } from '@tnb1j/4js/tsl';
+import { MeshStandardNodeMaterial } from 'three/webgpu';
+import { attribute, color, float, Fn, If, mix, mx_noise_float, normalView, positionLocal, positionView, positionWorld, smoothstep, step, uniform } from 'three/tsl';
 
 import { ImprovedNoise } from '../math/ImprovedNoise.js';
 import { mergeVertices } from '../utils/BufferGeometryUtils.js';
 
 /**
- * Carpets a {@link TerrainGenerator} ( or anything exposing `sampleHeight`,
- * `sampleSlope`, `minY`, `maxY` and `parameters.size` ) with a forest of hundreds
- * of thousands of trees in a single draw call.
+ * Carpets a {@link TerrainGenerator} with trees in a single instanced draw call.
+ * Each tree is a distorted icosphere with a baked crown gradient. Altitude, slope
+ * and a density mask control placement; rotation and scale vary between trees.
  *
- * Each tree is the cheapest thing that still reads as a tree: a ~20-face icosphere
- * squashed into a tapered teardrop and lumped with a little noise, carrying a baked
- * dark-base / bright-top gradient. Tens of triangles each, so a single
- * {@link FOUR.InstancedMesh} of half a million of them costs one draw call. Trees
- * are placed by rejection sampling against ecological rules — a min/max altitude
- * band ( above the mist floor, below the snowline ), a slope limit ( none on
- * cliffs ) and a low-frequency density mask that opens clearings — then jittered in
- * yaw, lean and ( squared-biased ) scale so the stand never reads as copies.
+ * Compatible terrain objects expose `sampleHeight`, `sampleSlope`, `minY`, `maxY`
+ * and `parameters.size`.
  *
  * ```js
  * const forest = new ForestGenerator( { count: 500000 } );
@@ -39,7 +33,7 @@ class ForestGenerator {
 
 		this.parameters = Object.assign( {}, ForestGenerator.defaults, parameters );
 
-		// stochastic distance cull ( FOUR.Fog-style near / far ): drawn within `from`, gone
+		// stochastic distance cull ( THREE.Fog-style near / far ): drawn within `from`, gone
 		// past `to`, the band between thinned by a baked random. live-tunable uniforms.
 		this.from = uniform( this.parameters.from );
 		this.to = uniform( this.parameters.to );
@@ -154,7 +148,13 @@ class ForestGenerator {
 
 	dispose() {
 
-		if ( this.mesh ) this.mesh.geometry.dispose();
+		if ( this.mesh ) {
+
+			this.mesh.dispose();
+			this.mesh.geometry.dispose();
+
+		}
+
 		this.mesh = null;
 		this.group = null;
 
@@ -176,7 +176,7 @@ ForestGenerator.defaults = {
 	densityFrequency: 0.012, // patch / clearing scale ( world units )
 	minScale: 0.7,
 	maxScale: 1.8,
-	from: 300, // distance ( like FOUR.Fog ) within which every tree is drawn...
+	from: 300, // distance ( like THREE.Fog ) within which every tree is drawn...
 	to: 620, // ...past which none are; the band between thins out stochastically
 	castShadow: false // whether the canopy casts + receives shadows ( 500k casters is a real cost — opt in )
 };

@@ -53,4 +53,4 @@ Gathers the context data from all parent context nodes by traversing the hierarc
 
 ## Source
 
-[src/nodes/core/OverrideContextNode.js](../../src/nodes/core/OverrideContextNode.js)
+[src/nodes/core/OverrideContextNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/OverrideContextNode.js)

@@ -78,6 +78,8 @@ Computes the bounding sphere of the instanced mesh, and updates [InstancedMesh#b
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ### .getColorAt( index : number, color : Color ) : Color
 
 Gets the color of the defined instance.
@@ -162,4 +164,4 @@ A mesh which `morphTargetInfluences` property containing the morph target weight
 
 ## Source
 
-[src/objects/InstancedMesh.js](../../src/objects/InstancedMesh.js)
+[src/objects/InstancedMesh.js](https://github.com/mrdoob/three.js/blob/master/src/objects/InstancedMesh.js)

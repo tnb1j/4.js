@@ -43,7 +43,7 @@ function _getBufferAttribute( value, itemSize ) {
  * on geometry level. With `BufferAttributeNode`, it is also possible to do this
  * on the node level.
  * ```js
- * const geometry = new FOUR.PlaneGeometry();
+ * const geometry = new THREE.PlaneGeometry();
  * const positionAttribute = geometry.getAttribute( 'position' );
  *
  * const colors = [];
@@ -51,7 +51,7 @@ function _getBufferAttribute( value, itemSize ) {
  * 	colors.push( 1, 0, 0 );
  * }
  *
- * material.colorNode = bufferAttribute( new FOUR.Float32BufferAttribute( colors, 3 ) );
+ * material.colorNode = bufferAttribute( new THREE.Float32BufferAttribute( colors, 3 ) );
  * ```
  * This new approach is especially interesting when geometry data are generated via
  * compute shaders. The below line converts a storage buffer into an attribute node.
@@ -114,7 +114,7 @@ class BufferAttributeNode extends InputNode {
 		this.bufferOffset = bufferOffset;
 
 		/**
-		 * The usage property. Set this to `FOUR.DynamicDrawUsage` via `.setUsage()`,
+		 * The usage property. Set this to `THREE.DynamicDrawUsage` via `.setUsage()`,
 		 * if you are planning to update the attribute data per frame.
 		 *
 		 * @type {number}
@@ -440,4 +440,4 @@ export const instancedBufferAttribute = ( array, type = null, stride = 0, offset
  */
 export const instancedDynamicBufferAttribute = ( array, type = null, stride = 0, offset = 0 ) => createBufferAttribute( array, type, stride, offset, DynamicDrawUsage, true );
 
-addMethodChaining( 'toAttribute', ( bufferNode ) => bufferAttribute( bufferNode.value ) );
+addMethodChaining( 'toAttribute', ( bufferNode ) => bufferAttribute( bufferNode.value, bufferNode.bufferType ) );

@@ -18,22 +18,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, dirLight, ground, gui, material, materialIn, uniforms, uniformsIn;
 
@@ -44,21 +44,21 @@
 
 				const container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20 );
 				camera.position.set( - 0.8, 0.6, 1.5 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.7;
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.VSMShadowMap;
+				renderer.shadowMap.type = THREE.VSMShadowMap;
 				container.appendChild( renderer.domElement );
 
-				dirLight = new FOUR.DirectionalLight( 0xFFFFFF, 3 );
+				dirLight = new THREE.DirectionalLight( 0xFFFFFF, 3 );
 				dirLight.position.set( - 0.5, 1, 0.8 );
 				dirLight.castShadow = true;
 				scene.add( dirLight );
@@ -72,34 +72,34 @@
 				shadowCam.right = shadowCam.top	= s;
 				shadowCam.left = shadowCam.bottom = - s;
 				// debug shadow
-				//scene.add( new FOUR.CameraHelper(shadowCam) );
+				//scene.add( new THREE.CameraHelper(shadowCam) );
 
 				// add ground plane
-				const plane = new FOUR.PlaneGeometry( 2, 2 );
+				const plane = new THREE.PlaneGeometry( 2, 2 );
 				plane.rotateX( - Math.PI * 0.5 );
-				ground = new FOUR.Mesh( plane, new FOUR.ShadowMaterial( { opacity: 0.5 } ) );
+				ground = new THREE.Mesh( plane, new THREE.ShadowMaterial( { opacity: 0.5 } ) );
 				ground.receiveShadow = true;
 				ground.position.z = - 0.5;
 				scene.add( ground );
 
 
 
-				const map = new FOUR.TextureLoader().load( 'textures/jade.jpg' );
-				map.colorSpace = FOUR.SRGBColorSpace;
-				map.wrapS = map.wrapT = FOUR.RepeatWrapping;
+				const map = new THREE.TextureLoader().load( 'textures/jade.jpg' );
+				map.colorSpace = THREE.SRGBColorSpace;
+				map.wrapS = map.wrapT = THREE.RepeatWrapping;
 				map.repeat.set( 20, 20 );
 				map.flipY = false;
 
-				const disolveMap = new FOUR.TextureLoader().load( 'textures/shaderball_ds.jpg' );
+				const disolveMap = new THREE.TextureLoader().load( 'textures/shaderball_ds.jpg' );
 				disolveMap.flipY = false;
 
-				const noise = new FOUR.TextureLoader().load( 'textures/noise.png' );
+				const noise = new THREE.TextureLoader().load( 'textures/noise.png' );
 
 				new HDRLoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'lobe.hdr', function ( texture ) {
 
-						texture.mapping = FOUR.EquirectangularReflectionMapping;
+						texture.mapping = THREE.EquirectangularReflectionMapping;
 
 						scene.background = texture;
 						scene.environment = texture;

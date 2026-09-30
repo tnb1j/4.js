@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>LineGeometry - 4.js Docs</title>
+	<title>LineGeometry - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,9 +17,9 @@
 <p>This is used in <a href="Line2.html">Line2</a> to describe the shape.</p></div>
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">const points = [
-	new FOUR.Vector3( - 10, 0, 0 ),
-	new FOUR.Vector3( 0, 5, 0 ),
-	new FOUR.Vector3( 10, 0, 0 ),
+	new THREE.Vector3( - 10, 0, 0 ),
+	new THREE.Vector3( 0, 5, 0 ),
+	new THREE.Vector3( 10, 0, 0 ),
 ];
 const geometry = new LineGeometry();
 geometry.setFromPoints( points );
@@ -27,8 +27,8 @@ geometry.setFromPoints( points );
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">LineGeometry</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { LineLineGeometry2 } from '@tnb1j/4js/addons/lines/LineGeometry.js';</code></pre>
+				<p><span translate="no">LineGeometry</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { LineLineGeometry2 } from 'three/addons/lines/LineGeometry.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="LineGeometry" translate="no">new <a href="#LineGeometry">LineGeometry</a><span class="signature">()</span> </h3>
@@ -139,7 +139,7 @@ geometry.setFromPoints( points );
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/lines/LineGeometry.js" translate="no">examples/jsm/lines/LineGeometry.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/LineGeometry.js" translate="no" target="_blank" rel="noopener">examples/jsm/lines/LineGeometry.js</a>
 				</p>
 			</article>
 		</section>

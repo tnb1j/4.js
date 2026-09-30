@@ -8,7 +8,7 @@ import {
 	Skeleton,
 	Vector3,
 	VectorKeyframeTrack
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the BVH format.
@@ -21,17 +21,17 @@ import {
  * const result = await loader.loadAsync( 'models/bvh/pirouette.bvh' );
  *
  * // visualize skeleton
- * const skeletonHelper = new FOUR.SkeletonHelper( result.skeleton.bones[ 0 ] );
+ * const skeletonHelper = new THREE.SkeletonHelper( result.skeleton.bones[ 0 ] );
  * scene.add( result.skeleton.bones[ 0 ] );
  * scene.add( skeletonHelper );
  *
  * // play animation clip
- * mixer = new FOUR.AnimationMixer( result.skeleton.bones[ 0 ] );
+ * mixer = new THREE.AnimationMixer( result.skeleton.bones[ 0 ] );
  * mixer.clipAction( result.clip ).play();
  * ```
  *
  * @augments Loader
- * @four_import import { BVHLoader } from '@tnb1j/4js/addons/loaders/BVHLoader.js';
+ * @three_import import { BVHLoader } from 'three/addons/loaders/BVHLoader.js';
  */
 class BVHLoader extends Loader {
 
@@ -124,7 +124,7 @@ class BVHLoader extends Loader {
 
 			if ( nextLine( lines ) !== 'HIERARCHY' ) {
 
-				console.error( 'FOUR.BVHLoader: HIERARCHY expected.' );
+				console.error( 'THREE.BVHLoader: HIERARCHY expected.' );
 
 			}
 
@@ -135,7 +135,7 @@ class BVHLoader extends Loader {
 
 			if ( nextLine( lines ) !== 'MOTION' ) {
 
-				console.error( 'FOUR.BVHLoader: MOTION expected.' );
+				console.error( 'THREE.BVHLoader: MOTION expected.' );
 
 			}
 
@@ -146,7 +146,7 @@ class BVHLoader extends Loader {
 
 			if ( isNaN( numFrames ) ) {
 
-				console.error( 'FOUR.BVHLoader: Failed to read number of frames.' );
+				console.error( 'THREE.BVHLoader: Failed to read number of frames.' );
 
 			}
 
@@ -157,7 +157,7 @@ class BVHLoader extends Loader {
 
 			if ( isNaN( frameTime ) ) {
 
-				console.error( 'FOUR.BVHLoader: Failed to read frame time.' );
+				console.error( 'THREE.BVHLoader: Failed to read frame time.' );
 
 			}
 
@@ -234,7 +234,7 @@ class BVHLoader extends Loader {
 						keyframe.rotation.multiply( quat );
 						break;
 					default:
-						console.warn( 'FOUR.BVHLoader: Invalid channel type.' );
+						console.warn( 'THREE.BVHLoader: Invalid channel type.' );
 
 				}
 
@@ -282,7 +282,7 @@ class BVHLoader extends Loader {
 
 			if ( nextLine( lines ) !== '{' ) {
 
-				console.error( 'FOUR.BVHLoader: Expected opening { after type & name' );
+				console.error( 'THREE.BVHLoader: Expected opening { after type & name' );
 
 			}
 
@@ -292,13 +292,13 @@ class BVHLoader extends Loader {
 
 			if ( tokens[ 0 ] !== 'OFFSET' ) {
 
-				console.error( 'FOUR.BVHLoader: Expected OFFSET but got: ' + tokens[ 0 ] );
+				console.error( 'THREE.BVHLoader: Expected OFFSET but got: ' + tokens[ 0 ] );
 
 			}
 
 			if ( tokens.length !== 4 ) {
 
-				console.error( 'FOUR.BVHLoader: Invalid number of values for OFFSET.' );
+				console.error( 'THREE.BVHLoader: Invalid number of values for OFFSET.' );
 
 			}
 
@@ -310,7 +310,7 @@ class BVHLoader extends Loader {
 
 			if ( isNaN( offset.x ) || isNaN( offset.y ) || isNaN( offset.z ) ) {
 
-				console.error( 'FOUR.BVHLoader: Invalid values of OFFSET.' );
+				console.error( 'THREE.BVHLoader: Invalid values of OFFSET.' );
 
 			}
 
@@ -324,7 +324,7 @@ class BVHLoader extends Loader {
 
 				if ( tokens[ 0 ] !== 'CHANNELS' ) {
 
-					console.error( 'FOUR.BVHLoader: Expected CHANNELS definition.' );
+					console.error( 'THREE.BVHLoader: Expected CHANNELS definition.' );
 
 				}
 
@@ -358,7 +358,7 @@ class BVHLoader extends Loader {
 			recursively converts the internal bvh node structure to a Bone hierarchy
 
 			source: the bvh root node
-			list: pass an empty array, collects a flat list of all converted FOUR.Bones
+			list: pass an empty array, collects a flat list of all converted THREE.Bones
 
 			returns the root Bone
 		*/

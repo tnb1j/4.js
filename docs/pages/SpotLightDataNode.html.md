@@ -12,4 +12,4 @@ Projected spot lights keep the default per-light path.
 
 ## Source
 
-[examples/jsm/tsl/lighting/data/SpotLightDataNode.js](../../examples/jsm/tsl/lighting/data/SpotLightDataNode.js)
+[examples/jsm/tsl/lighting/data/SpotLightDataNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/lighting/data/SpotLightDataNode.js)

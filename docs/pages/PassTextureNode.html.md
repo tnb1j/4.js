@@ -32,4 +32,4 @@ A reference to the pass node.
 
 ## Source
 
-[src/nodes/display/PassNode.js](../../src/nodes/display/PassNode.js)
+[src/nodes/display/PassNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/PassNode.js)

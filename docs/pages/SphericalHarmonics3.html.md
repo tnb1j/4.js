@@ -193,4 +193,4 @@ The target array holding the SH basis.
 
 ## Source
 
-[src/math/SphericalHarmonics3.js](../../src/math/SphericalHarmonics3.js)
+[src/math/SphericalHarmonics3.js](https://github.com/mrdoob/three.js/blob/master/src/math/SphericalHarmonics3.js)

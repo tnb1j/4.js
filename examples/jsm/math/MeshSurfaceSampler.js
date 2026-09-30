@@ -2,7 +2,7 @@ import {
 	Triangle,
 	Vector2,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 const _face = new Triangle();
 const _color = new Vector3();
@@ -23,10 +23,10 @@ const _uva = new Vector2(), _uvb = new Vector2(), _uvc = new Vector2();
  * 	.setWeightAttribute( 'color' )
  * 	.build();
  *
- * const mesh = new FOUR.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
+ * const mesh = new THREE.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
  *
- * const position = new FOUR.Vector3();
- * const matrix = new FOUR.Matrix4();
+ * const position = new THREE.Vector3();
+ * const matrix = new THREE.Matrix4();
  *
  * // Sample randomly from the surface, creating an instance of the sample geometry at each sample point.
  *
@@ -41,7 +41,7 @@ const _uva = new Vector2(), _uvb = new Vector2(), _uvc = new Vector2();
  * scene.add( mesh );
  * ```
  *
- * @four_import import { MeshSurfaceSampler } from '@tnb1j/4js/addons/math/MeshSurfaceSampler.js';
+ * @three_import import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
  */
 class MeshSurfaceSampler {
 

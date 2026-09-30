@@ -2,10 +2,10 @@
 
 ## Import
 
-SortUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SortUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as SortUtils from '@tnb1j/4js/addons/utils/SortUtils.js';
+import * as SortUtils from 'three/addons/utils/SortUtils.js';
 ```
 
 ## Static Methods
@@ -29,4 +29,4 @@ The options
 
 ## Source
 
-[examples/jsm/utils/SortUtils.js](../../examples/jsm/utils/SortUtils.js)
+[examples/jsm/utils/SortUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/SortUtils.js)

@@ -1,11 +1,11 @@
-import { Color, Node, Vector3, Vector4 } from '@tnb1j/4js/webgpu';
-import { Loop, NodeUpdateType, getDistanceAttenuation, positionView, renderGroup, uniform, uniformArray, vec3 } from '@tnb1j/4js/tsl';
+import { Color, Node, Vector3, Vector4 } from 'three/webgpu';
+import { Loop, NodeUpdateType, getDistanceAttenuation, positionView, renderGroup, uniform, uniformArray, vec3 } from 'three/tsl';
 
 const _position = /*@__PURE__*/ new Vector3();
 
 const warn = ( message ) => {
 
-	console.warn( `FOUR.PointLightDataNode: ${ message }` );
+	console.warn( `THREE.PointLightDataNode: ${ message }` );
 
 };
 

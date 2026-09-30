@@ -7,7 +7,7 @@ import {
 	Object3D,
 	SRGBColorSpace,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 import {
 	Projector,
@@ -20,7 +20,7 @@ import {
  * Can be used to wrap SVG elements into a 3D object.
  *
  * @augments Object3D
- * @four_import import { SVGObject } from '@tnb1j/4js/addons/renderers/SVGRenderer.js';
+ * @three_import import { SVGObject } from 'three/addons/renderers/SVGRenderer.js';
  */
 class SVGObject extends Object3D {
 
@@ -72,7 +72,7 @@ class SVGObject extends Object3D {
  * - No texture support.
  * - No shadow support.
  *
- * @four_import import { SVGRenderer } from '@tnb1j/4js/addons/renderers/SVGRenderer.js';
+ * @three_import import { SVGRenderer } from 'three/addons/renderers/SVGRenderer.js';
  */
 class SVGRenderer {
 
@@ -320,7 +320,7 @@ class SVGRenderer {
 
 			if ( camera instanceof Camera === false ) {
 
-				console.error( 'FOUR.SVGRenderer.render: camera is not an instance of Camera.' );
+				console.error( 'THREE.SVGRenderer.render: camera is not an instance of Camera.' );
 				return;
 
 			}

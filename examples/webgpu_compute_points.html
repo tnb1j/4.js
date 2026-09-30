@@ -25,36 +25,36 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { Fn, uniform, instancedArray, float, vec2, color, instanceIndex } from '@tnb1j/4js/tsl';
+			import { Fn, uniform, instancedArray, float, vec2, color, instanceIndex } from 'three/tsl';
 
 			let camera, scene, renderer;
 			let computeNode;
 
-			const pointerVector = new FOUR.Vector2( - 10.0, - 10.0 ); // Out of bounds first
-			const scaleVector = new FOUR.Vector2( 1, 1 );
+			const pointerVector = new THREE.Vector2( - 10.0, - 10.0 ); // Out of bounds first
+			const scaleVector = new THREE.Vector2( 1, 1 );
 
 			init();
 
 			async function init() {
 
-				camera = new FOUR.OrthographicCamera( - 1.0, 1.0, 1.0, - 1.0, 0, 1 );
+				camera = new THREE.OrthographicCamera( - 1.0, 1.0, 1.0, - 1.0, 0, 1 );
 				camera.position.z = 1;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// initialize particles
 
@@ -114,19 +114,19 @@
 
 				// use a compute shader to animate the point cloud's vertex data.
 
-				const pointsGeometry = new FOUR.BufferGeometry();
-				pointsGeometry.setAttribute( 'position', new FOUR.BufferAttribute( new Float32Array( 3 ), 3 ) ); // single vertex ( not triangle )
+				const pointsGeometry = new THREE.BufferGeometry();
+				pointsGeometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( 3 ), 3 ) ); // single vertex ( not triangle )
 				pointsGeometry.drawRange.count = 1; // force render points as instances ( not triangle )
 
-				const pointsMaterial = new FOUR.PointsNodeMaterial();
+				const pointsMaterial = new THREE.PointsNodeMaterial();
 				pointsMaterial.colorNode = particleArray.element( instanceIndex ).add( color( 0xFFFFFF ) );
 				pointsMaterial.positionNode = particleArray.element( instanceIndex );
 
-				const mesh = new FOUR.Points( pointsGeometry, pointsMaterial );
+				const mesh = new THREE.Points( pointsGeometry, pointsMaterial );
 				mesh.count = particlesCount;
 				scene.add( mesh );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

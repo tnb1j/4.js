@@ -8,10 +8,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html).
 
 ## Import
 
-InstancedFlow is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+InstancedFlow is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { InstancedFlow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
+import { InstancedFlow } from 'three/addons/modifiers/CurveModifier.js';
 ```
 
 ## Constructor
@@ -76,4 +76,4 @@ The index of tge instanced element to update.
 
 ## Source
 
-[examples/jsm/modifiers/CurveModifier.js](../../examples/jsm/modifiers/CurveModifier.js)
+[examples/jsm/modifiers/CurveModifier.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/modifiers/CurveModifier.js)

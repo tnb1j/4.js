@@ -2,7 +2,7 @@
 
 # UniformArrayNode
 
-Similar to [BufferNode](BufferNode.html) this module represents array-like data as uniform buffers. Unlike [BufferNode](BufferNode.html), it can handle more common data types in the array (e.g `4.js` primitives) and automatically manage buffer padding. It should be the first choice when working with uniforms buffers.
+Similar to [BufferNode](BufferNode.html) this module represents array-like data as uniform buffers. Unlike [BufferNode](BufferNode.html), it can handle more common data types in the array (e.g `three.js` primitives) and automatically manage buffer padding. It should be the first choice when working with uniforms buffers.
 
 ## Code Example
 
@@ -35,7 +35,7 @@ Default is `null`.
 
 ### .array : Array.<any>
 
-Array holding the buffer data. Unlike [BufferNode](BufferNode.html), the array can hold number primitives as well as 4.js objects like vectors, matrices or colors.
+Array holding the buffer data. Unlike [BufferNode](BufferNode.html), the array can hold number primitives as well as three.js objects like vectors, matrices or colors.
 
 ### .elementType : string
 
@@ -99,6 +99,22 @@ Returns the padded type based on the element type.
 
 **Returns:** The padded type.
 
+### .onUpdate( callback : function, updateType : string ) : UniformArrayNode
+
+Composes a user-defined update with the buffer transfer.
+
+**callback**
+
+The update function.
+
+**updateType**
+
+The update type.
+
+**Overrides:** [BufferNode#onUpdate](BufferNode.html#onUpdate)
+
+**Returns:** A reference to this node.
+
 ### .setup( builder : NodeBuilder ) : null
 
 Implement the value buffer creation based on the array data.
@@ -109,16 +125,10 @@ A reference to the current node builder.
 
 **Overrides:** [BufferNode#setup](BufferNode.html#setup)
 
-### .update( frame : NodeFrame )
+### .updateBuffer()
 
-The update makes sure to correctly transfer the data from the (complex) objects in the array to the internal, correctly padded value buffer.
-
-**frame**
-
-A reference to the current node frame.
-
-**Overrides:** [BufferNode#update](BufferNode.html#update)
+The method makes sure to correctly transfer the data from the (complex) objects in the array to the internal, correctly padded value buffer.
 
 ## Source
 
-[src/nodes/accessors/UniformArrayNode.js](../../src/nodes/accessors/UniformArrayNode.js)
+[src/nodes/accessors/UniformArrayNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/UniformArrayNode.js)

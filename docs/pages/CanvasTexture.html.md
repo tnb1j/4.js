@@ -74,4 +74,4 @@ Default is `true`.
 
 ## Source
 
-[src/textures/CanvasTexture.js](../../src/textures/CanvasTexture.js)
+[src/textures/CanvasTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/CanvasTexture.js)

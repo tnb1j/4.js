@@ -2,10 +2,10 @@
 
 ## Import
 
-BokehShader2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BokehShader2 is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BokehShader, BokehDepthShader } from '@tnb1j/4js/addons/shaders/BokehShader2.js';
+import { BokehShader, BokehDepthShader } from 'three/addons/shaders/BokehShader2.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ Requires #define RINGS and SAMPLES integers
 
 ## Source
 
-[examples/jsm/shaders/BokehShader2.js](../../examples/jsm/shaders/BokehShader2.js)
+[examples/jsm/shaders/BokehShader2.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/BokehShader2.js)

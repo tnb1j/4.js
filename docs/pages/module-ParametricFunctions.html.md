@@ -2,10 +2,10 @@
 
 ## Import
 
-ParametricFunctions is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ParametricFunctions is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as ParametricFunctions from '@tnb1j/4js/addons/geometries/ParametricFunctions.js';
+import * as ParametricFunctions from 'three/addons/geometries/ParametricFunctions.js';
 ```
 
 ## Methods
@@ -76,4 +76,4 @@ The target vector that is used to store the method's result.
 
 ## Source
 
-[examples/jsm/geometries/ParametricFunctions.js](../../examples/jsm/geometries/ParametricFunctions.js)
+[examples/jsm/geometries/ParametricFunctions.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/ParametricFunctions.js)

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>MeshPhysicalMaterial - 4.js Docs</title>
+	<title>MeshPhysicalMaterial - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -28,10 +28,12 @@ wings of many insects.</li>
 transparent materials are less reflective. Physically-based transmission provides a more
 realistic option for thin, transparent surfaces like glass.</li>
 <li>Advanced reflectivity: More flexible reflectivity for non-metallic materials.</li>
+<li>Retroreflection: Redirects specular light back toward the light source for
+safety materials like road markings and reflective tape.</li>
 <li>Sheen: Can be used for representing cloth and fabric materials.</li>
 </ul>
 <p>As a result of these complex shading features, <code>MeshPhysicalMaterial</code> has a
-higher performance cost, per pixel, than other 4.js materials. Most
+higher performance cost, per pixel, than other three.js materials. Most
 effects are disabled by default, and add cost as they are enabled. For
 best results, always specify an environment map when using this material.</p></div>
 				<iframe id="viewer" src="../scenes/material-browser.html#MeshPhysicalMaterial"></iframe>
@@ -243,6 +245,16 @@ when <code>metalness</code> is <code>1.0</code></p>
 					</div>
 				</div>
 				<div class="member">
+					<h3 class="name" id="retroreflectivity" translate="no">.<a href="#retroreflectivity">retroreflectivity</a><span class="type-signature"> : number</span> </h3>
+					<div class="description">
+						<p>The strength of retroreflection, from <code>0.0</code> to <code>1.0</code>. A value of <code>1.0</code>
+evaluates the material's microfacet reflection with the view direction
+reflected about the surface normal, redirecting the specular lobe back
+toward the light source.</p>
+						<p>Default is <code>0</code>.</p>
+					</div>
+				</div>
+				<div class="member">
 					<h3 class="name" id="sheen" translate="no">.<a href="#sheen">sheen</a><span class="type-signature"> : number</span> </h3>
 					<div class="description">
 						<p>The intensity of the sheen layer, from <code>0.0</code> to <code>1.0</code>.</p>
@@ -362,7 +374,7 @@ optical transparency.</p>
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/materials/MeshPhysicalMaterial.js" translate="no">src/materials/MeshPhysicalMaterial.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/materials/MeshPhysicalMaterial.js" translate="no" target="_blank" rel="noopener">src/materials/MeshPhysicalMaterial.js</a>
 				</p>
 			</article>
 		</section>

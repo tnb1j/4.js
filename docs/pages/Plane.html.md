@@ -1,6 +1,6 @@
 # Plane
 
-A two dimensional surface that extends infinitely in 3D space, represented in [Hessian normal form](http://mathworld.wolfram.com/HessianNormalForm.html) by a unit length normal vector and a constant.
+A two dimensional surface that extends infinitely in 3D space, represented in [Hessian normal form](https://mathworld.wolfram.com/HessianNormalForm.html) by a unit length normal vector and a constant.
 
 ## Constructor
 
@@ -47,7 +47,7 @@ Apply a 4x4 matrix to the plane. The matrix must be an affine, homogeneous trans
 The optional normal matrix can be pre-computed like so:
 
 ```js
-const optionalNormalMatrix = new FOUR.Matrix3().getNormalMatrix( matrix );
+const optionalNormalMatrix = new THREE.Matrix3().getNormalMatrix( matrix );
 ```
 
 **matrix**
@@ -115,6 +115,16 @@ Returns `true` if this plane is equal with the given one.
 The plane to test for equality.
 
 **Returns:** Whether this plane is equal with the given one.
+
+### .fromJSON( json : Object ) : Plane
+
+Sets the plane properties from the given JSON.
+
+**json**
+
+The serialized json to set the plane from.
+
+**Returns:** A reference to this plane.
 
 ### .intersectLine( line : Line3, target : Vector3, clampToLine : boolean ) : Vector3
 
@@ -260,6 +270,12 @@ A coplanar point.
 
 **Returns:** A reference to this plane.
 
+### .toJSON() : Object
+
+Returns a serialized structure of the plane.
+
+**Returns:** Serialized structure with fields representing the object state.
+
 ### .translate( offset : Vector3 ) : Plane
 
 Translates the plane by the distance defined by the given offset vector. Note that this only affects the plane constant and will not affect the normal vector.
@@ -272,4 +288,4 @@ The offset vector.
 
 ## Source
 
-[src/math/Plane.js](../../src/math/Plane.js)
+[src/math/Plane.js](https://github.com/mrdoob/three.js/blob/master/src/math/Plane.js)

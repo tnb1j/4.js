@@ -42,4 +42,4 @@ The subgroup/wave intrinsic method to construct.
 
 ## Source
 
-[src/nodes/gpgpu/SubgroupFunctionNode.js](../../src/nodes/gpgpu/SubgroupFunctionNode.js)
+[src/nodes/gpgpu/SubgroupFunctionNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/gpgpu/SubgroupFunctionNode.js)

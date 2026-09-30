@@ -14,4 +14,4 @@ Constructs a new WebGL node adapter.
 
 ## Source
 
-[examples/jsm/tsl/WebGLNodesHandler.js](../../examples/jsm/tsl/WebGLNodesHandler.js)
+[examples/jsm/tsl/WebGLNodesHandler.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/WebGLNodesHandler.js)

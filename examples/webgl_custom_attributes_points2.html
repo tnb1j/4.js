@@ -54,19 +54,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
 			let renderer, scene, camera, stats;
 			let sphere, length1;
@@ -78,15 +78,15 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, 10000 );
 				camera.position.z = 300;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const radius = 100, segments = 68, rings = 38;
 
-				let sphereGeometry = new FOUR.SphereGeometry( radius, segments, rings );
-				let boxGeometry = new FOUR.BoxGeometry( 0.8 * radius, 0.8 * radius, 0.8 * radius, 10, 10, 10 );
+				let sphereGeometry = new THREE.SphereGeometry( radius, segments, rings );
+				let boxGeometry = new THREE.BoxGeometry( 0.8 * radius, 0.8 * radius, 0.8 * radius, 10, 10, 10 );
 
 				// if normal and uv attributes are not removed, mergeVertices() can't consolidate identical vertices with different normal/uv data
 
@@ -105,8 +105,8 @@
 				const colors = [];
 				const sizes = [];
 
-				const color = new FOUR.Color();
-				const vertex = new FOUR.Vector3();
+				const color = new THREE.Color();
+				const vertex = new THREE.Vector3();
 
 				length1 = sphereGeometry.getAttribute( 'position' ).count;
 
@@ -130,21 +130,21 @@
 
 				}
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				geometry.setAttribute( 'position', positionAttribute );
-				geometry.setAttribute( 'size', new FOUR.Float32BufferAttribute( sizes, 1 ) );
-				geometry.setAttribute( 'ca', new FOUR.Float32BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'size', new THREE.Float32BufferAttribute( sizes, 1 ) );
+				geometry.setAttribute( 'ca', new THREE.Float32BufferAttribute( colors, 3 ) );
 
 				//
 
-				const texture = new FOUR.TextureLoader().load( 'textures/sprites/disc.png' );
-				texture.wrapS = FOUR.RepeatWrapping;
-				texture.wrapT = FOUR.RepeatWrapping;
+				const texture = new THREE.TextureLoader().load( 'textures/sprites/disc.png' );
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
 
-				const material = new FOUR.ShaderMaterial( {
+				const material = new THREE.ShaderMaterial( {
 
 					uniforms: {
-						color: { value: new FOUR.Color( 0xffffff ) },
+						color: { value: new THREE.Color( 0xffffff ) },
 						pointTexture: { value: texture }
 					},
 					vertexShader: document.getElementById( 'vertexshader' ).textContent,
@@ -155,12 +155,12 @@
 
 				//
 
-				sphere = new FOUR.Points( geometry, material );
+				sphere = new THREE.Points( geometry, material );
 				scene.add( sphere );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( WIDTH, HEIGHT );
 				renderer.setAnimationLoop( animate );
@@ -188,11 +188,11 @@
 
 			function sortPoints() {
 
-				const vector = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
 
 				// Model View Projection matrix
 
-				const matrix = new FOUR.Matrix4();
+				const matrix = new THREE.Matrix4();
 				matrix.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
 				matrix.multiply( sphere.matrixWorld );
 
@@ -214,7 +214,7 @@
 
 					}
 
-					index = new FOUR.BufferAttribute( array, 1 );
+					index = new THREE.BufferAttribute( array, 1 );
 
 					geometry.setIndex( index );
 

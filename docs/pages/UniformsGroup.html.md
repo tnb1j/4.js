@@ -266,4 +266,4 @@ The Vector4 uniform.
 
 ## Source
 
-[src/core/UniformsGroup.js](../../src/core/UniformsGroup.js)
+[src/core/UniformsGroup.js](https://github.com/mrdoob/three.js/blob/master/src/core/UniformsGroup.js)

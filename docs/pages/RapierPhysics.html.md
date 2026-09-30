@@ -1,6 +1,6 @@
 # RapierPhysics
 
-Can be used to include Rapier as a Physics engine into `4.js` apps. The API can be initialized via:
+Can be used to include Rapier as a Physics engine into `three.js` apps. The API can be initialized via:
 
 The component automatically imports Rapier from a CDN so make sure to use the component with an active Internet connection.
 
@@ -12,10 +12,10 @@ const physics = await RapierPhysics();
 
 ## Import
 
-RapierPhysics is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RapierPhysics is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
+import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
 ```
 
 ## Methods
@@ -26,7 +26,7 @@ Adds a heightfield terrain to the physics simulation.
 
 **mesh**
 
-The 4.js mesh representing the terrain.
+The Three.js mesh representing the terrain.
 
 **width**
 
@@ -154,4 +154,4 @@ Default is `0`.
 
 ## Source
 
-[examples/jsm/physics/RapierPhysics.js](../../examples/jsm/physics/RapierPhysics.js)
+[examples/jsm/physics/RapierPhysics.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/physics/RapierPhysics.js)

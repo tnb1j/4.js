@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>RoundedBoxGeometry - 4.js Docs</title>
+	<title>RoundedBoxGeometry - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,16 +15,16 @@
 			<header>
 				<div class="class-description"><p>A special type of box geometry with rounded corners and edges.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const geometry = new FOUR.RoundedBoxGeometry();
-const material = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
-const cube = new FOUR.Mesh( geometry, material );
+				<div translate="no"><pre><code class="language-js">const geometry = new RoundedBoxGeometry();
+const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">RoundedBoxGeometry</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';</code></pre>
+				<p><span translate="no">RoundedBoxGeometry</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="RoundedBoxGeometry" translate="no">new <a href="#RoundedBoxGeometry">RoundedBoxGeometry</a><span class="signature">( width : <span class="param-type">number</span>, height : <span class="param-type">number</span>, depth : <span class="param-type">number</span>, segments : <span class="param-type">number</span>, radius : <span class="param-type">number</span> )</span> </h3>
@@ -120,7 +120,7 @@ JSON object.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/geometries/RoundedBoxGeometry.js" translate="no">examples/jsm/geometries/RoundedBoxGeometry.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/RoundedBoxGeometry.js" translate="no" target="_blank" rel="noopener">examples/jsm/geometries/RoundedBoxGeometry.js</a>
 				</p>
 			</article>
 		</section>

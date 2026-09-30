@@ -23,19 +23,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
-			import { RapierHelper } from '@tnb1j/4js/addons/helpers/RapierHelper.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
+			import { RapierHelper } from 'three/addons/helpers/RapierHelper.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let physics, characterController, physicsHelper;
@@ -45,18 +45,18 @@
 
 			async function init() {
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 2, 5, 15 );
 
-				const ambient = new FOUR.HemisphereLight( 0x555555, 0xFFFFFF );
+				const ambient = new THREE.HemisphereLight( 0x555555, 0xFFFFFF );
 
 				scene.add( ambient );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 
 				light.position.set( 0, 12.5, 12.5 );
 				light.castShadow = true;
@@ -75,7 +75,7 @@
 
 				scene.add( light );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
@@ -83,13 +83,13 @@
 				renderer.setAnimationLoop( animate );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
-				controls.target = new FOUR.Vector3( 0, 2, 0 );
+				controls.target = new THREE.Vector3( 0, 2, 0 );
 				controls.update();
 
-				const geometry = new FOUR.BoxGeometry( 20, 0.5, 20 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0xFFFFFF } );
+				const geometry = new THREE.BoxGeometry( 20, 0.5, 20 );
+				const material = new THREE.MeshStandardMaterial( { color: 0xFFFFFF } );
 
-				const ground = new FOUR.Mesh( geometry, material );
+				const ground = new THREE.Mesh( geometry, material );
 				ground.receiveShadow = true;
 
 				ground.position.y = - 0.25;
@@ -97,10 +97,10 @@
 
 				scene.add( ground );
 
-				new FOUR.TextureLoader().load( 'textures/grid.png', function ( texture ) {
+				new THREE.TextureLoader().load( 'textures/grid.png', function ( texture ) {
 
-					texture.wrapS = FOUR.RepeatWrapping;
-					texture.wrapT = FOUR.RepeatWrapping;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
 					texture.repeat.set( 20, 20 );
 					ground.material.map = texture;
 					ground.material.needsUpdate = true;
@@ -163,9 +163,9 @@
 			function addCharacterController() {
 
 				// Character Capsule
-				const geometry = new FOUR.CapsuleGeometry( 0.3, 1, 8, 8 );
-				const material = new FOUR.MeshStandardMaterial( { color: 0x0000ff } );
-				player = new FOUR.Mesh( geometry, material );
+				const geometry = new THREE.CapsuleGeometry( 0.3, 1, 8, 8 );
+				const material = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
+				player = new THREE.Mesh( geometry, material );
 				player.castShadow = true;
 				player.position.set( 0, 0.8, 0 );
 				scene.add( player );
@@ -181,10 +181,10 @@
 
 			function addBody( fixed = true ) {
 			
-				const geometry = ( fixed ) ? new FOUR.BoxGeometry( 1, 1, 1 ) : new FOUR.SphereGeometry( 0.25 );
-				const material = new FOUR.MeshStandardMaterial( { color: fixed ? 0xFF0000 : 0x00FF00 } );
+				const geometry = ( fixed ) ? new THREE.BoxGeometry( 1, 1, 1 ) : new THREE.SphereGeometry( 0.25 );
+				const material = new THREE.MeshStandardMaterial( { color: fixed ? 0xFF0000 : 0x00FF00 } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.castShadow = true;
 
 				mesh.position.set( random( - 10, 10 ), 0.5, random( - 10, 10 ) );

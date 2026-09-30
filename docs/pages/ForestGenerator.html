@@ -2,27 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ForestGenerator - 4.js Docs</title>
+	<title>ForestGenerator - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
 	<h1 translate="no">ForestGenerator</h1>
 		<section>
 			<header>
-				<div class="class-description"><p>Carpets a <a href="TerrainGenerator.html">TerrainGenerator</a> ( or anything exposing <code>sampleHeight</code>,
-<code>sampleSlope</code>, <code>minY</code>, <code>maxY</code> and <code>parameters.size</code> ) with a forest of hundreds
-of thousands of trees in a single draw call.</p>
-<p>Each tree is the cheapest thing that still reads as a tree: a ~20-face icosphere
-squashed into a tapered teardrop and lumped with a little noise, carrying a baked
-dark-base / bright-top gradient. Tens of triangles each, so a single
-FOUR.InstancedMesh of half a million of them costs one draw call. Trees
-are placed by rejection sampling against ecological rules — a min/max altitude
-band ( above the mist floor, below the snowline ), a slope limit ( none on
-cliffs ) and a low-frequency density mask that opens clearings — then jittered in
-yaw, lean and ( squared-biased ) scale so the stand never reads as copies.</p></div>
+				<div class="class-description"><p>Carpets a <a href="TerrainGenerator.html">TerrainGenerator</a> with trees in a single instanced draw call.
+Each tree is a distorted icosphere with a baked crown gradient. Altitude, slope
+and a density mask control placement; rotation and scale vary between trees.</p>
+<p>Compatible terrain objects expose <code>sampleHeight</code>, <code>sampleSlope</code>, <code>minY</code>, <code>maxY</code>
+and <code>parameters.size</code>.</p></div>
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">const forest = new ForestGenerator( { count: 500000 } );
 scene.add( forest.build( terrain ) );
@@ -37,7 +31,7 @@ scene.add( forest.build( terrain ) );
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/generators/ForestGenerator.js" translate="no">examples/jsm/generators/ForestGenerator.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/generators/ForestGenerator.js" translate="no" target="_blank" rel="noopener">examples/jsm/generators/ForestGenerator.js</a>
 				</p>
 			</article>
 		</section>

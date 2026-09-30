@@ -26,28 +26,28 @@
 		</div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> webaudio - sandbox<br/>
-			music by <a href="http://www.newgrounds.com/audio/listen/358232" target="_blank" rel="noopener">larrylarrybb</a>,
-			<a href="http://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener">skullbeatz</a> and
-			<a href="http://opengameart.org/content/project-utopia-seamless-loop" target="_blank" rel="noopener">congusbongus</a><br/><br/>
+			music by <a href="https://www.newgrounds.com/audio/listen/358232" target="_blank" rel="noopener">larrylarrybb</a>,
+			<a href="https://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener">skullbeatz</a> and
+			<a href="https://opengameart.org/content/project-utopia-seamless-loop" target="_blank" rel="noopener">congusbongus</a><br/><br/>
 			navigate with WASD / arrows / mouse
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
+			import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 
 			let camera, controls, scene, renderer, light;
 
@@ -55,7 +55,7 @@
 
 			let analyser1, analyser2, analyser3;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			const startButton = document.getElementById( 'startButton' );
@@ -66,32 +66,32 @@
 				const overlay = document.getElementById( 'overlay' );
 				overlay.remove();
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.set( 0, 25, 0 );
 
-				const listener = new FOUR.AudioListener();
+				const listener = new THREE.AudioListener();
 				camera.add( listener );
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.FogExp2( 0x000000, 0.0025 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0x000000, 0.0025 );
 
-				light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 0.5, 1 ).normalize();
 				scene.add( light );
 
-				const sphere = new FOUR.SphereGeometry( 20, 32, 16 );
+				const sphere = new THREE.SphereGeometry( 20, 32, 16 );
 
-				material1 = new FOUR.MeshPhongMaterial( { color: 0xffaa00, flatShading: true, shininess: 0 } );
-				material2 = new FOUR.MeshPhongMaterial( { color: 0xff2200, flatShading: true, shininess: 0 } );
-				material3 = new FOUR.MeshPhongMaterial( { color: 0x6622aa, flatShading: true, shininess: 0 } );
+				material1 = new THREE.MeshPhongMaterial( { color: 0xffaa00, flatShading: true, shininess: 0 } );
+				material2 = new THREE.MeshPhongMaterial( { color: 0xff2200, flatShading: true, shininess: 0 } );
+				material3 = new THREE.MeshPhongMaterial( { color: 0x6622aa, flatShading: true, shininess: 0 } );
 
 				// sound spheres
 
-				const mesh1 = new FOUR.Mesh( sphere, material1 );
+				const mesh1 = new THREE.Mesh( sphere, material1 );
 				mesh1.position.set( - 250, 30, 0 );
 				scene.add( mesh1 );
 
-				const sound1 = new FOUR.PositionalAudio( listener );
+				const sound1 = new THREE.PositionalAudio( listener );
 				const songElement = document.getElementById( 'song' );
 				sound1.setMediaElementSource( songElement );
 				sound1.setRefDistance( 20 );
@@ -100,11 +100,11 @@
 
 				//
 
-				const mesh2 = new FOUR.Mesh( sphere, material2 );
+				const mesh2 = new THREE.Mesh( sphere, material2 );
 				mesh2.position.set( 250, 30, 0 );
 				scene.add( mesh2 );
 
-				const sound2 = new FOUR.PositionalAudio( listener );
+				const sound2 = new THREE.PositionalAudio( listener );
 				const skullbeatzElement = document.getElementById( 'skullbeatz' );
 				sound2.setMediaElementSource( skullbeatzElement );
 				sound2.setRefDistance( 20 );
@@ -113,11 +113,11 @@
 
 				//
 
-				const mesh3 = new FOUR.Mesh( sphere, material3 );
+				const mesh3 = new THREE.Mesh( sphere, material3 );
 				mesh3.position.set( 0, 30, - 250 );
 				scene.add( mesh3 );
 
-				const sound3 = new FOUR.PositionalAudio( listener );
+				const sound3 = new THREE.PositionalAudio( listener );
 				const oscillator = listener.context.createOscillator();
 				oscillator.type = 'sine';
 				oscillator.frequency.setValueAtTime( 144, sound3.context.currentTime );
@@ -129,13 +129,13 @@
 
 				// analysers
 
-				analyser1 = new FOUR.AudioAnalyser( sound1, 32 );
-				analyser2 = new FOUR.AudioAnalyser( sound2, 32 );
-				analyser3 = new FOUR.AudioAnalyser( sound3, 32 );
+				analyser1 = new THREE.AudioAnalyser( sound1, 32 );
+				analyser2 = new THREE.AudioAnalyser( sound2, 32 );
+				analyser3 = new THREE.AudioAnalyser( sound3, 32 );
 
 				// global ambient audio
 
-				const sound4 = new FOUR.Audio( listener );
+				const sound4 = new THREE.Audio( listener );
 				const utopiaElement = document.getElementById( 'utopia' );
 				sound4.setMediaElementSource( utopiaElement );
 				sound4.setVolume( 0.5 );
@@ -143,7 +143,7 @@
 
 				// ground
 
-				const helper = new FOUR.GridHelper( 1000, 10, 0x444444, 0x444444 );
+				const helper = new THREE.GridHelper( 1000, 10, 0x444444, 0x444444 );
 				helper.position.y = 0.1;
 				scene.add( helper );
 
@@ -214,7 +214,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -225,7 +225,7 @@
 				controls = new FirstPersonControls( camera, renderer.domElement );
 
 				controls.movementSpeed = 70;
-				controls.lookSpeed = 0.05;
+				controls.lookSpeed = 0.2;
 				controls.lookVertical = false;
 
 				//

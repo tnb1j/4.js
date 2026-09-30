@@ -53,16 +53,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, controls, timer, scene, renderer, stats;
 
@@ -72,17 +72,17 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
 				camera.position.z = 2;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -106,7 +106,7 @@
 
 				const vertexCount = 200 * 3;
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 
 				const positions = [];
 				const colors = [];
@@ -126,8 +126,8 @@
 
 				}
 
-				const positionAttribute = new FOUR.Float32BufferAttribute( positions, 3 );
-				const colorAttribute = new FOUR.Uint8BufferAttribute( colors, 4 );
+				const positionAttribute = new THREE.Float32BufferAttribute( positions, 3 );
+				const colorAttribute = new THREE.Uint8BufferAttribute( colors, 4 );
 				colorAttribute.normalized = true;
 
 				geometry.setAttribute( 'position', positionAttribute );
@@ -135,14 +135,14 @@
 
 				// material
 
-				material = new FOUR.ShaderMaterial( {
+				material = new THREE.ShaderMaterial( {
 
 					uniforms: {
 						time: { value: 1.0 }
 					},
 					vertexShader: document.getElementById( 'vertexShader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-					side: FOUR.DoubleSide,
+					side: THREE.DoubleSide,
 					transparent: true,
 					vertexColors: true
 
@@ -150,7 +150,7 @@
 
 				material.extensions.clipCullDistance = true;
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//

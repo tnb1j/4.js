@@ -46,4 +46,4 @@ The perspective camera.
 
 ## Source
 
-[src/cameras/StereoCamera.js](../../src/cameras/StereoCamera.js)
+[src/cameras/StereoCamera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/StereoCamera.js)

@@ -120,4 +120,4 @@ This array holds for all mipmaps (including the bases mip) the data and dimensio
 
 ## Source
 
-[src/textures/CompressedTexture.js](../../src/textures/CompressedTexture.js)
+[src/textures/CompressedTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/CompressedTexture.js)

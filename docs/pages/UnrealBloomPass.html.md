@@ -13,17 +13,17 @@ Reference:
 ## Code Example
 
 ```js
-const resolution = new FOUR.Vector2( window.innerWidth, window.innerHeight );
+const resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
 const bloomPass = new UnrealBloomPass( resolution, 1.5, 0.4, 0.85 );
 composer.addPass( bloomPass );
 ```
 
 ## Import
 
-UnrealBloomPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+UnrealBloomPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 ```
 
 ## Constructor
@@ -136,4 +136,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/UnrealBloomPass.js](../../examples/jsm/postprocessing/UnrealBloomPass.js)
+[examples/jsm/postprocessing/UnrealBloomPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/UnrealBloomPass.js)

@@ -26,21 +26,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
 			let camera, scene, renderer;
 
@@ -51,23 +51,23 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 5 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 5 );
 				camera.position.set( 0.1, 0.05, 0.15 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.ReinhardToneMapping; // TODO: Add FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.ReinhardToneMapping; // TODO: Add THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 1;
 				container.appendChild( renderer.domElement );
 
 				const hdrTexture = await new HDRLoader().setPath( 'textures/equirectangular/' ).loadAsync( 'pedestrian_overpass_1k.hdr' );
-				hdrTexture.mapping = FOUR.EquirectangularReflectionMapping;
+				hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundBlurriness = 0.5;
 				scene.environment = hdrTexture;
 				scene.background = hdrTexture;

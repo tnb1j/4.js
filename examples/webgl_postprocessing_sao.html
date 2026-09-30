@@ -11,29 +11,29 @@
 	<body>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener noreferrer">4.js</a> - Scalable Ambient Occlusion (SAO)<br/>
-			shader by <a href="http://clara.io">Ben Houston</a> / Post-processing pass by <a href="http://ludobaka.github.io">Ludobaka</a>
+			shader by <a href="https://ben3d.ca/">Ben Houston</a> / Post-processing pass by <a href="https://ludobaka.github.io">Ludobaka</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { SAOPass } from '@tnb1j/4js/addons/postprocessing/SAOPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { SAOPass } from 'three/addons/postprocessing/SAOPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let container, stats;
 			let camera, scene, renderer;
@@ -50,49 +50,49 @@
 				const width = window.innerWidth;
 				const height = window.innerHeight;
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( width, height );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 65, width / height, 3, 10 );
+				camera = new THREE.PerspectiveCamera( 65, width / height, 3, 10 );
 				camera.position.z = 7;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				group = new FOUR.Object3D();
+				group = new THREE.Object3D();
 				scene.add( group );
 
-				const light = new FOUR.PointLight( 0xefffef, 500 );
+				const light = new THREE.PointLight( 0xefffef, 500 );
 				light.position.z = 10;
 				light.position.y = - 10;
 				light.position.x = - 10;
 				scene.add( light );
 
-				const light2 = new FOUR.PointLight( 0xffefef, 500 );
+				const light2 = new THREE.PointLight( 0xffefef, 500 );
 				light2.position.z = 10;
 				light2.position.x = - 10;
 				light2.position.y = 10;
 				scene.add( light2 );
 
-				const light3 = new FOUR.PointLight( 0xefefff, 500 );
+				const light3 = new THREE.PointLight( 0xefefff, 500 );
 				light3.position.z = 10;
 				light3.position.x = 10;
 				light3.position.y = - 10;
 				scene.add( light3 );
 
-				const light4 = new FOUR.AmbientLight( 0xffffff, 0.2 );
+				const light4 = new THREE.AmbientLight( 0xffffff, 0.2 );
 				scene.add( light4 );
 
-				const geometry = new FOUR.SphereGeometry( 3, 48, 24 );
-				const material = new FOUR.MeshStandardMaterial();
+				const geometry = new THREE.SphereGeometry( 3, 48, 24 );
+				const material = new THREE.MeshStandardMaterial();
 				material.roughness = 0.5;
 				material.metalness = 0;
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, 120 );
-				const dummy = new FOUR.Object3D();
-				const color = new FOUR.Color();
+				const mesh = new THREE.InstancedMesh( geometry, material, 120 );
+				const dummy = new THREE.Object3D();
+				const color = new THREE.Color();
 
 				for ( let i = 0; i < 120; i ++ ) {
 

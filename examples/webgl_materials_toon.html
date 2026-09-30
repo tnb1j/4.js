@@ -16,22 +16,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { OutlineEffect } from '@tnb1j/4js/addons/effects/OutlineEffect.js';
-			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { OutlineEffect } from 'three/addons/effects/OutlineEffect.js';
+			import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			let container, stats;
 
@@ -50,17 +50,17 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 2500 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 2500 );
 				camera.position.set( 0.0, 400, 400 * 3.5 );
 
 				//
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x444488 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x444488 );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -73,7 +73,7 @@
 				const sphereRadius = ( cubeWidth / numberOfSpheresPerSide ) * 0.8 * 0.5;
 				const stepSize = 1.0 / numberOfSpheresPerSide;
 
-				const geometry = new FOUR.SphereGeometry( sphereRadius, 32, 16 );
+				const geometry = new THREE.SphereGeometry( sphereRadius, 32, 16 );
 
 				for ( let alpha = 0, alphaIndex = 0; alpha <= 1.0; alpha += stepSize, alphaIndex ++ ) {
 
@@ -85,7 +85,7 @@
 
 					}
 
-					const gradientMap = new FOUR.DataTexture( colors, colors.length, 1, FOUR.RedFormat );
+					const gradientMap = new THREE.DataTexture( colors, colors.length, 1, THREE.RedFormat );
 					gradientMap.needsUpdate = true;
 
 					for ( let beta = 0; beta <= 1.0; beta += stepSize ) {
@@ -93,14 +93,14 @@
 						for ( let gamma = 0; gamma <= 1.0; gamma += stepSize ) {
 
 							// basic monochromatic energy preservation
-							const diffuseColor = new FOUR.Color().setHSL( alpha, 0.5, gamma * 0.5 + 0.1 ).multiplyScalar( 1 - beta * 0.2 );
+							const diffuseColor = new THREE.Color().setHSL( alpha, 0.5, gamma * 0.5 + 0.1 ).multiplyScalar( 1 - beta * 0.2 );
 
-							const material = new FOUR.MeshToonMaterial( {
+							const material = new THREE.MeshToonMaterial( {
 								color: diffuseColor,
 								gradientMap: gradientMap
 							} );
 
-							const mesh = new FOUR.Mesh( geometry, material );
+							const mesh = new THREE.Mesh( geometry, material );
 
 							mesh.position.x = alpha * 400 - 200;
 							mesh.position.y = beta * 400 - 200;
@@ -126,30 +126,30 @@
 
 					} );
 
-					const textMaterial = new FOUR.MeshBasicMaterial();
-					const textMesh = new FOUR.Mesh( textGeo, textMaterial );
+					const textMaterial = new THREE.MeshBasicMaterial();
+					const textMesh = new THREE.Mesh( textGeo, textMaterial );
 					textMesh.position.copy( location );
 					scene.add( textMesh );
 
 				}
 
-				addLabel( '-gradientMap', new FOUR.Vector3( - 350, 0, 0 ) );
-				addLabel( '+gradientMap', new FOUR.Vector3( 350, 0, 0 ) );
+				addLabel( '-gradientMap', new THREE.Vector3( - 350, 0, 0 ) );
+				addLabel( '+gradientMap', new THREE.Vector3( 350, 0, 0 ) );
 
-				addLabel( '-diffuse', new FOUR.Vector3( 0, 0, - 300 ) );
-				addLabel( '+diffuse', new FOUR.Vector3( 0, 0, 300 ) );
+				addLabel( '-diffuse', new THREE.Vector3( 0, 0, - 300 ) );
+				addLabel( '+diffuse', new THREE.Vector3( 0, 0, 300 ) );
 
-				particleLight = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 4, 8, 8 ),
-					new FOUR.MeshBasicMaterial( { color: 0xffffff } )
+				particleLight = new THREE.Mesh(
+					new THREE.SphereGeometry( 4, 8, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0xffffff } )
 				);
 				scene.add( particleLight );
 
 				// Lights
 
-				scene.add( new FOUR.AmbientLight( 0xc1c1c1, 3 ) );
+				scene.add( new THREE.AmbientLight( 0xc1c1c1, 3 ) );
 
-				const pointLight = new FOUR.PointLight( 0xffffff, 2, 800, 0 );
+				const pointLight = new THREE.PointLight( 0xffffff, 2, 800, 0 );
 				particleLight.add( pointLight );
 
 				//

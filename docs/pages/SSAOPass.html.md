@@ -15,10 +15,10 @@ composer.addPass( ssaoPass );
 
 ## Import
 
-SSAOPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SSAOPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SSAOPass } from '@tnb1j/4js/addons/postprocessing/SSAOPass.js';
+import { SSAOPass } from 'three/addons/postprocessing/SSAOPass.js';
 ```
 
 ## Constructor
@@ -165,4 +165,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/SSAOPass.js](../../examples/jsm/postprocessing/SSAOPass.js)
+[examples/jsm/postprocessing/SSAOPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/SSAOPass.js)

@@ -447,7 +447,7 @@ function getTrackTypeForValueTypeName( typeName ) {
 
 	}
 
-	throw new Error( 'FOUR.KeyframeTrack: Unsupported typeName: ' + typeName );
+	throw new Error( 'THREE.KeyframeTrack: Unsupported typeName: ' + typeName );
 
 }
 
@@ -455,7 +455,7 @@ function parseKeyframeTrack( json ) {
 
 	if ( json.type === undefined ) {
 
-		throw new Error( 'FOUR.KeyframeTrack: track type undefined, can not parse' );
+		throw new Error( 'THREE.KeyframeTrack: track type undefined, can not parse' );
 
 	}
 
@@ -472,17 +472,30 @@ function parseKeyframeTrack( json ) {
 
 	}
 
+	let track;
+
 	// derived classes can define a static parse method
 	if ( trackType.parse !== undefined ) {
 
-		return trackType.parse( json );
+		track = trackType.parse( json );
 
 	} else {
 
 		// by default, we assume a constructor compatible with the base
-		return new trackType( json.name, json.times, json.values, json.interpolation );
+		track = new trackType( json.name, json.times, json.values, json.interpolation );
 
 	}
+
+	if ( AnimationUtils.hasTangents( json.settings ) ) {
+
+		track.settings = {
+			inTangents: AnimationUtils.convertArray( json.settings.inTangents, Float32Array ),
+			outTangents: AnimationUtils.convertArray( json.settings.outTangents, Float32Array )
+		};
+
+	}
+
+	return track;
 
 }
 

@@ -38,4 +38,4 @@ The storage buffer node.
 
 ## Source
 
-[src/nodes/utils/StorageArrayElementNode.js](../../src/nodes/utils/StorageArrayElementNode.js)
+[src/nodes/utils/StorageArrayElementNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/StorageArrayElementNode.js)

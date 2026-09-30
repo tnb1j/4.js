@@ -53,23 +53,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-				"@tnb1j/4js": "../build/4.webgpu.js",
-				"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-				"@tnb1j/4js/tsl": "../build/4.tsl.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.webgpu.js",
+				"three/webgpu": "../build/three.webgpu.js",
+				"three/tsl": "../build/three.tsl.js",
+				"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, uv, uniform } from '@tnb1j/4js/tsl';
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
-			import { afterImage } from '@tnb1j/4js/addons/tsl/display/AfterImageNode.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, uv, uniform } from 'three/tsl';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
+			import { afterImage } from 'three/addons/tsl/display/AfterImageNode.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { ExtendedSRGBColorSpace, ExtendedSRGBColorSpaceImpl } from '@tnb1j/4js/addons/math/ColorSpaces.js';
+			import { ExtendedSRGBColorSpace, ExtendedSRGBColorSpaceImpl } from 'three/addons/math/ColorSpaces.js';
 
 			const params = {
 				intensity: uniform( 4.0, 'float' ).setName( 'intensity' ),
@@ -98,12 +98,12 @@
 			}
 
 			// Enable Extended sRGB output color space for HDR presentation
-			FOUR.ColorManagement.define( { [ ExtendedSRGBColorSpace ]: ExtendedSRGBColorSpaceImpl } );
+			THREE.ColorManagement.define( { [ ExtendedSRGBColorSpace ]: ExtendedSRGBColorSpaceImpl } );
 
 			// Renderer (HalfFloat output + Extended sRGB)
-			const renderer = new FOUR.WebGPURenderer( {
+			const renderer = new THREE.WebGPURenderer( {
 				antialias: true,
-				outputType: FOUR.HalfFloatType,
+				outputType: THREE.HalfFloatType,
 			} );
 
 			renderer.outputColorSpace = ExtendedSRGBColorSpace;
@@ -112,21 +112,21 @@
 			renderer.inspector = new Inspector();
 			document.body.appendChild( renderer.domElement );
 
-			const camera = new FOUR.OrthographicCamera( 0, window.innerWidth, window.innerHeight, 0, 1, 2 );
+			const camera = new THREE.OrthographicCamera( 0, window.innerWidth, window.innerHeight, 0, 1, 2 );
 			camera.position.z = 1;
 
 			// Brush scene (rendered into drawTarget)
-			const brushScene = new FOUR.Scene();
+			const brushScene = new THREE.Scene();
 
-			brushScene.background = new FOUR.Color( 0xffffff );
-			const brushMat = new FOUR.MeshBasicNodeMaterial();
+			brushScene.background = new THREE.Color( 0xffffff );
+			const brushMat = new THREE.MeshBasicNodeMaterial();
 			brushMat.transparent = true;
 			brushMat.depthTest = false;
 			brushMat.depthWrite = false;
-			brushMat.blending = FOUR.AdditiveBlending; // additive to build HDR energy
+			brushMat.blending = THREE.AdditiveBlending; // additive to build HDR energy
 
-			const renderPipeline = new FOUR.RenderPipeline( renderer );
-			const brushPass = pass( brushScene, camera, { type: FOUR.HalfFloatType } );
+			const renderPipeline = new THREE.RenderPipeline( renderer );
+			const brushPass = pass( brushScene, camera, { type: THREE.HalfFloatType } );
 			brushPass.renderTarget.texture.colorSpace = ExtendedSRGBColorSpace;
 
 			renderPipeline.outputNode = afterImage( brushPass, params.afterImageDecay );
@@ -144,7 +144,7 @@
 			brushMat.colorNode = uColor.mul( a );
 			brushMat.opacityNode = a; // premultiplied style with additive blending
 
-			const brushMesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 1, 1 ), brushMat );
+			const brushMesh = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1 ), brushMat );
 			brushMesh.scale.set( 300, 300, 1 ); // ~300px default brush size
 			brushScene.add( brushMesh );
 

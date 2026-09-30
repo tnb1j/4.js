@@ -7,9 +7,9 @@ import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
  *
  * ```js
  * const points = [
- * 	new FOUR.Vector3( - 10, 0, 0 ),
- * 	new FOUR.Vector3( 0, 5, 0 ),
- * 	new FOUR.Vector3( 10, 0, 0 ),
+ * 	new THREE.Vector3( - 10, 0, 0 ),
+ * 	new THREE.Vector3( 0, 5, 0 ),
+ * 	new THREE.Vector3( 10, 0, 0 ),
  * ];
  *
  * const geometry = new LineGeometry();
@@ -17,7 +17,7 @@ import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
  * ```
  *
  * @augments LineSegmentsGeometry
- * @four_import import { LineLineGeometry2 } from '@tnb1j/4js/addons/lines/LineGeometry.js';
+ * @three_import import { LineLineGeometry2 } from 'three/addons/lines/LineGeometry.js';
  */
 class LineGeometry extends LineSegmentsGeometry {
 

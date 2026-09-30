@@ -26,24 +26,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { uniform, varying, vec4, add, sub, max, dot, sin, mat3, uint, negate, instancedArray, cameraProjectionMatrix, cameraViewMatrix, positionLocal, modelWorldMatrix, sqrt, float, Fn, If, cos, Loop, Continue, normalize, instanceIndex, length, vertexIndex } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { uniform, varying, vec4, add, sub, max, dot, sin, mat3, uint, negate, instancedArray, cameraProjectionMatrix, cameraViewMatrix, positionLocal, modelWorldMatrix, sqrt, float, Fn, If, cos, Loop, Continue, normalize, instanceIndex, length, vertexIndex } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -58,7 +58,7 @@
 			const BOUNDS = 800, BOUNDS_HALF = BOUNDS / 2;
 
 			// Custom Geometry - using 3 triangles each. No normals currently.
-			class BirdGeometry extends FOUR.BufferGeometry {
+			class BirdGeometry extends THREE.BufferGeometry {
 
 				constructor() {
 
@@ -66,7 +66,7 @@
 
 					const points = 3 * 3;
 
-					const vertices = new FOUR.BufferAttribute( new Float32Array( points * 3 ), 3 );
+					const vertices = new THREE.BufferAttribute( new Float32Array( points * 3 ), 3 );
 
 					this.setAttribute( 'position', vertices );
 
@@ -126,21 +126,21 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.Fog( 0xffffff, 700, 3000 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0xffffff, 700, 3000 );
 
 				// Pointer
 
-				pointer = new FOUR.Vector2();
-				raycaster = new FOUR.Raycaster();
+				pointer = new THREE.Vector2();
+				raycaster = new THREE.Raycaster();
 
 				// Sky
 
-				const geometry = new FOUR.IcosahedronGeometry( 1, 6 );
-				const material = new FOUR.MeshBasicNodeMaterial( {
+				const geometry = new THREE.IcosahedronGeometry( 1, 6 );
+				const material = new THREE.MeshBasicNodeMaterial( {
 					// Use vertex positions to create atmosphere colors
 					colorNode: varying(
 						vec4(
@@ -150,21 +150,21 @@
 							1.0
 						)
 					),
-					side: FOUR.BackSide
+					side: THREE.BackSide
 				} );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.rotation.z = 0.75;
 				mesh.scale.setScalar( 1200 );
 				scene.add( mesh );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL: false, requiredLimits: { maxStorageBuffersInVertexStage: 3 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL: false, requiredLimits: { maxStorageBuffersInVertexStage: 3 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.inspector = new Inspector();
 				container.appendChild( renderer.domElement );
 
@@ -221,14 +221,14 @@
 					freedom: uniform( 0.75 ).setName( 'freedom' ),
 					now: uniform( 0.0 ),
 					deltaTime: uniform( 0.0 ).setName( 'deltaTime' ),
-					rayOrigin: uniform( new FOUR.Vector3() ).setName( 'rayOrigin' ),
-					rayDirection: uniform( new FOUR.Vector3() ).setName( 'rayDirection' )
+					rayOrigin: uniform( new THREE.Vector3() ).setName( 'rayOrigin' ),
+					rayDirection: uniform( new THREE.Vector3() ).setName( 'rayDirection' )
 				};
 
 				// Create geometry
 
 				const birdGeometry = new BirdGeometry();
-				const birdMaterial = new FOUR.NodeMaterial();
+				const birdMaterial = new THREE.NodeMaterial();
 
 				// Animate bird mesh within vertex shader, then apply position offset to vertices.
 
@@ -279,9 +279,9 @@
 				} );
 
 				birdMaterial.vertexNode = birdVertexTSL();
-				birdMaterial.side = FOUR.DoubleSide;
+				birdMaterial.side = THREE.DoubleSide;
 
-				const birdMesh = new FOUR.InstancedMesh( birdGeometry, birdMaterial, BIRDS );
+				const birdMesh = new THREE.InstancedMesh( birdGeometry, birdMaterial, BIRDS );
 				birdMesh.rotation.y = Math.PI / 2;
 				birdMesh.matrixAutoUpdate = false;
 				birdMesh.frustumCulled = false;

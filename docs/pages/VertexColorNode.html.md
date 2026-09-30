@@ -44,4 +44,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/accessors/VertexColorNode.js](../../src/nodes/accessors/VertexColorNode.js)
+[src/nodes/accessors/VertexColorNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/VertexColorNode.js)

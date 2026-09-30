@@ -11,10 +11,10 @@ scene.add( painter.mesh );
 
 ## Import
 
-TubePainter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TubePainter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TubePainter } from '@tnb1j/4js/addons/misc/TubePainter.js';
+import { TubePainter } from 'three/addons/misc/TubePainter.js';
 ```
 
 ## Constructor
@@ -67,4 +67,4 @@ Updates the internal geometry buffers so the new painted segments are rendered.
 
 ## Source
 
-[examples/jsm/misc/TubePainter.js](../../examples/jsm/misc/TubePainter.js)
+[examples/jsm/misc/TubePainter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/TubePainter.js)

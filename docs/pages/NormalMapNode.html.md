@@ -52,4 +52,4 @@ Default is `NoNormalPacking`.
 
 ## Source
 
-[src/nodes/display/NormalMapNode.js](../../src/nodes/display/NormalMapNode.js)
+[src/nodes/display/NormalMapNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/NormalMapNode.js)

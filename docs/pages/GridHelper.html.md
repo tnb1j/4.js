@@ -9,7 +9,7 @@ The helper is an object to define grids. Grids are two-dimensional arrays of lin
 ```js
 const size = 10;
 const divisions = 10;
-const gridHelper = new FOUR.GridHelper( size, divisions );
+const gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper );
 ```
 
@@ -49,6 +49,8 @@ Default is `0x888888`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ## Source
 
-[src/helpers/GridHelper.js](../../src/helpers/GridHelper.js)
+[src/helpers/GridHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/GridHelper.js)

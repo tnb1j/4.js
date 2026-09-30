@@ -40,4 +40,4 @@ Default is `1`.
 
 ## Source
 
-[src/core/InstancedInterleavedBuffer.js](../../src/core/InstancedInterleavedBuffer.js)
+[src/core/InstancedInterleavedBuffer.js](https://github.com/mrdoob/three.js/blob/master/src/core/InstancedInterleavedBuffer.js)

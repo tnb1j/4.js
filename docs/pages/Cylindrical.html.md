@@ -112,4 +112,4 @@ The vector to set.
 
 ## Source
 
-[src/math/Cylindrical.js](../../src/math/Cylindrical.js)
+[src/math/Cylindrical.js](https://github.com/mrdoob/three.js/blob/master/src/math/Cylindrical.js)

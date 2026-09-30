@@ -136,4 +136,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/lighting/AnalyticLightNode.js](../../src/nodes/lighting/AnalyticLightNode.js)
+[src/nodes/lighting/AnalyticLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/AnalyticLightNode.js)

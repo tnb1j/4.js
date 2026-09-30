@@ -19,10 +19,10 @@ composer.addPass( ssrPass );
 
 ## Import
 
-SSRPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SSRPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SSRPass } from '@tnb1j/4js/addons/postprocessing/SSRPass.js';
+import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
 ```
 
 ## Constructor
@@ -253,4 +253,4 @@ Default is `null`.
 
 ## Source
 
-[examples/jsm/postprocessing/SSRPass.js](../../examples/jsm/postprocessing/SSRPass.js)
+[examples/jsm/postprocessing/SSRPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/SSRPass.js)

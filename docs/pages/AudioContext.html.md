@@ -20,4 +20,4 @@ The native context to set.
 
 ## Source
 
-[src/audio/AudioContext.js](../../src/audio/AudioContext.js)
+[src/audio/AudioContext.js](https://github.com/mrdoob/three.js/blob/master/src/audio/AudioContext.js)

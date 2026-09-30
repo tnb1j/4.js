@@ -15,10 +15,10 @@ References:
 
 ## Import
 
-TemporalReprojectNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TemporalReprojectNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { temporalReproject } from '@tnb1j/4js/addons/tsl/display/TemporalReprojectNode.js';
+import { temporalReproject } from 'three/addons/tsl/display/TemporalReprojectNode.js';
 ```
 
 ## Constructor
@@ -55,4 +55,4 @@ Supplies an external history source (e.g. a [RecurrentDenoiseNode](RecurrentDeno
 
 ## Source
 
-[examples/jsm/tsl/display/TemporalReprojectNode.js](../../examples/jsm/tsl/display/TemporalReprojectNode.js)
+[examples/jsm/tsl/display/TemporalReprojectNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/TemporalReprojectNode.js)

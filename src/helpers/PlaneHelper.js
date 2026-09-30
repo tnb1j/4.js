@@ -9,8 +9,8 @@ import { BufferGeometry } from '../core/BufferGeometry.js';
  * A helper object to visualize an instance of {@link Plane}.
  *
  * ```js
- * const plane = new FOUR.Plane( new FOUR.Vector3( 1, 1, 0.2 ), 3 );
- * const helper = new FOUR.PlaneHelper( plane, 1, 0xffff00 );
+ * const plane = new THREE.Plane( new THREE.Vector3( 1, 1, 0.2 ), 3 );
+ * const helper = new THREE.PlaneHelper( plane, 1, 0xffff00 );
  * scene.add( helper );
  * ```
  *
@@ -83,6 +83,8 @@ class PlaneHelper extends Line {
 	 * light being visualized.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

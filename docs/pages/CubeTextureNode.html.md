@@ -106,4 +106,4 @@ The uv node to setup.
 
 ## Source
 
-[src/nodes/accessors/CubeTextureNode.js](../../src/nodes/accessors/CubeTextureNode.js)
+[src/nodes/accessors/CubeTextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/CubeTextureNode.js)

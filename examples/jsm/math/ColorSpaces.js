@@ -1,4 +1,4 @@
-import { LinearTransfer, Matrix3, SRGBTransfer, SRGBColorSpace, ColorManagement } from '@tnb1j/4js';
+import { LinearTransfer, Matrix3, SRGBTransfer, SRGBColorSpace, ColorManagement } from 'three';
 
 /** @module ColorSpaces */
 

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PolarGridHelper - 4.js Docs</title>
+	<title>PolarGridHelper - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -20,7 +20,7 @@ two-dimensional arrays of lines.</p></div>
 const sectors = 16;
 const rings = 8;
 const divisions = 64;
-const helper = new FOUR.PolarGridHelper( radius, sectors, rings, divisions );
+const helper = new THREE.PolarGridHelper( radius, sectors, rings, divisions );
 scene.add( helper );
 </code></pre></div>
 			</header>
@@ -99,10 +99,13 @@ scene.add( helper );
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="LineSegments.html#dispose">LineSegments#dispose</a></dt>
+						</dl>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/helpers/PolarGridHelper.js" translate="no">src/helpers/PolarGridHelper.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/helpers/PolarGridHelper.js" translate="no" target="_blank" rel="noopener">src/helpers/PolarGridHelper.js</a>
 				</p>
 			</article>
 		</section>

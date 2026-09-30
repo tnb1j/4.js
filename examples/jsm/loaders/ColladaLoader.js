@@ -4,7 +4,7 @@ import {
 	LoaderUtils,
 	Scene,
 	TextureLoader
-} from '@tnb1j/4js';
+} from 'three';
 
 import { TGALoader } from '../loaders/TGALoader.js';
 import { ColladaParser } from './collada/ColladaParser.js';
@@ -27,7 +27,7 @@ import { ColladaComposer } from './collada/ColladaComposer.js';
  * ```
  *
  * @augments Loader
- * @four_import import { ColladaLoader } from '@tnb1j/4js/addons/loaders/ColladaLoader.js';
+ * @three_import import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
  */
 class ColladaLoader extends Loader {
 
@@ -126,7 +126,7 @@ class ColladaLoader extends Loader {
 		// Handle coordinate system conversion
 		if ( asset.upAxis === 'Z_UP' ) {
 
-			console.warn( 'FOUR.ColladaLoader: You are loading an asset with a Z-UP coordinate system. The loader just rotates the asset to transform it into Y-UP. The vertex data are not converted, see #24289.' );
+			console.warn( 'THREE.ColladaLoader: You are loading an asset with a Z-UP coordinate system. The loader just rotates the asset to transform it into Y-UP. The vertex data are not converted, see #24289.' );
 			scene.rotation.set( - Math.PI / 2, 0, 0 );
 
 		}
@@ -137,7 +137,7 @@ class ColladaLoader extends Loader {
 		return {
 			get animations() {
 
-				console.warn( 'FOUR.ColladaLoader: Please access animations over scene.animations now.' );
+				console.warn( 'THREE.ColladaLoader: Please access animations over scene.animations now.' );
 				return animations;
 
 			},

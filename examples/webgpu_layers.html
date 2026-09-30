@@ -25,21 +25,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { positionLocal, time, mod, instancedBufferAttribute, rotate, screenUV, color, vec2 } from '@tnb1j/4js/tsl';
+			import { positionLocal, time, mod, instancedBufferAttribute, rotate, screenUV, color, vec2 } from 'three/tsl';
 
 			let camera, scene, renderer;
 
@@ -48,39 +48,39 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.layers.enable( 0 ); // enabled by default
 				camera.layers.enable( 1 );
 				camera.layers.enable( 2 );
 
 				camera.position.z = 10;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const horizontalEffect = screenUV.x.mix( color( 0xf996ae ), color( 0xf6f0a3 ) );
 				const lightEffect = screenUV.distance( vec2( 0.5, 1.0 ) ).oneMinus().mul( color( 0xd9b6fd ) );
 
 				scene.backgroundNode = horizontalEffect.add( lightEffect );
 
-				const sprite = new FOUR.TextureLoader().load( 'textures/sprites/blossom.png' );
-				sprite.colorSpace = FOUR.SRGBColorSpace;
+				const sprite = new THREE.TextureLoader().load( 'textures/sprites/blossom.png' );
+				sprite.colorSpace = THREE.SRGBColorSpace;
 
 				const count = 2500;
 
-				const geometry = new FOUR.PlaneGeometry( 0.25, 0.25 );
+				const geometry = new THREE.PlaneGeometry( 0.25, 0.25 );
 
 				const colors = [ 0xD70654, 0xFFD95F, 0xB8D576 ];
 
 				for ( let i = 0; i < 3; i ++ ) {
 
-					const particles = new FOUR.Mesh( geometry, getMaterial( count, colors[ i ], sprite ) );
+					const particles = new THREE.Mesh( geometry, getMaterial( count, colors[ i ], sprite ) );
 					particles.layers.set( i );
 					particles.count = count;
 					scene.add( particles );
 
 				}
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -130,17 +130,17 @@
 				const directions = [];
 				const timeOffsets = [];
 
-				const v = new FOUR.Vector3();
+				const v = new THREE.Vector3();
 
 				for ( let i = 0; i < count; i ++ ) {
 
 					positions.push(
-						FOUR.MathUtils.randFloat( - 25, - 20 ),
-						FOUR.MathUtils.randFloat( - 10, 50 ),
-						FOUR.MathUtils.randFloat( - 5, 5 )
+						THREE.MathUtils.randFloat( - 25, - 20 ),
+						THREE.MathUtils.randFloat( - 10, 50 ),
+						THREE.MathUtils.randFloat( - 5, 5 )
 					);
 
-					v.set( FOUR.MathUtils.randFloat( 0.7, 0.9 ), FOUR.MathUtils.randFloat( - 0.3, - 0.15 ), 0 ).normalize();
+					v.set( THREE.MathUtils.randFloat( 0.7, 0.9 ), THREE.MathUtils.randFloat( - 0.3, - 0.15 ), 0 ).normalize();
 
 					rotations.push( Math.random(), Math.random(), Math.random() );
 
@@ -150,19 +150,19 @@
 
 				}
 
-				const positionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( positions ), 3 );
-				const rotationAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( rotations ), 3 );
-				const directionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( directions ), 3 );
-				const timeAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( timeOffsets ), 1 );
+				const positionAttribute = new THREE.InstancedBufferAttribute( new Float32Array( positions ), 3 );
+				const rotationAttribute = new THREE.InstancedBufferAttribute( new Float32Array( rotations ), 3 );
+				const directionAttribute = new THREE.InstancedBufferAttribute( new Float32Array( directions ), 3 );
+				const timeAttribute = new THREE.InstancedBufferAttribute( new Float32Array( timeOffsets ), 1 );
 
 				// material
 
-				const material = new FOUR.MeshBasicNodeMaterial( {
+				const material = new THREE.MeshBasicNodeMaterial( {
 					color: color,
 					map: sprite,
 					alphaMap: sprite,
 					alphaTest: 0.1,
-					side: FOUR.DoubleSide,
+					side: THREE.DoubleSide,
 					forceSinglePass: true
 				} );
 

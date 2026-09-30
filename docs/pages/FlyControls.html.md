@@ -6,10 +6,10 @@ This class enables a navigation similar to fly modes in DCC tools like Blender. 
 
 ## Import
 
-FlyControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FlyControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FlyControls } from '@tnb1j/4js/addons/controls/FlyControls.js';
+import { FlyControls } from 'three/addons/controls/FlyControls.js';
 ```
 
 ## Constructor
@@ -66,4 +66,4 @@ Fires when the camera has been transformed by the controls.
 
 ## Source
 
-[examples/jsm/controls/FlyControls.js](../../examples/jsm/controls/FlyControls.js)
+[examples/jsm/controls/FlyControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/FlyControls.js)

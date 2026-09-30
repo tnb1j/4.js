@@ -9,9 +9,9 @@ Please note that `TextureLoader` has dropped support for progress events in `r84
 ## Code Example
 
 ```js
-const loader = new FOUR.TextureLoader();
+const loader = new THREE.TextureLoader();
 const texture = await loader.loadAsync( 'textures/land_ocean_ice_cloud_2048.jpg' );
-const material = new FOUR.MeshBasicMaterial( { map:texture } );
+const material = new THREE.MeshBasicMaterial( { map:texture } );
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ Executed when errors occur.
 
 ## Source
 
-[src/loaders/TextureLoader.js](../../src/loaders/TextureLoader.js)
+[src/loaders/TextureLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/TextureLoader.js)

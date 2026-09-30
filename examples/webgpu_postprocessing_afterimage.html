@@ -26,21 +26,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { instancedBufferAttribute, uniform, mod, pass, texture, float, time, vec2, vec3, vec4, sin, cos } from '@tnb1j/4js/tsl';
-			import { afterImage } from '@tnb1j/4js/addons/tsl/display/AfterImageNode.js';
+			import * as THREE from 'three/webgpu';
+			import { instancedBufferAttribute, uniform, mod, pass, texture, float, time, vec2, vec3, vec4, sin, cos } from 'three/tsl';
+			import { afterImage } from 'three/addons/tsl/display/AfterImageNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, particles;
 			let renderPipeline, afterImagePass, scenePass;
@@ -56,28 +56,28 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				const sprite = new FOUR.TextureLoader().load( 'textures/sprites/circle.png' );
+				const sprite = new THREE.TextureLoader().load( 'textures/sprites/circle.png' );
 
 				// geometry
 
 				const radius = 600;
 				const count = 50000;
 
-				const vertex = new FOUR.Vector3();
-				const color = new FOUR.Color();
+				const vertex = new THREE.Vector3();
+				const color = new THREE.Color();
 
 				const colors = [];
 				const vertices = [];
@@ -88,20 +88,20 @@
 					getRandomPointOnSphere( radius, vertex );
 					vertices.push( vertex.x, vertex.y, vertex.z );
 
-					color.setHSL( i / count, 0.7, 0.7, FOUR.SRGBColorSpace );
+					color.setHSL( i / count, 0.7, 0.7, THREE.SRGBColorSpace );
 					colors.push( color.r, color.g, color.b );
 
 					timeOffsets.push( i / count );
 
 				}
 
-				const positionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( vertices ), 3 );
-				const colorAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( colors ), 3 );
-				const timeAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( timeOffsets ), 1 );
+				const positionAttribute = new THREE.InstancedBufferAttribute( new Float32Array( vertices ), 3 );
+				const colorAttribute = new THREE.InstancedBufferAttribute( new Float32Array( colors ), 3 );
+				const timeAttribute = new THREE.InstancedBufferAttribute( new Float32Array( timeOffsets ), 1 );
 
 				// material and TSL
 
-				const material = new FOUR.SpriteNodeMaterial( { blending: FOUR.AdditiveBlending, depthWrite: false } );
+				const material = new THREE.SpriteNodeMaterial( { blending: THREE.AdditiveBlending, depthWrite: false } );
 
 				const localTime = instancedBufferAttribute( timeAttribute ).add( time.mul( 0.1 ) );
 				const modTime = mod( localTime, 1.0 );
@@ -118,13 +118,13 @@
 				material.positionNode = animated;
 				material.scaleNode = float( 2 );
 
-				particles = new FOUR.Sprite( material );
+				particles = new THREE.Sprite( material );
 				particles.count = count;
 				scene.add( particles );
 
 				// postprocessing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				scenePass = pass( scene, camera );
 

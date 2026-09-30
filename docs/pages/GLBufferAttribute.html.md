@@ -134,4 +134,4 @@ The corresponding size (in bytes) for the given `type` parameter.
 
 ## Source
 
-[src/core/GLBufferAttribute.js](../../src/core/GLBufferAttribute.js)
+[src/core/GLBufferAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/core/GLBufferAttribute.js)

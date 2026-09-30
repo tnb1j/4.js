@@ -1,21 +1,21 @@
 # Skeleton
 
-Class for representing the armatures in `4.js`. The skeleton is defined by a hierarchy of bones.
+Class for representing the armatures in `three.js`. The skeleton is defined by a hierarchy of bones.
 
 ## Code Example
 
 ```js
 const bones = [];
-const shoulder = new FOUR.Bone();
-const elbow = new FOUR.Bone();
-const hand = new FOUR.Bone();
+const shoulder = new THREE.Bone();
+const elbow = new THREE.Bone();
+const hand = new THREE.Bone();
 shoulder.add( elbow );
 elbow.add( hand );
 bones.push( shoulder , elbow, hand);
 shoulder.position.y = -5;
 elbow.position.y = 0;
 hand.position.y = 5;
-const armSkeleton = new FOUR.Skeleton( bones );
+const armSkeleton = new THREE.Skeleton( bones );
 ```
 
 ## Constructor
@@ -124,4 +124,4 @@ Resets the skeleton to the base pose.
 
 ## Source
 
-[src/objects/Skeleton.js](../../src/objects/Skeleton.js)
+[src/objects/Skeleton.js](https://github.com/mrdoob/three.js/blob/master/src/objects/Skeleton.js)

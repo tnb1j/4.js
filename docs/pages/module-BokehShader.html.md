@@ -2,10 +2,10 @@
 
 ## Import
 
-BokehShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BokehShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BokehShader } from '@tnb1j/4js/addons/shaders/BokehShader.js';
+import { BokehShader } from 'three/addons/shaders/BokehShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Depth-of-field shader with bokeh ported from [GLSL shader by Martins Upitis](htt
 
 ## Source
 
-[examples/jsm/shaders/BokehShader.js](../../examples/jsm/shaders/BokehShader.js)
+[examples/jsm/shaders/BokehShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/BokehShader.js)

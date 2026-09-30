@@ -12,7 +12,7 @@ class Color4 extends Color {
 
 	/**
 	 * Constructs a new four-component color.
-	 * You can also pass a single FOUR.Color, hex or
+	 * You can also pass a single THREE.Color, hex or
 	 * string argument to this constructor.
 	 *
 	 * @param {number|string} [r=1] - The red value.
@@ -30,7 +30,7 @@ class Color4 extends Color {
 
 	/**
 	 * Overwrites the default to honor alpha.
-	 * You can also pass a single FOUR.Color, hex or
+	 * You can also pass a single THREE.Color, hex or
 	 * string argument to this method.
 	 *
 	 * @param {number|string|Color} r - The red value.
@@ -69,6 +69,15 @@ class Color4 extends Color {
 	clone() {
 
 		return new this.constructor( this.r, this.g, this.b, this.a );
+
+	}
+
+	*[ Symbol.iterator ]() {
+
+		yield this.r;
+		yield this.g;
+		yield this.b;
+		yield this.a;
 
 	}
 

@@ -12,7 +12,7 @@ Constructs a new input node.
 
 **value**
 
-The value of this node. Usually a JS primitive or 4.js object (vector, matrix, color).
+The value of this node. Usually a JS primitive or three.js object (vector, matrix, color).
 
 **nodeType**
 
@@ -42,4 +42,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/core/ConstNode.js](../../src/nodes/core/ConstNode.js)
+[src/nodes/core/ConstNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/ConstNode.js)

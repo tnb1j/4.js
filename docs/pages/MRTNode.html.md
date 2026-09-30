@@ -31,6 +31,10 @@ The MRT outputs.
 
 A dictionary storing the blend modes for each output.
 
+### .clearColors : Object.<string, Color4>
+
+A dictionary storing the clear colors for each output.
+
 ### .isMRTNode : boolean (readonly)
 
 This flag can be used for type testing.
@@ -62,6 +66,16 @@ Returns the blend mode for the given output name.
 The name of the output.
 
 **Returns:** The blend mode.
+
+### .getClearColor( name : string ) : Color4
+
+Returns the clear color for the given output name.
+
+**name**
+
+The name of the output.
+
+**Returns:** The clear color. Returns `null` if no clear color is defined which means the renderer's default clear policy is applied.
 
 ### .has( name : string ) : NodeBuilder
 
@@ -97,6 +111,26 @@ The blending mode.
 
 **Returns:** The current MRT node.
 
+### .setClearColor( name : string, color : number | string | Color, alpha : number ) : MRTNode
+
+Sets the clear color for the given output name.
+
+**name**
+
+The name of the output.
+
+**color**
+
+The clear color.
+
+**alpha**
+
+The clear alpha.
+
+Default is `1`.
+
+**Returns:** The current MRT node.
+
 ## Source
 
-[src/nodes/core/MRTNode.js](../../src/nodes/core/MRTNode.js)
+[src/nodes/core/MRTNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/MRTNode.js)

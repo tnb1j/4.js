@@ -14,9 +14,9 @@ Important Notes:
 
 ```js
 RectAreaLightUniformsLib.init(); // only relevant for WebGLRenderer
-FOUR.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() ); //  only relevant for WebGPURenderer
+THREE.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() ); //  only relevant for WebGPURenderer
 const intensity = 1; const width = 10; const height = 10;
-const rectLight = new FOUR.RectAreaLight( 0xffffff, intensity, width, height );
+const rectLight = new THREE.RectAreaLight( 0xffffff, intensity, width, height );
 rectLight.position.set( 5, 5, 0 );
 rectLight.lookAt( 0, 0, 0 );
 scene.add( rectLight )
@@ -78,4 +78,4 @@ Default is `10`.
 
 ## Source
 
-[src/lights/RectAreaLight.js](../../src/lights/RectAreaLight.js)
+[src/lights/RectAreaLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/RectAreaLight.js)

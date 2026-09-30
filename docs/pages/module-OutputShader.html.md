@@ -2,10 +2,10 @@
 
 ## Import
 
-OutputShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OutputShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OutputShader } from '@tnb1j/4js/addons/shaders/OutputShader.js';
+import { OutputShader } from 'three/addons/shaders/OutputShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ Used by [OutputPass](OutputPass.html).
 
 ## Source
 
-[examples/jsm/shaders/OutputShader.js](../../examples/jsm/shaders/OutputShader.js)
+[examples/jsm/shaders/OutputShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/OutputShader.js)

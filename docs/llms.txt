@@ -1,16 +1,16 @@
-# 4.js
+# Three.js
 
-> 4.js is a cross-browser JavaScript library for creating 3D graphics using WebGL and WebGPU.
+> Three.js is a cross-browser JavaScript library for creating 3D graphics using WebGL and WebGPU.
 
 ## Instructions for Large Language Models
 
-When generating 4.js code, follow these guidelines:
+When generating Three.js code, follow these guidelines:
 
 ### 1. Use Import Maps (Not Old CDN Patterns)
 
 WRONG - outdated pattern:
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/4.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 ```
 
 CORRECT - modern pattern (always use latest version):
@@ -18,20 +18,20 @@ CORRECT - modern pattern (always use latest version):
 <script type="importmap">
 {
   "imports": {
-    "@tnb1j/4js": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.2/build/4.module.js",
-    "@tnb1j/4js/addons/": "https://cdn.jsdelivr.net/npm/@tnb1j/4js@0.185.1-four.2/examples/jsm/"
+    "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
   }
 }
 </script>
 <script type="module">
-import * as FOUR from '@tnb1j/4js';
-import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 </script>
 ```
 
 ### 2. Choosing Between WebGLRenderer and WebGPURenderer
 
-4.js maintains both renderers:
+Three.js maintains both renderers:
 
 **Use WebGLRenderer** (default, mature):
 - Maximum browser compatibility
@@ -39,29 +39,29 @@ import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
 - Most examples and tutorials use this
 
 ```js
-import * as FOUR from '@tnb1j/4js';
-const renderer = new FOUR.WebGLRenderer();
+import * as THREE from 'three';
+const renderer = new THREE.WebGLRenderer();
 ```
 
 **Use WebGPURenderer** when you need:
-- Custom shaders/materials using TSL (4.js Shading Language)
+- Custom shaders/materials using TSL (Three.js Shading Language)
 - Compute shaders
 - Advanced node-based materials
 
 ```js
-import * as FOUR from '@tnb1j/4js/webgpu';
-const renderer = new FOUR.WebGPURenderer();
+import * as THREE from 'three/webgpu';
+const renderer = new THREE.WebGPURenderer();
 await renderer.init();
 ```
 
-### 3. TSL (4.js Shading Language)
+### 3. TSL (Three.js Shading Language)
 
 When using WebGPURenderer, use TSL instead of raw GLSL for custom materials:
 
 ```js
-import { texture, uv, color } from '@tnb1j/4js/tsl';
+import { texture, uv, color } from 'three/tsl';
 
-const material = new FOUR.MeshStandardNodeMaterial();
+const material = new THREE.MeshStandardNodeMaterial();
 material.colorNode = texture( myTexture ).mul( color( 0xff0000 ) );
 ```
 
@@ -82,26 +82,27 @@ When using TSL, use node-based materials:
 
 ## Getting Started
 
-- [Installation](https://threejs.org/manual/#en/installation)
-- [Creating a Scene](https://threejs.org/manual/#en/creating-a-scene)
-- [Fundamentals](https://threejs.org/manual/#en/fundamentals)
-- [Responsive Design](https://threejs.org/manual/#en/responsive)
+- [Installation](https://threejs.org/manual/#installation)
+- [Creating a Scene](https://threejs.org/manual/#creating-a-scene)
+- [Fundamentals](https://threejs.org/manual/#fundamentals)
+- [Responsive Design](https://threejs.org/manual/#responsive)
 
 ## Renderer Guides
 
-- [WebGPURenderer](https://threejs.org/manual/#en/webgpurenderer)
+- [WebGPURenderer](https://threejs.org/manual/#webgpurenderer)
 
 ## Core Concepts
 
-- [TSL Specification](https://threejs.org/docs/#api/en/nodes/TSL): Complete shader language reference
-- [Animation System](https://threejs.org/manual/#en/animation-system)
-- [Loading 3D Models](https://threejs.org/manual/#en/loading-3d-models)
-- [Scene Graph](https://threejs.org/manual/#en/scenegraph)
-- [Materials](https://threejs.org/manual/#en/materials)
-- [Textures](https://threejs.org/manual/#en/textures)
-- [Lights](https://threejs.org/manual/#en/lights)
-- [Cameras](https://threejs.org/manual/#en/cameras)
-- [Shadows](https://threejs.org/manual/#en/shadows)
+- [TSL Guide](https://threejs.org/tsl/): Three.js Shading Language guide with playground
+- [TSL Reference](https://threejs.org/docs/#TSL): All TSL functions
+- [Animation System](https://threejs.org/manual/#animation-system)
+- [Loading 3D Models](https://threejs.org/manual/#loading-3d-models)
+- [Scene Graph](https://threejs.org/manual/#scenegraph)
+- [Materials](https://threejs.org/manual/#materials)
+- [Textures](https://threejs.org/manual/#textures)
+- [Lights](https://threejs.org/manual/#lights)
+- [Cameras](https://threejs.org/manual/#cameras)
+- [Shadows](https://threejs.org/manual/#shadows)
 
 ## Essential API
 

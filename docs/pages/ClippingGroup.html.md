@@ -2,7 +2,7 @@
 
 # ClippingGroup
 
-In earlier 4.js versions, clipping was defined globally on the renderer or on material level. This special version of `FOUR.Group` allows to encode the clipping state into the scene graph. Meaning if you create an instance of this group, all descendant 3D objects will be affected by the respective clipping planes.
+In earlier three.js versions, clipping was defined globally on the renderer or on material level. This special version of `THREE.Group` allows to encode the clipping state into the scene graph. Meaning if you create an instance of this group, all descendant 3D objects will be affected by the respective clipping planes.
 
 Note: `ClippingGroup` can only be used with `WebGPURenderer`.
 
@@ -44,4 +44,4 @@ Default is `true`.
 
 ## Source
 
-[src/objects/ClippingGroup.js](../../src/objects/ClippingGroup.js)
+[src/objects/ClippingGroup.js](https://github.com/mrdoob/three.js/blob/master/src/objects/ClippingGroup.js)

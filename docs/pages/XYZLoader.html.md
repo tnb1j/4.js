@@ -13,17 +13,17 @@ const loader = new XYZLoader();
 const geometry = await loader.loadAsync( 'models/xyz/helix_201.xyz' );
 geometry.center();
 const vertexColors = ( geometry.hasAttribute( 'color' ) === true );
-const material = new FOUR.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
-const points = new FOUR.Points( geometry, material );
+const material = new THREE.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
+const points = new THREE.Points( geometry, material );
 scene.add( points );
 ```
 
 ## Import
 
-XYZLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+XYZLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';
+import { XYZLoader } from 'three/addons/loaders/XYZLoader.js';
 ```
 
 ## Constructor
@@ -68,4 +68,4 @@ The raw XYZ data as a string.
 
 ## Source
 
-[examples/jsm/loaders/XYZLoader.js](../../examples/jsm/loaders/XYZLoader.js)
+[examples/jsm/loaders/XYZLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/XYZLoader.js)

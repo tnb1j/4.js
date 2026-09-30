@@ -2,10 +2,10 @@
 
 ## Import
 
-ColorifyShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColorifyShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ColorifyShader } from '@tnb1j/4js/addons/shaders/ColorifyShader.js';
+import { ColorifyShader } from 'three/addons/shaders/ColorifyShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Colorify shader.
 
 ## Source
 
-[examples/jsm/shaders/ColorifyShader.js](../../examples/jsm/shaders/ColorifyShader.js)
+[examples/jsm/shaders/ColorifyShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ColorifyShader.js)

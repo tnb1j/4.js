@@ -13,10 +13,10 @@ composer.addPass( glitchPass );
 
 ## Import
 
-GlitchPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GlitchPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { GlitchPass } from '@tnb1j/4js/addons/postprocessing/GlitchPass.js';
+import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
 ```
 
 ## Constructor
@@ -83,4 +83,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/GlitchPass.js](../../examples/jsm/postprocessing/GlitchPass.js)
+[examples/jsm/postprocessing/GlitchPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/GlitchPass.js)

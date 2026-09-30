@@ -3,7 +3,7 @@ import {
 	ShaderMaterial,
 	UniformsLib,
 	UniformsUtils,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A special line material for meshes loaded via {@link LDrawLoader}.
@@ -12,7 +12,7 @@ import {
  * import the class from `LDrawConditionalLineNodeMaterial.js`.
  *
  * @augments ShaderMaterial
- * @four_import import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
+ * @three_import import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
  */
 class LDrawConditionalLineMaterial extends ShaderMaterial {
 

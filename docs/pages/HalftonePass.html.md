@@ -25,10 +25,10 @@ composer.addPass( halftonePass );
 
 ## Import
 
-HalftonePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HalftonePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HalftonePass } from '@tnb1j/4js/addons/postprocessing/HalftonePass.js';
+import { HalftonePass } from 'three/addons/postprocessing/HalftonePass.js';
 ```
 
 ## Constructor
@@ -101,4 +101,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/HalftonePass.js](../../examples/jsm/postprocessing/HalftonePass.js)
+[examples/jsm/postprocessing/HalftonePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/HalftonePass.js)

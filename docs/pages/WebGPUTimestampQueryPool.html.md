@@ -56,4 +56,4 @@ Asynchronously resolves all pending queries and returns the total duration. If t
 
 ## Source
 
-[src/renderers/webgpu/utils/WebGPUTimestampQueryPool.js](../../src/renderers/webgpu/utils/WebGPUTimestampQueryPool.js)
+[src/renderers/webgpu/utils/WebGPUTimestampQueryPool.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webgpu/utils/WebGPUTimestampQueryPool.js)

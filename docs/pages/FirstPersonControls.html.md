@@ -6,10 +6,10 @@ This class is an alternative implementation of [FlyControls](FlyControls.html).
 
 ## Import
 
-FirstPersonControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FirstPersonControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
+import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 ```
 
 ## Constructor
@@ -132,4 +132,4 @@ The z coordinate of the target position.
 
 ## Source
 
-[examples/jsm/controls/FirstPersonControls.js](../../examples/jsm/controls/FirstPersonControls.js)
+[examples/jsm/controls/FirstPersonControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/FirstPersonControls.js)

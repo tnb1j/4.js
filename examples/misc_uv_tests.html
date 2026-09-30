@@ -28,17 +28,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { UVsDebug } from '@tnb1j/4js/addons/utils/UVsDebug.js';
+			import { UVsDebug } from 'three/addons/utils/UVsDebug.js';
 
 			/*
 			 * This is to help debug UVs problems in geometry,
@@ -61,29 +61,29 @@
 
 			for ( let i = 0; i < 10; i ++ ) {
 
-				points.push( new FOUR.Vector2( Math.sin( i * 0.2 ) * 15 + 50, ( i - 5 ) * 2 ) );
+				points.push( new THREE.Vector2( Math.sin( i * 0.2 ) * 15 + 50, ( i - 5 ) * 2 ) );
 
 			}
 
 			//
 
-			test( 'new FOUR.PlaneGeometry( 100, 100, 4, 4 )', new FOUR.PlaneGeometry( 100, 100, 4, 4 ) );
+			test( 'new THREE.PlaneGeometry( 100, 100, 4, 4 )', new THREE.PlaneGeometry( 100, 100, 4, 4 ) );
 
-			test( 'new FOUR.SphereGeometry( 75, 12, 6 )', new FOUR.SphereGeometry( 75, 12, 6 ) );
+			test( 'new THREE.SphereGeometry( 75, 12, 6 )', new THREE.SphereGeometry( 75, 12, 6 ) );
 
-			test( 'new FOUR.IcosahedronGeometry( 30, 1 )', new FOUR.IcosahedronGeometry( 30, 1 ) );
+			test( 'new THREE.IcosahedronGeometry( 30, 1 )', new THREE.IcosahedronGeometry( 30, 1 ) );
 
-			test( 'new FOUR.OctahedronGeometry( 30, 2 )', new FOUR.OctahedronGeometry( 30, 2 ) );
+			test( 'new THREE.OctahedronGeometry( 30, 2 )', new THREE.OctahedronGeometry( 30, 2 ) );
 
-			test( 'new FOUR.CylinderGeometry( 25, 75, 100, 10, 5 )', new FOUR.CylinderGeometry( 25, 75, 100, 10, 5 ) );
+			test( 'new THREE.CylinderGeometry( 25, 75, 100, 10, 5 )', new THREE.CylinderGeometry( 25, 75, 100, 10, 5 ) );
 
-			test( 'new FOUR.BoxGeometry( 100, 100, 100, 4, 4, 4 )', new FOUR.BoxGeometry( 100, 100, 100, 4, 4, 4 ) );
+			test( 'new THREE.BoxGeometry( 100, 100, 100, 4, 4, 4 )', new THREE.BoxGeometry( 100, 100, 100, 4, 4, 4 ) );
 
-			test( 'new FOUR.LatheGeometry( points, 8 )', new FOUR.LatheGeometry( points, 8 ) );
+			test( 'new THREE.LatheGeometry( points, 8 )', new THREE.LatheGeometry( points, 8 ) );
 
-			test( 'new FOUR.TorusGeometry( 50, 20, 8, 8 )', new FOUR.TorusGeometry( 50, 20, 8, 8 ) );
+			test( 'new THREE.TorusGeometry( 50, 20, 8, 8 )', new THREE.TorusGeometry( 50, 20, 8, 8 ) );
 
-			test( 'new FOUR.TorusKnotGeometry( 50, 10, 12, 6 )', new FOUR.TorusKnotGeometry( 50, 10, 12, 6 ) );
+			test( 'new THREE.TorusKnotGeometry( 50, 10, 12, 6 )', new THREE.TorusKnotGeometry( 50, 10, 12, 6 ) );
 
 		</script>
 

@@ -20,4 +20,4 @@ Default is `{}`.
 
 ## Source
 
-[examples/jsm/gpgpu/BitonicSort.js](../../examples/jsm/gpgpu/BitonicSort.js)
+[examples/jsm/gpgpu/BitonicSort.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/gpgpu/BitonicSort.js)

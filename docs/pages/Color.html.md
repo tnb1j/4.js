@@ -4,35 +4,35 @@ A Color instance is represented by RGB components in the linear _working color s
 
 ```js
 // converted automatically from SRGBColorSpace to LinearSRGBColorSpace
-const color = new FOUR.Color().setHex( 0x112233 );
+const color = new THREE.Color().setHex( 0x112233 );
 ```
 
 Source color spaces may be specified explicitly, to ensure correct conversions.
 
 ```js
 // assumed already LinearSRGBColorSpace; no conversion
-const color = new FOUR.Color().setRGB( 0.5, 0.5, 0.5 );
+const color = new THREE.Color().setRGB( 0.5, 0.5, 0.5 );
 // converted explicitly from SRGBColorSpace to LinearSRGBColorSpace
-const color = new FOUR.Color().setRGB( 0.5, 0.5, 0.5, SRGBColorSpace );
+const color = new THREE.Color().setRGB( 0.5, 0.5, 0.5, SRGBColorSpace );
 ```
 
-If FOUR.ColorManagement is disabled, no conversions occur. For details, see _Color management_. Iterating through a Color instance will yield its components (r, g, b) in the corresponding order. A Color can be initialised in any of the following ways:
+If THREE.ColorManagement is disabled, no conversions occur. For details, see _Color management_. Iterating through a Color instance will yield its components (r, g, b) in the corresponding order. A Color can be initialised in any of the following ways:
 
 ```js
 //empty constructor - will default white
-const color1 = new FOUR.Color();
+const color1 = new THREE.Color();
 //Hexadecimal color (recommended)
-const color2 = new FOUR.Color( 0xff0000 );
+const color2 = new THREE.Color( 0xff0000 );
 //RGB string
-const color3 = new FOUR.Color("rgb(255, 0, 0)");
-const color4 = new FOUR.Color("rgb(100%, 0%, 0%)");
+const color3 = new THREE.Color("rgb(255, 0, 0)");
+const color4 = new THREE.Color("rgb(100%, 0%, 0%)");
 //X11 color name - all 140 color names are supported.
 //Note the lack of CamelCase in the name
-const color5 = new FOUR.Color( 'skyblue' );
+const color5 = new THREE.Color( 'skyblue' );
 //HSL string
-const color6 = new FOUR.Color("hsl(0, 100%, 50%)");
+const color6 = new THREE.Color("hsl(0, 100%, 50%)");
 //Separate RGB values between 0 and 1
-const color7 = new FOUR.Color( 1, 0, 0 );
+const color7 = new THREE.Color( 1, 0, 0 );
 ```
 
 ## Constructor
@@ -41,7 +41,7 @@ const color7 = new FOUR.Color( 1, 0, 0 );
 
 Constructs a new color.
 
-Note that standard method of specifying color in 4.js is with a hexadecimal triplet, and that method is used throughout the rest of the documentation.
+Note that standard method of specifying color in three.js is with a hexadecimal triplet, and that method is used throughout the rest of the documentation.
 
 **r**
 
@@ -549,4 +549,4 @@ This methods defines the serialization result of this class. Returns the color a
 
 ## Source
 
-[src/math/Color.js](../../src/math/Color.js)
+[src/math/Color.js](https://github.com/mrdoob/three.js/blob/master/src/math/Color.js)

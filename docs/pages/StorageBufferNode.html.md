@@ -15,7 +15,7 @@ const computeInit = Fn( () => { // the compute shader
 	position.y = 1;
 	position.z = 1;
 } )().compute( particleCount );
-const particleMaterial = new FOUR.SpriteNodeMaterial();
+const particleMaterial = new THREE.SpriteNodeMaterial();
 particleMaterial.positionNode = positionBuffer.toAttribute();
 renderer.computeAsync( computeInit );
 ```
@@ -214,4 +214,4 @@ Convenience method for configuring a read-only node access.
 
 ## Source
 
-[src/nodes/accessors/StorageBufferNode.js](../../src/nodes/accessors/StorageBufferNode.js)
+[src/nodes/accessors/StorageBufferNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/StorageBufferNode.js)

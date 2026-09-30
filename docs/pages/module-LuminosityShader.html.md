@@ -2,10 +2,10 @@
 
 ## Import
 
-LuminosityShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LuminosityShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LuminosityShader } from '@tnb1j/4js/addons/shaders/LuminosityShader.js';
+import { LuminosityShader } from 'three/addons/shaders/LuminosityShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Luminosity shader.
 
 ## Source
 
-[examples/jsm/shaders/LuminosityShader.js](../../examples/jsm/shaders/LuminosityShader.js)
+[examples/jsm/shaders/LuminosityShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/LuminosityShader.js)

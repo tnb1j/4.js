@@ -19,20 +19,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 			let container, stats;
 
@@ -47,7 +47,7 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.z = 13;
 
 				//cubemap
@@ -59,24 +59,24 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const reflectionCube = new FOUR.CubeTextureLoader().load( urls );
-				const refractionCube = new FOUR.CubeTextureLoader().load( urls );
-				refractionCube.mapping = FOUR.CubeRefractionMapping;
+				const reflectionCube = new THREE.CubeTextureLoader().load( urls );
+				const refractionCube = new THREE.CubeTextureLoader().load( urls );
+				refractionCube.mapping = THREE.CubeRefractionMapping;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = reflectionCube;
 
 				//lights
-				const ambient = new FOUR.AmbientLight( 0xffffff, 3 );
+				const ambient = new THREE.AmbientLight( 0xffffff, 3 );
 				scene.add( ambient );
 
-				pointLight = new FOUR.PointLight( 0xffffff, 200 );
+				pointLight = new THREE.PointLight( 0xffffff, 200 );
 				scene.add( pointLight );
 
 				//materials
-				const cubeMaterial3 = new FOUR.MeshLambertMaterial( { color: 0xffaa00, envMap: reflectionCube, combine: FOUR.MixOperation, reflectivity: 0.3 } );
-				const cubeMaterial2 = new FOUR.MeshLambertMaterial( { color: 0xfff700, envMap: refractionCube, refractionRatio: 0.95 } );
-				const cubeMaterial1 = new FOUR.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube } );
+				const cubeMaterial3 = new THREE.MeshLambertMaterial( { color: 0xffaa00, envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3 } );
+				const cubeMaterial2 = new THREE.MeshLambertMaterial( { color: 0xfff700, envMap: refractionCube, refractionRatio: 0.95 } );
+				const cubeMaterial1 = new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube } );
 
 				//models
 				const objLoader = new OBJLoader();
@@ -102,7 +102,7 @@
 				} );
 
 				//renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

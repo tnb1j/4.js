@@ -7,18 +7,18 @@ A special type of box geometry with rounded corners and edges.
 ## Code Example
 
 ```js
-const geometry = new FOUR.RoundedBoxGeometry();
-const material = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
-const cube = new FOUR.Mesh( geometry, material );
+const geometry = new RoundedBoxGeometry();
+const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 ```
 
 ## Import
 
-RoundedBoxGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RoundedBoxGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 ```
 
 ## Constructor
@@ -79,4 +79,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[examples/jsm/geometries/RoundedBoxGeometry.js](../../examples/jsm/geometries/RoundedBoxGeometry.js)
+[examples/jsm/geometries/RoundedBoxGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/RoundedBoxGeometry.js)

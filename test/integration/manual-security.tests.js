@@ -78,19 +78,24 @@ async function testManualNavigation( browser, baseURL ) {
 
 	const basePage = await readManualFrame( browser, baseURL, '#en/fundamentals' );
 	assert.equal( basePage.display, 'unset' );
-	assert.equal( basePage.pathname, '/manual/en/fundamentals.html' );
+	assert.equal( basePage.pathname, '/manual/pages/fundamentals.html' );
 	assert.equal( basePage.hash, '' );
 
+	const directPage = await readManualFrame( browser, baseURL, '#fundamentals' );
+	assert.equal( directPage.display, 'unset' );
+	assert.equal( directPage.pathname, '/manual/pages/fundamentals.html' );
+	assert.equal( directPage.hash, '' );
+
 	const dotMember = await readManualFrame( browser, baseURL, '#en/fundamentals.example-anchor' );
-	assert.equal( dotMember.pathname, '/manual/en/fundamentals.html' );
+	assert.equal( dotMember.pathname, '/manual/pages/fundamentals.html' );
 	assert.equal( dotMember.hash, '#example-anchor' );
 
 	const secondaryHash = await readManualFrame( browser, baseURL, '#en/fundamentals#example-anchor' );
-	assert.equal( secondaryHash.pathname, '/manual/en/fundamentals.html' );
+	assert.equal( secondaryHash.pathname, '/manual/pages/fundamentals.html' );
 	assert.equal( secondaryHash.hash, '#example-anchor' );
 
 	const anchoredListEntry = await readManualFrame( browser, baseURL, '#en/tips#screenshot' );
-	assert.equal( anchoredListEntry.pathname, '/manual/en/tips.html' );
+	assert.equal( anchoredListEntry.pathname, '/manual/pages/tips.html' );
 	assert.equal( anchoredListEntry.hash, '#screenshot' );
 
 	for ( const fragment of [
@@ -141,7 +146,7 @@ async function testValidEditorBlobRun( browser, baseURL ) {
 		assert.equal( result.protocol, 'blob:' );
 		assert.equal( result.title, '4.js - Fundamentals' );
 		assert.equal( result.canvasCount, 1 );
-		assert.match( result.engine, /^4\.js r185/ );
+		assert.match( result.engine, /^4\.js r186/ );
 		assert.equal( result.mode, 'secure' );
 		assert.equal( result.prototypePolluted, undefined );
 		assert.deepEqual( pageErrors, [] );
@@ -265,8 +270,8 @@ async function testCodeSiteModuleRewriting( browser, baseURL ) {
 
 		}, baseURL );
 
-		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.2\/\+esm/ );
-		assert.match( rewritten, /@tnb1j\/4js@0\.185\.1-four\.2\/examples\/jsm\/controls\/OrbitControls\.js\/\+esm/ );
+		assert.match( rewritten, /@tnb1j\/4js@0\.186\.1-four\.0\/\+esm/ );
+		assert.match( rewritten, /@tnb1j\/4js@0\.186\.1-four\.0\/examples\/jsm\/controls\/OrbitControls\.js\/\+esm/ );
 		assert.doesNotMatch( rewritten, /npm\/three@/ );
 
 	} finally {

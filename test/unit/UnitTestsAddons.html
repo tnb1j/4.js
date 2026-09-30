@@ -14,14 +14,36 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/qunit@2.25.0/qunit/qunit.min.js"></script>
 
+		<script>
+			window.addEventListener( 'error', ( e ) => console.error( 'WINDOW ERROR:', e.message, e.filename, e.lineno, e.error?.stack || e.error ) );
+			window.addEventListener( 'unhandledrejection', ( e ) => console.error( 'UNHANDLED REJECTION:', e.reason?.stack || e.reason ) );
+		</script>
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../../build/4.module.js"
+					"@tnb1j/4js": "../../src/Four.js",
+					"@tnb1j/4js/webgpu": "../../src/Four.WebGPU.js",
+					"@tnb1j/4js/tsl": "../../src/Four.TSL.js",
+					"@tnb1j/4js/addons/": "../../examples/jsm/",
+					"three": "../../src/Four.js",
+					"three/webgpu": "../../src/Four.WebGPU.js",
+					"three/tsl": "../../src/Four.TSL.js",
+					"three/addons/": "../../examples/jsm/"
 				}
 			}
 		</script>
 		<script type="module">
+			window.QUnit.on( 'testEnd', ( test ) => {
+
+				if ( test.status === 'failed' ) {
+
+					const errors = test.errors.map( e => e.message || e.source || JSON.stringify( e ) ).join( ' ; ' );
+					console.error( `FAIL: ${test.suiteName} > ${test.name}: ${errors}` );
+
+				}
+
+			} );
+
 			window.QUnit.on( 'runEnd', ( runEnd ) => {
 
 				// using these later in puppeteer.unit.js

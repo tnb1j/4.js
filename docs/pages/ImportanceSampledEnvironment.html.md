@@ -100,4 +100,4 @@ Equirectangular HDR environment map.
 
 ## Source
 
-[examples/jsm/tsl/display/ImportanceSampledEnvironment.js](../../examples/jsm/tsl/display/ImportanceSampledEnvironment.js)
+[examples/jsm/tsl/display/ImportanceSampledEnvironment.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/ImportanceSampledEnvironment.js)

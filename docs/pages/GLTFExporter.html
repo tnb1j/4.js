@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>GLTFExporter - 4.js Docs</title>
+	<title>GLTFExporter - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -48,8 +48,8 @@ const data = await exporter.parseAsync( scene, options );
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">GLTFExporter</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { GLTFExporter } from '@tnb1j/4js/addons/exporters/GLTFExporter.js';</code></pre>
+				<p><span translate="no">GLTFExporter</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="GLTFExporter" translate="no">new <a href="#GLTFExporter">GLTFExporter</a><span class="signature">()</span> </h3>
@@ -167,7 +167,7 @@ to the exporter.</p>
 						<div class="description">
 							<p>Sets the texture utils for this exporter. Only relevant when compressed textures have to be exported.</p>
 <p>Depending on whether you use <a href="WebGLRenderer.html">WebGLRenderer</a> or <a href="WebGPURenderer.html">WebGPURenderer</a>, you must inject the
-corresponding texture utils <a href="WebGLTextureUtils.html">WebGLTextureUtils</a> or <a href="WebGPUTextureUtils.html">WebGPUTextureUtils</a>.</p>
+corresponding texture utils <a href="module-WebGLTextureUtils.html">module:WebGLTextureUtils</a> or <a href="module-WebGPUTextureUtils.html">module:WebGPUTextureUtils</a>.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -319,12 +319,23 @@ When exporting an array of multiple scenes, this must be a nested array with one
 						<p>Default is <code>false</code>.</p>
 			</td>
 		</tr>
+		<tr>
+				<td class="name">
+					<strong>copyright</strong>
+						<br>
+<span class="param-type">string</span>
+				</td>
+			<td class="description last">
+				<p>Export with a copyright notice embedded in the glTF.</p>
+						<p>Default is <code>null</code>.</p>
+			</td>
+		</tr>
 	</tbody>
 </table>
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/exporters/GLTFExporter.js" translate="no">examples/jsm/exporters/GLTFExporter.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/GLTFExporter.js" translate="no" target="_blank" rel="noopener">examples/jsm/exporters/GLTFExporter.js</a>
 				</p>
 			</article>
 		</section>

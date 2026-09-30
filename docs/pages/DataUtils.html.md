@@ -26,4 +26,4 @@ A single precision floating point value.
 
 ## Source
 
-[src/extras/DataUtils.js](../../src/extras/DataUtils.js)
+[src/extras/DataUtils.js](https://github.com/mrdoob/three.js/blob/master/src/extras/DataUtils.js)

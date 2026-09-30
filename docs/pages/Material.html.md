@@ -112,7 +112,7 @@ Default is `false`.
 
 ### .clippingPlanes : Array.<Plane>
 
-User-defined clipping planes specified as FOUR.Plane objects in world space. These planes apply to the objects this material is attached to. Points in space whose signed distance to the plane is negative are clipped (not rendered). This requires [WebGLRenderer#localClippingEnabled](WebGLRenderer.html#localClippingEnabled) to be `true`.
+User-defined clipping planes specified as THREE.Plane objects in world space. These planes apply to the objects this material is attached to. Points in space whose signed distance to the plane is negative are clipped (not rendered). This requires [WebGLRenderer#localClippingEnabled](WebGLRenderer.html#localClippingEnabled) to be `true`.
 
 Default is `null`.
 
@@ -350,7 +350,7 @@ The material to copy.
 
 ### .customProgramCacheKey() : string
 
-In case [Material#onBeforeCompile](Material.html#onBeforeCompile) is used, this callback can be used to identify values of settings used in `onBeforeCompile()`, so 4.js can reuse a cached shader or recompile the shader for this material as needed.
+In case [Material#onBeforeCompile](Material.html#onBeforeCompile) is used, this callback can be used to identify values of settings used in `onBeforeCompile()`, so three.js can reuse a cached shader or recompile the shader for this material as needed.
 
 This method can only be used when rendering with [WebGLRenderer](WebGLRenderer.html).
 
@@ -382,7 +382,7 @@ A dictionary holding textures referenced by the material.
 
 An optional callback that is executed immediately before the shader program is compiled. This function is called with the shader source code as a parameter. Useful for the modification of built-in materials.
 
-This method can only be used when rendering with [WebGLRenderer](WebGLRenderer.html). The recommended approach when customizing materials is to use `WebGPURenderer` with the new Node Material system and [TSL](https://github.com/mrdoob/three.js/wiki/4.js-Shading-Language).
+This method can only be used when rendering with [WebGLRenderer](WebGLRenderer.html). The recommended approach when customizing materials is to use `WebGPURenderer` with the new Node Material system and [TSL](https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language).
 
 **shaderobject**
 
@@ -456,4 +456,4 @@ Fires when the material has been disposed of.
 
 ## Source
 
-[src/materials/Material.js](../../src/materials/Material.js)
+[src/materials/Material.js](https://github.com/mrdoob/three.js/blob/master/src/materials/Material.js)

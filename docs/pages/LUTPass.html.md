@@ -13,10 +13,10 @@ composer.addPass( lutPass );
 
 ## Import
 
-LUTPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LUTPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LUTPass } from '@tnb1j/4js/addons/postprocessing/LUTPass.js';
+import { LUTPass } from 'three/addons/postprocessing/LUTPass.js';
 ```
 
 ## Constructor
@@ -47,4 +47,4 @@ Default is `null`.
 
 ## Source
 
-[examples/jsm/postprocessing/LUTPass.js](../../examples/jsm/postprocessing/LUTPass.js)
+[examples/jsm/postprocessing/LUTPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/LUTPass.js)

@@ -28,10 +28,10 @@ scene.add( object );
 
 ## Import
 
-FBXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FBXLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 ```
 
 ## Constructor
@@ -43,6 +43,14 @@ Constructs a new FBX loader.
 **manager**
 
 The loading manager.
+
+## Properties
+
+### .trimAnimationClips : boolean
+
+Whether to trim animation clips to the time range of their animation stacks and shift them to start at time zero. Useful for assets that define multiple clips on a single timeline.
+
+Default is `false`.
 
 ## Methods
 
@@ -86,4 +94,4 @@ The URL base path.
 
 ## Source
 
-[examples/jsm/loaders/FBXLoader.js](../../examples/jsm/loaders/FBXLoader.js)
+[examples/jsm/loaders/FBXLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/FBXLoader.js)

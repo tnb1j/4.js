@@ -40,4 +40,4 @@ Default is `'frame'`.
 
 ## Source
 
-[src/nodes/utils/MaxMipLevelNode.js](../../src/nodes/utils/MaxMipLevelNode.js)
+[src/nodes/utils/MaxMipLevelNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/MaxMipLevelNode.js)

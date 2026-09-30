@@ -156,4 +156,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshBasicMaterial.js](../../src/materials/MeshBasicMaterial.js)
+[src/materials/MeshBasicMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshBasicMaterial.js)

@@ -19,7 +19,7 @@
 
 			<small>
 				Adjust/modify the scene's background and environment.<br/>
-				Battle Damaged Sci-fi Helmet by <a href="https://sketchfab.com/theblueturtle_" target="_blank" rel="noopener">theblueturtle_</a>.<br/>
+				Battle Damaged Sci-fi Helmet by theblueturtle_.<br/>
 				HDR by <a href="https://polyhaven.com/" target="_blank" rel="noopener">Poly Haven</a> and <a href="https://hdri-skies.com/free-hdris/" target="_blank" rel="noopener">HDRI Skies</a>.
 			</small>
 		</div>
@@ -27,25 +27,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { uniform, mix, pmremTexture, reference, positionLocal, hue, saturation, positionWorld, normalWorld, positionWorldDirection, reflectVector } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { uniform, mix, pmremTexture, reference, positionLocal, hue, saturation, positionWorld, normalWorld, positionWorldDirection, reflectVector } from 'three/tsl';
 
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -58,26 +58,26 @@
 
 				const initialDistance = 2;
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
 				camera.position.set( - 1.8 * initialDistance, 0.6 * initialDistance, 2.7 * initialDistance );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// HDR textures
 
 				const hdr1Texture = await new HDRLoader()
 					.loadAsync( './textures/equirectangular/pedestrian_overpass_1k.hdr' );
 
-				hdr1Texture.mapping = FOUR.EquirectangularReflectionMapping;
+				hdr1Texture.mapping = THREE.EquirectangularReflectionMapping;
 				hdr1Texture.generateMipmaps = true;
-				hdr1Texture.minFilter = FOUR.LinearMipmapLinearFilter;
+				hdr1Texture.minFilter = THREE.LinearMipmapLinearFilter;
 
 				const hdr2Texture = await new HDRLoader()
 					.loadAsync( './textures/equirectangular/752-hdri-skies-com_1k.hdr' );
 
-				hdr2Texture.mapping = FOUR.EquirectangularReflectionMapping;
+				hdr2Texture.mapping = THREE.EquirectangularReflectionMapping;
 				hdr2Texture.generateMipmaps = true;
-				hdr2Texture.minFilter = FOUR.LinearMipmapLinearFilter;
+				hdr2Texture.minFilter = THREE.LinearMipmapLinearFilter;
 
 				// nodes and environment
 
@@ -95,8 +95,8 @@
 				const hueNode = reference( 'hue', 'float', adjustments );
 				const saturationNode = reference( 'saturation', 'float', adjustments );
 
-				const rotateY1Matrix = new FOUR.Matrix4();
-				const rotateY2Matrix = new FOUR.Matrix4();
+				const rotateY1Matrix = new THREE.Matrix4();
+				const rotateY2Matrix = new THREE.Matrix4();
 
 				const getEnvironmentNode = ( reflectNode, positionNode ) => {
 
@@ -127,12 +127,12 @@
 
 				scene.add( gltf.scene );
 
-				const sphereGeometry = new FOUR.SphereGeometry( .5, 64, 32 );
+				const sphereGeometry = new THREE.SphereGeometry( .5, 64, 32 );
 
-				const sphereRightView = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( { roughness: 0, metalness: 1 } ) );
+				const sphereRightView = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( { roughness: 0, metalness: 1 } ) );
 				sphereRightView.position.x += 2;
 
-				const sphereLeftView = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( { roughness: 1, metalness: 1 } ) );
+				const sphereLeftView = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( { roughness: 1, metalness: 1 } ) );
 				sphereLeftView.position.x -= 2;
 
 				scene.add( sphereLeftView );
@@ -140,10 +140,10 @@
 
 				// renderer and controls
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.LinearToneMapping;
+				renderer.toneMapping = THREE.LinearToneMapping;
 				renderer.inspector = new Inspector();
 				renderer.setAnimationLoop( render );
 				container.appendChild( renderer.domElement );

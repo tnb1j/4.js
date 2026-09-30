@@ -9,25 +9,27 @@
 		<link type="text/css" rel="stylesheet" href="main.css">
 	</head>
 	<body>
+		<div id="info"><a href="../" target="_blank" rel="noopener">threejs</a> - Edge Split modifier</div>
+
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
-			import { EdgeSplitModifier } from '@tnb1j/4js/addons/modifiers/EdgeSplitModifier.js';
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { EdgeSplitModifier } from 'three/addons/modifiers/EdgeSplitModifier.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let modifier, mesh, baseGeometry;
@@ -45,22 +47,14 @@
 
 			function init() {
 
-				const info = document.createElement( 'div' );
-				info.style.position = 'absolute';
-				info.style.top = '10px';
-				info.style.width = '100%';
-				info.style.textAlign = 'center';
-				info.innerHTML = '<a href="../" target="_blank" rel="noopener">4.js</a> - Edge Split modifier';
-				document.body.appendChild( info );
-
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render ); // use if there is no animation loop
@@ -70,7 +64,7 @@
 				controls.minZoom = 1;
 				camera.position.set( 0, 0, 4 );
 
-				scene.add( new FOUR.HemisphereLight( 0xffffff, 0x444444, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xffffff, 0x444444, 3 ) );
 
 				new OBJLoader().load(
 					'./models/obj/cerberus/Cerberus.obj',
@@ -82,7 +76,7 @@
 						modifier = new EdgeSplitModifier();
 						baseGeometry = BufferGeometryUtils.mergeVertices( modelGeometry );
 
-						mesh = new FOUR.Mesh( getGeometry(), new FOUR.MeshStandardMaterial() );
+						mesh = new THREE.Mesh( getGeometry(), new THREE.MeshStandardMaterial() );
 						mesh.material.flatShading = ! params.smoothShading;
 						mesh.rotateY( - Math.PI / 2 );
 						mesh.scale.set( 3.5, 3.5, 3.5 );
@@ -103,10 +97,10 @@
 
 				window.addEventListener( 'resize', onWindowResize );
 
-				new FOUR.TextureLoader().load( './models/obj/cerberus/Cerberus_A.jpg', function ( texture ) {
+				new THREE.TextureLoader().load( './models/obj/cerberus/Cerberus_A.jpg', function ( texture ) {
 
 					map = texture;
-					map.colorSpace = FOUR.SRGBColorSpace;
+					map.colorSpace = THREE.SRGBColorSpace;
 
 					if ( mesh !== undefined && params.showMap ) {
 

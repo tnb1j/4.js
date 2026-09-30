@@ -18,39 +18,39 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@tnb1j/4js';
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as THREE from 'three';
+			import TWEEN from 'three/addons/libs/tween.module.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
 
-			const camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
+			const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
 
 			const controls = new OrbitControls( camera, renderer.domElement );
 
-			const scene = new FOUR.Scene();
+			const scene = new THREE.Scene();
 
-			const matFloor = new FOUR.MeshPhongMaterial( { color: 0x808080 } );
-			const matBox = new FOUR.MeshPhongMaterial( { color: 0xaaaaaa } );
+			const matFloor = new THREE.MeshPhongMaterial( { color: 0x808080 } );
+			const matBox = new THREE.MeshPhongMaterial( { color: 0xaaaaaa } );
 
-			const geoFloor = new FOUR.PlaneGeometry( 100, 100 );
-			const geoBox = new FOUR.BoxGeometry( 0.3, 0.1, 0.2 );
+			const geoFloor = new THREE.PlaneGeometry( 100, 100 );
+			const geoBox = new THREE.BoxGeometry( 0.3, 0.1, 0.2 );
 
-			const mshFloor = new FOUR.Mesh( geoFloor, matFloor );
+			const mshFloor = new THREE.Mesh( geoFloor, matFloor );
 			mshFloor.rotation.x = - Math.PI * 0.5;
-			const mshBox = new FOUR.Mesh( geoBox, matBox );
+			const mshBox = new THREE.Mesh( geoBox, matBox );
 
-			const ambient = new FOUR.AmbientLight( 0x444444 );
+			const ambient = new THREE.AmbientLight( 0x444444 );
 
 			const spotLight1 = createSpotlight( 0xFF7F00 );
 			const spotLight2 = createSpotlight( 0x00FF7F );
@@ -61,7 +61,7 @@
 			function init() {
 
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 
 				camera.position.set( 4.6, 2.2, - 2.1 );
 
@@ -69,9 +69,9 @@
 				spotLight2.position.set( 0, 4, 3.5 );
 				spotLight3.position.set( - 1.5, 4, 4.5 );
 
-				lightHelper1 = new FOUR.SpotLightHelper( spotLight1 );
-				lightHelper2 = new FOUR.SpotLightHelper( spotLight2 );
-				lightHelper3 = new FOUR.SpotLightHelper( spotLight3 );
+				lightHelper1 = new THREE.SpotLightHelper( spotLight1 );
+				lightHelper2 = new THREE.SpotLightHelper( spotLight2 );
+				lightHelper3 = new THREE.SpotLightHelper( spotLight3 );
 
 				mshFloor.receiveShadow = true;
 				mshFloor.position.set( 0, - 0.05, 0 );
@@ -99,7 +99,7 @@
 
 			function createSpotlight( color ) {
 
-				const newObj = new FOUR.SpotLight( color, 10 );
+				const newObj = new THREE.SpotLight( color, 10 );
 
 				newObj.castShadow = true;
 				newObj.angle = 0.3;

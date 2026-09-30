@@ -7,7 +7,7 @@ A curve representing an ellipse.
 ## Code Example
 
 ```js
-const curve = new FOUR.EllipseCurve(
+const curve = new THREE.EllipseCurve(
 	0, 0,
 	10, 10,
 	0, 2 * Math.PI,
@@ -15,10 +15,10 @@ const curve = new FOUR.EllipseCurve(
 	0
 );
 const points = curve.getPoints( 50 );
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const material = new FOUR.LineBasicMaterial( { color: 0xff0000 } );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
 // Create the final object to add to the scene
-const ellipse = new FOUR.Line( geometry, material );
+const ellipse = new THREE.Line( geometry, material );
 ```
 
 ## Constructor
@@ -151,4 +151,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/curves/EllipseCurve.js](../../src/extras/curves/EllipseCurve.js)
+[src/extras/curves/EllipseCurve.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/EllipseCurve.js)

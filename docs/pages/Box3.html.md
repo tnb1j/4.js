@@ -384,4 +384,4 @@ The bounding box that will be unioned with this instance.
 
 ## Source
 
-[src/math/Box3.js](../../src/math/Box3.js)
+[src/math/Box3.js](https://github.com/mrdoob/three.js/blob/master/src/math/Box3.js)

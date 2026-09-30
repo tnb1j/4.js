@@ -74,4 +74,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/display/ViewportTextureNode.js](../../src/nodes/display/ViewportTextureNode.js)
+[src/nodes/display/ViewportTextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ViewportTextureNode.js)

@@ -7,7 +7,7 @@ import { Color } from '../math/Color.js';
  * Materials define the appearance of renderable 3D objects.
  *
  * ```js
- * const material = new FOUR.LineBasicMaterial( { color: 0xffffff } );
+ * const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
  * ```
  *
  * @augments Material

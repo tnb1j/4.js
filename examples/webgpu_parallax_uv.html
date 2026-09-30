@@ -26,23 +26,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { texture, parallaxUV, blendOverlay, uv, normalMap, uniform } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { texture, parallaxUV, blendOverlay, uv, normalMap, uniform } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -54,11 +54,11 @@
 
 				// scene
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .1, 100 );
 				camera.position.set( 15, 7, 15 );
 
 				// environment
@@ -66,7 +66,7 @@
 				const environmentTexture = await new HDRLoader()
 					.loadAsync( './textures/equirectangular/752-hdri-skies-com_1k.hdr' );
 
-				environmentTexture.mapping = FOUR.EquirectangularReflectionMapping;
+				environmentTexture.mapping = THREE.EquirectangularReflectionMapping;
 
 
 				scene.environment = environmentTexture;
@@ -75,34 +75,34 @@
 
 				// textures
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 
 				const topTexture = await loader.loadAsync( 'textures/ambientcg/Ice002_1K-JPG_Color.jpg' );
-				topTexture.colorSpace = FOUR.SRGBColorSpace;
-				topTexture.wrapS = FOUR.RepeatWrapping;
-				topTexture.wrapT = FOUR.RepeatWrapping;
+				topTexture.colorSpace = THREE.SRGBColorSpace;
+				topTexture.wrapS = THREE.RepeatWrapping;
+				topTexture.wrapT = THREE.RepeatWrapping;
 
 				const roughnessTexture = await loader.loadAsync( 'textures/ambientcg/Ice002_1K-JPG_Roughness.jpg' );
-				roughnessTexture.colorSpace = FOUR.NoColorSpace;
-				roughnessTexture.wrapS = FOUR.RepeatWrapping;
-				roughnessTexture.wrapT = FOUR.RepeatWrapping;
+				roughnessTexture.colorSpace = THREE.NoColorSpace;
+				roughnessTexture.wrapS = THREE.RepeatWrapping;
+				roughnessTexture.wrapT = THREE.RepeatWrapping;
 
 				const normalTexture = await loader.loadAsync( 'textures/ambientcg/Ice002_1K-JPG_NormalGL.jpg' );
-				normalTexture.colorSpace = FOUR.NoColorSpace;
-				normalTexture.wrapS = FOUR.RepeatWrapping;
-				normalTexture.wrapT = FOUR.RepeatWrapping;
+				normalTexture.colorSpace = THREE.NoColorSpace;
+				normalTexture.wrapS = THREE.RepeatWrapping;
+				normalTexture.wrapT = THREE.RepeatWrapping;
 
 				const displaceTexture = await loader.loadAsync( 'textures/ambientcg/Ice002_1K-JPG_Displacement.jpg' );
-				displaceTexture.colorSpace = FOUR.NoColorSpace;
-				displaceTexture.wrapS = FOUR.RepeatWrapping;
-				displaceTexture.wrapT = FOUR.RepeatWrapping;
+				displaceTexture.colorSpace = THREE.NoColorSpace;
+				displaceTexture.wrapS = THREE.RepeatWrapping;
+				displaceTexture.wrapT = THREE.RepeatWrapping;
 
 				//
 
 				const bottomTexture = await loader.loadAsync( 'textures/ambientcg/Ice003_1K-JPG_Color.jpg' );
-				bottomTexture.colorSpace = FOUR.SRGBColorSpace;
-				bottomTexture.wrapS = FOUR.RepeatWrapping;
-				bottomTexture.wrapT = FOUR.RepeatWrapping;
+				bottomTexture.colorSpace = THREE.SRGBColorSpace;
+				bottomTexture.wrapS = THREE.RepeatWrapping;
+				bottomTexture.wrapT = THREE.RepeatWrapping;
 
 				// parallax effect
 
@@ -119,25 +119,25 @@
 
 				// material
 
-				const material = new FOUR.MeshStandardNodeMaterial();
+				const material = new THREE.MeshStandardNodeMaterial();
 				material.colorNode = iceNode.mul( 5 ); // increase the color intensity to 5 ( contrast )
 				material.roughnessNode = texture( roughnessTexture, scaledUV );
 				material.normalNode = normalMap( texture( normalTexture, scaledUV ) );
 				material.metalness = 0;
 
-				const geometry = new FOUR.CircleGeometry( 25, 64 );
+				const geometry = new THREE.CircleGeometry( 25, 64 );
 
-				const ground = new FOUR.Mesh( geometry, material );
+				const ground = new THREE.Mesh( geometry, material );
 				ground.rotateX( - Math.PI / 2 );
 				scene.add( ground );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ReinhardToneMapping;
+				renderer.toneMapping = THREE.ReinhardToneMapping;
 				renderer.toneMappingExposure = 6;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );

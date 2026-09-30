@@ -82,4 +82,4 @@ The material overwrites this method because `lights` is set to `true` but we sti
 
 ## Source
 
-[src/materials/nodes/MeshBasicNodeMaterial.js](../../src/materials/nodes/MeshBasicNodeMaterial.js)
+[src/materials/nodes/MeshBasicNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshBasicNodeMaterial.js)

@@ -16,17 +16,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let container, stats;
 
@@ -40,18 +40,18 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 3500 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 5, 3500 );
 				camera.position.z = 2750;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x050505 );
-				scene.fog = new FOUR.Fog( 0x050505, 2000, 3500 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x050505 );
+				scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
 
 				//
 
 				const particles = 500000;
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 
 				// create a generic buffer of binary data (a single particle has 16 bytes of data)
 
@@ -64,7 +64,7 @@
 
 				//
 
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 
 				const n = 1000, n2 = n / 2; // particles spread in the cube
 
@@ -86,7 +86,7 @@
 					const vy = ( y / n ) + 0.5;
 					const vz = ( z / n ) + 0.5;
 
-					color.setRGB( vx, vy, vz, FOUR.SRGBColorSpace );
+					color.setRGB( vx, vy, vz, THREE.SRGBColorSpace );
 
 					const j = ( i + 3 ) * 4;
 
@@ -97,22 +97,22 @@
 
 				}
 
-				const interleavedBuffer32 = new FOUR.InterleavedBuffer( interleavedFloat32Buffer, 4 );
-				const interleavedBuffer8 = new FOUR.InterleavedBuffer( interleavedUint8Buffer, 16 );
+				const interleavedBuffer32 = new THREE.InterleavedBuffer( interleavedFloat32Buffer, 4 );
+				const interleavedBuffer8 = new THREE.InterleavedBuffer( interleavedUint8Buffer, 16 );
 
-				geometry.setAttribute( 'position', new FOUR.InterleavedBufferAttribute( interleavedBuffer32, 3, 0, false ) );
-				geometry.setAttribute( 'color', new FOUR.InterleavedBufferAttribute( interleavedBuffer8, 3, 12, true ) );
+				geometry.setAttribute( 'position', new THREE.InterleavedBufferAttribute( interleavedBuffer32, 3, 0, false ) );
+				geometry.setAttribute( 'color', new THREE.InterleavedBufferAttribute( interleavedBuffer8, 3, 12, true ) );
 
 				//
 
-				const material = new FOUR.PointsMaterial( { size: 15, vertexColors: true } );
+				const material = new THREE.PointsMaterial( { size: 15, vertexColors: true } );
 
-				points = new FOUR.Points( geometry, material );
+				points = new THREE.Points( geometry, material );
 				scene.add( points );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

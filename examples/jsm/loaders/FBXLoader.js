@@ -42,7 +42,7 @@ import {
 	Vector3,
 	Vector4,
 	VectorKeyframeTrack
-} from '@tnb1j/4js';
+} from 'three';
 
 import { unzlibSync } from '../libs/fflate.module.js';
 import { NURBSCurve } from '../curves/NURBSCurve.js';
@@ -73,7 +73,7 @@ let sceneGraph;
  * ```
  *
  * @augments Loader
- * @four_import import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
+ * @three_import import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
  */
 class FBXLoader extends Loader {
 
@@ -85,6 +85,16 @@ class FBXLoader extends Loader {
 	constructor( manager ) {
 
 		super( manager );
+
+		/**
+		 * Whether to trim animation clips to the time range of their
+		 * animation stacks and shift them to start at time zero. Useful
+		 * for assets that define multiple clips on a single timeline.
+		 *
+		 * @type {boolean}
+		 * @default false
+		 */
+		this.trimAnimationClips = false;
 
 	}
 
@@ -154,13 +164,13 @@ class FBXLoader extends Loader {
 
 			if ( ! isFbxFormatASCII( FBXText ) ) {
 
-				throw new Error( 'FOUR.FBXLoader: Unknown format.' );
+				throw new Error( 'THREE.FBXLoader: Unknown format.' );
 
 			}
 
 			if ( getFbxVersion( FBXText ) < 7000 ) {
 
-				throw new Error( 'FOUR.FBXLoader: FBX version not supported, FileVersion: ' + getFbxVersion( FBXText ) );
+				throw new Error( 'THREE.FBXLoader: FBX version not supported, FileVersion: ' + getFbxVersion( FBXText ) );
 
 			}
 
@@ -172,7 +182,7 @@ class FBXLoader extends Loader {
 
 		const textureLoader = new TextureLoader( this.manager ).setPath( this.resourcePath || path ).setCrossOrigin( this.crossOrigin );
 
-		return new FBXTreeParser( textureLoader, this.manager ).parse( fbxTree );
+		return new FBXTreeParser( textureLoader, this.manager, this.trimAnimationClips ).parse( fbxTree );
 
 	}
 
@@ -181,10 +191,11 @@ class FBXLoader extends Loader {
 // Parse the FBXTree object returned by the BinaryParser or TextParser and return a Group
 class FBXTreeParser {
 
-	constructor( textureLoader, manager ) {
+	constructor( textureLoader, manager, trimAnimationClips ) {
 
 		this.textureLoader = textureLoader;
 		this.manager = manager;
+		this.trimAnimationClips = trimAnimationClips;
 
 	}
 
@@ -367,7 +378,7 @@ class FBXTreeParser {
 		} else { // Binary Format
 
 			const array = new Uint8Array( content );
-			return window.URL.createObjectURL( new Blob( [ array ], { type: type } ) );
+			return URL.createObjectURL( new Blob( [ array ], { type: type } ) );
 
 		}
 
@@ -542,7 +553,7 @@ class FBXTreeParser {
 				material = new MeshLambertMaterial();
 				break;
 			default:
-				console.warn( 'FOUR.FBXLoader: unknown material type "%s". Defaulting to MeshPhongMaterial.', type );
+				console.warn( 'THREE.FBXLoader: unknown material type "%s". Defaulting to MeshPhongMaterial.', type );
 				material = new MeshPhongMaterial();
 				break;
 
@@ -727,7 +738,7 @@ class FBXTreeParser {
 				case 'SpecularFactor': // AKA specularLevel
 				case 'VectorDisplacementColor': // NOTE: Seems to be a copy of DisplacementColor
 				default:
-					console.warn( 'FOUR.FBXLoader: %s map is not supported in 4.js, skipping texture.', type );
+					console.warn( 'THREE.FBXLoader: %s map is not supported in 4.js, skipping texture.', type );
 					break;
 
 			}
@@ -744,7 +755,7 @@ class FBXTreeParser {
 		// if the texture is a layered texture, just use the first layer and issue a warning
 		if ( 'LayeredTexture' in fbxTree.Objects && id in fbxTree.Objects.LayeredTexture ) {
 
-			console.warn( 'FOUR.FBXLoader: layered textures are not supported in 4.js. Discarding all but first layer.' );
+			console.warn( 'THREE.FBXLoader: layered textures are not supported in 4.js. Discarding all but first layer.' );
 			id = connections.get( id ).children[ 0 ].ID;
 
 		}
@@ -776,7 +787,7 @@ class FBXTreeParser {
 					const skeleton = this.parseSkeleton( relationships, DeformerNodes );
 					skeleton.ID = nodeID;
 
-					if ( relationships.parents.length > 1 ) console.warn( 'FOUR.FBXLoader: skeleton attached to more than one geometry is not supported.' );
+					if ( relationships.parents.length > 1 ) console.warn( 'THREE.FBXLoader: skeleton attached to more than one geometry is not supported.' );
 					skeleton.geometryID = relationships.parents[ 0 ].ID;
 
 					skeletons[ nodeID ] = skeleton;
@@ -790,7 +801,7 @@ class FBXTreeParser {
 					morphTarget.rawTargets = this.parseMorphTargets( relationships, DeformerNodes );
 					morphTarget.id = nodeID;
 
-					if ( relationships.parents.length > 1 ) console.warn( 'FOUR.FBXLoader: morph target attached to more than one geometry is not supported.' );
+					if ( relationships.parents.length > 1 ) console.warn( 'THREE.FBXLoader: morph target attached to more than one geometry is not supported.' );
 
 					morphTargets[ nodeID ] = morphTarget;
 
@@ -1000,12 +1011,13 @@ class FBXTreeParser {
 		// without a BindPose section).
 		this.bindSkeleton( deformers.skeletons, geometryMap, modelMap );
 
-		const animations = new AnimationParser().parse();
+		const animations = new AnimationParser( this.trimAnimationClips ).parse();
 
 		// if all the models where already combined in a single group, just return that
 		if ( sceneGraph.children.length === 1 && sceneGraph.children[ 0 ].isGroup ) {
 
 			sceneGraph.children[ 0 ].animations = animations;
+			Object.assign( sceneGraph.children[ 0 ].userData, sceneGraph.userData );
 			sceneGraph = sceneGraph.children[ 0 ];
 
 		}
@@ -1022,7 +1034,7 @@ class FBXTreeParser {
 
 			if ( upAxis === 2 ) {
 
-				console.warn( 'FOUR.FBXLoader: You are loading an asset with a Z-UP coordinate system. The loader just rotates the asset to transform it into Y-UP. The vertex data are not converted.' );
+				console.warn( 'THREE.FBXLoader: You are loading an asset with a Z-UP coordinate system. The loader just rotates the asset to transform it into Y-UP. The vertex data are not converted.' );
 
 				sceneGraph.rotation.set( - Math.PI / 2, 0, 0 );
 
@@ -1211,12 +1223,12 @@ class FBXTreeParser {
 					break;
 
 				case 1: // Orthographic
-					console.warn( 'FOUR.FBXLoader: Orthographic cameras not supported yet.' );
+					console.warn( 'THREE.FBXLoader: Orthographic cameras not supported yet.' );
 					model = new Object3D();
 					break;
 
 				default:
-					console.warn( 'FOUR.FBXLoader: Unknown camera type ' + type + '.' );
+					console.warn( 'THREE.FBXLoader: Unknown camera type ' + type + '.' );
 					model = new Object3D();
 					break;
 
@@ -1337,7 +1349,7 @@ class FBXTreeParser {
 					break;
 
 				default:
-					console.warn( 'FOUR.FBXLoader: Unknown light type ' + lightAttribute.LightType.value + ', defaulting to a PointLight.' );
+					console.warn( 'THREE.FBXLoader: Unknown light type ' + lightAttribute.LightType.value + ', defaulting to a PointLight.' );
 					model = new PointLight( color, intensity );
 					break;
 
@@ -1707,7 +1719,7 @@ class GeometryParser {
 
 		if ( this.negativeMaterialIndices === true ) {
 
-			console.warn( 'FOUR.FBXLoader: The FBX file contains invalid (negative) material indices. The asset might not render as expected.' );
+			console.warn( 'THREE.FBXLoader: The FBX file contains invalid (negative) material indices. The asset might not render as expected.' );
 
 		}
 
@@ -2031,7 +2043,7 @@ class GeometryParser {
 
 					if ( ! displayedWeightsWarning ) {
 
-						console.warn( 'FOUR.FBXLoader: Vertex has more than 4 skinning weights assigned to vertex. Deleting additional weights.' );
+						console.warn( 'THREE.FBXLoader: Vertex has more than 4 skinning weights assigned to vertex. Deleting additional weights.' );
 						displayedWeightsWarning = true;
 
 					}
@@ -2566,7 +2578,7 @@ class GeometryParser {
 
 		if ( isNaN( order ) ) {
 
-			console.error( 'FOUR.FBXLoader: Invalid Order %s given for geometry ID: %s', geoNode.Order, geoNode.id );
+			console.error( 'THREE.FBXLoader: Invalid Order %s given for geometry ID: %s', geoNode.Order, geoNode.id );
 			return new BufferGeometry();
 
 		}
@@ -2613,6 +2625,12 @@ class GeometryParser {
 
 // parse animation data from FBXTree
 class AnimationParser {
+
+	constructor( trimAnimationClips ) {
+
+		this.trimAnimationClips = trimAnimationClips;
+
+	}
 
 	// take raw animation clips and turn them into 4.js animation clips
 	parse() {
@@ -2791,7 +2809,7 @@ class AnimationParser {
 
 									if ( rawModel === undefined ) {
 
-										console.warn( 'FOUR.FBXLoader: Encountered a unused curve.', child );
+										console.warn( 'THREE.FBXLoader: Encountered a unused curve.', child );
 										return;
 
 									}
@@ -2907,16 +2925,19 @@ class AnimationParser {
 
 				// it seems like stacks will always be associated with a single layer. But just in case there are files
 				// where there are multiple layers per stack, we'll display a warning
-				console.warn( 'FOUR.FBXLoader: Encountered an animation stack with multiple layers, this is currently not supported. Ignoring subsequent layers.' );
+				console.warn( 'THREE.FBXLoader: Encountered an animation stack with multiple layers, this is currently not supported. Ignoring subsequent layers.' );
 
 			}
 
 			const layer = layersMap.get( children[ 0 ].ID );
+			const rawStack = rawStacks[ nodeID ];
 
 			rawClips[ nodeID ] = {
 
-				name: rawStacks[ nodeID ].attrName,
+				name: rawStack.attrName,
 				layer: layer,
+				localStart: rawStack.LocalStart !== undefined ? convertFBXTimeToSeconds( Number( rawStack.LocalStart.value ) ) : 0,
+				localStop: rawStack.LocalStop !== undefined ? convertFBXTimeToSeconds( Number( rawStack.LocalStop.value ) ) : 0,
 
 			};
 
@@ -2937,7 +2958,62 @@ class AnimationParser {
 
 		} );
 
+		if ( this.trimAnimationClips === true && rawClip.localStop > rawClip.localStart ) {
+
+			tracks = this.trimTracks( tracks, rawClip.localStart, rawClip.localStop );
+
+		}
+
 		return new AnimationClip( rawClip.name, - 1, tracks );
+
+	}
+
+	// trims the given tracks to the time range [ startTime, endTime ] and shifts
+	// them so they start at time zero. tracks without keyframes in the range are discarded
+	trimTracks( tracks, startTime, endTime ) {
+
+		// track times are stored as float32 so compare against float32 boundaries
+		// to keep keyframes lying exactly on the range limits
+
+		const start = Math.fround( startTime );
+		const end = Math.fround( endTime );
+
+		const trimmedTracks = [];
+
+		for ( let i = 0; i < tracks.length; i ++ ) {
+
+			const track = tracks[ i ];
+			const stride = track.getValueSize();
+
+			const times = [];
+			const values = [];
+
+			for ( let j = 0; j < track.times.length; j ++ ) {
+
+				const time = track.times[ j ];
+
+				if ( time < start || time > end ) continue;
+
+				times.push( time - start );
+
+				for ( let k = 0; k < stride; k ++ ) {
+
+					values.push( track.values[ j * stride + k ] );
+
+				}
+
+			}
+
+			if ( times.length === 0 ) continue;
+
+			track.times = new Float32Array( times );
+			track.values = new Float32Array( values );
+
+			trimmedTracks.push( track );
+
+		}
+
+		return trimmedTracks;
 
 	}
 
@@ -3718,7 +3794,7 @@ class BinaryParser {
 
 		if ( version < 6400 ) {
 
-			throw new Error( 'FOUR.FBXLoader: FBX version not supported, FileVersion: ' + version );
+			throw new Error( 'THREE.FBXLoader: FBX version not supported, FileVersion: ' + version );
 
 		}
 
@@ -4023,7 +4099,7 @@ class BinaryParser {
 				break; // cannot happen but is required by the DeepScan
 
 			default:
-				throw new Error( 'FOUR.FBXLoader: Unknown property type ' + type );
+				throw new Error( 'THREE.FBXLoader: Unknown property type ' + type );
 
 		}
 
@@ -4335,7 +4411,7 @@ function getFbxVersion( text ) {
 
 	}
 
-	throw new Error( 'FOUR.FBXLoader: Cannot find the version number for the file given.' );
+	throw new Error( 'THREE.FBXLoader: Cannot find the version number for the file given.' );
 
 }
 
@@ -4368,7 +4444,7 @@ function getData( polygonVertexIndex, polygonIndex, vertexIndex, infoObject ) {
 			index = infoObject.indices[ 0 ];
 			break;
 		default :
-			console.warn( 'FOUR.FBXLoader: unknown attribute mapping type ' + infoObject.mappingType );
+			console.warn( 'THREE.FBXLoader: unknown attribute mapping type ' + infoObject.mappingType );
 
 	}
 
@@ -4522,7 +4598,7 @@ function getEulerOrder( order ) {
 
 	if ( order === 6 ) {
 
-		console.warn( 'FOUR.FBXLoader: unsupported Euler Order: Spherical XYZ. Animations and rotations may be incorrect.' );
+		console.warn( 'THREE.FBXLoader: unsupported Euler Order: Spherical XYZ. Animations and rotations may be incorrect.' );
 		return enums[ 0 ];
 
 	}

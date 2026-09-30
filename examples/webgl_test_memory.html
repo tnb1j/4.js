@@ -26,15 +26,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer;
 
@@ -45,13 +45,13 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 200;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xffffff );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -77,13 +77,13 @@
 
 			function animate() {
 
-				const geometry = new FOUR.SphereGeometry( 50, Math.random() * 64, Math.random() * 32 );
+				const geometry = new THREE.SphereGeometry( 50, Math.random() * 64, Math.random() * 32 );
 
-				const texture = new FOUR.CanvasTexture( createImage() );
+				const texture = new THREE.CanvasTexture( createImage() );
 
-				const material = new FOUR.MeshBasicMaterial( { map: texture, wireframe: true } );
+				const material = new THREE.MeshBasicMaterial( { map: texture, wireframe: true } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 
 				scene.add( mesh );
 

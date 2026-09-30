@@ -21,18 +21,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { AMFLoader } from '@tnb1j/4js/addons/loaders/AMFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { AMFLoader } from 'three/addons/loaders/AMFLoader.js';
 
 			let camera, scene, renderer;
 
@@ -40,27 +40,27 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x999999 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x999999 );
 
-				scene.add( new FOUR.AmbientLight( 0x999999 ) );
+				scene.add( new THREE.AmbientLight( 0x999999 ) );
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
 
 				// Z is up for objects intended to be 3D printed.
 
 				camera.up.set( 0, 0, 1 );
 				camera.position.set( 0, - 9, 6 );
 
-				camera.add( new FOUR.PointLight( 0xffffff, 250 ) );
+				camera.add( new THREE.PointLight( 0xffffff, 250 ) );
 
 				scene.add( camera );
 
-				const grid = new FOUR.GridHelper( 50, 50, 0xffffff, 0x555555 );
-				grid.rotateOnAxis( new FOUR.Vector3( 1, 0, 0 ), 90 * ( Math.PI / 180 ) );
+				const grid = new THREE.GridHelper( 50, 50, 0xffffff, 0x555555 );
+				grid.rotateOnAxis( new THREE.Vector3( 1, 0, 0 ), 90 * ( Math.PI / 180 ) );
 				scene.add( grid );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );

@@ -6,10 +6,10 @@ A post processing node for color grading via lookup tables.
 
 ## Import
 
-Lut3DNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Lut3DNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { lut3D } from '@tnb1j/4js/addons/tsl/display/Lut3DNode.js';
+import { lut3D } from 'three/addons/tsl/display/Lut3DNode.js';
 ```
 
 ## Constructor
@@ -66,4 +66,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/Lut3DNode.js](../../examples/jsm/tsl/display/Lut3DNode.js)
+[examples/jsm/tsl/display/Lut3DNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/Lut3DNode.js)

@@ -195,18 +195,18 @@ function getConsoleFunction() {
 }
 
 /**
- * Logs an informational message with the 'FOUR.' prefix.
+ * Logs an informational message with the 'THREE.' prefix.
  *
  * If a custom console function is set via setConsoleFunction(), it will be used
  * instead of the native console.log. The first parameter is treated as the
- * method name and is automatically prefixed with 'FOUR.'.
+ * method name and is automatically prefixed with 'THREE.'.
  *
  * @param {...any} params - The message components. The first param is used as
- *                          the method name and prefixed with 'FOUR.'.
+ *                          the method name and prefixed with 'THREE.'.
  */
 function log( ...params ) {
 
-	const message = 'FOUR.' + params.shift();
+	const message = 'THREE.' + params.shift();
 
 	if ( _setConsoleFunction ) {
 
@@ -240,7 +240,7 @@ function enhanceLogMessage( params ) {
 
 		} else {
 
-			params[ 1 ] = 'Stack trace not available. Enable "FOUR.Node.captureStackTrace" to capture stack traces.';
+			params[ 1 ] = 'Stack trace not available. Enable "THREE.Node.captureStackTrace" to capture stack traces.';
 
 		}
 
@@ -251,20 +251,20 @@ function enhanceLogMessage( params ) {
 }
 
 /**
- * Logs a warning message with the 'FOUR.' prefix.
+ * Logs a warning message with the 'THREE.' prefix.
  *
  * If a custom console function is set via setConsoleFunction(), it will be used
  * instead of the native console.warn. The first parameter is treated as the
- * method name and is automatically prefixed with 'FOUR.'.
+ * method name and is automatically prefixed with 'THREE.'.
  *
  * @param {...any} params - The message components. The first param is used as
- *                          the method name and prefixed with 'FOUR.'.
+ *                          the method name and prefixed with 'THREE.'.
  */
 function warn( ...params ) {
 
 	params = enhanceLogMessage( params );
 
-	const message = 'FOUR.' + params.shift();
+	const message = 'THREE.' + params.shift();
 
 	if ( _setConsoleFunction ) {
 
@@ -289,20 +289,20 @@ function warn( ...params ) {
 }
 
 /**
- * Logs an error message with the 'FOUR.' prefix.
+ * Logs an error message with the 'THREE.' prefix.
  *
  * If a custom console function is set via setConsoleFunction(), it will be used
  * instead of the native console.error. The first parameter is treated as the
- * method name and is automatically prefixed with 'FOUR.'.
+ * method name and is automatically prefixed with 'THREE.'.
  *
  * @param {...any} params - The message components. The first param is used as
- *                          the method name and prefixed with 'FOUR.'.
+ *                          the method name and prefixed with 'THREE.'.
  */
 function error( ...params ) {
 
 	params = enhanceLogMessage( params );
 
-	const message = 'FOUR.' + params.shift();
+	const message = 'THREE.' + params.shift();
 
 	if ( _setConsoleFunction ) {
 

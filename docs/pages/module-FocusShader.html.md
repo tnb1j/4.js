@@ -2,10 +2,10 @@
 
 ## Import
 
-FocusShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FocusShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FocusShader } from '@tnb1j/4js/addons/shaders/FocusShader.js';
+import { FocusShader } from 'three/addons/shaders/FocusShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Focus shader based on [PaintEffect postprocess from ro.me](http://code.google.co
 
 ## Source
 
-[examples/jsm/shaders/FocusShader.js](../../examples/jsm/shaders/FocusShader.js)
+[examples/jsm/shaders/FocusShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/FocusShader.js)

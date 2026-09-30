@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, fog, rangeFogFactor, checker, uv, mix, texture, lights, normalMap } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, fog, rangeFogFactor, checker, uv, mix, texture, lights, normalMap } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
 			let camera, scene, renderer,
 				light1, light2, light3, light4,
@@ -51,37 +51,37 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 100 );
 				camera.position.z = 7;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.fogNode = fog( color( 0xFF00FF ), rangeFogFactor( 12, 30 ) );
 
-				const sphereGeometry = new FOUR.SphereGeometry( 0.1, 16, 8 );
+				const sphereGeometry = new THREE.SphereGeometry( 0.1, 16, 8 );
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				const normalMapTexture = textureLoader.load( './textures/water/Water_1_M_Normal.jpg' );
-				normalMapTexture.wrapS = FOUR.RepeatWrapping;
-				normalMapTexture.wrapT = FOUR.RepeatWrapping;
+				normalMapTexture.wrapS = THREE.RepeatWrapping;
+				normalMapTexture.wrapT = THREE.RepeatWrapping;
 
 				const alphaTexture = textureLoader.load( './textures/roughness_map.jpg' );
-				alphaTexture.wrapS = FOUR.RepeatWrapping;
-				alphaTexture.wrapT = FOUR.RepeatWrapping;
+				alphaTexture.wrapS = THREE.RepeatWrapping;
+				alphaTexture.wrapT = THREE.RepeatWrapping;
 
 				// lights
 
 				const addLight = ( hexColor, power = 1700, distance = 100 ) => {
 
-					const material = new FOUR.MeshPhongNodeMaterial();
+					const material = new THREE.MeshPhongNodeMaterial();
 					material.colorNode = color( hexColor );
 					material.lights = false;
 
-					const mesh = new FOUR.Mesh( sphereGeometry, material );
+					const mesh = new THREE.Mesh( sphereGeometry, material );
 
-					const light = new FOUR.PointLight( hexColor, 1, distance );
+					const light = new THREE.PointLight( hexColor, 1, distance );
 					light.power = power;
 					light.add( mesh );
 
@@ -105,18 +105,18 @@
 
 				const geometryTeapot = new TeapotGeometry( .8, 18 );
 
-				const leftObject = new FOUR.Mesh( geometryTeapot, new FOUR.MeshPhongNodeMaterial( { color: 0x555555 } ) );
+				const leftObject = new THREE.Mesh( geometryTeapot, new THREE.MeshPhongNodeMaterial( { color: 0x555555 } ) );
 				leftObject.material.lightsNode = blueLightsNode;
 				leftObject.material.specularNode = texture( alphaTexture );
 				leftObject.position.x = - 3;
 				scene.add( leftObject );
 
-				const centerObject = new FOUR.Mesh( geometryTeapot, new FOUR.MeshPhongNodeMaterial( { color: 0x555555 } ) );
+				const centerObject = new THREE.Mesh( geometryTeapot, new THREE.MeshPhongNodeMaterial( { color: 0x555555 } ) );
 				centerObject.material.normalNode = normalMap( texture( normalMapTexture ) );
 				centerObject.material.shininess = 80;
 				scene.add( centerObject );
 
-				const rightObject = new FOUR.Mesh( geometryTeapot, new FOUR.MeshPhongNodeMaterial( { color: 0x555555 } ) );
+				const rightObject = new THREE.Mesh( geometryTeapot, new THREE.MeshPhongNodeMaterial( { color: 0x555555 } ) );
 				rightObject.material.lightsNode = whiteLightsNode;
 				//rightObject.material.specular.setHex( 0xFF00FF );
 				rightObject.material.specularNode = mix( color( 0x0000FF ), color( 0xFF0000 ), checker( uv().mul( 5 ) ) );
@@ -129,7 +129,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

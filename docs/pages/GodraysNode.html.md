@@ -25,10 +25,10 @@ const outputBlurred = depthAwareBlend( scenePassColor, blurPassColor, scenePassD
 
 ## Import
 
-GodraysNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GodraysNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { godrays } from '@tnb1j/4js/addons/tsl/display/GodraysNode.js';
+import { godrays } from 'three/addons/tsl/display/GodraysNode.js';
 ```
 
 ## Constructor
@@ -139,4 +139,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/GodraysNode.js](../../examples/jsm/tsl/display/GodraysNode.js)
+[examples/jsm/tsl/display/GodraysNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/GodraysNode.js)

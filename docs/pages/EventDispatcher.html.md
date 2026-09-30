@@ -76,4 +76,4 @@ The listener to remove.
 
 ## Source
 
-[src/core/EventDispatcher.js](../../src/core/EventDispatcher.js)
+[src/core/EventDispatcher.js](https://github.com/mrdoob/three.js/blob/master/src/core/EventDispatcher.js)

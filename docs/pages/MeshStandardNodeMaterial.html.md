@@ -92,4 +92,4 @@ The current node builder.
 
 ## Source
 
-[src/materials/nodes/MeshStandardNodeMaterial.js](../../src/materials/nodes/MeshStandardNodeMaterial.js)
+[src/materials/nodes/MeshStandardNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshStandardNodeMaterial.js)

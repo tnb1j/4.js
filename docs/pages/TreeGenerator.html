@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>TreeGenerator - 4.js Docs</title>
+	<title>TreeGenerator - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
 		<section>
 			<header>
 				<div class="class-description"><p>Grows a procedural tree skeleton — trunk, branches and twigs, each swept as a tapered
-tube — and bakes it into one non-indexed <a href="BufferGeometry.html">BufferGeometry</a> (position and normal
+tube — and bakes it into one indexed <a href="BufferGeometry.html">BufferGeometry</a> (position and normal
 only), ready to instance into a forest. It produces <em>branches only</em>; add foliage as a
 separate layer.</p>
 <p>The branching is deterministic for a given <code>seed</code>: a recursive sweep lays down gently
@@ -40,7 +40,7 @@ const pine = generator.setSeed( 2 ).setLevels( 5 ).build();
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/generators/TreeGenerator.js" translate="no">examples/jsm/generators/TreeGenerator.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/generators/TreeGenerator.js" translate="no" target="_blank" rel="noopener">examples/jsm/generators/TreeGenerator.js</a>
 				</p>
 			</article>
 		</section>

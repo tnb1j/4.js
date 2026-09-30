@@ -22,24 +22,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRCubeTextureLoader } from 'three/addons/loaders/HDRCubeTextureLoader.js';
 
-			import { FlakesTexture } from '@tnb1j/4js/addons/textures/FlakesTexture.js';
+			import { FlakesTexture } from 'three/addons/textures/FlakesTexture.js';
 
 			let camera, scene, renderer;
 
@@ -50,12 +50,12 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 0.25, 50 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 0.25, 50 );
 				camera.position.z = 10;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				scene.add( group );
 
 				new HDRCubeTextureLoader()
@@ -63,28 +63,28 @@
 					.load( [ 'px.hdr', 'nx.hdr', 'py.hdr', 'ny.hdr', 'pz.hdr', 'nz.hdr' ],
 						function ( texture ) {
 
-							const geometry = new FOUR.SphereGeometry( .8, 64, 32 );
+							const geometry = new THREE.SphereGeometry( .8, 64, 32 );
 
-							const textureLoader = new FOUR.TextureLoader();
+							const textureLoader = new THREE.TextureLoader();
 
 							const diffuse = textureLoader.load( 'textures/carbon/Carbon.png' );
-							diffuse.colorSpace = FOUR.SRGBColorSpace;
-							diffuse.wrapS = FOUR.RepeatWrapping;
-							diffuse.wrapT = FOUR.RepeatWrapping;
+							diffuse.colorSpace = THREE.SRGBColorSpace;
+							diffuse.wrapS = THREE.RepeatWrapping;
+							diffuse.wrapT = THREE.RepeatWrapping;
 							diffuse.repeat.x = 10;
 							diffuse.repeat.y = 10;
 
 							const normalMap = textureLoader.load( 'textures/carbon/Carbon_Normal.png' );
-							normalMap.wrapS = FOUR.RepeatWrapping;
-							normalMap.wrapT = FOUR.RepeatWrapping;
+							normalMap.wrapS = THREE.RepeatWrapping;
+							normalMap.wrapT = THREE.RepeatWrapping;
 							normalMap.repeat.x = 10;
 							normalMap.repeat.y = 10;
 
 							const normalMap2 = textureLoader.load( 'textures/water/Water_1_M_Normal.jpg' );
 
-							const normalMap3 = new FOUR.CanvasTexture( new FlakesTexture() );
-							normalMap3.wrapS = FOUR.RepeatWrapping;
-							normalMap3.wrapT = FOUR.RepeatWrapping;
+							const normalMap3 = new THREE.CanvasTexture( new FlakesTexture() );
+							normalMap3.wrapS = THREE.RepeatWrapping;
+							normalMap3.wrapT = THREE.RepeatWrapping;
 							normalMap3.repeat.x = 10;
 							normalMap3.repeat.y = 6;
 							normalMap3.anisotropy = 16;
@@ -95,37 +95,37 @@
 
 							// car paint
 
-							let material = new FOUR.MeshPhysicalMaterial( {
+							let material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								clearcoatRoughness: 0.1,
 								metalness: 0.9,
 								roughness: 0.5,
 								color: 0x0000ff,
 								normalMap: normalMap3,
-								normalScale: new FOUR.Vector2( 0.15, 0.15 )
+								normalScale: new THREE.Vector2( 0.15, 0.15 )
 							} );
-							let mesh = new FOUR.Mesh( geometry, material );
+							let mesh = new THREE.Mesh( geometry, material );
 							mesh.position.x = - 1;
 							mesh.position.y = 1;
 							group.add( mesh );
 
 							// fibers
 
-							material = new FOUR.MeshPhysicalMaterial( {
+							material = new THREE.MeshPhysicalMaterial( {
 								roughness: 0.5,
 								clearcoat: 1.0,
 								clearcoatRoughness: 0.1,
 								map: diffuse,
 								normalMap: normalMap
 							} );
-							mesh = new FOUR.Mesh( geometry, material );
+							mesh = new THREE.Mesh( geometry, material );
 							mesh.position.x = 1;
 							mesh.position.y = 1;
 							group.add( mesh );
 
 							// golf
 
-							material = new FOUR.MeshPhysicalMaterial( {
+							material = new THREE.MeshPhysicalMaterial( {
 								metalness: 0.0,
 								roughness: 0.1,
 								clearcoat: 1.0,
@@ -133,27 +133,27 @@
 								clearcoatNormalMap: clearcoatNormalMap,
 
 								// y scale is negated to compensate for normal map handedness.
-								clearcoatNormalScale: new FOUR.Vector2( 2.0, - 2.0 )
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
 							} );
-							mesh = new FOUR.Mesh( geometry, material );
+							mesh = new THREE.Mesh( geometry, material );
 							mesh.position.x = - 1;
 							mesh.position.y = - 1;
 							group.add( mesh );
 
 							// clearcoat + normalmap
 
-							material = new FOUR.MeshPhysicalMaterial( {
+							material = new THREE.MeshPhysicalMaterial( {
 								clearcoat: 1.0,
 								metalness: 1.0,
 								color: 0xff0000,
 								normalMap: normalMap2,
-								normalScale: new FOUR.Vector2( 0.15, 0.15 ),
+								normalScale: new THREE.Vector2( 0.15, 0.15 ),
 								clearcoatNormalMap: clearcoatNormalMap,
 
 								// y scale is negated to compensate for normal map handedness.
-								clearcoatNormalScale: new FOUR.Vector2( 2.0, - 2.0 )
+								clearcoatNormalScale: new THREE.Vector2( 2.0, - 2.0 )
 							} );
-							mesh = new FOUR.Mesh( geometry, material );
+							mesh = new THREE.Mesh( geometry, material );
 							mesh.position.x = 1;
 							mesh.position.y = - 1;
 							group.add( mesh );
@@ -169,15 +169,15 @@
 
 				// LIGHTS
 
-				particleLight = new FOUR.Mesh(
-					new FOUR.SphereGeometry( .05, 8, 8 ),
-					new FOUR.MeshBasicMaterial( { color: 0xffffff } )
+				particleLight = new THREE.Mesh(
+					new THREE.SphereGeometry( .05, 8, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0xffffff } )
 				);
 				scene.add( particleLight );
 
-				particleLight.add( new FOUR.PointLight( 0xffffff, 30 ) );
+				particleLight.add( new THREE.PointLight( 0xffffff, 30 ) );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -185,7 +185,7 @@
 
 				//
 
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1.25;
 				renderer.inspector = new Inspector();
 

@@ -2,10 +2,10 @@
 
 ## Import
 
-HalftoneShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HalftoneShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HalftoneShader } from '@tnb1j/4js/addons/shaders/HalftoneShader.js';
+import { HalftoneShader } from 'three/addons/shaders/HalftoneShader.js';
 ```
 
 ## Properties
@@ -20,4 +20,4 @@ Shape (1 = Dot, 2 = Ellipse, 3 = Line, 4 = Square, 5 = Diamond) Blending Mode (1
 
 ## Source
 
-[examples/jsm/shaders/HalftoneShader.js](../../examples/jsm/shaders/HalftoneShader.js)
+[examples/jsm/shaders/HalftoneShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/HalftoneShader.js)

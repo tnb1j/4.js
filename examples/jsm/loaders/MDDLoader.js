@@ -4,7 +4,7 @@ import {
 	FileLoader,
 	Loader,
 	NumberKeyframeTrack
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the MDD format.
@@ -27,20 +27,20 @@ import {
  * const clip = result.clip;
  * // clip.optimize(); // optional
  *
- * const geometry = new FOUR.BoxGeometry();
+ * const geometry = new THREE.BoxGeometry();
  * geometry.morphAttributes.position = morphTargets; // apply morph targets (vertex data must match)
  *
- * const material = new FOUR.MeshBasicMaterial();
+ * const material = new THREE.MeshBasicMaterial();
  *
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  *
- * const mixer = new FOUR.AnimationMixer( mesh );
+ * const mixer = new THREE.AnimationMixer( mesh );
  * mixer.clipAction( clip ).play();
  * ```
  *
  * @augments Loader
- * @four_import import { MDDLoader } from '@tnb1j/4js/addons/loaders/MDDLoader.js';
+ * @three_import import { MDDLoader } from 'three/addons/loaders/MDDLoader.js';
  */
 class MDDLoader extends Loader {
 

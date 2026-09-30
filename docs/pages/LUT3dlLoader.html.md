@@ -18,10 +18,10 @@ const map = loader.loadAsync( 'luts/Presetpro-Cinematic.3dl' );
 
 ## Import
 
-LUT3dlLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LUT3dlLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LUT3dlLoader } from '@tnb1j/4js/addons/loaders/LUT3dlLoader.js';
+import { LUT3dlLoader } from 'three/addons/loaders/LUT3dlLoader.js';
 ```
 
 ## Constructor
@@ -94,4 +94,4 @@ The texture type to set.
 
 ## Source
 
-[examples/jsm/loaders/LUT3dlLoader.js](../../examples/jsm/loaders/LUT3dlLoader.js)
+[examples/jsm/loaders/LUT3dlLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/LUT3dlLoader.js)

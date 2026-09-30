@@ -9,7 +9,7 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 ## Code Example
 
 ```js
-const geometry = new FOUR.IcosahedronGeometry();
+const geometry = new THREE.IcosahedronGeometry();
 const wireframeGeometry = new WireframeGeometry2( geo );
 const wireframe = new Wireframe( wireframeGeometry, material );
 scene.add( wireframe );
@@ -17,10 +17,10 @@ scene.add( wireframe );
 
 ## Import
 
-Wireframe is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Wireframe is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Wireframe } from '@tnb1j/4js/addons/lines/Wireframe.js';
+import { Wireframe } from 'three/addons/lines/Wireframe.js';
 ```
 
 ## Constructor
@@ -55,4 +55,4 @@ Computes an array of distance values which are necessary for rendering dashed li
 
 ## Source
 
-[examples/jsm/lines/Wireframe.js](../../examples/jsm/lines/Wireframe.js)
+[examples/jsm/lines/Wireframe.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/Wireframe.js)

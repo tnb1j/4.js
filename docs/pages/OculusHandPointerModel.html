@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>OculusHandPointerModel - 4.js Docs</title>
+	<title>OculusHandPointerModel - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,8 +17,8 @@
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">OculusHandPointerModel</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { OculusHandPointerModel } from '@tnb1j/4js/addons/webxr/OculusHandPointerModel.js';</code></pre>
+				<p><span translate="no">OculusHandPointerModel</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { OculusHandPointerModel } from 'three/addons/webxr/OculusHandPointerModel.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="OculusHandPointerModel" translate="no">new <a href="#OculusHandPointerModel">OculusHandPointerModel</a><span class="signature">( hand : <span class="param-type"><a href="Group.html">Group</a></span>, controller : <span class="param-type"><a href="Group.html">Group</a></span> )</span> </h3>
@@ -153,6 +153,9 @@ Otherwise it only checks intersection with the object.</p>
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Object3D.html#dispose">Object3D#dispose</a></dt>
+						</dl>
 					</div>
 					<h3 class="name name-method" id="intersectObject" translate="no">.<a href="#intersectObject">intersectObject</a><span class="signature">( object : <span class="param-type"><a href="Object3D.html">Object3D</a></span>, recursive : <span class="param-type">boolean</span> )</span><span class="type-signature"> : Array.&lt;<a href="Raycaster.html#~Intersection">Raycaster~Intersection</a>></span> </h3>
 					<div class="method">
@@ -295,7 +298,7 @@ when <a href="Object3D.html#matrixWorldAutoUpdate">Object3D#matrixWorldAutoUpdat
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/webxr/OculusHandPointerModel.js" translate="no">examples/jsm/webxr/OculusHandPointerModel.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/OculusHandPointerModel.js" translate="no" target="_blank" rel="noopener">examples/jsm/webxr/OculusHandPointerModel.js</a>
 				</p>
 			</article>
 		</section>

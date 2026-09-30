@@ -108,4 +108,4 @@ The light shadow.
 
 ## Source
 
-[src/nodes/lighting/PointShadowNode.js](../../src/nodes/lighting/PointShadowNode.js)
+[src/nodes/lighting/PointShadowNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/PointShadowNode.js)

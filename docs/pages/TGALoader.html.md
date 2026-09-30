@@ -9,15 +9,15 @@ A loader for the TGA texture format.
 ```js
 const loader = new TGALoader();
 const texture = await loader.loadAsync( 'textures/crate_color8.tga' );
-texture.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+texture.colorSpace = THREE.SRGBColorSpace; // only for color textures
 ```
 
 ## Import
 
-TGALoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TGALoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TGALoader } from '@tnb1j/4js/addons/loaders/TGALoader.js';
+import { TGALoader } from 'three/addons/loaders/TGALoader.js';
 ```
 
 ## Constructor
@@ -46,4 +46,4 @@ The raw texture data.
 
 ## Source
 
-[examples/jsm/loaders/TGALoader.js](../../examples/jsm/loaders/TGALoader.js)
+[examples/jsm/loaders/TGALoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/TGALoader.js)

@@ -1,10 +1,10 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module ConvolutionShader
- * @four_import import { ConvolutionShader } from '@tnb1j/4js/addons/shaders/ConvolutionShader.js';
+ * @three_import import { ConvolutionShader } from 'three/addons/shaders/ConvolutionShader.js';
  */
 
 /**

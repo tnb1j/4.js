@@ -1,6 +1,6 @@
 import {
 	Color
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass } from './Pass.js';
 
 /**
@@ -13,7 +13,7 @@ import { Pass } from './Pass.js';
  * ```
  *
  * @augments Pass
- * @four_import import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
+ * @three_import import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
  */
 class RenderPass extends Pass {
 

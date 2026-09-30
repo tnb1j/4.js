@@ -25,10 +25,10 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
@@ -40,13 +40,13 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, color, mx_worley_noise_float, time } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, color, mx_worley_noise_float, time } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let renderer, scene, camera;
 
@@ -58,7 +58,7 @@
 
 				// Renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -66,14 +66,13 @@
 				document.body.appendChild( renderer.domElement );
 
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
 
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 7, 4, 1 );
 
 				// Controls
@@ -87,13 +86,13 @@
 
 				// Textures
 
-				const loader = new FOUR.TextureLoader().setPath( 'textures/' );
+				const loader = new THREE.TextureLoader().setPath( 'textures/' );
 
 				// Lights
 
 				const causticEffect = Fn( ( [ projectorUV ] ) => {
 
-					const waterLayer0 = mx_worley_noise_float( projectorUV.mul( 10 ).add( time ) );
+					const waterLayer0 = mx_worley_noise_float( projectorUV.mul( 10 ).add( time ) ).pow( 2 );
 
 					const caustic = waterLayer0.mul( color( 0x5abcd8 ) ).mul( 2 );
 
@@ -102,10 +101,10 @@
 				} );
 
 
-				const ambient = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 0.15 );
+				const ambient = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 0.15 );
 				scene.add( ambient );
 
-				projectorLight = new FOUR.ProjectorLight( 0xffffff, 100 );
+				projectorLight = new THREE.ProjectorLight( 0xffffff, 100 );
 				projectorLight.colorNode = causticEffect;
 				projectorLight.position.set( 2.5, 5, 2.5 );
 				projectorLight.angle = Math.PI / 6;
@@ -121,15 +120,15 @@
 				projectorLight.shadow.focus = 1;
 				scene.add( projectorLight );
 
-				lightHelper = new FOUR.SpotLightHelper( projectorLight );
+				lightHelper = new THREE.SpotLightHelper( projectorLight );
 				scene.add( lightHelper );
 
 				//
 
-				const geometry = new FOUR.PlaneGeometry( 200, 200 );
-				const material = new FOUR.MeshLambertMaterial( { color: 0xbcbcbc } );
+				const geometry = new THREE.PlaneGeometry( 200, 200 );
+				const material = new THREE.MeshLambertMaterial( { color: 0xbcbcbc } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.position.set( 0, - 1, 0 );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
@@ -142,9 +141,9 @@
 					geometry.scale( 0.0024, 0.0024, 0.0024 );
 					geometry.computeVertexNormals();
 
-					const material = new FOUR.MeshLambertMaterial();
+					const material = new THREE.MeshLambertMaterial();
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.rotation.y = - Math.PI / 2;
 					mesh.position.y = 0.8;
 					mesh.castShadow = true;
@@ -191,8 +190,8 @@
 							const video = document.getElementById( 'video' );
 							video.play();
 
-							videoTexture = new FOUR.VideoTexture( video );
-							videoTexture.colorSpace = FOUR.SRGBColorSpace;
+							videoTexture = new THREE.VideoTexture( video );
+							videoTexture.colorSpace = THREE.SRGBColorSpace;
 
 						}
 
@@ -203,10 +202,10 @@
 					} else if ( val === 'texture' ) {
 
 						mapTexture = loader.load( 'colors.png' );
-						mapTexture.minFilter = FOUR.LinearFilter;
-						mapTexture.magFilter = FOUR.LinearFilter;
+						mapTexture.minFilter = THREE.LinearFilter;
+						mapTexture.magFilter = THREE.LinearFilter;
 						mapTexture.generateMipmaps = false;
-						mapTexture.colorSpace = FOUR.SRGBColorSpace;
+						mapTexture.colorSpace = THREE.SRGBColorSpace;
 
 						projectorLight.map = mapTexture;
 

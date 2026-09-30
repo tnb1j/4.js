@@ -8,10 +8,10 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 
 ## Import
 
-AnaglyphEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AnaglyphEffect is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AnaglyphEffect } from '@tnb1j/4js/addons/effects/AnaglyphEffect.js';
+import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
 ```
 
 ## Constructor
@@ -84,4 +84,4 @@ The height of the effect in logical pixels.
 
 ## Source
 
-[examples/jsm/effects/AnaglyphEffect.js](../../examples/jsm/effects/AnaglyphEffect.js)
+[examples/jsm/effects/AnaglyphEffect.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/effects/AnaglyphEffect.js)

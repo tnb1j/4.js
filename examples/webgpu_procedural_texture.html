@@ -24,21 +24,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { checker, uv, uniform, convertToTexture } from '@tnb1j/4js/tsl';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import * as THREE from 'three/webgpu';
+			import { checker, uv, uniform, convertToTexture } from 'three/tsl';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -47,10 +47,10 @@
 			function init() {
 
 				const aspect = window.innerWidth / window.innerHeight;
-				camera = new FOUR.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
+				camera = new THREE.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
 				camera.position.z = 1;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// procedural to texture
 
@@ -69,15 +69,15 @@
 
 				// scene
 
-				const material = new FOUR.MeshBasicNodeMaterial();
+				const material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = colorNode;
 
-				const plane = new FOUR.Mesh( new FOUR.PlaneGeometry( 1, 1 ), material );
+				const plane = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1 ), material );
 				scene.add( plane );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );

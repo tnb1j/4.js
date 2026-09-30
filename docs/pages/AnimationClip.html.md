@@ -178,4 +178,4 @@ The animation clip to serialize.
 
 ## Source
 
-[src/animation/AnimationClip.js](../../src/animation/AnimationClip.js)
+[src/animation/AnimationClip.js](https://github.com/mrdoob/three.js/blob/master/src/animation/AnimationClip.js)

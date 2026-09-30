@@ -2,7 +2,7 @@ import {
 	Controls,
 	Euler,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 const _euler = new Euler( 0, 0, 0, 'YXZ' );
 const _vector = new Vector3();
@@ -56,7 +56,7 @@ const _PI_2 = Math.PI / 2;
  * ```
  *
  * @augments Controls
- * @four_import import { PointerLockControls } from '@tnb1j/4js/addons/controls/PointerLockControls.js';
+ * @three_import import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
  */
 class PointerLockControls extends Controls {
 
@@ -257,7 +257,7 @@ function onPointerlockChange() {
 
 function onPointerlockError() {
 
-	console.error( 'FOUR.PointerLockControls: Unable to use Pointer Lock API' );
+	console.error( 'THREE.PointerLockControls: Unable to use Pointer Lock API' );
 
 }
 

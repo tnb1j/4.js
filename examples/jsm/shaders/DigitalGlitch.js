@@ -1,6 +1,6 @@
 /**
  * @module DigitalGlitch
- * @four_import import { DigitalGlitch } from '@tnb1j/4js/addons/shaders/DigitalGlitch.js';
+ * @three_import import { DigitalGlitch } from 'three/addons/shaders/DigitalGlitch.js';
  */
 
 /**

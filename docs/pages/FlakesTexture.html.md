@@ -4,10 +4,10 @@ Utility class for generating a flakes texture image. This image might be used as
 
 ## Import
 
-FlakesTexture is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FlakesTexture is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FlakesTexture } from '@tnb1j/4js/addons/textures/FlakesTexture.js';
+import { FlakesTexture } from 'three/addons/textures/FlakesTexture.js';
 ```
 
 ## Constructor
@@ -32,4 +32,4 @@ Default is `512`.
 
 ## Source
 
-[examples/jsm/textures/FlakesTexture.js](../../examples/jsm/textures/FlakesTexture.js)
+[examples/jsm/textures/FlakesTexture.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/textures/FlakesTexture.js)

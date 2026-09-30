@@ -30,28 +30,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Fn, abs, fract, fwidth, length, max, saturate, smoothstep, vec3, vec4, positionWorld, float } from '@tnb1j/4js/tsl';
+			import { Fn, abs, fract, fwidth, length, max, saturate, smoothstep, vec3, vec4, positionWorld, float } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { TSLGraphLoader } from '@tnb1j/4js/addons/inspector/extensions/tsl-graph/TSLGraphLoader.js';
+			import { TSLGraphLoader } from 'three/addons/inspector/extensions/tsl-graph/TSLGraphLoader.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -63,23 +63,23 @@
 
 				// Create Materials
 
-				const m1 = new FOUR.MeshPhysicalNodeMaterial();
+				const m1 = new THREE.MeshPhysicalNodeMaterial();
 				m1.userData.graphId = 'mat_1-physical';
 
-				const m2 = new FOUR.MeshStandardNodeMaterial();
+				const m2 = new THREE.MeshStandardNodeMaterial();
 				m2.userData.graphId = 'mat_2-standard';
 
-				const m3 = new FOUR.MeshPhongNodeMaterial();
+				const m3 = new THREE.MeshPhongNodeMaterial();
 				m3.userData.graphId = 'mat_3-phong';
 
-				const m4 = new FOUR.MeshBasicNodeMaterial();
+				const m4 = new THREE.MeshBasicNodeMaterial();
 				m4.userData.graphId = 'mat_4-basic';
 
 				const materials = [ m1, m2, m3, m4 ];
 
 				for ( let i = 0; i < materials.length; i ++ ) {
 
-					createShaderBall( materials[ i ], new FOUR.Vector3( ( i & 1 ) * 4 - 2, 0, ( i & 2 ) * 2 - 2 ) );
+					createShaderBall( materials[ i ], new THREE.Vector3( ( i & 1 ) * 4 - 2, 0, ( i & 2 ) * 2 - 2 ) );
 
 				}
 
@@ -119,26 +119,26 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = .9;
 				renderer.inspector = new Inspector();
 				renderer.setAnimationLoop( render );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 200 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 200 );
 				camera.position.set( 3, 5, 8 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x444444 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x444444 );
 
 				await renderer.init();
 
 				// Ground plane
 
-				const plane = new FOUR.Mesh( new FOUR.CircleGeometry( 40 ), createGroudMaterial() );
+				const plane = new THREE.Mesh( new THREE.CircleGeometry( 40 ), createGroudMaterial() );
 				plane.rotation.x = - Math.PI / 2;
 				plane.renderOrder = - 1;
 				scene.add( plane );
@@ -154,9 +154,9 @@
 				//
 
 				const environment = await new HDRLoader().setPath( 'textures/equirectangular/' ).loadAsync( 'monochrome_studio_02_1k.hdr' );
-				environment.mapping = FOUR.EquirectangularReflectionMapping;
+				environment.mapping = THREE.EquirectangularReflectionMapping;
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 1 );
+				const light = new THREE.DirectionalLight( 0xffffff, 1 );
 				light.position.set( 1, 1, 1 );
 				scene.add( light );
 
@@ -177,7 +177,7 @@
 
 			}
 
-			async function createShaderBall( material, position = new FOUR.Vector3() ) {
+			async function createShaderBall( material, position = new THREE.Vector3() ) {
 
 				const model = prefab.clone();
 				model.position.copy( position );
@@ -264,7 +264,7 @@
 
 			function createGroudMaterial() {
 
-				const material = new FOUR.MeshBasicNodeMaterial();
+				const material = new THREE.MeshBasicNodeMaterial();
 
 				const grid = Fn( ( [ coord, lineWidth = float( 0.01 ), dotSize = float( 0.03 ) ] ) => {
 

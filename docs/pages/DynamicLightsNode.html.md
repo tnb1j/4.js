@@ -8,10 +8,10 @@ Unsupported lights, node lights, shadow-casting lights, and projected spot light
 
 ## Import
 
-DynamicLightsNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DynamicLightsNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DynamicLightsNode } from '@tnb1j/4js/addons/tsl/lighting/DynamicLightsNode.js';
+import { DynamicLightsNode } from 'three/addons/tsl/lighting/DynamicLightsNode.js';
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ Default is `4`.
 
 ## Source
 
-[examples/jsm/tsl/lighting/DynamicLightsNode.js](../../examples/jsm/tsl/lighting/DynamicLightsNode.js)
+[examples/jsm/tsl/lighting/DynamicLightsNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/lighting/DynamicLightsNode.js)

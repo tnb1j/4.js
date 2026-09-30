@@ -38,4 +38,4 @@ Default is `'color'`.
 
 ## Source
 
-[src/animation/tracks/ColorKeyframeTrack.js](../../src/animation/tracks/ColorKeyframeTrack.js)
+[src/animation/tracks/ColorKeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/tracks/ColorKeyframeTrack.js)

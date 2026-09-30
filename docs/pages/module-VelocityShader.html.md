@@ -2,10 +2,10 @@
 
 ## Import
 
-VelocityShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VelocityShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VelocityShader } from '@tnb1j/4js/addons/shaders/VelocityShader.js';
+import { VelocityShader } from 'three/addons/shaders/VelocityShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Mesh velocity shader by @bhouston.
 
 ## Source
 
-[examples/jsm/shaders/VelocityShader.js](../../examples/jsm/shaders/VelocityShader.js)
+[examples/jsm/shaders/VelocityShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/VelocityShader.js)

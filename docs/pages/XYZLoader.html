@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>XYZLoader - 4.js Docs</title>
+	<title>XYZLoader - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -21,15 +21,15 @@
 const geometry = await loader.loadAsync( 'models/xyz/helix_201.xyz' );
 geometry.center();
 const vertexColors = ( geometry.hasAttribute( 'color' ) === true );
-const material = new FOUR.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
-const points = new FOUR.Points( geometry, material );
+const material = new THREE.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
+const points = new THREE.Points( geometry, material );
 scene.add( points );
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">XYZLoader</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';</code></pre>
+				<p><span translate="no">XYZLoader</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { XYZLoader } from 'three/addons/loaders/XYZLoader.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="XYZLoader" translate="no">new <a href="#XYZLoader">XYZLoader</a><span class="signature">()</span> </h3>
@@ -109,7 +109,7 @@ to the <code>onLoad()</code> callback.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/loaders/XYZLoader.js" translate="no">examples/jsm/loaders/XYZLoader.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/XYZLoader.js" translate="no" target="_blank" rel="noopener">examples/jsm/loaders/XYZLoader.js</a>
 				</p>
 			</article>
 		</section>

@@ -62,4 +62,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/curves/QuadraticBezierCurve3.js](../../src/extras/curves/QuadraticBezierCurve3.js)
+[src/extras/curves/QuadraticBezierCurve3.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/QuadraticBezierCurve3.js)

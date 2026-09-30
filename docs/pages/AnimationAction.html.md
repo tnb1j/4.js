@@ -66,7 +66,7 @@ Default is `false`.
 
 The number of repetitions of the performed clip over the course of this action. Can be set via [AnimationAction#setLoop](AnimationAction.html#setLoop).
 
-Setting this number has no effect if [AnimationAction#loop](AnimationAction.html#loop) is set to `FOUR:LoopOnce`.
+Setting this number has no effect if [AnimationAction#loop](AnimationAction.html#loop) is set to `THREE:LoopOnce`.
 
 Default is `Infinity`.
 
@@ -334,4 +334,4 @@ The duration.
 
 ## Source
 
-[src/animation/AnimationAction.js](../../src/animation/AnimationAction.js)
+[src/animation/AnimationAction.js](https://github.com/mrdoob/three.js/blob/master/src/animation/AnimationAction.js)

@@ -18,8 +18,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three-subdivide": "https://cdn.jsdelivr.net/npm/three-subdivide@1.1.5/build/index.module.js"
 				}
 			}
@@ -27,10 +27,10 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 			import { LoopSubdivision } from 'three-subdivide';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let texture;
@@ -55,14 +55,14 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight );
 				camera.position.set( 0, 0.7, 2.1 );
 
 				const controls = new OrbitControls( camera, renderer.domElement );
@@ -72,33 +72,33 @@
 				controls.target.set( 0, 0, 0 );
 				controls.update();
 
-				scene.add( new FOUR.HemisphereLight( 0xffffff, 0x737373, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xffffff, 0x737373, 3 ) );
 
-				const frontLight = new FOUR.DirectionalLight( 0xffffff, 1.5 );
-				const backLight = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const frontLight = new THREE.DirectionalLight( 0xffffff, 1.5 );
+				const backLight = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				frontLight.position.set( 0, 1, 1 );
 				backLight.position.set( 0, 1, - 1 );
 				scene.add( frontLight, backLight );
 
-				texture = new FOUR.TextureLoader().load( './textures/uv_grid_opengl.jpg', () => {
+				texture = new THREE.TextureLoader().load( './textures/uv_grid_opengl.jpg', () => {
 
-					texture.wrapS = FOUR.RepeatWrapping;
-					texture.wrapT = FOUR.RepeatWrapping;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
+					texture.colorSpace = THREE.SRGBColorSpace;
 
 					render();
 
 				} );
 
-				meshNormal = new FOUR.Mesh( new FOUR.BufferGeometry(), new FOUR.MeshBasicMaterial() );
-				meshSmooth = new FOUR.Mesh( new FOUR.BufferGeometry(), new FOUR.MeshBasicMaterial() );
+				meshNormal = new THREE.Mesh( new THREE.BufferGeometry(), new THREE.MeshBasicMaterial() );
+				meshSmooth = new THREE.Mesh( new THREE.BufferGeometry(), new THREE.MeshBasicMaterial() );
 				meshNormal.position.set( - 0.7, 0, 0 );
 				meshSmooth.position.set( 0.7, 0, 0 );
 				scene.add( meshNormal, meshSmooth );
 
-				wireMaterial = new FOUR.MeshBasicMaterial( { color: 0xffffff, depthTest: true, wireframe: true } );
-				wireNormal = new FOUR.Mesh( new FOUR.BufferGeometry(), wireMaterial );
-				wireSmooth = new FOUR.Mesh( new FOUR.BufferGeometry(), wireMaterial );
+				wireMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, depthTest: true, wireframe: true } );
+				wireNormal = new THREE.Mesh( new THREE.BufferGeometry(), wireMaterial );
+				wireSmooth = new THREE.Mesh( new THREE.BufferGeometry(), wireMaterial );
 				wireNormal.visible = false;
 				wireSmooth.visible = false;
 				wireNormal.position.copy( meshNormal.position );
@@ -155,25 +155,25 @@
 				switch ( params.geometry.toLowerCase() ) {
 
 					case 'box':
-						return new FOUR.BoxGeometry();
+						return new THREE.BoxGeometry();
 
 					case 'capsule':
-						return new FOUR.CapsuleGeometry( 0.5, 0.5, 3, 5 );
+						return new THREE.CapsuleGeometry( 0.5, 0.5, 3, 5 );
 
 					case 'circle':
-						return new FOUR.CircleGeometry( 0.6, 10 );
+						return new THREE.CircleGeometry( 0.6, 10 );
 
 					case 'cone':
-						return new FOUR.ConeGeometry( 0.6, 1.5, 5, 3 );
+						return new THREE.ConeGeometry( 0.6, 1.5, 5, 3 );
 
 					case 'cylinder':
-						return new FOUR.CylinderGeometry( 0.5, 0.5, 1, 5, 4 );
+						return new THREE.CylinderGeometry( 0.5, 0.5, 1, 5, 4 );
 
 					case 'dodecahedron':
-						return new FOUR.DodecahedronGeometry( 0.6 );
+						return new THREE.DodecahedronGeometry( 0.6 );
 
 					case 'icosahedron':
-						return new FOUR.IcosahedronGeometry( 0.6 );
+						return new THREE.IcosahedronGeometry( 0.6 );
 
 					case 'lathe':
 
@@ -185,35 +185,35 @@
 
 							const x = ( Math.sin( i * 0.2 ) * Math.sin( i * 0.1 ) * 15 + 50 ) * 1.2;
 							const y = ( i - 5 ) * 3;
-							points.push( new FOUR.Vector2( x * 0.0075, y * 0.005 ) );
+							points.push( new THREE.Vector2( x * 0.0075, y * 0.005 ) );
 
 						}
 
-						const latheGeometry = new FOUR.LatheGeometry( points, 4 );
+						const latheGeometry = new THREE.LatheGeometry( points, 4 );
 						latheGeometry.center();
 
 						return latheGeometry;
 
 					case 'octahedron':
-						return new FOUR.OctahedronGeometry( 0.7 );
+						return new THREE.OctahedronGeometry( 0.7 );
 
 					case 'plane':
-						return new FOUR.PlaneGeometry();
+						return new THREE.PlaneGeometry();
 
 					case 'ring':
-						return new FOUR.RingGeometry( 0.3, 0.6, 10 );
+						return new THREE.RingGeometry( 0.3, 0.6, 10 );
 
 					case 'sphere':
-						return new FOUR.SphereGeometry( 0.6, 8, 4 );
+						return new THREE.SphereGeometry( 0.6, 8, 4 );
 
 					case 'tetrahedron':
-						return new FOUR.TetrahedronGeometry( 0.8 );
+						return new THREE.TetrahedronGeometry( 0.8 );
 
 					case 'torus':
-						return new FOUR.TorusGeometry( 0.48, 0.24, 4, 6 );
+						return new THREE.TorusGeometry( 0.48, 0.24, 4, 6 );
 
 					case 'torusknot':
-						return new FOUR.TorusKnotGeometry( 0.38, 0.18, 20, 4 );
+						return new THREE.TorusKnotGeometry( 0.38, 0.18, 20, 4 );
 
 				}
 
@@ -272,7 +272,7 @@
 					case 'plane':
 					case 'ring':
 
-						materialParams.side = FOUR.DoubleSide;
+						materialParams.side = THREE.DoubleSide;
 						break;
 
 					case 'box':
@@ -287,12 +287,12 @@
 					case 'torus':
 					case 'torusknot':
 
-						materialParams.side = FOUR.FrontSide;
+						materialParams.side = THREE.FrontSide;
 						break;
 
 				}
 
-				meshNormal.material = meshSmooth.material = new FOUR.MeshStandardMaterial( materialParams );
+				meshNormal.material = meshSmooth.material = new THREE.MeshStandardMaterial( materialParams );
 
 				render();
 

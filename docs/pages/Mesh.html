@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Mesh - 4.js Docs</title>
+	<title>Mesh - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
 			<header>
 				<div class="class-description"><p>Class representing triangular polygon mesh based objects.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const geometry = new FOUR.BoxGeometry( 1, 1, 1 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+				<div translate="no"><pre><code class="language-js">const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 </code></pre></div>
 			</header>
@@ -129,6 +129,30 @@ account the current animation state of both morph targets and skinning.</p>
 							<dt class="tag-returns"><strong>Returns:</strong> The vertex position in local space.</dt>
 						</dl>
 					</div>
+					<h3 class="name name-method" id="intersectsFrustum" translate="no">.<a href="#intersectsFrustum">intersectsFrustum</a><span class="signature">( frustum : <span class="param-type"><a href="Frustum.html">Frustum</a> | <a href="FrustumArray.html">FrustumArray</a></span> )</span><span class="type-signature"> : boolean</span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Returns <code>true</code> if this mesh intersects the given frustum.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">frustum</strong>
+									</td>
+									<td class="description last">
+										<p>The frustum to test.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Object3D.html#intersectsFrustum">Object3D#intersectsFrustum</a></dt>
+						</dl>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> Whether this mesh intersects the given frustum or not.</dt>
+						</dl>
+					</div>
 					<h3 class="name name-method" id="raycast" translate="no">.<a href="#raycast">raycast</a><span class="signature">( raycaster : <span class="param-type"><a href="Raycaster.html">Raycaster</a></span>, intersects : <span class="param-type">Array.&lt;Object></span> )</span> </h3>
 					<div class="method">
 						<div class="description">
@@ -167,7 +191,7 @@ to make sure existing morph targets can influence this 3D object.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/objects/Mesh.js" translate="no">src/objects/Mesh.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js" translate="no" target="_blank" rel="noopener">src/objects/Mesh.js</a>
 				</p>
 			</article>
 		</section>

@@ -6,8 +6,8 @@ import { Color } from '../math/Color.js';
  * densening fog farther from the camera.
  *
  * ```js
- * const scene = new FOUR.Scene();
- * scene.fog = new FOUR.FogExp2( 0xcccccc, 0.002 );
+ * const scene = new THREE.Scene();
+ * scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
  * ```
  */
 class FogExp2 {

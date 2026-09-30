@@ -6,10 +6,10 @@ Can be used to wrap SVG elements into a 3D object.
 
 ## Import
 
-SVGObject is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SVGObject is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SVGObject } from '@tnb1j/4js/addons/renderers/SVGRenderer.js';
+import { SVGObject } from 'three/addons/renderers/SVGRenderer.js';
 ```
 
 ## Constructor
@@ -36,4 +36,4 @@ This SVG element.
 
 ## Source
 
-[examples/jsm/renderers/SVGRenderer.js](../../examples/jsm/renderers/SVGRenderer.js)
+[examples/jsm/renderers/SVGRenderer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/renderers/SVGRenderer.js)

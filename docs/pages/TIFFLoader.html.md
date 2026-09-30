@@ -9,15 +9,15 @@ A loader for the TIFF texture format.
 ```js
 const loader = new TIFFLoader();
 const texture = await loader.loadAsync( 'textures/tiff/crate_lzw.tif' );
-texture.colorSpace = FOUR.SRGBColorSpace;
+texture.colorSpace = THREE.SRGBColorSpace;
 ```
 
 ## Import
 
-TIFFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TIFFLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TIFFLoader } from '@tnb1j/4js/addons/loaders/TIFFLoader.js';
+import { TIFFLoader } from 'three/addons/loaders/TIFFLoader.js';
 ```
 
 ## Constructor
@@ -46,4 +46,4 @@ The raw texture data.
 
 ## Source
 
-[examples/jsm/loaders/TIFFLoader.js](../../examples/jsm/loaders/TIFFLoader.js)
+[examples/jsm/loaders/TIFFLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/TIFFLoader.js)

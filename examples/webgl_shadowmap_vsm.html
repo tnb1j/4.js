@@ -16,20 +16,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, timer, stats;
 			let dirLight, spotLight;
@@ -87,18 +87,18 @@
 
 			function initScene() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 10, 30 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x222244 );
-				scene.fog = new FOUR.Fog( 0x222244, 50, 100 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x222244 );
+				scene.fog = new THREE.Fog( 0x222244, 50, 100 );
 
 				// Lights
 
-				scene.add( new FOUR.AmbientLight( 0x444444 ) );
+				scene.add( new THREE.AmbientLight( 0x444444 ) );
 
-				spotLight = new FOUR.SpotLight( 0xff8888, 400 );
+				spotLight = new THREE.SpotLight( 0xff8888, 400 );
 				spotLight.angle = Math.PI / 5;
 				spotLight.penumbra = 0.3;
 				spotLight.position.set( 8, 10, 5 );
@@ -112,7 +112,7 @@
 				scene.add( spotLight );
 
 
-				dirLight = new FOUR.DirectionalLight( 0x8888ff, 3 );
+				dirLight = new THREE.DirectionalLight( 0x8888ff, 3 );
 				dirLight.position.set( 3, 12, 17 );
 				dirLight.castShadow = true;
 				dirLight.shadow.camera.near = 0.1;
@@ -126,29 +126,29 @@
 				dirLight.shadow.radius = 4;
 				dirLight.shadow.bias = - 0.0005;
 
-				dirGroup = new FOUR.Group();
+				dirGroup = new THREE.Group();
 				dirGroup.add( dirLight );
 				scene.add( dirGroup );
 
 				// Geometry
 
-				const geometry = new FOUR.TorusKnotGeometry( 25, 8, 75, 20 );
-				const material = new FOUR.MeshPhongMaterial( {
+				const geometry = new THREE.TorusKnotGeometry( 25, 8, 75, 20 );
+				const material = new THREE.MeshPhongMaterial( {
 					color: 0x999999,
 					shininess: 0,
 					specular: 0x222222
 				} );
 
-				torusKnot = new FOUR.Mesh( geometry, material );
+				torusKnot = new THREE.Mesh( geometry, material );
 				torusKnot.scale.multiplyScalar( 1 / 18 );
 				torusKnot.position.y = 3;
 				torusKnot.castShadow = true;
 				torusKnot.receiveShadow = true;
 				scene.add( torusKnot );
 
-				const cylinderGeometry = new FOUR.CylinderGeometry( 0.75, 0.75, 7, 32 );
+				const cylinderGeometry = new THREE.CylinderGeometry( 0.75, 0.75, 7, 32 );
 
-				const pillar1 = new FOUR.Mesh( cylinderGeometry, material );
+				const pillar1 = new THREE.Mesh( cylinderGeometry, material );
 				pillar1.position.set( 8, 3.5, 8 );
 				pillar1.castShadow = true;
 				pillar1.receiveShadow = true;
@@ -165,14 +165,14 @@
 				scene.add( pillar3 );
 				scene.add( pillar4 );
 
-				const planeGeometry = new FOUR.PlaneGeometry( 200, 200 );
-				const planeMaterial = new FOUR.MeshPhongMaterial( {
+				const planeGeometry = new THREE.PlaneGeometry( 200, 200 );
+				const planeMaterial = new THREE.MeshPhongMaterial( {
 					color: 0x999999,
 					shininess: 0,
 					specular: 0x111111
 				} );
 
-				const ground = new FOUR.Mesh( planeGeometry, planeMaterial );
+				const ground = new THREE.Mesh( planeGeometry, planeMaterial );
 				ground.rotation.x = - Math.PI / 2;
 				ground.scale.multiplyScalar( 3 );
 				ground.castShadow = true;
@@ -183,19 +183,19 @@
 
 			function initMisc() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.VSMShadowMap;
+				renderer.shadowMap.type = THREE.VSMShadowMap;
 
 				// Mouse control
 				const controls = new OrbitControls( camera, renderer.domElement );
 				controls.target.set( 0, 2, 0 );
 				controls.update();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				stats = new Stats();

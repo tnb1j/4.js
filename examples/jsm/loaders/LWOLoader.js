@@ -25,7 +25,7 @@ import {
 	TextureLoader,
 	Vector2,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 import { IFFParser } from './lwo/IFFParser.js';
 
@@ -49,7 +49,7 @@ let _lwoTree;
  * ```
  *
  * @augments Loader
- * @four_import import { LWOLoader } from '@tnb1j/4js/addons/loaders/LWOLoader.js';
+ * @three_import import { LWOLoader } from 'three/addons/loaders/LWOLoader.js';
  * @deprecated since r185.
  */
 class LWOLoader extends Loader {
@@ -64,7 +64,7 @@ class LWOLoader extends Loader {
 
 		super( manager );
 
-		console.warn( 'FOUR.LWOLoader: The loader has been deprecated and will be removed with r195. Export your LWO files to glTF before using them on the web.' ); // @deprecated, r185
+		console.warn( 'THREE.LWOLoader: The loader has been deprecated and will be removed with r195. Export your LWO files to glTF before using them on the web.' ); // @deprecated, r185
 
 	}
 

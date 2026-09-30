@@ -93,4 +93,4 @@ Returns a node representing the mirror's depth. That can be used to implement mo
 
 ## Source
 
-[src/nodes/utils/ReflectorNode.js](../../src/nodes/utils/ReflectorNode.js)
+[src/nodes/utils/ReflectorNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/ReflectorNode.js)

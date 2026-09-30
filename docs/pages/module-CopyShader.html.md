@@ -2,10 +2,10 @@
 
 ## Import
 
-CopyShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CopyShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CopyShader } from '@tnb1j/4js/addons/shaders/CopyShader.js';
+import { CopyShader } from 'three/addons/shaders/CopyShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Full-screen copy shader pass.
 
 ## Source
 
-[examples/jsm/shaders/CopyShader.js](../../examples/jsm/shaders/CopyShader.js)
+[examples/jsm/shaders/CopyShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/CopyShader.js)

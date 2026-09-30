@@ -1,5 +1,5 @@
-import { RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, RendererUtils, MathUtils, RGBFormat, RedFormat, UnsignedInt101111Type, UnsignedByteType } from '@tnb1j/4js/webgpu';
-import { clamp, normalize, reference, Fn, NodeUpdateType, uniform, vec4, passTexture, uv, logarithmicDepthToViewZ, viewZToPerspectiveDepth, getViewPosition, screenCoordinate, float, sub, fract, dot, vec2, rand, vec3, Loop, mul, PI, cos, sin, uint, cross, acos, sign, pow, luminance, If, max, abs, Break, sqrt, HALF_PI, div, ceil, shiftRight, convertToTexture, bool, getNormalFromDepth, countOneBits, interleavedGradientNoise, property, outputStruct } from '@tnb1j/4js/tsl';
+import { RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, RendererUtils, MathUtils, RGBFormat, RedFormat, UnsignedInt101111Type, UnsignedByteType } from 'three/webgpu';
+import { clamp, normalize, reference, Fn, NodeUpdateType, uniform, vec4, passTexture, uv, logarithmicDepthToViewZ, viewZToPerspectiveDepth, getViewPosition, screenCoordinate, float, sub, fract, dot, vec2, rand, vec3, Loop, mul, PI, cos, sin, uint, cross, acos, sign, pow, luminance, If, max, abs, Break, sqrt, HALF_PI, div, ceil, shiftRight, convertToTexture, bool, getNormalFromDepth, countOneBits, interleavedGradientNoise, property, outputStruct, context } from 'three/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -38,7 +38,7 @@ let _rendererState;
  * - High: `sliceCount` of `4`, `stepCount` of `12`.
  *
  * @augments TempNode
- * @four_import import { ssgi } from '@tnb1j/4js/addons/tsl/display/SSGINode.js';
+ * @three_import import { ssgi } from 'three/addons/tsl/display/SSGINode.js';
  */
 class SSGINode extends TempNode {
 
@@ -413,7 +413,7 @@ class SSGINode extends TempNode {
 
 		if ( renderer.backend.isWebGPUBackend === true && renderer.hasFeature( 'rg11b10ufloat-renderable' ) === false ) {
 
-			console.error( 'FOUR.SSGINode: The device does not support the "rg11b10ufloat-renderable" feature which is required for SSGI.' );
+			console.error( 'THREE.SSGINode: The device does not support the "rg11b10ufloat-renderable" feature which is required for SSGI.' );
 
 		}
 
@@ -648,7 +648,8 @@ class SSGINode extends TempNode {
 
 		} );
 
-		this._material.colorNode = gi().context( builder.getSharedContext() );
+		this._material.contextNode = context( builder.getSharedContext() );
+		this._material.colorNode = gi();
 		this._material.outputNode = outputNode;
 		this._material.needsUpdate = true;
 
@@ -663,6 +664,8 @@ class SSGINode extends TempNode {
 	 * when the effect is no longer required.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this._ssgiRenderTarget.dispose();
 

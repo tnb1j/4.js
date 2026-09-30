@@ -6,10 +6,10 @@ A special type of an animated mesh with a simple interface for animation playbac
 
 ## Import
 
-MorphAnimMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MorphAnimMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MorphAnimMesh } from '@tnb1j/4js/addons/misc/MorphAnimMesh.js';
+import { MorphAnimMesh } from 'three/addons/misc/MorphAnimMesh.js';
 ```
 
 ## Constructor
@@ -70,4 +70,4 @@ The delta time in seconds.
 
 ## Source
 
-[examples/jsm/misc/MorphAnimMesh.js](../../examples/jsm/misc/MorphAnimMesh.js)
+[examples/jsm/misc/MorphAnimMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/MorphAnimMesh.js)

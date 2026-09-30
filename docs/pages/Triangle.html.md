@@ -414,4 +414,4 @@ The (normalized) direction vector.
 
 ## Source
 
-[src/math/Triangle.js](../../src/math/Triangle.js)
+[src/math/Triangle.js](https://github.com/mrdoob/three.js/blob/master/src/math/Triangle.js)

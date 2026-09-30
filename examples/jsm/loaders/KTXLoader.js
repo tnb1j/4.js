@@ -1,6 +1,6 @@
 import {
 	CompressedTextureLoader
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the KTX texture compression format.
@@ -13,11 +13,11 @@ import {
  * const loader = new KTXLoader();
  *
  * const map = loader.load( 'textures/compressed/lensflare_ASTC8x8.ktx' )
- * map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+ * map.colorSpace = THREE.SRGBColorSpace; // only for color textures
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { KTXLoader } from '@tnb1j/4js/addons/loaders/KTXLoader.js';
+ * @three_import import { KTXLoader } from 'three/addons/loaders/KTXLoader.js';
  */
 class KTXLoader extends CompressedTextureLoader {
 

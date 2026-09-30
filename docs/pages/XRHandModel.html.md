@@ -54,4 +54,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/webxr/XRHandModelFactory.js](../../examples/jsm/webxr/XRHandModelFactory.js)
+[examples/jsm/webxr/XRHandModelFactory.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XRHandModelFactory.js)

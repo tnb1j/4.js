@@ -10,9 +10,9 @@ This light can cast shadows - see the [SpotLightShadow](SpotLightShadow.html) fo
 
 ```js
 // white spotlight shining from the side, modulated by a texture
-const spotLight = new FOUR.SpotLight( 0xffffff );
+const spotLight = new THREE.SpotLight( 0xffffff );
 spotLight.position.set( 100, 1000, 100 );
-spotLight.map = new FOUR.TextureLoader().load( url );
+spotLight.map = new THREE.TextureLoader().load( url );
 spotLight.castShadow = true;
 spotLight.shadow.mapSize.width = 1024;
 spotLight.shadow.mapSize.height = 1024;
@@ -121,4 +121,4 @@ It is also possible to set the target to be another 3D object in the scene. The 
 
 ## Source
 
-[src/lights/SpotLight.js](../../src/lights/SpotLight.js)
+[src/lights/SpotLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/SpotLight.js)

@@ -18,20 +18,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { LightProbeGrid } from '@tnb1j/4js/addons/lighting/LightProbeGrid.js';
-			import { LightProbeGridHelper } from '@tnb1j/4js/addons/helpers/LightProbeGridHelper.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { LightProbeGridWebGL } from 'three/addons/lighting/LightProbeGridWebGL.js';
+			import { LightProbeGridHelperWebGL } from 'three/addons/helpers/LightProbeGridHelperWebGL.js';
 
 			let camera, scene, renderer, controls;
 			let probes, probesHelper;
@@ -42,55 +42,55 @@
 
 				// Camera
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 2.5, 8 );
 
 				// Scene
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x111111 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x111111 );
 
 				// Cornell box
 
-				const wallMaterial = new FOUR.MeshStandardMaterial( { color: 0xcccccc } );
-				const redMaterial = new FOUR.MeshStandardMaterial( { color: 0xff0000 } );
-				const greenMaterial = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
+				const wallMaterial = new THREE.MeshStandardMaterial( { color: 0xcccccc } );
+				const redMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+				const greenMaterial = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
 
 				// Floor
-				const floor = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 6 ), wallMaterial );
+				const floor = new THREE.Mesh( new THREE.PlaneGeometry( 6, 6 ), wallMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
 
 				// Ceiling
-				const ceiling = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 6 ), wallMaterial );
+				const ceiling = new THREE.Mesh( new THREE.PlaneGeometry( 6, 6 ), wallMaterial );
 				ceiling.rotation.x = Math.PI / 2;
 				ceiling.position.y = 5;
 				ceiling.receiveShadow = true;
 				scene.add( ceiling );
 
 				// Back wall
-				const backWall = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 5 ), wallMaterial );
+				const backWall = new THREE.Mesh( new THREE.PlaneGeometry( 6, 5 ), wallMaterial );
 				backWall.position.set( 0, 2.5, - 3 );
 				backWall.receiveShadow = true;
 				scene.add( backWall );
 
 				// Front wall
-				const frontWall = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 5 ), wallMaterial );
+				const frontWall = new THREE.Mesh( new THREE.PlaneGeometry( 6, 5 ), wallMaterial );
 				frontWall.rotation.y = Math.PI;
 				frontWall.position.set( 0, 2.5, 3 );
 				frontWall.receiveShadow = true;
 				scene.add( frontWall );
 
 				// Left wall (red)
-				const leftWall = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 5 ), redMaterial );
+				const leftWall = new THREE.Mesh( new THREE.PlaneGeometry( 6, 5 ), redMaterial );
 				leftWall.rotation.y = Math.PI / 2;
 				leftWall.position.set( - 3, 2.5, 0 );
 				leftWall.receiveShadow = true;
 				scene.add( leftWall );
 
 				// Right wall (green)
-				const rightWall = new FOUR.Mesh( new FOUR.PlaneGeometry( 6, 5 ), greenMaterial );
+				const rightWall = new THREE.Mesh( new THREE.PlaneGeometry( 6, 5 ), greenMaterial );
 				rightWall.rotation.y = - Math.PI / 2;
 				rightWall.position.set( 3, 2.5, 0 );
 				rightWall.receiveShadow = true;
@@ -98,10 +98,10 @@
 
 				// Objects inside the box
 
-				const objectMaterial = new FOUR.MeshStandardMaterial( { color: 0xeeeeee } );
+				const objectMaterial = new THREE.MeshStandardMaterial( { color: 0xeeeeee } );
 
 				// Tall box
-				const tallBox = new FOUR.Mesh( new FOUR.BoxGeometry( 1.2, 2.5, 1.2 ), objectMaterial );
+				const tallBox = new THREE.Mesh( new THREE.BoxGeometry( 1.2, 2.5, 1.2 ), objectMaterial );
 				tallBox.position.set( - 0.8, 1.25, - 0.8 );
 				tallBox.rotation.y = Math.PI / 8;
 				tallBox.castShadow = true;
@@ -109,7 +109,7 @@
 				scene.add( tallBox );
 
 				// Short box
-				const shortBox = new FOUR.Mesh( new FOUR.BoxGeometry( 1.2, 1.2, 1.2 ), objectMaterial );
+				const shortBox = new THREE.Mesh( new THREE.BoxGeometry( 1.2, 1.2, 1.2 ), objectMaterial );
 				shortBox.position.set( 1, 0.6, 0.5 );
 				shortBox.rotation.y = - Math.PI / 6;
 				shortBox.castShadow = true;
@@ -117,14 +117,14 @@
 				scene.add( shortBox );
 
 				// Sphere (to show smooth GI variation)
-				const sphere = new FOUR.Mesh( new FOUR.SphereGeometry( 0.5, 32, 32 ), objectMaterial.clone() );
+				const sphere = new THREE.Mesh( new THREE.SphereGeometry( 0.5, 32, 32 ), objectMaterial.clone() );
 				sphere.position.set( 1, 1.9, 0.5 );
 				sphere.castShadow = true;
 				sphere.receiveShadow = true;
 				scene.add( sphere );
 
 				// Light
-				const light = new FOUR.PointLight( 0xffffff, 40 );
+				const light = new THREE.PointLight( 0xffffff, 40 );
 				light.position.set( 0, 4.5, 0 );
 				light.castShadow = true;
 				light.shadow.mapSize.setScalar( 256 );
@@ -132,18 +132,14 @@
 				light.shadow.normalBias = - 0.02;
 				scene.add( light );
 
-				// Dim ambient to see GI effect better
-				const ambient = new FOUR.AmbientLight( 0xffffff, 0.05 );
-				scene.add( ambient );
-
 				// Renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.shadowMap.enabled = true;
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1.0;
 				document.body.appendChild( renderer.domElement );
 
@@ -155,7 +151,7 @@
 
 				// Bake light probe volume
 
-				async function bakeWithResolution( resolution ) {
+				async function bake( resolution ) {
 
 					if ( probes ) {
 
@@ -164,7 +160,7 @@
 
 					}
 
-					probes = new LightProbeGrid( 5.6, 4.7, 5.6, resolution, resolution, resolution );
+					probes = new LightProbeGridWebGL( 5.6, 4.7, 5.6, resolution, resolution, resolution );
 					probes.position.set( 0, 2.45, 0 );
 					probes.bake( renderer, scene, { cubemapSize: 32, near: 0.05, far: 20 } );
 					probes.visible = params.enabled;
@@ -174,7 +170,7 @@
 
 					if ( ! probesHelper ) {
 
-						probesHelper = new LightProbeGridHelper( probes );
+						probesHelper = new LightProbeGridHelperWebGL( probes );
 						probesHelper.visible = params.showProbes;
 						scene.add( probesHelper );
 
@@ -193,7 +189,7 @@
 					resolution: 6
 				};
 
-				await bakeWithResolution( params.resolution );
+				await bake( params.resolution );
 
 				// GUI
 
@@ -205,7 +201,7 @@
 				} );
 				gui.add( params, 'resolution', 2, 12, 1 ).name( 'Resolution' ).onFinishChange( ( value ) => {
 
-					bakeWithResolution( value );
+					bake( value );
 
 				} );
 				gui.add( params, 'showProbes' ).name( 'Show Probes' ).onChange( ( value ) => {

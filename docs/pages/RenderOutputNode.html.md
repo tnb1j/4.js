@@ -70,4 +70,4 @@ The tone mapping type.
 
 ## Source
 
-[src/nodes/display/RenderOutputNode.js](../../src/nodes/display/RenderOutputNode.js)
+[src/nodes/display/RenderOutputNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/RenderOutputNode.js)

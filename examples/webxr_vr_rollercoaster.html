@@ -12,15 +12,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			import {
 				RollerCoasterGeometry,
@@ -28,12 +28,12 @@
 				RollerCoasterLiftersGeometry,
 				TreesGeometry,
 				SkyGeometry
-			} from '@tnb1j/4js/addons/misc/RollerCoaster.js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+			} from 'three/addons/misc/RollerCoaster.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
 
 			let mesh, material, geometry;
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
@@ -45,26 +45,26 @@
 
 			//
 
-			const scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0xf0f0ff );
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0xf0f0ff );
 
-			const light = new FOUR.HemisphereLight( 0xfff0f0, 0x60606, 3 );
+			const light = new THREE.HemisphereLight( 0xfff0f0, 0x60606, 3 );
 			light.position.set( 1, 1, 1 );
 			scene.add( light );
 
-			const train = new FOUR.Object3D();
+			const train = new THREE.Object3D();
 			scene.add( train );
 
-			const camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 500 );
+			const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 500 );
 			train.add( camera );
 
 			// environment
 
-			geometry = new FOUR.PlaneGeometry( 500, 500, 15, 15 );
+			geometry = new THREE.PlaneGeometry( 500, 500, 15, 15 );
 			geometry.rotateX( - Math.PI / 2 );
 
 			const positions = geometry.attributes.position.array;
-			const vertex = new FOUR.Vector3();
+			const vertex = new THREE.Vector3();
 
 			for ( let i = 0; i < positions.length; i += 3 ) {
 
@@ -82,23 +82,23 @@
 
 			geometry.computeVertexNormals();
 
-			material = new FOUR.MeshLambertMaterial( {
+			material = new THREE.MeshLambertMaterial( {
 				color: 0x407000
 			} );
 
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
 			geometry = new TreesGeometry( mesh );
-			material = new FOUR.MeshBasicMaterial( {
-				side: FOUR.DoubleSide, vertexColors: true
+			material = new THREE.MeshBasicMaterial( {
+				side: THREE.DoubleSide, vertexColors: true
 			} );
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
 			geometry = new SkyGeometry();
-			material = new FOUR.MeshBasicMaterial( { color: 0xffffff } );
-			mesh = new FOUR.Mesh( geometry, material );
+			material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
 			//
@@ -107,8 +107,8 @@
 
 			const curve = ( function () {
 
-				const vector = new FOUR.Vector3();
-				const vector2 = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
+				const vector2 = new THREE.Vector3();
 
 				return {
 
@@ -140,23 +140,23 @@
 			} )();
 
 			geometry = new RollerCoasterGeometry( curve, 1500 );
-			material = new FOUR.MeshPhongMaterial( {
+			material = new THREE.MeshPhongMaterial( {
 				vertexColors: true
 			} );
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
 			geometry = new RollerCoasterLiftersGeometry( curve, 100 );
-			material = new FOUR.MeshPhongMaterial();
-			mesh = new FOUR.Mesh( geometry, material );
+			material = new THREE.MeshPhongMaterial();
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.y = 0.1;
 			scene.add( mesh );
 
 			geometry = new RollerCoasterShadowGeometry( curve, 500 );
-			material = new FOUR.MeshBasicMaterial( {
+			material = new THREE.MeshBasicMaterial( {
 				color: 0x305000, depthWrite: false, transparent: true
 			} );
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.y = 0.1;
 			scene.add( mesh );
 
@@ -164,22 +164,22 @@
 
 			//
 
-			geometry = new FOUR.CylinderGeometry( 10, 10, 5, 15 );
-			material = new FOUR.MeshLambertMaterial( {
+			geometry = new THREE.CylinderGeometry( 10, 10, 5, 15 );
+			material = new THREE.MeshLambertMaterial( {
 				color: 0xff8080
 			} );
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.set( - 80, 10, - 70 );
 			mesh.rotation.x = Math.PI / 2;
 			scene.add( mesh );
 
 			funfairs.push( mesh );
 
-			geometry = new FOUR.CylinderGeometry( 5, 6, 4, 10 );
-			material = new FOUR.MeshLambertMaterial( {
+			geometry = new THREE.CylinderGeometry( 5, 6, 4, 10 );
+			material = new THREE.MeshLambertMaterial( {
 				color: 0x8080ff
 			} );
-			mesh = new FOUR.Mesh( geometry, material );
+			mesh = new THREE.Mesh( geometry, material );
 			mesh.position.set( 50, 2, 30 );
 			scene.add( mesh );
 
@@ -200,14 +200,14 @@
 
 			//
 
-			const position = new FOUR.Vector3();
-			const tangent = new FOUR.Vector3();
+			const position = new THREE.Vector3();
+			const tangent = new THREE.Vector3();
 
-			const lookAt = new FOUR.Vector3();
+			const lookAt = new THREE.Vector3();
 
-			const tangent1 = new FOUR.Vector3();
-			const tangent2 = new FOUR.Vector3();
-			const bankQuaternion = new FOUR.Quaternion();
+			const tangent1 = new THREE.Vector3();
+			const tangent2 = new THREE.Vector3();
+			const bankQuaternion = new THREE.Quaternion();
 
 			let velocity = 0;
 			let progress = 0;

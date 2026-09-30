@@ -22,20 +22,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { CSS2DRenderer, CSS2DObject } from '@tnb1j/4js/addons/renderers/CSS2DRenderer.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let gui;
 
@@ -67,9 +67,9 @@
 
 			};
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
-			const textureLoader = new FOUR.TextureLoader();
+			const textureLoader = new THREE.TextureLoader();
 
 			let moon;
 
@@ -81,43 +81,43 @@
 				const EARTH_RADIUS = 1;
 				const MOON_RADIUS = 0.27;
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
 				camera.position.set( 10, 5, 20 );
 				camera.layers.enableAll();
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.position.set( 0, 0, 1 );
 				dirLight.layers.enableAll();
 				scene.add( dirLight );
 
-				const axesHelper = new FOUR.AxesHelper( 5 );
+				const axesHelper = new THREE.AxesHelper( 5 );
 				axesHelper.layers.enableAll();
 				scene.add( axesHelper );
 
 				//
 
-				const earthGeometry = new FOUR.SphereGeometry( EARTH_RADIUS, 16, 16 );
-				const earthMaterial = new FOUR.MeshPhongMaterial( {
+				const earthGeometry = new THREE.SphereGeometry( EARTH_RADIUS, 16, 16 );
+				const earthMaterial = new THREE.MeshPhongMaterial( {
 					specular: 0x333333,
 					shininess: 5,
 					map: textureLoader.load( 'textures/planets/earth_atmos_2048.jpg' ),
 					specularMap: textureLoader.load( 'textures/planets/earth_specular_2048.jpg' ),
 					normalMap: textureLoader.load( 'textures/planets/earth_normal_2048.jpg' ),
-					normalScale: new FOUR.Vector2( 0.85, 0.85 )
+					normalScale: new THREE.Vector2( 0.85, 0.85 )
 				} );
-				earthMaterial.map.colorSpace = FOUR.SRGBColorSpace;
-				const earth = new FOUR.Mesh( earthGeometry, earthMaterial );
+				earthMaterial.map.colorSpace = THREE.SRGBColorSpace;
+				const earth = new THREE.Mesh( earthGeometry, earthMaterial );
 				scene.add( earth );
 
-				const moonGeometry = new FOUR.SphereGeometry( MOON_RADIUS, 16, 16 );
-				const moonMaterial = new FOUR.MeshPhongMaterial( {
+				const moonGeometry = new THREE.SphereGeometry( MOON_RADIUS, 16, 16 );
+				const moonMaterial = new THREE.MeshPhongMaterial( {
 					shininess: 5,
 					map: textureLoader.load( 'textures/planets/moon_1024.jpg' )
 				} );
-				moonMaterial.map.colorSpace = FOUR.SRGBColorSpace;
-				moon = new FOUR.Mesh( moonGeometry, moonMaterial );
+				moonMaterial.map.colorSpace = THREE.SRGBColorSpace;
+				moon = new THREE.Mesh( moonGeometry, moonMaterial );
 				scene.add( moon );
 
 				//
@@ -171,7 +171,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );

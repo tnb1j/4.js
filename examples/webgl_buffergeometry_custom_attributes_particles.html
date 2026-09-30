@@ -51,17 +51,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let renderer, scene, camera, stats;
 
@@ -73,24 +73,24 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 300;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				uniforms = {
 
-					pointTexture: { value: new FOUR.TextureLoader().load( 'textures/sprites/spark1.png' ) }
+					pointTexture: { value: new THREE.TextureLoader().load( 'textures/sprites/spark1.png' ) }
 
 				};
 
-				const shaderMaterial = new FOUR.ShaderMaterial( {
+				const shaderMaterial = new THREE.ShaderMaterial( {
 
 					uniforms: uniforms,
 					vertexShader: document.getElementById( 'vertexshader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
 
-					blending: FOUR.AdditiveBlending,
+					blending: THREE.AdditiveBlending,
 					depthTest: false,
 					transparent: true,
 					vertexColors: true
@@ -100,13 +100,13 @@
 
 				const radius = 200;
 
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 
 				const positions = [];
 				const colors = [];
 				const sizes = [];
 
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 
 				for ( let i = 0; i < particles; i ++ ) {
 
@@ -122,15 +122,15 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 3 ) );
-				geometry.setAttribute( 'size', new FOUR.Float32BufferAttribute( sizes, 1 ).setUsage( FOUR.DynamicDrawUsage ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'size', new THREE.Float32BufferAttribute( sizes, 1 ).setUsage( THREE.DynamicDrawUsage ) );
 
-				particleSystem = new FOUR.Points( geometry, shaderMaterial );
+				particleSystem = new THREE.Points( geometry, shaderMaterial );
 
 				scene.add( particleSystem );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

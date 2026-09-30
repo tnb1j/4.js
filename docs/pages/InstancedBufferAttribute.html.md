@@ -46,4 +46,4 @@ Default is `1`.
 
 ## Source
 
-[src/core/InstancedBufferAttribute.js](../../src/core/InstancedBufferAttribute.js)
+[src/core/InstancedBufferAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/core/InstancedBufferAttribute.js)

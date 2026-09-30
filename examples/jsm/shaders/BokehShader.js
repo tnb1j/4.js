@@ -1,6 +1,6 @@
 /**
  * @module BokehShader
- * @four_import import { BokehShader } from '@tnb1j/4js/addons/shaders/BokehShader.js';
+ * @three_import import { BokehShader } from 'three/addons/shaders/BokehShader.js';
  */
 
 /**

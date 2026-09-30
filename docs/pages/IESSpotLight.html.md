@@ -56,4 +56,4 @@ Default is `null`.
 
 ## Source
 
-[src/lights/webgpu/IESSpotLight.js](../../src/lights/webgpu/IESSpotLight.js)
+[src/lights/webgpu/IESSpotLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/webgpu/IESSpotLight.js)

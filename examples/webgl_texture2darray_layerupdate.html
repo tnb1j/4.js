@@ -56,18 +56,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 
 			let camera, scene, mesh, renderer;
 
@@ -81,14 +81,14 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
 				camera.position.z = 70;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// Configure the renderer.
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
@@ -105,14 +105,14 @@
 
 				// Create a texture array for rendering.
 
-				const layerByteLength = FOUR.TextureUtils.getByteLength(
+				const layerByteLength = THREE.TextureUtils.getByteLength(
 					spiritedaway.image.width,
 					spiritedaway.image.height,
 					spiritedaway.format,
 					spiritedaway.type,
 				);
 
-				const textureArray = new FOUR.CompressedArrayTexture( [
+				const textureArray = new THREE.CompressedArrayTexture( [
 					{
 						data: new Uint8Array( layerByteLength * 3 ),
 						width: spiritedaway.image.width,
@@ -150,27 +150,27 @@
 
 				/// Setup the scene.
 
-				const material = new FOUR.ShaderMaterial( {
+				const material = new THREE.ShaderMaterial( {
 					uniforms: {
 						diffuse: { value: textureArray },
-						size: { value: new FOUR.Vector2( planeWidth, planeHeight ) }
+						size: { value: new THREE.Vector2( planeWidth, planeHeight ) }
 					},
 					vertexShader: document.getElementById( 'vs' ).textContent.trim(),
 					fragmentShader: document.getElementById( 'fs' ).textContent.trim(),
-					glslVersion: FOUR.GLSL3
+					glslVersion: THREE.GLSL3
 				} );
 
-				const geometry = new FOUR.InstancedBufferGeometry();
-				geometry.copy( new FOUR.PlaneGeometry( planeWidth, planeHeight ) );
+				const geometry = new THREE.InstancedBufferGeometry();
+				geometry.copy( new THREE.PlaneGeometry( planeWidth, planeHeight ) );
 				geometry.instanceCount = 3;
 
-				const instancedIndexAttribute = new FOUR.InstancedBufferAttribute(
+				const instancedIndexAttribute = new THREE.InstancedBufferAttribute(
 					new Uint16Array( [ 0, 1, 2 ] ), 1, false, 1
 				);
-				instancedIndexAttribute.gpuType = FOUR.IntType;
+				instancedIndexAttribute.gpuType = THREE.IntType;
 				geometry.setAttribute( 'instancedIndex', instancedIndexAttribute );
 
-				mesh = new FOUR.InstancedMesh( geometry, material, 3 );
+				mesh = new THREE.InstancedMesh( geometry, material, 3 );
 
 				scene.add( mesh );
 

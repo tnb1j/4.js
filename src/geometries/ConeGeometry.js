@@ -4,9 +4,9 @@ import { CylinderGeometry } from './CylinderGeometry.js';
  * A geometry class for representing a cone.
  *
  * ```js
- * const geometry = new FOUR.ConeGeometry( 5, 20, 32 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
- * const cone = new FOUR.Mesh(geometry, material );
+ * const geometry = new THREE.ConeGeometry( 5, 20, 32 );
+ * const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+ * const cone = new THREE.Mesh(geometry, material );
  * scene.add( cone );
  * ```
  *

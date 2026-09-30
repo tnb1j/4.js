@@ -17,20 +17,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { PLYLoader } from '@tnb1j/4js/addons/loaders/PLYLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let renderer, scene, camera;
 
@@ -42,21 +42,21 @@
 
 				// Renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 1;
 
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 7, 4, 1 );
 
 				// Controls
@@ -70,7 +70,7 @@
 
 				// Textures
 
-				const loader = new FOUR.TextureLoader().setPath( 'textures/' );
+				const loader = new THREE.TextureLoader().setPath( 'textures/' );
 				const filenames = [ 'disturb.jpg', 'colors.png', 'uv_grid_opengl.jpg' ];
 
 				const textures = { none: null };
@@ -80,10 +80,10 @@
 					const filename = filenames[ i ];
 
 					const texture = loader.load( filename );
-					texture.minFilter = FOUR.LinearFilter;
-					texture.magFilter = FOUR.LinearFilter;
+					texture.minFilter = THREE.LinearFilter;
+					texture.magFilter = THREE.LinearFilter;
 					texture.generateMipmaps = false;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.colorSpace = THREE.SRGBColorSpace;
 
 					textures[ filename ] = texture;
 
@@ -91,10 +91,10 @@
 
 				// Lights
 
-				const ambient = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 0.25 );
+				const ambient = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 0.25 );
 				scene.add( ambient );
 
-				spotLight = new FOUR.SpotLight( 0xffffff, 100 );
+				spotLight = new THREE.SpotLight( 0xffffff, 100 );
 				spotLight.name = 'spotLight';
 				spotLight.map = textures[ 'disturb.jpg' ];
 				spotLight.position.set( 2.5, 5, 2.5 );
@@ -113,20 +113,20 @@
 				spotLight.shadow.intensity = 1;
 				scene.add( spotLight );
 
-				spotLight.lightHelper = new FOUR.SpotLightHelper( spotLight );
+				spotLight.lightHelper = new THREE.SpotLightHelper( spotLight );
 				spotLight.lightHelper.visible = false;
 				scene.add( spotLight.lightHelper );
 
-				spotLight.shadowCameraHelper = new FOUR.CameraHelper( spotLight.shadow.camera ); // colored lines
+				spotLight.shadowCameraHelper = new THREE.CameraHelper( spotLight.shadow.camera ); // colored lines
 				spotLight.shadowCameraHelper.visible = false;
 				scene.add( spotLight.shadowCameraHelper );
 
 				//
 
-				const geometry = new FOUR.PlaneGeometry( 10, 10 );
-				const material = new FOUR.MeshLambertMaterial( { color: 0xbcbcbc } );
+				const geometry = new THREE.PlaneGeometry( 10, 10 );
+				const material = new THREE.MeshLambertMaterial( { color: 0xbcbcbc } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.position.set( 0, - 1, 0 );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
@@ -139,9 +139,9 @@
 					geometry.scale( 0.0024, 0.0024, 0.0024 );
 					geometry.computeVertexNormals();
 
-					const material = new FOUR.MeshLambertMaterial();
+					const material = new THREE.MeshLambertMaterial();
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.rotation.y = - Math.PI / 2;
 					mesh.position.y = 0.8;
 					mesh.castShadow = true;

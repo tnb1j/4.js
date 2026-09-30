@@ -7,7 +7,7 @@ This class can be used as an alternative way to define video data. Instead of us
 ## Code Example
 
 ```js
-const texture = new FOUR.VideoFrameTexture();
+const texture = new THREE.VideoFrameTexture();
 texture.setFrame( frame );
 ```
 
@@ -91,4 +91,4 @@ This method overwritten with an empty implementation since this type of texture 
 
 ## Source
 
-[src/textures/VideoFrameTexture.js](../../src/textures/VideoFrameTexture.js)
+[src/textures/VideoFrameTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/VideoFrameTexture.js)

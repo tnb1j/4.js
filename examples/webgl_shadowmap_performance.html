@@ -12,31 +12,30 @@
 	<body>
 
 		<div id="info">
-		<a href="../" target="_blank" rel="noopener">4.js</a> - shadowmap - models by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="http://www.ro.me" target="_blank" rel="noopener">rome</a><br />
+		<a href="../" target="_blank" rel="noopener">4.js</a> - shadowmap - models by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="https://rome.mrdoob.com" target="_blank" rel="noopener">rome</a><br />
 		move camera with WASD / RF + mouse
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
-
-			const SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 1024;
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			let SCREEN_WIDTH = window.innerWidth;
 			let SCREEN_HEIGHT = window.innerHeight;
@@ -53,7 +52,7 @@
 
 			const morphs = [], animGroups = [];
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			init();
@@ -65,41 +64,32 @@
 
 				// CAMERA
 
-				camera = new FOUR.PerspectiveCamera( 23, SCREEN_WIDTH / SCREEN_HEIGHT, NEAR, FAR );
+				camera = new THREE.PerspectiveCamera( 23, SCREEN_WIDTH / SCREEN_HEIGHT, NEAR, FAR );
 				camera.position.set( 700, 50, 1900 );
 
 				// SCENE
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x59472b );
-				scene.fog = new FOUR.Fog( 0x59472b, 1000, FAR );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x59472b );
+				scene.fog = new THREE.Fog( 0x59472b, 1000, FAR );
 
 				// LIGHTS
 
-				const ambient = new FOUR.AmbientLight( 0xffffff );
+				const ambient = new THREE.AmbientLight( 0xffffff );
 				scene.add( ambient );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
-				light.position.set( 0, 1500, 1000 );
-				light.castShadow = true;
-				light.shadow.camera.top = 2000;
-				light.shadow.camera.bottom = - 2000;
-				light.shadow.camera.left = - 2000;
-				light.shadow.camera.right = 2000;
-				light.shadow.camera.near = 1200;
-				light.shadow.camera.far = 2500;
-				light.shadow.bias = 0.0001;
-
-				light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
-				light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
-
-				scene.add( light );
+				const sunLight = new SunLight( 0xffffff, 3 );
+				sunLight.position.set( 0, 1500, 1000 );
+				sunLight.castShadow = true;
+				sunLight.shadow.camera.far = FAR;
+				sunLight.shadow.normalBias = 1;
+				scene.add( sunLight );
 
 				createScene();
 
 				// RENDERER
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 				renderer.setAnimationLoop( animate );
@@ -110,13 +100,13 @@
 				//
 
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 
 				// CONTROLS
 
 				controls = new FirstPersonControls( camera, renderer.domElement );
 
-				controls.lookSpeed = 0.0125;
+				controls.lookSpeed = 0.2;
 				controls.movementSpeed = 500;
 				controls.lookVertical = true;
 
@@ -149,10 +139,10 @@
 
 				// GROUND
 
-				const geometry = new FOUR.PlaneGeometry( 100, 100 );
-				const planeMaterial = new FOUR.MeshPhongMaterial( { color: 0xffdd99 } );
+				const geometry = new THREE.PlaneGeometry( 100, 100 );
+				const planeMaterial = new THREE.MeshPhongMaterial( { color: 0xffdd99 } );
 
-				const ground = new FOUR.Mesh( geometry, planeMaterial );
+				const ground = new THREE.Mesh( geometry, planeMaterial );
 
 				ground.position.set( 0, FLOOR, 0 );
 				ground.rotation.x = - Math.PI / 2;
@@ -168,7 +158,7 @@
 				const loader = new FontLoader();
 				loader.load( 'fonts/helvetiker_bold.typeface.json', function ( font ) {
 
-					const textGeo = new TextGeometry( 'FOUR.JS', {
+					const textGeo = new TextGeometry( 'THREE.JS', {
 
 						font: font,
 
@@ -185,9 +175,9 @@
 					textGeo.computeBoundingBox();
 					const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
 
-					const textMaterial = new FOUR.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff } );
+					const textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff } );
 
-					const mesh = new FOUR.Mesh( textGeo, textMaterial );
+					const mesh = new THREE.Mesh( textGeo, textMaterial );
 					mesh.position.x = centerOffset;
 					mesh.position.y = FLOOR + 67;
 
@@ -200,7 +190,7 @@
 
 				// CUBES
 
-				const cubes1 = new FOUR.Mesh( new FOUR.BoxGeometry( 1500, 220, 150 ), planeMaterial );
+				const cubes1 = new THREE.Mesh( new THREE.BoxGeometry( 1500, 220, 150 ), planeMaterial );
 
 				cubes1.position.y = FLOOR - 50;
 				cubes1.position.z = 20;
@@ -210,7 +200,7 @@
 
 				scene.add( cubes1 );
 
-				const cubes2 = new FOUR.Mesh( new FOUR.BoxGeometry( 1600, 170, 250 ), planeMaterial );
+				const cubes2 = new THREE.Mesh( new THREE.BoxGeometry( 1600, 170, 250 ), planeMaterial );
 
 				cubes2.position.y = FLOOR - 50;
 				cubes2.position.z = 20;
@@ -220,11 +210,11 @@
 
 				scene.add( cubes2 );
 
-				mixer = new FOUR.AnimationMixer( scene );
+				mixer = new THREE.AnimationMixer( scene );
 
 				for ( let i = 0; i !== ANIMATION_GROUPS; ++ i ) {
 
-					const group = new FOUR.AnimationObjectGroup();
+					const group = new THREE.AnimationObjectGroup();
 					animGroups.push( group );
 
 				}

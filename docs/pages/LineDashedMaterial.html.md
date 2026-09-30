@@ -9,7 +9,7 @@ Materials define the appearance of renderable 3D objects.
 ## Code Example
 
 ```js
-const material = new FOUR.LineDashedMaterial( {
+const material = new THREE.LineDashedMaterial( {
 	color: 0xffffff,
 	scale: 1,
 	dashSize: 3,
@@ -55,4 +55,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/LineDashedMaterial.js](../../src/materials/LineDashedMaterial.js)
+[src/materials/LineDashedMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/LineDashedMaterial.js)

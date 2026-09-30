@@ -28,18 +28,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DObject } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -73,16 +73,16 @@
 
 				const container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.set( 500, 350, 750 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				renderer = new CSS3DRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
 
-				const group = new FOUR.Group();
+				const group = new THREE.Group();
 				group.add( new Element( 'SJOz3qjfQXU', 0, 0, 240, 0 ) );
 				group.add( new Element( 'Y2-xZ-1HE-Q', 240, 0, 0, Math.PI / 2 ) );
 				group.add( new Element( 'IrydklNpcFI', 0, 0, - 240, Math.PI ) );

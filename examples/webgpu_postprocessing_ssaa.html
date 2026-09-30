@@ -17,26 +17,26 @@
 				<a href="../" target="_blank" rel="noopener">4.js</a><span>SSAA</span>
 			</div>
 
-			<small>Unbiased Manual Supersampling Anti-Aliasing (SSAA) pass by <a href="https://clara.io" target="_blank" rel="noopener">Ben Houston</a>.</small>
+			<small>Unbiased Manual Supersampling Anti-Aliasing (SSAA) pass by <a href="https://ben3d.ca/" target="_blank" rel="noopener">Ben Houston</a>.</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { ssaaPass } from '@tnb1j/4js/addons/tsl/display/SSAAPassNode.js';
+			import * as THREE from 'three/webgpu';
+			import { ssaaPass } from 'three/addons/tsl/display/SSAAPassNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let scene, mesh, renderer, renderPipeline;
 			let camera, ssaaRenderPass;
@@ -59,53 +59,53 @@
 				const width = window.innerWidth;
 				const height = window.innerHeight;
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				camera = new FOUR.PerspectiveCamera( 65, width / height, 3, 10 );
+				camera = new THREE.PerspectiveCamera( 65, width / height, 3, 10 );
 				camera.position.z = 7;
 				camera.setViewOffset( width, height, params.viewOffsetX, 0, width, height );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const group = new FOUR.Group();
+				const group = new THREE.Group();
 				scene.add( group );
 
-				const light = new FOUR.PointLight( 0xefffef, 500 );
+				const light = new THREE.PointLight( 0xefffef, 500 );
 				light.position.z = 10;
 				light.position.y = - 10;
 				light.position.x = - 10;
 				scene.add( light );
 
-				const light2 = new FOUR.PointLight( 0xffefef, 500 );
+				const light2 = new THREE.PointLight( 0xffefef, 500 );
 				light2.position.z = 10;
 				light2.position.x = - 10;
 				light2.position.y = 10;
 				scene.add( light2 );
 
-				const light3 = new FOUR.PointLight( 0xefefff, 500 );
+				const light3 = new THREE.PointLight( 0xefefff, 500 );
 				light3.position.z = 10;
 				light3.position.x = 10;
 				light3.position.y = - 10;
 				scene.add( light3 );
 
-				const light4 = new FOUR.AmbientLight( 0xffffff, 0.2 );
+				const light4 = new THREE.AmbientLight( 0xffffff, 0.2 );
 				scene.add( light4 );
 
-				const geometry = new FOUR.SphereGeometry( 3, 48, 24 );
-				const material = new FOUR.MeshStandardMaterial();
+				const geometry = new THREE.SphereGeometry( 3, 48, 24 );
+				const material = new THREE.MeshStandardMaterial();
 
-				mesh = new FOUR.InstancedMesh( geometry, material, 120 );
+				mesh = new THREE.InstancedMesh( geometry, material, 120 );
 
-				const dummy = new FOUR.Mesh();
-				const color = new FOUR.Color();
+				const dummy = new THREE.Mesh();
+				const color = new THREE.Color();
 
 				for ( let i = 0; i < mesh.count; i ++ ) {
 
@@ -130,7 +130,7 @@
 
 				// postprocessing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				ssaaRenderPass = ssaaPass( scene, camera );
 				const scenePassColor = ssaaRenderPass.getTextureNode();

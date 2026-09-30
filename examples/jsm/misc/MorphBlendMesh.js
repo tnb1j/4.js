@@ -1,7 +1,7 @@
 import {
 	MathUtils,
 	Mesh
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A special type of an animated mesh with a more advanced interface
@@ -10,7 +10,7 @@ import {
  * fading options.
  *
  * @augments Mesh
- * @four_import import { MorphBlendMesh } from '@tnb1j/4js/addons/misc/MorphBlendMesh.js';
+ * @three_import import { MorphBlendMesh } from 'three/addons/misc/MorphBlendMesh.js';
  */
 class MorphBlendMesh extends Mesh {
 
@@ -316,7 +316,7 @@ class MorphBlendMesh extends Mesh {
 
 		} else {
 
-			console.warn( 'FOUR.MorphBlendMesh: animation[' + name + '] undefined in .playAnimation()' );
+			console.warn( 'THREE.MorphBlendMesh: animation[' + name + '] undefined in .playAnimation()' );
 
 		}
 

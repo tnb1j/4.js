@@ -6,10 +6,10 @@ This class displays all Rapier Colliders in outline.
 
 ## Import
 
-RapierHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RapierHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RapierHelper } from '@tnb1j/4js/addons/helpers/RapierHelper.js';
+import { RapierHelper } from 'three/addons/helpers/RapierHelper.js';
 ```
 
 ## Constructor
@@ -34,10 +34,12 @@ The Rapier world to visualize.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .update()
 
 Call this in the render loop to update the outlines.
 
 ## Source
 
-[examples/jsm/helpers/RapierHelper.js](../../examples/jsm/helpers/RapierHelper.js)
+[examples/jsm/helpers/RapierHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/RapierHelper.js)

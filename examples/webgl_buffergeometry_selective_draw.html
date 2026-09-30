@@ -51,17 +51,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, stats;
 			let geometry, mesh;
@@ -74,9 +74,9 @@
 			function init() {
 
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.z = 3.5;
 
 				stats = new Stats();
@@ -92,7 +92,7 @@
 				const showAllLinesButton = document.getElementById( 'showAllLines' );
 				showAllLinesButton.addEventListener( 'click', showAllLines );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -102,7 +102,7 @@
 
 			function addLines( radius ) {
 
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 				const linePositions = new Float32Array( numLat * numLng * 3 * 2 );
 				const lineColors = new Float32Array( numLat * numLng * 3 * 2 );
 				const visible = new Float32Array( numLat * numLng * 2 );
@@ -123,7 +123,7 @@
 						linePositions[ index * 6 + 4 ] = radius * Math.cos( lat );
 						linePositions[ index * 6 + 5 ] = radius * Math.sin( lat ) * Math.sin( lng );
 
-						const color = new FOUR.Color( 0xffffff );
+						const color = new THREE.Color( 0xffffff );
 
 						color.setHSL( lat / Math.PI, 1.0, 0.2 );
 						lineColors[ index * 6 + 0 ] = color.r;
@@ -143,19 +143,19 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( linePositions, 3 ) );
-				geometry.setAttribute( 'vertColor', new FOUR.BufferAttribute( lineColors, 3 ) );
-				geometry.setAttribute( 'visible', new FOUR.BufferAttribute( visible, 1 ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( linePositions, 3 ) );
+				geometry.setAttribute( 'vertColor', new THREE.BufferAttribute( lineColors, 3 ) );
+				geometry.setAttribute( 'visible', new THREE.BufferAttribute( visible, 1 ) );
 
 				geometry.computeBoundingSphere();
 
-				const shaderMaterial = new FOUR.ShaderMaterial( {
+				const shaderMaterial = new THREE.ShaderMaterial( {
 
 					vertexShader: document.getElementById( 'vertexshader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentshader' ).textContent
 				} );
 
-				mesh = new FOUR.LineSegments( geometry, shaderMaterial );
+				mesh = new THREE.LineSegments( geometry, shaderMaterial );
 				scene.add( mesh );
 
 				updateCount();
@@ -164,7 +164,7 @@
 
 			function updateCount() {
 
-				const str = '1 draw call, ' + numLat * numLng + ' lines, ' + numLinesCulled + ' culled (<a target="_blank" href="http://callum.com">author</a>)';
+				const str = '1 draw call, ' + numLat * numLng + ' lines, ' + numLinesCulled + ' culled (<a target="_blank" href="https://callum.com">author</a>)';
 				document.getElementById( 'title' ).innerHTML = str.replace( /\B(?=(\d{3})+(?!\d))/g, ',' );
 
 			}

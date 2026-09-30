@@ -58,4 +58,4 @@ The target vector the result is stored to.
 
 ## Source
 
-[src/cameras/Camera.js](../../src/cameras/Camera.js)
+[src/cameras/Camera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/Camera.js)

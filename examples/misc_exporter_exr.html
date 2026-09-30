@@ -16,20 +16,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { EXRExporter, ZIP_COMPRESSION, ZIPS_COMPRESSION, NO_COMPRESSION } from '@tnb1j/4js/addons/exporters/EXRExporter.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { EXRExporter, ZIP_COMPRESSION, ZIPS_COMPRESSION, NO_COMPRESSION } from 'three/addons/exporters/EXRExporter.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let scene, camera, renderer, exporter, mesh, controls, renderTarget, dataTexture;
 
@@ -44,7 +44,7 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -52,22 +52,22 @@
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 10, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				exporter = new EXRExporter();
 				const hdrLoader = new HDRLoader();
 
 				//
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				pmremGenerator.compileEquirectangularShader();
 
 				hdrLoader.load( 'textures/equirectangular/san_giuseppe_bridge_2k.hdr', function ( texture ) {
 
-					texture.mapping = FOUR.EquirectangularReflectionMapping;
+					texture.mapping = THREE.EquirectangularReflectionMapping;
 
 					renderTarget = pmremGenerator.fromEquirectangular( texture );
 					scene.background = renderTarget.texture;
@@ -118,8 +118,8 @@
 
 			function createDataTexture() {
 
-				const normal = new FOUR.Vector3();
-				const coord = new FOUR.Vector2();
+				const normal = new THREE.Vector3();
+				const coord = new THREE.Vector2();
 				const size = 800, radius = 320, factor = Math.PI * 0.5 / radius;
 				const data = new Float32Array( 4 * size * size );
 
@@ -148,12 +148,12 @@
 
 				}
 
-				dataTexture = new FOUR.DataTexture( data, size, size, FOUR.RGBAFormat, FOUR.FloatType );
+				dataTexture = new THREE.DataTexture( data, size, size, THREE.RGBAFormat, THREE.FloatType );
 				dataTexture.needsUpdate = true;
 
-				const material = new FOUR.MeshBasicMaterial( { map: dataTexture } );
-				const quad = new FOUR.PlaneGeometry( 50, 50 );
-				mesh = new FOUR.Mesh( quad, material );
+				const material = new THREE.MeshBasicMaterial( { map: dataTexture } );
+				const quad = new THREE.PlaneGeometry( 50, 50 );
+				mesh = new THREE.Mesh( quad, material );
 				mesh.visible = false;
 
 				scene.add( mesh );
@@ -173,7 +173,7 @@
 
 					camera.position.set( 0, 0, 70 );
 					controls.enabled = false;
-					scene.background = new FOUR.Color( 0, 0, 0 );
+					scene.background = new THREE.Color( 0, 0, 0 );
 					mesh.visible = true;
 
 				}
@@ -185,9 +185,9 @@
 				let result, exportType, exportCompression;
 
 				if ( params.type == 'HalfFloatType' )
-					exportType = FOUR.HalfFloatType;
+					exportType = THREE.HalfFloatType;
 				else
-					exportType = FOUR.FloatType;
+					exportType = THREE.FloatType;
 
 				if ( params.compression == 'ZIP' )
 					exportCompression = ZIP_COMPRESSION;

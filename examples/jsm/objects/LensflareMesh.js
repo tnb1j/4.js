@@ -14,9 +14,9 @@ import {
 	Vector3,
 	Vector4,
 	Node
-} from '@tnb1j/4js/webgpu';
+} from 'three/webgpu';
 
-import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, reference, varyingProperty, materialReference, Fn } from '@tnb1j/4js/tsl';
+import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, reference, varyingProperty, materialReference, Fn } from 'three/tsl';
 
 /**
  * Creates a simulated lens flare that tracks a light.
@@ -25,7 +25,7 @@ import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, referenc
  * When using {@link WebGLRenderer}, use {@link Lensflare}.
  *
  * ```js
- * const light = new FOUR.PointLight( 0xffffff, 1.5, 2000 );
+ * const light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
  *
  * const lensflare = new LensflareMesh();
  * lensflare.addElement( new LensflareElement( textureFlare0, 512, 0 ) );
@@ -36,7 +36,7 @@ import { texture, textureLoad, uv, ivec2, vec2, vec4, positionGeometry, referenc
  * ```
  *
  * @augments Mesh
- * @four_import import { LensflareMesh } from '@tnb1j/4js/addons/objects/LensflareMesh.js';
+ * @three_import import { LensflareMesh } from 'three/addons/objects/LensflareMesh.js';
  */
 class LensflareMesh extends Mesh {
 

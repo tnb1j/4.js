@@ -40,4 +40,4 @@ The node type.
 
 ## Source
 
-[src/nodes/core/NodeCode.js](../../src/nodes/core/NodeCode.js)
+[src/nodes/core/NodeCode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeCode.js)

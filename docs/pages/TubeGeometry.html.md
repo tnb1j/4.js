@@ -7,8 +7,8 @@ Creates a tube that extrudes along a 3D curve.
 ## Code Example
 
 ```js
-class CustomSinCurve extends FOUR.Curve {
-	getPoint( t, optionalTarget = new FOUR.Vector3() ) {
+class CustomSinCurve extends THREE.Curve {
+	getPoint( t, optionalTarget = new THREE.Vector3() ) {
 		const tx = t * 3 - 1.5;
 		const ty = Math.sin( 2 * Math.PI * t );
 		const tz = 0;
@@ -16,9 +16,9 @@ class CustomSinCurve extends FOUR.Curve {
 	}
 }
 const path = new CustomSinCurve( 10 );
-const geometry = new FOUR.TubeGeometry( path, 20, 2, 8, false );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.TubeGeometry( path, 20, 2, 8, false );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 ```
 
@@ -78,4 +78,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/TubeGeometry.js](../../src/geometries/TubeGeometry.js)
+[src/geometries/TubeGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/TubeGeometry.js)

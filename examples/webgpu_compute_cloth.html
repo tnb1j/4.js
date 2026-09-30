@@ -23,25 +23,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Fn, If, Return, instancedArray, instanceIndex, uniform, select, attribute, Loop, float, transformNormalToView, cross, triNoise3D, time } from '@tnb1j/4js/tsl';
+			import { Fn, If, Return, instancedArray, instanceIndex, uniform, select, attribute, Loop, float, transformNormalToView, cross, triNoise3D, time } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			let renderer, scene, camera, controls;
 
@@ -64,7 +64,7 @@
 			const verletSprings = [];
 			const verletVertexColumns = [];
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			const params = {
@@ -92,17 +92,17 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 1;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.set( - 1.6, - 0.1, - 1.6 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -114,7 +114,7 @@
 				const hdrLoader = new UltraHDRLoader().setPath( 'textures/equirectangular/' );
 
 				const hdrTexture = await hdrLoader.loadAsync( 'royal_esplanade_2k.hdr.jpg' );
-				hdrTexture.mapping = FOUR.EquirectangularReflectionMapping;
+				hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
 				scene.background = hdrTexture;
 				scene.backgroundBlurriness = 0.5;
 				scene.environment = hdrTexture;
@@ -157,7 +157,7 @@
 					const id = verletVertices.length;
 					const vertex = {
 						id,
-						position: new FOUR.Vector3( x, y, z ),
+						position: new THREE.Vector3( x, y, z ),
 						isFixed,
 						springIds: [],
 					};
@@ -290,7 +290,7 @@
 			function setupUniforms() {
 
 				dampeningUniform = uniform( 0.99 );
-				spherePositionUniform = uniform( new FOUR.Vector3( 0, 0, 0 ) );
+				spherePositionUniform = uniform( new THREE.Vector3( 0, 0, 0 ) );
 				sphereUniform = uniform( 1.0 );
 				windUniform = uniform( 1.0 );
 				stiffnessUniform = uniform( 0.2 );
@@ -385,18 +385,18 @@
 				// adds helpers to visualize the verlet system
 
 				// verlet vertex visualizer
-				const vertexWireframeMaterial = new FOUR.SpriteNodeMaterial();
+				const vertexWireframeMaterial = new THREE.SpriteNodeMaterial();
 				vertexWireframeMaterial.positionNode = vertexPositionBuffer.element( instanceIndex );
-				vertexWireframeObject = new FOUR.Mesh( new FOUR.PlaneGeometry( 0.01, 0.01 ), vertexWireframeMaterial );
+				vertexWireframeObject = new THREE.Mesh( new THREE.PlaneGeometry( 0.01, 0.01 ), vertexWireframeMaterial );
 				vertexWireframeObject.frustumCulled = false;
 				vertexWireframeObject.count = verletVertices.length;
 				scene.add( vertexWireframeObject );
 
 
 				// verlet spring visualizer
-				const springWireframePositionBuffer = new FOUR.BufferAttribute( new Float32Array( 6 ), 3, false );
-				const springWireframeIndexBuffer = new FOUR.BufferAttribute( new Uint32Array( [ 0, 1 ] ), 1, false );
-				const springWireframeMaterial = new FOUR.LineBasicNodeMaterial();
+				const springWireframePositionBuffer = new THREE.BufferAttribute( new Float32Array( 6 ), 3, false );
+				const springWireframeIndexBuffer = new THREE.BufferAttribute( new Uint32Array( [ 0, 1 ] ), 1, false );
+				const springWireframeMaterial = new THREE.LineBasicNodeMaterial();
 				springWireframeMaterial.positionNode = Fn( () => {
 
 					const vertexIds = springVertexIdBuffer.element( instanceIndex );
@@ -405,12 +405,12 @@
 
 				} )();
 
-				const springWireframeGeometry = new FOUR.InstancedBufferGeometry();
+				const springWireframeGeometry = new THREE.InstancedBufferGeometry();
 				springWireframeGeometry.setAttribute( 'position', springWireframePositionBuffer );
 				springWireframeGeometry.setAttribute( 'vertexIndex', springWireframeIndexBuffer );
 				springWireframeGeometry.instanceCount = verletSprings.length;
 
-				springWireframeObject = new FOUR.Line( springWireframeGeometry, springWireframeMaterial );
+				springWireframeObject = new THREE.Line( springWireframeGeometry, springWireframeMaterial );
 				springWireframeObject.frustumCulled = false;
 				springWireframeObject.count = verletSprings.length;
 				scene.add( springWireframeObject );
@@ -419,9 +419,9 @@
 
 			function setupSphere() {
 
-				const geometry = new FOUR.IcosahedronGeometry( sphereRadius * 0.95, 4 );
-				const material = new FOUR.MeshStandardNodeMaterial();
-				sphere = new FOUR.Mesh( geometry, material );
+				const geometry = new THREE.IcosahedronGeometry( sphereRadius * 0.95, 4 );
+				const material = new THREE.MeshStandardNodeMaterial();
+				sphere = new THREE.Mesh( geometry, material );
 				scene.add( sphere );
 
 			}
@@ -432,7 +432,7 @@
 				// Therefore it creates a plane mesh, in which each vertex will be centered in the center of 4 verlet vertices.
 
 				const vertexCount = clothNumSegmentsX * clothNumSegmentsY;
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 
 				// verletVertexIdArray will hold the 4 verlet vertex ids that contribute to each geometry vertex's position
 				const verletVertexIdArray = new Uint32Array( vertexCount * 4 );
@@ -465,20 +465,20 @@
 
 				}
 
-				const verletVertexIdBuffer = new FOUR.BufferAttribute( verletVertexIdArray, 4, false );
-				const positionBuffer = new FOUR.BufferAttribute( new Float32Array( vertexCount * 3 ), 3, false );
+				const verletVertexIdBuffer = new THREE.BufferAttribute( verletVertexIdArray, 4, false );
+				const positionBuffer = new THREE.BufferAttribute( new Float32Array( vertexCount * 3 ), 3, false );
 				geometry.setAttribute( 'position', positionBuffer );
 				geometry.setAttribute( 'vertexIds', verletVertexIdBuffer );
 				geometry.setIndex( indices );
 
-				clothMaterial = new FOUR.MeshPhysicalNodeMaterial( {
-					color: new FOUR.Color().setHex( API.color ),
-					side: FOUR.DoubleSide,
+				clothMaterial = new THREE.MeshPhysicalNodeMaterial( {
+					color: new THREE.Color().setHex( API.color ),
+					side: THREE.DoubleSide,
 					transparent: true,
 					opacity: 0.85,
 					sheen: 1.0,
 					sheenRoughness: 0.5,
-					sheenColor: new FOUR.Color().setHex( API.sheenColor ),
+					sheenColor: new THREE.Color().setHex( API.sheenColor ),
 				} );
 
 				clothMaterial.positionNode = Fn( ( { material } ) => {
@@ -507,7 +507,7 @@
 
 				} )();
 
-				clothMesh = new FOUR.Mesh( geometry, clothMaterial );
+				clothMesh = new THREE.Mesh( geometry, clothMaterial );
 				clothMesh.frustumCulled = false;
 				scene.add( clothMesh );
 

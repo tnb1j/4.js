@@ -26,46 +26,46 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OBB } from '@tnb1j/4js/addons/math/OBB.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OBB } from 'three/addons/math/OBB.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer, timer, controls, stats, raycaster, hitbox;
 
-			const objects = [], mouse = new FOUR.Vector2();
+			const objects = [], mouse = new THREE.Vector2();
 
 			init();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 0, 75 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xffffff );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x222222, 4 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x222222, 4 );
 				hemiLight.position.set( 1, 1, 1 );
 				scene.add( hemiLight );
 
-				const size = new FOUR.Vector3( 10, 5, 6 );
-				const geometry = new FOUR.BoxGeometry( size.x, size.y, size.z );
+				const size = new THREE.Vector3( 10, 5, 6 );
+				const geometry = new THREE.BoxGeometry( size.x, size.y, size.z );
 
 				// setup OBB on geometry level (doing this manually for now)
 
@@ -74,7 +74,7 @@
 
 				for ( let i = 0; i < 100; i ++ ) {
 
-					const object = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { color: 0x00ff00 } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0x00ff00 } ) );
 					object.matrixAutoUpdate = false;
 
 					object.position.x = Math.random() * 80 - 40;
@@ -101,11 +101,11 @@
 
 				//
 
-				hitbox = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial( { color: 0x000000, wireframe: true } ) );
+				hitbox = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true } ) );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -139,7 +139,7 @@
 
 				raycaster.setFromCamera( mouse, camera );
 
-				const intersectionPoint = new FOUR.Vector3();
+				const intersectionPoint = new THREE.Vector3();
 				const intersections = [];
 
 				for ( let i = 0, il = objects.length; i < il; i ++ ) {

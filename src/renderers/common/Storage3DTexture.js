@@ -34,14 +34,14 @@ class Storage3DTexture extends Texture {
 		this.image = { width, height, depth };
 
 		/**
-		 * The default `magFilter` for storage textures is `FOUR.LinearFilter`.
+		 * The default `magFilter` for storage textures is `THREE.LinearFilter`.
 		 *
 		 * @type {number}
 		 */
 		this.magFilter = LinearFilter;
 
 		/**
-		 * The default `minFilter` for storage textures is `FOUR.LinearFilter`.
+		 * The default `minFilter` for storage textures is `THREE.LinearFilter`.
 		 *
 		 * @type {number}
 		 */
@@ -71,6 +71,22 @@ class Storage3DTexture extends Texture {
 		 *
 		 */
 		this.is3DTexture = true;
+
+	}
+
+	/**
+	 * Copies the values of the given texture to this instance.
+	 *
+	 * @param {Storage3DTexture} source - The texture to copy.
+	 * @return {Storage3DTexture} A reference to this instance.
+	 */
+	copy( source ) {
+
+		super.copy( source );
+
+		this.wrapR = source.wrapR;
+
+		return this;
 
 	}
 

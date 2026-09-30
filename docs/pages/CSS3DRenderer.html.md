@@ -4,7 +4,7 @@ This renderer can be used to apply hierarchical 3D transformations to DOM elemen
 
 There are, however, some important limitations:
 
-*   It's not possible to use the material system of _4.js_.
+*   It's not possible to use the material system of _three.js_.
 *   It's also not possible to use geometries.
 *   The renderer only supports 100% browser and display zoom.
 
@@ -12,10 +12,10 @@ So `CSS3DRenderer` is just focused on ordinary DOM elements. These elements are 
 
 ## Import
 
-CSS3DRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSS3DRenderer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSS3DRenderer } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+import { CSS3DRenderer } from 'three/addons/renderers/CSS3DRenderer.js';
 ```
 
 ## Constructor
@@ -79,4 +79,4 @@ A DOM element where the renderer appends its child-elements. If not passed in he
 
 ## Source
 
-[examples/jsm/renderers/CSS3DRenderer.js](../../examples/jsm/renderers/CSS3DRenderer.js)
+[examples/jsm/renderers/CSS3DRenderer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/renderers/CSS3DRenderer.js)

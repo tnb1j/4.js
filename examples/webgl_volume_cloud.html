@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let mesh;
@@ -37,15 +37,15 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 1.5 );
 
 				new OrbitControls( camera, renderer.domElement );
@@ -64,12 +64,12 @@
 				context.fillStyle = gradient;
 				context.fillRect( 0, 0, 1, 32 );
 
-				const skyMap = new FOUR.CanvasTexture( canvas );
-				skyMap.colorSpace = FOUR.SRGBColorSpace;
+				const skyMap = new THREE.CanvasTexture( canvas );
+				skyMap.colorSpace = THREE.SRGBColorSpace;
 
-				const sky = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 10 ),
-					new FOUR.MeshBasicMaterial( { map: skyMap, side: FOUR.BackSide } )
+				const sky = new THREE.Mesh(
+					new THREE.SphereGeometry( 10 ),
+					new THREE.MeshBasicMaterial( { map: skyMap, side: THREE.BackSide } )
 				);
 				scene.add( sky );
 
@@ -81,7 +81,7 @@
 				let i = 0;
 				const scale = 0.05;
 				const perlin = new ImprovedNoise();
-				const vector = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
 
 				for ( let z = 0; z < size; z ++ ) {
 
@@ -99,10 +99,10 @@
 
 				}
 
-				const texture = new FOUR.Data3DTexture( data, size, size, size );
-				texture.format = FOUR.RedFormat;
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
+				const texture = new THREE.Data3DTexture( data, size, size, size );
+				texture.format = THREE.RedFormat;
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
 				texture.unpackAlignment = 1;
 				texture.needsUpdate = true;
 
@@ -242,13 +242,13 @@
 					}
 				`;
 
-				const geometry = new FOUR.BoxGeometry( 1, 1, 1 );
-				const material = new FOUR.RawShaderMaterial( {
-					glslVersion: FOUR.GLSL3,
+				const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				const material = new THREE.RawShaderMaterial( {
+					glslVersion: THREE.GLSL3,
 					uniforms: {
-						base: { value: new FOUR.Color( 0x798aa0 ) },
+						base: { value: new THREE.Color( 0x798aa0 ) },
 						map: { value: texture },
-						cameraPos: { value: new FOUR.Vector3() },
+						cameraPos: { value: new THREE.Vector3() },
 						threshold: { value: 0.25 },
 						opacity: { value: 0.25 },
 						range: { value: 0.1 },
@@ -257,11 +257,11 @@
 					},
 					vertexShader,
 					fragmentShader,
-					side: FOUR.BackSide,
+					side: THREE.BackSide,
 					transparent: true
 				} );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//

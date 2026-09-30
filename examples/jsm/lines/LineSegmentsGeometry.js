@@ -7,7 +7,7 @@ import {
 	Sphere,
 	Vector3,
 	WireframeGeometry
-} from '@tnb1j/4js';
+} from 'three';
 
 const _box = new Box3();
 const _vector = new Vector3();
@@ -18,7 +18,7 @@ const _vector = new Vector3();
  * This is used in {@link LineSegments2} to describe the shape.
  *
  * @augments InstancedBufferGeometry
- * @four_import import { LineSegmentsGeometry } from '@tnb1j/4js/addons/lines/LineSegmentsGeometry.js';
+ * @three_import import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
  */
 class LineSegmentsGeometry extends InstancedBufferGeometry {
 
@@ -279,7 +279,7 @@ class LineSegmentsGeometry extends InstancedBufferGeometry {
 
 			if ( isNaN( this.boundingSphere.radius ) ) {
 
-				console.error( 'FOUR.LineSegmentsGeometry.computeBoundingSphere(): Computed radius is NaN. The instanced position data is likely to have NaN values.', this );
+				console.error( 'THREE.LineSegmentsGeometry.computeBoundingSphere(): Computed radius is NaN. The instanced position data is likely to have NaN values.', this );
 
 			}
 

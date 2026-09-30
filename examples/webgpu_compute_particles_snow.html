@@ -26,25 +26,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, texture, vec3, pass, color, uint, screenUV, instancedArray, positionWorld, positionLocal, time, vec2, hash, instanceIndex, If } from '@tnb1j/4js/tsl';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import * as THREE from 'three/webgpu';
+			import { Fn, texture, vec3, pass, color, uint, screenUV, instancedArray, positionWorld, positionLocal, time, vec2, hash, instanceIndex, If } from 'three/tsl';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			const maxParticleCount = 100000;
 
@@ -61,36 +61,36 @@
 
 				const { innerWidth, innerHeight } = window;
 
-				camera = new FOUR.PerspectiveCamera( 60, innerWidth / innerHeight, .1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, innerWidth / innerHeight, .1, 100 );
 				camera.position.set( 20, 2, 20 );
 				camera.layers.enable( 2 );
 				camera.lookAt( 0, 40, 0 );
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.Fog( 0x0f3c37, 5, 40 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0x0f3c37, 5, 40 );
 
-				const dirLight = new FOUR.DirectionalLight( 0xf9ff9b, 9 );
+				const dirLight = new THREE.DirectionalLight( 0xf9ff9b, 9 );
 				dirLight.position.set( 10, 10, 0 );
 				scene.add( dirLight );
 
-				scene.add( new FOUR.HemisphereLight( 0x0f3c37, 0x080d10, 100 ) );
+				scene.add( new THREE.HemisphereLight( 0x0f3c37, 0x080d10, 100 ) );
 
 				//
 
-				collisionCamera = new FOUR.OrthographicCamera( - 50, 50, 50, - 50, .1, 50 );
+				collisionCamera = new THREE.OrthographicCamera( - 50, 50, 50, - 50, .1, 50 );
 				collisionCamera.position.y = 50;
 				collisionCamera.lookAt( 0, 0, 0 );
 				collisionCamera.layers.enable( 1 );
 
-				collisionPosRT = new FOUR.RenderTarget( 1024, 1024 );
-				collisionPosRT.texture.format = FOUR.RedFormat;
-				collisionPosRT.texture.type = FOUR.HalfFloatType;
-				collisionPosRT.texture.magFilter = FOUR.NearestFilter;
-				collisionPosRT.texture.minFilter = FOUR.NearestFilter;
+				collisionPosRT = new THREE.RenderTarget( 1024, 1024 );
+				collisionPosRT.texture.format = THREE.RedFormat;
+				collisionPosRT.texture.type = THREE.HalfFloatType;
+				collisionPosRT.texture.magFilter = THREE.NearestFilter;
+				collisionPosRT.texture.minFilter = THREE.NearestFilter;
 				collisionPosRT.texture.generateMipmaps = false;
 
-				collisionPosMaterial = new FOUR.MeshBasicNodeMaterial();
-				collisionPosMaterial.blending = FOUR.NoBlending;
+				collisionPosMaterial = new THREE.MeshBasicNodeMaterial();
+				collisionPosMaterial.blending = THREE.NoBlending;
 				collisionPosMaterial.fog = false;
 				collisionPosMaterial.toneMapped = false;
 				collisionPosMaterial.colorNode = positionWorld.y;
@@ -150,11 +150,11 @@
 
 					const rippleOnSurface = texture( collisionPosRT.texture, getCoord( position.xz ) ).toInspector( 'Collision Test', () => {
 
-						return texture( collisionPosRT.texture ).r; // .div( collisionCamera.position.y );
+						return texture( collisionPosRT.texture ); // .div( collisionCamera.position.y );
 
 					} );
 
-					const rippleFloorArea = rippleOnSurface.r.add( scale.x.mul( surfaceOffset ) );
+					const rippleFloorArea = rippleOnSurface.add( scale.x.mul( surfaceOffset ) );
 
 					If( position.y.greaterThan( rippleFloorArea ), () => {
 
@@ -176,14 +176,14 @@
 
 				// rain
 
-				const geometry = new FOUR.SphereGeometry( surfaceOffset, 5, 5 );
+				const geometry = new THREE.SphereGeometry( surfaceOffset, 5, 5 );
 
 				function particle( staticParticles ) {
 
 					const posBuffer = staticParticles ? staticPositionBuffer : positionBuffer;
 					const layer = staticParticles ? 1 : 2;
 
-					const staticMaterial = new FOUR.MeshStandardNodeMaterial( {
+					const staticMaterial = new THREE.MeshStandardNodeMaterial( {
 						color: 0xeeeeee,
 						roughness: .9,
 						metalness: 0
@@ -191,7 +191,7 @@
 
 					staticMaterial.positionNode = positionLocal.mul( scaleBuffer.toAttribute() ).add( posBuffer.toAttribute() );
 
-					const rainParticles = new FOUR.Mesh( geometry, staticMaterial );
+					const rainParticles = new THREE.Mesh( geometry, staticMaterial );
 					rainParticles.count = maxParticleCount;
 					rainParticles.layers.disableAll();
 					rainParticles.layers.enable( layer );
@@ -208,10 +208,10 @@
 
 				// floor geometry
 
-				const floorGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const floorGeometry = new THREE.PlaneGeometry( 100, 100 );
 				floorGeometry.rotateX( - Math.PI / 2 );
 
-				const plane = new FOUR.Mesh( floorGeometry, new FOUR.MeshStandardMaterial( {
+				const plane = new THREE.Mesh( floorGeometry, new THREE.MeshStandardMaterial( {
 					color: 0x0c1e1e,
 					roughness: .5,
 					metalness: 0,
@@ -226,28 +226,28 @@
 
 				function tree( count = 8 ) {
 
-					const coneMaterial = new FOUR.MeshStandardNodeMaterial( {
+					const coneMaterial = new THREE.MeshStandardNodeMaterial( {
 						color: 0x0d492c,
 						roughness: .6,
 						metalness: 0
 					} );
 
-					const object = new FOUR.Group();
+					const object = new THREE.Group();
 
 					for ( let i = 0; i < count; i ++ ) {
 
 						const radius = 1 + i;
 
-						const coneGeometry = new FOUR.ConeGeometry( radius * 0.95, radius * 1.25, 32 );
+						const coneGeometry = new THREE.ConeGeometry( radius * 0.95, radius * 1.25, 32 );
 
-						const cone = new FOUR.Mesh( coneGeometry, coneMaterial );
+						const cone = new THREE.Mesh( coneGeometry, coneMaterial );
 						cone.position.y = ( ( count - i ) * 1.5 ) + ( count * .6 );
 						object.add( cone );
 
 					}
 
-					const geometry = new FOUR.CylinderGeometry( 1, 1, count, 32 );
-					const cone = new FOUR.Mesh( geometry, coneMaterial );
+					const geometry = new THREE.CylinderGeometry( 1, 1, count, 32 );
+					const cone = new THREE.Mesh( geometry, coneMaterial );
 					cone.position.y = count / 2;
 					object.add( cone );
 
@@ -255,7 +255,7 @@
 
 				}
 
-				const teapotTree = new FOUR.Mesh( new TeapotGeometry( .5, 18 ), new FOUR.MeshBasicNodeMaterial( {
+				const teapotTree = new THREE.Mesh( new TeapotGeometry( .5, 18 ), new THREE.MeshBasicNodeMaterial( {
 					color: 0xfcfb9e
 				} ) );
 
@@ -271,8 +271,8 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setClearColor( 0x000000 );
@@ -314,7 +314,7 @@
 				totalPass = totalPass.mul( vignette );
 				totalPass = totalPass.add( teapotTreePass.mul( 10 ).add( teapotTreePassBlurred ).toInspector( 'Teapot Blur' ) );
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputNode = totalPass;
 
 				//

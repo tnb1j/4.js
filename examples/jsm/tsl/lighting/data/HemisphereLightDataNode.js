@@ -1,9 +1,9 @@
-import { Color, Node, Vector3 } from '@tnb1j/4js/webgpu';
-import { Loop, NodeUpdateType, mix, normalWorld, renderGroup, uniform, uniformArray } from '@tnb1j/4js/tsl';
+import { Color, Node, Vector3 } from 'three/webgpu';
+import { Loop, NodeUpdateType, mix, normalWorld, renderGroup, uniform, uniformArray } from 'three/tsl';
 
 const warn = ( message ) => {
 
-	console.warn( `FOUR.HemisphereLightDataNode: ${ message }` );
+	console.warn( `THREE.HemisphereLightDataNode: ${ message }` );
 
 };
 

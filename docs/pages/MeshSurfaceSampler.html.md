@@ -15,9 +15,9 @@ References:
 const sampler = new MeshSurfaceSampler( surfaceMesh )
 	.setWeightAttribute( 'color' )
 	.build();
-const mesh = new FOUR.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
-const position = new FOUR.Vector3();
-const matrix = new FOUR.Matrix4();
+const mesh = new THREE.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
+const position = new THREE.Vector3();
+const matrix = new THREE.Matrix4();
 // Sample randomly from the surface, creating an instance of the sample geometry at each sample point.
 for ( let i = 0; i < 100; i ++ ) {
 	sampler.sample( position );
@@ -29,10 +29,10 @@ scene.add( mesh );
 
 ## Import
 
-MeshSurfaceSampler is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MeshSurfaceSampler is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MeshSurfaceSampler } from '@tnb1j/4js/addons/math/MeshSurfaceSampler.js';
+import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
 ```
 
 ## Constructor
@@ -99,4 +99,4 @@ The attribute name.
 
 ## Source
 
-[examples/jsm/math/MeshSurfaceSampler.js](../../examples/jsm/math/MeshSurfaceSampler.js)
+[examples/jsm/math/MeshSurfaceSampler.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/MeshSurfaceSampler.js)
