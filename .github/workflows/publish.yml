@@ -9,6 +9,10 @@ on:
         description: 'npm dist-tag'
         required: true
         default: 'preview'
+      otp:
+        description: 'npm 2FA OTP code'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -30,6 +34,11 @@ jobs:
       - name: Build bundles
         run: npm run build
       - name: Publish to npm
-        run: npm publish --access public --tag ${{ github.event.inputs.tag || 'preview' }}
+        run: |
+          if [ -n "${{ github.event.inputs.otp }}" ]; then
+            npm publish --access public --tag ${{ github.event.inputs.tag || 'preview' }} --otp="${{ github.event.inputs.otp }}"
+          else
+            npm publish --access public --tag ${{ github.event.inputs.tag || 'preview' }}
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
