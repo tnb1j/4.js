@@ -1,5 +1,5 @@
-import { DataTexture, RepeatWrapping, Vector2, Vector3, TempNode } from '@tnb1j/4js/webgpu';
-import { texture, getNormalFromDepth, getViewPosition, convertToTexture, nodeObject, Fn, float, NodeUpdateType, uv, uniform, Loop, luminance, vec2, vec3, vec4, uniformArray, int, dot, max, pow, abs, If, textureSize, sin, cos, mat2, PI, property } from '@tnb1j/4js/tsl';
+import { DataTexture, RepeatWrapping, Vector2, Vector3, TempNode } from 'three/webgpu';
+import { texture, getNormalFromDepth, getViewPosition, convertToTexture, nodeObject, Fn, float, NodeUpdateType, uv, uniform, Loop, luminance, vec2, vec3, vec4, uniformArray, int, dot, max, pow, abs, If, textureSize, sin, cos, mat2, PI, property } from 'three/tsl';
 import { SimplexNoise } from '../../math/SimplexNoise.js';
 
 /**
@@ -11,7 +11,7 @@ import { SimplexNoise } from '../../math/SimplexNoise.js';
  * Reference: {@link https://openaccess.thecvf.com/content/WACV2021/papers/Khademi_Self-Supervised_Poisson-Gaussian_Denoising_WACV_2021_paper.pdf}.
  *
  * @augments TempNode
- * @four_import import { denoise } from '@tnb1j/4js/addons/tsl/display/DenoiseNode.js';
+ * @three_import import { denoise } from 'three/addons/tsl/display/DenoiseNode.js';
  */
 class DenoiseNode extends TempNode {
 
@@ -57,11 +57,19 @@ class DenoiseNode extends TempNode {
 		this.normalNode = normalNode;
 
 		/**
+		 * The internal noise texture.
+		 *
+		 * @private
+		 * @type {DataTexture}
+		 */
+		this._noiseTexture = generateDefaultNoise();
+
+		/**
 		 * The node represents the internal noise texture.
 		 *
 		 * @type {TextureNode}
 		 */
-		this.noiseNode = texture( generateDefaultNoise() );
+		this.noiseNode = texture( this._noiseTexture );
 
 		/**
 		 * The luma Phi value.
@@ -249,6 +257,18 @@ class DenoiseNode extends TempNode {
 		const outputNode = output();
 
 		return outputNode;
+
+	}
+
+	/**
+	 * Frees internal resources. This method should be called
+	 * when the effect is no longer required.
+	 */
+	dispose() {
+
+		super.dispose();
+
+		this._noiseTexture.dispose();
 
 	}
 

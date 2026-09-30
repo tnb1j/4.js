@@ -9,9 +9,9 @@ Requires that normals have been specified in the geometry as a buffer attribute 
 ## Code Example
 
 ```js
-const geometry = new FOUR.BoxGeometry( 10, 10, 10, 2, 2, 2 );
-const material = new FOUR.MeshStandardMaterial();
-const mesh = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.BoxGeometry( 10, 10, 10, 2, 2, 2 );
+const material = new THREE.MeshStandardMaterial();
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 const helper = new VertexNormalsHelper( mesh, 1, 0xff0000 );
 scene.add( helper );
@@ -19,10 +19,10 @@ scene.add( helper );
 
 ## Import
 
-VertexNormalsHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VertexNormalsHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VertexNormalsHelper } from '@tnb1j/4js/addons/helpers/VertexNormalsHelper.js';
+import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';
 ```
 
 ## Constructor
@@ -79,10 +79,12 @@ Default is `1`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .update()
 
 Updates the vertex normals preview based on the object's world transform.
 
 ## Source
 
-[examples/jsm/helpers/VertexNormalsHelper.js](../../examples/jsm/helpers/VertexNormalsHelper.js)
+[examples/jsm/helpers/VertexNormalsHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/VertexNormalsHelper.js)

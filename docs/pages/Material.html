@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Material - 4.js Docs</title>
+	<title>Material - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -148,7 +148,7 @@ on this material.</p>
 				<div class="member">
 					<h3 class="name" id="clippingPlanes" translate="no">.<a href="#clippingPlanes">clippingPlanes</a><span class="type-signature"> : Array.&lt;<a href="Plane.html">Plane</a>></span> </h3>
 					<div class="description">
-						<p>User-defined clipping planes specified as FOUR.Plane objects in world
+						<p>User-defined clipping planes specified as THREE.Plane objects in world
 space. These planes apply to the objects this material is attached to.
 Points in space whose signed distance to the plane is negative are clipped
 (not rendered). This requires <a href="WebGLRenderer.html#localClippingEnabled">WebGLRenderer#localClippingEnabled</a> to
@@ -463,7 +463,7 @@ four (RGBA) component color buffer attribute is used.</p>
 					<div class="method">
 						<div class="description">
 							<p>In case <a href="Material.html#onBeforeCompile">Material#onBeforeCompile</a> is used, this callback can be used to identify
-values of settings used in <code>onBeforeCompile()</code>, so 4.js can reuse a cached
+values of settings used in <code>onBeforeCompile()</code>, so three.js can reuse a cached
 shader or recompile the shader for this material as needed.</p>
 <p>This method can only be used when rendering with <a href="WebGLRenderer.html">WebGLRenderer</a>.</p>
 						</div>
@@ -519,7 +519,7 @@ program is compiled. This function is called with the shader source code
 as a parameter. Useful for the modification of built-in materials.</p>
 <p>This method can only be used when rendering with <a href="WebGLRenderer.html">WebGLRenderer</a>. The
 recommended approach when customizing materials is to use <code>WebGPURenderer</code> with the new
-Node Material system and <a href="https://github.com/mrdoob/three.js/wiki/4.js-Shading-Language" target="_blank" rel="noopener">TSL</a>.</p>
+Node Material system and <a href="https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language" target="_blank" rel="noopener">TSL</a>.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -665,7 +665,7 @@ of materials.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/materials/Material.js" translate="no">src/materials/Material.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/materials/Material.js" translate="no" target="_blank" rel="noopener">src/materials/Material.js</a>
 				</p>
 			</article>
 		</section>

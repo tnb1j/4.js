@@ -2,7 +2,7 @@ import {
 	AnimationClip,
 	AnimationMixer,
 	Mesh
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A special type of an animated mesh with a simple interface
@@ -10,7 +10,7 @@ import {
  * without any transitions or fading between animation changes.
  *
  * @augments Mesh
- * @four_import import { MorphAnimMesh } from '@tnb1j/4js/addons/misc/MorphAnimMesh.js';
+ * @three_import import { MorphAnimMesh } from 'three/addons/misc/MorphAnimMesh.js';
  */
 class MorphAnimMesh extends Mesh {
 
@@ -87,7 +87,7 @@ class MorphAnimMesh extends Mesh {
 
 		} else {
 
-			throw new Error( 'FOUR.MorphAnimMesh: animations[' + label + '] undefined in .playAnimation()' );
+			throw new Error( 'THREE.MorphAnimMesh: animations[' + label + '] undefined in .playAnimation()' );
 
 		}
 

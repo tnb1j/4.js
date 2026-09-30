@@ -138,4 +138,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshMatcapMaterial.js](../../src/materials/MeshMatcapMaterial.js)
+[src/materials/MeshMatcapMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshMatcapMaterial.js)

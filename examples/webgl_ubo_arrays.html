@@ -103,19 +103,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, timer, stats;
 
@@ -133,22 +133,22 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 50, 50 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				camera.lookAt( scene.position );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// geometry
 
-				const geometry = new FOUR.SphereGeometry();
+				const geometry = new THREE.SphereGeometry();
 
 				// uniforms groups
 
-				lightingUniformsGroup = new FOUR.UniformsGroup();
+				lightingUniformsGroup = new THREE.UniformsGroup();
 				lightingUniformsGroup.setName( 'LightingData' );
 
 				const data = [];
@@ -157,12 +157,12 @@
 
 				for ( let i = 0; i < pointLightsMax; i ++ ) {
 
-					const col = new FOUR.Color( 0xffffff * Math.random() ).toArray();
+					const col = new THREE.Color( 0xffffff * Math.random() ).toArray();
 					const x = Math.random() * 50 - 25;
 					const z = Math.random() * 50 - 25;
 
-					data.push( new FOUR.Uniform( new FOUR.Vector4( x, 1, z, 0 ) ) ); // light position
-					dataColors.push( new FOUR.Uniform( new FOUR.Vector4( col[ 0 ], col[ 1 ], col[ 2 ], 0 ) ) ); // light color
+					data.push( new THREE.Uniform( new THREE.Vector4( x, 1, z, 0 ) ) ); // light position
+					dataColors.push( new THREE.Uniform( new THREE.Vector4( col[ 0 ], col[ 1 ], col[ 2 ], 0 ) ) ); // light color
 
 					// Store the center positions
 					lightCenters.push( { x, z } );
@@ -171,14 +171,14 @@
 
 				lightingUniformsGroup.add( data ); // light position
 				lightingUniformsGroup.add( dataColors ); // light position
-				lightingUniformsGroup.add( new FOUR.Uniform( pointLightsMax ) ); // light position
+				lightingUniformsGroup.add( new THREE.Uniform( pointLightsMax ) ); // light position
 
-				const cameraUniformsGroup = new FOUR.UniformsGroup();
+				const cameraUniformsGroup = new THREE.UniformsGroup();
 				cameraUniformsGroup.setName( 'ViewData' );
-				cameraUniformsGroup.add( new FOUR.Uniform( camera.projectionMatrix ) ); // projection matrix
-				cameraUniformsGroup.add( new FOUR.Uniform( camera.matrixWorldInverse ) ); // view matrix
+				cameraUniformsGroup.add( new THREE.Uniform( camera.projectionMatrix ) ); // projection matrix
+				cameraUniformsGroup.add( new THREE.Uniform( camera.matrixWorldInverse ) ); // view matrix
 
-				const material = new FOUR.RawShaderMaterial( {
+				const material = new THREE.RawShaderMaterial( {
 					uniforms: {
 						modelMatrix: { value: null },
 						normalMatrix: { value: null }
@@ -190,10 +190,10 @@
 					},
 					vertexShader: document.getElementById( 'vertexShader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-					glslVersion: FOUR.GLSL3
+					glslVersion: THREE.GLSL3
 				} );
 
-				const plane = new FOUR.Mesh( new FOUR.PlaneGeometry( 100, 100 ), material.clone() );
+				const plane = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), material.clone() );
 				plane.material.uniformsGroups = [ cameraUniformsGroup, lightingUniformsGroup ];
 				plane.material.uniforms.modelMatrix.value = plane.matrixWorld;
 				plane.material.uniforms.normalMatrix.value = plane.normalMatrix;
@@ -211,7 +211,7 @@
 
 						for ( let k = 0; k < gridSize.z; k ++ ) {
 
-							const mesh = new FOUR.Mesh( geometry, material.clone() );
+							const mesh = new THREE.Mesh( geometry, material.clone() );
 							mesh.name = 'Sphere';
 							mesh.material.uniformsGroups = [ cameraUniformsGroup, lightingUniformsGroup ];
 							mesh.material.uniforms.modelMatrix.value = mesh.matrixWorld;
@@ -230,7 +230,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				container.appendChild( renderer.domElement );

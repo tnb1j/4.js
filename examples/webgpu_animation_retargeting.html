@@ -24,24 +24,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, screenUV, hue, reflector, time, Fn, vec2, length, atan, float, sin, cos, vec3, sub, mul, pow, blendDodge, normalWorldGeometry } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, screenUV, hue, reflector, time, Fn, vec2, length, atan, float, sin, cos, vec3, sub, mul, pow, blendDodge, normalWorldGeometry } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
+			import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 
 			const [ sourceModel, targetModel ] = await Promise.all( [
 
@@ -61,7 +61,7 @@
 
 			//
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			export const lightSpeed = /*#__PURE__*/ Fn( ( [ suv_immutable ] ) => {
@@ -85,7 +85,7 @@
 
 			// scene
 
-			const scene = new FOUR.Scene();
+			const scene = new THREE.Scene();
 
 			// background
 
@@ -98,18 +98,18 @@
 
 			//
 
-			const helpers = new FOUR.Group();
+			const helpers = new THREE.Group();
 			helpers.visible = false;
 			scene.add( helpers );
 
-			const light = new FOUR.HemisphereLight( 0xe9c0a5, 0x0175ad, 5 );
+			const light = new THREE.HemisphereLight( 0xe9c0a5, 0x0175ad, 5 );
 			scene.add( light );
 
-			const dirLight = new FOUR.DirectionalLight( 0xfff9ea, 4 );
+			const dirLight = new THREE.DirectionalLight( 0xfff9ea, 4 );
 			dirLight.position.set( 2, 5, 2 );
 			scene.add( dirLight );
 
-			const camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .25, 50 );
+			const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .25, 50 );
 			camera.position.set( 0, 1, 4 );
 
 			// add models to scene
@@ -138,23 +138,23 @@
 			reflection.target.rotateX( - Math.PI / 2 );
 			scene.add( reflection.target );
 
-			const floorMaterial = new FOUR.NodeMaterial();
+			const floorMaterial = new THREE.NodeMaterial();
 			floorMaterial.colorNode = reflection;
 			floorMaterial.opacity = .2;
 			floorMaterial.transparent = true;
 
-			const floor = new FOUR.Mesh( new FOUR.BoxGeometry( 50, .001, 50 ), floorMaterial );
+			const floor = new THREE.Mesh( new THREE.BoxGeometry( 50, .001, 50 ), floorMaterial );
 			floor.receiveShadow = true;
 
 			floor.position.set( 0, 0, 0 );
 			scene.add( floor );
 
 			// renderer
-			const renderer = new FOUR.WebGPURenderer( { antialias: true } );
+			const renderer = new THREE.WebGPURenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
-			renderer.toneMapping = FOUR.NeutralToneMapping;
+			renderer.toneMapping = THREE.NeutralToneMapping;
 			renderer.inspector = new Inspector();
 			document.body.appendChild( renderer.domElement );
 
@@ -173,12 +173,12 @@
 
 				const clip = sourceModel.animations[ 0 ];
 
-				const helper = new FOUR.SkeletonHelper( sourceModel.scene );
+				const helper = new THREE.SkeletonHelper( sourceModel.scene );
 				helpers.add( helper );
 
-				const skeleton = new FOUR.Skeleton( helper.bones );
+				const skeleton = new THREE.Skeleton( helper.bones );
 
-				const mixer = new FOUR.AnimationMixer( sourceModel.scene );
+				const mixer = new THREE.AnimationMixer( sourceModel.scene );
 				mixer.clipAction( sourceModel.animations[ 0 ] ).play();
 
 				return { clip, skeleton, mixer };
@@ -189,13 +189,13 @@
 
 				const targetSkin = targetModel.scene.children[ 0 ].children[ 0 ];
 
-				const targetSkelHelper = new FOUR.SkeletonHelper( targetModel.scene );
+				const targetSkelHelper = new THREE.SkeletonHelper( targetModel.scene );
 				helpers.add( targetSkelHelper );
 
-				const rotateCW45 = new FOUR.Matrix4().makeRotationY( FOUR.MathUtils.degToRad( 45 ) );
-				const rotateCCW180 = new FOUR.Matrix4().makeRotationY( FOUR.MathUtils.degToRad( - 180 ) );
-				const rotateCW180 = new FOUR.Matrix4().makeRotationY( FOUR.MathUtils.degToRad( 180 ) );
-				const rotateFoot = new FOUR.Matrix4().makeRotationFromEuler( new FOUR.Euler( FOUR.MathUtils.degToRad( 45 ), FOUR.MathUtils.degToRad( 180 ), FOUR.MathUtils.degToRad( 0 ) ) );
+				const rotateCW45 = new THREE.Matrix4().makeRotationY( THREE.MathUtils.degToRad( 45 ) );
+				const rotateCCW180 = new THREE.Matrix4().makeRotationY( THREE.MathUtils.degToRad( - 180 ) );
+				const rotateCW180 = new THREE.Matrix4().makeRotationY( THREE.MathUtils.degToRad( 180 ) );
+				const rotateFoot = new THREE.Matrix4().makeRotationFromEuler( new THREE.Euler( THREE.MathUtils.degToRad( 45 ), THREE.MathUtils.degToRad( 180 ), THREE.MathUtils.degToRad( 0 ) ) );
 
 				const retargetOptions = {
 
@@ -204,7 +204,7 @@
 
 					// specify the influence of the source's hip bone.
 					// use ( 0, 1, 0 ) to ignore xz hip movement.
-					//hipInfluence: new FOUR.Vector3( 0, 1, 0 ),
+					//hipInfluence: new THREE.Vector3( 0, 1, 0 ),
 
 					// specify an animation range in seconds.
 					//trim: [ 3.0, 4.0 ],
@@ -272,7 +272,7 @@
 				// ancestor node, because that's what
 				// SkeletonUtils.retargetClip outputs the clip to be
 				// compatible with.
-				const mixer = new FOUR.AnimationMixer( targetSkin );
+				const mixer = new THREE.AnimationMixer( targetSkin );
 				mixer.clipAction( retargetedClip ).play();
 
 				return mixer;

@@ -17,16 +17,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { ARButton } from '@tnb1j/4js/addons/webxr/ARButton.js';
+			import * as THREE from 'three';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
 
 			let camera, scene, renderer;
 			let controller;
@@ -38,17 +38,17 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-				const light = new FOUR.HemisphereLight( 0xffffff, 0xbbbbff, 3 );
+				const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 3 );
 				light.position.set( 0.5, 1, 0.25 );
 				scene.add( light );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -61,12 +61,12 @@
 
 				//
 
-				const geometry = new FOUR.CylinderGeometry( 0, 0.05, 0.2, 32 ).rotateX( Math.PI / 2 );
+				const geometry = new THREE.CylinderGeometry( 0, 0.05, 0.2, 32 ).rotateX( Math.PI / 2 );
 
 				function onSelect() {
 
-					const material = new FOUR.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-					const mesh = new FOUR.Mesh( geometry, material );
+					const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
 					mesh.quaternion.setFromRotationMatrix( controller.matrixWorld );
 					scene.add( mesh );

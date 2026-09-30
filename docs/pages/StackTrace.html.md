@@ -46,4 +46,4 @@ Returns a formatted location string of the top stack frame.
 
 ## Source
 
-[src/nodes/core/StackTrace.js](../../src/nodes/core/StackTrace.js)
+[src/nodes/core/StackTrace.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/StackTrace.js)

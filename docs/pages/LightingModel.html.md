@@ -66,4 +66,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/core/LightingModel.js](../../src/nodes/core/LightingModel.js)
+[src/nodes/core/LightingModel.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/LightingModel.js)

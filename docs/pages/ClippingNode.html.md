@@ -80,4 +80,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/accessors/ClippingNode.js](../../src/nodes/accessors/ClippingNode.js)
+[src/nodes/accessors/ClippingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/ClippingNode.js)

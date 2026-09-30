@@ -19,4 +19,4 @@ For a track with N keyframes and stride S:
 
 ## Source
 
-[src/math/interpolants/BezierInterpolant.js](../../src/math/interpolants/BezierInterpolant.js)
+[src/math/interpolants/BezierInterpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/interpolants/BezierInterpolant.js)

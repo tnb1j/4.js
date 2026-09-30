@@ -1,6 +1,6 @@
 /**
  * @module HorizontalTiltShiftShader
- * @four_import import { HorizontalTiltShiftShader } from '@tnb1j/4js/addons/shaders/HorizontalTiltShiftShader.js';
+ * @three_import import { HorizontalTiltShiftShader } from 'three/addons/shaders/HorizontalTiltShiftShader.js';
  */
 
 /**

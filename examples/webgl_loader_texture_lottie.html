@@ -18,18 +18,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as THREE from 'three';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			import lottie from 'https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/+esm';
 
@@ -40,15 +40,15 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.z = 2.5;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x111111 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x111111 );
 
 				// lottie
 
-				const loader = new FOUR.FileLoader();
+				const loader = new THREE.FileLoader();
 				loader.setResponseType( 'json' );
 				loader.load( 'textures/lottie/24017-lottie-logo-animation.json', function ( data ) {
 
@@ -67,10 +67,10 @@
 						rendererSettings: { dpr: dpr }
 					} );
 
-					const texture = new FOUR.CanvasTexture( animation.container );
-					texture.minFilter = FOUR.NearestFilter;
+					const texture = new THREE.CanvasTexture( animation.container );
+					texture.minFilter = THREE.NearestFilter;
 					texture.generateMipmaps = false;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.colorSpace = THREE.SRGBColorSpace;
 
 					animation.addEventListener( 'enterFrame', function () {
 
@@ -82,25 +82,25 @@
 
 					setupControls( animation );
 
-					// texture = new FOUR.TextureLoader().load( 'textures/uv_grid_directx.jpg' );
-					// texture.colorSpace = FOUR.SRGBColorSpace;
+					// texture = new THREE.TextureLoader().load( 'textures/uv_grid_directx.jpg' );
+					// texture.colorSpace = THREE.SRGBColorSpace;
 
 					const geometry = new RoundedBoxGeometry( 1, 1, 1, 7, 0.1 );
-					const material = new FOUR.MeshStandardMaterial( { roughness: 0, map: texture } );
-					mesh = new FOUR.Mesh( geometry, material );
+					const material = new THREE.MeshStandardMaterial( { roughness: 0, map: texture } );
+					mesh = new THREE.Mesh( geometry, material );
 					scene.add( mesh );
 
 				} );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				const environment = new RoomEnvironment();
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
 				scene.environment = pmremGenerator.fromScene( environment, 0.04 ).texture;
 

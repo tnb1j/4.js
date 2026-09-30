@@ -10,17 +10,17 @@ The implementation is based on the [EnvironmentScene](https://github.com/google/
 
 ```js
 const environment = new RoomEnvironment();
-const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
 const envMap = pmremGenerator.fromScene( environment ).texture;
 scene.environment = envMap;
 ```
 
 ## Import
 
-RoomEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RoomEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 ```
 
 ## Constructor
@@ -33,6 +33,8 @@ import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.
 
 Frees internal resources. This method should be called when the environment is no longer required.
 
+**Overrides:** [Scene#dispose](Scene.html#dispose)
+
 ## Source
 
-[examples/jsm/environments/RoomEnvironment.js](../../examples/jsm/environments/RoomEnvironment.js)
+[examples/jsm/environments/RoomEnvironment.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/environments/RoomEnvironment.js)

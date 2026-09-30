@@ -25,35 +25,35 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { atan, cos, float, max, min, mix, PI, TWO_PI, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform, step } from '@tnb1j/4js/tsl';
-			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
+			import * as THREE from 'three/webgpu';
+			import { atan, cos, float, max, min, mix, PI, TWO_PI, sin, vec2, vec3, color, Fn, hash, hue, If, instanceIndex, Loop, mx_fractal_noise_float, mx_fractal_noise_vec3, pass, pcurve, storage, deltaTime, time, uv, uniform, step } from 'three/tsl';
+			import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			let camera, scene, renderer, renderPipeline, controls, timer, light;
 
 			let updateParticles, spawnParticles; // TSL compute nodes
 			let getInstanceColor; // TSL function
 
-			const screenPointer = new FOUR.Vector2();
-			const scenePointer = new FOUR.Vector3();
-			const raycastPlane = new FOUR.Plane( new FOUR.Vector3( 0, 0, 1 ), 0 );
-			const raycaster = new FOUR.Raycaster();
+			const screenPointer = new THREE.Vector2();
+			const scenePointer = new THREE.Vector3();
+			const raycastPlane = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 0 );
+			const raycaster = new THREE.Raycaster();
 
 			const nbParticles = Math.pow( 2, 13 );
 
@@ -90,23 +90,23 @@
 
 				}
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 200 );
 				camera.position.set( 0, 0, 10 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setClearColor( 0x14171a );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				await renderer.init();
@@ -121,8 +121,8 @@
 
 				// Particles
 				// storage buffers
-				const particlePositions = storage( new FOUR.StorageInstancedBufferAttribute( nbParticles, 4 ), 'vec4', nbParticles );
-				const particleVelocities = storage( new FOUR.StorageInstancedBufferAttribute( nbParticles, 4 ), 'vec4', nbParticles );
+				const particlePositions = storage( new THREE.StorageInstancedBufferAttribute( nbParticles, 4 ), 'vec4', nbParticles );
+				const particleVelocities = storage( new THREE.StorageInstancedBufferAttribute( nbParticles, 4 ), 'vec4', nbParticles );
 
 				// init particles buffers
 				renderer.compute( Fn( () => {
@@ -134,10 +134,10 @@
 
 				// particles output
 				const particleQuadSize = 0.05;
-				const particleGeom = new FOUR.PlaneGeometry( particleQuadSize, particleQuadSize );
+				const particleGeom = new THREE.PlaneGeometry( particleQuadSize, particleQuadSize );
 
-				const particleMaterial = new FOUR.SpriteNodeMaterial();
-				particleMaterial.blending = FOUR.AdditiveBlending;
+				const particleMaterial = new THREE.SpriteNodeMaterial();
+				particleMaterial.blending = THREE.AdditiveBlending;
 				particleMaterial.depthWrite = false;
 				particleMaterial.positionNode = particlePositions.toAttribute();
 				particleMaterial.scaleNode = vec2( particleSize );
@@ -166,8 +166,8 @@
 
 				} )();
 
-				const particleMesh = new FOUR.InstancedMesh( particleGeom, particleMaterial, nbParticles );
-				particleMesh.instanceMatrix.setUsage( FOUR.DynamicDrawUsage );
+				const particleMesh = new THREE.InstancedMesh( particleGeom, particleMaterial, nbParticles );
+				particleMesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage );
 				particleMesh.frustumCulled = false;
 
 				scene.add( particleMesh );
@@ -189,25 +189,25 @@
 
 				// storage buffers attributes for the links
 				const nbVertices = nbParticles * 8;
-				const linksVerticesSBA = new FOUR.StorageBufferAttribute( nbVertices, 4 );
-				const linksColorsSBA = new FOUR.StorageBufferAttribute( nbVertices, 4 );
+				const linksVerticesSBA = new THREE.StorageBufferAttribute( nbVertices, 4 );
+				const linksColorsSBA = new THREE.StorageBufferAttribute( nbVertices, 4 );
 
 				// links output
-				const linksGeom = new FOUR.BufferGeometry();
+				const linksGeom = new THREE.BufferGeometry();
 				linksGeom.setAttribute( 'position', linksVerticesSBA );
 				linksGeom.setAttribute( 'color', linksColorsSBA );
 				linksGeom.setIndex( linksIndices );
 
-				const linksMaterial = new FOUR.MeshBasicNodeMaterial();
+				const linksMaterial = new THREE.MeshBasicNodeMaterial();
 				linksMaterial.vertexColors = true;
-				linksMaterial.side = FOUR.DoubleSide;
+				linksMaterial.side = THREE.DoubleSide;
 				linksMaterial.transparent = true;
 				linksMaterial.depthWrite = false;
 				linksMaterial.depthTest = false;
-				linksMaterial.blending = FOUR.AdditiveBlending;
+				linksMaterial.blending = THREE.AdditiveBlending;
 				linksMaterial.opacityNode = storage( linksColorsSBA, 'vec4', linksColorsSBA.count ).toAttribute().w;
 
-				const linksMesh = new FOUR.Mesh( linksGeom, linksMaterial );
+				const linksMesh = new THREE.Mesh( linksGeom, linksMaterial );
 				linksMesh.frustumCulled = false;
 				scene.add( linksMesh );
 
@@ -342,23 +342,23 @@
 
 
 				// background , an inverted icosahedron
-				const backgroundGeom = new FOUR.IcosahedronGeometry( 100, 5 ).applyMatrix4( new FOUR.Matrix4().makeScale( - 1, 1, 1 ) );
-				const backgroundMaterial = new FOUR.MeshStandardNodeMaterial();
+				const backgroundGeom = new THREE.IcosahedronGeometry( 100, 5 ).applyMatrix4( new THREE.Matrix4().makeScale( - 1, 1, 1 ) );
+				const backgroundMaterial = new THREE.MeshStandardNodeMaterial();
 				backgroundMaterial.roughness = 0.4;
 				backgroundMaterial.metalness = 0.9;
 				backgroundMaterial.flatShading = true;
 				backgroundMaterial.colorNode = color( 0x0 );
 
-				const backgroundMesh = new FOUR.Mesh( backgroundGeom, backgroundMaterial );
+				const backgroundMesh = new THREE.Mesh( backgroundGeom, backgroundMaterial );
 				scene.add( backgroundMesh );
 
 				// light for the background
-				light = new FOUR.PointLight( 0xffffff, 3000 );
+				light = new THREE.PointLight( 0xffffff, 3000 );
 				scene.add( light );
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera );
 				const scenePassColor = scenePass.getTextureNode( 'output' );

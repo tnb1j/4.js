@@ -16,10 +16,10 @@ scene.add( object );
 
 ## Import
 
-OBJLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OBJLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 ```
 
 ## Constructor
@@ -88,4 +88,4 @@ An object that creates the materials for this OBJ.
 
 ## Source
 
-[examples/jsm/loaders/OBJLoader.js](../../examples/jsm/loaders/OBJLoader.js)
+[examples/jsm/loaders/OBJLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/OBJLoader.js)

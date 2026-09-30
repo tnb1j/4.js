@@ -23,6 +23,17 @@
 		</script>
 
 		<script type="module">
+			window.QUnit.on( 'testEnd', ( test ) => {
+
+				if ( test.status === 'failed' ) {
+
+					const errors = test.errors.map( e => e.message || e.source || JSON.stringify( e ) ).join( ' ; ' );
+					console.error( `FAIL: ${test.suiteName} > ${test.name}: ${errors}` );
+
+				}
+
+			} );
+
 			window.QUnit.on( 'runEnd', ( runEnd ) => {
 
 				// using these later in puppeteer.unit.js

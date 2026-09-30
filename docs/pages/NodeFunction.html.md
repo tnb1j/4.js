@@ -64,4 +64,4 @@ The function's name.
 
 ## Source
 
-[src/nodes/core/NodeFunction.js](../../src/nodes/core/NodeFunction.js)
+[src/nodes/core/NodeFunction.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeFunction.js)

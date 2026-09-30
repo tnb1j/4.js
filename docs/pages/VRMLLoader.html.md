@@ -14,10 +14,10 @@ scene.add( object );
 
 ## Import
 
-VRMLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VRMLLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VRMLLoader } from '@tnb1j/4js/addons/loaders/VRMLLoader.js';
+import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
 ```
 
 ## Constructor
@@ -72,4 +72,4 @@ The URL base path.
 
 ## Source
 
-[examples/jsm/loaders/VRMLLoader.js](../../examples/jsm/loaders/VRMLLoader.js)
+[examples/jsm/loaders/VRMLLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/VRMLLoader.js)

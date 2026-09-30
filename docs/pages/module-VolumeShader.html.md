@@ -2,10 +2,10 @@
 
 ## Import
 
-VolumeShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VolumeShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VolumeRenderShader1 } from '@tnb1j/4js/addons/shaders/VolumeShader.js';
+import { VolumeRenderShader1 } from 'three/addons/shaders/VolumeShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Shaders to render 3D volumes using raycasting. The applied techniques are based 
 
 ## Source
 
-[examples/jsm/shaders/VolumeShader.js](../../examples/jsm/shaders/VolumeShader.js)
+[examples/jsm/shaders/VolumeShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/VolumeShader.js)

@@ -14,10 +14,10 @@ composer.addPass( renderTransitionPass );
 
 ## Import
 
-RenderTransitionPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RenderTransitionPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RenderTransitionPass } from '@tnb1j/4js/addons/postprocessing/RenderTransitionPass.js';
+import { RenderTransitionPass } from 'three/addons/postprocessing/RenderTransitionPass.js';
 ```
 
 ## Constructor
@@ -146,4 +146,4 @@ Whether to use a texture for the transition effect or not.
 
 ## Source
 
-[examples/jsm/postprocessing/RenderTransitionPass.js](../../examples/jsm/postprocessing/RenderTransitionPass.js)
+[examples/jsm/postprocessing/RenderTransitionPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/RenderTransitionPass.js)

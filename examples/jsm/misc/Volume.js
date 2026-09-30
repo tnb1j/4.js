@@ -2,14 +2,14 @@ import {
 	Matrix3,
 	Matrix4,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 import { VolumeSlice } from '../misc/VolumeSlice.js';
 
 /**
  * This class had been written to handle the output of the {@link NRRDLoader}.
  * It contains a volume of data and information about it. For now it only handles 3 dimensional data.
  *
- * @four_import import { Volume } from '@tnb1j/4js/addons/misc/Volume.js';
+ * @three_import import { Volume } from 'three/addons/misc/Volume.js';
  */
 class Volume {
 
@@ -122,7 +122,7 @@ class Volume {
 				case 'unsigned long long int' :
 				case 'uint64' :
 				case 'uint64_t' :
-					throw new Error( 'FOUR.Volume: type is not supported in JavaScript.' );
+					throw new Error( 'THREE.Volume: type is not supported in JavaScript.' );
 				case 'Float32' :
 				case 'float32' :
 				case 'float' :
@@ -140,7 +140,7 @@ class Volume {
 
 			if ( this.data.length !== this.xLength * this.yLength * this.zLength ) {
 
-				throw new Error( 'FOUR.Volume: lengths are not matching arrayBuffer size.' );
+				throw new Error( 'THREE.Volume: lengths are not matching arrayBuffer size.' );
 
 			}
 

@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { struct, storage, sin, cross, normalize, abs, mix, Fn, vec4, max, pow, time, varyingProperty, attribute, uint, atomicStore } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { struct, storage, sin, cross, normalize, abs, mix, Fn, vec4, max, pow, time, varyingProperty, attribute, uint, atomicStore } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 
@@ -51,8 +51,8 @@
 			}
 
 
-			const renderer = new FOUR.WebGPURenderer( { antialias: true } );
-			renderer.outputColorSpace = FOUR.SRGBColorSpace;
+			const renderer = new THREE.WebGPURenderer( { antialias: true } );
+			renderer.outputColorSpace = THREE.SRGBColorSpace;
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setClearColor( 0x000000 );
@@ -61,10 +61,10 @@
 
 			const aspect = window.innerWidth / window.innerHeight;
 
-			const camera = new FOUR.PerspectiveCamera( 50.0, aspect, 0.1, 10000 );
-			const scene = new FOUR.Scene();
+			const camera = new THREE.PerspectiveCamera( 50.0, aspect, 0.1, 10000 );
+			const scene = new THREE.Scene();
 
-			scene.background = new FOUR.Color( 0x00001f );
+			scene.background = new THREE.Color( 0x00001f );
 			camera.position.set( 1, 1, 1 );
 			const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -78,7 +78,7 @@
 
 				// geometry
 
-				const vector = new FOUR.Vector4();
+				const vector = new THREE.Vector4();
 
 				const instances = 100000;
 
@@ -120,16 +120,16 @@
 
 				}
 
-				const geometry = new FOUR.InstancedBufferGeometry();
+				const geometry = new THREE.InstancedBufferGeometry();
 				geometry.instanceCount = instances;
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'offset', new FOUR.InstancedBufferAttribute( new Float32Array( offsets ), 3 ) );
-				geometry.setAttribute( 'color', new FOUR.InstancedBufferAttribute( new Float32Array( colors ), 4 ) );
-				geometry.setAttribute( 'orientationStart', new FOUR.InstancedBufferAttribute( new Float32Array( orientationsStart ), 4 ) );
-				geometry.setAttribute( 'orientationEnd', new FOUR.InstancedBufferAttribute( new Float32Array( orientationsEnd ), 4 ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'offset', new THREE.InstancedBufferAttribute( new Float32Array( offsets ), 3 ) );
+				geometry.setAttribute( 'color', new THREE.InstancedBufferAttribute( new Float32Array( colors ), 4 ) );
+				geometry.setAttribute( 'orientationStart', new THREE.InstancedBufferAttribute( new Float32Array( orientationsStart ), 4 ) );
+				geometry.setAttribute( 'orientationEnd', new THREE.InstancedBufferAttribute( new Float32Array( orientationsEnd ), 4 ) );
 
-				const drawBuffer = new FOUR.IndirectStorageBufferAttribute( new Uint32Array( 5 ), 5 );
+				const drawBuffer = new THREE.IndirectStorageBufferAttribute( new Uint32Array( 5 ), 5 );
 				geometry.setIndirect( drawBuffer );
 
 				const drawBufferStruct = struct( {
@@ -209,8 +209,8 @@
 
 				} )();
 
-				const material = new FOUR.MeshBasicNodeMaterial( {
-					side: FOUR.DoubleSide,
+				const material = new THREE.MeshBasicNodeMaterial( {
+					side: THREE.DoubleSide,
 					forceSinglePass: true,
 					transparent: true
 				} );
@@ -218,7 +218,7 @@
 				material.positionNode = positionFn;
 				material.fragmentNode = fragmentFn;
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				renderer.setAnimationLoop( render );

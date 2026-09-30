@@ -4,10 +4,10 @@ A utility class with helper functions for color conversion.
 
 ## Import
 
-ColorConverter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColorConverter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ColorConverter } from '@tnb1j/4js/addons/math/ColorConverter.js';
+import { ColorConverter } from 'three/addons/math/ColorConverter.js';
 ```
 
 ## Static Methods
@@ -50,4 +50,4 @@ The value.
 
 ## Source
 
-[examples/jsm/math/ColorConverter.js](../../examples/jsm/math/ColorConverter.js)
+[examples/jsm/math/ColorConverter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/ColorConverter.js)

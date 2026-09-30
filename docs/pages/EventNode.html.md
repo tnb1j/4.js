@@ -20,4 +20,4 @@ The callback to execute on update.
 
 ## Source
 
-[src/nodes/utils/EventNode.js](../../src/nodes/utils/EventNode.js)
+[src/nodes/utils/EventNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/EventNode.js)

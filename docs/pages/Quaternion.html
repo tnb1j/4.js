@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Quaternion - 4.js Docs</title>
+	<title>Quaternion - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
 	<h1 translate="no">Quaternion</h1>
 		<section>
 			<header>
-				<div class="class-description"><p>Class for representing a Quaternion. Quaternions are used in 4.js to represent rotations.</p>
+				<div class="class-description"><p>Class for representing a Quaternion. Quaternions are used in three.js to represent rotations.</p>
 <p>Iterating through a vector instance will yield its components <code>(x, y, z, w)</code> in
 the corresponding order.</p>
-<p>Note that 4.js expects Quaternions to be normalized.</p></div>
+<p>Note that three.js expects Quaternions to be normalized.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const quaternion = new FOUR.Quaternion();
-quaternion.setFromAxisAngle( new FOUR.Vector3( 0, 1, 0 ), Math.PI / 2 );
-const vector = new FOUR.Vector3( 1, 0, 0 );
+				<div translate="no"><pre><code class="language-js">const quaternion = new THREE.Quaternion();
+quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+const vector = new THREE.Vector3( 1, 0, 0 );
 vector.applyQuaternion( quaternion );
 </code></pre></div>
 			</header>
@@ -848,7 +848,7 @@ quaternion data are managed in flat arrays.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/math/Quaternion.js" translate="no">src/math/Quaternion.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/math/Quaternion.js" translate="no" target="_blank" rel="noopener">src/math/Quaternion.js</a>
 				</p>
 			</article>
 		</section>

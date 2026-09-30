@@ -10,10 +10,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 
 ## Import
 
-LineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LineMaterial } from '@tnb1j/4js/addons/lines/LineMaterial.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 ```
 
 ## Constructor
@@ -104,4 +104,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/lines/LineMaterial.js](../../examples/jsm/lines/LineMaterial.js)
+[examples/jsm/lines/LineMaterial.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/LineMaterial.js)

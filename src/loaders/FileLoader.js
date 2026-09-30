@@ -20,11 +20,11 @@ class HttpError extends Error {
  * most loaders. It can also be used directly to load any file type that does
  * not have a loader.
  *
- * This loader supports caching. If you want to use it, add `FOUR.Cache.enabled = true;`
+ * This loader supports caching. If you want to use it, add `THREE.Cache.enabled = true;`
  * once to your application.
  *
  * ```js
- * const loader = new FOUR.FileLoader();
+ * const loader = new THREE.FileLoader();
  * const data = await loader.loadAsync( 'example.txt' );
  * ```
  *

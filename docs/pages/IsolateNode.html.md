@@ -40,4 +40,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/core/IsolateNode.js](../../src/nodes/core/IsolateNode.js)
+[src/nodes/core/IsolateNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/IsolateNode.js)

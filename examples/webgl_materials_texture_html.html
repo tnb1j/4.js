@@ -61,8 +61,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three-html-render/polyfill": "https://cdn.jsdelivr.net/npm/three-html-render/dist/polyfill.mjs"
 				}
 			}
@@ -70,18 +70,16 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 			import { installHtmlInCanvasPolyfill } from 'three-html-render/polyfill';
-			import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { InteractionManager } from '@tnb1j/4js/addons/interaction/InteractionManager.js';
-
-			const info = document.getElementById( 'info' );
+			import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { InteractionManager } from 'three/addons/interaction/InteractionManager.js';
 
 			if ( ! ( 'requestPaint' in HTMLCanvasElement.prototype ) ) {
 
 				installHtmlInCanvasPolyfill();
-				info.innerHTML += '<br><a href="https://github.com/WICG/html-in-canvas" target="_blank">HTML-in-Canvas API</a> not available. Using <a href="https://github.com/repalash/three-html-render" target="_blank">polyfill</a>.';
+				document.getElementById( 'info' ).innerHTML += '<br><a href="https://github.com/WICG/html-in-canvas" target="_blank">HTML-in-Canvas API</a> not available. Using <a href="https://github.com/repalash/three-html-render" target="_blank">polyfill</a>.';
 
 			}
 
@@ -91,20 +89,20 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xaaaaaa );
-				scene.environment = new FOUR.PMREMGenerator( renderer ).fromScene( new RoomEnvironment(), 0.02 ).texture;
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xaaaaaa );
+				scene.environment = new THREE.PMREMGenerator( renderer ).fromScene( new RoomEnvironment(), 0.02 ).texture;
 
 				// HTML element
 
@@ -132,10 +130,10 @@
 
 				const geometry = new RoundedBoxGeometry( 200, 200, 200, 10, 10 );
 
-				const material = new FOUR.MeshStandardMaterial( { roughness: 0, metalness: 0.5 } );
-				material.map = new FOUR.HTMLTexture( element );
+				const material = new THREE.MeshStandardMaterial( { roughness: 0, metalness: 0.5 } );
+				material.map = new THREE.HTMLTexture( element );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				// Interaction

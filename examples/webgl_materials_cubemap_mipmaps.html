@@ -20,17 +20,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let container;
 
@@ -50,7 +50,7 @@
 
 					return new Promise( function ( resolve ) {
 
-						new FOUR.CubeTextureLoader().load( urls, function ( cubeTexture ) {
+						new THREE.CubeTextureLoader().load( urls, function ( cubeTexture ) {
 
 							resolve( cubeTexture );
 
@@ -88,9 +88,9 @@
 
 				const customizedCubeTexture = mipmaps.shift();
 				customizedCubeTexture.mipmaps = mipmaps;
-				customizedCubeTexture.colorSpace = FOUR.SRGBColorSpace;
-				customizedCubeTexture.minFilter = FOUR.LinearMipMapLinearFilter;
-				customizedCubeTexture.magFilter = FOUR.LinearFilter;
+				customizedCubeTexture.colorSpace = THREE.SRGBColorSpace;
+				customizedCubeTexture.minFilter = THREE.LinearMipMapLinearFilter;
+				customizedCubeTexture.magFilter = THREE.LinearFilter;
 				customizedCubeTexture.generateMipmaps = false;
 				customizedCubeTexture.needsUpdate = true;
 
@@ -103,21 +103,21 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				loadCubeTextureWithMipmaps().then( function ( cubeTexture ) {
 
 					//model
-					const sphere = new FOUR.SphereGeometry( 100, 128, 128 );
+					const sphere = new THREE.SphereGeometry( 100, 128, 128 );
 
 					//manual mipmaps
-					let material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: cubeTexture } );
+					let material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: cubeTexture } );
 					material.name = 'manual mipmaps';
 
-					let mesh = new FOUR.Mesh( sphere, material );
+					let mesh = new THREE.Mesh( sphere, material );
 					mesh.position.set( 100, 0, 0 );
 					scene.add( mesh );
 
@@ -133,14 +133,14 @@
 
 					material.envMap = autoCubeTexture;
 
-					mesh = new FOUR.Mesh( sphere, material );
+					mesh = new THREE.Mesh( sphere, material );
 					mesh.position.set( - 100, 0, 0 );
 					scene.add( mesh );
 
 				} );
 
 				//renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

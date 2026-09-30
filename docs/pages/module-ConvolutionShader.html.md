@@ -2,10 +2,10 @@
 
 ## Import
 
-ConvolutionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ConvolutionShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ConvolutionShader } from '@tnb1j/4js/addons/shaders/ConvolutionShader.js';
+import { ConvolutionShader } from 'three/addons/shaders/ConvolutionShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Convolution shader ported from o3d sample to WebGL / GLSL.
 
 ## Source
 
-[examples/jsm/shaders/ConvolutionShader.js](../../examples/jsm/shaders/ConvolutionShader.js)
+[examples/jsm/shaders/ConvolutionShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ConvolutionShader.js)

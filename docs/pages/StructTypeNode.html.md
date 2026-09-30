@@ -50,4 +50,4 @@ Returns the length of the struct in 4-byte elements (e.g. float or int component
 
 ## Source
 
-[src/nodes/core/StructTypeNode.js](../../src/nodes/core/StructTypeNode.js)
+[src/nodes/core/StructTypeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/StructTypeNode.js)

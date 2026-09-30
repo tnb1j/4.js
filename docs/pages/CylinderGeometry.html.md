@@ -7,9 +7,9 @@ A geometry class for representing a cylinder.
 ## Code Example
 
 ```js
-const geometry = new FOUR.CylinderGeometry( 5, 5, 20, 32 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const cylinder = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.CylinderGeometry( 5, 5, 20, 32 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const cylinder = new THREE.Mesh( geometry, material );
 scene.add( cylinder );
 ```
 
@@ -87,4 +87,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/CylinderGeometry.js](../../src/geometries/CylinderGeometry.js)
+[src/geometries/CylinderGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/CylinderGeometry.js)

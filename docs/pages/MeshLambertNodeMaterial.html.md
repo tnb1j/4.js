@@ -54,4 +54,4 @@ Setups the lighting model.
 
 ## Source
 
-[src/materials/nodes/MeshLambertNodeMaterial.js](../../src/materials/nodes/MeshLambertNodeMaterial.js)
+[src/materials/nodes/MeshLambertNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshLambertNodeMaterial.js)

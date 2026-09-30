@@ -12,10 +12,10 @@ tiles.registerPlugin( new TileCreasedNormalsPlugin( { creaseAngle: Math.PI / 6 }
 
 ## Import
 
-TileCreasedNormalsPlugin is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TileCreasedNormalsPlugin is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TileCreasedNormalsPlugin } from '@tnb1j/4js/addons/misc/TileCreasedNormalsPlugin.js';
+import { TileCreasedNormalsPlugin } from 'three/addons/misc/TileCreasedNormalsPlugin.js';
 ```
 
 ## Constructor
@@ -58,4 +58,4 @@ The tile model.
 
 ## Source
 
-[examples/jsm/misc/TileCreasedNormalsPlugin.js](../../examples/jsm/misc/TileCreasedNormalsPlugin.js)
+[examples/jsm/misc/TileCreasedNormalsPlugin.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/TileCreasedNormalsPlugin.js)

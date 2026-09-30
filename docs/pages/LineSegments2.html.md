@@ -21,10 +21,10 @@ scene.add( lineSegments );
 
 ## Import
 
-LineSegments2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LineSegments2 is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LineSegments2 } from '@tnb1j/4js/addons/lines/LineSegments2.js';
+import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 ```
 
 ## Constructor
@@ -73,4 +73,4 @@ The target array that holds the intersection points.
 
 ## Source
 
-[examples/jsm/lines/LineSegments2.js](../../examples/jsm/lines/LineSegments2.js)
+[examples/jsm/lines/LineSegments2.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/LineSegments2.js)

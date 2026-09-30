@@ -17,10 +17,10 @@ const map = loader.loadAsync( 'luts/Bourbon 64.CUBE' );
 
 ## Import
 
-LUTCubeLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LUTCubeLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LUTCubeLoader } from '@tnb1j/4js/addons/loaders/LUTCubeLoader.js';
+import { LUTCubeLoader } from 'three/addons/loaders/LUTCubeLoader.js';
 ```
 
 ## Constructor
@@ -93,4 +93,4 @@ The texture type to set.
 
 ## Source
 
-[examples/jsm/loaders/LUTCubeLoader.js](../../examples/jsm/loaders/LUTCubeLoader.js)
+[examples/jsm/loaders/LUTCubeLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/LUTCubeLoader.js)

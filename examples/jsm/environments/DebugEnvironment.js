@@ -6,7 +6,7 @@ import {
 	MeshStandardMaterial,
 	PointLight,
 	Scene,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class represents a scene with a very basic room setup that can be used as
@@ -19,14 +19,14 @@ import {
  *
  * ```js
  * const environment = new DebugEnvironment();
- * const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+ * const pmremGenerator = new THREE.PMREMGenerator( renderer );
  *
  * const envMap = pmremGenerator.fromScene( environment ).texture;
  * scene.environment = envMap;
  * ```
  *
  * @augments Scene
- * @four_import import { DebugEnvironment } from '@tnb1j/4js/addons/environments/DebugEnvironment.js';
+ * @three_import import { DebugEnvironment } from 'three/addons/environments/DebugEnvironment.js';
  */
 class DebugEnvironment extends Scene {
 

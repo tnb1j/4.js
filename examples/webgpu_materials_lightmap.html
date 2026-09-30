@@ -14,22 +14,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { vec4, color, positionLocal, mix } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { vec4, color, positionLocal, mix } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -49,16 +49,16 @@
 
 				// CAMERA
 
-				camera = new FOUR.PerspectiveCamera( 40, innerWidth / innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, innerWidth / innerHeight, 1, 10000 );
 				camera.position.set( 700, 200, - 500 );
 
 				// SCENE
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// LIGHTS
 
-				const light = new FOUR.DirectionalLight( 0xd5deff );
+				const light = new THREE.DirectionalLight( 0xd5deff );
 				light.position.x = 300;
 				light.position.y = 250;
 				light.position.z = - 500;
@@ -66,29 +66,29 @@
 
 				// SKYDOME
 
-				const topColor = new FOUR.Color().copy( light.color );
-				const bottomColor = new FOUR.Color( 0xffffff );
+				const topColor = new THREE.Color().copy( light.color );
+				const bottomColor = new THREE.Color( 0xffffff );
 				const offset = 400;
 				const exponent = 0.6;
 
 				const h = positionLocal.add( offset ).normalize().y;
 
-				const skyMat = new FOUR.MeshBasicNodeMaterial();
+				const skyMat = new THREE.MeshBasicNodeMaterial();
 				skyMat.colorNode = vec4( mix( color( bottomColor ), color( topColor ), h.max( 0.0 ).pow( exponent ) ), 1.0 );
-				skyMat.side = FOUR.BackSide;
+				skyMat.side = THREE.BackSide;
 
-				const sky = new FOUR.Mesh( new FOUR.SphereGeometry( 4000, 32, 15 ), skyMat );
+				const sky = new THREE.Mesh( new THREE.SphereGeometry( 4000, 32, 15 ), skyMat );
 				scene.add( sky );
 
 				// MODEL
 
-				const loader = new FOUR.ObjectLoader();
+				const loader = new THREE.ObjectLoader();
 				const object = await loader.loadAsync( 'models/json/lightmap/lightmap.json' );
 				scene.add( object );
 
 				// RENDERER
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setAnimationLoop( animate );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( innerWidth, innerHeight );

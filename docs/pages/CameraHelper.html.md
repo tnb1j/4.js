@@ -13,8 +13,8 @@ When the camera is transformed or its projection matrix is changed, it's necessa
 ## Code Example
 
 ```js
-const camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-const helper = new FOUR.CameraHelper( camera );
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const helper = new THREE.CameraHelper( camera );
 scene.add( helper );
 ```
 
@@ -43,6 +43,8 @@ This contains the points used to visualize the camera.
 ### .dispose()
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
 
 ### .setColors( frustum : Color, cone : Color, up : Color, target : Color, cross : Color ) : CameraHelper
 
@@ -76,4 +78,4 @@ Updates the helper based on the projection matrix of the camera.
 
 ## Source
 
-[src/helpers/CameraHelper.js](../../src/helpers/CameraHelper.js)
+[src/helpers/CameraHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/CameraHelper.js)

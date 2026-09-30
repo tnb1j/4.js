@@ -26,27 +26,13 @@ function setupWebGLXRFallback( renderer, createFallbackRenderer, onFallback = ()
 
 			}
 
-			if ( session !== null && renderer.backend.isWebGPUBackend === true && session.enabledFeatures.includes( 'webgpu' ) === false ) {
+			if ( session !== null && renderer.backend.isWebGPUBackend === true && typeof globalThis.XRGPUBinding === 'undefined' ) {
 
 				return switchToFallbackRenderer( session, renderer );
 
 			}
 
-			try {
-
-				return await setSession( session );
-
-			} catch ( error ) {
-
-				if ( session === null || renderer.backend.isWebGPUBackend !== true ) {
-
-					throw error;
-
-				}
-
-				return switchToFallbackRenderer( session, renderer );
-
-			}
+			return setSession( session );
 
 		};
 
@@ -60,7 +46,7 @@ function setupWebGLXRFallback( renderer, createFallbackRenderer, onFallback = ()
 
 		if ( fallbackRenderer.backend.isWebGLBackend !== true ) {
 
-			throw new Error( 'FOUR.WebGLXRFallback: createFallbackRenderer() must return a renderer with a WebGL backend.' );
+			throw new Error( 'THREE.WebGLXRFallback: createFallbackRenderer() must return a renderer with a WebGL backend.' );
 
 		}
 

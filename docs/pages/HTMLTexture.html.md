@@ -74,4 +74,4 @@ Default is `true`.
 
 ## Source
 
-[src/textures/HTMLTexture.js](../../src/textures/HTMLTexture.js)
+[src/textures/HTMLTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/HTMLTexture.js)

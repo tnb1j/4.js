@@ -11,7 +11,7 @@
 	<body>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - Backgrounds: ClearPass, TexturePass and CubeTexturePass<br/>
-			by <a href="https://clara.io" target="_blank" rel="noopener">Ben Houston</a>
+			by <a href="https://ben3d.ca/" target="_blank" rel="noopener">Ben Houston</a>
 		</div>
 
 		<div id="container"></div>
@@ -19,26 +19,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { TexturePass } from '@tnb1j/4js/addons/postprocessing/TexturePass.js';
-			import { CubeTexturePass } from '@tnb1j/4js/addons/postprocessing/CubeTexturePass.js';
-			import { ClearPass } from '@tnb1j/4js/addons/postprocessing/ClearPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
+			import { CubeTexturePass } from 'three/addons/postprocessing/CubeTexturePass.js';
+			import { ClearPass } from 'three/addons/postprocessing/ClearPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let scene, renderer, composer;
 			let clearPass, texturePass, renderPass;
@@ -95,7 +95,7 @@
 				const aspect = width / height;
 				const devicePixelRatio = window.devicePixelRatio || 1;
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( devicePixelRatio );
 				renderer.setSize( width, height );
 				renderer.setAnimationLoop( animate );
@@ -106,40 +106,40 @@
 
 				//
 
-				cameraP = new FOUR.PerspectiveCamera( 65, aspect, 1, 10 );
+				cameraP = new THREE.PerspectiveCamera( 65, aspect, 1, 10 );
 				cameraP.position.z = 7;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const group = new FOUR.Group();
+				const group = new THREE.Group();
 				scene.add( group );
 
-				const light = new FOUR.PointLight( 0xefffef, 500 );
+				const light = new THREE.PointLight( 0xefffef, 500 );
 				light.position.z = 10;
 				light.position.y = - 10;
 				light.position.x = - 10;
 				scene.add( light );
 
-				const light2 = new FOUR.PointLight( 0xffefef, 500 );
+				const light2 = new THREE.PointLight( 0xffefef, 500 );
 				light2.position.z = 10;
 				light2.position.x = - 10;
 				light2.position.y = 10;
 				scene.add( light2 );
 
-				const light3 = new FOUR.PointLight( 0xefefff, 500 );
+				const light3 = new THREE.PointLight( 0xefefff, 500 );
 				light3.position.z = 10;
 				light3.position.x = 10;
 				light3.position.y = - 10;
 				scene.add( light3 );
 
-				const geometry = new FOUR.SphereGeometry( 1, 48, 24 );
+				const geometry = new THREE.SphereGeometry( 1, 48, 24 );
 
-				const material = new FOUR.MeshStandardMaterial();
+				const material = new THREE.MeshStandardMaterial();
 				material.roughness = 0.5 * Math.random() + 0.25;
 				material.metalness = 0;
 				material.color.setHSL( Math.random(), 1.0, 0.3 );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				group.add( mesh );
 
 				// postprocessing
@@ -162,10 +162,10 @@
 				texturePass = new TexturePass();
 				composer.addPass( texturePass );
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				textureLoader.load( 'textures/hardwood2_diffuse.jpg', function ( map ) {
 
-					map.colorSpace = FOUR.SRGBColorSpace;
+					map.colorSpace = THREE.SRGBColorSpace;
 					texturePass.map = map;
 
 				} );
@@ -173,7 +173,7 @@
 				cubeTexturePassP = null;
 
 				const ldrUrls = genCubeUrls( 'textures/cube/pisa/', '.png' );
-				new FOUR.CubeTextureLoader().load( ldrUrls, function ( ldrCubeMap ) {
+				new THREE.CubeTextureLoader().load( ldrUrls, function ( ldrCubeMap ) {
 
 					cubeTexturePassP = new CubeTexturePass( cameraP, ldrCubeMap );
 					composer.insertPass( cubeTexturePassP, 2 );

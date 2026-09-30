@@ -84,4 +84,4 @@ The time delta in seconds.
 
 ## Source
 
-[src/extras/Controls.js](../../src/extras/Controls.js)
+[src/extras/Controls.js](https://github.com/mrdoob/three.js/blob/master/src/extras/Controls.js)

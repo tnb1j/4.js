@@ -7,9 +7,9 @@ A geometry class for representing a cone.
 ## Code Example
 
 ```js
-const geometry = new FOUR.ConeGeometry( 5, 20, 32 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const cone = new FOUR.Mesh(geometry, material );
+const geometry = new THREE.ConeGeometry( 5, 20, 32 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const cone = new THREE.Mesh(geometry, material );
 scene.add( cone );
 ```
 
@@ -83,4 +83,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/ConeGeometry.js](../../src/geometries/ConeGeometry.js)
+[src/geometries/ConeGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/ConeGeometry.js)

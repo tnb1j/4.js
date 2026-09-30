@@ -13,10 +13,10 @@ const data = exporter.parse( scene );
 
 ## Import
 
-OBJExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OBJExporter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OBJExporter } from '@tnb1j/4js/addons/exporters/OBJExporter.js';
+import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 ```
 
 ## Constructor
@@ -39,4 +39,4 @@ The 3D object to export.
 
 ## Source
 
-[examples/jsm/exporters/OBJExporter.js](../../examples/jsm/exporters/OBJExporter.js)
+[examples/jsm/exporters/OBJExporter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/OBJExporter.js)

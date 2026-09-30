@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { bumpMap, float, getParallaxCorrectNormal, pmremTexture, reflectVector, texture, uniform, vec3 } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { bumpMap, float, getParallaxCorrectNormal, pmremTexture, reflectVector, texture, uniform, vec3 } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
-			import { RectAreaLightTexturesLib } from '@tnb1j/4js/addons/lights/RectAreaLightTexturesLib.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
+			import { RectAreaLightTexturesLib } from 'three/addons/lights/RectAreaLightTexturesLib.js';
 
 			let camera, scene, renderer;
 
@@ -54,50 +54,50 @@
 
 			async function init() {
 
-				FOUR.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() );
+				THREE.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() );
 
 				// scene
 			
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( 0, 200, - 200 );
 
 				// cube camera for environment map
 
-				const renderTarget = new FOUR.CubeRenderTarget( 512 );
-				renderTarget.texture.type = FOUR.HalfFloatType;
-				renderTarget.texture.minFilter = FOUR.LinearMipmapLinearFilter;
-				renderTarget.texture.magFilter = FOUR.LinearFilter;
+				const renderTarget = new THREE.CubeRenderTarget( 512 );
+				renderTarget.texture.type = THREE.HalfFloatType;
+				renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
+				renderTarget.texture.magFilter = THREE.LinearFilter;
 				renderTarget.texture.generateMipmaps = true;
-				renderTarget.texture.mapping = FOUR.CubeReflectionMapping;
+				renderTarget.texture.mapping = THREE.CubeReflectionMapping;
 
-				cubeCamera = new FOUR.CubeCamera( 1, 1000, renderTarget );
+				cubeCamera = new THREE.CubeCamera( 1, 1000, renderTarget );
 				cubeCamera.position.set( 0, - 100, 0 );
 
 				// ground floor ( with box projected environment mapping )
 			
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				const rMap = loader.load( 'textures/lava/lavatile.jpg' );
-				rMap.wrapS = FOUR.RepeatWrapping;
-				rMap.wrapT = FOUR.RepeatWrapping;
+				rMap.wrapS = THREE.RepeatWrapping;
+				rMap.wrapT = THREE.RepeatWrapping;
 				rMap.repeat.set( 2, 1 );
 
 				const roughnessUniform = uniform( 0.25 );
 
-				const defaultMat = new FOUR.MeshStandardNodeMaterial();
+				const defaultMat = new THREE.MeshStandardNodeMaterial();
 				defaultMat.envNode = pmremTexture( renderTarget.texture );
 				defaultMat.roughnessNode = texture( rMap ).mul( roughnessUniform );
 				defaultMat.metalnessNode = float( 1 );
 
-				const boxProjectedMat = new FOUR.MeshStandardNodeMaterial();
-				boxProjectedMat.envNode = pmremTexture( renderTarget.texture, getParallaxCorrectNormal( reflectVector, vec3( 200, 100, 100 ), vec3( 0, - 50, 0 ) ) );
+				const boxProjectedMat = new THREE.MeshStandardNodeMaterial();
+				boxProjectedMat.envNode = pmremTexture( renderTarget.texture, getParallaxCorrectNormal( reflectVector, vec3( 200, 200, 100 ), vec3( 0, - 50, 0 ) ) );
 				boxProjectedMat.roughnessNode = texture( rMap ).mul( roughnessUniform );
 				boxProjectedMat.metalnessNode = float( 1 );
 
-				groundPlane = new FOUR.Mesh( new FOUR.PlaneGeometry( 200, 100, 100 ), boxProjectedMat );
+				groundPlane = new THREE.Mesh( new THREE.PlaneGeometry( 200, 100, 100 ), boxProjectedMat );
 				groundPlane.rotateX( - Math.PI / 2 );
 				groundPlane.position.set( 0, - 49, 0 );
 				scene.add( groundPlane );
@@ -108,43 +108,43 @@
 					loader.loadAsync( 'textures/brick_diffuse.jpg' ),
 					loader.loadAsync( 'textures/brick_bump.jpg' )
 				] );
-				diffuseTex.colorSpace = FOUR.SRGBColorSpace;
+				diffuseTex.colorSpace = THREE.SRGBColorSpace;
 
-				wallMat = new FOUR.MeshStandardNodeMaterial();
+				wallMat = new THREE.MeshStandardNodeMaterial();
 
 				wallMat.colorNode = texture( diffuseTex );
 				wallMat.normalNode = bumpMap( texture( bumpTex ), float( 5 ) );
 
-				const planeGeo = new FOUR.PlaneGeometry( 100, 100 );
+				const planeGeo = new THREE.PlaneGeometry( 100, 100 );
 
-				const planeBack1 = new FOUR.Mesh( planeGeo, wallMat );
+				const planeBack1 = new THREE.Mesh( planeGeo, wallMat );
 				planeBack1.position.z = - 50;
 				planeBack1.position.x = - 50;
 				scene.add( planeBack1 );
 
-				const planeBack2 = new FOUR.Mesh( planeGeo, wallMat );
+				const planeBack2 = new THREE.Mesh( planeGeo, wallMat );
 				planeBack2.position.z = - 50;
 				planeBack2.position.x = 50;
 				scene.add( planeBack2 );
 
-				const planeFront1 = new FOUR.Mesh( planeGeo, wallMat );
+				const planeFront1 = new THREE.Mesh( planeGeo, wallMat );
 				planeFront1.position.z = 50;
 				planeFront1.position.x = - 50;
 				planeFront1.rotateY( Math.PI );
 				scene.add( planeFront1 );
 
-				const planeFront2 = new FOUR.Mesh( planeGeo, wallMat );
+				const planeFront2 = new THREE.Mesh( planeGeo, wallMat );
 				planeFront2.position.z = 50;
 				planeFront2.position.x = 50;
 				planeFront2.rotateY( Math.PI );
 				scene.add( planeFront2 );
 
-				const planeRight = new FOUR.Mesh( planeGeo, wallMat );
+				const planeRight = new THREE.Mesh( planeGeo, wallMat );
 				planeRight.position.x = 100;
 				planeRight.rotateY( - Math.PI / 2 );
 				scene.add( planeRight );
 
-				const planeLeft = new FOUR.Mesh( planeGeo, wallMat );
+				const planeLeft = new THREE.Mesh( planeGeo, wallMat );
 				planeLeft.position.x = - 100;
 				planeLeft.rotateY( Math.PI / 2 );
 				scene.add( planeLeft );
@@ -155,7 +155,7 @@
 				const height = 50;
 				const intensity = 5;
 			
-				const blueRectLight = new FOUR.RectAreaLight( 0x9aaeff, intensity, width, height );
+				const blueRectLight = new THREE.RectAreaLight( 0x9aaeff, intensity, width, height );
 				blueRectLight.position.set( - 99, 5, 0 );
 				blueRectLight.lookAt( 0, 5, 0 );
 				scene.add( blueRectLight );
@@ -163,7 +163,7 @@
 				const blueRectLightHelper = new RectAreaLightHelper( blueRectLight, 0xffffff );
 				blueRectLight.add( blueRectLightHelper );
 
-				const redRectLight = new FOUR.RectAreaLight( 0xf3aaaa, intensity, width, height );
+				const redRectLight = new THREE.RectAreaLight( 0xf3aaaa, intensity, width, height );
 				redRectLight.position.set( 99, 5, 0 );
 				redRectLight.lookAt( 0, 5, 0 );
 				scene.add( redRectLight );
@@ -173,7 +173,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

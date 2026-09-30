@@ -50,4 +50,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/webxr/XRControllerModelFactory.js](../../examples/jsm/webxr/XRControllerModelFactory.js)
+[examples/jsm/webxr/XRControllerModelFactory.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XRControllerModelFactory.js)

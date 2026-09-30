@@ -52,4 +52,4 @@ Default is `'bool'`.
 
 ## Source
 
-[src/animation/tracks/BooleanKeyframeTrack.js](../../src/animation/tracks/BooleanKeyframeTrack.js)
+[src/animation/tracks/BooleanKeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/tracks/BooleanKeyframeTrack.js)

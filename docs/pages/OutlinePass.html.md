@@ -7,17 +7,17 @@ A pass for rendering outlines around selected objects.
 ## Code Example
 
 ```js
-const resolution = new FOUR.Vector2( window.innerWidth, window.innerHeight );
+const resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
 const outlinePass = new OutlinePass( resolution, scene, camera );
 composer.addPass( outlinePass );
 ```
 
 ## Import
 
-OutlinePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OutlinePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OutlinePass } from '@tnb1j/4js/addons/postprocessing/OutlinePass.js';
+import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
 ```
 
 ## Constructor
@@ -166,4 +166,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/OutlinePass.js](../../examples/jsm/postprocessing/OutlinePass.js)
+[examples/jsm/postprocessing/OutlinePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/OutlinePass.js)

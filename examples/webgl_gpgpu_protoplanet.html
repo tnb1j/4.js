@@ -233,21 +233,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
 
 			// Texture width for simulation (each texel is a debris particle)
 			const WIDTH = 64;
@@ -271,13 +271,13 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 5, 15000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 5, 15000 );
 				camera.position.y = 120;
 				camera.position.z = 400;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -363,7 +363,7 @@
 
 			function initProtoplanets() {
 
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 
 				const positions = new Float32Array( PARTICLES * 3 );
 				let p = 0;
@@ -390,8 +390,8 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'uv', new FOUR.BufferAttribute( uvs, 2 ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
 
 				particleUniforms = {
 					'texturePosition': { value: null },
@@ -400,14 +400,14 @@
 					'density': { value: 0.0 }
 				};
 
-				// FOUR.ShaderMaterial
-				const material = new FOUR.ShaderMaterial( {
+				// THREE.ShaderMaterial
+				const material = new THREE.ShaderMaterial( {
 					uniforms: particleUniforms,
 					vertexShader: document.getElementById( 'particleVertexShader' ).textContent,
 					fragmentShader: document.getElementById( 'particleFragmentShader' ).textContent
 				} );
 
-				const particles = new FOUR.Points( geometry, material );
+				const particles = new THREE.Points( geometry, material );
 				particles.matrixAutoUpdate = false;
 				particles.updateMatrix();
 
@@ -528,7 +528,7 @@
 
 			function getCameraConstant( camera ) {
 
-				return window.innerHeight / ( Math.tan( FOUR.MathUtils.DEG2RAD * 0.5 * camera.fov ) / camera.zoom );
+				return window.innerHeight / ( Math.tan( THREE.MathUtils.DEG2RAD * 0.5 * camera.fov ) / camera.zoom );
 
 			}
 

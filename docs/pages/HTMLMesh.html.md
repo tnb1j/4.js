@@ -16,10 +16,10 @@ scene.add( mesh );
 
 ## Import
 
-HTMLMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HTMLMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HTMLMesh } from '@tnb1j/4js/addons/interactive/HTMLMesh.js';
+import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
 ```
 
 ## Constructor
@@ -38,6 +38,8 @@ The DOM element to display as a plane mesh.
 
 Frees the GPU-related resources allocated by this instance and removes all event listeners. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ## Source
 
-[examples/jsm/interactive/HTMLMesh.js](../../examples/jsm/interactive/HTMLMesh.js)
+[examples/jsm/interactive/HTMLMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/interactive/HTMLMesh.js)

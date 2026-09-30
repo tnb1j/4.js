@@ -172,7 +172,7 @@ function setValueV1f( gl, v ) {
 
 }
 
-// Single float vector (from flat array or FOUR.VectorN)
+// Single float vector (from flat array or THREE.VectorN)
 
 function setValueV2f( gl, v ) {
 
@@ -270,7 +270,7 @@ function setValueV4f( gl, v ) {
 
 }
 
-// Single matrix (from flat array or FOUR.MatrixN)
+// Single matrix (from flat array or THREE.MatrixN)
 
 function setValueM2( gl, v ) {
 
@@ -367,7 +367,7 @@ function setValueV1i( gl, v ) {
 
 }
 
-// Single integer / boolean vector (from flat array or FOUR.VectorN)
+// Single integer / boolean vector (from flat array or THREE.VectorN)
 
 function setValueV2i( gl, v ) {
 
@@ -467,7 +467,7 @@ function setValueV1ui( gl, v ) {
 
 }
 
-// Single unsigned integer vector (from flat array or FOUR.VectorN)
+// Single unsigned integer vector (from flat array or THREE.VectorN)
 
 function setValueV2ui( gl, v ) {
 
@@ -695,7 +695,7 @@ function setValueV1fArray( gl, v ) {
 
 }
 
-// Array of vectors (from flat array or array of FOUR.VectorN)
+// Array of vectors (from flat array or array of THREE.VectorN)
 
 function setValueV2fArray( gl, v ) {
 
@@ -721,7 +721,7 @@ function setValueV4fArray( gl, v ) {
 
 }
 
-// Array of matrices (from flat array or array of FOUR.MatrixN)
+// Array of matrices (from flat array or array of THREE.MatrixN)
 
 function setValueM2Array( gl, v ) {
 

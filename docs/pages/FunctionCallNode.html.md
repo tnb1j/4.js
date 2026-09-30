@@ -84,4 +84,4 @@ The parameters to set.
 
 ## Source
 
-[src/nodes/code/FunctionCallNode.js](../../src/nodes/code/FunctionCallNode.js)
+[src/nodes/code/FunctionCallNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/code/FunctionCallNode.js)

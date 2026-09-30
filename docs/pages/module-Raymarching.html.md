@@ -2,10 +2,10 @@
 
 ## Import
 
-Raymarching is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Raymarching is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RaymarchingBox } from '@tnb1j/4js/addons/tsl/utils/Raymarching.js';
+import { RaymarchingBox } from 'three/addons/tsl/utils/Raymarching.js';
 ```
 
 ## Static Methods
@@ -29,4 +29,4 @@ The callback function to execute at each step.
 
 ## Source
 
-[examples/jsm/tsl/utils/Raymarching.js](../../examples/jsm/tsl/utils/Raymarching.js)
+[examples/jsm/tsl/utils/Raymarching.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/utils/Raymarching.js)

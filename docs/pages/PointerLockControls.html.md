@@ -19,10 +19,10 @@ controls.addEventListener( 'unlock', function () {
 
 ## Import
 
-PointerLockControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PointerLockControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PointerLockControls } from '@tnb1j/4js/addons/controls/PointerLockControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 ```
 
 ## Constructor
@@ -137,4 +137,4 @@ Fires when the pointer lock status is "unlocked" (in other words: the mouse is n
 
 ## Source
 
-[examples/jsm/controls/PointerLockControls.js](../../examples/jsm/controls/PointerLockControls.js)
+[examples/jsm/controls/PointerLockControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/PointerLockControls.js)

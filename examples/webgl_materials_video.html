@@ -14,7 +14,7 @@
 
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl video demo<br/>
-			playing <a href="http://durian.blender.org/" target="_blank" rel="noopener">sintel</a> trailer
+			playing <a href="https://durian.blender.org/" target="_blank" rel="noopener">sintel</a> trailer
 		</div>
 
 		<video id="video" loop muted crossOrigin="anonymous" playsinline style="display:none">
@@ -25,20 +25,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { BloomPass } from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let container;
 
@@ -69,16 +69,16 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0.5, 1, 1 ).normalize();
 				scene.add( light );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -92,8 +92,8 @@
 
 				} );
 
-				texture = new FOUR.VideoTexture( video );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				texture = new THREE.VideoTexture( video );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
 				//
 
@@ -116,11 +116,11 @@
 						ox = i;
 						oy = j;
 
-						geometry = new FOUR.BoxGeometry( xsize, ysize, xsize );
+						geometry = new THREE.BoxGeometry( xsize, ysize, xsize );
 
 						change_uvs( geometry, ux, uy, ox, oy );
 
-						materials[ cube_count ] = new FOUR.MeshLambertMaterial( parameters );
+						materials[ cube_count ] = new THREE.MeshLambertMaterial( parameters );
 
 						material = materials[ cube_count ];
 
@@ -129,7 +129,7 @@
 
 						material.color.setHSL( material.hue, material.saturation, 0.5 );
 
-						mesh = new FOUR.Mesh( geometry, material );
+						mesh = new THREE.Mesh( geometry, material );
 
 						mesh.position.x = ( i - xgrid / 2 ) * xsize;
 						mesh.position.y = ( j - ygrid / 2 ) * ysize;

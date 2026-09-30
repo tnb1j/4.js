@@ -62,4 +62,4 @@ The current state.
 
 ## Source
 
-[src/nodes/accessors/MaterialReferenceNode.js](../../src/nodes/accessors/MaterialReferenceNode.js)
+[src/nodes/accessors/MaterialReferenceNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/MaterialReferenceNode.js)

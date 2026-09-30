@@ -2,10 +2,10 @@
 
 ## Import
 
-BlendShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BlendShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BlendShader } from '@tnb1j/4js/addons/shaders/BlendShader.js';
+import { BlendShader } from 'three/addons/shaders/BlendShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Blends two textures.
 
 ## Source
 
-[examples/jsm/shaders/BlendShader.js](../../examples/jsm/shaders/BlendShader.js)
+[examples/jsm/shaders/BlendShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/BlendShader.js)

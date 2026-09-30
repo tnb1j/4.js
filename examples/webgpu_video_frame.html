@@ -26,19 +26,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { MP4Demuxer } from '@tnb1j/4js/addons/libs/demuxer_mp4.js';
+			import { MP4Demuxer } from 'three/addons/libs/demuxer_mp4.js';
 
 			let camera, scene, renderer;
 
@@ -46,15 +46,15 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, .25, 10 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, .25, 10 );
 				camera.position.set( 0, 0, 1 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.PlaneGeometry();
+				const geometry = new THREE.PlaneGeometry();
 
-				const videoTexture = new FOUR.VideoFrameTexture();
-				videoTexture.colorSpace = FOUR.SRGBColorSpace;
+				const videoTexture = new THREE.VideoFrameTexture();
+				videoTexture.colorSpace = THREE.SRGBColorSpace;
 
 				const decoder = new VideoDecoder( {
 					output( frame ) {
@@ -107,12 +107,12 @@
 					}
 				} );
 			
-				const material = new FOUR.MeshBasicMaterial( { map: videoTexture } );
+				const material = new THREE.MeshBasicMaterial( { map: videoTexture } );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

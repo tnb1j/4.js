@@ -50,4 +50,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/PolyhedronGeometry.js](../../src/geometries/PolyhedronGeometry.js)
+[src/geometries/PolyhedronGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/PolyhedronGeometry.js)

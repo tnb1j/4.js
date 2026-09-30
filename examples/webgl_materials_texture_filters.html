@@ -22,7 +22,7 @@
 	<body>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - texture filtering example<br/>
-			painting by <a href="http://en.wikipedia.org/wiki/Basket_of_Fruit_%28Caravaggio%29">Caravaggio</a>
+			painting by <a href="https://en.wikipedia.org/wiki/Basket_of_Fruit_%28Caravaggio%29">Caravaggio</a>
 		</div>
 
 		<div id="lbl_left" class="lbl">
@@ -48,15 +48,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			const SCREEN_WIDTH = window.innerWidth;
 			const SCREEN_HEIGHT = window.innerHeight;
@@ -77,16 +77,16 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 35, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 35, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 5000 );
 				camera.position.z = 1500;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
-				scene.fog = new FOUR.Fog( 0x000000, 1500, 4000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
+				scene.fog = new THREE.Fog( 0x000000, 1500, 4000 );
 
-				scene2 = new FOUR.Scene();
-				scene2.background = new FOUR.Color( 0x000000 );
-				scene2.fog = new FOUR.Fog( 0x000000, 1500, 4000 );
+				scene2 = new THREE.Scene();
+				scene2.background = new THREE.Color( 0x000000 );
+				scene2.fog = new THREE.Fog( 0x000000, 1500, 4000 );
 
 				// GROUND
 
@@ -102,27 +102,27 @@
 				context.fillRect( 0, 0, 64, 64 );
 				context.fillRect( 64, 64, 64, 64 );
 
-				const textureCanvas = new FOUR.CanvasTexture( imageCanvas );
-				textureCanvas.colorSpace = FOUR.SRGBColorSpace;
+				const textureCanvas = new THREE.CanvasTexture( imageCanvas );
+				textureCanvas.colorSpace = THREE.SRGBColorSpace;
 				textureCanvas.repeat.set( 1000, 1000 );
-				textureCanvas.wrapS = FOUR.RepeatWrapping;
-				textureCanvas.wrapT = FOUR.RepeatWrapping;
+				textureCanvas.wrapS = THREE.RepeatWrapping;
+				textureCanvas.wrapT = THREE.RepeatWrapping;
 
 				const textureCanvas2 = textureCanvas.clone();
-				textureCanvas2.magFilter = FOUR.NearestFilter;
-				textureCanvas2.minFilter = FOUR.NearestFilter;
+				textureCanvas2.magFilter = THREE.NearestFilter;
+				textureCanvas2.minFilter = THREE.NearestFilter;
 				textureCanvas2.generateMipmaps = false;
 
-				const materialCanvas = new FOUR.MeshBasicMaterial( { map: textureCanvas } );
-				const materialCanvas2 = new FOUR.MeshBasicMaterial( { color: 0xffccaa, map: textureCanvas2 } );
+				const materialCanvas = new THREE.MeshBasicMaterial( { map: textureCanvas } );
+				const materialCanvas2 = new THREE.MeshBasicMaterial( { color: 0xffccaa, map: textureCanvas2 } );
 
-				const geometry = new FOUR.PlaneGeometry( 100, 100 );
+				const geometry = new THREE.PlaneGeometry( 100, 100 );
 
-				const meshCanvas = new FOUR.Mesh( geometry, materialCanvas );
+				const meshCanvas = new THREE.Mesh( geometry, materialCanvas );
 				meshCanvas.rotation.x = - Math.PI / 2;
 				meshCanvas.scale.set( 1000, 1000, 1000 );
 
-				const meshCanvas2 = new FOUR.Mesh( geometry, materialCanvas2 );
+				const meshCanvas2 = new THREE.Mesh( geometry, materialCanvas2 );
 				meshCanvas2.rotation.x = - Math.PI / 2;
 				meshCanvas2.scale.set( 1000, 1000, 1000 );
 
@@ -139,9 +139,9 @@
 					scene.add( meshCanvas );
 					scene2.add( meshCanvas2 );
 
-					const geometry = new FOUR.PlaneGeometry( 100, 100 );
-					const mesh = new FOUR.Mesh( geometry, materialPainting );
-					const mesh2 = new FOUR.Mesh( geometry, materialPainting2 );
+					const geometry = new THREE.PlaneGeometry( 100, 100 );
+					const mesh = new THREE.Mesh( geometry, materialPainting );
+					const mesh2 = new THREE.Mesh( geometry, materialPainting2 );
 
 					addPainting( scene, mesh );
 					addPainting( scene2, mesh2 );
@@ -153,13 +153,13 @@
 
 						zscene.add( zmesh );
 
-						const meshFrame = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial( { color: 0x000000 } ) );
+						const meshFrame = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x000000 } ) );
 						meshFrame.position.z = - 10.0;
 						meshFrame.scale.x = 1.1 * image.width / 100;
 						meshFrame.scale.y = 1.1 * image.height / 100;
 						zscene.add( meshFrame );
 
-						const meshShadow = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial( { color: 0x000000, opacity: 0.75, transparent: true } ) );
+						const meshShadow = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 0.75, transparent: true } ) );
 						meshShadow.position.y = - 1.1 * image.height / 2;
 						meshShadow.position.z = - 1.1 * image.height / 2;
 						meshShadow.rotation.x = - Math.PI / 2;
@@ -175,20 +175,20 @@
 
 				};
 
-				const texturePainting = new FOUR.TextureLoader().load( 'textures/758px-Canestra_di_frutta_(Caravaggio).jpg', callbackPainting );
-				const texturePainting2 = new FOUR.Texture();
+				const texturePainting = new THREE.TextureLoader().load( 'textures/758px-Canestra_di_frutta_(Caravaggio).jpg', callbackPainting );
+				const texturePainting2 = new THREE.Texture();
 
-				const materialPainting = new FOUR.MeshBasicMaterial( { color: 0xffffff, map: texturePainting } );
-				const materialPainting2 = new FOUR.MeshBasicMaterial( { color: 0xffccaa, map: texturePainting2 } );
+				const materialPainting = new THREE.MeshBasicMaterial( { color: 0xffffff, map: texturePainting } );
+				const materialPainting2 = new THREE.MeshBasicMaterial( { color: 0xffccaa, map: texturePainting2 } );
 
-				texturePainting.colorSpace = FOUR.SRGBColorSpace;
-				texturePainting2.colorSpace = FOUR.SRGBColorSpace;
-				texturePainting2.minFilter = texturePainting2.magFilter = FOUR.NearestFilter;
-				texturePainting.minFilter = texturePainting.magFilter = FOUR.LinearFilter;
-				texturePainting.mapping = FOUR.UVMapping;
+				texturePainting.colorSpace = THREE.SRGBColorSpace;
+				texturePainting2.colorSpace = THREE.SRGBColorSpace;
+				texturePainting2.minFilter = texturePainting2.magFilter = THREE.NearestFilter;
+				texturePainting.minFilter = texturePainting.magFilter = THREE.LinearFilter;
+				texturePainting.mapping = THREE.UVMapping;
 
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 				renderer.setAnimationLoop( animate );

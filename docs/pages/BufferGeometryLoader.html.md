@@ -7,10 +7,10 @@ Class for loading geometries. The files are internally loaded via [FileLoader](F
 ## Code Example
 
 ```js
-const loader = new FOUR.BufferGeometryLoader();
+const loader = new THREE.BufferGeometryLoader();
 const geometry = await loader.loadAsync( 'models/json/pressure.json' );
-const material = new FOUR.MeshBasicMaterial( { color: 0xF5F5F5 } );
-const object = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshBasicMaterial( { color: 0xF5F5F5 } );
+const object = new THREE.Mesh( geometry, material );
 scene.add( object );
 ```
 
@@ -62,4 +62,4 @@ The serialized geometry.
 
 ## Source
 
-[src/loaders/BufferGeometryLoader.js](../../src/loaders/BufferGeometryLoader.js)
+[src/loaders/BufferGeometryLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/BufferGeometryLoader.js)

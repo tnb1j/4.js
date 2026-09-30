@@ -1,10 +1,11 @@
-import { FileLoader, error } from '@tnb1j/4js';
+import { FileLoader, error } from 'three';
 
-import * as FOUR from '@tnb1j/4js';
-import * as TSL from '@tnb1j/4js/tsl';
+import * as THREE from 'three';
+import * as TSL from 'three/tsl';
 
 const _library = {
-	'@tnb1j/4js/tsl': { ...TSL }
+	'three': { ...THREE },
+	'three/tsl': { ...TSL }
 };
 
 const STORAGE_PREFIX = 'tsl-graph';
@@ -90,7 +91,7 @@ export class TSLGraphLoader extends FileLoader {
 		const materials = [ this._generateMaterialCode( json, baseFn, imports ) ];
 		const code = this._generateCode( materials, imports );
 
-		const tslFunction = new Function( code )()( FOUR, imports );
+		const tslFunction = new Function( code )()( THREE, imports );
 
 		return tslFunction;
 
@@ -109,7 +110,7 @@ export class TSLGraphLoader extends FileLoader {
 
 		const code = this._generateCode( materials, imports );
 
-		const tslFunction = new Function( code )()( FOUR, imports );
+		const tslFunction = new Function( code )()( THREE, imports );
 
 		return tslFunction;
 
@@ -175,7 +176,7 @@ export class TSLGraphLoader extends FileLoader {
 
 	_generateCode( materials, imports ) {
 
-		const fnCode = `return ( FOUR, { ${ Object.keys( imports ).join( ', ' ) } } ) => {\n\n\tconst materials = {};\n${ materials.join( '\n' ) }\n\n\treturn materials;\n\n}`;
+		const fnCode = `return ( THREE, { ${ Object.keys( imports ).join( ', ' ) } } ) => {\n\n\tconst materials = {};\n${ materials.join( '\n' ) }\n\n\treturn materials;\n\n}`;
 
 		return fnCode;
 

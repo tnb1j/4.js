@@ -1,11 +1,11 @@
-import { Group, NodeMaterial, Mesh, PlaneGeometry, DoubleSide, CameraHelper } from '@tnb1j/4js/webgpu';
-import { Fn, vec4, vec3, texture, uv, positionLocal, vec2, float, int, screenSize } from '@tnb1j/4js/tsl';
+import { Group, NodeMaterial, Mesh, PlaneGeometry, DoubleSide, CameraHelper } from 'three/webgpu';
+import { Fn, vec4, vec3, texture, uv, positionLocal, vec2, float, int, screenSize } from 'three/tsl';
 
 /**
  * Helper class to manage and display debug visuals for TileShadowNode.
  *
  * @augments Group
- * @four_import import { TileShadowNodeHelper } from '@tnb1j/4js/addons/tsl/shadows/TileShadowNodeHelper.js';
+ * @three_import import { TileShadowNodeHelper } from 'three/addons/tsl/shadows/TileShadowNodeHelper.js';
  */
 class TileShadowNodeHelper extends Group {
 
@@ -18,7 +18,7 @@ class TileShadowNodeHelper extends Group {
 
 		if ( ! tileShadowNode ) {
 
-			throw new Error( 'FOUR.TileShadowNode instance is required for TileShadowNodeHelper.' );
+			throw new Error( 'THREE.TileShadowNode instance is required for TileShadowNodeHelper.' );
 
 		}
 

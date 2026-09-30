@@ -2,20 +2,20 @@
 
 ## Import
 
-UVsDebug is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+UVsDebug is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { UVsDebug } from '@tnb1j/4js/addons/utils/UVsDebug.js';
+import { UVsDebug } from 'three/addons/utils/UVsDebug.js';
 ```
 
 ## Methods
 
 ### .UVsDebug( geometry : BufferGeometry, size : number ) : HTMLCanvasElement (inner)
 
-Function for "unwrapping" and debugging 4.js geometries UV mapping.
+Function for "unwrapping" and debugging three.js geometries UV mapping.
 
 ```js
-document.body.appendChild( UVsDebug( new FOUR.SphereGeometry() ) );
+document.body.appendChild( UVsDebug( new THREE.SphereGeometry() ) );
 ```
 
 **geometry**
@@ -32,4 +32,4 @@ Default is `1024`.
 
 ## Source
 
-[examples/jsm/utils/UVsDebug.js](../../examples/jsm/utils/UVsDebug.js)
+[examples/jsm/utils/UVsDebug.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/UVsDebug.js)

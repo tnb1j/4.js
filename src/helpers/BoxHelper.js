@@ -15,9 +15,9 @@ const _box = /*@__PURE__*/ new Box3();
  * so it won't work with sprites.
  *
  * ```js
- * const sphere = new FOUR.SphereGeometry();
- * const object = new FOUR.Mesh( sphere, new FOUR.MeshBasicMaterial( 0xff0000 ) );
- * const box = new FOUR.BoxHelper( object, 0xffff00 );
+ * const sphere = new THREE.SphereGeometry();
+ * const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0xff0000 ) );
+ * const box = new THREE.BoxHelper( object, 0xffff00 );
  * scene.add( box );
  * ```
  *
@@ -137,6 +137,8 @@ class BoxHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

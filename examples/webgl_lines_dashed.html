@@ -15,19 +15,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
+			import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 
 			let renderer, scene, camera, stats;
 			const objects = [];
@@ -38,23 +38,23 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, WIDTH / HEIGHT, 1, 200 );
+				camera = new THREE.PerspectiveCamera( 60, WIDTH / HEIGHT, 1, 200 );
 				camera.position.z = 150;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x111111 );
-				scene.fog = new FOUR.Fog( 0x111111, 150, 200 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x111111 );
+				scene.fog = new THREE.Fog( 0x111111, 150, 200 );
 
 				const subdivisions = 6;
 				const recursion = 1;
 
-				const points = GeometryUtils.hilbert3D( new FOUR.Vector3( 0, 0, 0 ), 25.0, recursion, 0, 1, 2, 3, 4, 5, 6, 7 );
-				const spline = new FOUR.CatmullRomCurve3( points );
+				const points = GeometryUtils.hilbert3D( new THREE.Vector3( 0, 0, 0 ), 25.0, recursion, 0, 1, 2, 3, 4, 5, 6, 7 );
+				const spline = new THREE.CatmullRomCurve3( points );
 
 				const samples = spline.getPoints( points.length * subdivisions );
-				const geometrySpline = new FOUR.BufferGeometry().setFromPoints( samples );
+				const geometrySpline = new THREE.BufferGeometry().setFromPoints( samples );
 
-				const line = new FOUR.Line( geometrySpline, new FOUR.LineDashedMaterial( { color: 0xffffff, dashSize: 1, gapSize: 0.5 } ) );
+				const line = new THREE.Line( geometrySpline, new THREE.LineDashedMaterial( { color: 0xffffff, dashSize: 1, gapSize: 0.5 } ) );
 				line.computeLineDistances();
 
 				objects.push( line );
@@ -62,13 +62,13 @@
 
 				const geometryBox = box( 50, 50, 50 );
 
-				const lineSegments = new FOUR.LineSegments( geometryBox, new FOUR.LineDashedMaterial( { color: 0xffaa00, dashSize: 3, gapSize: 1 } ) );
+				const lineSegments = new THREE.LineSegments( geometryBox, new THREE.LineDashedMaterial( { color: 0xffaa00, dashSize: 3, gapSize: 1 } ) );
 				lineSegments.computeLineDistances();
 
 				objects.push( lineSegments );
 				scene.add( lineSegments );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( WIDTH, HEIGHT );
 				renderer.setAnimationLoop( animate );
@@ -89,7 +89,7 @@
 				height = height * 0.5,
 				depth = depth * 0.5;
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				const position = [];
 
 				position.push(
@@ -130,7 +130,7 @@
 					width, - height, depth
 				 );
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( position, 3 ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( position, 3 ) );
 
 				return geometry;
 

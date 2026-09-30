@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>MeshSurfaceSampler - 4.js Docs</title>
+	<title>MeshSurfaceSampler - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -24,9 +24,9 @@ random samples may be selected in O(logn) time. Memory usage is O(n).</p>
 				<div translate="no"><pre><code class="language-js">const sampler = new MeshSurfaceSampler( surfaceMesh )
 	.setWeightAttribute( 'color' )
 	.build();
-const mesh = new FOUR.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
-const position = new FOUR.Vector3();
-const matrix = new FOUR.Matrix4();
+const mesh = new THREE.InstancedMesh( sampleGeometry, sampleMaterial, 100 );
+const position = new THREE.Vector3();
+const matrix = new THREE.Matrix4();
 // Sample randomly from the surface, creating an instance of the sample geometry at each sample point.
 for ( let i = 0; i &lt; 100; i ++ ) {
 	sampler.sample( position );
@@ -38,8 +38,8 @@ scene.add( mesh );
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">MeshSurfaceSampler</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { MeshSurfaceSampler } from '@tnb1j/4js/addons/math/MeshSurfaceSampler.js';</code></pre>
+				<p><span translate="no">MeshSurfaceSampler</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="MeshSurfaceSampler" translate="no">new <a href="#MeshSurfaceSampler">MeshSurfaceSampler</a><span class="signature">( mesh : <span class="param-type"><a href="Mesh.html">Mesh</a></span> )</span> </h3>
@@ -167,7 +167,7 @@ zero will not be sampled at all. For vector attributes, only .x is used in sampl
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/math/MeshSurfaceSampler.js" translate="no">examples/jsm/math/MeshSurfaceSampler.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/MeshSurfaceSampler.js" translate="no" target="_blank" rel="noopener">examples/jsm/math/MeshSurfaceSampler.js</a>
 				</p>
 			</article>
 		</section>

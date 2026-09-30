@@ -21,7 +21,7 @@ import {
 	Vector3,
 	WebGLRenderTarget,
 	ZeroFactor
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SimplexNoise } from '../math/SimplexNoise.js';
 import { SSAOBlurShader, SSAODepthShader, SSAOShader } from '../shaders/SSAOShader.js';
@@ -39,7 +39,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SSAOPass } from '@tnb1j/4js/addons/postprocessing/SSAOPass.js';
+ * @three_import import { SSAOPass } from 'three/addons/postprocessing/SSAOPass.js';
  */
 class SSAOPass extends Pass {
 
@@ -163,7 +163,7 @@ class SSAOPass extends Pass {
 
 		// ssao render target
 
-		this.ssaoRenderTarget = new WebGLRenderTarget( this.width, this.height, { type: HalfFloatType } );
+		this.ssaoRenderTarget = new WebGLRenderTarget( this.width, this.height, { type: HalfFloatType, depthBuffer: false } );
 
 		this.blurRenderTarget = this.ssaoRenderTarget.clone();
 
@@ -341,7 +341,7 @@ class SSAOPass extends Pass {
 				break;
 
 			default:
-				console.warn( 'FOUR.SSAOPass: Unknown output type.' );
+				console.warn( 'THREE.SSAOPass: Unknown output type.' );
 
 		}
 

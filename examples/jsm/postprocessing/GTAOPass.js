@@ -19,7 +19,7 @@ import {
 	UnsignedInt248Type,
 	WebGLRenderTarget,
 	ZeroFactor
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { generateMagicSquareNoise, GTAOShader, GTAODepthShader, GTAOBlendShader } from '../shaders/GTAOShader.js';
 import { generatePdSamplePointInitializer, PoissonDenoiseShader } from '../shaders/PoissonDenoiseShader.js';
@@ -38,7 +38,7 @@ import { SimplexNoise } from '../math/SimplexNoise.js';
  * ```
  *
  * @augments Pass
- * @four_import import { GTAOPass } from '@tnb1j/4js/addons/postprocessing/GTAOPass.js';
+ * @three_import import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
  */
 class GTAOPass extends Pass {
 
@@ -140,7 +140,7 @@ class GTAOPass extends Pass {
 		this.gtaoNoiseTexture = generateMagicSquareNoise();
 		this.pdNoiseTexture = this._generateNoise();
 
-		this.gtaoRenderTarget = new WebGLRenderTarget( this.width, this.height, { type: HalfFloatType } );
+		this.gtaoRenderTarget = new WebGLRenderTarget( this.width, this.height, { type: HalfFloatType, depthBuffer: false } );
 		this.pdRenderTarget = this.gtaoRenderTarget.clone();
 
 		this.gtaoMaterial = new ShaderMaterial( {
@@ -581,7 +581,7 @@ class GTAOPass extends Pass {
 				break;
 
 			default:
-				console.warn( 'FOUR.GTAOPass: Unknown output type.' );
+				console.warn( 'THREE.GTAOPass: Unknown output type.' );
 
 		}
 

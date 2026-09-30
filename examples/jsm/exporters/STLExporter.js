@@ -1,4 +1,4 @@
-import { Vector3 } from '@tnb1j/4js';
+import { Vector3 } from 'three';
 
 /**
  * An exporter for STL.
@@ -13,7 +13,7 @@ import { Vector3 } from '@tnb1j/4js';
  * const data = exporter.parse( mesh, { binary: true } );
  * ```
  *
- * @four_import import { STLExporter } from '@tnb1j/4js/addons/exporters/STLExporter.js';
+ * @three_import import { STLExporter } from 'three/addons/exporters/STLExporter.js';
  */
 class STLExporter {
 

@@ -26,22 +26,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, mrt, packNormalToRGB, normalView, screenUV, context, sample, unpackRGBToNormal } from '@tnb1j/4js/tsl';
-			import { outline } from '@tnb1j/4js/addons/tsl/display/OutlineNode.js';
-			import { ao } from '@tnb1j/4js/addons/tsl/display/GTAONode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, mrt, packNormalToRGB, normalView, screenUV, context, sample, unpackRGBToNormal } from 'three/tsl';
+			import { outline } from 'three/addons/tsl/display/OutlineNode.js';
+			import { ao } from 'three/addons/tsl/display/GTAONode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, light;
 			let generateMeshes = true;
@@ -67,7 +67,7 @@
 					}
 
 					// Create new directional light
-					light = new FOUR.DirectionalLight( 0xffffff, 1 );
+					light = new THREE.DirectionalLight( 0xffffff, 1 );
 					light.position.set( Math.random() * 200 - 100, 100, Math.random() * 200 - 100 );
 					light.castShadow = params.castShadow;
 					scene.add( light );
@@ -92,13 +92,13 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 200;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xffffff );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.shadowMap.enabled = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
@@ -108,14 +108,14 @@
 
 				await renderer.init();
 
-				light = new FOUR.DirectionalLight( 0xffffff, 1 );
+				light = new THREE.DirectionalLight( 0xffffff, 1 );
 				light.position.set( 0, 100, 0 );
 				light.castShadow = true;
 				scene.add( light );
 
-				const planeGeometry = new FOUR.PlaneGeometry( 1000, 1000 );
-				const planeMaterial = new FOUR.MeshLambertMaterial( { color: 0xcccccc } );
-				const plane = new FOUR.Mesh( planeGeometry, planeMaterial );
+				const planeGeometry = new THREE.PlaneGeometry( 1000, 1000 );
+				const planeMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc } );
+				const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 				plane.rotation.x = - Math.PI / 2;
 				plane.position.y = - 100;
 				plane.receiveShadow = true;
@@ -182,7 +182,7 @@
 
 				if ( params.enablePP ) {
 
-					renderPipeline = new FOUR.RenderPipeline( renderer );
+					renderPipeline = new THREE.RenderPipeline( renderer );
 
 					scenePass = pass( scene, camera );
 					let colorNode = scenePass;
@@ -266,13 +266,13 @@
 
 					}
 
-					const geometry = new FOUR.SphereGeometry( 50, Math.random() * 64, Math.random() * 32 );
+					const geometry = new THREE.SphereGeometry( 50, Math.random() * 64, Math.random() * 32 );
 
-					const texture = new FOUR.CanvasTexture( createImage() );
+					const texture = new THREE.CanvasTexture( createImage() );
 
-					const material = new FOUR.MeshLambertMaterial( { map: texture } );
+					const material = new THREE.MeshLambertMaterial( { map: texture } );
 
-					mesh = new FOUR.Mesh( geometry, material );
+					mesh = new THREE.Mesh( geometry, material );
 					mesh.castShadow = true;
 
 					scene.add( mesh );

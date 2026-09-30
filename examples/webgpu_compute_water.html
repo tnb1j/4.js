@@ -26,28 +26,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { instanceIndex, struct, If, uint, int, floor, float, length, clamp, vec2, cos, vec3, vertexIndex, Fn, uniform, instancedArray, min, max, positionLocal, transformNormalToView, select, globalId } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { instanceIndex, struct, If, uint, int, floor, float, length, clamp, vec2, cos, vec3, vertexIndex, Fn, uniform, instancedArray, min, max, positionLocal, transformNormalToView, select, globalId } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { SimplexNoise } from '@tnb1j/4js/addons/math/SimplexNoise.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { SimplexNoise } from 'three/addons/math/SimplexNoise.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+ 			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			// Dimensions of simulation grid.
 			const WIDTH = 128;
@@ -66,13 +66,13 @@
 			let firstClick = true;
 			let updateOriginMouseDown = false;
 
-			const mouseCoords = new FOUR.Vector2();
-			const raycaster = new FOUR.Raycaster();
+			const mouseCoords = new THREE.Vector2();
+			const raycaster = new THREE.Raycaster();
 			let frame = 0;
 
 			const effectController = {
-				mousePos: uniform( new FOUR.Vector2() ).setName( 'mousePos' ),
-				mouseSpeed: uniform( new FOUR.Vector2() ).setName( 'mouseSpeed' ),
+				mousePos: uniform( new THREE.Vector2() ).setName( 'mousePos' ),
+				mouseSpeed: uniform( new THREE.Vector2() ).setName( 'mouseSpeed' ),
 				mouseDeep: uniform( .5 ).setName( 'mouseDeep' ),
 				mouseSize: uniform( 0.12 ).setName( 'mouseSize' ),
 				viscosity: uniform( 0.96 ).setName( 'viscosity' ),
@@ -128,13 +128,13 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
 				camera.position.set( 0, 2.00, 4 );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				sun = new FOUR.DirectionalLight( 0xFFFFFF, 4.0 );
+				sun = new THREE.DirectionalLight( 0xFFFFFF, 4.0 );
  				sun.position.set( - 1, 2.6, 1.4 );
 				scene.add( sun );
 
@@ -255,15 +255,15 @@
 				computeHeightBtoA = createComputeHeight( heightStorageB, heightStorageA ).setName( 'Update Height B→A' );
 
 				// Water Geometry corresponds with buffered compute grid.
-				const waterGeometry = new FOUR.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
+				const waterGeometry = new THREE.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
 
-				const waterMaterial = new FOUR.MeshStandardNodeMaterial( {
+				const waterMaterial = new THREE.MeshStandardNodeMaterial( {
 					color: 0x9bd2ec,
  					metalness: 0.9,
  					roughness: 0,
  					transparent: true,
  					opacity: 0.8,
- 					side: FOUR.DoubleSide
+ 					side: THREE.DoubleSide
 				} );
 
 				// Helper to get height from the current read buffer
@@ -305,7 +305,7 @@
 
 				} )();
 
-				waterMesh = new FOUR.Mesh( waterGeometry, waterMaterial );
+				waterMesh = new THREE.Mesh( waterGeometry, waterMaterial );
 				waterMesh.rotation.x = - Math.PI * 0.5;
 				waterMesh.matrixAutoUpdate = false;
 				waterMesh.updateMatrix();
@@ -313,15 +313,15 @@
 				scene.add( waterMesh );
 
 				// Pool border
-				const borderGeom = new FOUR.TorusGeometry( 4.2, 0.1, 12, 4 );
+				const borderGeom = new THREE.TorusGeometry( 4.2, 0.1, 12, 4 );
  				borderGeom.rotateX( Math.PI * 0.5 );
  				borderGeom.rotateY( Math.PI * 0.25 );
- 				poolBorder = new FOUR.Mesh( borderGeom, new FOUR.MeshStandardMaterial( { color: 0x908877, roughness: 0.2 } ) );
+ 				poolBorder = new THREE.Mesh( borderGeom, new THREE.MeshStandardMaterial( { color: 0x908877, roughness: 0.2 } ) );
  				scene.add( poolBorder );
 
-				// FOUR.Mesh just for mouse raycasting
-				const geometryRay = new FOUR.PlaneGeometry( BOUNDS, BOUNDS, 1, 1 );
-				meshRay = new FOUR.Mesh( geometryRay, new FOUR.MeshBasicMaterial( { color: 0xFFFFFF, visible: false } ) );
+				// THREE.Mesh just for mouse raycasting
+				const geometryRay = new THREE.PlaneGeometry( BOUNDS, BOUNDS, 1, 1 );
+				meshRay = new THREE.Mesh( geometryRay, new THREE.MeshBasicMaterial( { color: 0xFFFFFF, visible: false } ) );
 				meshRay.rotation.x = - Math.PI / 2;
 				meshRay.matrixAutoUpdate = false;
 				meshRay.updateMatrix();
@@ -439,7 +439,7 @@
  				glbloader.setDRACOLoader( new DRACOLoader().setDecoderPath( DRACO_GLTF_CONFIG ) );
 
  				const [ env, model ] = await Promise.all( [ hdrLoader.loadAsync( 'blouberg_sunrise_2_1k.hdr' ), glbloader.loadAsync( 'duck.glb' ) ] );
- 				env.mapping = FOUR.EquirectangularReflectionMapping;
+ 				env.mapping = THREE.EquirectangularReflectionMapping;
  				scene.environment = env;
  				scene.background = env;
  				scene.backgroundBlurriness = 0.3;
@@ -456,13 +456,13 @@
 
 				} )();
 
-				const duckMesh = new FOUR.InstancedMesh( duckModel.geometry, duckModel.material, NUM_DUCKS );
+				const duckMesh = new THREE.InstancedMesh( duckModel.geometry, duckModel.material, NUM_DUCKS );
 				scene.add( duckMesh );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 2 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 2 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.5;
 				renderer.setAnimationLoop( render );
 				container.appendChild( renderer.domElement );

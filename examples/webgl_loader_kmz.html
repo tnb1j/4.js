@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { KMZLoader } from '@tnb1j/4js/addons/loaders/KMZLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { KMZLoader } from 'three/addons/loaders/KMZLoader.js';
 
 			let camera, scene, renderer;
 
@@ -36,25 +36,25 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x999999 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x999999 );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0.5, 1.0, 0.5 ).normalize();
 
 				scene.add( light );
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
 
 				camera.position.y = 5;
 				camera.position.z = 10;
 
 				scene.add( camera );
 
-				const grid = new FOUR.GridHelper( 50, 50, 0xffffff, 0x7b7b7b );
+				const grid = new THREE.GridHelper( 50, 50, 0xffffff, 0x7b7b7b );
 				scene.add( grid );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );

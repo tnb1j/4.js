@@ -13,10 +13,10 @@ renderer.lighting = lighting;
 
 ## Import
 
-DynamicLighting is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DynamicLighting is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DynamicLighting } from '@tnb1j/4js/addons/lighting/DynamicLighting.js';
+import { DynamicLighting } from 'three/addons/lighting/DynamicLighting.js';
 ```
 
 ## Constructor
@@ -87,4 +87,4 @@ The scene.
 
 ## Source
 
-[examples/jsm/lighting/DynamicLighting.js](../../examples/jsm/lighting/DynamicLighting.js)
+[examples/jsm/lighting/DynamicLighting.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lighting/DynamicLighting.js)

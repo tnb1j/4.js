@@ -1,4 +1,4 @@
-import { StereoCamera, Vector2, PassNode, RendererUtils } from '@tnb1j/4js/webgpu';
+import { StereoCamera, Vector2, PassNode, RendererUtils } from 'three/webgpu';
 
 const _size = /*@__PURE__*/ new Vector2();
 
@@ -8,7 +8,7 @@ let _rendererState;
  * A special render pass node that renders the scene as a stereoscopic image.
  *
  * @augments PassNode
- * @four_import import { stereoPass } from '@tnb1j/4js/addons/tsl/display/StereoPassNode.js';
+ * @three_import import { stereoPass } from 'three/addons/tsl/display/StereoPassNode.js';
  */
 class StereoPassNode extends PassNode {
 
@@ -61,13 +61,11 @@ class StereoPassNode extends PassNode {
 
 		//
 
-		this._pixelRatio = renderer.getPixelRatio();
-
 		stereo.cameraL.coordinateSystem = renderer.coordinateSystem;
 		stereo.cameraR.coordinateSystem = renderer.coordinateSystem;
 		stereo.update( camera );
 
-		const size = renderer.getSize( _size );
+		const size = renderer.getDrawingBufferSize( _size );
 		this.setSize( size.width, size.height );
 
 		renderer.autoClear = false;

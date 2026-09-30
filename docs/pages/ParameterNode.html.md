@@ -46,4 +46,4 @@ The name of the member variable.
 
 ## Source
 
-[src/nodes/core/ParameterNode.js](../../src/nodes/core/ParameterNode.js)
+[src/nodes/core/ParameterNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/ParameterNode.js)

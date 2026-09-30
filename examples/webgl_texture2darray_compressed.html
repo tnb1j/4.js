@@ -54,18 +54,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 
 			let camera, scene, mesh, renderer, stats, timer;
 
@@ -81,16 +81,16 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
 				camera.position.z = 70;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				//
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -103,20 +103,20 @@
 
 				ktx2Loader.load( 'textures/spiritedaway.ktx2', function ( texturearray ) {
 
-					const material = new FOUR.ShaderMaterial( {
+					const material = new THREE.ShaderMaterial( {
 						uniforms: {
 							diffuse: { value: texturearray },
 							depth: { value: 55 },
-							size: { value: new FOUR.Vector2( planeWidth, planeHeight ) }
+							size: { value: new THREE.Vector2( planeWidth, planeHeight ) }
 						},
 						vertexShader: document.getElementById( 'vs' ).textContent.trim(),
 						fragmentShader: document.getElementById( 'fs' ).textContent.trim(),
-						glslVersion: FOUR.GLSL3
+						glslVersion: THREE.GLSL3
 					} );
 
-					const geometry = new FOUR.PlaneGeometry( planeWidth, planeHeight );
+					const geometry = new THREE.PlaneGeometry( planeWidth, planeHeight );
 
-					mesh = new FOUR.Mesh( geometry, material );
+					mesh = new THREE.Mesh( geometry, material );
 
 					scene.add( mesh );
 

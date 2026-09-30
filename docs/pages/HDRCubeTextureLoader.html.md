@@ -16,10 +16,10 @@ scene.environment = cubeTexture;
 
 ## Import
 
-HDRCubeTextureLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HDRCubeTextureLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
+import { HDRCubeTextureLoader } from 'three/addons/loaders/HDRCubeTextureLoader.js';
 ```
 
 ## Constructor
@@ -82,4 +82,4 @@ The texture type to set.
 
 ## Source
 
-[examples/jsm/loaders/HDRCubeTextureLoader.js](../../examples/jsm/loaders/HDRCubeTextureLoader.js)
+[examples/jsm/loaders/HDRCubeTextureLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/HDRCubeTextureLoader.js)

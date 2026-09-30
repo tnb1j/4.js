@@ -28,4 +28,4 @@ The result buffer.
 
 ## Source
 
-[src/math/interpolants/DiscreteInterpolant.js](../../src/math/interpolants/DiscreteInterpolant.js)
+[src/math/interpolants/DiscreteInterpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/interpolants/DiscreteInterpolant.js)

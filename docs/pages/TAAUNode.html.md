@@ -15,10 +15,10 @@ Note: MSAA must be disabled when TAAU is in use.
 
 ## Import
 
-TAAUNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TAAUNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { taau } from '@tnb1j/4js/webgpu';
+import { taau } from 'three/addons/tsl/display/TAAUNode.js';
 ```
 
 ## Constructor
@@ -117,12 +117,6 @@ Returns the result of the effect as a texture node.
 
 **Returns:** A texture node that represents the result of the effect.
 
-### .reset() : TAAUNode
-
-Invalidates accumulated history so the next frame starts from current data.
-
-**Returns:** A reference to this node.
-
 ### .setSize( outputWidth : number, outputHeight : number )
 
 Sets the output size of the effect (history and resolve targets). The previous-depth texture is sized independently in `updateBefore()` to track the scene's current depth texture.
@@ -169,4 +163,4 @@ The current node frame.
 
 ## Source
 
-[src/nodes/display/TAAUNode.js](../../src/nodes/display/TAAUNode.js)
+[examples/jsm/tsl/display/TAAUNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/TAAUNode.js)

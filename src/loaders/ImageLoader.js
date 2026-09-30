@@ -8,7 +8,7 @@ const _loading = new WeakMap();
  * A loader for loading images. The class loads images with the HTML `Image` API.
  *
  * ```js
- * const loader = new FOUR.ImageLoader();
+ * const loader = new THREE.ImageLoader();
  * const image = await loader.loadAsync( 'image.png' );
  * ```
  * Please note that `ImageLoader` has dropped support for progress

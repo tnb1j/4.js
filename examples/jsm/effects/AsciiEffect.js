@@ -3,7 +3,7 @@
  *
  * The ASCII generation is based on [jsascii](https://github.com/hassadee/jsascii/blob/master/jsascii.js).
  *
- * @four_import import { AsciiEffect } from '@tnb1j/4js/addons/effects/AsciiEffect.js';
+ * @three_import import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
  */
 class AsciiEffect {
 

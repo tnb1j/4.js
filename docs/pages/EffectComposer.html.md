@@ -1,6 +1,6 @@
 # EffectComposer
 
-Used to implement post-processing effects in 4.js. The class manages a chain of post-processing passes to produce the final visual result. Post-processing passes are executed in order of their addition/insertion. The last pass is automatically rendered to screen.
+Used to implement post-processing effects in three.js. The class manages a chain of post-processing passes to produce the final visual result. Post-processing passes are executed in order of their addition/insertion. The last pass is automatically rendered to screen.
 
 This module can only be used with [WebGLRenderer](WebGLRenderer.html).
 
@@ -22,10 +22,10 @@ function animate() {
 
 ## Import
 
-EffectComposer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+EffectComposer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 ```
 
 ## Constructor
@@ -152,4 +152,4 @@ Swaps the internal read/write buffers.
 
 ## Source
 
-[examples/jsm/postprocessing/EffectComposer.js](../../examples/jsm/postprocessing/EffectComposer.js)
+[examples/jsm/postprocessing/EffectComposer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/EffectComposer.js)

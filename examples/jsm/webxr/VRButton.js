@@ -8,7 +8,7 @@
  * ```
  *
  * @hideconstructor
- * @four_import import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+ * @three_import import { VRButton } from 'three/addons/webxr/VRButton.js';
  */
 class VRButton {
 

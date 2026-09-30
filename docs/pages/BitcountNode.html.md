@@ -28,4 +28,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/math/BitcountNode.js](../../src/nodes/math/BitcountNode.js)
+[src/nodes/math/BitcountNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/math/BitcountNode.js)

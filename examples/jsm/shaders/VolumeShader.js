@@ -1,11 +1,11 @@
 import {
 	Vector2,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module VolumeShader
- * @four_import import { VolumeRenderShader1 } from '@tnb1j/4js/addons/shaders/VolumeShader.js';
+ * @three_import import { VolumeRenderShader1 } from 'three/addons/shaders/VolumeShader.js';
  */
 
 /**

@@ -28,4 +28,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/accessors/UniformArrayNode.js](../../src/nodes/accessors/UniformArrayNode.js)
+[src/nodes/accessors/UniformArrayNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/UniformArrayNode.js)

@@ -6,10 +6,10 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 
 ## Import
 
-ParallaxBarrierEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ParallaxBarrierEffect is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ParallaxBarrierEffect } from '@tnb1j/4js/addons/effects/ParallaxBarrierEffect.js';
+import { ParallaxBarrierEffect } from 'three/addons/effects/ParallaxBarrierEffect.js';
 ```
 
 ## Constructor
@@ -54,4 +54,4 @@ The height of the effect in logical pixels.
 
 ## Source
 
-[examples/jsm/effects/ParallaxBarrierEffect.js](../../examples/jsm/effects/ParallaxBarrierEffect.js)
+[examples/jsm/effects/ParallaxBarrierEffect.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/effects/ParallaxBarrierEffect.js)

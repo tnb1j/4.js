@@ -14,10 +14,10 @@ scene.add( result.scene.children[ 0 ] );
 
 ## Import
 
-VOXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VOXLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VOXLoader } from '@tnb1j/4js/addons/loaders/VOXLoader.js';
+import { VOXLoader } from 'three/addons/loaders/VOXLoader.js';
 ```
 
 ## Constructor
@@ -62,4 +62,4 @@ The raw VOX data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/VOXLoader.js](../../examples/jsm/loaders/VOXLoader.js)
+[examples/jsm/loaders/VOXLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/VOXLoader.js)

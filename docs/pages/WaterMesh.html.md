@@ -8,16 +8,16 @@ Note that this class can only be used with [WebGPURenderer](WebGPURenderer.html)
 
 References:
 
-*   [Flat mirror for 4.js](https://github.com/Slayvin)
+*   [Flat mirror for three.js](https://github.com/Slayvin)
 *   [An implementation of water shader based on the flat mirror](https://home.adelphi.edu/~stemkoski/)
 *   [Water shader explanations in WebGL](http://29a.ch/slides/2012/webglwater/)
 
 ## Import
 
-WaterMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+WaterMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { WaterMesh } from '@tnb1j/4js/addons/objects/WaterMesh.js';
+import { WaterMesh } from 'three/addons/objects/WaterMesh.js';
 ```
 
 ## Constructor
@@ -152,4 +152,4 @@ Default is `20`.
 
 ## Source
 
-[examples/jsm/objects/WaterMesh.js](../../examples/jsm/objects/WaterMesh.js)
+[examples/jsm/objects/WaterMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/WaterMesh.js)

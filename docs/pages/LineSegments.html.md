@@ -28,4 +28,4 @@ Default is `true`.
 
 ## Source
 
-[src/objects/LineSegments.js](../../src/objects/LineSegments.js)
+[src/objects/LineSegments.js](https://github.com/mrdoob/three.js/blob/master/src/objects/LineSegments.js)

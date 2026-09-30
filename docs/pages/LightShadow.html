@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>LightShadow - 4.js Docs</title>
+	<title>LightShadow - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -192,6 +192,28 @@ become visible.</p>
 method whenever this instance is no longer used in your app.</p>
 						</div>
 					</div>
+					<h3 class="name name-method" id="getCamera" translate="no">.<a href="#getCamera">getCamera</a><span class="signature">( viewportIndex : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="Camera.html">Camera</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Used internally by the renderer to get the camera that renders the given viewport.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">viewportIndex</strong>
+									</td>
+									<td class="description last">
+										<p>The viewport index.</p>
+										<p>Default is <code>0</code>.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The shadow camera.</dt>
+						</dl>
+					</div>
 					<h3 class="name name-method" id="getFrameExtents" translate="no">.<a href="#getFrameExtents">getFrameExtents</a><span class="signature">()</span><span class="type-signature"> : <a href="Vector2.html">Vector2</a></span> </h3>
 					<div class="method">
 						<div class="description">
@@ -278,7 +300,7 @@ to be rendered for this shadow.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/lights/LightShadow.js" translate="no">src/lights/LightShadow.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/lights/LightShadow.js" translate="no" target="_blank" rel="noopener">src/lights/LightShadow.js</a>
 				</p>
 			</article>
 		</section>

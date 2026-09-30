@@ -434,4 +434,4 @@ The matrix to apply.
 
 ## Source
 
-[src/core/BufferAttribute.js](../../src/core/BufferAttribute.js)
+[src/core/BufferAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/core/BufferAttribute.js)

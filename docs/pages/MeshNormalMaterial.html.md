@@ -96,4 +96,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshNormalMaterial.js](../../src/materials/MeshNormalMaterial.js)
+[src/materials/MeshNormalMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshNormalMaterial.js)

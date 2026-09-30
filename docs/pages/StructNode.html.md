@@ -24,4 +24,4 @@ min.assign( vec3() );
 
 ## Source
 
-[src/nodes/core/StructNode.js](../../src/nodes/core/StructNode.js)
+[src/nodes/core/StructNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/StructNode.js)

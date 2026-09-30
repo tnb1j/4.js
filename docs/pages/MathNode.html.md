@@ -88,4 +88,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/math/MathNode.js](../../src/nodes/math/MathNode.js)
+[src/nodes/math/MathNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/math/MathNode.js)

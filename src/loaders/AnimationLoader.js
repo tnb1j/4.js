@@ -8,7 +8,7 @@ import { error } from '../utils.js';
  * loaded via {@link FileLoader}.
  *
  * ```js
- * const loader = new FOUR.AnimationLoader();
+ * const loader = new THREE.AnimationLoader();
  * const animations = await loader.loadAsync( 'animations/animation.js' );
  * ```
  *

@@ -8,10 +8,10 @@ Used Preset: SMAA 1x Medium (with color edge detection) Reference: [https://gith
 
 ## Import
 
-SMAANode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SMAANode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { smaa } from '@tnb1j/4js/addons/tsl/display/SMAANode.js';
+import { smaa } from 'three/addons/tsl/display/SMAANode.js';
 ```
 
 ## Constructor
@@ -86,4 +86,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/SMAANode.js](../../examples/jsm/tsl/display/SMAANode.js)
+[examples/jsm/tsl/display/SMAANode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/SMAANode.js)

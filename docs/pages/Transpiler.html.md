@@ -6,10 +6,10 @@ A class that transpiles shader code from one language into another.
 
 ## Import
 
-Transpiler is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Transpiler is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import Transpiler from '@tnb1j/4js/addons/transpiler/Transpiler.js';
+import Transpiler from 'three/addons/transpiler/Transpiler.js';
 ```
 
 ## Constructor
@@ -54,4 +54,4 @@ The GLSL source.
 
 ## Source
 
-[examples/jsm/transpiler/Transpiler.js](../../examples/jsm/transpiler/Transpiler.js)
+[examples/jsm/transpiler/Transpiler.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/transpiler/Transpiler.js)

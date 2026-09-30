@@ -5,7 +5,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the XYZ format.
@@ -19,14 +19,14 @@ import {
  * geometry.center();
  *
  * const vertexColors = ( geometry.hasAttribute( 'color' ) === true );
- * const material = new FOUR.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
+ * const material = new THREE.PointsMaterial( { size: 0.1, vertexColors: vertexColors } );
  *
- * const points = new FOUR.Points( geometry, material );
+ * const points = new THREE.Points( geometry, material );
  * scene.add( points );
  * ```
  *
  * @augments Loader
- * @four_import import { XYZLoader } from '@tnb1j/4js/addons/loaders/XYZLoader.js';
+ * @three_import import { XYZLoader } from 'three/addons/loaders/XYZLoader.js';
  */
 class XYZLoader extends Loader {
 

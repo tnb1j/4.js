@@ -1,7 +1,7 @@
 import {
 	HalfFloatType,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { SSAARenderPass } from './SSAARenderPass.js';
 
 /**
@@ -20,7 +20,7 @@ import { SSAARenderPass } from './SSAARenderPass.js';
  * ```
  *
  * @augments SSAARenderPass
- * @four_import import { TAARenderPass } from '@tnb1j/4js/addons/postprocessing/TAARenderPass.js';
+ * @three_import import { TAARenderPass } from 'three/addons/postprocessing/TAARenderPass.js';
  */
 class TAARenderPass extends SSAARenderPass {
 
@@ -101,7 +101,7 @@ class TAARenderPass extends SSAARenderPass {
 
 		if ( this._holdRenderTarget === null ) {
 
-			this._holdRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, { type: HalfFloatType } );
+			this._holdRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, { type: HalfFloatType, depthBuffer: false } );
 			this._holdRenderTarget.texture.name = 'TAARenderPass.hold';
 
 		}

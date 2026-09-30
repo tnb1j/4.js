@@ -84,6 +84,10 @@ Allows to configure the layer's render target.
 
 Default is `{}`.
 
+**samples**
+
+The scene MSAA sample count. Defaults to the renderer's sample count.
+
 **Returns:** A mesh representing the cylindrical XR layer. This mesh should be added to the XR scene.
 
 ### .createQuadLayer( width : number, height : number, translation : Vector3, quaternion : Quaternion, pixelwidth : number, pixelheight : number, rendercall : function, attributes : Object ) : Mesh
@@ -124,6 +128,10 @@ Allows to configure the layer's render target.
 
 Default is `{}`.
 
+**samples**
+
+The scene MSAA sample count. Defaults to the renderer's sample count.
+
 **Returns:** A mesh representing the quadratic XR layer. This mesh should be added to the XR scene.
 
 ### .foveateBoundTexture( renderTarget : RenderTarget )
@@ -160,7 +168,7 @@ Returns the XR camera.
 
 ### .getController( index : number ) : Group
 
-Returns an instance of `FOUR.Group` that represents the transformation of a XR controller in target ray space. The requested controller is defined by the given index.
+Returns an instance of `THREE.Group` that represents the transformation of a XR controller in target ray space. The requested controller is defined by the given index.
 
 **index**
 
@@ -170,7 +178,7 @@ The index of the XR controller.
 
 ### .getControllerGrip( index : number ) : Group
 
-Returns an instance of `FOUR.Group` that represents the transformation of a XR controller in grip space. The requested controller is defined by the given index.
+Returns an instance of `THREE.Group` that represents the transformation of a XR controller in grip space. The requested controller is defined by the given index.
 
 **index**
 
@@ -204,7 +212,7 @@ Returns the framebuffer scale factor.
 
 ### .getHand( index : number ) : Group
 
-Returns an instance of `FOUR.Group` that represents the transformation of a XR controller in hand space. The requested controller is defined by the given index.
+Returns an instance of `THREE.Group` that represents the transformation of a XR controller in hand space. The requested controller is defined by the given index.
 
 **index**
 
@@ -306,4 +314,4 @@ Returns `true` if the engine renders to a multiview target.
 
 ## Source
 
-[src/renderers/common/XRManager.js](../../src/renderers/common/XRManager.js)
+[src/renderers/common/XRManager.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/XRManager.js)

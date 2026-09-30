@@ -2,10 +2,10 @@
 
 ## Import
 
-CSMShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSMShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSMShader } from '@tnb1j/4js/addons/csm/CSMShader.js';
+import { CSMShader } from 'three/addons/csm/CSMShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ The object that holds the GLSL enhancements to enable CSM. This code is injected
 
 ## Source
 
-[examples/jsm/csm/CSMShader.js](../../examples/jsm/csm/CSMShader.js)
+[examples/jsm/csm/CSMShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/csm/CSMShader.js)

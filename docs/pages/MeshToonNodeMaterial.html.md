@@ -42,4 +42,4 @@ Setups the lighting model.
 
 ## Source
 
-[src/materials/nodes/MeshToonNodeMaterial.js](../../src/materials/nodes/MeshToonNodeMaterial.js)
+[src/materials/nodes/MeshToonNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshToonNodeMaterial.js)

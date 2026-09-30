@@ -1,13 +1,13 @@
 # SceneOptimizer
 
-This class can be used to optimized scenes by converting individual meshes into [BatchedMesh](BatchedMesh.html). This component is an experimental attempt to implement auto-batching in 4.js.
+This class can be used to optimized scenes by converting individual meshes into [BatchedMesh](BatchedMesh.html). This component is an experimental attempt to implement auto-batching in three.js.
 
 ## Import
 
-SceneOptimizer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SceneOptimizer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SceneOptimizer } from '@tnb1j/4js/addons/utils/SceneOptimizer.js';
+import { SceneOptimizer } from 'three/addons/utils/SceneOptimizer.js';
 ```
 
 ## Constructor
@@ -71,4 +71,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/utils/SceneOptimizer.js](../../examples/jsm/utils/SceneOptimizer.js)
+[examples/jsm/utils/SceneOptimizer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/SceneOptimizer.js)

@@ -200,4 +200,4 @@ The camera.
 
 ## Source
 
-[src/renderers/webxr/WebXRManager.js](../../src/renderers/webxr/WebXRManager.js)
+[src/renderers/webxr/WebXRManager.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webxr/WebXRManager.js)

@@ -1,5 +1,5 @@
-import * as FOUR from '@tnb1j/4js';
-import * as TSL from '@tnb1j/4js/tsl';
+import * as THREE from 'three';
+import * as TSL from 'three/tsl';
 
 // some helpers below are ported from Blender and converted to TSL
 
@@ -99,112 +99,10 @@ const softLightMix = TSL.Fn( ( [ t, col1, col2 ] ) => {
 
 } );
 
-const noiseFbm = TSL.Fn( ( [ p, detail, roughness, lacunarity, useNormalize ] ) => {
+// single-octave normalized noise — equivalent to fbm with detail = 1
 
-	const fscale = TSL.float( 1.0 ).toVar();
-	const amp = TSL.float( 1.0 ).toVar();
-	const maxamp = TSL.float( 0.0 ).toVar();
-	const sum = TSL.float( 0.0 ).toVar();
-
-	const iterations = detail.floor();
-
-	TSL.Loop( iterations, () => {
-
-		const t = TSL.mx_noise_float( p.mul( fscale ) );
-		sum.addAssign( t.mul( amp ) );
-		maxamp.addAssign( amp );
-		amp.mulAssign( roughness );
-		fscale.mulAssign( lacunarity );
-
-	} );
-
-	const rmd = detail.sub( iterations );
-	const hasRemainder = rmd.greaterThan( 0.001 );
-
-	return TSL.select(
-		hasRemainder,
-		TSL.select(
-			useNormalize.equal( 1 ),
-			( () => {
-
-				const t = TSL.mx_noise_float( p.mul( fscale ) );
-				const sum2 = sum.add( t.mul( amp ) );
-				const maxamp2 = maxamp.add( amp );
-				const normalizedSum = sum.div( maxamp ).mul( 0.5 ).add( 0.5 );
-				const normalizedSum2 = sum2.div( maxamp2 ).mul( 0.5 ).add( 0.5 );
-				return TSL.mix( normalizedSum, normalizedSum2, rmd );
-
-			} )(),
-			( () => {
-
-				const t = TSL.mx_noise_float( p.mul( fscale ) );
-				const sum2 = sum.add( t.mul( amp ) );
-				return TSL.mix( sum, sum2, rmd );
-
-			} )()
-		),
-		TSL.select(
-			useNormalize.equal( 1 ),
-			sum.div( maxamp ).mul( 0.5 ).add( 0.5 ),
-			sum
-		)
-	);
-
-} );
-
-const noiseFbm3d = TSL.Fn( ( [ p, detail, roughness, lacunarity, useNormalize ] ) => {
-
-	const fscale = TSL.float( 1.0 ).toVar();
-
-	const amp = TSL.float( 1.0 ).toVar();
-	const maxamp = TSL.float( 0.0 ).toVar();
-	const sum = TSL.vec3( 0.0 ).toVar();
-
-	const iterations = detail.floor();
-
-	TSL.Loop( iterations, () => {
-
-		const t = TSL.mx_noise_vec3( p.mul( fscale ) );
-		sum.addAssign( t.mul( amp ) );
-		maxamp.addAssign( amp );
-		amp.mulAssign( roughness );
-		fscale.mulAssign( lacunarity );
-
-	} );
-
-	const rmd = detail.sub( iterations );
-	const hasRemainder = rmd.greaterThan( 0.001 );
-
-	return TSL.select(
-		hasRemainder,
-		TSL.select(
-			useNormalize.equal( 1 ),
-			( () => {
-
-				const t = TSL.mx_noise_vec3( p.mul( fscale ) );
-				const sum2 = sum.add( t.mul( amp ) );
-				const maxamp2 = maxamp.add( amp );
-				const normalizedSum = sum.div( maxamp ).mul( 0.5 ).add( 0.5 );
-				const normalizedSum2 = sum2.div( maxamp2 ).mul( 0.5 ).add( 0.5 );
-				return TSL.mix( normalizedSum, normalizedSum2, rmd );
-
-			} )(),
-			( () => {
-
-				const t = TSL.mx_noise_vec3( p.mul( fscale ) );
-				const sum2 = sum.add( t.mul( amp ) );
-				return TSL.mix( sum, sum2, rmd );
-
-			} )()
-		),
-		TSL.select(
-			useNormalize.equal( 1 ),
-			sum.div( maxamp ).mul( 0.5 ).add( 0.5 ),
-			sum
-		)
-	);
-
-} );
+const noise1Norm = TSL.Fn( ( [ p ] ) => TSL.mx_noise_float( p ).mul( 0.5 ).add( 0.5 ) );
+const noise3Norm = TSL.Fn( ( [ p ] ) => TSL.mx_noise_vec3( p ).mul( 0.5 ).add( 0.5 ) );
 
 const woodCenter = TSL.Fn( ( [ p, centerSize ] ) => {
 
@@ -218,7 +116,7 @@ const woodCenter = TSL.Fn( ( [ p, centerSize ] ) => {
 const spaceWarp = TSL.Fn( ( [ p, warpStrength, xyScale, zScale ] ) => {
 
 	const combinedXyz = TSL.vec3( xyScale, xyScale, zScale ).mul( p );
-	const noise = noiseFbm3d( combinedXyz.mul( 1.6 * 1.5 ), TSL.float( 1 ), TSL.float( 0.5 ), TSL.float( 2 ), TSL.int( 1 ) ).sub( 0.5 ).mul( warpStrength );
+	const noise = noise3Norm( combinedXyz.mul( 1.6 * 1.5 ) ).sub( 0.5 ).mul( warpStrength );
 	const pXy = p.mul( TSL.vec3( 1, 1, 0 ) );
 	const normalizedXy = pXy.normalize();
 	const warp = noise.mul( normalizedXy ).add( pXy );
@@ -229,7 +127,7 @@ const spaceWarp = TSL.Fn( ( [ p, warpStrength, xyScale, zScale ] ) => {
 
 const woodRings = TSL.Fn( ( [ w, ringThickness, ringBias, ringSizeVariance, ringVarianceScale, barkThickness ] ) => {
 
-	const rings = noiseFbm( w.mul( ringVarianceScale ), TSL.float( 1 ), TSL.float( 0.5 ), TSL.float( 1 ), TSL.int( 1 ) ).mul( ringSizeVariance ).add( w ).mul( ringThickness ).fract().mul( barkThickness );
+	const rings = noise1Norm( w.mul( ringVarianceScale ) ).mul( ringSizeVariance ).add( w ).mul( ringThickness ).fract().mul( barkThickness );
 
 	const sharpRings = TSL.min( mapRange( rings, 0, ringBias, 0, 1, TSL.bool( true ) ), mapRange( rings, ringBias, 1, 1, 0, TSL.bool( true ) ) );
 
@@ -246,7 +144,7 @@ const woodDetail = TSL.Fn( ( [ warp, p, y, splotchScale ] ) => {
 	const combinedXyz = TSL.vec3( radialCoords.sin(), y, radialCoords.cos().mul( p.z ) );
 	const scaled = TSL.vec3( 0.1, 1.19, 0.05 ).mul( combinedXyz );
 
-	return noiseFbm( scaled.mul( splotchScale ), TSL.float( 1 ), TSL.float( 0.5 ), TSL.float( 2 ), TSL.bool( true ) );
+	return noise1Norm( scaled.mul( splotchScale ) );
 
 } );
 
@@ -295,7 +193,7 @@ const wood = TSL.Fn( ( [
 
 const woodParams = {
 	teak: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.11, largeWarpScale: 0.32, largeGrainStretch: 0.24, smallWarpStrength: 0.059,
 		smallWarpScale: 2, fineWarpStrength: 0.006, fineWarpScale: 32.8, ringThickness: 1 / 34,
 		ringBias: 0.03, ringSizeVariance: 0.03, ringVarianceScale: 4.4, barkThickness: 0.3,
@@ -303,7 +201,7 @@ const woodParams = {
 		darkGrainColor: '#0c0504', lightGrainColor: '#926c50'
 	},
 	walnut: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.07, largeWarpScale: 0.42, largeGrainStretch: 0.34, smallWarpStrength: 0.016,
 		smallWarpScale: 10.3, fineWarpStrength: 0.028, fineWarpScale: 12.7, ringThickness: 1 / 32,
 		ringBias: 0.08, ringSizeVariance: 0.03, ringVarianceScale: 5.5, barkThickness: 0.98,
@@ -311,7 +209,7 @@ const woodParams = {
 		darkGrainColor: '#311e13', lightGrainColor: '#523424'
 	},
 	white_oak: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.23, largeWarpScale: 0.21, largeGrainStretch: 0.21, smallWarpStrength: 0.034,
 		smallWarpScale: 2.44, fineWarpStrength: 0.01, fineWarpScale: 14.3, ringThickness: 1 / 34,
 		ringBias: 0.82, ringSizeVariance: 0.16, ringVarianceScale: 1.4, barkThickness: 0.7,
@@ -319,7 +217,7 @@ const woodParams = {
 		darkGrainColor: '#8b4c21', lightGrainColor: '#c57e43'
 	},
 	pine: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.23, largeWarpScale: 0.21, largeGrainStretch: 0.18, smallWarpStrength: 0.041,
 		smallWarpScale: 2.44, fineWarpStrength: 0.006, fineWarpScale: 23.2, ringThickness: 1 / 24,
 		ringBias: 0.1, ringSizeVariance: 0.07, ringVarianceScale: 5, barkThickness: 0.35,
@@ -327,7 +225,7 @@ const woodParams = {
 		darkGrainColor: '#c58355', lightGrainColor: '#d19d61'
 	},
 	poplar: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.43, largeWarpScale: 0.33, largeGrainStretch: 0.18, smallWarpStrength: 0.04,
 		smallWarpScale: 4.3, fineWarpStrength: 0.004, fineWarpScale: 33.6, ringThickness: 1 / 37,
 		ringBias: 0.07, ringSizeVariance: 0.03, ringVarianceScale: 3.8, barkThickness: 0.3,
@@ -335,7 +233,7 @@ const woodParams = {
 		darkGrainColor: '#716347', lightGrainColor: '#998966'
 	},
 	maple: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.4, largeWarpScale: 0.38, largeGrainStretch: 0.25, smallWarpStrength: 0.067,
 		smallWarpScale: 2.5, fineWarpStrength: 0.005, fineWarpScale: 33.6, ringThickness: 1 / 35,
 		ringBias: 0.1, ringSizeVariance: 0.07, ringVarianceScale: 4.6, barkThickness: 0.61,
@@ -343,7 +241,7 @@ const woodParams = {
 		darkGrainColor: '#b08969', lightGrainColor: '#bc9d7d'
 	},
 	red_oak: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.21, largeWarpScale: 0.24, largeGrainStretch: 0.25, smallWarpStrength: 0.044,
 		smallWarpScale: 2.54, fineWarpStrength: 0.01, fineWarpScale: 14.5, ringThickness: 1 / 34,
 		ringBias: 0.92, ringSizeVariance: 0.03, ringVarianceScale: 5.6, barkThickness: 1.01,
@@ -351,7 +249,7 @@ const woodParams = {
 		darkGrainColor: '#af613b', lightGrainColor: '#e0a27a'
 	},
 	cherry: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.33, largeWarpScale: 0.11, largeGrainStretch: 0.33, smallWarpStrength: 0.024,
 		smallWarpScale: 2.48, fineWarpStrength: 0.01, fineWarpScale: 15.3, ringThickness: 1 / 36,
 		ringBias: 0.02, ringSizeVariance: 0.04, ringVarianceScale: 6.5, barkThickness: 0.09,
@@ -359,7 +257,7 @@ const woodParams = {
 		darkGrainColor: '#913f27', lightGrainColor: '#b45837'
 	},
 	cedar: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.11, largeWarpScale: 0.39, largeGrainStretch: 0.12, smallWarpStrength: 0.061,
 		smallWarpScale: 1.9, fineWarpStrength: 0.006, fineWarpScale: 4.8, ringThickness: 1 / 25,
 		ringBias: 0.01, ringSizeVariance: 0.07, ringVarianceScale: 6.7, barkThickness: 0.1,
@@ -367,7 +265,7 @@ const woodParams = {
 		darkGrainColor: '#9a5b49', lightGrainColor: '#ae745e'
 	},
 	mahogany: {
-		transformationMatrix: new FOUR.Matrix4().identity(),
+		transformationMatrix: new THREE.Matrix4().identity(),
 		centerSize: 1.25, largeWarpScale: 0.26, largeGrainStretch: 0.29, smallWarpStrength: 0.044,
 		smallWarpScale: 2.54, fineWarpStrength: 0.01, fineWarpScale: 15.3, ringThickness: 1 / 38,
 		ringBias: 0.01, ringSizeVariance: 0.33, ringVarianceScale: 1.2, barkThickness: 0.07,
@@ -405,7 +303,7 @@ export function GetWoodPreset( genus, finish ) {
 
 	}
 
-	return { ...params, transformationMatrix: new FOUR.Matrix4().copy( params.transformationMatrix ), genus, finish, clearcoat, clearcoatRoughness, clearcoatDarken };
+	return { ...params, transformationMatrix: new THREE.Matrix4().copy( params.transformationMatrix ), genus, finish, clearcoat, clearcoatRoughness, clearcoatDarken };
 
 }
 
@@ -428,9 +326,9 @@ uniforms.splotchScale = TSL.uniform( params.splotchScale ).onObjectUpdate( ( { m
 uniforms.splotchIntensity = TSL.uniform( params.splotchIntensity ).onObjectUpdate( ( { material } ) => material.splotchIntensity );
 uniforms.cellScale = TSL.uniform( params.cellScale ).onObjectUpdate( ( { material } ) => material.cellScale );
 uniforms.cellSize = TSL.uniform( params.cellSize ).onObjectUpdate( ( { material } ) => material.cellSize );
-uniforms.darkGrainColor = TSL.uniform( new FOUR.Color( params.darkGrainColor ) ).onObjectUpdate( ( { material }, self ) => self.value.set( material.darkGrainColor ) );
-uniforms.lightGrainColor = TSL.uniform( new FOUR.Color( params.lightGrainColor ) ).onObjectUpdate( ( { material }, self ) => self.value.set( material.lightGrainColor ) );
-uniforms.transformationMatrix = TSL.uniform( new FOUR.Matrix4().copy( params.transformationMatrix ) ).onObjectUpdate( ( { material } ) => material.transformationMatrix );
+uniforms.darkGrainColor = TSL.uniform( new THREE.Color( params.darkGrainColor ) ).onObjectUpdate( ( { material }, self ) => self.value.set( material.darkGrainColor ) );
+uniforms.lightGrainColor = TSL.uniform( new THREE.Color( params.lightGrainColor ) ).onObjectUpdate( ( { material }, self ) => self.value.set( material.lightGrainColor ) );
+uniforms.transformationMatrix = TSL.uniform( new THREE.Matrix4().copy( params.transformationMatrix ) ).onObjectUpdate( ( { material } ) => material.transformationMatrix );
 
 const colorNode = wood(
 	uniforms.transformationMatrix.mul( TSL.vec4( TSL.positionLocal, 1 ) ).xyz,
@@ -466,8 +364,8 @@ const colorNode = wood(
  * const material = new WoodNodeMaterial({
  *   centerSize: 1.2,
  *   ringThickness: 1/40,
- *   darkGrainColor: new FOUR.Color('#2a1a0a'),
- *   lightGrainColor: new FOUR.Color('#8b4513'),
+ *   darkGrainColor: new THREE.Color('#2a1a0a'),
+ *   lightGrainColor: new THREE.Color('#8b4513'),
  *   clearcoat: 1,
  *   clearcoatRoughness: 0.3
  * });
@@ -480,7 +378,7 @@ const colorNode = wood(
  *   clearcoat: 1    // Add finish
  * });
  */
-export class WoodNodeMaterial extends FOUR.MeshPhysicalMaterial {
+export class WoodNodeMaterial extends THREE.MeshPhysicalMaterial {
 
 	static get type() {
 
@@ -506,7 +404,7 @@ export class WoodNodeMaterial extends FOUR.MeshPhysicalMaterial {
 
 			if ( typeof finalParams[ key ] === 'string' ) {
 
-				this[ key ] = new FOUR.Color( finalParams[ key ] );
+				this[ key ] = new THREE.Color( finalParams[ key ] );
 
 			} else {
 

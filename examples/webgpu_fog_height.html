@@ -25,21 +25,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { exponentialHeightFogFactor, uniform, fog, color } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { exponentialHeightFogFactor, uniform, fog, color } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -48,10 +48,10 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 600 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 600 );
 				camera.position.set( 20, 10, 25 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// height fog
 
@@ -65,14 +65,14 @@
 
 				// meshes
 
-				const geometry = new FOUR.BoxGeometry( 1, 25, 1 );
-				const material = new FOUR.MeshPhongNodeMaterial( { color: 0xcd959a } );
+				const geometry = new THREE.BoxGeometry( 1, 25, 1 );
+				const material = new THREE.MeshPhongNodeMaterial( { color: 0xcd959a } );
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, 100 );
+				const mesh = new THREE.InstancedMesh( geometry, material, 100 );
 				mesh.position.y = - 10;
 				scene.add( mesh );
 
-				const dummy = new FOUR.Object3D();
+				const dummy = new THREE.Object3D();
 
 				let index = 0;
 
@@ -93,16 +93,16 @@
 
 				// lights
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffc0cb, 2 );
+				const directionalLight = new THREE.DirectionalLight( 0xffc0cb, 2 );
 				directionalLight.position.set( - 10, 10, 10 );
 				scene.add( directionalLight );
 
-				const ambientLight = new FOUR.AmbientLight( 0xcccccc );
+				const ambientLight = new THREE.AmbientLight( 0xcccccc );
 				scene.add( ambientLight );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

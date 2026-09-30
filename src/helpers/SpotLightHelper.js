@@ -14,11 +14,11 @@ const _vector = /*@__PURE__*/ new Vector3();
  * changed, it's necessary to call the `update()` method of the respective helper.
  *
  * ```js
- * const spotLight = new FOUR.SpotLight( 0xffffff );
+ * const spotLight = new THREE.SpotLight( 0xffffff );
  * spotLight.position.set( 10, 10, 10 );
  * scene.add( spotLight );
  *
- * const spotLightHelper = new FOUR.SpotLightHelper( spotLight );
+ * const spotLightHelper = new THREE.SpotLightHelper( spotLight );
  * scene.add( spotLightHelper );
  * ```
  *
@@ -94,6 +94,8 @@ class SpotLightHelper extends Object3D {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.cone.geometry.dispose();
 		this.cone.material.dispose();

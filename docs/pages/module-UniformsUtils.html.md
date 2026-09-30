@@ -26,4 +26,4 @@ An array of objects containing uniform definitions.
 
 ## Source
 
-[src/renderers/shaders/UniformsUtils.js](../../src/renderers/shaders/UniformsUtils.js)
+[src/renderers/shaders/UniformsUtils.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/shaders/UniformsUtils.js)

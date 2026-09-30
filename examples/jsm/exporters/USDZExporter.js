@@ -3,7 +3,7 @@ import {
 	DoubleSide,
 	Color,
 	PropertyBinding,
-} from '@tnb1j/4js';
+} from 'three';
 
 import {
 	strToU8,
@@ -133,7 +133,7 @@ class USDNode {
  * const arraybuffer = await exporter.parseAsync( scene );
  * ```
  *
- * @four_import import { USDZExporter } from '@tnb1j/4js/addons/exporters/USDZExporter.js';
+ * @three_import import { USDZExporter } from 'three/addons/exporters/USDZExporter.js';
  */
 class USDZExporter {
 
@@ -156,7 +156,7 @@ class USDZExporter {
 	 * Sets the texture utils for this exporter. Only relevant when compressed textures have to be exported.
 	 *
 	 * Depending on whether you use {@link WebGLRenderer} or {@link WebGPURenderer}, you must inject the
-	 * corresponding texture utils {@link WebGLTextureUtils} or {@link WebGPUTextureUtils}.
+	 * corresponding texture utils {@link module:WebGLTextureUtils} or {@link module:WebGPUTextureUtils}.
 	 *
 	 * @param {WebGLTextureUtils|WebGPUTextureUtils} utils - The texture utils.
 	 */
@@ -286,7 +286,7 @@ class USDZExporter {
 				if ( this.textureUtils === null ) {
 
 					throw new Error(
-						'FOUR.USDZExporter: setTextureUtils() must be called to process compressed textures.'
+						'THREE.USDZExporter: setTextureUtils() must be called to process compressed textures.'
 					);
 
 				} else {
@@ -342,7 +342,7 @@ class USDZExporter {
 
 		}
 
-		return zipSync( files, { level: 0 } );
+		return zipSync( files, { level: 0, mtime: new Date() } );
 
 	}
 
@@ -426,7 +426,7 @@ function imageToCanvas( image, flipY, maxTextureSize ) {
 	} else {
 
 		throw new Error(
-			'FOUR.USDZExporter: No valid image data found. Unable to process texture.'
+			'THREE.USDZExporter: No valid image data found. Unable to process texture.'
 		);
 
 	}
@@ -577,7 +577,7 @@ function buildNode( object, parentNode, materials, usedNames, files, options ) {
 
 			if ( ! material.isMeshStandardMaterial ) {
 
-				console.warn( 'FOUR.USDZExporter: Use MeshStandardMaterial for best results.' );
+				console.warn( 'THREE.USDZExporter: Use MeshStandardMaterial for best results.' );
 
 			}
 
@@ -707,7 +707,7 @@ function buildXform( object, usedNames, options ) {
 	if ( object.matrix.determinant() < 0 ) {
 
 		console.warn(
-			'FOUR.USDZExporter: USDZ does not support negative scales',
+			'THREE.USDZExporter: USDZ does not support negative scales',
 			object
 		);
 
@@ -1114,7 +1114,7 @@ function buildMaterial( material, textures, quickLookCompatible = false ) {
 	if ( material.side === DoubleSide ) {
 
 		console.warn(
-			'FOUR.USDZExporter: USDZ does not support double sided materials',
+			'THREE.USDZExporter: USDZ does not support double sided materials',
 			material
 		);
 
@@ -1391,7 +1391,7 @@ function buildCamera( camera, usedNames, options ) {
 	if ( camera.matrix.determinant() < 0 ) {
 
 		console.warn(
-			'FOUR.USDZExporter: USDZ does not support negative scales',
+			'THREE.USDZExporter: USDZ does not support negative scales',
 			camera
 		);
 

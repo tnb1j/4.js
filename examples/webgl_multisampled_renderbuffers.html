@@ -38,20 +38,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, renderer, group, container;
 
@@ -69,36 +69,36 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 10, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 10, 2000 );
 				camera.position.z = 500;
 
-				const scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xffffff );
-				scene.fog = new FOUR.Fog( 0xcccccc, 100, 1500 );
+				const scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
+				scene.fog = new THREE.Fog( 0xcccccc, 100, 1500 );
 
 				//
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x222222, 5 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x222222, 5 );
 				hemiLight.position.set( 1, 1, 1 );
 				scene.add( hemiLight );
 
 				//
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 
-				const geometry = new FOUR.SphereGeometry( 10, 64, 40 );
-				const material = new FOUR.MeshLambertMaterial( {
+				const geometry = new THREE.SphereGeometry( 10, 64, 40 );
+				const material = new THREE.MeshLambertMaterial( {
 					color: 0xee0808,
 					polygonOffset: true,
 					polygonOffsetFactor: 1, // positive value pushes polygon further away
 					polygonOffsetUnits: 1
 
 				} );
-				const material2 = new FOUR.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
+				const material2 = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 
 				for ( let i = 0; i < 50; i ++ ) {
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 					mesh.position.x = Math.random() * 600 - 300;
 					mesh.position.y = Math.random() * 600 - 300;
 					mesh.position.z = Math.random() * 600 - 300;
@@ -107,7 +107,7 @@
 					mesh.scale.setScalar( Math.random() * 5 + 5 );
 					group.add( mesh );
 
-					const mesh2 = new FOUR.Mesh( geometry, material2 );
+					const mesh2 = new THREE.Mesh( geometry, material2 );
 					mesh2.position.copy( mesh.position );
 					mesh2.rotation.copy( mesh.rotation );
 					mesh2.scale.copy( mesh.scale );
@@ -119,7 +119,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( container.offsetWidth, container.offsetHeight );
 				renderer.setAnimationLoop( animate );
@@ -128,8 +128,8 @@
 
 				//
 
-				const size = renderer.getDrawingBufferSize( new FOUR.Vector2() );
-				const renderTarget = new FOUR.WebGLRenderTarget( size.width, size.height, { samples: 4, type: FOUR.HalfFloatType } );
+				const size = renderer.getDrawingBufferSize( new THREE.Vector2() );
+				const renderTarget = new THREE.WebGLRenderTarget( size.width, size.height, { samples: 4, type: THREE.HalfFloatType } );
 
 				const renderPass = new RenderPass( scene, camera );
 				const outputPass = new OutputPass();

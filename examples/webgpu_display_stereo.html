@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { stereoPass } from '@tnb1j/4js/addons/tsl/display/StereoPassNode.js';
-			import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from '@tnb1j/4js/addons/tsl/display/AnaglyphPassNode.js';
-			import { parallaxBarrierPass } from '@tnb1j/4js/addons/tsl/display/ParallaxBarrierPassNode.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { stereoPass } from 'three/addons/tsl/display/StereoPassNode.js';
+			import { anaglyphPass, AnaglyphAlgorithm, AnaglyphColorMode } from 'three/addons/tsl/display/AnaglyphPassNode.js';
+			import { parallaxBarrierPass } from 'three/addons/tsl/display/ParallaxBarrierPassNode.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline;
 
@@ -51,7 +51,7 @@
 
 			let anaglyphFolder;
 
-			const position = new FOUR.Vector3();
+			const position = new THREE.Vector3();
 
 			const params = {
 				effect: 'stereo',
@@ -83,29 +83,29 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.z = 3;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.CubeTextureLoader()
+				scene = new THREE.Scene();
+				scene.background = new THREE.CubeTextureLoader()
 					.setPath( 'textures/cube/Park3Med/' )
 					.load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const geometry = new FOUR.SphereGeometry( 0.1, 32, 16 );
+				const geometry = new THREE.SphereGeometry( 0.1, 32, 16 );
 
-				const textureCube = new FOUR.CubeTextureLoader()
+				const textureCube = new THREE.CubeTextureLoader()
 					.setPath( 'textures/cube/Park3Med/' )
 					.load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] );
 
-				const material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+				const material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
 
-				mesh = new FOUR.InstancedMesh( geometry, material, 500 );
-				mesh.instanceMatrix.setUsage( FOUR.DynamicDrawUsage );
+				mesh = new THREE.InstancedMesh( geometry, material, 500 );
+				mesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage );
 
-				dummy = new FOUR.Mesh();
+				dummy = new THREE.Mesh();
 
 				for ( let i = 0; i < 500; i ++ ) {
 
@@ -124,14 +124,14 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				stereo = stereoPass( scene, camera );
 				anaglyph = anaglyphPass( scene, camera );
 				parallaxBarrier = parallaxBarrierPass( scene, camera );

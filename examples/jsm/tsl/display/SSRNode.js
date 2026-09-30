@@ -1,5 +1,5 @@
-import { Break, Continue, Fn, If, Loop, abs, bool, cross, distance, div, dot, float, getScreenPosition, getViewPosition, int, logarithmicDepthToViewZ, luminance, max, min, mix, mul, nodeObject, normalize, orthographicDepthToViewZ, passTexture, perspectiveDepthToViewZ, reference, reflect, sub, texture, trunc, uniform, uv, vec2, vec3, vec4, viewZToPerspectiveDepth } from '@tnb1j/4js/tsl';
-import { HalfFloatType, LinearFilter, LinearMipmapLinearFilter, Matrix4, NodeMaterial, NodeUpdateType, QuadMesh, RenderTarget, RendererUtils, TempNode, Vector2, Vector3 } from '@tnb1j/4js/webgpu';
+import { Break, Continue, Fn, If, Loop, abs, bool, cross, distance, div, dot, float, getScreenPosition, getViewPosition, int, logarithmicDepthToViewZ, luminance, max, min, mix, mul, nodeObject, normalize, orthographicDepthToViewZ, passTexture, perspectiveDepthToViewZ, reference, reflect, sub, texture, trunc, uniform, uv, vec2, vec3, vec4, viewZToPerspectiveDepth, context } from 'three/tsl';
+import { HalfFloatType, LinearFilter, LinearMipmapLinearFilter, Matrix4, NodeMaterial, NodeUpdateType, QuadMesh, RenderTarget, RendererUtils, TempNode, Vector2, Vector3 } from 'three/webgpu';
 import { bindAnalyticNoise } from '../utils/RNoise.js';
 import { ENV_RAY_LENGTH, getSpecularDominantFactor, ggxReflectionSample } from '../utils/SpecularHelpers.js';
 import { boxBlur } from './boxBlur.js';
@@ -31,7 +31,7 @@ const MAX_STEPS = 64;
  * Reference: {@link https://lettier.github.io/3d-game-shaders-for-beginners/screen-space-reflection.html}
  *
  * @augments TempNode
- * @four_import import { ssr } from '@tnb1j/4js/addons/tsl/display/SSRNode.js';
+ * @three_import import { ssr } from 'three/addons/tsl/display/SSRNode.js';
  */
 class SSRNode extends TempNode {
 
@@ -305,7 +305,7 @@ class SSRNode extends TempNode {
 
 			} else {
 
-				throw new Error( 'FOUR.SSRNode: No camera found. ssr() requires a camera.' );
+				throw new Error( 'THREE.SSRNode: No camera found. ssr() requires a camera.' );
 
 			}
 
@@ -625,7 +625,8 @@ class SSRNode extends TempNode {
 
 		if ( this._ssrFn === null ) return;
 
-		this._ssrMaterial.fragmentNode = this._ssrFn().context( this._sharedContext );
+		this._ssrMaterial.contextNode = context( this._sharedContext );
+		this._ssrMaterial.fragmentNode = this._ssrFn();
 		this._ssrMaterial.needsUpdate = true;
 
 	}
@@ -952,6 +953,8 @@ class SSRNode extends TempNode {
 				specDominantFactor = getSpecularDominantFactor( ggxSample.get( 'NdotV' ), roughness ).toVar();
 
 				sampleEnvReflection = () => {
+
+					if ( this._importanceEnvironment === null ) return vec3( 0 );
 
 					const envColor = vec3( 0 ).toVar();
 
@@ -1313,6 +1316,8 @@ class SSRNode extends TempNode {
 	 * when the effect is no longer required.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this._ssrRenderTarget.dispose();
 		this._blurRenderTarget.dispose();

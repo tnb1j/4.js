@@ -31,8 +31,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
           			"@needle-tools/three-animation-pointer": "https://cdn.jsdelivr.net/npm/@needle-tools/three-animation-pointer@1.0.7"
 				}
 			}
@@ -40,39 +40,39 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 			import { GLTFAnimationPointerExtension } from '@needle-tools/three-animation-pointer';
 
 			let mixer;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			const container = document.getElementById( 'container' );
 
 			const stats = new Stats();
 			container.appendChild( stats.dom );
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			container.appendChild( renderer.domElement );
 
-			const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+			const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-			const scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0xbfe3dd );
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0xbfe3dd );
 			scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
-			const camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .2, 100 );
+			const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .2, 100 );
 			camera.position.set( - 3, 2, 6 );
 
 			const controls = new OrbitControls( camera, renderer.domElement );
@@ -103,7 +103,7 @@
 				const model = gltf.scene;
 				scene.add( model );
 
-				mixer = new FOUR.AnimationMixer( model );
+				mixer = new THREE.AnimationMixer( model );
 				mixer.clipAction( gltf.animations[ 0 ] ).play();
 
 				renderer.setAnimationLoop( animate );

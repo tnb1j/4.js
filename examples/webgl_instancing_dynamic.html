@@ -18,71 +18,71 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
 
 			let camera, scene, renderer, timer, mesh;
 
 			const amount = 100;
 
 			const count = Math.pow( amount, 2 );
-			const dummy = new FOUR.Object3D();
+			const dummy = new THREE.Object3D();
 
 			const seeds = [];
 			const baseColors = [];
 
-			const color = new FOUR.Color();
-			const colors = [ new FOUR.Color( 0x00ffff ), new FOUR.Color( 0xffff00 ), new FOUR.Color( 0xff00ff ) ];
+			const color = new THREE.Color();
+			const colors = [ new THREE.Color( 0x00ffff ), new THREE.Color( 0xffff00 ), new THREE.Color( 0xff00ff ) ];
 			const animation = { t: 0 };
 			let currentColorIndex = 0;
 			let nextColorIndex = 1;
 
 			const maxDistance = 75;
-			const cameraTarget = new FOUR.Vector3();
+			const cameraTarget = new THREE.Vector3();
 
 			init();
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 10, 10, 10 );
 				camera.lookAt( 0, 0, 0 );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xadd8e6 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xadd8e6 );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				const texture = loader.load( 'textures/edge3.jpg' );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				const geometry = new FOUR.BoxGeometry();
-				const material = new FOUR.MeshStandardMaterial( { map: texture } );
+				const geometry = new THREE.BoxGeometry();
+				const material = new THREE.MeshStandardMaterial( { map: texture } );
 
-				mesh = new FOUR.InstancedMesh( geometry, material, count );
-				mesh.instanceMatrix.setUsage( FOUR.DynamicDrawUsage ); // will be updated every frame
+				mesh = new THREE.InstancedMesh( geometry, material, count );
+				mesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); // will be updated every frame
 				scene.add( mesh );
 
 				let i = 0;

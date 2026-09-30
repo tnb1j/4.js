@@ -6,10 +6,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 
 ## Import
 
-CSM is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CSM is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CSM } from '@tnb1j/4js/addons/csm/CSM.js';
+import { CSM } from 'three/addons/csm/CSM.js';
 ```
 
 ## Constructor
@@ -241,4 +241,4 @@ Default is `200`.
 
 ## Source
 
-[examples/jsm/csm/CSM.js](../../examples/jsm/csm/CSM.js)
+[examples/jsm/csm/CSM.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/csm/CSM.js)

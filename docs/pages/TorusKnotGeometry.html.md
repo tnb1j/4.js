@@ -7,9 +7,9 @@ Creates a torus knot, the particular shape of which is defined by a pair of copr
 ## Code Example
 
 ```js
-const geometry = new FOUR.TorusKnotGeometry( 10, 3, 100, 16 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const torusKnot = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const torusKnot = new THREE.Mesh( geometry, material );
 scene.add( torusKnot );
 ```
 
@@ -75,4 +75,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/TorusKnotGeometry.js](../../src/geometries/TorusKnotGeometry.js)
+[src/geometries/TorusKnotGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/TorusKnotGeometry.js)

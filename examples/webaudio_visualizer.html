@@ -50,21 +50,21 @@
 		<div id="container"></div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener noreferrer">4.js</a> webaudio - visualizer<br/>
-			music by <a href="http://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener">skullbeatz</a>
+			music by <a href="https://www.newgrounds.com/audio/listen/376737" target="_blank" rel="noopener">skullbeatz</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let scene, camera, renderer, analyser, uniforms;
 
@@ -84,20 +84,20 @@
 
 				const container = document.getElementById( 'container' );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.Camera();
+				camera = new THREE.Camera();
 
 				//
 
-				const listener = new FOUR.AudioListener();
+				const listener = new THREE.AudioListener();
 
-				const audio = new FOUR.Audio( listener );
+				const audio = new THREE.Audio( listener );
 				const file = './sounds/376737_Skullbeatz___Bad_Cat_Maste.mp3';
 
 				if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
 
-					const loader = new FOUR.AudioLoader();
+					const loader = new THREE.AudioLoader();
 					loader.load( file, function ( buffer ) {
 
 						audio.setBuffer( buffer );
@@ -114,17 +114,17 @@
 
 				}
 
-				analyser = new FOUR.AudioAnalyser( audio, fftSize );
+				analyser = new THREE.AudioAnalyser( audio, fftSize );
 
 				//
 
 				uniforms = {
 
-					tAudioData: { value: new FOUR.DataTexture( analyser.data, fftSize / 2, 1, FOUR.RedFormat ) }
+					tAudioData: { value: new THREE.DataTexture( analyser.data, fftSize / 2, 1, THREE.RedFormat ) }
 
 				};
 
-				const material = new FOUR.ShaderMaterial( {
+				const material = new THREE.ShaderMaterial( {
 
 					uniforms: uniforms,
 					vertexShader: document.getElementById( 'vertexShader' ).textContent,
@@ -132,14 +132,14 @@
 
 				} );
 
-				const geometry = new FOUR.PlaneGeometry( 1, 1 );
+				const geometry = new THREE.PlaneGeometry( 1, 1 );
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

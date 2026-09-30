@@ -84,4 +84,4 @@ The current node frame.
 
 ## Source
 
-[src/nodes/accessors/Object3DNode.js](../../src/nodes/accessors/Object3DNode.js)
+[src/nodes/accessors/Object3DNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/Object3DNode.js)

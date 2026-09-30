@@ -6,7 +6,7 @@ import {
 	Matrix4,
 	Mesh,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class can be used to create a decal mesh that serves different kinds of purposes e.g.
@@ -19,13 +19,13 @@ import {
  *
  * ```js
  * const geometry = new DecalGeometry( mesh, position, orientation, size );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { DecalGeometry } from '@tnb1j/4js/addons/geometries/DecalGeometry.js';
+ * @three_import import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
  */
 class DecalGeometry extends BufferGeometry {
 

@@ -2,7 +2,7 @@
  * A utility module with basic WebGL 2 capability testing.
  *
  * @hideconstructor
- * @four_import import WebGL from '@tnb1j/4js/addons/capabilities/WebGL.js';
+ * @three_import import WebGL from 'three/addons/capabilities/WebGL.js';
  */
 class WebGL {
 

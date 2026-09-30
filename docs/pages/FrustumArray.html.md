@@ -36,11 +36,11 @@ The point to test.
 
 **Returns:** Whether the point is visible in any camera.
 
-### .copy( frustumArray : FrustumArray ) : FrustumArray
+### .copy( source : FrustumArray ) : FrustumArray
 
 Copies the values of the given frustum array to this instance.
 
-**frustumArray**
+**source**
 
 The frustum array to copy.
 
@@ -106,4 +106,4 @@ The array camera whose sub-cameras define the frustums.
 
 ## Source
 
-[src/math/FrustumArray.js](../../src/math/FrustumArray.js)
+[src/math/FrustumArray.js](https://github.com/mrdoob/three.js/blob/master/src/math/FrustumArray.js)

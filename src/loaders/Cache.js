@@ -1,7 +1,7 @@
 /**
  * @class
  * @classdesc A simple caching system, used internally by {@link FileLoader}.
- * To enable caching across all loaders that use {@link FileLoader}, add `FOUR.Cache.enabled = true.` once in your app.
+ * To enable caching across all loaders that use {@link FileLoader}, add `THREE.Cache.enabled = true.` once in your app.
  * @hideconstructor
  */
 const Cache = {

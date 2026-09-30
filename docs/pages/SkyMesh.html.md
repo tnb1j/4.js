@@ -29,10 +29,10 @@ sky.showSunDisc.value = true;
 
 ## Import
 
-SkyMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SkyMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
+import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 ```
 
 ## Constructor
@@ -101,10 +101,6 @@ The sun position uniform.
 
 The turbidity uniform.
 
-### .upUniform : UniformNode.<vec3>
-
-The up position.
-
 ## Source
 
-[examples/jsm/objects/SkyMesh.js](../../examples/jsm/objects/SkyMesh.js)
+[examples/jsm/objects/SkyMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/SkyMesh.js)

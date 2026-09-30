@@ -36,4 +36,4 @@ The current node builder.
 
 ## Source
 
-[src/materials/nodes/MeshMatcapNodeMaterial.js](../../src/materials/nodes/MeshMatcapNodeMaterial.js)
+[src/materials/nodes/MeshMatcapNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshMatcapNodeMaterial.js)

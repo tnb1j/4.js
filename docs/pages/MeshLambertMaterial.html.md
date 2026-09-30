@@ -244,4 +244,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshLambertMaterial.js](../../src/materials/MeshLambertMaterial.js)
+[src/materials/MeshLambertMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshLambertMaterial.js)

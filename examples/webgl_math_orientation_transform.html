@@ -18,24 +18,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, mesh, target;
 
-			const spherical = new FOUR.Spherical();
-			const rotationMatrix = new FOUR.Matrix4();
-			const targetQuaternion = new FOUR.Quaternion();
-			const timer = new FOUR.Timer();
+			const spherical = new THREE.Spherical();
+			const rotationMatrix = new THREE.Matrix4();
+			const targetQuaternion = new THREE.Quaternion();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 			const speed = Math.PI / 2;
 
@@ -47,35 +47,35 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.z = 5;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.ConeGeometry( 0.1, 0.5, 8 );
+				const geometry = new THREE.ConeGeometry( 0.1, 0.5, 8 );
 				geometry.rotateX( Math.PI * 0.5 );
-				const material = new FOUR.MeshNormalMaterial();
+				const material = new THREE.MeshNormalMaterial();
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//
 
-				const targetGeometry = new FOUR.SphereGeometry( 0.05 );
-				const targetMaterial = new FOUR.MeshBasicMaterial( { color: 0xff0000 } );
-				target = new FOUR.Mesh( targetGeometry, targetMaterial );
+				const targetGeometry = new THREE.SphereGeometry( 0.05 );
+				const targetMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+				target = new THREE.Mesh( targetGeometry, targetMaterial );
 				scene.add( target );
 
 				//
 
-				const sphereGeometry = new FOUR.SphereGeometry( 2, 32, 32 );
-				const sphereMaterial = new FOUR.MeshBasicMaterial( { color: 0xcccccc, wireframe: true, transparent: true, opacity: 0.3 } );
-				const sphere = new FOUR.Mesh( sphereGeometry, sphereMaterial );
+				const sphereGeometry = new THREE.SphereGeometry( 2, 32, 32 );
+				const sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xcccccc, wireframe: true, transparent: true, opacity: 0.3 } );
+				const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
 				scene.add( sphere );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>TubeGeometry - 4.js Docs</title>
+	<title>TubeGeometry - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
 				<div class="class-description"><p>Creates a tube that extrudes along a 3D curve.</p></div>
 				<iframe id="viewer" src="../scenes/geometry-browser.html#TubeGeometry"></iframe>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">class CustomSinCurve extends FOUR.Curve {
-	getPoint( t, optionalTarget = new FOUR.Vector3() ) {
+				<div translate="no"><pre><code class="language-js">class CustomSinCurve extends THREE.Curve {
+	getPoint( t, optionalTarget = new THREE.Vector3() ) {
 		const tx = t * 3 - 1.5;
 		const ty = Math.sin( 2 * Math.PI * t );
 		const tz = 0;
@@ -25,9 +25,9 @@
 	}
 }
 const path = new CustomSinCurve( 10 );
-const geometry = new FOUR.TubeGeometry( path, 20, 2, 8, false );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.TubeGeometry( path, 20, 2, 8, false );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 </code></pre></div>
 			</header>
@@ -124,7 +124,7 @@ JSON object.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/geometries/TubeGeometry.js" translate="no">src/geometries/TubeGeometry.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/geometries/TubeGeometry.js" translate="no" target="_blank" rel="noopener">src/geometries/TubeGeometry.js</a>
 				</p>
 			</article>
 		</section>

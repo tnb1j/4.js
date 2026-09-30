@@ -62,4 +62,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/core/CurvePath.js](../../src/extras/core/CurvePath.js)
+[src/extras/core/CurvePath.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/CurvePath.js)

@@ -105,16 +105,48 @@ function identityGlobals( identity ) {
 
 			if ( identity.namespace === 'FOUR' ) return;
 
-			if ( code.includes( '__FOUR' ) === false ) return;
-
+			let transformed = false;
 			code = new MagicString( code );
-			code.replaceAll( '__FOUR_DEVTOOLS__', '__THREE_DEVTOOLS__' );
-			code.replaceAll( '__FOUR__', '__THREE__' );
 
-			return {
-				code: code.toString(),
-				map: code.generateMap()
-			};
+			if ( code.original.includes( '__FOUR' ) ) {
+
+				code.replaceAll( '__FOUR_DEVTOOLS__', '__THREE_DEVTOOLS__' );
+				code.replaceAll( '__FOUR__', '__THREE__' );
+				transformed = true;
+
+			}
+
+			if ( code.original.includes( '4.js r' ) ) {
+
+				code.replaceAll( '4.js r', 'three.js r' );
+				transformed = true;
+
+			}
+
+			if ( transformed ) {
+
+				return {
+					code: code.toString(),
+					map: code.generateMap()
+				};
+
+			}
+
+		}
+
+	};
+
+}
+
+function suppressDuplicateFile( filename ) {
+
+	return {
+
+		name: 'four-suppress-duplicate-file',
+
+		generateBundle( options, bundle ) {
+
+			delete bundle[ filename ];
 
 		}
 
@@ -148,7 +180,7 @@ function createBuilds( identity ) {
 				[ `${outputPrefix}.core.js` ]: source( '.Core' ),
 				[ `${outputPrefix}.webgpu.nodes.js` ]: source( '.WebGPU.Nodes' ),
 			},
-			plugins: createPlugins( identity ),
+			plugins: [ ...createPlugins( identity ), suppressDuplicateFile( `${outputPrefix}.core.js` ) ],
 			preserveEntrySignatures: 'allow-extension',
 			output: [
 				{
@@ -197,7 +229,7 @@ function createBuilds( identity ) {
 				[ `${outputPrefix}.core.min.js` ]: source( '.Core' ),
 				[ `${outputPrefix}.webgpu.nodes.min.js` ]: source( '.WebGPU.Nodes' ),
 			},
-			plugins: createPlugins( identity, true ),
+			plugins: [ ...createPlugins( identity, true ), suppressDuplicateFile( `${outputPrefix}.core.min.js` ) ],
 			preserveEntrySignatures: 'allow-extension',
 			output: [
 				{

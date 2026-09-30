@@ -17,21 +17,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { ARButton } from '@tnb1j/4js/addons/webxr/ARButton.js';
-			import { XRPlanes } from '@tnb1j/4js/addons/webxr/XRPlanes.js';
+			import * as THREE from 'three';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
+			import { XRPlanes } from 'three/addons/webxr/XRPlanes.js';
 
 			//
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
@@ -46,14 +46,14 @@
 
 			//
 
-			const scene = new FOUR.Scene();
+			const scene = new THREE.Scene();
 
 			const planes = new XRPlanes( renderer );
 			scene.add( planes );
 
-			const camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+			const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-			const light = new FOUR.HemisphereLight( 0xffffff, 0xbbbbff, 3 );
+			const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 3 );
 			light.position.set( 0.5, 1, 0.25 );
 			scene.add( light );
 

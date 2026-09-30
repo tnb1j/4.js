@@ -26,19 +26,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let scene, camera, renderer, radianceMap;
 
@@ -54,7 +54,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setSize( width, height );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				document.body.appendChild( renderer.domElement );
@@ -63,11 +63,11 @@
 
 				// scene
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 40, aspect, 1, 30 );
+				camera = new THREE.PerspectiveCamera( 40, aspect, 1, 30 );
 				camera.position.set( 0, 0, 18 );
 
 				//
@@ -80,13 +80,13 @@
 
 			function createObjects() {
 
-				const geometry = new FOUR.SphereGeometry( 0.4, 32, 16 );
+				const geometry = new THREE.SphereGeometry( 0.4, 32, 16 );
 
 				for ( let x = 0; x <= 10; x ++ ) {
 
 					for ( let y = 0; y <= 10; y ++ ) {
 
-						const material = new FOUR.MeshPhysicalMaterial( {
+						const material = new THREE.MeshPhysicalMaterial( {
 							roughness: x / 10,
 							metalness: y / 10,
 							color: 0xffffff,
@@ -96,7 +96,7 @@
 							ior: 1.5
 						} );
 
-						const mesh = new FOUR.Mesh( geometry, material );
+						const mesh = new THREE.Mesh( geometry, material );
 						mesh.position.x = x - 5;
 						mesh.position.y = 5 - y;
 						scene.add( mesh );
@@ -109,10 +109,10 @@
 
 			function createEnvironment() {
 
-				const envScene = new FOUR.Scene();
-				envScene.background = new FOUR.Color( COLOR );
+				const envScene = new THREE.Scene();
+				envScene.background = new THREE.Color( COLOR );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				radianceMap = pmremGenerator.fromScene( envScene ).texture;
 				pmremGenerator.dispose();
 

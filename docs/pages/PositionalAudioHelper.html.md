@@ -9,7 +9,7 @@ This helper displays the directional cone of a positional audio.
 ## Code Example
 
 ```js
-const positionalAudio = new FOUR.PositionalAudio( listener );
+const positionalAudio = new THREE.PositionalAudio( listener );
 positionalAudio.setDirectionalCone( 180, 230, 0.1 );
 scene.add( positionalAudio );
 const helper = new PositionalAudioHelper( positionalAudio );
@@ -18,10 +18,10 @@ positionalAudio.add( helper );
 
 ## Import
 
-PositionalAudioHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PositionalAudioHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PositionalAudioHelper } from '@tnb1j/4js/addons/helpers/PositionalAudioHelper.js';
+import { PositionalAudioHelper } from 'three/addons/helpers/PositionalAudioHelper.js';
 ```
 
 ## Constructor
@@ -82,10 +82,12 @@ Default is `1`.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Line#dispose](Line.html#dispose)
+
 ### .update()
 
 Updates the helper. This method must be called whenever the directional cone of the positional audio is changed.
 
 ## Source
 
-[examples/jsm/helpers/PositionalAudioHelper.js](../../examples/jsm/helpers/PositionalAudioHelper.js)
+[examples/jsm/helpers/PositionalAudioHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/PositionalAudioHelper.js)

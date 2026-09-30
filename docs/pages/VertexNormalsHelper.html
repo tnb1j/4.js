@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>VertexNormalsHelper - 4.js Docs</title>
+	<title>VertexNormalsHelper - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,9 +17,9 @@
 <p>Requires that normals have been specified in the geometry as a buffer attribute or
 have been calculated using <a href="BufferGeometry.html#computeVertexNormals">BufferGeometry#computeVertexNormals</a>.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const geometry = new FOUR.BoxGeometry( 10, 10, 10, 2, 2, 2 );
-const material = new FOUR.MeshStandardMaterial();
-const mesh = new FOUR.Mesh( geometry, material );
+				<div translate="no"><pre><code class="language-js">const geometry = new THREE.BoxGeometry( 10, 10, 10, 2, 2, 2 );
+const material = new THREE.MeshStandardMaterial();
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 const helper = new VertexNormalsHelper( mesh, 1, 0xff0000 );
 scene.add( helper );
@@ -27,8 +27,8 @@ scene.add( helper );
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">VertexNormalsHelper</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { VertexNormalsHelper } from '@tnb1j/4js/addons/helpers/VertexNormalsHelper.js';</code></pre>
+				<p><span translate="no">VertexNormalsHelper</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="VertexNormalsHelper" translate="no">new <a href="#VertexNormalsHelper">VertexNormalsHelper</a><span class="signature">( object : <span class="param-type"><a href="Object3D.html">Object3D</a></span>, size : <span class="param-type">number</span>, color : <span class="param-type">number | <a href="Color.html">Color</a> | string</span> )</span> </h3>
@@ -107,6 +107,9 @@ is encoded in the helper's geometry data.</p>
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="LineSegments.html#dispose">LineSegments#dispose</a></dt>
+						</dl>
 					</div>
 					<h3 class="name name-method" id="update" translate="no">.<a href="#update">update</a><span class="signature">()</span> </h3>
 					<div class="method">
@@ -116,7 +119,7 @@ method whenever this instance is no longer used in your app.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/helpers/VertexNormalsHelper.js" translate="no">examples/jsm/helpers/VertexNormalsHelper.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/VertexNormalsHelper.js" translate="no" target="_blank" rel="noopener">examples/jsm/helpers/VertexNormalsHelper.js</a>
 				</p>
 			</article>
 		</section>

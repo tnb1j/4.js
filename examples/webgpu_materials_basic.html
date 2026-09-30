@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -51,13 +51,13 @@
 
 			const params = {
 				color: '#ffffff',
-				mapping: FOUR.CubeReflectionMapping,
+				mapping: THREE.CubeReflectionMapping,
 				refractionRatio: 0.98,
 				transparent: false,
 				opacity: 1
 			};
 
-			const mappings = { ReflectionMapping: FOUR.CubeReflectionMapping, RefractionMapping: FOUR.CubeRefractionMapping };
+			const mappings = { ReflectionMapping: THREE.CubeReflectionMapping, RefractionMapping: THREE.CubeRefractionMapping };
 
 			document.addEventListener( 'mousemove', onDocumentMouseMove );
 
@@ -65,7 +65,7 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
 				camera.position.z = 3;
 
 				const path = './textures/cube/pisa/';
@@ -76,17 +76,17 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const textureCube = new FOUR.CubeTextureLoader().load( urls );
+				const textureCube = new THREE.CubeTextureLoader().load( urls );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = textureCube;
 
-				const geometry = new FOUR.SphereGeometry( 0.1, 32, 16 );
-				const material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+				const geometry = new THREE.SphereGeometry( 0.1, 32, 16 );
+				const material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
 
 				for ( let i = 0; i < 500; i ++ ) {
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					mesh.position.x = Math.random() * 10 - 5;
 					mesh.position.y = Math.random() * 10 - 5;
@@ -102,7 +102,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

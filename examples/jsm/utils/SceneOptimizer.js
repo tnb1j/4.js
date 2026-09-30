@@ -1,11 +1,11 @@
-import * as FOUR from '@tnb1j/4js';
+import * as THREE from 'three';
 
 /**
  * This class can be used to optimized scenes by converting
  * individual meshes into {@link BatchedMesh}. This component
  * is an experimental attempt to implement auto-batching in 4.js.
  *
- * @four_import import { SceneOptimizer } from '@tnb1j/4js/addons/utils/SceneOptimizer.js';
+ * @three_import import { SceneOptimizer } from 'three/addons/utils/SceneOptimizer.js';
  */
 class SceneOptimizer {
 
@@ -260,7 +260,7 @@ class SceneOptimizer {
 
 			}
 
-			const batchedMesh = new FOUR.BatchedMesh(
+			const batchedMesh = new THREE.BatchedMesh(
 				maxGeometries,
 				maxVertices,
 				maxIndices,
@@ -271,7 +271,7 @@ class SceneOptimizer {
 			batchedMesh.name = `${referenceMesh.name}_batch`;
 
 			const geometryIds = new Map();
-			const inverseParentMatrix = new FOUR.Matrix4();
+			const inverseParentMatrix = new THREE.Matrix4();
 
 			if ( referenceMesh.parent ) {
 
@@ -293,7 +293,7 @@ class SceneOptimizer {
 				const geometryId = geometryIds.get( geometryHash );
 				const instanceId = batchedMesh.addInstance( geometryId );
 
-				const localMatrix = new FOUR.Matrix4();
+				const localMatrix = new THREE.Matrix4();
 				mesh.updateWorldMatrix( true, false );
 				localMatrix.copy( mesh.matrixWorld );
 				if ( referenceMesh.parent ) {
@@ -334,7 +334,7 @@ class SceneOptimizer {
 
 			this.removeEmptyNodes( child );
 
-			if ( ( child instanceof FOUR.Group || child.constructor === FOUR.Object3D )
+			if ( ( child instanceof THREE.Group || child.constructor === THREE.Object3D )
                 && child.children.length === 0 ) {
 
 				object.remove( child );
@@ -442,7 +442,7 @@ class SceneOptimizer {
 	 */
 	toInstancingMesh() {
 
-		throw new Error( 'FOUR.SceneOptimizer: InstancedMesh optimization not implemented yet' );
+		throw new Error( 'THREE.SceneOptimizer: InstancedMesh optimization not implemented yet' );
 
 	}
 

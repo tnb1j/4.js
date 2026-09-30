@@ -44,4 +44,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/display/ViewportDepthNode.js](../../src/nodes/display/ViewportDepthNode.js)
+[src/nodes/display/ViewportDepthNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ViewportDepthNode.js)

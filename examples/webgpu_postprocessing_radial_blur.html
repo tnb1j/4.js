@@ -24,21 +24,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { float, int, pass, uniform } from '@tnb1j/4js/tsl';
-			import { radialBlur } from '@tnb1j/4js/addons/tsl/display/radialBlur.js';
+			import * as THREE from 'three/webgpu';
+			import { float, int, pass, uniform } from 'three/tsl';
+			import { radialBlur } from 'three/addons/tsl/display/radialBlur.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			const params = {
 				enabled: true,
@@ -52,35 +52,35 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
 				camera.position.z = 50;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
 				//
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d );
 				hemiLight.position.set( 0, 1000, 0 );
 				scene.add( hemiLight );
 
-				const pointLight = new FOUR.PointLight( 0xffffff, 1000 );
+				const pointLight = new THREE.PointLight( 0xffffff, 1000 );
 				pointLight.position.set( 0, 0, 0 );
 				scene.add( pointLight );
 
 				//
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 
-				const geometry = new FOUR.TetrahedronGeometry();
-				const material = new FOUR.MeshStandardMaterial( { flatShading: true } );
+				const geometry = new THREE.TetrahedronGeometry();
+				const material = new THREE.MeshStandardMaterial( { flatShading: true } );
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, 100 );
-				const dummy = new FOUR.Object3D();
-				const col = new FOUR.Color();
-				const center = new FOUR.Vector2();
+				const mesh = new THREE.InstancedMesh( geometry, material, 100 );
+				const dummy = new THREE.Object3D();
+				const col = new THREE.Color();
+				const center = new THREE.Vector2();
 
 				for ( let i = 0; i < mesh.count; i ++ ) {
 
@@ -118,17 +118,17 @@
 				group.add( mesh );
 				scene.add( group );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				document.body.appendChild( renderer.domElement );
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera );
 

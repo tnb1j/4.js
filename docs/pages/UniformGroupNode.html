@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>UniformGroupNode - 4.js Docs</title>
+	<title>UniformGroupNode - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -92,8 +92,9 @@ will be used when defining the <a href="UniformNode.html#groupNode">UniformNode#
 				<div class="member">
 					<h3 class="name" id="order" translate="no">.<a href="#order">order</a><span class="type-signature"> : number</span> </h3>
 					<div class="description">
-						<p>Influences the internal sorting.
-TODO: Add details when this property should be changed.</p>
+						<p>The sort key that determines the order of this group relative to other
+uniform groups. Groups with a lower order are placed first. Shared groups
+typically use a lower order so they precede regular per-object groups.</p>
 						<p>Default is <code>1</code>.</p>
 					</div>
 				</div>
@@ -169,7 +170,7 @@ This will trigger the necessary updates in the rendering process.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/nodes/core/UniformGroupNode.js" translate="no">src/nodes/core/UniformGroupNode.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/nodes/core/UniformGroupNode.js" translate="no" target="_blank" rel="noopener">src/nodes/core/UniformGroupNode.js</a>
 				</p>
 			</article>
 		</section>

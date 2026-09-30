@@ -19,4 +19,4 @@ scene.add( generator.build() ); // a single Mesh
 
 ## Source
 
-[examples/jsm/generators/city/SkyscraperGenerator.js](../../examples/jsm/generators/city/SkyscraperGenerator.js)
+[examples/jsm/generators/city/SkyscraperGenerator.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/generators/city/SkyscraperGenerator.js)

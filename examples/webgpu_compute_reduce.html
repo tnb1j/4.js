@@ -160,7 +160,7 @@
 			<a href="../" target="_blank" rel="noopener">4.js</a>
 			<br /> This example demonstrates the performance of various simple parallel reduction kernels.
 			<br /> Reference implementations are translated from the CUDA/WGSL code present in the following books/repos:
-			<br /> Impl. 0 - 2: <a href="https://www.cambridge.org/core/books/programming-in-parallel-with-cuda/C43652A69033C25AD6933368CDBE084C"><i>Programming in Parallel with CUDA</i></a> by <a href="https://people.bss.phy.cam.ac.uk/~rea1/">Richard Ansorge</a>
+			<br /> Impl. 0 - 2: <a href="https://www.cambridge.org/core/books/programming-in-parallel-with-cuda/C43652A69033C25AD6933368CDBE084C"><i>Programming in Parallel with CUDA</i></a> by <a href="https://github.com/RichardAns">Richard Ansorge</a>
 			<br /> Impl. 3: <a href="https://github.com/frost-beta/betann/blob/main/betann/wgsl/reduce_all.wgsl"><i>betann reduce_all kernel</i></a> by <a href="https://github.com/zcbenz">zcbenz</a>
 			<br /> Impl. 4: <a href="https://github.com/b0nes164/GPUPrefixSums/blob/main/GPUPrefixSumsWebGPUapis/SharedShaders/rts.wgsl"><i>GPUPrefixSums reduction approach</i></a> by <a href="https://github.com/b0nes164">b0nes164</a>
 			<div id="left_side_display" style="position: absolute;top: 150px;left: 0;padding: 10px;background: rgba( 0, 0, 0, 0.5 );color: #fff;font-family: monospace;font-size: 12px;line-height: 1.5;pointer-events: none;text-align: left;"></div>
@@ -181,22 +181,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { instancedArray, Loop, If, vec3, dot, clamp, storage, uvec4, subgroupAdd, uniform, uv, uint, float, Fn, vec2, invocationLocalIndex, invocationSubgroupIndex, uvec2, floor, instanceIndex, workgroupId, workgroupBarrier, workgroupArray, subgroupSize, select, countTrailingZeros } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { instancedArray, Loop, If, vec3, dot, clamp, storage, uvec4, subgroupAdd, uniform, uv, uint, float, Fn, vec2, invocationLocalIndex, invocationSubgroupIndex, uvec2, floor, instanceIndex, workgroupId, workgroupBarrier, workgroupArray, subgroupSize, select, countTrailingZeros } from 'three/tsl';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			const timestamps = {
 				left_side_display: document.getElementById( 'left_side_display' ),
@@ -406,8 +406,8 @@
 				numThreadsDispatched: uniform( size / 2 )
 			};
 
-			const leftMaterial = new FOUR.MeshBasicNodeMaterial( { color: 0x00ff00 } );
-			const rightMaterial = new FOUR.MeshBasicNodeMaterial( { color: 0x00ff00 } );
+			const leftMaterial = new THREE.MeshBasicNodeMaterial( { color: 0x00ff00 } );
+			const rightMaterial = new THREE.MeshBasicNodeMaterial( { color: 0x00ff00 } );
 			const leftDisplayColorNodes = {};
 			const rightDisplayColorNodes = {};
 
@@ -926,10 +926,10 @@
 				const effectController = leftSideDisplay ? leftEffectController : rightEffectController;
 
 				const aspect = ( window.innerWidth / 2 ) / window.innerHeight;
-				const camera = new FOUR.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
+				const camera = new THREE.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 2 );
 				camera.position.z = 1;
 
-				const scene = new FOUR.Scene();
+				const scene = new THREE.Scene();
 
 				const array = new Uint32Array( Array.from( { length: size }, () => {
 
@@ -940,7 +940,7 @@
 				// Represents array of data as uints in compute shader.
 				const inputStorage = instancedArray( array, 'uint' ).setPBO( true ).setName( `Current_${leftSideDisplay ? 'Left' : 'Right'}` );
 				// Represents array of data as vec4s in compute shader;
-				const inputVec4BufferAttribute = new FOUR.StorageInstancedBufferAttribute( array, 4 );
+				const inputVec4BufferAttribute = new THREE.StorageInstancedBufferAttribute( array, 4 );
 				const inputVectorizedStorage = storage( inputVec4BufferAttribute, 'uvec4', vecSize ).setPBO( true ).setName( `CurrentVectorized_${leftSideDisplay ? 'Left' : 'Right'}` );
 
 				// Reduce 3 Calculations
@@ -965,7 +965,7 @@
 				functionObj[ logFunctionName ] = async() => {
 
 					const selectedBuffer = buffers[ unifiedEffectController.loggedBuffer ];
-					const readbackBuffer = new FOUR.ReadbackBuffer( selectedBuffer.value );
+					const readbackBuffer = new THREE.ReadbackBuffer( selectedBuffer.value );
 
 					const result = new Uint32Array( await renderer.getArrayBufferAsync( readbackBuffer ) );
 
@@ -996,7 +996,7 @@
 				const computeResetBuffer = computeResetBufferFn().compute( size );
 				const computeResetWorkgroupSums = computeResetWorkgroupSumsFn().compute( 256 );
 
-				const renderer = new FOUR.WebGPURenderer( { antialias: false, trackTimestamp: true } );
+				const renderer = new THREE.WebGPURenderer( { antialias: false, trackTimestamp: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth / 2, window.innerHeight );
 
@@ -1226,7 +1226,7 @@
 				( leftSideDisplay ? leftMaterial : rightMaterial ).colorNode = displayNodes[ effectController.displayMode ];
 				( leftSideDisplay ? leftMaterial : rightMaterial ).needsUpdate = true;
 
-				const plane = new FOUR.Mesh( new FOUR.PlaneGeometry( 1, 1 ), ( leftSideDisplay ? leftMaterial : rightMaterial ) );
+				const plane = new THREE.Mesh( new THREE.PlaneGeometry( 1, 1 ), ( leftSideDisplay ? leftMaterial : rightMaterial ) );
 				scene.add( plane );
 
 				const animate = () => {
@@ -1248,11 +1248,11 @@
 
 					renderer.domElement.style.left = '50%';
 
-					scene.background = new FOUR.Color( 0x212121 );
+					scene.background = new THREE.Color( 0x212121 );
 
 				} else {
 
-					scene.background = new FOUR.Color( 0x313131 );
+					scene.background = new THREE.Color( 0x313131 );
 
 				}
 
@@ -1288,7 +1288,7 @@
 									const reduce0 = reduce0Calls[ i ];
 									// Do a reduction step
 									renderer.compute( reduce0 );
-									renderer.resolveTimestampsAsync( FOUR.TimestampQuery.COMPUTE );
+									renderer.resolveTimestampsAsync( THREE.TimestampQuery.COMPUTE );
 
 									m /= 2;
 
@@ -1306,7 +1306,7 @@
 								for ( let i = 0; i < currentAlgoCalls.length; i ++ ) {
 
 									renderer.compute( currentAlgoCalls[ i ] );
-									renderer.resolveTimestampsAsync( FOUR.TimestampQuery.COMPUTE );
+									renderer.resolveTimestampsAsync( THREE.TimestampQuery.COMPUTE );
 
 								}
 
@@ -1340,7 +1340,7 @@
 					}
 
 					renderer.render( scene, camera );
-					renderer.resolveTimestampsAsync( FOUR.TimestampQuery.RENDER );
+					renderer.resolveTimestampsAsync( THREE.TimestampQuery.RENDER );
 
 					// Validate next state
 

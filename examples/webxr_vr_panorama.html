@@ -12,16 +12,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+			import * as THREE from 'three';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
 
 			let camera;
 			let renderer;
@@ -31,7 +31,7 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -43,12 +43,12 @@
 
 				//
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.layers.enable( 1 );
 
-				const geometry = new FOUR.BoxGeometry( 100, 100, 100 );
+				const geometry = new THREE.BoxGeometry( 100, 100, 100 );
 				geometry.scale( 1, 1, - 1 );
 
 				const textures = getTexturesFromAtlasFile( 'textures/cube/sun_temple_stripe_stereo.jpg', 12 );
@@ -57,11 +57,11 @@
 
 				for ( let i = 0; i < 6; i ++ ) {
 
-					materials.push( new FOUR.MeshBasicMaterial( { map: textures[ i ] } ) );
+					materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
 
 				}
 
-				const skyBox = new FOUR.Mesh( geometry, materials );
+				const skyBox = new THREE.Mesh( geometry, materials );
 				skyBox.layers.set( 1 );
 				scene.add( skyBox );
 
@@ -70,11 +70,11 @@
 
 				for ( let i = 6; i < 12; i ++ ) {
 
-					materialsR.push( new FOUR.MeshBasicMaterial( { map: textures[ i ] } ) );
+					materialsR.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
 
 				}
 
-				const skyBoxR = new FOUR.Mesh( geometry, materialsR );
+				const skyBoxR = new THREE.Mesh( geometry, materialsR );
 				skyBoxR.layers.set( 2 );
 				scene.add( skyBoxR );
 
@@ -88,11 +88,11 @@
 
 				for ( let i = 0; i < tilesNum; i ++ ) {
 
-					textures[ i ] = new FOUR.Texture();
+					textures[ i ] = new THREE.Texture();
 
 				}
 
-				const loader = new FOUR.ImageLoader();
+				const loader = new THREE.ImageLoader();
 				loader.load( atlasImgUrl, function ( imageObj ) {
 
 					let canvas, context;
@@ -105,7 +105,7 @@
 						canvas.height = tileWidth;
 						canvas.width = tileWidth;
 						context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-						textures[ i ].colorSpace = FOUR.SRGBColorSpace;
+						textures[ i ].colorSpace = THREE.SRGBColorSpace;
 						textures[ i ].image = canvas;
 						textures[ i ].needsUpdate = true;
 

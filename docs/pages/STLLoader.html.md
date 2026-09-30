@@ -15,7 +15,7 @@ Limitations:
 ```js
 const loader = new STLLoader();
 const geometry = await loader.loadAsync( './models/stl/slotted_disk.stl' )
-scene.add( new FOUR.Mesh( geometry ) );
+scene.add( new THREE.Mesh( geometry ) );
 ```
 
 For binary STLs geometry might contain colors for vertices. To use it:
@@ -23,9 +23,9 @@ For binary STLs geometry might contain colors for vertices. To use it:
 ```js
 // use the same code to load STL as above
 if ( geometry.hasColors ) {
-	material = new FOUR.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: true } );
+	material = new THREE.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: true } );
 }
-const mesh = new FOUR.Mesh( geometry, material );
+const mesh = new THREE.Mesh( geometry, material );
 ```
 
 For ASCII STLs containing multiple solids, each solid is assigned to a different group. Groups can be used to assign a different color by defining an array of materials with the same length of geometry.groups and passing it to the Mesh constructor:
@@ -34,18 +34,18 @@ For ASCII STLs containing multiple solids, each solid is assigned to a different
 const materials = [];
 const nGeometryGroups = geometry.groups.length;
 for ( let i = 0; i < nGeometryGroups; i ++ ) {
-	const material = new FOUR.MeshPhongMaterial( { color: colorMap[ i ], wireframe: false } );
+	const material = new THREE.MeshPhongMaterial( { color: colorMap[ i ], wireframe: false } );
 	materials.push( material );
 }
-const mesh = new FOUR.Mesh(geometry, materials);
+const mesh = new THREE.Mesh(geometry, materials);
 ```
 
 ## Import
 
-STLLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+STLLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { STLLoader } from '@tnb1j/4js/addons/loaders/STLLoader.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 ```
 
 ## Constructor
@@ -96,4 +96,4 @@ The raw STL data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/STLLoader.js](../../examples/jsm/loaders/STLLoader.js)
+[examples/jsm/loaders/STLLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/STLLoader.js)

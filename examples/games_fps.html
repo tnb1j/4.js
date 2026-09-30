@@ -19,42 +19,42 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { Octree } from '@tnb1j/4js/addons/math/Octree.js';
-			import { OctreeHelper } from '@tnb1j/4js/addons/helpers/OctreeHelper.js';
+			import { Octree } from 'three/addons/math/Octree.js';
+			import { OctreeHelper } from 'three/addons/helpers/OctreeHelper.js';
 
-			import { Capsule } from '@tnb1j/4js/addons/math/Capsule.js';
+			import { Capsule } from 'three/addons/math/Capsule.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
-			const scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0x88ccee );
-			scene.fog = new FOUR.Fog( 0x88ccee, 0, 50 );
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0x88ccee );
+			scene.fog = new THREE.Fog( 0x88ccee, 0, 50 );
 
-			const camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
 			camera.rotation.order = 'YXZ';
 
-			const fillLight1 = new FOUR.HemisphereLight( 0x8dc1de, 0x00668d, 1.5 );
+			const fillLight1 = new THREE.HemisphereLight( 0x8dc1de, 0x00668d, 1.5 );
 			fillLight1.position.set( 2, 1, 1 );
 			scene.add( fillLight1 );
 
-			const directionalLight = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+			const directionalLight = new THREE.DirectionalLight( 0xffffff, 2.5 );
 			directionalLight.position.set( - 5, 25, - 1 );
 			directionalLight.castShadow = true;
 			directionalLight.shadow.camera.near = 0.01;
@@ -71,13 +71,13 @@
 
 			const container = document.getElementById( 'container' );
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			const renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
 			renderer.shadowMap.enabled = true;
-			renderer.shadowMap.type = FOUR.VSMShadowMap;
-			renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+			renderer.shadowMap.type = THREE.VSMShadowMap;
+			renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			container.appendChild( renderer.domElement );
 
 			const stats = new Stats();
@@ -92,15 +92,15 @@
 
 			const STEPS_PER_FRAME = 5;
 
-			const sphereGeometry = new FOUR.IcosahedronGeometry( SPHERE_RADIUS, 5 );
-			const sphereMaterial = new FOUR.MeshLambertMaterial( { color: 0xdede8d } );
+			const sphereGeometry = new THREE.IcosahedronGeometry( SPHERE_RADIUS, 5 );
+			const sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xdede8d } );
 
 			const spheres = [];
 			let sphereIdx = 0;
 
 			for ( let i = 0; i < NUM_SPHERES; i ++ ) {
 
-				const sphere = new FOUR.Mesh( sphereGeometry, sphereMaterial );
+				const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
 				sphere.castShadow = true;
 				sphere.receiveShadow = true;
 
@@ -108,27 +108,27 @@
 
 				spheres.push( {
 					mesh: sphere,
-					collider: new FOUR.Sphere( new FOUR.Vector3( 0, - 100, 0 ), SPHERE_RADIUS ),
-					velocity: new FOUR.Vector3()
+					collider: new THREE.Sphere( new THREE.Vector3( 0, - 100, 0 ), SPHERE_RADIUS ),
+					velocity: new THREE.Vector3()
 				} );
 
 			}
 
 			const worldOctree = new Octree();
 
-			const playerCollider = new Capsule( new FOUR.Vector3( 0, 0.35, 0 ), new FOUR.Vector3( 0, 1, 0 ), 0.35 );
+			const playerCollider = new Capsule( new THREE.Vector3( 0, 0.35, 0 ), new THREE.Vector3( 0, 1, 0 ), 0.35 );
 
-			const playerVelocity = new FOUR.Vector3();
-			const playerDirection = new FOUR.Vector3();
+			const playerVelocity = new THREE.Vector3();
+			const playerDirection = new THREE.Vector3();
 
 			let playerOnFloor = false;
 			let mouseTime = 0;
 
 			const keyStates = {};
 
-			const vector1 = new FOUR.Vector3();
-			const vector2 = new FOUR.Vector3();
-			const vector3 = new FOUR.Vector3();
+			const vector1 = new THREE.Vector3();
+			const vector2 = new THREE.Vector3();
+			const vector3 = new THREE.Vector3();
 
 			document.addEventListener( 'keydown', ( event ) => {
 

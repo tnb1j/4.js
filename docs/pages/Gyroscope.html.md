@@ -6,10 +6,10 @@ A special type of 3D object that takes a position from the scene graph hierarchy
 
 ## Import
 
-Gyroscope is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Gyroscope is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Gyroscope } from '@tnb1j/4js/addons/misc/Gyroscope.js';
+import { Gyroscope } from 'three/addons/misc/Gyroscope.js';
 ```
 
 ## Constructor
@@ -20,4 +20,4 @@ Constructs a new gyroscope.
 
 ## Source
 
-[examples/jsm/misc/Gyroscope.js](../../examples/jsm/misc/Gyroscope.js)
+[examples/jsm/misc/Gyroscope.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/Gyroscope.js)

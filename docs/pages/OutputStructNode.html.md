@@ -28,4 +28,4 @@ An array of nodes which defines the output.
 
 ## Source
 
-[src/nodes/core/OutputStructNode.js](../../src/nodes/core/OutputStructNode.js)
+[src/nodes/core/OutputStructNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/OutputStructNode.js)

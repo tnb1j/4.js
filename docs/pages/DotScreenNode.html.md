@@ -6,15 +6,15 @@ Post processing node for creating dot-screen effect.
 
 ## Import
 
-DotScreenNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DotScreenNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { dotScreen } from '@tnb1j/4js/addons/tsl/display/DotScreenNode.js';
+import { dotScreen } from 'three/addons/tsl/display/DotScreenNode.js';
 ```
 
 ## Constructor
 
-### new DotScreenNode( inputNode : Node, angle : number, scale : number )
+### new DotScreenNode( inputNode : Node, angle : number | Node.<float>, scale : number | Node.<float> )
 
 Constructs a new dot screen node.
 
@@ -36,17 +36,17 @@ Default is `1`.
 
 ## Properties
 
-### .angle : UniformNode.<float>
+### .angle : Node.<float>
 
-A uniform node that represents the rotation of the effect in radians.
+The rotation of the effect in radians.
 
 ### .inputNode : Node
 
 The node that represents the input of the effect.
 
-### .scale : UniformNode.<float>
+### .scale : Node.<float>
 
-A uniform node that represents the scale of the effect. A higher value means smaller dots.
+The scale of the effect. A higher value means smaller dots.
 
 ## Methods
 
@@ -62,4 +62,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/DotScreenNode.js](../../examples/jsm/tsl/display/DotScreenNode.js)
+[examples/jsm/tsl/display/DotScreenNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/DotScreenNode.js)

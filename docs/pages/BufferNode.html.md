@@ -99,4 +99,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/accessors/BufferNode.js](../../src/nodes/accessors/BufferNode.js)
+[src/nodes/accessors/BufferNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/BufferNode.js)

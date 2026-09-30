@@ -26,28 +26,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, uniform, posterize, floor, float, sin, fract, dot, step, color, normalWorld, length, atan, replaceDefaultUV, screenSize } from '@tnb1j/4js/tsl';
-			import { retroPass } from '@tnb1j/4js/addons/tsl/display/RetroPassNode.js';
-			import { bayerDither } from '@tnb1j/4js/addons/tsl/math/Bayer.js';
-			import { scanlines, vignette, colorBleeding, barrelUV } from '@tnb1j/4js/addons/tsl/display/CRT.js';
-			import { circle } from '@tnb1j/4js/addons/tsl/display/Shape.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, uniform, posterize, floor, float, sin, fract, dot, step, color, normalWorld, length, atan, replaceDefaultUV, screenSize } from 'three/tsl';
+			import { retroPass } from 'three/addons/tsl/display/RetroPassNode.js';
+			import { bayerDither } from 'three/addons/tsl/math/Bayer.js';
+			import { scanlines, vignette, colorBleeding, barrelUV } from 'three/addons/tsl/display/CRT.js';
+			import { circle } from 'three/addons/tsl/display/Shape.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 			let environment;
@@ -57,10 +57,10 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 8, 5, 20 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// PS1-style background: gradient sky with simple stars
 
@@ -139,7 +139,7 @@
 				// Loaders
 
 				const gltfLoader = new GLTFLoader();
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				// Model
 
@@ -158,7 +158,7 @@
 							.setPath( 'textures/equirectangular/' )
 							.load( 'venice_sunset_1k.hdr', ( texture ) => {
 
-								texture.mapping = FOUR.EquirectangularReflectionMapping;
+								texture.mapping = THREE.EquirectangularReflectionMapping;
 								scene.environment = texture;
 
 								// re-invalidate retro pass textures
@@ -215,32 +215,32 @@
 
 				// lighting
 
-				const ambientLight = new FOUR.AmbientLight( 0x404040, 2 );
+				const ambientLight = new THREE.AmbientLight( 0x404040, 2 );
 				scene.add( ambientLight );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				directionalLight.position.set( 5, 10, 5 );
 				scene.add( directionalLight );
 
-				const pointLight = new FOUR.PointLight( 0xff6600, 5, 20 );
+				const pointLight = new THREE.PointLight( 0xff6600, 5, 20 );
 				pointLight.position.set( - 3, 3, 2 );
 				scene.add( pointLight );
 
 				// geometry
 
-				const smokeGeometry = new FOUR.PlaneGeometry( 1, 1, 16, 64 );
+				const smokeGeometry = new THREE.PlaneGeometry( 1, 1, 16, 64 );
 				smokeGeometry.translate( 0, 0.5, 0 );
 				smokeGeometry.scale( 1.5, 6, 1.5 );
 
 				// texture
 
 				const noiseTexture = textureLoader.load( './textures/noises/perlin/128x128.png' );
-				noiseTexture.wrapS = FOUR.RepeatWrapping;
-				noiseTexture.wrapT = FOUR.RepeatWrapping;
+				noiseTexture.wrapS = THREE.RepeatWrapping;
+				noiseTexture.wrapT = THREE.RepeatWrapping;
 
 				// material
 
-				const smokeMaterial = new FOUR.MeshBasicNodeMaterial( { transparent: true, side: FOUR.DoubleSide, depthWrite: false } );
+				const smokeMaterial = new THREE.MeshBasicNodeMaterial( { transparent: true, side: THREE.DoubleSide, depthWrite: false } );
 
 				// position
 
@@ -294,13 +294,13 @@
 
 				// mesh
 
-				const smoke = new FOUR.Mesh( smokeGeometry, smokeMaterial );
+				const smoke = new THREE.Mesh( smokeGeometry, smokeMaterial );
 				smoke.position.y = 1.83;
 				scene.add( smoke );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -323,7 +323,7 @@
 
 				// render pipeline
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// retro pipeline
 

@@ -7,9 +7,9 @@ Class representing triangular polygon mesh based objects.
 ## Code Example
 
 ```js
-const geometry = new FOUR.BoxGeometry( 1, 1, 1 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 ```
 
@@ -79,6 +79,18 @@ The target object that is used to store the method's result.
 
 **Returns:** The vertex position in local space.
 
+### .intersectsFrustum( frustum : Frustum | FrustumArray ) : boolean
+
+Returns `true` if this mesh intersects the given frustum.
+
+**frustum**
+
+The frustum to test.
+
+**Overrides:** [Object3D#intersectsFrustum](Object3D.html#intersectsFrustum)
+
+**Returns:** Whether this mesh intersects the given frustum or not.
+
 ### .raycast( raycaster : Raycaster, intersects : Array.<Object> )
 
 Computes intersection points between a casted ray and this line.
@@ -99,4 +111,4 @@ Sets the values of [Mesh#morphTargetDictionary](Mesh.html#morphTargetDictionary)
 
 ## Source
 
-[src/objects/Mesh.js](../../src/objects/Mesh.js)
+[src/objects/Mesh.js](https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js)

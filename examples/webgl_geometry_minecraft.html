@@ -20,26 +20,26 @@
 	<body>
 
 		<div id="container"></div>
-		<div id="info"><a href="../" target="_blank" rel="noopener">4.js</a> - <a href="http://www.minecraft.net/" target="_blank" rel="noopener">minecraft</a> demo. featuring <a href="http://painterlypack.net/" target="_blank" rel="noopener">painterly pack</a><br />(left click: forward, right click: backward)</div>
+		<div id="info"><a href="../" target="_blank" rel="noopener">4.js</a> - <a href="https://www.minecraft.net/" target="_blank" rel="noopener">minecraft</a> demo. featuring <a href="https://painterlypack.net/" target="_blank" rel="noopener">painterly pack</a><br />(left click: forward, right click: backward)</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
+			import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
 			let container, stats;
 
@@ -50,7 +50,7 @@
 			const worldHalfDepth = worldDepth / 2;
 			const data = generateHeight( worldWidth, worldDepth );
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			init();
@@ -59,40 +59,40 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 20000 );
 				camera.position.y = getY( worldHalfWidth, worldHalfDepth ) * 100 + 100;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
 				// sides
 
-				const matrix = new FOUR.Matrix4();
+				const matrix = new THREE.Matrix4();
 
-				const pxGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const pxGeometry = new THREE.PlaneGeometry( 100, 100 );
 				pxGeometry.attributes.uv.array[ 1 ] = 0.5;
 				pxGeometry.attributes.uv.array[ 3 ] = 0.5;
 				pxGeometry.rotateY( Math.PI / 2 );
 				pxGeometry.translate( 50, 0, 0 );
 
-				const nxGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const nxGeometry = new THREE.PlaneGeometry( 100, 100 );
 				nxGeometry.attributes.uv.array[ 1 ] = 0.5;
 				nxGeometry.attributes.uv.array[ 3 ] = 0.5;
 				nxGeometry.rotateY( - Math.PI / 2 );
 				nxGeometry.translate( - 50, 0, 0 );
 
-				const pyGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const pyGeometry = new THREE.PlaneGeometry( 100, 100 );
 				pyGeometry.attributes.uv.array[ 5 ] = 0.5;
 				pyGeometry.attributes.uv.array[ 7 ] = 0.5;
 				pyGeometry.rotateX( - Math.PI / 2 );
 				pyGeometry.translate( 0, 50, 0 );
 
-				const pzGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const pzGeometry = new THREE.PlaneGeometry( 100, 100 );
 				pzGeometry.attributes.uv.array[ 1 ] = 0.5;
 				pzGeometry.attributes.uv.array[ 3 ] = 0.5;
 				pzGeometry.translate( 0, 0, 50 );
 
-				const nzGeometry = new FOUR.PlaneGeometry( 100, 100 );
+				const nzGeometry = new THREE.PlaneGeometry( 100, 100 );
 				nzGeometry.attributes.uv.array[ 1 ] = 0.5;
 				nzGeometry.attributes.uv.array[ 3 ] = 0.5;
 				nzGeometry.rotateY( Math.PI );
@@ -152,21 +152,21 @@
 				const geometry = BufferGeometryUtils.mergeGeometries( geometries );
 				geometry.computeBoundingSphere();
 
-				const texture = new FOUR.TextureLoader().load( 'textures/minecraft/atlas.png' );
-				texture.colorSpace = FOUR.SRGBColorSpace;
-				texture.magFilter = FOUR.NearestFilter;
+				const texture = new THREE.TextureLoader().load( 'textures/minecraft/atlas.png' );
+				texture.colorSpace = THREE.SRGBColorSpace;
+				texture.magFilter = THREE.NearestFilter;
 
-				const mesh = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { map: texture, side: FOUR.DoubleSide } ) );
+				const mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { map: texture, side: THREE.DoubleSide } ) );
 				scene.add( mesh );
 
-				const ambientLight = new FOUR.AmbientLight( 0xeeeeee, 3 );
+				const ambientLight = new THREE.AmbientLight( 0xeeeeee, 3 );
 				scene.add( ambientLight );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 12 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 12 );
 				directionalLight.position.set( 1, 1, 0.5 ).normalize();
 				scene.add( directionalLight );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -175,7 +175,7 @@
 				controls = new FirstPersonControls( camera, renderer.domElement );
 
 				controls.movementSpeed = 1000;
-				controls.lookSpeed = 0.125;
+				controls.lookSpeed = 0.2;
 				controls.lookVertical = true;
 
 				stats = new Stats();

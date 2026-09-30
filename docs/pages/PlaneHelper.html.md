@@ -7,8 +7,8 @@ A helper object to visualize an instance of [Plane](Plane.html).
 ## Code Example
 
 ```js
-const plane = new FOUR.Plane( new FOUR.Vector3( 1, 1, 0.2 ), 3 );
-const helper = new FOUR.PlaneHelper( plane, 1, 0xffff00 );
+const plane = new THREE.Plane( new THREE.Vector3( 1, 1, 0.2 ), 3 );
+const helper = new THREE.PlaneHelper( plane, 1, 0xffff00 );
 scene.add( helper );
 ```
 
@@ -52,6 +52,8 @@ Default is `1`.
 
 Updates the helper to match the position and direction of the light being visualized.
 
+**Overrides:** [Line#dispose](Line.html#dispose)
+
 ## Source
 
-[src/helpers/PlaneHelper.js](../../src/helpers/PlaneHelper.js)
+[src/helpers/PlaneHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/PlaneHelper.js)

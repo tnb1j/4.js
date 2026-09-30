@@ -17,20 +17,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
 			let camera, scene, renderer;
 			let cameraControls;
@@ -61,17 +61,17 @@
 				const canvasHeight = window.innerHeight;
 
 				// CAMERA
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
 				camera.position.set( - 600, 550, 1300 );
 
 				// LIGHTS
-				ambientLight = new FOUR.AmbientLight( 0x7c7c7c, 2.0 );
+				ambientLight = new THREE.AmbientLight( 0x7c7c7c, 2.0 );
 
-				light = new FOUR.DirectionalLight( 0xFFFFFF, 2.0 );
+				light = new THREE.DirectionalLight( 0xFFFFFF, 2.0 );
 				light.position.set( 0.32, 0.39, 0.7 );
 
 				// RENDERER
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( canvasWidth, canvasHeight );
 				container.appendChild( renderer.domElement );
@@ -84,27 +84,27 @@
 				cameraControls.addEventListener( 'change', render );
 
 				// TEXTURE MAP
-				const textureMap = new FOUR.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
-				textureMap.wrapS = textureMap.wrapT = FOUR.RepeatWrapping;
+				const textureMap = new THREE.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
+				textureMap.wrapS = textureMap.wrapT = THREE.RepeatWrapping;
 				textureMap.anisotropy = 16;
-				textureMap.colorSpace = FOUR.SRGBColorSpace;
+				textureMap.colorSpace = THREE.SRGBColorSpace;
 
 				// REFLECTION MAP
 				const path = 'textures/cube/pisa/';
 				const urls = [ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ];
 
-				textureCube = new FOUR.CubeTextureLoader().setPath( path ).load( urls );
+				textureCube = new THREE.CubeTextureLoader().setPath( path ).load( urls );
 
-				materials[ 'wireframe' ] = new FOUR.MeshBasicMaterial( { wireframe: true } );
-				materials[ 'flat' ] = new FOUR.MeshPhongMaterial( { specular: 0x000000, flatShading: true, side: FOUR.DoubleSide } );
-				materials[ 'smooth' ] = new FOUR.MeshLambertMaterial( { side: FOUR.DoubleSide } );
-				materials[ 'glossy' ] = new FOUR.MeshPhongMaterial( { color: 0xc0c0c0, specular: 0x404040, shininess: 300, side: FOUR.DoubleSide } );
-				materials[ 'textured' ] = new FOUR.MeshPhongMaterial( { map: textureMap, side: FOUR.DoubleSide } );
-				materials[ 'reflective' ] = new FOUR.MeshPhongMaterial( { envMap: textureCube, side: FOUR.DoubleSide } );
+				materials[ 'wireframe' ] = new THREE.MeshBasicMaterial( { wireframe: true } );
+				materials[ 'flat' ] = new THREE.MeshPhongMaterial( { specular: 0x000000, flatShading: true, side: THREE.DoubleSide } );
+				materials[ 'smooth' ] = new THREE.MeshLambertMaterial( { side: THREE.DoubleSide } );
+				materials[ 'glossy' ] = new THREE.MeshPhongMaterial( { color: 0xc0c0c0, specular: 0x404040, shininess: 300, side: THREE.DoubleSide } );
+				materials[ 'textured' ] = new THREE.MeshPhongMaterial( { map: textureMap, side: THREE.DoubleSide } );
+				materials[ 'reflective' ] = new THREE.MeshPhongMaterial( { envMap: textureCube, side: THREE.DoubleSide } );
 
 				// scene itself
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xAAAAAA );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xAAAAAA );
 
 				scene.add( ambientLight );
 				scene.add( light );
@@ -211,7 +211,7 @@
 					effectController.fitLid,
 					! effectController.nonblinn );
 
-				teapot = new FOUR.Mesh( geometry, materials[ shading ] );
+				teapot = new THREE.Mesh( geometry, materials[ shading ] );
 
 				scene.add( teapot );
 

@@ -5,14 +5,14 @@ import {
 	LineSegments,
 	Matrix3,
 	Mesh
-} from '@tnb1j/4js';
+} from 'three';
 
 import { mergeGeometries } from './BufferGeometryUtils.js';
 
 /**
  * Utility class for LDraw models.
  *
- * @four_import import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
+ * @three_import import { LDrawUtils } from 'three/addons/utils/LDrawUtils.js';
  */
 class LDrawUtils {
 

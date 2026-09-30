@@ -4,10 +4,10 @@ A simple pool for managing Web Workers.
 
 ## Import
 
-WorkerPool is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+WorkerPool is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { WorkerPool } from '@tnb1j/4js/addons/utils/WorkerPool.js';
+import { WorkerPool } from 'three/addons/utils/WorkerPool.js';
 ```
 
 ## Constructor
@@ -92,4 +92,4 @@ The size of the pool.
 
 ## Source
 
-[examples/jsm/utils/WorkerPool.js](../../examples/jsm/utils/WorkerPool.js)
+[examples/jsm/utils/WorkerPool.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/WorkerPool.js)

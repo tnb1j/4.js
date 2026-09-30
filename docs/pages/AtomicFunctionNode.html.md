@@ -72,4 +72,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/gpgpu/AtomicFunctionNode.js](../../src/nodes/gpgpu/AtomicFunctionNode.js)
+[src/nodes/gpgpu/AtomicFunctionNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/gpgpu/AtomicFunctionNode.js)

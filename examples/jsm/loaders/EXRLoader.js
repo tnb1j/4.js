@@ -8,7 +8,7 @@ import {
 	RedFormat,
 	RGFormat,
 	RGBAFormat
-} from '@tnb1j/4js';
+} from 'three';
 import { unzlibSync } from '../libs/fflate.module.js';
 
 // Referred to the original Industrial Light & Magic OpenEXR implementation and the TinyEXR / Syoyo Fujita
@@ -92,7 +92,7 @@ import { unzlibSync } from '../libs/fflate.module.js';
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { EXRLoader } from '@tnb1j/4js/addons/loaders/EXRLoader.js';
+ * @three_import import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
  */
 class EXRLoader extends DataTextureLoader {
 
@@ -276,7 +276,7 @@ class EXRLoader extends DataTextureLoader {
 
 					if ( p.value - inOffset.value > ni ) {
 
-						throw new Error( 'FOUR.EXRLoader: Something wrong with hufUnpackEncTable' );
+						throw new Error( 'THREE.EXRLoader: Something wrong with hufUnpackEncTable' );
 
 					}
 
@@ -288,7 +288,7 @@ class EXRLoader extends DataTextureLoader {
 
 					if ( im + zerun > iM + 1 ) {
 
-						throw new Error( 'FOUR.EXRLoader: Something wrong with hufUnpackEncTable' );
+						throw new Error( 'THREE.EXRLoader: Something wrong with hufUnpackEncTable' );
 
 					}
 
@@ -302,7 +302,7 @@ class EXRLoader extends DataTextureLoader {
 
 					if ( im + zerun > iM + 1 ) {
 
-						throw new Error( 'FOUR.EXRLoader: Something wrong with hufUnpackEncTable' );
+						throw new Error( 'THREE.EXRLoader: Something wrong with hufUnpackEncTable' );
 
 					}
 
@@ -339,7 +339,7 @@ class EXRLoader extends DataTextureLoader {
 
 				if ( c >> l ) {
 
-					throw new Error( 'FOUR.EXRLoader: Invalid table entry' );
+					throw new Error( 'THREE.EXRLoader: Invalid table entry' );
 
 				}
 
@@ -349,7 +349,7 @@ class EXRLoader extends DataTextureLoader {
 
 					if ( pl.len ) {
 
-						throw new Error( 'FOUR.EXRLoader: Invalid table entry' );
+						throw new Error( 'THREE.EXRLoader: Invalid table entry' );
 
 					}
 
@@ -384,7 +384,7 @@ class EXRLoader extends DataTextureLoader {
 
 						if ( pl.len || pl.p ) {
 
-							throw new Error( 'FOUR.EXRLoader: Invalid table entry' );
+							throw new Error( 'THREE.EXRLoader: Invalid table entry' );
 
 						}
 
@@ -673,7 +673,7 @@ class EXRLoader extends DataTextureLoader {
 
 						if ( ! pl.p ) {
 
-							throw new Error( 'FOUR.EXRLoader: hufDecode issues' );
+							throw new Error( 'THREE.EXRLoader: hufDecode issues' );
 
 						}
 
@@ -713,7 +713,7 @@ class EXRLoader extends DataTextureLoader {
 
 						if ( j == pl.lit ) {
 
-							throw new Error( 'FOUR.EXRLoader: hufDecode issues' );
+							throw new Error( 'THREE.EXRLoader: hufDecode issues' );
 
 						}
 
@@ -743,7 +743,7 @@ class EXRLoader extends DataTextureLoader {
 
 				} else {
 
-					throw new Error( 'FOUR.EXRLoader: hufDecode issues' );
+					throw new Error( 'THREE.EXRLoader: hufDecode issues' );
 
 				}
 
@@ -769,7 +769,7 @@ class EXRLoader extends DataTextureLoader {
 
 			if ( im < 0 || im >= HUF_ENCSIZE || iM < 0 || iM >= HUF_ENCSIZE ) {
 
-				throw new Error( 'FOUR.EXRLoader: Something wrong with HUF_ENCSIZE' );
+				throw new Error( 'THREE.EXRLoader: Something wrong with HUF_ENCSIZE' );
 
 			}
 
@@ -784,7 +784,7 @@ class EXRLoader extends DataTextureLoader {
 
 			if ( nBits > 8 * ( nCompressed - ( inOffset.value - initialInOffset ) ) ) {
 
-				throw new Error( 'FOUR.EXRLoader: Something wrong with hufUncompress' );
+				throw new Error( 'THREE.EXRLoader: Something wrong with hufUncompress' );
 
 			}
 
@@ -1415,7 +1415,7 @@ class EXRLoader extends DataTextureLoader {
 
 			if ( maxNonZero >= BITMAP_SIZE ) {
 
-				throw new Error( 'FOUR.EXRLoader: Something is wrong with PIZ_COMPRESSION BITMAP_SIZE' );
+				throw new Error( 'THREE.EXRLoader: Something is wrong with PIZ_COMPRESSION BITMAP_SIZE' );
 
 			}
 
@@ -1781,7 +1781,7 @@ class EXRLoader extends DataTextureLoader {
 			};
 
 			if ( dwaHeader.version < 2 )
-				throw new Error( 'FOUR.EXRLoader: ' + EXRHeader.compression + ' version ' + dwaHeader.version + ' is unsupported' );
+				throw new Error( 'THREE.EXRLoader: ' + EXRHeader.compression + ' version ' + dwaHeader.version + ' is unsupported' );
 
 			// Read channel ruleset information
 			const channelRules = new Array();
@@ -1979,7 +1979,7 @@ class EXRLoader extends DataTextureLoader {
 						break;
 
 					default:
-						throw new Error( 'FOUR.EXRLoader: unsupported channel compression' );
+						throw new Error( 'THREE.EXRLoader: unsupported channel compression' );
 
 				}
 
@@ -2384,7 +2384,7 @@ class EXRLoader extends DataTextureLoader {
 					break;
 
 				case 'RIPMAP_LEVELS':
-					throw new Error( 'FOUR.EXRLoader: RIPMAP_LEVELS tiles currently unsupported.' );
+					throw new Error( 'THREE.EXRLoader: RIPMAP_LEVELS tiles currently unsupported.' );
 
 			}
 
@@ -2605,7 +2605,7 @@ class EXRLoader extends DataTextureLoader {
 				}
 
 				default:
-					throw new Error( 'FOUR.EXRLoader: ' + compression + ' is unsupported for deep data' );
+					throw new Error( 'THREE.EXRLoader: ' + compression + ' is unsupported for deep data' );
 
 			}
 
@@ -2795,7 +2795,7 @@ class EXRLoader extends DataTextureLoader {
 
 				if ( attributeValue === undefined ) {
 
-					console.warn( `FOUR.EXRLoader: Skipped unknown header attribute type \'${attributeType}\'.` );
+					console.warn( `THREE.EXRLoader: Skipped unknown header attribute type \'${attributeType}\'.` );
 
 				} else {
 
@@ -2813,7 +2813,7 @@ class EXRLoader extends DataTextureLoader {
 
 			if ( dataView.getUint32( 0, true ) != 20000630 ) { // magic
 
-				throw new Error( 'FOUR.EXRLoader: Provided file doesn\'t appear to be in OpenEXR format.' );
+				throw new Error( 'THREE.EXRLoader: Provided file doesn\'t appear to be in OpenEXR format.' );
 
 			}
 
@@ -2853,7 +2853,7 @@ class EXRLoader extends DataTextureLoader {
 
 				if ( headers.length === 0 ) {
 
-					throw new Error( 'FOUR.EXRLoader: No valid part headers found.' );
+					throw new Error( 'THREE.EXRLoader: No valid part headers found.' );
 
 				}
 
@@ -2944,7 +2944,7 @@ class EXRLoader extends DataTextureLoader {
 					break;
 
 				default:
-					throw new Error( 'FOUR.EXRLoader: ' + EXRHeader.compression + ' is unsupported' );
+					throw new Error( 'THREE.EXRLoader: ' + EXRHeader.compression + ' is unsupported' );
 
 			}
 
@@ -2987,7 +2987,7 @@ class EXRLoader extends DataTextureLoader {
 
 			} else {
 
-				throw new Error( 'FOUR.EXRLoader: file contains unsupported data channels.' );
+				throw new Error( 'THREE.EXRLoader: file contains unsupported data channels.' );
 
 			}
 
@@ -3066,7 +3066,7 @@ class EXRLoader extends DataTextureLoader {
 
 			}
 
-			if ( invalidOutput ) throw new Error( 'FOUR.EXRLoader: invalid output format for specified file.' );
+			if ( invalidOutput ) throw new Error( 'THREE.EXRLoader: invalid output format for specified file.' );
 
 			// Luminance/chroma images always decode to RGBA; override whatever the output-format switch selected.
 			if ( EXRDecoder.yCbCr ) {
@@ -3109,7 +3109,7 @@ class EXRLoader extends DataTextureLoader {
 
 			} else {
 
-				throw new Error( 'FOUR.EXRLoader: unsupported pixelType ' + EXRDecoder.type + ' for ' + EXRHeader.compression + '.' );
+				throw new Error( 'THREE.EXRLoader: unsupported pixelType ' + EXRDecoder.type + ' for ' + EXRHeader.compression + '.' );
 
 			}
 
@@ -3136,7 +3136,7 @@ class EXRLoader extends DataTextureLoader {
 					break;
 
 				default:
-					console.error( 'FOUR.EXRLoader: unsupported type: ', outputType );
+					console.error( 'THREE.EXRLoader: unsupported type: ', outputType );
 					break;
 
 			}

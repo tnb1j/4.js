@@ -4,7 +4,7 @@ import {
 	RGBA_PVRTC_4BPPV1_Format,
 	RGB_PVRTC_2BPPV1_Format,
 	RGB_PVRTC_4BPPV1_Format
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the PVRTC texture compression format.
@@ -13,11 +13,11 @@ import {
  * const loader = new PVRLoader();
  *
  * const map = loader.load( 'textures/compressed/disturb_4bpp_rgb.pvr' );
- * map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+ * map.colorSpace = THREE.SRGBColorSpace; // only for color textures
  * ```
  *
  * @augments CompressedTextureLoader
- * @four_import import { PVRLoader } from '@tnb1j/4js/addons/loaders/PVRLoader.js';
+ * @three_import import { PVRLoader } from 'three/addons/loaders/PVRLoader.js';
  */
 class PVRLoader extends CompressedTextureLoader {
 
@@ -64,7 +64,7 @@ class PVRLoader extends CompressedTextureLoader {
 
 		} else {
 
-			console.error( 'FOUR.PVRLoader: Unknown PVR format.' );
+			console.error( 'THREE.PVRLoader: Unknown PVR format.' );
 
 		}
 
@@ -109,7 +109,7 @@ function _parseV3( pvrDatas ) {
 			break;
 
 		default :
-			console.error( 'FOUR.PVRLoader: Unsupported PVR format:', pixelFormat );
+			console.error( 'THREE.PVRLoader: Unsupported PVR format:', pixelFormat );
 
 	}
 
@@ -166,7 +166,7 @@ function _parseV2( pvrDatas ) {
 
 	} else {
 
-		console.error( 'FOUR.PVRLoader: Unknown PVR format:', formatFlags );
+		console.error( 'THREE.PVRLoader: Unknown PVR format:', formatFlags );
 
 	}
 

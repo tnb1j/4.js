@@ -24,17 +24,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "../examples/jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "../examples/jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 			import {
 				vec3, vec4, uvec3, float, Fn, uniform,
 				texture3D, textureStore, instanceIndex,
@@ -44,21 +44,21 @@
 				Loop, positionWorld, positionLocal,
 				interleavedGradientNoise, frameId, fract,
 				saturation, cos, sin, atan
-			} from '@tnb1j/4js/tsl';
+			} from 'three/tsl';
 
-			import { snoise, snoiseVec3 } from '@tnb1j/4js/addons/tsl/math/curlNoise.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+			import { snoise, snoiseVec3 } from 'three/addons/tsl/math/curlNoise.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
-			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
+			import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { DragControls } from '@tnb1j/4js/addons/controls/DragControls.js';
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { DragControls } from 'three/addons/controls/DragControls.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 
@@ -81,7 +81,7 @@
 			const VOLUME_WORLD_SIZE_Y = 12;
 			const VOLUME_WORLD_SIZE_Z = 24;
 			const VOLUME_WORLD_SIZE_DIAGONAL = Math.sqrt( VOLUME_WORLD_SIZE_X ** 2 + VOLUME_WORLD_SIZE_Y ** 2 + VOLUME_WORLD_SIZE_Z ** 2 );
-			const uVolumeWorldSize = uniform( new FOUR.Vector3( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ) );
+			const uVolumeWorldSize = uniform( new THREE.Vector3( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ) );
 			const TEXEL_X = 1 / GRID_SIZE_X;
 			const TEXEL_Y = 1 / GRID_SIZE_Y;
 			const TEXEL_Z = 1 / GRID_SIZE_Z;
@@ -94,7 +94,7 @@
 			let uKeyLightPos;
 
 			let teapotVerticesBuffer, vertexCount;
-			const prevTeapotPos = new FOUR.Vector3();
+			const prevTeapotPos = new THREE.Vector3();
 
 			// sim textures
 			let velTexA, velTexB; // velocity field (xyz)
@@ -123,12 +123,12 @@
 			const uEmitDensity = uniform( 7.0 );
 			const uEmitTemperature = uniform( 5.5 );
 
-			const uTeapotMatrix = uniform( new FOUR.Matrix4() );
+			const uTeapotMatrix = uniform( new THREE.Matrix4() );
 			const uTeapotSpeed = uniform( 0.0 );
 			const uMotionBoost = uniform( 0.25 ); // scales fire and smoke emission when moving
-			const uTeapotVelocity = uniform( new FOUR.Vector3() );
+			const uTeapotVelocity = uniform( new THREE.Vector3() );
 			const uWindStrength = uniform( 6.5 ); // strength of the wind effect when moving
-			const uTeapotPosition = uniform( new FOUR.Vector3() );
+			const uTeapotPosition = uniform( new THREE.Vector3() );
 
 			// render uniforms
 			const uFireIntensity = uniform( 40.0 );
@@ -136,9 +136,9 @@
 			const uFireGlowSpread = uniform( 5.0 );
 			const uShadowAbsorption = uniform( 2.0 );
 			const uShadowAmbient = uniform( 0.5 );
-			const uFireStartColor = uniform( new FOUR.Color( 0xffe68c ) );
-			const uFireMidColor = uniform( new FOUR.Color( 0xff7305 ) );
-			const uFireEndColor = uniform( new FOUR.Color( 0xff0000 ) );
+			const uFireStartColor = uniform( new THREE.Color( 0xffe68c ) );
+			const uFireMidColor = uniform( new THREE.Color( 0xff7305 ) );
+			const uFireEndColor = uniform( new THREE.Color( 0xff0000 ) );
 			const uFireHue = uniform( 0.0 );
 			const uAsymmetry = uniform( 0.0 );
 			const uPowderStrength = uniform( 0.59 );
@@ -154,7 +154,7 @@
 			const uPointLightProjectionCenterFade = uniform( 3.25 );
 
 			const uFlameHeight = uniform( 3.5 );
-			const uSway = uniform( new FOUR.Vector3() );
+			const uSway = uniform( new THREE.Vector3() );
 			const uFlicker = uniform( 1.0 );
 			const uColorNoise = uniform( 0.0 );
 			const cpuNoise = new ImprovedNoise();
@@ -167,15 +167,15 @@
 
 			function createStorage3D( name ) {
 
-				const texture = new FOUR.Storage3DTexture( GRID_SIZE_X, GRID_SIZE_Y, GRID_SIZE_Z );
+				const texture = new THREE.Storage3DTexture( GRID_SIZE_X, GRID_SIZE_Y, GRID_SIZE_Z );
 				texture.name = name;
-				texture.format = FOUR.RGBAFormat;
-				texture.type = FOUR.HalfFloatType; // rgba16float -> storage-writable + linearly filterable
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
-				texture.wrapS = FOUR.ClampToEdgeWrapping;
-				texture.wrapT = FOUR.ClampToEdgeWrapping;
-				texture.wrapR = FOUR.ClampToEdgeWrapping;
+				texture.format = THREE.RGBAFormat;
+				texture.type = THREE.HalfFloatType; // rgba16float -> storage-writable + linearly filterable
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
+				texture.wrapS = THREE.ClampToEdgeWrapping;
+				texture.wrapT = THREE.ClampToEdgeWrapping;
+				texture.wrapR = THREE.ClampToEdgeWrapping;
 
 				return texture;
 
@@ -469,20 +469,20 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 2;
 				renderer.shadowMap.enabled = true;
 				renderer.shadowMap.transmitted = true;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 14, 5.5, 4.4 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -501,9 +501,9 @@
 				pressTexA = createStorage3D( 'pressure A' );
 				pressTexB = createStorage3D( 'pressure B' );
 				curlNoiseTex = createStorage3D( 'curlNoise' );
-				curlNoiseTex.wrapS = FOUR.RepeatWrapping;
-				curlNoiseTex.wrapT = FOUR.RepeatWrapping;
-				curlNoiseTex.wrapR = FOUR.RepeatWrapping;
+				curlNoiseTex.wrapS = THREE.RepeatWrapping;
+				curlNoiseTex.wrapT = THREE.RepeatWrapping;
+				curlNoiseTex.wrapR = THREE.RepeatWrapping;
 
 				dyeTexNode = texture3D( dyeTexA );
 				dyeTexWriteNode = storageTexture( dyeTexB ).toWriteOnly();
@@ -523,10 +523,10 @@
 
 				// Volumetric material - ray marches the simulated 3D texture
 
-				const volumetricMaterial = new FOUR.VolumeNodeMaterial();
+				const volumetricMaterial = new THREE.VolumeNodeMaterial();
 				volumetricMaterial.steps = 16;
 				volumetricMaterial.transparent = true;
-				volumetricMaterial.blending = FOUR.AdditiveBlending;
+				volumetricMaterial.blending = THREE.AdditiveBlending;
 				volumetricMaterial.depthWrite = false;
 
 				// Dithering to reduce banding
@@ -692,34 +692,34 @@
 
 				} );
 
-				volumetricMesh = new FOUR.Mesh( new FOUR.BoxGeometry( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ), volumetricMaterial );
+				volumetricMesh = new THREE.Mesh( new THREE.BoxGeometry( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ), volumetricMaterial );
 				volumetricMesh.position.y = VOLUME_WORLD_SIZE_Y / 2 + 0.4;
 				volumetricMesh.receiveShadow = true;
 				scene.add( volumetricMesh );
 
-				const shadowMaterial = new FOUR.VolumeNodeMaterial();
+				const shadowMaterial = new THREE.VolumeNodeMaterial();
 				shadowMaterial.steps = volumetricMaterial.steps;
 				shadowMaterial.offsetNode = volumetricMaterial.offsetNode;
 				shadowMaterial.castShadowNode = volumeCastShadow();
-				shadowMaterial.shadowSide = FOUR.FrontSide;
+				shadowMaterial.shadowSide = THREE.FrontSide;
 				shadowMaterial.colorWrite = false;
 				shadowMaterial.depthWrite = false;
-				shadowMaterial.blending = FOUR.CustomBlending;
-				shadowMaterial.blendEquation = FOUR.AddEquation;
-				shadowMaterial.blendSrc = FOUR.ZeroFactor;
-				shadowMaterial.blendDst = FOUR.OneMinusSrcAlphaFactor;
-				shadowMaterial.blendEquationAlpha = FOUR.AddEquation;
-				shadowMaterial.blendSrcAlpha = FOUR.OneFactor;
-				shadowMaterial.blendDstAlpha = FOUR.OneMinusSrcAlphaFactor;
+				shadowMaterial.blending = THREE.CustomBlending;
+				shadowMaterial.blendEquation = THREE.AddEquation;
+				shadowMaterial.blendSrc = THREE.ZeroFactor;
+				shadowMaterial.blendDst = THREE.OneMinusSrcAlphaFactor;
+				shadowMaterial.blendEquationAlpha = THREE.AddEquation;
+				shadowMaterial.blendSrcAlpha = THREE.OneFactor;
+				shadowMaterial.blendDstAlpha = THREE.OneMinusSrcAlphaFactor;
 
-				const volumetricShadowMesh = new FOUR.Mesh( new FOUR.BoxGeometry( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ), shadowMaterial );
+				const volumetricShadowMesh = new THREE.Mesh( new THREE.BoxGeometry( VOLUME_WORLD_SIZE_X, VOLUME_WORLD_SIZE_Y, VOLUME_WORLD_SIZE_Z ), shadowMaterial );
 				volumetricShadowMesh.position.y = VOLUME_WORLD_SIZE_Y / 2 + 0.4;
 				volumetricShadowMesh.castShadow = true;
 				scene.add( volumetricShadowMesh );
 
 				// Floor
 
-				const floorPlane = new FOUR.Mesh( new FOUR.PlaneGeometry( 80, 80 ), new FOUR.MeshStandardMaterial( { color: 0x111115, roughness: 0.8 } ) );
+				const floorPlane = new THREE.Mesh( new THREE.PlaneGeometry( 80, 80 ), new THREE.MeshStandardMaterial( { color: 0x111115, roughness: 0.8 } ) );
 				floorPlane.rotation.x = - Math.PI / 2;
 				floorPlane.position.y = - VOLUME_WORLD_SIZE_Y / 2 + 0.4 + VOLUME_WORLD_SIZE_Y / 2 + 0.4;
 				floorPlane.receiveShadow = true;
@@ -727,9 +727,9 @@
 
 				// Teapot - opaque object inside the smoke, to visualize volumetric transparency / occlusion
 
-				teapot = new FOUR.Mesh(
+				teapot = new THREE.Mesh(
 					teapotGeometry,
-					new FOUR.MeshStandardMaterial( { color: 0x000000, roughness: 1.0, metalness: 1.0 } )
+					new THREE.MeshStandardMaterial( { color: 0x000000, roughness: 1.0, metalness: 1.0 } )
 				);
 				//teapot.castShadow = true;
 				teapot.receiveShadow = true;
@@ -857,7 +857,7 @@
 
 				} )();
 
-				pointLight = new FOUR.PointLight( 0xffffff, 1, 100, 2 );
+				pointLight = new THREE.PointLight( 0xffffff, 1, 100, 2 );
 				pointLight.colorNode = pointLightColor;
 				pointLight.position.set( 0, 0, 0 );
 				pointLight.castShadow = false;
@@ -893,7 +893,7 @@
 
 				// Key light - white spot with shadow, so the smoke receives/shows shadows clearly
 
-				keyLight = new FOUR.SpotLight( 0xffffff, 1000 );
+				keyLight = new THREE.SpotLight( 0xffffff, 1000 );
 				keyLight.position.set( - 3 * ( VOLUME_WORLD_SIZE_X / 8 ), 6 * ( VOLUME_WORLD_SIZE_Y / 8 ) + VOLUME_WORLD_SIZE_Y / 2 + 0.4, 3 * ( VOLUME_WORLD_SIZE_Z / 8 ) );
 				keyLight.angle = Math.PI / 5;
 				keyLight.penumbra = 1;
@@ -916,13 +916,13 @@
 
 				// Render Pipeline (same structure as the volumetric example)
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// Layers
 
 				const LAYER_VOLUMETRIC_LIGHTING = 10;
 
-				const volumetricLayer = new FOUR.Layers();
+				const volumetricLayer = new THREE.Layers();
 				volumetricLayer.disableAll();
 				volumetricLayer.enable( LAYER_VOLUMETRIC_LIGHTING );
 
@@ -1140,13 +1140,13 @@
 
 				// Tone Mapping & Exposure Folder
 				const toneMappingOptions = {
-					None: FOUR.NoToneMapping,
-					Linear: FOUR.LinearToneMapping,
-					Reinhard: FOUR.ReinhardToneMapping,
-					Cineon: FOUR.CineonToneMapping,
-					ACESFilmic: FOUR.ACESFilmicToneMapping,
-					AgX: FOUR.AgXToneMapping,
-					Neutral: FOUR.NeutralToneMapping
+					None: THREE.NoToneMapping,
+					Linear: THREE.LinearToneMapping,
+					Reinhard: THREE.ReinhardToneMapping,
+					Cineon: THREE.CineonToneMapping,
+					ACESFilmic: THREE.ACESFilmicToneMapping,
+					AgX: THREE.AgXToneMapping,
+					Neutral: THREE.NeutralToneMapping
 				};
 
 				const toneMappingFolder = gui.addFolder( 'Tone Mapping & Exposure' );
@@ -1217,7 +1217,7 @@
 				const dist = currentPos.distanceTo( prevTeapotPos );
 				const speed = delta > 0 ? dist / delta : 0;
 
-				const teapotVel = new FOUR.Vector3();
+				const teapotVel = new THREE.Vector3();
 				if ( delta > 0 ) {
 
 					teapotVel.subVectors( currentPos, prevTeapotPos ).multiplyScalar( 1 / delta );
@@ -1310,7 +1310,7 @@
 				uFireStartColor.value.set( params.fireStartColor );
 				uFireMidColor.value.set( params.fireMidColor );
 				uFireEndColor.value.set( params.fireEndColor );
-				uFireHue.value = FOUR.MathUtils.degToRad( params.fireHue );
+				uFireHue.value = THREE.MathUtils.degToRad( params.fireHue );
 
 				renderPipeline.render();
 

@@ -16,17 +16,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let renderer, scene, camera, stats;
 			let pointclouds;
@@ -36,20 +36,20 @@
 			let timer;
 			let toggle = 0;
 
-			const pointer = new FOUR.Vector2();
+			const pointer = new THREE.Vector2();
 			const spheres = [];
 
 			const threshold = 0.1;
 			const pointSize = 0.05;
 			const width = 80;
 			const length = 160;
-			const rotateY = new FOUR.Matrix4().makeRotationY( 0.005 );
+			const rotateY = new THREE.Matrix4().makeRotationY( 0.005 );
 
 			init();
 
 			function generatePointCloudGeometry( color, width, length ) {
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				const numPoints = width * length;
 
 				const positions = new Float32Array( numPoints * 3 );
@@ -82,8 +82,8 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'color', new FOUR.BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 3 ) );
 				geometry.computeBoundingBox();
 
 				return geometry;
@@ -93,9 +93,9 @@
 			function generatePointcloud( color, width, length ) {
 
 				const geometry = generatePointCloudGeometry( color, width, length );
-				const material = new FOUR.PointsMaterial( { size: pointSize, vertexColors: true } );
+				const material = new THREE.PointsMaterial( { size: pointSize, vertexColors: true } );
 
-				return new FOUR.Points( geometry, material );
+				return new THREE.Points( geometry, material );
 
 			}
 
@@ -118,11 +118,11 @@
 
 				}
 
-				geometry.setIndex( new FOUR.BufferAttribute( indices, 1 ) );
+				geometry.setIndex( new THREE.BufferAttribute( indices, 1 ) );
 
-				const material = new FOUR.PointsMaterial( { size: pointSize, vertexColors: true } );
+				const material = new THREE.PointsMaterial( { size: pointSize, vertexColors: true } );
 
-				return new FOUR.Points( geometry, material );
+				return new THREE.Points( geometry, material );
 
 			}
 
@@ -145,12 +145,12 @@
 
 				}
 
-				geometry.setIndex( new FOUR.BufferAttribute( indices, 1 ) );
+				geometry.setIndex( new THREE.BufferAttribute( indices, 1 ) );
 				geometry.addGroup( 0, indices.length );
 
-				const material = new FOUR.PointsMaterial( { size: pointSize, vertexColors: true } );
+				const material = new THREE.PointsMaterial( { size: pointSize, vertexColors: true } );
 
-				return new FOUR.Points( geometry, material );
+				return new THREE.Points( geometry, material );
 
 			}
 
@@ -158,29 +158,29 @@
 
 				const container = document.getElementById( 'container' );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.set( 10, 10, 10 );
 				camera.lookAt( scene.position );
 				camera.updateMatrix();
 
 				//
 
-				const pcBuffer = generatePointcloud( new FOUR.Color( 1, 0, 0 ), width, length );
+				const pcBuffer = generatePointcloud( new THREE.Color( 1, 0, 0 ), width, length );
 				pcBuffer.scale.set( 5, 10, 10 );
 				pcBuffer.position.set( - 5, 0, 0 );
 				scene.add( pcBuffer );
 
-				const pcIndexed = generateIndexedPointcloud( new FOUR.Color( 0, 1, 0 ), width, length );
+				const pcIndexed = generateIndexedPointcloud( new THREE.Color( 0, 1, 0 ), width, length );
 				pcIndexed.scale.set( 5, 10, 10 );
 				pcIndexed.position.set( 0, 0, 0 );
 				scene.add( pcIndexed );
 
-				const pcIndexedOffset = generateIndexedWithOffsetPointcloud( new FOUR.Color( 0, 1, 1 ), width, length );
+				const pcIndexedOffset = generateIndexedWithOffsetPointcloud( new THREE.Color( 0, 1, 1 ), width, length );
 				pcIndexedOffset.scale.set( 5, 10, 10 );
 				pcIndexedOffset.position.set( 5, 0, 0 );
 				scene.add( pcIndexedOffset );
@@ -189,12 +189,12 @@
 
 				//
 
-				const sphereGeometry = new FOUR.SphereGeometry( 0.1, 32, 32 );
-				const sphereMaterial = new FOUR.MeshBasicMaterial( { color: 0xff0000 } );
+				const sphereGeometry = new THREE.SphereGeometry( 0.1, 32, 32 );
+				const sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 
 				for ( let i = 0; i < 40; i ++ ) {
 
-					const sphere = new FOUR.Mesh( sphereGeometry, sphereMaterial );
+					const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
 					scene.add( sphere );
 					spheres.push( sphere );
 
@@ -202,7 +202,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -210,7 +210,7 @@
 
 				//
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 				raycaster.params.Points.threshold = threshold;
 
 				//

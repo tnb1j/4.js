@@ -20,7 +20,7 @@
 			</div>
 
 			<small>
-				Playing <a href="http://durian.blender.org/" target="_blank" rel="noopener">sintel</a> trailer.
+				Playing <a href="https://durian.blender.org/" target="_blank" rel="noopener">sintel</a> trailer.
 			</small>
 		</div>
 
@@ -32,17 +32,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
 			let container;
 
@@ -71,16 +71,16 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 7 );
+				const light = new THREE.DirectionalLight( 0xffffff, 7 );
 				light.position.set( 0.5, 1, 1 ).normalize();
 				scene.add( light );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
@@ -94,8 +94,8 @@
 
 				} );
 
-				texture = new FOUR.VideoTexture( video );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				texture = new THREE.VideoTexture( video );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
 				//
 
@@ -118,11 +118,11 @@
 						ox = i;
 						oy = j;
 
-						geometry = new FOUR.BoxGeometry( xsize, ysize, xsize );
+						geometry = new THREE.BoxGeometry( xsize, ysize, xsize );
 
 						change_uvs( geometry, ux, uy, ox, oy );
 
-						materials[ cube_count ] = new FOUR.MeshPhongMaterial( parameters );
+						materials[ cube_count ] = new THREE.MeshPhongMaterial( parameters );
 
 						material = materials[ cube_count ];
 
@@ -131,7 +131,7 @@
 
 						material.color.setHSL( material.hue, material.saturation, 0.5 );
 
-						mesh = new FOUR.Mesh( geometry, material );
+						mesh = new THREE.Mesh( geometry, material );
 
 						mesh.position.x = ( i - xgrid / 2 ) * xsize;
 						mesh.position.y = ( j - ygrid / 2 ) * ysize;

@@ -47,17 +47,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			const SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
@@ -78,10 +78,10 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				//
 
@@ -109,14 +109,14 @@
 
 				}
 
-				const geometry = new FOUR.BufferGeometry();
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'scale', new FOUR.BufferAttribute( scales, 1 ) );
+				const geometry = new THREE.BufferGeometry();
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'scale', new THREE.BufferAttribute( scales, 1 ) );
 
-				const material = new FOUR.ShaderMaterial( {
+				const material = new THREE.ShaderMaterial( {
 
 					uniforms: {
-						color: { value: new FOUR.Color( 0xffffff ) },
+						color: { value: new THREE.Color( 0xffffff ) },
 					},
 					vertexShader: document.getElementById( 'vertexshader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentshader' ).textContent
@@ -125,12 +125,12 @@
 
 				//
 
-				particles = new FOUR.Points( geometry, material );
+				particles = new THREE.Points( geometry, material );
 				scene.add( particles );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

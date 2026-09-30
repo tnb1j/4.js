@@ -282,4 +282,4 @@ The direction.
 
 ## Source
 
-[src/math/Ray.js](../../src/math/Ray.js)
+[src/math/Ray.js](https://github.com/mrdoob/three.js/blob/master/src/math/Ray.js)

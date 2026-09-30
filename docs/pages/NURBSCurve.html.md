@@ -8,10 +8,10 @@ Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weigh
 
 ## Import
 
-NURBSCurve is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+NURBSCurve is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { NURBSCurve } from '@tnb1j/4js/addons/curves/NURBSCurve.js';
+import { NURBSCurve } from 'three/addons/curves/NURBSCurve.js';
 ```
 
 ## Constructor
@@ -98,4 +98,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[examples/jsm/curves/NURBSCurve.js](../../examples/jsm/curves/NURBSCurve.js)
+[examples/jsm/curves/NURBSCurve.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/curves/NURBSCurve.js)

@@ -50,4 +50,4 @@ Default is `'ltr'`.
 
 ## Source
 
-[examples/jsm/loaders/FontLoader.js](../../examples/jsm/loaders/FontLoader.js)
+[examples/jsm/loaders/FontLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/FontLoader.js)

@@ -29,8 +29,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js"
 				}
 			}
@@ -38,17 +38,17 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 			import { computeBoundsTree, disposeBoundsTree, acceleratedRaycast, BVHHelper } from 'three-mesh-bvh';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			// Add the extension functions
-			FOUR.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
-			FOUR.BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree;
-			FOUR.Mesh.prototype.raycast = acceleratedRaycast;
+			THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
+			THREE.BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree;
+			THREE.Mesh.prototype.raycast = acceleratedRaycast;
 
 			let stats;
 			let camera, scene, renderer;
@@ -56,12 +56,12 @@
 			let sphereInstance, lineSegments;
 
 			// reusable variables
-			const _raycaster = new FOUR.Raycaster();
-			const _position = new FOUR.Vector3();
-			const _quaternion = new FOUR.Quaternion();
-			const _scale = new FOUR.Vector3( 1, 1, 1 );
-			const _matrix = new FOUR.Matrix4();
-			const _axis = new FOUR.Vector3();
+			const _raycaster = new THREE.Raycaster();
+			const _position = new THREE.Vector3();
+			const _quaternion = new THREE.Quaternion();
+			const _scale = new THREE.Vector3( 1, 1, 1 );
+			const _matrix = new THREE.Matrix4();
+			const _axis = new THREE.Vector3();
 			const MAX_RAYS = 3000;
 			const RAY_COLOR = 0x444444;
 
@@ -81,17 +81,17 @@
 			function init() {
 
 				// environment
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
 				camera.position.z = 10;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xeeeeee );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xeeeeee );
 
-				const ambient = new FOUR.HemisphereLight( 0xffffff, 0x999999, 3 );
+				const ambient = new THREE.HemisphereLight( 0xffffff, 0x999999, 3 );
 				scene.add( ambient );
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -101,21 +101,21 @@
 				document.body.appendChild( stats.dom );
 
 				// raycast visualizations
-				const lineGeometry = new FOUR.BufferGeometry();
-				lineGeometry.setAttribute( 'position', new FOUR.BufferAttribute( new Float32Array( MAX_RAYS * 2 * 3 ), 3 ) );
-				lineSegments = new FOUR.LineSegments( lineGeometry, new FOUR.LineBasicMaterial( {
+				const lineGeometry = new THREE.BufferGeometry();
+				lineGeometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( MAX_RAYS * 2 * 3 ), 3 ) );
+				lineSegments = new THREE.LineSegments( lineGeometry, new THREE.LineBasicMaterial( {
 					color: RAY_COLOR,
 					transparent: true,
 					opacity: 0.25,
 					depthWrite: false
 				} ) );
 
-				sphereInstance = new FOUR.InstancedMesh(
-					new FOUR.SphereGeometry(),
-					new FOUR.MeshBasicMaterial( { color: RAY_COLOR } ),
+				sphereInstance = new THREE.InstancedMesh(
+					new THREE.SphereGeometry(),
+					new THREE.MeshBasicMaterial( { color: RAY_COLOR } ),
 					2 * MAX_RAYS
 				);
-				sphereInstance.instanceMatrix.setUsage( FOUR.DynamicDrawUsage );
+				sphereInstance.instanceMatrix.setUsage( THREE.DynamicDrawUsage );
 				sphereInstance.count = 0;
 
 				scene.add( sphereInstance, lineSegments );
@@ -179,10 +179,10 @@
 
 			function initRays() {
 
-				const position = new FOUR.Vector3();
-				const quaternion = new FOUR.Quaternion();
-				const scale = new FOUR.Vector3( 1, 1, 1 );
-				const matrix = new FOUR.Matrix4();
+				const position = new THREE.Vector3();
+				const quaternion = new THREE.Quaternion();
+				const scale = new THREE.Vector3( 1, 1, 1 );
+				const matrix = new THREE.Matrix4();
 
 				for ( let i = 0; i < MAX_RAYS * 2; i ++ ) {
 

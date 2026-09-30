@@ -13,10 +13,10 @@ const volume = await loader.loadAsync( 'models/nrrd/I.nrrd' );
 
 ## Import
 
-NRRDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+NRRDLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { NRRDLoader } from '@tnb1j/4js/addons/loaders/NRRDLoader.js';
+import { NRRDLoader } from 'three/addons/loaders/NRRDLoader.js';
 ```
 
 ## Constructor
@@ -75,4 +75,4 @@ Whether to use segmentation mode or not.
 
 ## Source
 
-[examples/jsm/loaders/NRRDLoader.js](../../examples/jsm/loaders/NRRDLoader.js)
+[examples/jsm/loaders/NRRDLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/NRRDLoader.js)

@@ -48,4 +48,4 @@ The data to bitcast to a new type.
 
 ## Source
 
-[src/nodes/math/BitcastNode.js](../../src/nodes/math/BitcastNode.js)
+[src/nodes/math/BitcastNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/math/BitcastNode.js)

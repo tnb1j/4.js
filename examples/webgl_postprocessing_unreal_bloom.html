@@ -20,34 +20,34 @@
 		<div id="container"></div>
 
 		<div id="info">
-			<a href="../" target="_blank" rel="noopener">4.js</a> - Bloom pass by <a href="http://eduperiment.com" target="_blank" rel="noopener">Prashant Sharma</a> and <a href="https://clara.io" target="_blank" rel="noopener">Ben Houston</a>
+			<a href="../" target="_blank" rel="noopener">4.js</a> - Bloom pass by <a href="https://github.com/spidersharma03" target="_blank" rel="noopener">Prashant Sharma</a> and <a href="https://ben3d.ca/" target="_blank" rel="noopener">Ben Houston</a>
 			<br/>
 			Model: <a href="https://blog.sketchfab.com/art-spotlight-primary-ion-drive/" target="_blank" rel="noopener">Primary Ion Drive</a> by
-			<a href="http://mjmurdock.com/" target="_blank" rel="noopener">Mike Murdock</a>, CC Attribution.
+			<a href="https://mjmurdock.com/" target="_blank" rel="noopener">Mike Murdock</a>, CC Attribution.
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let camera, stats;
 			let composer, renderer, mixer, timer;
@@ -65,18 +65,18 @@
 
 				const container = document.getElementById( 'container' );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const scene = new FOUR.Scene();
+				const scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 100 );
 				camera.position.set( - 5, 2.5, - 3.5 );
 				scene.add( camera );
 
-				scene.add( new FOUR.AmbientLight( 0xcccccc ) );
+				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				const pointLight = new FOUR.PointLight( 0xffffff, 100 );
+				const pointLight = new THREE.PointLight( 0xffffff, 100 );
 				camera.add( pointLight );
 
 				const loader = new GLTFLoader();
@@ -85,24 +85,24 @@
 				const model = gltf.scene;
 				scene.add( model );
 
-				mixer = new FOUR.AnimationMixer( model );
+				mixer = new THREE.AnimationMixer( model );
 				const clip = gltf.animations[ 0 ];
 				mixer.clipAction( clip.optimize() ).play();
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				container.appendChild( renderer.domElement );
 
 				//
 
 				const renderScene = new RenderPass( scene, camera );
 
-				const bloomPass = new UnrealBloomPass( new FOUR.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+				const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
 				bloomPass.threshold = params.threshold;
 				bloomPass.strength = params.strength;
 				bloomPass.radius = params.radius;

@@ -5,7 +5,7 @@ import {
 	UniformsUtils,
 	Vector2,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { ConvolutionShader } from '../shaders/ConvolutionShader.js';
 
@@ -21,7 +21,7 @@ import { ConvolutionShader } from '../shaders/ConvolutionShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { BloomPass } from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
+ * @three_import import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
  */
 class BloomPass extends Pass {
 
@@ -104,9 +104,9 @@ class BloomPass extends Pass {
 
 		// internals
 
-		this._renderTargetX = new WebGLRenderTarget( 1, 1, { type: HalfFloatType } ); // will be resized later
+		this._renderTargetX = new WebGLRenderTarget( 1, 1, { type: HalfFloatType, depthBuffer: false } ); // will be resized later
 		this._renderTargetX.texture.name = 'BloomPass.x';
-		this._renderTargetY = new WebGLRenderTarget( 1, 1, { type: HalfFloatType } ); // will be resized later
+		this._renderTargetY = new WebGLRenderTarget( 1, 1, { type: HalfFloatType, depthBuffer: false } ); // will be resized later
 		this._renderTargetY.texture.name = 'BloomPass.y';
 
 		this._fsQuad = new FullScreenQuad( null );

@@ -10,7 +10,7 @@ import {
 	Loader,
 	RGBAFormat,
 	UVMapping,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * UltraHDR Image Format - https://developer.android.com/media/platform/hdr-image-format
@@ -59,14 +59,14 @@ for ( let i = 0; i < 1024; i ++ ) {
  * ```js
  * const loader = new UltraHDRLoader();
  * const texture = await loader.loadAsync( 'textures/equirectangular/ice_planet_close.jpg' );
- * texture.mapping = FOUR.EquirectangularReflectionMapping;
+ * texture.mapping = THREE.EquirectangularReflectionMapping;
  *
  * scene.background = texture;
  * scene.environment = texture;
  * ```
  *
  * @augments Loader
- * @four_import import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+ * @three_import import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
  */
 class UltraHDRLoader extends Loader {
 
@@ -311,7 +311,7 @@ class UltraHDRLoader extends Loader {
 		// Version can come from either XMP or ISO metadata
 		if ( ! metadata.version ) {
 
-			throw new Error( 'FOUR.UltraHDRLoader: Not a valid UltraHDR image' );
+			throw new Error( 'THREE.UltraHDRLoader: Not a valid UltraHDR image' );
 
 		}
 
@@ -341,7 +341,7 @@ class UltraHDRLoader extends Loader {
 
 		} else {
 
-			throw new Error( 'FOUR.UltraHDRLoader: Could not parse UltraHDR images' );
+			throw new Error( 'THREE.UltraHDRLoader: Could not parse UltraHDR images' );
 
 		}
 
@@ -631,7 +631,7 @@ class UltraHDRLoader extends Loader {
 				if ( sdrImageAspect !== gainmapImageAspect ) {
 
 					onError(
-						'FOUR.UltraHDRLoader Error: Aspect ratio mismatch between SDR and Gainmap images'
+						'THREE.UltraHDRLoader Error: Aspect ratio mismatch between SDR and Gainmap images'
 					);
 
 					return;

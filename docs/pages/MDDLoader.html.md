@@ -21,21 +21,21 @@ const result = await loader.loadAsync( 'models/mdd/cube.mdd' );
 const morphTargets = result.morphTargets;
 const clip = result.clip;
 // clip.optimize(); // optional
-const geometry = new FOUR.BoxGeometry();
+const geometry = new THREE.BoxGeometry();
 geometry.morphAttributes.position = morphTargets; // apply morph targets (vertex data must match)
-const material = new FOUR.MeshBasicMaterial();
-const mesh = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshBasicMaterial();
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
-const mixer = new FOUR.AnimationMixer( mesh );
+const mixer = new THREE.AnimationMixer( mesh );
 mixer.clipAction( clip ).play();
 ```
 
 ## Import
 
-MDDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MDDLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MDDLoader } from '@tnb1j/4js/addons/loaders/MDDLoader.js';
+import { MDDLoader } from 'three/addons/loaders/MDDLoader.js';
 ```
 
 ## Constructor
@@ -86,4 +86,4 @@ The raw XYZ data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/MDDLoader.js](../../examples/jsm/loaders/MDDLoader.js)
+[examples/jsm/loaders/MDDLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/MDDLoader.js)

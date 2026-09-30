@@ -23,36 +23,36 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Fn, If, Return, instancedArray, instanceIndex, uniform, attribute, float, clamp, struct, atomicStore, int, ivec3, array, vec3, atomicAdd, Loop, atomicLoad, max, pow, mat3, vec4, cross, step, storage } from '@tnb1j/4js/tsl';
+			import { Fn, If, Return, instancedArray, instanceIndex, uniform, attribute, float, clamp, struct, atomicStore, int, ivec3, array, vec3, atomicAdd, Loop, atomicLoad, max, pow, mat3, vec4, cross, step, storage } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import * as BufferGeometryUtils from '@tnb1j/4js/addons/utils/BufferGeometryUtils.js';
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			let renderer, scene, camera, controls;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			const maxParticles = 8192 * 16;
 			const gridSize1d = 64;
 			const workgroupSize = 64;
-			const gridSize = new FOUR.Vector3( gridSize1d, gridSize1d, gridSize1d );
+			const gridSize = new THREE.Vector3( gridSize1d, gridSize1d, gridSize1d );
 			const fixedPointMultiplier = 1e7;
 
 			let particleCountUniform, stiffnessUniform, restDensityUniform, dynamicViscosityUniform, dtUniform, gravityUniform, gridSizeUniform;
@@ -60,8 +60,8 @@
 			let clearGridKernel, p2g1Kernel, p2g2Kernel, updateGridKernel, g2pKernel, workgroupKernel;
 			let p2g1KernelWorkgroupBuffer, p2g2KernelWorkgroupBuffer, g2pKernelWorkgroupBuffer;
 			let particleMesh;
-			const mouseCoord = new FOUR.Vector3();
-			const prevMouseCoord = new FOUR.Vector3();
+			const mouseCoord = new THREE.Vector3();
+			const prevMouseCoord = new THREE.Vector3();
 			let mouseRayOriginUniform, mouseRayDirectionUniform, mouseForceUniform;
 
 			if ( WebGPU.isAvailable() === false ) {
@@ -79,17 +79,17 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, requiredLimits: { maxStorageBuffersInVertexStage: 1 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1.35;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.set( - 1.3, 1.3, - 1.3 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -97,12 +97,12 @@
 				controls.minDistance = 1;
 				controls.maxDistance = 3;
 				controls.maxPolarAngle = Math.PI * 0.35;
-				controls.touches = { TWO: FOUR.TOUCH.DOLLY_ROTATE };
+				controls.touches = { TWO: THREE.TOUCH.DOLLY_ROTATE };
 
 				const hdrLoader = new UltraHDRLoader().setPath( 'textures/equirectangular/' );
 
 				const hdrTexture = await hdrLoader.loadAsync( 'royal_esplanade_2k.hdr.jpg' );
-				hdrTexture.mapping = FOUR.EquirectangularReflectionMapping;
+				hdrTexture.mapping = THREE.EquirectangularReflectionMapping;
 				scene.background = hdrTexture;
 				scene.backgroundBlurriness = 0.5;
 				scene.environment = hdrTexture;
@@ -113,9 +113,9 @@
 			
 				const numWorkgroups = Math.ceil( params.particleCount / workgroupSize );
 
-				p2g1KernelWorkgroupBuffer = new FOUR.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
-				p2g2KernelWorkgroupBuffer = new FOUR.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
-				g2pKernelWorkgroupBuffer = new FOUR.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
+				p2g1KernelWorkgroupBuffer = new THREE.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
+				p2g2KernelWorkgroupBuffer = new THREE.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
+				g2pKernelWorkgroupBuffer = new THREE.IndirectStorageBufferAttribute( new Uint32Array( [ numWorkgroups, 1, 1 ] ), 1 );
 
 				const p2g1WorkgroupStorage = storage( p2g1KernelWorkgroupBuffer, 'uint', 3 );
 				const p2g2WorkgroupStorage = storage( p2g2KernelWorkgroupBuffer, 'uint', 3 );
@@ -140,6 +140,10 @@
 					particleCountUniform.value = value;
 
 				} );
+
+				await renderer.init();
+				await renderer.compileComputeAsync( [ clearGridKernel, p2g1Kernel, p2g2Kernel, updateGridKernel, g2pKernel ] );
+				await renderer.compileAsync( scene, camera );
 
 				window.addEventListener( 'resize', onWindowResize );
 				controls.update();
@@ -189,10 +193,10 @@
 				restDensityUniform = uniform( 1.5 );
 				dynamicViscosityUniform = uniform( 0.1 );
 				dtUniform = uniform( 1 / 60 );
-				gravityUniform = uniform( new FOUR.Vector3( 0, - ( 9.81 * 9.81 ), 0 ) );
-				mouseRayOriginUniform = uniform( new FOUR.Vector3( 0, 0, 0 ) );
-				mouseRayDirectionUniform = uniform( new FOUR.Vector3( 0, 0, 0 ) );
-				mouseForceUniform = uniform( new FOUR.Vector3( 0, 0, 0 ) );
+				gravityUniform = uniform( new THREE.Vector3( 0, - ( 9.81 * 9.81 ), 0 ) );
+				mouseRayOriginUniform = uniform( new THREE.Vector3( 0, 0, 0 ) );
+				mouseRayDirectionUniform = uniform( new THREE.Vector3( 0, 0, 0 ) );
+				mouseForceUniform = uniform( new THREE.Vector3( 0, 0, 0 ) );
 
 				// gui.add(restDensityUniform, "value", 1.0, 3, 0.1).name("restDensity");
 				// it's interesting to adjust the restDensity but it might cause the simulation to become unstable
@@ -483,9 +487,9 @@
 			function setupMesh() {
 
 				// mergeVertices to reduce the number of vertexShaderCalls
-				const geometry = BufferGeometryUtils.mergeVertices( new FOUR.IcosahedronGeometry( 0.008, 1 ).deleteAttribute( 'uv' ) );
+				const geometry = BufferGeometryUtils.mergeVertices( new THREE.IcosahedronGeometry( 0.008, 1 ).deleteAttribute( 'uv' ) );
 
-				const material = new FOUR.MeshStandardNodeMaterial( {
+				const material = new THREE.MeshStandardNodeMaterial( {
 					color: '#0066FF'
 				} );
 
@@ -495,7 +499,7 @@
 					return attribute( 'position' ).add( particlePosition );
 			
 				} )();
-				particleMesh = new FOUR.Mesh( geometry, material );
+				particleMesh = new THREE.Mesh( geometry, material );
 				particleMesh.count = params.particleCount;
 				particleMesh.position.set( - 0.5, 0, - 0.5 );
 				particleMesh.frustumCulled = false;
@@ -505,12 +509,12 @@
 
 			function setupMouse() {
 
-				const raycaster = new FOUR.Raycaster();
-				const raycastPlane = new FOUR.Plane( new FOUR.Vector3( 0, 1, 0 ) );
+				const raycaster = new THREE.Raycaster();
+				const raycastPlane = new THREE.Plane( new THREE.Vector3( 0, 1, 0 ) );
 
 				const onMove = ( event ) => {
 
-					const pointer = new FOUR.Vector2( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
+					const pointer = new THREE.Vector2( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
 					raycaster.setFromCamera( pointer, camera );
 					raycaster.ray.origin.x += 0.5;
 					raycaster.ray.origin.z += 0.5;
@@ -549,7 +553,7 @@
 
 				timer.update();
 
-				const deltaTime = FOUR.MathUtils.clamp( timer.getDelta(), 0.00001, 1 / 60 ); // don't advance the time too far, for example when the window is out of focus
+				const deltaTime = THREE.MathUtils.clamp( timer.getDelta(), 0.00001, 1 / 60 ); // don't advance the time too far, for example when the window is out of focus
 				dtUniform.value = deltaTime;
 
 				mouseForceUniform.value.copy( mouseCoord ).sub( prevMouseCoord ).multiplyScalar( 2 );

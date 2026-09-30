@@ -86,4 +86,4 @@ The update toggle.
 
 ## Source
 
-[src/nodes/accessors/StorageTexture3DNode.js](../../src/nodes/accessors/StorageTexture3DNode.js)
+[src/nodes/accessors/StorageTexture3DNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/StorageTexture3DNode.js)

@@ -40,4 +40,4 @@ The node builder.
 
 ## Source
 
-[src/nodes/core/TempNode.js](../../src/nodes/core/TempNode.js)
+[src/nodes/core/TempNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/TempNode.js)

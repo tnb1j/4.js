@@ -7,16 +7,16 @@ Pass for creating a dot-screen effect.
 ## Code Example
 
 ```js
-const pass = new DotScreenPass( new FOUR.Vector2( 0, 0 ), 0.5, 0.8 );
+const pass = new DotScreenPass( new THREE.Vector2( 0, 0 ), 0.5, 0.8 );
 composer.addPass( pass );
 ```
 
 ## Import
 
-DotScreenPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DotScreenPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DotScreenPass } from '@tnb1j/4js/addons/postprocessing/DotScreenPass.js';
+import { DotScreenPass } from 'three/addons/postprocessing/DotScreenPass.js';
 ```
 
 ## Constructor
@@ -89,4 +89,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/DotScreenPass.js](../../examples/jsm/postprocessing/DotScreenPass.js)
+[examples/jsm/postprocessing/DotScreenPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/DotScreenPass.js)

@@ -11,28 +11,28 @@
 	<body>
 
 		<div id="info">
-			<a href="../" target="_blank" rel="noopener">4.js</a> - FOUR.RectAreaLight<br/>
-			by <a href="http://github.com/abelnation" target="_blank" rel="noopener">abelnation</a>
+			<a href="../" target="_blank" rel="noopener">4.js</a> - THREE.RectAreaLight<br/>
+			by <a href="https://github.com/abelnation" target="_blank" rel="noopener">abelnation</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RectAreaLightHelper } from '@tnb1j/4js/addons/helpers/RectAreaLightHelper.js';
-			import { RectAreaLightUniformsLib } from '@tnb1j/4js/addons/lights/RectAreaLightUniformsLib.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
+			import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 
 			let renderer, scene, camera;
 			let rectLight1, rectLight2, rectLight3;
@@ -42,30 +42,30 @@
 
 			function init() {
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animation );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 5, - 15 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				RectAreaLightUniformsLib.init();
 
-				rectLight1 = new FOUR.RectAreaLight( 0xff0000, 5, 4, 10 );
+				rectLight1 = new THREE.RectAreaLight( 0xff0000, 5, 4, 10 );
 				rectLight1.position.set( - 5, 6, 5 );
 				scene.add( rectLight1 );
 
-				rectLight2 = new FOUR.RectAreaLight( 0x00ff00, 5, 4, 10 );
+				rectLight2 = new THREE.RectAreaLight( 0x00ff00, 5, 4, 10 );
 				rectLight2.position.set( 0, 6, 5 );
 				scene.add( rectLight2 );
 
-				rectLight3 = new FOUR.RectAreaLight( 0x0000ff, 5, 4, 10 );
+				rectLight3 = new THREE.RectAreaLight( 0x0000ff, 5, 4, 10 );
 				rectLight3.position.set( 5, 6, 5 );
 				scene.add( rectLight3 );
 
@@ -73,15 +73,15 @@
 				scene.add( new RectAreaLightHelper( rectLight2 ) );
 				scene.add( new RectAreaLightHelper( rectLight3 ) );
 
-				const geoFloor = new FOUR.BoxGeometry( 2000, 0.1, 2000 );
-				const matStdFloor = new FOUR.MeshStandardMaterial( { color: 0x444444 } );
+				const geoFloor = new THREE.BoxGeometry( 2000, 0.1, 2000 );
+				const matStdFloor = new THREE.MeshStandardMaterial( { color: 0x444444 } );
 				matStdFloor.roughnessMap = createCheckerTexture( 400 );
-				const mshStdFloor = new FOUR.Mesh( geoFloor, matStdFloor );
+				const mshStdFloor = new THREE.Mesh( geoFloor, matStdFloor );
 				scene.add( mshStdFloor );
 
-				const geoKnot = new FOUR.TorusKnotGeometry( 1.5, 0.5, 200, 16 );
-				const matKnot = new FOUR.MeshStandardMaterial( { color: 0xffffff, roughness: 0, metalness: 0 } );
-				const meshKnot = new FOUR.Mesh( geoKnot, matKnot );
+				const geoKnot = new THREE.TorusKnotGeometry( 1.5, 0.5, 200, 16 );
+				const matKnot = new THREE.MeshStandardMaterial( { color: 0xffffff, roughness: 0, metalness: 0 } );
+				const meshKnot = new THREE.Mesh( geoKnot, matKnot );
 				meshKnot.position.set( 0, 5.5, 0 );
 				scene.add( meshKnot );
 
@@ -111,11 +111,11 @@
 				ctx.fillRect( 0, 0, 1, 1 );
 				ctx.fillRect( 1, 1, 1, 1 );
 
-				const texture = new FOUR.CanvasTexture( canvas );
+				const texture = new THREE.CanvasTexture( canvas );
 				texture.repeat.set( repeat, repeat );
-				texture.magFilter = FOUR.NearestFilter;
-				texture.wrapS = FOUR.RepeatWrapping;
-				texture.wrapT = FOUR.RepeatWrapping;
+				texture.magFilter = THREE.NearestFilter;
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
 
 				return texture;
 

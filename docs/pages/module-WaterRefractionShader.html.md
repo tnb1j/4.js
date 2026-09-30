@@ -2,10 +2,10 @@
 
 ## Import
 
-WaterRefractionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+WaterRefractionShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { WaterRefractionShader } from '@tnb1j/4js/addons/shaders/WaterRefractionShader.js';
+import { WaterRefractionShader } from 'three/addons/shaders/WaterRefractionShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Basic water refraction shader.
 
 ## Source
 
-[examples/jsm/shaders/WaterRefractionShader.js](../../examples/jsm/shaders/WaterRefractionShader.js)
+[examples/jsm/shaders/WaterRefractionShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/WaterRefractionShader.js)

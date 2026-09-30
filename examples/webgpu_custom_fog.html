@@ -28,28 +28,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, fog, positionWorld, triNoise3D, normalWorld, uniform, densityFogFactor } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, fog, positionWorld, triNoise3D, normalWorld, uniform, densityFogFactor } from 'three/tsl';
 
-			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
-			import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
-			import { TerrainGenerator } from '@tnb1j/4js/addons/generators/TerrainGenerator.js';
-			import { ForestGenerator } from '@tnb1j/4js/addons/generators/ForestGenerator.js';
+			import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
+			import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
+			import { TerrainGenerator } from 'three/addons/generators/TerrainGenerator.js';
+			import { ForestGenerator } from 'three/addons/generators/ForestGenerator.js';
 
 			let camera, scene, renderer, controls, timer;
 			let terrain, forest, terrainGroup, forestGroup;
-			let sky, sun, sunLight, pmremGenerator, envScene;
+			let sky, sun, sunLight, pmremGenerator, envScene, envRenderTarget;
 
 			const parameters = {
 				elevation: 11, // sun height above the horizon, in degrees ( low = golden hour )
@@ -60,25 +60,24 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.62;
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
 				await renderer.init();
 
-				pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20000 );
 				camera.position.set( - 50, 88, 230 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.environmentIntensity = 0.16; // a dim, cool sky fill so the warm sun stays the key and shadows read
 
 				// a physical sky, used only to bake the image-based lighting ( it is not
@@ -91,8 +90,10 @@
 				sky.mieCoefficient.value = 0.005;
 				sky.mieDirectionalG.value = 0.88;
 
-				sun = new FOUR.Vector3();
-				envScene = new FOUR.Scene();
+				sun = new THREE.Vector3();
+				envScene = new THREE.Scene();
+				sky.showSunDisc.value = false;
+				envScene.add( sky );
 
 				// custom fog. an animated, two-octave triNoise3D haze that settles into
 				// the valley as a level band: solid below `fogBase` ( down under the
@@ -149,7 +150,7 @@
 				// shadows the sky fill alone can't give. its colour, intensity and position —
 				// and the baked environment — are set by updateSun()
 
-				sunLight = new FOUR.DirectionalLight();
+				sunLight = new THREE.DirectionalLight();
 				sunLight.castShadow = true;
 				sunLight.shadow.camera.left = - 420;
 				sunLight.shadow.camera.right = 420;
@@ -189,11 +190,11 @@
 
 				// controls
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
 				controls = new FirstPersonControls( camera, renderer.domElement );
 				controls.movementSpeed = 20;
-				controls.lookSpeed = 0.1;
+				controls.lookSpeed = 0.2;
 				controls.lookAt( 0, 5, - 120 ); // face across the valley
 
 				window.addEventListener( 'resize', resize );
@@ -208,26 +209,22 @@
 
 				sun.setFromSphericalCoords(
 					1,
-					FOUR.MathUtils.degToRad( 90 - elevation ),
-					FOUR.MathUtils.degToRad( parameters.azimuth )
+					THREE.MathUtils.degToRad( 90 - elevation ),
+					THREE.MathUtils.degToRad( parameters.azimuth )
 				);
 				sky.sunPosition.value.copy( sun );
 
 				// the longer air path near the horizon dims and warms the sun. it stays
 				// far brighter than the sky fill, so it reads as the key and casts firm shadows
-				const transmittance = Math.sqrt( Math.max( Math.sin( FOUR.MathUtils.degToRad( elevation ) ), 0 ) );
-				sunLight.color.set( 0xff7a2f ).lerp( new FOUR.Color( 0xfff2e0 ), transmittance ); // deep orange → warm white
+				const transmittance = Math.sqrt( Math.max( Math.sin( THREE.MathUtils.degToRad( elevation ) ), 0 ) );
+				sunLight.color.set( 0xff7a2f ).lerp( new THREE.Color( 0xfff2e0 ), transmittance ); // deep orange → warm white
 				sunLight.intensity = 11 * transmittance + 0.3;
 				sunLight.position.copy( sun ).multiplyScalar( 900 );
 				sunLight.shadow.needsUpdate = true; // the sun moved, so the on-demand shadow map needs one refresh
 
-				// re-bake the sky ( without the sun disc ) into the environment map for IBL.
-				// the sky lives only in envScene; it is never added to the visible scene
-				sky.showSunDisc.value = false;
-				envScene.add( sky );
-				const env = pmremGenerator.fromScene( envScene ).texture;
-				if ( scene.environment ) scene.environment.dispose();
-				scene.environment = env;
+				// Reuse the environment render target when the sun moves.
+				envRenderTarget = pmremGenerator.fromScene( envScene, 0, 0.1, 100, { renderTarget: envRenderTarget } );
+				scene.environment = envRenderTarget.texture;
 
 			}
 

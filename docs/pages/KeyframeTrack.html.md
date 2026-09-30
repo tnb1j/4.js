@@ -199,4 +199,4 @@ The keyframe track to serialize.
 
 ## Source
 
-[src/animation/KeyframeTrack.js](../../src/animation/KeyframeTrack.js)
+[src/animation/KeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/KeyframeTrack.js)

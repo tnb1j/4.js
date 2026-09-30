@@ -27,31 +27,31 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { PDBLoader } from '@tnb1j/4js/addons/loaders/PDBLoader.js';
-			import { CSS3DRenderer, CSS3DObject, CSS3DSprite } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { PDBLoader } from 'three/addons/loaders/PDBLoader.js';
+			import { CSS3DRenderer, CSS3DObject, CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer;
 			let controls;
 			let root;
 
 			const objects = [];
-			const tmpVec1 = new FOUR.Vector3();
-			const tmpVec2 = new FOUR.Vector3();
-			const tmpVec3 = new FOUR.Vector3();
-			const tmpVec4 = new FOUR.Vector3();
-			const offset = new FOUR.Vector3();
+			const tmpVec1 = new THREE.Vector3();
+			const tmpVec2 = new THREE.Vector3();
+			const tmpVec3 = new THREE.Vector3();
+			const tmpVec4 = new THREE.Vector3();
+			const offset = new THREE.Vector3();
 
 			const VIZ_TYPE = {
 				'Atoms': 0,
@@ -94,12 +94,12 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				root = new FOUR.Object3D();
+				root = new THREE.Object3D();
 				scene.add( root );
 
 				//
@@ -279,8 +279,8 @@
 					const positionAtoms = geometryAtoms.getAttribute( 'position' );
 					const colorAtoms = geometryAtoms.getAttribute( 'color' );
 
-					const position = new FOUR.Vector3();
-					const color = new FOUR.Color();
+					const position = new THREE.Vector3();
+					const color = new THREE.Color();
 
 					for ( let i = 0; i < positionAtoms.count; i ++ ) {
 
@@ -323,8 +323,8 @@
 
 					const positionBonds = geometryBonds.getAttribute( 'position' );
 
-					const start = new FOUR.Vector3();
-					const end = new FOUR.Vector3();
+					const start = new THREE.Vector3();
+					const end = new THREE.Vector3();
 
 					for ( let i = 0; i < positionBonds.count; i += 2 ) {
 
@@ -355,7 +355,7 @@
 						const axis = tmpVec2.set( 0, 1, 0 ).cross( tmpVec1 );
 						const radians = Math.acos( tmpVec3.set( 0, 1, 0 ).dot( tmpVec4.copy( tmpVec1 ).normalize() ) );
 
-						const objMatrix = new FOUR.Matrix4().makeRotationAxis( axis.normalize(), radians );
+						const objMatrix = new THREE.Matrix4().makeRotationAxis( axis.normalize(), radians );
 						object.matrix.copy( objMatrix );
 						object.quaternion.setFromRotationMatrix( object.matrix );
 
@@ -368,7 +368,7 @@
 
 						//
 
-						const joint = new FOUR.Object3D();
+						const joint = new THREE.Object3D();
 						joint.position.copy( start );
 						joint.position.lerp( end, 0.5 );
 

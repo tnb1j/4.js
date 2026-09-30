@@ -18,28 +18,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderTransitionPass } from '@tnb1j/4js/addons/postprocessing/RenderTransitionPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderTransitionPass } from 'three/addons/postprocessing/RenderTransitionPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let stats;
 			let renderer, composer, renderTransitionPass;
 
 			const textures = [];
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			const params = {
@@ -52,8 +52,8 @@
 				threshold: 0.1,
 			};
 
-			const fxSceneA = new FXScene( new FOUR.BoxGeometry( 2, 2, 2 ), new FOUR.Vector3( 0, - 0.4, 0 ), 0xffffff );
-			const fxSceneB = new FXScene( new FOUR.IcosahedronGeometry( 1, 1 ), new FOUR.Vector3( 0, 0.2, 0.1 ), 0x000000 );
+			const fxSceneA = new FXScene( new THREE.BoxGeometry( 2, 2, 2 ), new THREE.Vector3( 0, - 0.4, 0 ), 0xffffff );
+			const fxSceneB = new FXScene( new THREE.IcosahedronGeometry( 1, 1 ), new THREE.Vector3( 0, 0.2, 0.1 ), 0x000000 );
 
 			init();
 
@@ -62,7 +62,7 @@
 				initGUI();
 				initTextures();
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -135,7 +135,7 @@
 
 			function initTextures() {
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 
 				for ( let i = 0; i < 6; i ++ ) {
 
@@ -202,22 +202,22 @@
 
 			function FXScene( geometry, rotationSpeed, backgroundColor ) {
 
-				const camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.z = 20;
 
 				// Setup scene
-				const scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( backgroundColor );
-				scene.add( new FOUR.AmbientLight( 0xaaaaaa, 3 ) );
+				const scene = new THREE.Scene();
+				scene.background = new THREE.Color( backgroundColor );
+				scene.add( new THREE.AmbientLight( 0xaaaaaa, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 1, 4 );
 				scene.add( light );
 
 				this.rotationSpeed = rotationSpeed;
 
 				const color = geometry.type === 'BoxGeometry' ? 0x0000ff : 0xff0000;
-				const material = new FOUR.MeshPhongMaterial( { color: color, flatShading: true } );
+				const material = new THREE.MeshPhongMaterial( { color: color, flatShading: true } );
 				const mesh = generateInstancedMesh( geometry, material, 500 );
 				scene.add( mesh );
 
@@ -248,10 +248,10 @@
 
 			function generateInstancedMesh( geometry, material, count ) {
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, count );
+				const mesh = new THREE.InstancedMesh( geometry, material, count );
 
-				const dummy = new FOUR.Object3D();
-				const color = new FOUR.Color();
+				const dummy = new THREE.Object3D();
+				const color = new THREE.Color();
 
 				for ( let i = 0; i < count; i ++ ) {
 

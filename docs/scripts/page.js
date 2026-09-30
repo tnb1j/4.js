@@ -1,15 +1,15 @@
 if ( ! window.frameElement && window.location.protocol !== 'file:' ) {
 
 	// navigates to docs home if direct access, e.g.
-	//   https://example.com/docs/pages/BoxGeometry.html
-	// ->https://example.com/docs/#BoxGeometry
+	//   https://threejs.org/docs/pages/BoxGeometry.html
+	// ->https://threejs.org/docs/#BoxGeometry
 
 	const url = new URL( window.location.href );
 
 	// hash route, e.g. #BoxGeometry
 	url.hash = url.pathname.replace( /\/docs\/pages\/(.*?)(?:\.html)?$/, '$1' );
 
-	// docs home, e.g. https://example.com/docs/
+	// docs home, e.g. https://threejs.org/docs/
 	url.pathname = url.pathname.replace( /(\/docs\/).*$/, '$1' );
 
 	window.location.replace( url );

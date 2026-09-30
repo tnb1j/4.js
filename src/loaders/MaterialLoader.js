@@ -29,7 +29,7 @@ const _customMaterials = {};
  * loaded via {@link FileLoader}.
  *
  * ```js
- * const loader = new FOUR.MaterialLoader();
+ * const loader = new THREE.MaterialLoader();
  * const material = await loader.loadAsync( 'material.json' );
  * ```
  * This loader does not support node materials. Use {@link NodeMaterialLoader} instead.

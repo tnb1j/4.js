@@ -8,10 +8,10 @@ Reference: [https://openaccess.thecvf.com/content/WACV2021/papers/Khademi\_Self-
 
 ## Import
 
-DenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { denoise } from '@tnb1j/4js/addons/tsl/display/DenoiseNode.js';
+import { denoise } from 'three/addons/tsl/display/DenoiseNode.js';
 ```
 
 ## Constructor
@@ -84,6 +84,12 @@ Default is `'frame'`.
 
 ## Methods
 
+### .dispose()
+
+Frees internal resources. This method should be called when the effect is no longer required.
+
+**Overrides:** [TempNode#dispose](TempNode.html#dispose)
+
 ### .setup( builder : NodeBuilder ) : ShaderCallNodeInternal
 
 This method is used to setup the effect's TSL code.
@@ -106,4 +112,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/DenoiseNode.js](../../examples/jsm/tsl/display/DenoiseNode.js)
+[examples/jsm/tsl/display/DenoiseNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/DenoiseNode.js)

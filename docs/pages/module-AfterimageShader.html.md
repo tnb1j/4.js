@@ -2,18 +2,18 @@
 
 ## Import
 
-AfterimageShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AfterimageShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AfterimageShader } from '@tnb1j/4js/addons/shaders/AfterimageShader.js';
+import { AfterimageShader } from 'three/addons/shaders/AfterimageShader.js';
 ```
 
 ## Properties
 
 ### .AfterimageShader : ShaderMaterial~Shader (inner, constant)
 
-Inspired by [4.js FBO motion trails](https://codepen.io/brunoimbrizi/pen/MoRJaN?page=1&).
+Inspired by [Three.js FBO motion trails](https://codepen.io/brunoimbrizi/pen/MoRJaN?page=1&).
 
 ## Source
 
-[examples/jsm/shaders/AfterimageShader.js](../../examples/jsm/shaders/AfterimageShader.js)
+[examples/jsm/shaders/AfterimageShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/AfterimageShader.js)

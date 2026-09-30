@@ -18,23 +18,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { BokehPass } from '@tnb1j/4js/addons/postprocessing/BokehPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let camera, scene, renderer, stats,
 				singleMaterial, zmaterial,
@@ -59,12 +59,12 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 70, width / height, 1, 3000 );
+				camera = new THREE.PerspectiveCamera( 70, width / height, 1, 3000 );
 				camera.position.z = 200;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( width, height );
 				renderer.setAnimationLoop( animate );
@@ -78,16 +78,16 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const textureCube = new FOUR.CubeTextureLoader().load( urls );
+				const textureCube = new THREE.CubeTextureLoader().load( urls );
 
 				parameters = { color: 0xff4900, envMap: textureCube };
-				cubeMaterial = new FOUR.MeshBasicMaterial( parameters );
+				cubeMaterial = new THREE.MeshBasicMaterial( parameters );
 
 				singleMaterial = false;
 
 				if ( singleMaterial ) zmaterial = [ cubeMaterial ];
 
-				const geo = new FOUR.SphereGeometry( 1, 20, 10 );
+				const geo = new THREE.SphereGeometry( 1, 20, 10 );
 
 				const xgrid = 14, ygrid = 9, zgrid = 14;
 
@@ -106,11 +106,11 @@
 
 							if ( singleMaterial ) {
 
-								mesh = new FOUR.Mesh( geo, zmaterial );
+								mesh = new THREE.Mesh( geo, zmaterial );
 
 							} else {
 
-								mesh = new FOUR.Mesh( geo, new FOUR.MeshBasicMaterial( parameters ) );
+								mesh = new THREE.Mesh( geo, new THREE.MeshBasicMaterial( parameters ) );
 								materials[ count ] = mesh.material;
 
 							}

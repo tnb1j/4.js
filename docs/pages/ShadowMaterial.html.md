@@ -7,11 +7,11 @@ This material can receive shadows, but otherwise is completely transparent.
 ## Code Example
 
 ```js
-const geometry = new FOUR.PlaneGeometry( 2000, 2000 );
+const geometry = new THREE.PlaneGeometry( 2000, 2000 );
 geometry.rotateX( - Math.PI / 2 );
-const material = new FOUR.ShadowMaterial();
+const material = new THREE.ShadowMaterial();
 material.opacity = 0.2;
-const plane = new FOUR.Mesh( geometry, material );
+const plane = new THREE.Mesh( geometry, material );
 plane.position.y = -200;
 plane.receiveShadow = true;
 scene.add( plane );
@@ -57,4 +57,4 @@ Default is `true`.
 
 ## Source
 
-[src/materials/ShadowMaterial.js](../../src/materials/ShadowMaterial.js)
+[src/materials/ShadowMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/ShadowMaterial.js)

@@ -21,17 +21,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let SCREEN_WIDTH = window.innerWidth;
 			let SCREEN_HEIGHT = window.innerHeight;
@@ -51,22 +51,22 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 50, 0.5 * aspect, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, 0.5 * aspect, 1, 10000 );
 				camera.position.z = 2500;
 
-				cameraPerspective = new FOUR.PerspectiveCamera( 50, 0.5 * aspect, 150, 1000 );
+				cameraPerspective = new THREE.PerspectiveCamera( 50, 0.5 * aspect, 150, 1000 );
 
-				cameraPerspectiveHelper = new FOUR.CameraHelper( cameraPerspective );
+				cameraPerspectiveHelper = new THREE.CameraHelper( cameraPerspective );
 				scene.add( cameraPerspectiveHelper );
 
 				//
-				cameraOrtho = new FOUR.OrthographicCamera( 0.5 * frustumSize * aspect / - 2, 0.5 * frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 150, 1000 );
+				cameraOrtho = new THREE.OrthographicCamera( 0.5 * frustumSize * aspect / - 2, 0.5 * frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 150, 1000 );
 
-				cameraOrthoHelper = new FOUR.CameraHelper( cameraOrtho );
+				cameraOrthoHelper = new THREE.CameraHelper( cameraOrtho );
 				scene.add( cameraOrthoHelper );
 
 				//
@@ -80,7 +80,7 @@
 				cameraOrtho.rotation.y = Math.PI;
 				cameraPerspective.rotation.y = Math.PI;
 
-				cameraRig = new FOUR.Group();
+				cameraRig = new THREE.Group();
 
 				cameraRig.add( cameraPerspective );
 				cameraRig.add( cameraOrtho );
@@ -89,47 +89,47 @@
 
 				//
 
-				mesh = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 100, 16, 8 ),
-					new FOUR.MeshBasicMaterial( { color: 0xffffff, wireframe: true } )
+				mesh = new THREE.Mesh(
+					new THREE.SphereGeometry( 100, 16, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } )
 				);
 				scene.add( mesh );
 
-				const mesh2 = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 50, 16, 8 ),
-					new FOUR.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } )
+				const mesh2 = new THREE.Mesh(
+					new THREE.SphereGeometry( 50, 16, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } )
 				);
 				mesh2.position.y = 150;
 				mesh.add( mesh2 );
 
-				const mesh3 = new FOUR.Mesh(
-					new FOUR.SphereGeometry( 5, 16, 8 ),
-					new FOUR.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
+				const mesh3 = new THREE.Mesh(
+					new THREE.SphereGeometry( 5, 16, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
 				);
 				mesh3.position.z = 150;
 				cameraRig.add( mesh3 );
 
 				//
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				const vertices = [];
 
 				for ( let i = 0; i < 10000; i ++ ) {
 
-					vertices.push( FOUR.MathUtils.randFloatSpread( 2000 ) ); // x
-					vertices.push( FOUR.MathUtils.randFloatSpread( 2000 ) ); // y
-					vertices.push( FOUR.MathUtils.randFloatSpread( 2000 ) ); // z
+					vertices.push( THREE.MathUtils.randFloatSpread( 2000 ) ); // x
+					vertices.push( THREE.MathUtils.randFloatSpread( 2000 ) ); // y
+					vertices.push( THREE.MathUtils.randFloatSpread( 2000 ) ); // z
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( vertices, 3 ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
 
-				const particles = new FOUR.Points( geometry, new FOUR.PointsMaterial( { color: 0x888888 } ) );
+				const particles = new THREE.Points( geometry, new THREE.PointsMaterial( { color: 0x888888 } ) );
 				scene.add( particles );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 				renderer.setAnimationLoop( animate );

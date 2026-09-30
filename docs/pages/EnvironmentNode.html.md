@@ -26,4 +26,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/lighting/EnvironmentNode.js](../../src/nodes/lighting/EnvironmentNode.js)
+[src/nodes/lighting/EnvironmentNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/EnvironmentNode.js)

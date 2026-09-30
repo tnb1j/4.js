@@ -8,10 +8,10 @@ This class can be used to transform objects in 3D space by adapting a similar in
 
 ## Import
 
-TransformControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TransformControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TransformControls } from '@tnb1j/4js/addons/controls/TransformControls.js';
+import { TransformControls } from 'three/addons/controls/TransformControls.js';
 ```
 
 ## Constructor
@@ -316,4 +316,4 @@ Fires if the controlled 3D object is changed.
 
 ## Source
 
-[examples/jsm/controls/TransformControls.js](../../examples/jsm/controls/TransformControls.js)
+[examples/jsm/controls/TransformControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/TransformControls.js)

@@ -25,26 +25,28 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 
 			let camera, scene, renderer;
 
 			let sky, sun;
+
+			let sphere, cubeCamera;
 
 			init();
 
@@ -55,7 +57,7 @@
 				sky.scale.setScalar( 450000 );
 				scene.add( sky );
 
-				sun = new FOUR.Vector3();
+				sun = new THREE.Vector3();
 
 				/// GUI
 
@@ -64,9 +66,9 @@
 					rayleigh: 3,
 					mieCoefficient: 0.005,
 					mieDirectionalG: 0.7,
-					elevation: 2,
-					azimuth: 180,
-					exposure: renderer.toneMappingExposure,
+					elevation: 65,
+					azimuth: 0,
+					exposure: 0.05,
 					cloudCoverage: 0.4,
 					cloudDensity: 0.4,
 					cloudElevation: 0.5,
@@ -84,8 +86,8 @@
 					sky.cloudElevation.value = effectController.cloudElevation;
 					sky.showSunDisc.value = effectController.showSunDisc;
 
-					const phi = FOUR.MathUtils.degToRad( 90 - effectController.elevation );
-					const theta = FOUR.MathUtils.degToRad( effectController.azimuth );
+					const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
+					const theta = THREE.MathUtils.degToRad( effectController.azimuth );
 
 					sun.setFromSphericalCoords( 1, phi, theta );
 
@@ -117,16 +119,25 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 100, 2000000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 100, 2000000 );
 				camera.position.set( 0, 100, 2000 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGPURenderer();
+				const cubeRenderTarget = new THREE.CubeRenderTarget( 256, { type: THREE.HalfFloatType } );
+				cubeCamera = new THREE.CubeCamera( 1, 1000, cubeRenderTarget );
+
+				sphere = new THREE.Mesh(
+					new THREE.SphereGeometry( 400, 64, 32 ),
+					new THREE.MeshBasicNodeMaterial( { envMap: cubeRenderTarget.texture } )
+				);
+				scene.add( sphere );
+
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.5;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
@@ -152,6 +163,10 @@
 			}
 
 			function animate() {
+
+				sphere.visible = false;
+				cubeCamera.update( renderer, scene );
+				sphere.visible = true;
 
 				renderer.render( scene, camera );
 

@@ -28,4 +28,4 @@ The result buffer.
 
 ## Source
 
-[src/math/interpolants/LinearInterpolant.js](../../src/math/interpolants/LinearInterpolant.js)
+[src/math/interpolants/LinearInterpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/interpolants/LinearInterpolant.js)

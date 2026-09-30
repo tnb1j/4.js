@@ -22,4 +22,4 @@ A node contributing irradiance.
 
 ## Source
 
-[src/nodes/lighting/IrradianceNode.js](../../src/nodes/lighting/IrradianceNode.js)
+[src/nodes/lighting/IrradianceNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/IrradianceNode.js)

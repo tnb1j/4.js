@@ -1,6 +1,6 @@
 /**
  * @module FocusShader
- * @four_import import { FocusShader } from '@tnb1j/4js/addons/shaders/FocusShader.js';
+ * @three_import import { FocusShader } from 'three/addons/shaders/FocusShader.js';
  */
 
 /**

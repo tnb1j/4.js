@@ -20,4 +20,4 @@ Default is `true`.
 
 ## Source
 
-[src/lights/DirectionalLightShadow.js](../../src/lights/DirectionalLightShadow.js)
+[src/lights/DirectionalLightShadow.js](https://github.com/mrdoob/three.js/blob/master/src/lights/DirectionalLightShadow.js)

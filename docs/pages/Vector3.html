@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Vector3 - 4.js Docs</title>
+	<title>Vector3 - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -16,20 +16,20 @@
 (labeled x, y and z), which can be used to represent a number of things, such as:</p>
 <ul>
 <li>A point in 3D space.</li>
-<li>A direction and length in 3D space. In 4.js the length will
+<li>A direction and length in 3D space. In three.js the length will
 always be the Euclidean distance(straight-line distance) from <code>(0, 0, 0)</code> to <code>(x, y, z)</code>
 and the direction is also measured from <code>(0, 0, 0)</code> towards <code>(x, y, z)</code>.</li>
 <li>Any arbitrary ordered triplet of numbers.</li>
 </ul>
 <p>There are other things a 3D vector can be used to represent, such as
 momentum vectors and so on, however these are the most
-common uses in 4.js.</p>
+common uses in three.js.</p>
 <p>Iterating through a vector instance will yield its components <code>(x, y, z)</code> in
 the corresponding order.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const a = new FOUR.Vector3( 0, 1, 0 );
+				<div translate="no"><pre><code class="language-js">const a = new THREE.Vector3( 0, 1, 0 );
 //no arguments; will be initialised to (0, 0, 0)
-const b = new FOUR.Vector3( );
+const b = new THREE.Vector3( );
 const d = a.distanceTo( b );
 </code></pre></div>
 			</header>
@@ -1672,8 +1672,8 @@ the method returns a new instance.</p>
 					<h3 class="name name-method" id="transformDirection" translate="no">.<a href="#transformDirection">transformDirection</a><span class="signature">( m : <span class="param-type"><a href="Matrix4.html">Matrix4</a></span> )</span><span class="type-signature"> : <a href="Vector3.html">Vector3</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Transforms the direction of this vector by a matrix (the upper left 3 x 3
-subset of the given 4x4 matrix and then normalizes the result.</p>
+							<p>Transforms this vector by the upper left 3x3 sub-matrix of the given 4x4 matrix,
+and normalizes the result.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -1715,7 +1715,7 @@ space into world space.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/math/Vector3.js" translate="no">src/math/Vector3.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/math/Vector3.js" translate="no" target="_blank" rel="noopener">src/math/Vector3.js</a>
 				</p>
 			</article>
 		</section>

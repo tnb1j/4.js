@@ -82,4 +82,4 @@ The current time in milliseconds. Can be obtained from the `requestAnimationFram
 
 ## Source
 
-[src/core/Timer.js](../../src/core/Timer.js)
+[src/core/Timer.js](https://github.com/mrdoob/three.js/blob/master/src/core/Timer.js)

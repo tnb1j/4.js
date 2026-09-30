@@ -7,13 +7,13 @@ import {
 	PlaneGeometry,
 	Texture,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class has been made to hold a slice of a volume data.
  *
  * @see {@link Volume}
- * @four_import import { VolumeSlice } from '@tnb1j/4js/addons/misc/VolumeSlice.js';
+ * @three_import import { VolumeSlice } from 'three/addons/misc/VolumeSlice.js';
  */
 class VolumeSlice {
 
@@ -93,6 +93,30 @@ class VolumeSlice {
 		 */
 		this.ctxBuffer;
 
+		/**
+		 * Width of slice in the original coordinate system, corresponds to the width of the buffer canvas.
+		 *
+		 * @type {number}
+		 * @default 0
+		 */
+		this.iLength = 0;
+
+		/**
+		 * Height of slice in the original coordinate system, corresponds to the height of the buffer canvas.
+		 *
+		 * @type {number}
+		 * @default 0
+		 */
+		this.jLength = 0;
+
+		/**
+		 * Function that allow the slice to access right data.
+		 *
+		 * @type {?Function}
+		 * @see {@link Volume#extractPerpendicularPlane}
+		 */
+		this.sliceAccess = null;
+
 		this.updateGeometry();
 
 
@@ -119,30 +143,6 @@ class VolumeSlice {
 		 */
 		this.geometryNeedsUpdate = true;
 		this.repaint();
-
-		/**
-		 * Width of slice in the original coordinate system, corresponds to the width of the buffer canvas.
-		 *
-		 * @type {number}
-		 * @default 0
-		 */
-		this.iLength = 0;
-
-		/**
-		 * Height of slice in the original coordinate system, corresponds to the height of the buffer canvas.
-		 *
-		 * @type {number}
-		 * @default 0
-		 */
-		this.jLength = 0;
-
-		/**
-		 * Function that allow the slice to access right data.
-		 *
-		 * @type {?Function}
-		 * @see {@link Volume#extractPerpendicularPlane}
-		 */
-		this.sliceAccess = null;
 
 	}
 
@@ -179,7 +179,7 @@ class VolumeSlice {
 
 		if ( volume.dataType === 'label' ) {
 
-			console.error( 'FOUR.VolumeSlice.repaint: label are not supported yet' );
+			console.error( 'THREE.VolumeSlice.repaint: label are not supported yet' );
 
 			// This part is currently useless but will be used when colortables will be handled
 

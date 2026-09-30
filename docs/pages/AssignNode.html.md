@@ -56,4 +56,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/core/AssignNode.js](../../src/nodes/core/AssignNode.js)
+[src/nodes/core/AssignNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/AssignNode.js)

@@ -18,10 +18,10 @@ composer.addPass( taaRenderPass );
 
 ## Import
 
-TAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TAARenderPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TAARenderPass } from '@tnb1j/4js/addons/postprocessing/TAARenderPass.js';
+import { TAARenderPass } from 'three/addons/postprocessing/TAARenderPass.js';
 ```
 
 ## Constructor
@@ -108,4 +108,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/TAARenderPass.js](../../examples/jsm/postprocessing/TAARenderPass.js)
+[examples/jsm/postprocessing/TAARenderPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/TAARenderPass.js)

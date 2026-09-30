@@ -26,19 +26,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { Refractor } from '@tnb1j/4js/addons/objects/Refractor.js';
-			import { WaterRefractionShader } from '@tnb1j/4js/addons/shaders/WaterRefractionShader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { Refractor } from 'three/addons/objects/Refractor.js';
+			import { WaterRefractionShader } from 'three/addons/shaders/WaterRefractionShader.js';
 
 			let camera, scene, renderer, timer;
 
@@ -50,19 +50,19 @@
 
 				const container = document.getElementById( 'container' );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// scene
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
 				camera.position.set( 0, 75, 160 );
 
 				// refractor
 
-				const refractorGeometry = new FOUR.PlaneGeometry( 90, 90 );
+				const refractorGeometry = new THREE.PlaneGeometry( 90, 90 );
 
 				refractor = new Refractor( refractorGeometry, {
 					color: 0xcbcbcb,
@@ -77,67 +77,67 @@
 
 				// load dudv map for distortion effect
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				const dudvMap = await loader.loadAsync( 'textures/waterdudv.jpg' );
 
-				dudvMap.wrapS = dudvMap.wrapT = FOUR.RepeatWrapping;
+				dudvMap.wrapS = dudvMap.wrapT = THREE.RepeatWrapping;
 				refractor.material.uniforms.tDudv.value = dudvMap;
 
 				//
 
-				const geometry = new FOUR.IcosahedronGeometry( 5, 0 );
-				const material = new FOUR.MeshPhongMaterial( { color: 0xffffff, emissive: 0x333333, flatShading: true } );
-				smallSphere = new FOUR.Mesh( geometry, material );
+				const geometry = new THREE.IcosahedronGeometry( 5, 0 );
+				const material = new THREE.MeshPhongMaterial( { color: 0xffffff, emissive: 0x333333, flatShading: true } );
+				smallSphere = new THREE.Mesh( geometry, material );
 				scene.add( smallSphere );
 
 				// walls
-				const planeGeo = new FOUR.PlaneGeometry( 100.1, 100.1 );
+				const planeGeo = new THREE.PlaneGeometry( 100.1, 100.1 );
 
-				const planeTop = new FOUR.Mesh( planeGeo, new FOUR.MeshPhongMaterial( { color: 0xffffff } ) );
+				const planeTop = new THREE.Mesh( planeGeo, new THREE.MeshPhongMaterial( { color: 0xffffff } ) );
 				planeTop.position.y = 100;
 				planeTop.rotateX( Math.PI / 2 );
 				scene.add( planeTop );
 
-				const planeBottom = new FOUR.Mesh( planeGeo, new FOUR.MeshPhongMaterial( { color: 0xffffff } ) );
+				const planeBottom = new THREE.Mesh( planeGeo, new THREE.MeshPhongMaterial( { color: 0xffffff } ) );
 				planeBottom.rotateX( - Math.PI / 2 );
 				scene.add( planeBottom );
 
-				const planeBack = new FOUR.Mesh( planeGeo, new FOUR.MeshPhongMaterial( { color: 0x7f7fff } ) );
+				const planeBack = new THREE.Mesh( planeGeo, new THREE.MeshPhongMaterial( { color: 0x7f7fff } ) );
 				planeBack.position.z = - 50;
 				planeBack.position.y = 50;
 				scene.add( planeBack );
 
-				const planeRight = new FOUR.Mesh( planeGeo, new FOUR.MeshPhongMaterial( { color: 0x00ff00 } ) );
+				const planeRight = new THREE.Mesh( planeGeo, new THREE.MeshPhongMaterial( { color: 0x00ff00 } ) );
 				planeRight.position.x = 50;
 				planeRight.position.y = 50;
 				planeRight.rotateY( - Math.PI / 2 );
 				scene.add( planeRight );
 
-				const planeLeft = new FOUR.Mesh( planeGeo, new FOUR.MeshPhongMaterial( { color: 0xff0000 } ) );
+				const planeLeft = new THREE.Mesh( planeGeo, new THREE.MeshPhongMaterial( { color: 0xff0000 } ) );
 				planeLeft.position.x = - 50;
 				planeLeft.position.y = 50;
 				planeLeft.rotateY( Math.PI / 2 );
 				scene.add( planeLeft );
 
 				// lights
-				const mainLight = new FOUR.PointLight( 0xe7e7e7, 2.5, 250, 0 );
+				const mainLight = new THREE.PointLight( 0xe7e7e7, 2.5, 250, 0 );
 				mainLight.position.y = 60;
 				scene.add( mainLight );
 
-				const greenLight = new FOUR.PointLight( 0x00ff00, 0.5, 1000, 0 );
+				const greenLight = new THREE.PointLight( 0x00ff00, 0.5, 1000, 0 );
 				greenLight.position.set( 550, 50, 0 );
 				scene.add( greenLight );
 
-				const redLight = new FOUR.PointLight( 0xff0000, 0.5, 1000, 0 );
+				const redLight = new THREE.PointLight( 0xff0000, 0.5, 1000, 0 );
 				redLight.position.set( - 550, 50, 0 );
 				scene.add( redLight );
 
-				const blueLight = new FOUR.PointLight( 0xbbbbfe, 0.5, 1000, 0 );
+				const blueLight = new THREE.PointLight( 0xbbbbfe, 0.5, 1000, 0 );
 				blueLight.position.set( 0, 50, 550 );
 				scene.add( blueLight );
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

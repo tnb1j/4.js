@@ -24,4 +24,4 @@ The node builder.
 
 ## Source
 
-[src/nodes/lighting/ProjectorLightNode.js](../../src/nodes/lighting/ProjectorLightNode.js)
+[src/nodes/lighting/ProjectorLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/ProjectorLightNode.js)

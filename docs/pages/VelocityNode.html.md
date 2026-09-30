@@ -98,4 +98,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/accessors/VelocityNode.js](../../src/nodes/accessors/VelocityNode.js)
+[src/nodes/accessors/VelocityNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/VelocityNode.js)

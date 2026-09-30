@@ -13,14 +13,14 @@ const _v2 = /*@__PURE__*/ new Vector3();
  * detail) and one for close up (high detail).
  *
  * ```js
- * const lod = new FOUR.LOD();
- * const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
+ * const lod = new THREE.LOD();
+ * const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
  *
  * //Create spheres with 3 levels of detail and create new LOD levels for them
  * for( let i = 0; i < 3; i++ ) {
  *
- * 	const geometry = new FOUR.IcosahedronGeometry( 10, 3 - i );
- * 	const mesh = new FOUR.Mesh( geometry, material );
+ * 	const geometry = new THREE.IcosahedronGeometry( 10, 3 - i );
+ * 	const mesh = new THREE.Mesh( geometry, material );
  * 	lod.addLevel( mesh, i * 75 );
  *
  * }
@@ -301,7 +301,7 @@ class LOD extends Object3D {
 
 		const data = super.toJSON( meta );
 
-		if ( this.autoUpdate === false ) data.object.autoUpdate = false;
+		data.object.autoUpdate = this.autoUpdate;
 
 		data.object.levels = [];
 

@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { XRButton } from 'three/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -48,26 +48,26 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x808080 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x808080 );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 
 				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
-				const floorGeometry = new FOUR.PlaneGeometry( 6, 6 );
-				const floorMaterial = new FOUR.ShadowMaterial( { opacity: 0.25, blending: FOUR.CustomBlending, transparent: false } );
-				const floor = new FOUR.Mesh( floorGeometry, floorMaterial );
+				const floorGeometry = new THREE.PlaneGeometry( 6, 6 );
+				const floorMaterial = new THREE.ShadowMaterial( { opacity: 0.25, blending: THREE.CustomBlending, transparent: false } );
+				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
 
-				scene.add( new FOUR.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
 				light.castShadow = true;
 				light.shadow.camera.top = 3;
@@ -77,27 +77,27 @@
 				light.shadow.mapSize.set( 4096, 4096 );
 				scene.add( light );
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				scene.add( group );
 
 				const geometries = [
-					new FOUR.BoxGeometry( 0.2, 0.2, 0.2 ),
-					new FOUR.ConeGeometry( 0.2, 0.2, 64 ),
-					new FOUR.CylinderGeometry( 0.2, 0.2, 0.2, 64 ),
-					new FOUR.IcosahedronGeometry( 0.2, 8 ),
-					new FOUR.TorusGeometry( 0.2, 0.04, 64, 32 )
+					new THREE.BoxGeometry( 0.2, 0.2, 0.2 ),
+					new THREE.ConeGeometry( 0.2, 0.2, 64 ),
+					new THREE.CylinderGeometry( 0.2, 0.2, 0.2, 64 ),
+					new THREE.IcosahedronGeometry( 0.2, 8 ),
+					new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
 				];
 
 				for ( let i = 0; i < 50; i ++ ) {
 
 					const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
-					const material = new FOUR.MeshStandardMaterial( {
+					const material = new THREE.MeshStandardMaterial( {
 						color: Math.random() * 0xffffff,
 						roughness: 0.7,
 						metalness: 0.0
 					} );
 
-					const object = new FOUR.Mesh( geometry, material );
+					const object = new THREE.Mesh( geometry, material );
 
 					object.position.x = Math.random() * 4 - 2;
 					object.position.y = Math.random() * 2;
@@ -118,7 +118,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -155,16 +155,16 @@
 
 				//
 
-				const geometry = new FOUR.BufferGeometry().setFromPoints( [ new FOUR.Vector3( 0, 0, 0 ), new FOUR.Vector3( 0, 0, - 1 ) ] );
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-				const line = new FOUR.Line( geometry );
+				const line = new THREE.Line( geometry );
 				line.name = 'line';
 				line.scale.z = 5;
 
 				controller1.add( line.clone() );
 				controller2.add( line.clone() );
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 
 				//
 

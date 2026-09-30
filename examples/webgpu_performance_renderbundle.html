@@ -26,21 +26,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -49,13 +49,13 @@
 
 			//
 
-			const position = new FOUR.Vector3();
-			const rotation = new FOUR.Euler();
-			const quaternion = new FOUR.Quaternion();
-			const scale = new FOUR.Vector3();
+			const position = new THREE.Vector3();
+			const rotation = new THREE.Euler();
+			const quaternion = new THREE.Quaternion();
+			const scale = new THREE.Vector3();
 
-			const instanceMatrix = new FOUR.Matrix4();
-			const rotationMatrix = new FOUR.Matrix4();
+			const instanceMatrix = new THREE.Matrix4();
+			const rotationMatrix = new THREE.Matrix4();
 
 			//
 
@@ -102,40 +102,40 @@
 			function initGeometries() {
 
 				geometries = [
-					new FOUR.ConeGeometry( 1.0, 2.0, 3, 1 ),
-					new FOUR.BoxGeometry( 2.0, 2.0, 2.0 ),
-					new FOUR.PlaneGeometry( 2.0, 2, 1, 1 ),
-					new FOUR.CapsuleGeometry( ),
-					new FOUR.CircleGeometry( 1.0, 3 ),
-					new FOUR.CylinderGeometry( 1.0, 1.0, 2.0, 3, 1 ),
-					new FOUR.DodecahedronGeometry( 1.0, 0 ),
-					new FOUR.IcosahedronGeometry( 1.0, 0 ),
-					new FOUR.OctahedronGeometry( 1.0, 0 ),
-					new FOUR.PolyhedronGeometry( [ 0, 0, 0 ], [ 0, 0, 0 ], 1, 0 ),
-					new FOUR.RingGeometry( 1.0, 1.5, 3 ),
-					new FOUR.SphereGeometry( 1.0, 3, 2 ),
-					new FOUR.TetrahedronGeometry( 1.0, 0 ),
-					new FOUR.TorusGeometry( 1.0, 0.5, 3, 3 ),
-					new FOUR.TorusKnotGeometry( 1.0, 0.5, 20, 3, 1, 1 ),
+					new THREE.ConeGeometry( 1.0, 2.0, 3, 1 ),
+					new THREE.BoxGeometry( 2.0, 2.0, 2.0 ),
+					new THREE.PlaneGeometry( 2.0, 2, 1, 1 ),
+					new THREE.CapsuleGeometry( ),
+					new THREE.CircleGeometry( 1.0, 3 ),
+					new THREE.CylinderGeometry( 1.0, 1.0, 2.0, 3, 1 ),
+					new THREE.DodecahedronGeometry( 1.0, 0 ),
+					new THREE.IcosahedronGeometry( 1.0, 0 ),
+					new THREE.OctahedronGeometry( 1.0, 0 ),
+					new THREE.PolyhedronGeometry( [ 0, 0, 0 ], [ 0, 0, 0 ], 1, 0 ),
+					new THREE.RingGeometry( 1.0, 1.5, 3 ),
+					new THREE.SphereGeometry( 1.0, 3, 2 ),
+					new THREE.TetrahedronGeometry( 1.0, 0 ),
+					new THREE.TorusGeometry( 1.0, 0.5, 3, 3 ),
+					new THREE.TorusKnotGeometry( 1.0, 0.5, 20, 3, 1, 1 ),
 				];
 
 			}
 
 			function initMesh( count ) {
 
-				group = api.renderBundle ? new FOUR.BundleGroup() : new FOUR.Group();
+				group = api.renderBundle ? new THREE.BundleGroup() : new THREE.Group();
 
 				for ( let i = 0; i < count; i ++ ) {
 
-					const material = new FOUR.MeshToonNodeMaterial( {
-						color: new FOUR.Color( Math.random() * 0xffffff ),
-						side: FOUR.DoubleSide,
+					const material = new THREE.MeshToonNodeMaterial( {
+						color: new THREE.Color( Math.random() * 0xffffff ),
+						side: THREE.DoubleSide,
 					} );
 
-					const child = new FOUR.Mesh( geometries[ i % geometries.length ], material );
+					const child = new THREE.Mesh( geometries[ i % geometries.length ], material );
 					randomizeMatrix( child.matrix );
 					child.matrix.decompose( child.position, child.quaternion, child.scale );
-					child.userData.rotationSpeed = randomizeRotationSpeed( new FOUR.Euler() );
+					child.userData.rotationSpeed = randomizeRotationSpeed( new THREE.Euler() );
 					child.frustumCulled = false;
 					group.add( child );
 
@@ -143,17 +143,17 @@
 
 				// instanced meshes are supported inside a bundle group, too
 
-				instancedMesh = new FOUR.InstancedMesh( geometries[ 0 ], new FOUR.MeshToonNodeMaterial(), 10 );
+				instancedMesh = new THREE.InstancedMesh( geometries[ 0 ], new THREE.MeshToonNodeMaterial(), 10 );
 				instancedMesh.userData.rotationSpeeds = [];
 
-				const matrix = new FOUR.Matrix4();
+				const matrix = new THREE.Matrix4();
 
 				for ( let i = 0; i < instancedMesh.count; i ++ ) {
 
 					randomizeMatrix( matrix );
 					instancedMesh.setMatrixAt( i, matrix );
 
-					instancedMesh.userData.rotationSpeeds.push( randomizeRotationSpeed( new FOUR.Euler() ) );
+					instancedMesh.userData.rotationSpeeds.push( randomizeRotationSpeed( new THREE.Euler() ) );
 
 				}
 
@@ -178,12 +178,12 @@
 
 				const aspect = window.innerWidth / window.innerHeight;
 
-				camera = new FOUR.PerspectiveCamera( 70, aspect, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 70, aspect, 1, 100 );
 				camera.position.z = 50;
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL: ! api.webgpu } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL: ! api.webgpu } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.inspector = new Inspector();
@@ -191,10 +191,10 @@
 
 				// scene
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xc1c1c1 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xc1c1c1 );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3.4 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3.4 );
 				scene.add( light );
 
 				document.body.appendChild( renderer.domElement );

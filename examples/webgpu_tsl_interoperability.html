@@ -28,22 +28,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, attribute, varyingProperty, time, uniform, wgslFn, texture, sampler, uv, clamp, float, vec2, vec3, fract, floor, positionGeometry, sin } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, attribute, varyingProperty, time, uniform, wgslFn, texture, sampler, uv, clamp, float, vec2, vec3, fract, floor, positionGeometry, sin } from 'three/tsl';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let renderer, camera, scene;
 			const dpr = window.devicePixelRatio;
@@ -157,10 +157,10 @@
 					}
 				` );
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				const planetTexture = textureLoader.load( 'textures/planets/earth_lights_2048.png' );
-				planetTexture.wrapS = FOUR.RepeatWrapping;
-				planetTexture.wrapT = FOUR.RepeatWrapping;
+				planetTexture.wrapS = THREE.RepeatWrapping;
+				planetTexture.wrapT = THREE.RepeatWrapping;
 
 				// Node Uniforms:
 				// Passed to WGSL Functions.
@@ -176,7 +176,7 @@
 
 				//
 
-				const wgslShaderMaterial = new FOUR.MeshBasicNodeMaterial();
+				const wgslShaderMaterial = new THREE.MeshBasicNodeMaterial();
 
 				// Accessed attributes correspond to a Mesh or BufferGeometry's setAttribute() calls.
 				wgslShaderMaterial.positionNode = wgslVertexShader( {
@@ -263,28 +263,28 @@
 
 				} );
 
-				const tslShaderMaterial = new FOUR.MeshBasicNodeMaterial();
+				const tslShaderMaterial = new THREE.MeshBasicNodeMaterial();
 				tslShaderMaterial.positionNode = tslVertexShader();
 				tslShaderMaterial.colorNode = tslFragmentShader();
 
-				camera = new FOUR.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-				scene = new FOUR.Scene();
+				camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.PlaneGeometry( 2, 1 );
+				const geometry = new THREE.PlaneGeometry( 2, 1 );
 
-				const wgslQuad = new FOUR.Mesh( geometry, wgslShaderMaterial );
+				const wgslQuad = new THREE.Mesh( geometry, wgslShaderMaterial );
 				wgslQuad.position.y += 0.5;
 				scene.add( wgslQuad );
 
-				const tslQuad = new FOUR.Mesh( geometry, tslShaderMaterial );
+				const tslQuad = new THREE.Mesh( geometry, tslShaderMaterial );
 				tslQuad.position.y -= 0.5;
 				scene.add( tslQuad );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, canvas: canvas } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, canvas: canvas } );
 				renderer.setPixelRatio( dpr );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.outputColorSpace = FOUR.LinearSRGBColorSpace;
+				renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 

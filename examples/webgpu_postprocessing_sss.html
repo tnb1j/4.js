@@ -27,25 +27,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, vec3, vec4, mrt, screenUV, velocity, builtinShadowContext } from '@tnb1j/4js/tsl';
-			import { sss } from '@tnb1j/4js/addons/tsl/display/SSSNode.js';
-			import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, vec3, vec4, mrt, screenUV, velocity, builtinShadowContext } from 'three/tsl';
+			import { sss } from 'three/addons/tsl/display/SSSNode.js';
+			import { traa } from 'three/addons/tsl/display/TRAANode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 
@@ -53,24 +53,25 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 1, 2.5, - 3.5 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xa0a0a0 );
-				scene.fog = new FOUR.Fog( 0xa0a0a0, 10, 50 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xa0a0a0 );
+				scene.fog = new THREE.Fog( 0xa0a0a0, 10, 50 );
 
 				// lights
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 2 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 2 );
 				hemiLight.position.set( 0, 20, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.position.set( - 3, 10, - 10 );
 				dirLight.castShadow = true;
 				dirLight.shadow.bias = - 0.001; // remove self-shadowing artifacts
 				dirLight.shadow.camera.top = 4;
+				dirLight.shadow.radius = 2;
 				dirLight.shadow.camera.bottom = - 4;
 				dirLight.shadow.camera.left = - 4;
 				dirLight.shadow.camera.right = 4;
@@ -80,11 +81,11 @@
 				dirLight.shadow.mapSize.height = 1024;
 				scene.add( dirLight );
 
-				// scene.add( new FOUR.CameraHelper( dirLight.shadow.camera ) );
+				// scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
 
 				// ground
 
-				const mesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 100, 100 ), new FOUR.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
+				const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), new THREE.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
 				scene.add( mesh );
@@ -121,18 +122,17 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
 				// post-processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// pre-pass
 

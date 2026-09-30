@@ -1,6 +1,6 @@
 /**
  * @module CopyShader
- * @four_import import { CopyShader } from '@tnb1j/4js/addons/shaders/CopyShader.js';
+ * @three_import import { CopyShader } from 'three/addons/shaders/CopyShader.js';
  */
 
 /**

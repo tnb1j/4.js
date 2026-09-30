@@ -16,6 +16,12 @@ A reference to the current camera.
 
 Default is `null`.
 
+### .compute : ComputeNode
+
+A reference to the current compute node.
+
+Default is `null`.
+
 ### .deltaTime : number
 
 The delta time in seconds.
@@ -108,4 +114,4 @@ The node that should be updated.
 
 ## Source
 
-[src/nodes/core/NodeFrame.js](../../src/nodes/core/NodeFrame.js)
+[src/nodes/core/NodeFrame.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeFrame.js)

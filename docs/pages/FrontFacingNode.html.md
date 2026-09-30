@@ -20,4 +20,4 @@ Default is `true`.
 
 ## Source
 
-[src/nodes/display/FrontFacingNode.js](../../src/nodes/display/FrontFacingNode.js)
+[src/nodes/display/FrontFacingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/FrontFacingNode.js)

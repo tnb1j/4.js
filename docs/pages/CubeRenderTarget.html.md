@@ -78,4 +78,4 @@ The equirectangular texture.
 
 ## Source
 
-[src/renderers/common/CubeRenderTarget.js](../../src/renderers/common/CubeRenderTarget.js)
+[src/renderers/common/CubeRenderTarget.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/CubeRenderTarget.js)

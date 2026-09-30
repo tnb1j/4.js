@@ -7,7 +7,7 @@ import {
 	LinearFilter,
 	LinearSRGBColorSpace,
 	Loader
-} from '@tnb1j/4js';
+} from 'three';
 import { HDRLoader } from '../loaders/HDRLoader.js';
 
 /**
@@ -23,7 +23,7 @@ import { HDRLoader } from '../loaders/HDRLoader.js';
  * ```
  *
  * @augments Loader
- * @four_import import { HDRCubeTextureLoader } from '@tnb1j/4js/addons/loaders/HDRCubeTextureLoader.js';
+ * @three_import import { HDRCubeTextureLoader } from 'three/addons/loaders/HDRCubeTextureLoader.js';
  */
 class HDRCubeTextureLoader extends Loader {
 

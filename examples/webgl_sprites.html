@@ -17,15 +17,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer;
 			let cameraOrtho, sceneOrtho;
@@ -43,35 +43,35 @@
 				const width = window.innerWidth;
 				const height = window.innerHeight;
 
-				camera = new FOUR.PerspectiveCamera( 60, width / height, 1, 2100 );
+				camera = new THREE.PerspectiveCamera( 60, width / height, 1, 2100 );
 				camera.position.z = 1500;
 
-				cameraOrtho = new FOUR.OrthographicCamera( - width / 2, width / 2, height / 2, - height / 2, 1, 10 );
+				cameraOrtho = new THREE.OrthographicCamera( - width / 2, width / 2, height / 2, - height / 2, 1, 10 );
 				cameraOrtho.position.z = 10;
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.Fog( 0x000000, 1500, 2100 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0x000000, 1500, 2100 );
 
-				sceneOrtho = new FOUR.Scene();
+				sceneOrtho = new THREE.Scene();
 
 				// create sprites
 
 				const amount = 200;
 				const radius = 500;
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				textureLoader.load( 'textures/sprite0.png', createHUDSprites );
 				const mapB = textureLoader.load( 'textures/sprite1.png' );
 				mapC = textureLoader.load( 'textures/sprite2.png' );
 
-				mapB.colorSpace = FOUR.SRGBColorSpace;
-				mapC.colorSpace = FOUR.SRGBColorSpace;
+				mapB.colorSpace = THREE.SRGBColorSpace;
+				mapC.colorSpace = THREE.SRGBColorSpace;
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 
-				const materialC = new FOUR.SpriteMaterial( { map: mapC, color: 0xffffff, fog: true } );
-				const materialB = new FOUR.SpriteMaterial( { map: mapB, color: 0xffffff, fog: true } );
+				const materialC = new THREE.SpriteMaterial( { map: mapC, color: 0xffffff, fog: true } );
+				const materialB = new THREE.SpriteMaterial( { map: mapB, color: 0xffffff, fog: true } );
 
 				for ( let a = 0; a < amount; a ++ ) {
 
@@ -94,7 +94,7 @@
 
 					}
 
-					const sprite = new FOUR.Sprite( material );
+					const sprite = new THREE.Sprite( material );
 
 					sprite.position.set( x, y, z );
 					sprite.position.normalize();
@@ -108,7 +108,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -124,34 +124,34 @@
 
 			function createHUDSprites( texture ) {
 
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				const material = new FOUR.SpriteMaterial( { map: texture } );
+				const material = new THREE.SpriteMaterial( { map: texture } );
 
 				const width = material.map.image.width;
 				const height = material.map.image.height;
 
-				spriteTL = new FOUR.Sprite( material );
+				spriteTL = new THREE.Sprite( material );
 				spriteTL.center.set( 0.0, 1.0 );
 				spriteTL.scale.set( width, height, 1 );
 				sceneOrtho.add( spriteTL );
 
-				spriteTR = new FOUR.Sprite( material );
+				spriteTR = new THREE.Sprite( material );
 				spriteTR.center.set( 1.0, 1.0 );
 				spriteTR.scale.set( width, height, 1 );
 				sceneOrtho.add( spriteTR );
 
-				spriteBL = new FOUR.Sprite( material );
+				spriteBL = new THREE.Sprite( material );
 				spriteBL.center.set( 0.0, 0.0 );
 				spriteBL.scale.set( width, height, 1 );
 				sceneOrtho.add( spriteBL );
 
-				spriteBR = new FOUR.Sprite( material );
+				spriteBR = new THREE.Sprite( material );
 				spriteBR.center.set( 1.0, 0.0 );
 				spriteBR.scale.set( width, height, 1 );
 				sceneOrtho.add( spriteBR );
 
-				spriteC = new FOUR.Sprite( material );
+				spriteC = new THREE.Sprite( material );
 				spriteC.center.set( 0.5, 0.5 );
 				spriteC.scale.set( width, height, 1 );
 				sceneOrtho.add( spriteC );

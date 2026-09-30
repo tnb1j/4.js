@@ -2,10 +2,10 @@
 
 ## Import
 
-ColorCorrectionShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColorCorrectionShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ColorCorrectionShader } from '@tnb1j/4js/addons/shaders/ColorCorrectionShader.js';
+import { ColorCorrectionShader } from 'three/addons/shaders/ColorCorrectionShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Color correction shader.
 
 ## Source
 
-[examples/jsm/shaders/ColorCorrectionShader.js](../../examples/jsm/shaders/ColorCorrectionShader.js)
+[examples/jsm/shaders/ColorCorrectionShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ColorCorrectionShader.js)

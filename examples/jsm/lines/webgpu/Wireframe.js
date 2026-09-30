@@ -4,7 +4,7 @@ import {
 	Line2NodeMaterial,
 	Mesh,
 	Vector3
-} from '@tnb1j/4js/webgpu';
+} from 'three/webgpu';
 
 import { LineSegmentsGeometry } from '../LineSegmentsGeometry.js';
 
@@ -18,7 +18,7 @@ const _end = new Vector3();
  * import the class from `lines/Wireframe.js`.
  *
  * @augments Mesh
- * @four_import import { Wireframe } from '@tnb1j/4js/addons/lines/webgpu/Wireframe.js';
+ * @three_import import { Wireframe } from 'three/addons/lines/webgpu/Wireframe.js';
  */
 class Wireframe extends Mesh {
 

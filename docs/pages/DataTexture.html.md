@@ -130,4 +130,4 @@ Default is `1`.
 
 ## Source
 
-[src/textures/DataTexture.js](../../src/textures/DataTexture.js)
+[src/textures/DataTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/DataTexture.js)

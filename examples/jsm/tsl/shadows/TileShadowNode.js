@@ -12,9 +12,9 @@ import {
 	VSMShadowMap,
 	RendererUtils,
 	Quaternion
-} from '@tnb1j/4js/webgpu';
+} from 'three/webgpu';
 
-import { min, Fn, shadow, NodeUpdateType, getShadowMaterial, getShadowRenderObjectFunction } from '@tnb1j/4js/tsl';
+import { min, Fn, shadow, NodeUpdateType } from 'three/tsl';
 
 const { resetRendererAndSceneState, restoreRendererAndSceneState } = RendererUtils;
 let _rendererState;
@@ -45,7 +45,7 @@ class LwLight extends Object3D {
  *
  * @class
  * @augments ShadowBaseNode
- * @four_import import { TileShadowNode } from '@tnb1j/4js/addons/tsl/shadows/TileShadowNode.js';
+ * @three_import import { TileShadowNode } from 'three/addons/tsl/shadows/TileShadowNode.js';
  */
 class TileShadowNode extends ShadowBaseNode {
 
@@ -273,13 +273,10 @@ class TileShadowNode extends ShadowBaseNode {
 		const depthVersion = shadowMap.depthTexture.version;
 		this._depthVersionCached = depthVersion;
 		const currentRenderObjectFunction = renderer.getRenderObjectFunction();
-		const currentMRT = renderer.getMRT();
-		const useVelocity = currentMRT ? currentMRT.has( 'velocity' ) : false;
 
 		_rendererState = resetRendererAndSceneState( renderer, scene, _rendererState );
-		scene.overrideMaterial = getShadowMaterial( light );
+		scene.overrideMaterial = this.getShadowMaterial();
 		renderer.setRenderTarget( this.shadowMap );
-
 
 		for ( let index = 0; index < this.lights.length; index ++ ) {
 
@@ -297,7 +294,7 @@ class TileShadowNode extends ShadowBaseNode {
 
 			shadow.updateMatrices( light );
 
-			renderer.setRenderObjectFunction( getShadowRenderObjectFunction( renderer, shadow, shadowType, useVelocity ) );
+			renderer.setRenderObjectFunction( this.getShadowRenderObjectFunction( renderer, shadow ) );
 			this.shadowMap.setSize( shadow.mapSize.width, shadow.mapSize.height, shadowMap.depth );
 
 		}
@@ -307,7 +304,7 @@ class TileShadowNode extends ShadowBaseNode {
 
 		if ( light.isPointLight !== true && shadowType === VSMShadowMap ) {
 
-			console.warn( 'FOUR.TileShadowNode: VSM shadow map is not supported yet.' );
+			console.warn( 'THREE.TileShadowNode: VSM shadow map is not supported yet.' );
 			// this.vsmPass( renderer );
 
 		}
@@ -447,6 +444,7 @@ class TileShadowNode extends ShadowBaseNode {
 
 		// Dispose lights, nodes, and shadow map
 		this.disposeLightsAndNodes();
+		this.disposeShadowMaterial();
 		super.dispose();
 
 	}

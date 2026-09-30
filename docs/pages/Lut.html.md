@@ -11,10 +11,10 @@ const color = lut.getColor( 0.5 );
 
 ## Import
 
-Lut is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Lut is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Lut } from '@tnb1j/4js/addons/math/Lut.js';
+import { Lut } from 'three/addons/math/Lut.js';
 ```
 
 ## Constructor
@@ -169,4 +169,4 @@ The canvas to update.
 
 ## Source
 
-[examples/jsm/math/Lut.js](../../examples/jsm/math/Lut.js)
+[examples/jsm/math/Lut.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/Lut.js)

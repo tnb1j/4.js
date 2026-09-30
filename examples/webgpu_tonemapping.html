@@ -28,24 +28,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { DRACOLoader, DRACO_GLTF_CONFIG } from '@tnb1j/4js/addons/loaders/DRACOLoader.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { DRACOLoader, DRACO_GLTF_CONFIG } from 'three/addons/loaders/DRACOLoader.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
 			let renderer, scene, camera, controls;
 			let gui;
@@ -58,13 +58,13 @@
 			};
 
 			const toneMappingOptions = {
-				None: FOUR.NoToneMapping,
-				Linear: FOUR.LinearToneMapping,
-				Reinhard: FOUR.ReinhardToneMapping,
-				Cineon: FOUR.CineonToneMapping,
-				ACESFilmic: FOUR.ACESFilmicToneMapping,
-				AgX: FOUR.AgXToneMapping,
-				Neutral: FOUR.NeutralToneMapping
+				None: THREE.NoToneMapping,
+				Linear: THREE.LinearToneMapping,
+				Reinhard: THREE.ReinhardToneMapping,
+				Cineon: THREE.CineonToneMapping,
+				ACESFilmic: THREE.ACESFilmicToneMapping,
+				AgX: THREE.AgXToneMapping,
+				Neutral: THREE.NeutralToneMapping
 			};
 
 			init().catch( function ( err ) {
@@ -75,7 +75,7 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -85,16 +85,16 @@
 				renderer.toneMapping = toneMappingOptions[ params.toneMapping ];
 				renderer.toneMappingExposure = params.exposure;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundBlurriness = params.blurriness;
 
-				const light = new FOUR.DirectionalLight( 0xfff3ee, 3 ); // simulate sun
+				const light = new THREE.DirectionalLight( 0xfff3ee, 3 ); // simulate sun
 				light.position.set( 1, 0.05, 0.7 );
 				scene.add( light );
 
-				// scene.add( new FOUR.DirectionalLightHelper( light, 1, 0x000000 ) );
+				// scene.add( new THREE.DirectionalLightHelper( light, 1, 0x000000 ) );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 10 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 10 );
 				camera.position.set( - 0.02, 0.03, 0.05 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -122,7 +122,7 @@
 
 				// environment
 
-				texture.mapping = FOUR.EquirectangularReflectionMapping;
+				texture.mapping = THREE.EquirectangularReflectionMapping;
 
 				scene.background = texture;
 				scene.environment = texture;

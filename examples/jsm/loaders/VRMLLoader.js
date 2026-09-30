@@ -36,7 +36,7 @@ import {
 	TextureLoader,
 	Vector2,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 import chevrotain from '../libs/chevrotain.module.min.js';
 
 /**
@@ -49,7 +49,7 @@ import chevrotain from '../libs/chevrotain.module.min.js';
  * ```
  *
  * @augments Loader
- * @four_import import { VRMLLoader } from '@tnb1j/4js/addons/loaders/VRMLLoader.js';
+ * @three_import import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
  */
 class VRMLLoader extends Loader {
 
@@ -143,7 +143,7 @@ class VRMLLoader extends Loader {
 
 				console.error( parser.errors );
 
-				throw Error( 'FOUR.VRMLLoader: Parsing errors detected.' );
+				throw Error( 'THREE.VRMLLoader: Parsing errors detected.' );
 
 			}
 
@@ -782,7 +782,7 @@ class VRMLLoader extends Loader {
 					break;
 
 				default:
-					console.warn( 'FOUR.VRMLLoader: Unknown node:', nodeName );
+					console.warn( 'THREE.VRMLLoader: Unknown node:', nodeName );
 					break;
 
 			}
@@ -868,7 +868,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -937,7 +937,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1034,7 +1034,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1207,7 +1207,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1301,7 +1301,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1443,7 +1443,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1491,7 +1491,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1546,7 +1546,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1586,7 +1586,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1654,7 +1654,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1767,7 +1767,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -1776,7 +1776,7 @@ class VRMLLoader extends Loader {
 
 			if ( coordIndex === undefined ) {
 
-				console.warn( 'FOUR.VRMLLoader: Missing coordIndex.' );
+				console.warn( 'THREE.VRMLLoader: Missing coordIndex.' );
 
 				return new BufferGeometry(); // handle VRML files with incomplete geometry definition
 
@@ -1978,7 +1978,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2089,7 +2089,7 @@ class VRMLLoader extends Loader {
 
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2136,7 +2136,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2180,7 +2180,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2228,7 +2228,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2260,7 +2260,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2374,7 +2374,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -2646,7 +2646,7 @@ class VRMLLoader extends Loader {
 						break;
 
 					default:
-						console.warn( 'FOUR.VRMLLoader: Unknown field:', fieldName );
+						console.warn( 'THREE.VRMLLoader: Unknown field:', fieldName );
 						break;
 
 				}
@@ -3344,7 +3344,7 @@ class VRMLLoader extends Loader {
 
 		if ( data.indexOf( '#VRML V2.0' ) === - 1 ) {
 
-			throw Error( 'FOUR.VRMLLexer: Version of VRML asset not supported.' );
+			throw Error( 'THREE.VRMLLexer: Version of VRML asset not supported.' );
 
 		}
 
@@ -3378,7 +3378,7 @@ class VRMLLexer {
 
 			console.error( lexingResult.errors );
 
-			throw Error( 'FOUR.VRMLLexer: Lexing errors detected.' );
+			throw Error( 'THREE.VRMLLexer: Lexing errors detected.' );
 
 		}
 

@@ -3,11 +3,11 @@ import {
 	Matrix3,
 	Matrix4,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module GeometryCompressionUtils
- * @four_import import * as GeometryCompressionUtils from '@tnb1j/4js/addons/utils/GeometryCompressionUtils.js';
+ * @three_import import * as GeometryCompressionUtils from 'three/addons/utils/GeometryCompressionUtils.js';
  */
 
 // Octahedron and Quantization encodings based on work by: https://github.com/tsherif/mesh-quantization-example
@@ -24,7 +24,7 @@ function compressNormals( geometry, encodeMethod ) {
 
 	if ( ! normal ) {
 
-		console.error( 'FOUR.GeometryCompressionUtils.compressNormals(): Geometry must contain normal attribute.' );
+		console.error( 'THREE.GeometryCompressionUtils.compressNormals(): Geometry must contain normal attribute.' );
 
 	}
 
@@ -32,7 +32,7 @@ function compressNormals( geometry, encodeMethod ) {
 
 	if ( normal.itemSize != 3 ) {
 
-		console.error( 'FOUR.GeometryCompressionUtils.compressNormals(): normal.itemSize is not 3, which cannot be encoded.' );
+		console.error( 'THREE.GeometryCompressionUtils.compressNormals(): normal.itemSize is not 3, which cannot be encoded.' );
 
 	}
 
@@ -134,7 +134,7 @@ function compressPositions( geometry ) {
 
 	if ( ! position ) {
 
-		console.error( 'FOUR.GeometryCompressionUtils.compressPositions(): Geometry must contain position attribute.' );
+		console.error( 'THREE.GeometryCompressionUtils.compressPositions(): Geometry must contain position attribute.' );
 
 	}
 
@@ -142,7 +142,7 @@ function compressPositions( geometry ) {
 
 	if ( position.itemSize != 3 ) {
 
-		console.error( 'FOUR.GeometryCompressionUtils.compressPositions(): position.itemSize is not 3, which cannot be packed.' );
+		console.error( 'THREE.GeometryCompressionUtils.compressPositions(): position.itemSize is not 3, which cannot be packed.' );
 
 	}
 
@@ -175,7 +175,7 @@ function compressUvs( geometry ) {
 
 	if ( ! uvs ) {
 
-		console.error( 'FOUR.GeometryCompressionUtils.compressUvs(): Geometry must contain uv attribute.' );
+		console.error( 'THREE.GeometryCompressionUtils.compressUvs(): Geometry must contain uv attribute.' );
 
 	}
 

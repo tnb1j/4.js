@@ -2,10 +2,10 @@
 
 ## Import
 
-ColorUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColorUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as ColorUtils from '@tnb1j/4js/addons/utils/ColorUtils.js';
+import * as ColorUtils from 'three/addons/utils/ColorUtils.js';
 ```
 
 ## Methods
@@ -30,4 +30,4 @@ Color temperature in Kelvin. Clamped to \[1000, 40000\].
 
 ## Source
 
-[examples/jsm/utils/ColorUtils.js](../../examples/jsm/utils/ColorUtils.js)
+[examples/jsm/utils/ColorUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/ColorUtils.js)

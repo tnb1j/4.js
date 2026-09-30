@@ -12,10 +12,10 @@ RectAreaLightUniformsLib.init();
 
 ## Import
 
-RectAreaLightUniformsLib is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RectAreaLightUniformsLib is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RectAreaLightUniformsLib } from '@tnb1j/4js/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 ```
 
 ## Static Methods
@@ -26,4 +26,4 @@ Inits the uniform library required when using rect area lights.
 
 ## Source
 
-[examples/jsm/lights/RectAreaLightUniformsLib.js](../../examples/jsm/lights/RectAreaLightUniformsLib.js)
+[examples/jsm/lights/RectAreaLightUniformsLib.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lights/RectAreaLightUniformsLib.js)

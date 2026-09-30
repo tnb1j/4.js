@@ -25,24 +25,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Fn, wgslFn, positionLocal, positionWorld, normalLocal, normalWorld, normalView, color, texture, uv, float, vec2, vec3, vec4, oscSine, triplanarTexture, screenUV, Loop, cameraProjectionMatrix } from '@tnb1j/4js/tsl';
+			import { Fn, wgslFn, positionLocal, positionWorld, normalLocal, normalWorld, normalView, color, texture, uv, float, vec2, vec3, vec4, oscSine, triplanarTexture, screenUV, Loop, cameraProjectionMatrix } from 'three/tsl';
 
-			import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -63,29 +63,29 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 0, 200, 800 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				// Grid
 
-				const helper = new FOUR.GridHelper( 1000, 40, 0x303030, 0x303030 );
+				const helper = new THREE.GridHelper( 1000, 40, 0x303030, 0x303030 );
 				helper.position.y = - 75;
 				scene.add( helper );
 
 				// Materials
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				const uvTexture = textureLoader.load( './textures/uv_grid_opengl.jpg' );
-				uvTexture.wrapS = FOUR.RepeatWrapping;
-				uvTexture.wrapT = FOUR.RepeatWrapping;
+				uvTexture.wrapS = THREE.RepeatWrapping;
+				uvTexture.wrapT = THREE.RepeatWrapping;
 
 				const opacityTexture = textureLoader.load( './textures/alphaMap.jpg' );
-				opacityTexture.wrapS = FOUR.RepeatWrapping;
-				opacityTexture.wrapT = FOUR.RepeatWrapping;
+				opacityTexture.wrapS = THREE.RepeatWrapping;
+				opacityTexture.wrapT = THREE.RepeatWrapping;
 
 				let material;
 
@@ -94,57 +94,57 @@
 				//
 
 				// PositionLocal
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = positionLocal;
 				materials.push( material );
 
 				// PositionWorld
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = positionWorld;
 				materials.push( material );
 
 				// NormalLocal
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = normalLocal;
 				materials.push( material );
 
 				// NormalWorld
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = normalWorld;
 				materials.push( material );
 
 				// NormalView
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = normalView;
 				materials.push( material );
 
 				// Texture
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = texture( uvTexture );
 				materials.push( material );
 
 				// Opacity
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = color( 0x0099FF );
 				material.opacityNode = texture( uvTexture );
 				material.transparent = true;
 				materials.push( material );
 
 				// AlphaTest
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = texture( uvTexture );
 				material.opacityNode = texture( opacityTexture );
 				material.alphaTestNode = 0.5;
 				materials.push( material );
 
 				// camera
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = cameraProjectionMatrix.mul( positionLocal );
 				materials.push( material );
 
 
 				// Normal
-				material = new FOUR.MeshNormalMaterial();
+				material = new THREE.MeshNormalMaterial();
 				material.opacity = .5;
 				material.transparent = true;
 				materials.push( material );
@@ -161,7 +161,7 @@
 
 				} );
 
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = desaturateShaderNode( { color: texture( uvTexture ) } );
 				materials.push( material );
 
@@ -173,7 +173,7 @@
 
 				} );
 
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = desaturateNoInputsShaderNode();
 				materials.push( material );
 
@@ -199,7 +199,7 @@
 					}
 				`, [ desaturateWGSLFn ] );
 
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = someWGSLFn( { color: texture( uvTexture ) } );
 				materials.push( material );
 
@@ -215,22 +215,22 @@
 
 				const textureNode = texture( uvTexture );
 
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = getWGSLTextureSample( { tex: textureNode, tex_sampler: textureNode, uv: uv() } );
 				materials.push( material );
 
 				// Triplanar Texture Mapping
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = triplanarTexture( texture( uvTexture ), null, null, float( .01 ) );
 				materials.push( material );
 
 				// Screen Projection Texture
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				material.colorNode = texture( uvTexture, screenUV.flipY() );
 				materials.push( material );
 
 				// Loop
-				material = new FOUR.MeshBasicNodeMaterial();
+				material = new THREE.MeshBasicNodeMaterial();
 				materials.push( material );
 
 				const loopCount = 10;
@@ -270,7 +270,7 @@
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -285,7 +285,7 @@
 
 			function addMesh( geometry, material ) {
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 
 				mesh.position.x = ( objects.length % 4 ) * 200 - 400;
 				mesh.position.z = Math.floor( objects.length / 4 ) * 200 - 200;

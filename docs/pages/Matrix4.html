@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Matrix4 - 4.js Docs</title>
+	<title>Matrix4 - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -24,7 +24,7 @@ matrix. This is known as <code>applying</code> the matrix to the vector.</p>
 <a href="https://en.wikipedia.org/wiki/Row-_and_column-major_order#Column-major_order" target="_blank" rel="noopener">row-major</a>
 order, while internally they are stored in the <a href="Matrix3.html#elements">Matrix3#elements</a> array in column-major order.
 This means that calling:</p>
-<pre><code class="language-js">const m = new FOUR.Matrix4();
+<pre><code class="language-js">const m = new THREE.Matrix4();
 m.set( 11, 12, 13, 14,
        21, 22, 23, 24,
        31, 32, 33, 34,
@@ -39,7 +39,7 @@ m.set( 11, 12, 13, 14,
 <p>and internally all calculations are performed using column-major ordering.
 However, as the actual ordering makes no difference mathematically and
 most people are used to thinking about matrices in row-major order, the
-4.js documentation shows matrices in row-major order. Just bear in
+three.js documentation shows matrices in row-major order. Just bear in
 mind that if you are reading the source code, you'll have to take the
 transpose of any matrices outlined here to make sense of the calculations.</p></div>
 			</header>
@@ -330,7 +330,6 @@ may not be decomposable, and this method may not be appropriate.</p>
 					<div class="method">
 						<div class="description">
 							<p>Computes and returns the determinant of this matrix.</p>
-<p>Based on the method outlined <a href="http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.html" target="_blank" rel="noopener">here</a>.</p>
 						</div>
 						<dl class="details">
 							<dt class="tag-returns"><strong>Returns:</strong> The determinant.</dt>
@@ -373,7 +372,7 @@ full 4x4 <a href="Matrix4.html#determinant">Matrix4#determinant</a> but is cheap
 					<h3 class="name name-method" id="extractBasis" translate="no">.<a href="#extractBasis">extractBasis</a><span class="signature">( xAxis : <span class="param-type"><a href="Vector3.html">Vector3</a></span>, yAxis : <span class="param-type"><a href="Vector3.html">Vector3</a></span>, zAxis : <span class="param-type"><a href="Vector3.html">Vector3</a></span> )</span><span class="type-signature"> : <a href="Matrix4.html">Matrix4</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Extracts the basis of this matrix into the three axis vectors provided.</p>
+							<p>Extracts the basis vectors of this matrix into the three vectors provided.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -729,8 +728,6 @@ a zero matrix instead.</p>
 						<div class="description">
 							<p>Sets this matrix as a rotational transformation around the given axis by
 the given angle.</p>
-<p>This is a somewhat controversial but mathematically sound alternative to
-rotating via Quaternions. See the discussion <a href="https://www.gamedev.net/articles/programming/math-and-physics/do-we-really-need-quaternions-r1199" target="_blank" rel="noopener">here</a>.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -1101,7 +1098,7 @@ in this matrix.</p>
 					<h3 class="name name-method" id="scale" translate="no">.<a href="#scale">scale</a><span class="signature">( v : <span class="param-type"><a href="Vector3.html">Vector3</a></span> )</span><span class="type-signature"> : <a href="Matrix4.html">Matrix4</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Multiplies the columns of this matrix by the given vector.</p>
+							<p>Scales each of the first three columns of this matrix by the corresponding component of the given vector.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -1363,7 +1360,7 @@ the method returns a new instance.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/math/Matrix4.js" translate="no">src/math/Matrix4.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/math/Matrix4.js" translate="no" target="_blank" rel="noopener">src/math/Matrix4.js</a>
 				</p>
 			</article>
 		</section>

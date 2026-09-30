@@ -6,10 +6,10 @@ This class can be used to represent the environmental light of a XR session. It 
 
 ## Import
 
-XREstimatedLight is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+XREstimatedLight is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { XREstimatedLight } from '@tnb1j/4js/addons/webxr/XREstimatedLight.js';
+import { XREstimatedLight } from 'three/addons/webxr/XREstimatedLight.js';
 ```
 
 ## Constructor
@@ -54,6 +54,8 @@ The light probe that represents the estimated light.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Group#dispose](Group.html#dispose)
+
 ## Source
 
-[examples/jsm/webxr/XREstimatedLight.js](../../examples/jsm/webxr/XREstimatedLight.js)
+[examples/jsm/webxr/XREstimatedLight.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XREstimatedLight.js)

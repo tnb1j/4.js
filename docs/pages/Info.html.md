@@ -311,4 +311,4 @@ The instance count.
 
 ## Source
 
-[src/renderers/common/Info.js](../../src/renderers/common/Info.js)
+[src/renderers/common/Info.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/Info.js)

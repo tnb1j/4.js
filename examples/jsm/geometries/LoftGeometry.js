@@ -4,7 +4,7 @@ import {
 	ShapeUtils,
 	Vector2,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 const _vector = /*@__PURE__*/ new Vector3();
 
@@ -35,7 +35,7 @@ const _vector = /*@__PURE__*/ new Vector3();
  * 	for ( let j = 0; j < 32; j ++ ) {
  *
  * 		const angle = j / 32 * Math.PI * 2;
- * 		points.push( new FOUR.Vector3( Math.sin( angle ) * radius, i, Math.cos( angle ) * radius ) );
+ * 		points.push( new THREE.Vector3( Math.sin( angle ) * radius, i, Math.cos( angle ) * radius ) );
  *
  * 	}
  *
@@ -44,13 +44,13 @@ const _vector = /*@__PURE__*/ new Vector3();
  * }
  *
  * const geometry = new LoftGeometry( sections, { capStart: true, capEnd: true } );
- * const material = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { LoftGeometry } from '@tnb1j/4js/addons/geometries/LoftGeometry.js';
+ * @three_import import { LoftGeometry } from 'three/addons/geometries/LoftGeometry.js';
  */
 class LoftGeometry extends BufferGeometry {
 
@@ -93,7 +93,7 @@ class LoftGeometry extends BufferGeometry {
 
 		if ( rows < 2 ) {
 
-			console.error( 'FOUR.LoftGeometry: At least two sections are required.' );
+			console.error( 'THREE.LoftGeometry: At least two sections are required.' );
 			return;
 
 		}
@@ -104,7 +104,7 @@ class LoftGeometry extends BufferGeometry {
 
 			if ( sections[ i ].length !== columns ) {
 
-				console.error( 'FOUR.LoftGeometry: All sections must have the same number of points.' );
+				console.error( 'THREE.LoftGeometry: All sections must have the same number of points.' );
 				return;
 
 			}

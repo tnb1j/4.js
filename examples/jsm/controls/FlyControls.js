@@ -2,7 +2,7 @@ import {
 	Controls,
 	Quaternion,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Fires when the camera has been transformed by the controls.
@@ -21,7 +21,7 @@ const _tmpQuaternion = new Quaternion();
  * (e.g. focus on a specific target).
  *
  * @augments Controls
- * @four_import import { FlyControls } from '@tnb1j/4js/addons/controls/FlyControls.js';
+ * @three_import import { FlyControls } from 'three/addons/controls/FlyControls.js';
  */
 class FlyControls extends Controls {
 

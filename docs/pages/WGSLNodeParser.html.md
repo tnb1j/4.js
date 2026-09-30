@@ -24,4 +24,4 @@ The WGSL code.
 
 ## Source
 
-[src/renderers/webgpu/nodes/WGSLNodeParser.js](../../src/renderers/webgpu/nodes/WGSLNodeParser.js)
+[src/renderers/webgpu/nodes/WGSLNodeParser.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webgpu/nodes/WGSLNodeParser.js)

@@ -6,10 +6,10 @@ Post processing node for applying chromatic aberration effect. This effect simul
 
 ## Import
 
-ChromaticAberrationNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ChromaticAberrationNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { chromaticAberration } from '@tnb1j/4js/addons/tsl/display/ChromaticAberrationNode.js';
+import { chromaticAberration } from 'three/addons/tsl/display/ChromaticAberrationNode.js';
 ```
 
 ## Constructor
@@ -66,4 +66,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/ChromaticAberrationNode.js](../../examples/jsm/tsl/display/ChromaticAberrationNode.js)
+[examples/jsm/tsl/display/ChromaticAberrationNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/ChromaticAberrationNode.js)

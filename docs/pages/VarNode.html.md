@@ -114,4 +114,4 @@ The value to set for the intent flag.
 
 ## Source
 
-[src/nodes/core/VarNode.js](../../src/nodes/core/VarNode.js)
+[src/nodes/core/VarNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/VarNode.js)

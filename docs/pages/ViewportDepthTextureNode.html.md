@@ -30,4 +30,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/display/ViewportDepthTextureNode.js](../../src/nodes/display/ViewportDepthTextureNode.js)
+[src/nodes/display/ViewportDepthTextureNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ViewportDepthTextureNode.js)

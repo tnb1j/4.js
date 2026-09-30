@@ -100,17 +100,13 @@ TSL code which is executed if the condition evaluates to `true`.
 
 **Returns:** A reference to this stack node.
 
-### .Switch( expression : any, method : function ) : StackNode
+### .Switch( expression : any ) : StackNode
 
 Represents a `switch` statement in TSL.
 
 **expression**
 
 Represents the expression.
-
-**method**
-
-TSL code which is executed if the condition evaluates to `true`.
 
 **Returns:** A reference to this stack node.
 
@@ -142,4 +138,4 @@ The node to add.
 
 ## Source
 
-[src/nodes/core/StackNode.js](../../src/nodes/core/StackNode.js)
+[src/nodes/core/StackNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/StackNode.js)

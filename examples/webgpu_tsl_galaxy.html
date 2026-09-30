@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, cos, float, mix, range, sin, time, uniform, uv, vec3, vec4, TWO_PI } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, cos, float, mix, range, sin, time, uniform, uv, vec3, vec4, TWO_PI } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, controls;
 
@@ -48,17 +48,17 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 4, 2, 5 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x201919 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x201919 );
 
 				// galaxy
 
-				const material = new FOUR.SpriteNodeMaterial( {
+				const material = new THREE.SpriteNodeMaterial( {
 					depthWrite: false,
-					blending: FOUR.AdditiveBlending
+					blending: THREE.AdditiveBlending
 				} );
 
 				const size = uniform( 0.08 );
@@ -87,12 +87,12 @@
 				const alpha = float( 0.1 ).div( uv().sub( 0.5 ).length() ).sub( 0.2 );
 				material.colorNode = vec4( colorFinal, alpha );
 
-				const mesh = new FOUR.InstancedMesh( new FOUR.PlaneGeometry( 1, 1 ), material, 20000 );
+				const mesh = new THREE.InstancedMesh( new THREE.PlaneGeometry( 1, 1 ), material, 20000 );
 				scene.add( mesh );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -114,7 +114,7 @@
 
 				gui.add( size, 'value', 0, 1, 0.001 ).name( 'size' );
 
-				gui.addColor( { color: colorInside.value.getHex( FOUR.SRGBColorSpace ) }, 'color' )
+				gui.addColor( { color: colorInside.value.getHex( THREE.SRGBColorSpace ) }, 'color' )
 					.name( 'colorInside' )
 					.onChange( function ( value ) {
 
@@ -122,7 +122,7 @@
 
 					} );
 
-				gui.addColor( { color: colorOutside.value.getHex( FOUR.SRGBColorSpace ) }, 'color' )
+				gui.addColor( { color: colorOutside.value.getHex( THREE.SRGBColorSpace ) }, 'color' )
 					.name( 'colorOutside' )
 					.onChange( function ( value ) {
 

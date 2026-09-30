@@ -6,14 +6,14 @@ import {
 	Mesh,
 	Sphere,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A marching cubes implementation.
  *
  * Port of: {@link http://webglsamples.org/blob/blob.html}
  *
- * @four_import import { MarchingCubes } from '@tnb1j/4js/addons/objects/MarchingCubes.js';
+ * @three_import import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
  */
 class MarchingCubes extends Mesh {
 
@@ -948,7 +948,7 @@ class MarchingCubes extends Mesh {
 
 			// safety check
 
-			if ( this.count / 3 > maxPolyCount ) console.warn( 'FOUR.MarchingCubes: Geometry buffers too small for rendering. Please create an instance with a higher poly count.' );
+			if ( this.count / 3 > maxPolyCount ) console.warn( 'THREE.MarchingCubes: Geometry buffers too small for rendering. Please create an instance with a higher poly count.' );
 
 		};
 

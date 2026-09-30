@@ -18,10 +18,10 @@ scene.add( result.scene );
 
 ## Import
 
-ColladaLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ColladaLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ColladaLoader } from '@tnb1j/4js/addons/loaders/ColladaLoader.js';
+import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
 ```
 
 ## Constructor
@@ -70,4 +70,4 @@ The asset path.
 
 ## Source
 
-[examples/jsm/loaders/ColladaLoader.js](../../examples/jsm/loaders/ColladaLoader.js)
+[examples/jsm/loaders/ColladaLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/ColladaLoader.js)

@@ -12,7 +12,7 @@ import { Color } from '../math/Color.js';
  * const size = 10;
  * const divisions = 10;
  *
- * const gridHelper = new FOUR.GridHelper( size, divisions );
+ * const gridHelper = new THREE.GridHelper( size, divisions );
  * scene.add( gridHelper );
  * ```
  *
@@ -70,6 +70,8 @@ class GridHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

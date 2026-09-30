@@ -1,10 +1,11 @@
 /**
  * @module FilmShader
- * @four_import import { FilmShader } from '@tnb1j/4js/addons/shaders/FilmShader.js';
+ * @three_import import { FilmShader } from 'three/addons/shaders/FilmShader.js';
  */
 
 /**
- * TODO
+ * Film grain shader that adds animated noise to the image, with an optional
+ * grayscale conversion.
  *
  * Used by {@link FilmPass}.
  *

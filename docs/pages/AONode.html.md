@@ -26,4 +26,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/lighting/AONode.js](../../src/nodes/lighting/AONode.js)
+[src/nodes/lighting/AONode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/AONode.js)

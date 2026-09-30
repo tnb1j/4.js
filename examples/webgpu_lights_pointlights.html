@@ -26,22 +26,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { abs, attribute, distance, float, max, modelWorldMatrixInverse, positionLocal, sin, time, uniform } from '@tnb1j/4js/tsl';
+			import { abs, attribute, distance, float, max, modelWorldMatrixInverse, positionLocal, sin, time, uniform } from 'three/tsl';
 
 			let camera, scene, timer, renderer, controls;
 
@@ -51,13 +51,13 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.z = 100;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// model
@@ -75,23 +75,23 @@
 
 				} );
 
-				const sphere = new FOUR.SphereGeometry( 0.5, 16, 8 );
+				const sphere = new THREE.SphereGeometry( 0.5, 16, 8 );
 
 				// lights
 
-				light1 = new FOUR.PointLight( 0xff0040, 2000 );
-				light1.add( new FOUR.Mesh( sphere, new FOUR.MeshBasicMaterial( { color: 0xff0040 } ) ) );
+				light1 = new THREE.PointLight( 0xff0040, 2000 );
+				light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
 				scene.add( light1 );
 
-				light2 = new FOUR.PointLight( 0x0040ff, 2000 );
-				light2.add( new FOUR.Mesh( sphere, new FOUR.MeshBasicMaterial( { color: 0x0040ff } ) ) );
+				light2 = new THREE.PointLight( 0x0040ff, 2000 );
+				light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
 				scene.add( light2 );
 
-				scene.add( new FOUR.AmbientLight( 0xaaaaaa, 0.1 ) );
+				scene.add( new THREE.AmbientLight( 0xaaaaaa, 0.1 ) );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -137,7 +137,7 @@
 
 			function createMaterial() {
 
-				const material = new FOUR.MeshPhongNodeMaterial();
+				const material = new THREE.MeshPhongNodeMaterial();
 
 				const seedAttribute = attribute( 'seed' );
 				const displaceNormalAttribute = attribute( 'displaceNormal' );
@@ -165,13 +165,13 @@
 
 				const positionAttribute = geometry.getAttribute( 'position' );
 
-				const v0 = new FOUR.Vector3();
-				const v1 = new FOUR.Vector3();
-				const v2 = new FOUR.Vector3();
-				const v3 = new FOUR.Vector3();
-				const n = new FOUR.Vector3();
+				const v0 = new THREE.Vector3();
+				const v1 = new THREE.Vector3();
+				const v2 = new THREE.Vector3();
+				const v3 = new THREE.Vector3();
+				const n = new THREE.Vector3();
 
-				const plane = new FOUR.Plane();
+				const plane = new THREE.Plane();
 
 				const vertices = [];
 				const times = [];
@@ -210,11 +210,11 @@
 
 				}
 
-				const newGeometry = new FOUR.BufferGeometry();
-				newGeometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( vertices, 3 ) );
-				newGeometry.setAttribute( 'time', new FOUR.Float32BufferAttribute( times, 1 ) );
-				newGeometry.setAttribute( 'seed', new FOUR.Float32BufferAttribute( seeds, 1 ) );
-				newGeometry.setAttribute( 'displaceNormal', new FOUR.Float32BufferAttribute( displaceNormal, 3 ) );
+				const newGeometry = new THREE.BufferGeometry();
+				newGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+				newGeometry.setAttribute( 'time', new THREE.Float32BufferAttribute( times, 1 ) );
+				newGeometry.setAttribute( 'seed', new THREE.Float32BufferAttribute( seeds, 1 ) );
+				newGeometry.setAttribute( 'displaceNormal', new THREE.Float32BufferAttribute( displaceNormal, 3 ) );
 
 				newGeometry.computeVertexNormals();
 

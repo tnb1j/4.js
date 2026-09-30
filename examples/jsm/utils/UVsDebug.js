@@ -1,17 +1,17 @@
 import {
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module UVsDebug
- * @four_import import { UVsDebug } from '@tnb1j/4js/addons/utils/UVsDebug.js';
+ * @three_import import { UVsDebug } from 'three/addons/utils/UVsDebug.js';
  */
 
 /**
  * Function for "unwrapping" and debugging 4.js geometries UV mapping.
  *
  * ```js
- * document.body.appendChild( UVsDebug( new FOUR.SphereGeometry() ) );
+ * document.body.appendChild( UVsDebug( new THREE.SphereGeometry() ) );
  * ```
  *
  * @param {BufferGeometry} geometry - The geometry whose uv coordinates should be inspected.

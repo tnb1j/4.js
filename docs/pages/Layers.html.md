@@ -82,4 +82,4 @@ The layer to toggle.
 
 ## Source
 
-[src/core/Layers.js](../../src/core/Layers.js)
+[src/core/Layers.js](https://github.com/mrdoob/three.js/blob/master/src/core/Layers.js)

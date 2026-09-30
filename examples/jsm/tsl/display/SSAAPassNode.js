@@ -1,5 +1,5 @@
-import { AdditiveBlending, Color, Vector2, PassNode, QuadMesh, NodeMaterial } from '@tnb1j/4js/webgpu';
-import { uniform, mrt, texture, getTextureIndex, unpremultiplyAlpha } from '@tnb1j/4js/tsl';
+import { AdditiveBlending, Color, Vector2, PassNode, QuadMesh, NodeMaterial } from 'three/webgpu';
+import { uniform, mrt, texture, getTextureIndex, unpremultiplyAlpha } from 'three/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 const _clearColor = /*@__PURE__*/ new Color();
@@ -14,7 +14,7 @@ const _clearColor = /*@__PURE__*/ new Color();
  * Reference: {@link https://en.wikipedia.org/wiki/Supersampling}
  *
  * @augments PassNode
- * @four_import import { ssaaPass } from '@tnb1j/4js/addons/tsl/display/SSAAPassNode.js';
+ * @three_import import { ssaaPass } from 'three/addons/tsl/display/SSAAPassNode.js';
  */
 class SSAAPassNode extends PassNode {
 
@@ -32,7 +32,7 @@ class SSAAPassNode extends PassNode {
 	 */
 	constructor( scene, camera ) {
 
-		super( PassNode.COLOR, scene, camera );
+		super( PassNode.COLOR, scene, camera, { samples: 0 } );
 
 		/**
 		 * This flag can be used for type testing.
@@ -99,9 +99,7 @@ class SSAAPassNode extends PassNode {
 
 		//
 
-		this._pixelRatio = renderer.getPixelRatio();
-
-		const size = renderer.getSize( _size );
+		const size = renderer.getDrawingBufferSize( _size );
 
 		this.setSize( size.width, size.height );
 		this._sampleRenderTarget.setSize( this.renderTarget.width, this.renderTarget.height );

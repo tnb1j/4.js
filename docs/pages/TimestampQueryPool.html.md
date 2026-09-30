@@ -116,4 +116,4 @@ Resolve all timestamps and return data (or process them).
 
 ## Source
 
-[src/renderers/common/TimestampQueryPool.js](../../src/renderers/common/TimestampQueryPool.js)
+[src/renderers/common/TimestampQueryPool.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/TimestampQueryPool.js)

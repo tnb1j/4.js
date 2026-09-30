@@ -5,7 +5,7 @@ import {
 	RedFormat,
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { DigitalGlitch } from '../shaders/DigitalGlitch.js';
 
@@ -18,7 +18,7 @@ import { DigitalGlitch } from '../shaders/DigitalGlitch.js';
  * ```
  *
  * @augments Pass
- * @four_import import { GlitchPass } from '@tnb1j/4js/addons/postprocessing/GlitchPass.js';
+ * @three_import import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
  */
 class GlitchPass extends Pass {
 

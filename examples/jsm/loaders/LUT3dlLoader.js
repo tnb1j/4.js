@@ -6,7 +6,7 @@ import {
 	Loader,
 	RGBAFormat,
 	UnsignedByteType,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the 3DL LUT format.
@@ -21,7 +21,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { LUT3dlLoader } from '@tnb1j/4js/addons/loaders/LUT3dlLoader.js';
+ * @three_import import { LUT3dlLoader } from 'three/addons/loaders/LUT3dlLoader.js';
  */
 export class LUT3dlLoader extends Loader {
 
@@ -114,7 +114,7 @@ export class LUT3dlLoader extends Loader {
 
 		if ( result === null ) {
 
-			throw new Error( 'FOUR.LUT3dlLoader: Missing grid information' );
+			throw new Error( 'THREE.LUT3dlLoader: Missing grid information' );
 
 		}
 
@@ -127,7 +127,7 @@ export class LUT3dlLoader extends Loader {
 
 			if ( gridStep !== ( gridLines[ i ] - gridLines[ i - 1 ] ) ) {
 
-				throw new Error( 'FOUR.LUT3dlLoader: Inconsistent grid size' );
+				throw new Error( 'THREE.LUT3dlLoader: Inconsistent grid size' );
 
 			}
 

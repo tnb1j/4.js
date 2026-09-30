@@ -66,4 +66,4 @@ The tone mapping type.
 
 ## Source
 
-[src/nodes/display/ToneMappingNode.js](../../src/nodes/display/ToneMappingNode.js)
+[src/nodes/display/ToneMappingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ToneMappingNode.js)

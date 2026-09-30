@@ -46,4 +46,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/lighting/PointLightNode.js](../../src/nodes/lighting/PointLightNode.js)
+[src/nodes/lighting/PointLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/PointLightNode.js)

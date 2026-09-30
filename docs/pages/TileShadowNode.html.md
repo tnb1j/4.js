@@ -8,10 +8,10 @@ A class that extends `ShadowBaseNode` to implement tiled shadow mapping. This al
 
 ## Import
 
-TileShadowNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TileShadowNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TileShadowNode } from '@tnb1j/4js/addons/tsl/shadows/TileShadowNode.js';
+import { TileShadowNode } from 'three/addons/tsl/shadows/TileShadowNode.js';
 ```
 
 ## Constructor
@@ -134,4 +134,4 @@ A reference to the current node frame.
 
 ## Source
 
-[examples/jsm/tsl/shadows/TileShadowNode.js](../../examples/jsm/tsl/shadows/TileShadowNode.js)
+[examples/jsm/tsl/shadows/TileShadowNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/shadows/TileShadowNode.js)

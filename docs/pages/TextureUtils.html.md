@@ -66,4 +66,4 @@ The texture's type.
 
 ## Source
 
-[src/extras/TextureUtils.js](../../src/extras/TextureUtils.js)
+[src/extras/TextureUtils.js](https://github.com/mrdoob/three.js/blob/master/src/extras/TextureUtils.js)

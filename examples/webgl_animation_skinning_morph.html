@@ -39,20 +39,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let container, stats, timer, gui, mixer, actions, activeAction, previousAction;
 			let camera, scene, renderer, model, face;
@@ -66,34 +66,34 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 100 );
 				camera.position.set( - 5, 3, 10 );
 				camera.lookAt( 0, 2, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xe0e0e0 );
-				scene.fog = new FOUR.Fog( 0xe0e0e0, 20, 100 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xe0e0e0 );
+				scene.fog = new THREE.Fog( 0xe0e0e0, 20, 100 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// lights
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 3 );
 				hemiLight.position.set( 0, 20, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.position.set( 0, 20, 10 );
 				scene.add( dirLight );
 
 				// ground
 
-				const mesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 2000, 2000 ), new FOUR.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
+				const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0xcbcbcb, depthWrite: false } ) );
 				mesh.rotation.x = - Math.PI / 2;
 				scene.add( mesh );
 
-				const grid = new FOUR.GridHelper( 200, 40, 0x000000, 0x000000 );
+				const grid = new THREE.GridHelper( 200, 40, 0x000000, 0x000000 );
 				grid.material.opacity = 0.2;
 				grid.material.transparent = true;
 				scene.add( grid );
@@ -114,7 +114,7 @@
 
 				} );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -135,7 +135,7 @@
 
 				gui = new GUI();
 
-				mixer = new FOUR.AnimationMixer( model );
+				mixer = new THREE.AnimationMixer( model );
 
 				actions = {};
 
@@ -148,7 +148,7 @@
 					if ( emotes.indexOf( clip.name ) >= 0 || states.indexOf( clip.name ) >= 4 ) {
 
 						action.clampWhenFinished = true;
-						action.loop = FOUR.LoopOnce;
+						action.loop = THREE.LoopOnce;
 
 					}
 

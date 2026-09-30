@@ -13,9 +13,9 @@ const _triangle = /*@__PURE__*/ new Triangle();
  * Can be used as a helper object to view the edges of a geometry.
  *
  * ```js
- * const geometry = new FOUR.BoxGeometry();
- * const edges = new FOUR.EdgesGeometry( geometry );
- * const line = new FOUR.LineSegments( edges );
+ * const geometry = new THREE.BoxGeometry();
+ * const edges = new THREE.EdgesGeometry( geometry );
+ * const line = new THREE.LineSegments( edges );
  * scene.add( line );
  * ```
  *

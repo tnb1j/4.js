@@ -1,12 +1,12 @@
-import { NodeMaterial } from '@tnb1j/4js/webgpu';
-import { Fn, vec4, uv, If, mod, screenCoordinate } from '@tnb1j/4js/tsl';
+import { NodeMaterial } from 'three/webgpu';
+import { Fn, vec4, uv, If, mod, screenCoordinate, context } from 'three/tsl';
 import StereoCompositePassNode from './StereoCompositePassNode.js';
 
 /**
  * A render pass node that creates a parallax barrier effect.
  *
  * @augments StereoCompositePassNode
- * @four_import import { parallaxBarrierPass } from '@tnb1j/4js/addons/tsl/display/ParallaxBarrierPassNode.js';
+ * @three_import import { parallaxBarrierPass } from 'three/addons/tsl/display/ParallaxBarrierPassNode.js';
  */
 class ParallaxBarrierPassNode extends StereoCompositePassNode {
 
@@ -66,7 +66,8 @@ class ParallaxBarrierPassNode extends StereoCompositePassNode {
 		} );
 
 		const material = this._material || ( this._material = new NodeMaterial() );
-		material.fragmentNode = parallaxBarrier().context( builder.getSharedContext() );
+		material.contextNode = context( builder.getSharedContext() );
+		material.fragmentNode = parallaxBarrier();
 		material.needsUpdate = true;
 
 		return super.setup( builder );

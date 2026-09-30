@@ -4,7 +4,7 @@
 
 A loader for the TTF format.
 
-Loads TTF files and converts them into typeface JSON that can be used directly to create FOUR.Font objects.
+Loads TTF files and converts them into typeface JSON that can be used directly to create THREE.Font objects.
 
 ## Code Example
 
@@ -16,10 +16,10 @@ const font = new Font( json );
 
 ## Import
 
-TTFLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TTFLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TTFLoader } from '@tnb1j/4js/addons/loaders/TTFLoader.js';
+import { TTFLoader } from 'three/addons/loaders/TTFLoader.js';
 ```
 
 ## Constructor
@@ -78,4 +78,4 @@ The raw TTF data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/TTFLoader.js](../../examples/jsm/loaders/TTFLoader.js)
+[examples/jsm/loaders/TTFLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/TTFLoader.js)

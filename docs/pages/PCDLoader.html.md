@@ -24,10 +24,10 @@ scene.add( points );
 
 ## Import
 
-PCDLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PCDLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PCDLoader } from '@tnb1j/4js/addons/loaders/PCDLoader.js';
+import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
 ```
 
 ## Constructor
@@ -86,4 +86,4 @@ The raw PCD data as an array buffer.
 
 ## Source
 
-[examples/jsm/loaders/PCDLoader.js](../../examples/jsm/loaders/PCDLoader.js)
+[examples/jsm/loaders/PCDLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/PCDLoader.js)

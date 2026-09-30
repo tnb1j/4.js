@@ -24,20 +24,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let scene, camera, controls, renderer;
 
@@ -49,12 +49,12 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( width, height );
 
 				// tonemapping
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 
 				document.body.appendChild( renderer.domElement );
@@ -63,11 +63,11 @@
 
 				// scene
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// camera
 
-				camera = new FOUR.PerspectiveCamera( 40, aspect, 1, 30 );
+				camera = new THREE.PerspectiveCamera( 40, aspect, 1, 30 );
 				updateCamera();
 				camera.position.set( 0, 0, 16 );
 
@@ -80,7 +80,7 @@
 
 				// light
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 0 ); // set intensity to 0 to start
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 0 ); // set intensity to 0 to start
 				const x = 597;
 				const y = 213;
 				const theta = ( x + 0.5 ) * Math.PI / 512;
@@ -89,7 +89,7 @@
 				directionalLight.position.setFromSphericalCoords( 100, - phi, Math.PI / 2 - theta );
 
 				scene.add( directionalLight );
-				// scene.add( new FOUR.DirectionalLightHelper( directionalLight ) );
+				// scene.add( new THREE.DirectionalLightHelper( directionalLight ) );
 
 				// The spot1Lux HDR environment map is expressed in nits (lux / sr). The directional light has units of lux,
 				// so to match a 1 lux light, we set a single pixel with a value equal to 1 divided by the solid
@@ -123,7 +123,7 @@
 
 				let radianceMap = null;
 				new HDRLoader()
-					// .setDataType( FOUR.FloatType )
+					// .setDataType( THREE.FloatType )
 					.setPath( 'textures/equirectangular/' )
 					.load( 'spot1Lux.hdr', function ( texture ) {
 
@@ -132,13 +132,13 @@
 
 						scene.background = radianceMap;
 
-						const geometry = new FOUR.SphereGeometry( 0.4, 32, 32 );
+						const geometry = new THREE.SphereGeometry( 0.4, 32, 32 );
 
 						for ( let x = 0; x <= 10; x ++ ) {
 
 							for ( let y = 0; y <= 2; y ++ ) {
 
-								const material = new FOUR.MeshPhysicalMaterial( {
+								const material = new THREE.MeshPhysicalMaterial( {
 									roughness: x / 10,
 									metalness: y < 1 ? 1 : 0,
 									color: y < 2 ? 0xffffff : 0x000000,
@@ -146,7 +146,7 @@
 									envMapIntensity: 1
 								} );
 
-								const mesh = new FOUR.Mesh( geometry, material );
+								const mesh = new THREE.Mesh( geometry, material );
 								mesh.position.x = x - 5;
 								mesh.position.y = 1 - y;
 								scene.add( mesh );
@@ -159,7 +159,7 @@
 
 					} );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				pmremGenerator.compileEquirectangularShader();
 
 			}

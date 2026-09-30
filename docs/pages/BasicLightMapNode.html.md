@@ -24,4 +24,4 @@ The light map node.
 
 ## Source
 
-[src/nodes/lighting/BasicLightMapNode.js](../../src/nodes/lighting/BasicLightMapNode.js)
+[src/nodes/lighting/BasicLightMapNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/BasicLightMapNode.js)

@@ -70,20 +70,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { color } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three';
+			import { color } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let canvas, renderer;
 
@@ -96,17 +96,17 @@
 				canvas = document.getElementById( 'c' );
 
 				const geometries = [
-					new FOUR.BoxGeometry( 1, 1, 1 ),
-					new FOUR.SphereGeometry( 0.5, 12, 8 ),
-					new FOUR.DodecahedronGeometry( 0.5 ),
-					new FOUR.CylinderGeometry( 0.5, 0.5, 1, 12 )
+					new THREE.BoxGeometry( 1, 1, 1 ),
+					new THREE.SphereGeometry( 0.5, 12, 8 ),
+					new THREE.DodecahedronGeometry( 0.5 ),
+					new THREE.CylinderGeometry( 0.5, 0.5, 1, 12 )
 				];
 
 				const content = document.getElementById( 'content' );
 
 				for ( let i = 0; i < 40; i ++ ) {
 
-					const scene = new FOUR.Scene();
+					const scene = new THREE.Scene();
 					scene.backgroundNode = color( 0xeeeeee );
 
 					// make a list item
@@ -124,7 +124,7 @@
 					scene.userData.element = sceneElement;
 					content.appendChild( element );
 
-					const camera = new FOUR.PerspectiveCamera( 50, 1, 1, 10 );
+					const camera = new THREE.PerspectiveCamera( 50, 1, 1, 10 );
 					camera.position.z = 2;
 					scene.userData.camera = camera;
 
@@ -138,20 +138,20 @@
 					// add one random mesh to each scene
 					const geometry = geometries[ geometries.length * Math.random() | 0 ];
 
-					const material = new FOUR.MeshStandardMaterial( {
+					const material = new THREE.MeshStandardMaterial( {
 
-						color: new FOUR.Color().setHSL( Math.random(), 1, 0.75, FOUR.SRGBColorSpace ),
+						color: new THREE.Color().setHSL( Math.random(), 1, 0.75, THREE.SRGBColorSpace ),
 						roughness: 0.5,
 						metalness: 0,
 						flatShading: true
 
 					} );
 
-					scene.add( new FOUR.Mesh( geometry, material ) );
+					scene.add( new THREE.Mesh( geometry, material ) );
 
-					scene.add( new FOUR.HemisphereLight( 0xaaaaaa, 0x444444, 3 ) );
+					scene.add( new THREE.HemisphereLight( 0xaaaaaa, 0x444444, 3 ) );
 
-					const light = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+					const light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 					light.position.set( 1, 1, 1 );
 					scene.add( light );
 
@@ -160,7 +160,7 @@
 				}
 
 
-				renderer = new FOUR.WebGPURenderer( { canvas: canvas, antialias: true } );
+				renderer = new THREE.WebGPURenderer( { canvas: canvas, antialias: true } );
 				renderer.setClearColor( 0xffffff, 1 );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setAnimationLoop( animate );

@@ -6,10 +6,10 @@ Post processing node for creating an after image effect.
 
 ## Import
 
-AfterImageNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AfterImageNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { afterImage } from '@tnb1j/4js/addons/tsl/display/AfterImageNode.js';
+import { afterImage } from 'three/addons/tsl/display/AfterImageNode.js';
 ```
 
 ## Constructor
@@ -94,4 +94,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/AfterImageNode.js](../../examples/jsm/tsl/display/AfterImageNode.js)
+[examples/jsm/tsl/display/AfterImageNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/AfterImageNode.js)

@@ -12,7 +12,7 @@ Constructs a new uniform node.
 
 **value**
 
-The value of this node. Usually a JS primitive or 4.js object (vector, matrix, color, texture).
+The value of this node. Usually a JS primitive or three.js object (vector, matrix, color, texture).
 
 **nodeType**
 
@@ -47,6 +47,16 @@ Default is `''`.
 Returns the [UniformNode#groupNode](UniformNode.html#groupNode).
 
 **Returns:** The uniform group.
+
+### .getSharedNode( builder : NodeBuilder ) : UniformNode
+
+Uniform nodes with the same hash share a single uniform. This method returns the node the shared uniform refers to which is the first node registered for the hash.
+
+**builder**
+
+The current node builder.
+
+**Returns:** The node the shared uniform refers to.
 
 ### .getUniformHash( builder : NodeBuilder ) : string
 
@@ -92,4 +102,4 @@ The name of the uniform.
 
 ## Source
 
-[src/nodes/core/UniformNode.js](../../src/nodes/core/UniformNode.js)
+[src/nodes/core/UniformNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/UniformNode.js)

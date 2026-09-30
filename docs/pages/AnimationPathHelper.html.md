@@ -14,10 +14,10 @@ scene.add( helper );
 
 ## Import
 
-AnimationPathHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+AnimationPathHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { AnimationPathHelper } from '@tnb1j/4js/addons/helpers/AnimationPathHelper.js';
+import { AnimationPathHelper } from 'three/addons/helpers/AnimationPathHelper.js';
 ```
 
 ## Constructor
@@ -114,6 +114,8 @@ The root object containing the animation clips.
 
 Frees the GPU-related resources allocated by this instance.
 
+**Overrides:** [Object3D#dispose](Object3D.html#dispose)
+
 ### .setColor( color : number | Color | string )
 
 Sets the path line color.
@@ -142,4 +144,4 @@ Force matrix update.
 
 ## Source
 
-[examples/jsm/helpers/AnimationPathHelper.js](../../examples/jsm/helpers/AnimationPathHelper.js)
+[examples/jsm/helpers/AnimationPathHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/AnimationPathHelper.js)

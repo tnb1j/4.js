@@ -27,26 +27,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, pass, texture3D, uniform, renderOutput } from '@tnb1j/4js/tsl';
-			import { lut3D } from '@tnb1j/4js/addons/tsl/display/Lut3DNode.js';
+			import * as THREE from 'three/webgpu';
+			import { mix, mul, oneMinus, positionLocal, smoothstep, texture, time, rotateUV, Fn, uv, vec2, vec3, vec4, pass, texture3D, uniform, renderOutput } from 'three/tsl';
+			import { lut3D } from 'three/addons/tsl/display/Lut3DNode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { LUTCubeLoader } from '@tnb1j/4js/addons/loaders/LUTCubeLoader.js';
-			import { LUT3dlLoader } from '@tnb1j/4js/addons/loaders/LUT3dlLoader.js';
-			import { LUTImageLoader } from '@tnb1j/4js/addons/loaders/LUTImageLoader.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { LUTCubeLoader } from 'three/addons/loaders/LUTCubeLoader.js';
+			import { LUT3dlLoader } from 'three/addons/loaders/LUT3dlLoader.js';
+			import { LUTImageLoader } from 'three/addons/loaders/LUTImageLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			const params = {
 				lut: 'Bourbon 64.CUBE',
@@ -71,16 +71,16 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 8, 10, 12 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				// Loaders
 
 				const gltfLoader = new GLTFLoader();
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 
 				// LUTs
 
@@ -129,19 +129,19 @@
 
 				// geometry
 
-				const smokeGeometry = new FOUR.PlaneGeometry( 1, 1, 16, 64 );
+				const smokeGeometry = new THREE.PlaneGeometry( 1, 1, 16, 64 );
 				smokeGeometry.translate( 0, 0.5, 0 );
 				smokeGeometry.scale( 1.5, 6, 1.5 );
 
 				// texture
 
 				const noiseTexture = textureLoader.load( './textures/noises/perlin/128x128.png' );
-				noiseTexture.wrapS = FOUR.RepeatWrapping;
-				noiseTexture.wrapT = FOUR.RepeatWrapping;
+				noiseTexture.wrapS = THREE.RepeatWrapping;
+				noiseTexture.wrapT = THREE.RepeatWrapping;
 
 				// material
 
-				const smokeMaterial = new FOUR.MeshBasicNodeMaterial( { transparent: true, side: FOUR.DoubleSide, depthWrite: false } );
+				const smokeMaterial = new THREE.MeshBasicNodeMaterial( { transparent: true, side: THREE.DoubleSide, depthWrite: false } );
 
 				// position
 
@@ -195,13 +195,13 @@
 
 				// mesh
 
-				const smoke = new FOUR.Mesh( smokeGeometry, smokeMaterial );
+				const smoke = new THREE.Mesh( smokeGeometry, smokeMaterial );
 				smoke.position.y = 1.83;
 				scene.add( smoke );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -210,7 +210,7 @@
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// ignore default output color transform ( toneMapping and outputColorSpace )
 				// use renderOutput() for control the sequence

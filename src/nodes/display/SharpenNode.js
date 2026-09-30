@@ -4,9 +4,15 @@ import { Vector2 } from '../../math/Vector2.js';
 import NodeMaterial from '../../materials/nodes/NodeMaterial.js';
 import * as RendererUtils from '../../renderers/common/RendererUtils.js';
 import QuadMesh from '../../renderers/common/QuadMesh.js';
-import { NodeUpdateType } from '../core/constants.js';
 import TempNode from '../core/TempNode.js';
-import { Fn, float, vec3, vec4, ivec2, int, uv, floor, abs, max, min, exp2, nodeObject, passTexture, textureSize, textureLoad, convertToTexture } from '../TSL.js';
+import { Fn, float, vec3, vec4, ivec2, int, nodeObject } from '../tsl/TSLBase.js';
+import { uv } from '../accessors/UV.js';
+import { floor, abs, max, min, exp2 } from '../math/MathNode.js';
+import { passTexture } from './PassNode.js';
+import { textureLoad } from '../accessors/TextureNode.js';
+import { textureSize } from '../accessors/TextureSizeNode.js';
+import { convertToTexture } from '../utils/RTTNode.js';
+import { NodeUpdateType } from '../core/constants.js';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();

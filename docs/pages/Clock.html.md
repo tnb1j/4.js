@@ -72,4 +72,4 @@ Stops the clock.
 
 ## Source
 
-[src/core/Clock.js](../../src/core/Clock.js)
+[src/core/Clock.js](https://github.com/mrdoob/three.js/blob/master/src/core/Clock.js)

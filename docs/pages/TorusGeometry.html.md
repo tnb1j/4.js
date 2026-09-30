@@ -7,9 +7,9 @@ A geometry class for representing an torus.
 ## Code Example
 
 ```js
-const geometry = new FOUR.TorusGeometry( 10, 3, 16, 100 );
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const torus = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const torus = new THREE.Mesh( geometry, material );
 scene.add( torus );
 ```
 
@@ -81,4 +81,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/TorusGeometry.js](../../src/geometries/TorusGeometry.js)
+[src/geometries/TorusGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/TorusGeometry.js)

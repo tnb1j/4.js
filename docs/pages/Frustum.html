@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Frustum - 4.js Docs</title>
+	<title>Frustum - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -142,6 +142,10 @@ frustum can safely be excluded from rendering.</p>
 					<div class="method">
 						<div class="description">
 							<p>Returns <code>true</code> if the given bounding box is intersecting this frustum.</p>
+<p>This is a fast, conservative test that favors performance over precision. It can
+report false positives for large boxes that lie outside the frustum but are not
+separated by a single frustum plane. It never reports false negatives, so it is
+safe for culling.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -185,6 +189,9 @@ frustum can safely be excluded from rendering.</p>
 					<div class="method">
 						<div class="description">
 							<p>Returns <code>true</code> if the given bounding sphere is intersecting this frustum.</p>
+<p>This is a fast, conservative test that favors performance over precision. It can
+report false positives for spheres that lie outside the frustum but are not separated
+by a single frustum plane. It never reports false negatives, so it is safe for culling.</p>
 						</div>
 						<table class="params">
 							<tbody>
@@ -324,7 +331,7 @@ frustum can safely be excluded from rendering.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/math/Frustum.js" translate="no">src/math/Frustum.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/math/Frustum.js" translate="no" target="_blank" rel="noopener">src/math/Frustum.js</a>
 				</p>
 			</article>
 		</section>

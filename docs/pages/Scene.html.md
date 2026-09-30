@@ -2,7 +2,7 @@
 
 # Scene
 
-Scenes allow you to set up what is to be rendered and where by 4.js. This is where you place 3D objects like meshes, lines or lights.
+Scenes allow you to set up what is to be rendered and where by three.js. This is where you place 3D objects like meshes, lines or lights.
 
 ## Constructor
 
@@ -78,4 +78,4 @@ Default is `null`.
 
 ## Source
 
-[src/scenes/Scene.js](../../src/scenes/Scene.js)
+[src/scenes/Scene.js](https://github.com/mrdoob/three.js/blob/master/src/scenes/Scene.js)

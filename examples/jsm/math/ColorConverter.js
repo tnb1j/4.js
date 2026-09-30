@@ -1,4 +1,4 @@
-import { MathUtils } from '@tnb1j/4js';
+import { MathUtils } from 'three';
 
 const _hsl = {};
 
@@ -6,7 +6,7 @@ const _hsl = {};
  * A utility class with helper functions for color conversion.
  *
  * @hideconstructor
- * @four_import import { ColorConverter } from '@tnb1j/4js/addons/math/ColorConverter.js';
+ * @three_import import { ColorConverter } from 'three/addons/math/ColorConverter.js';
  */
 class ColorConverter {
 

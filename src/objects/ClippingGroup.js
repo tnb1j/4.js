@@ -3,7 +3,7 @@ import { Group } from './Group.js';
 /**
  * In earlier 4.js versions, clipping was defined globally
  * on the renderer or on material level. This special version of
- * `FOUR.Group` allows to encode the clipping state into the scene
+ * `THREE.Group` allows to encode the clipping state into the scene
  * graph. Meaning if you create an instance of this group, all
  * descendant 3D objects will be affected by the respective clipping
  * planes.

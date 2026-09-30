@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PointsNodeMaterial - 4.js Docs</title>
+	<title>PointsNodeMaterial - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -19,13 +19,13 @@
 <li>By rendering point primitives with <a href="Points.html">Points</a>. Since WebGPU only supports point primitives
 with a pixel size of <code>1</code>, it's not possible to define a size.</li>
 </ul>
-<pre><code class="language-js">const pointCloud = new FOUR.Points( geometry, new FOUR.PointsNodeMaterial() );
+<pre><code class="language-js">const pointCloud = new THREE.Points( geometry, new THREE.PointsNodeMaterial() );
 </code></pre>
 <ul>
 <li>By rendering point primitives with Sprites. In this case, size is honored,
 see <a href="PointsNodeMaterial.html#sizeNode">PointsNodeMaterial#sizeNode</a>.</li>
 </ul>
-<pre><code class="language-js">const instancedPoints = new FOUR.Sprite( new FOUR.PointsNodeMaterial( { positionNode: instancedBufferAttribute( positionAttribute ) } ) );
+<pre><code class="language-js">const instancedPoints = new THREE.Sprite( new THREE.PointsNodeMaterial( { positionNode: instancedBufferAttribute( positionAttribute ) } ) );
 </code></pre></div>
 			</header>
 			<article>
@@ -81,7 +81,7 @@ the material should be used with <a href="Sprite.html">Sprite</a> and instancing
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/materials/nodes/PointsNodeMaterial.js" translate="no">src/materials/nodes/PointsNodeMaterial.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/PointsNodeMaterial.js" translate="no" target="_blank" rel="noopener">src/materials/nodes/PointsNodeMaterial.js</a>
 				</p>
 			</article>
 		</section>

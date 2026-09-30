@@ -62,4 +62,4 @@ Defines the outline's thickness.
 
 ## Source
 
-[src/nodes/display/ToonOutlinePassNode.js](../../src/nodes/display/ToonOutlinePassNode.js)
+[src/nodes/display/ToonOutlinePassNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ToonOutlinePassNode.js)

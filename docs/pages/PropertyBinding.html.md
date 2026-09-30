@@ -114,4 +114,4 @@ Node name to be sanitized.
 
 ## Source
 
-[src/animation/PropertyBinding.js](../../src/animation/PropertyBinding.js)
+[src/animation/PropertyBinding.js](https://github.com/mrdoob/three.js/blob/master/src/animation/PropertyBinding.js)

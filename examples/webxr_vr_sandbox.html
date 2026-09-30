@@ -12,26 +12,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { Reflector } from '@tnb1j/4js/addons/objects/Reflector.js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { Reflector } from 'three/addons/objects/Reflector.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
 
-			import { HTMLMesh } from '@tnb1j/4js/addons/interactive/HTMLMesh.js';
-			import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
+			import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
+			import { InteractiveGroup } from 'three/addons/interactive/InteractiveGroup.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let camera, scene, renderer;
 			let reflector;
@@ -51,43 +51,43 @@
 
 			function init() {
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				new HDRLoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'moonless_golf_1k.hdr', function ( texture ) {
 
-						texture.mapping = FOUR.EquirectangularReflectionMapping;
+						texture.mapping = THREE.EquirectangularReflectionMapping;
 
 						scene.background = texture;
 						scene.environment = texture;
 
 					} );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 1.5 );
 
 				//
 
-				const torusGeometry = new FOUR.TorusKnotGeometry( ...Object.values( parameters ) );
-				const torusMaterial = new FOUR.MeshPhysicalMaterial( {
-					transmission: 1.0, roughness: 0, metalness: 0.25, thickness: 0.5, side: FOUR.DoubleSide
+				const torusGeometry = new THREE.TorusKnotGeometry( ...Object.values( parameters ) );
+				const torusMaterial = new THREE.MeshPhysicalMaterial( {
+					transmission: 1.0, roughness: 0, metalness: 0.25, thickness: 0.5, side: THREE.DoubleSide
 				} );
-				const torus = new FOUR.Mesh( torusGeometry, torusMaterial );
+				const torus = new THREE.Mesh( torusGeometry, torusMaterial );
 				torus.name = 'torus';
 				torus.position.y = 1.5;
 				torus.position.z = - 2;
 				scene.add( torus );
 
-				const cylinderGeometry = new FOUR.CylinderGeometry( 1, 1, 0.1, 50 );
-				const cylinderMaterial = new FOUR.MeshLambertMaterial();
-				const cylinder = new FOUR.Mesh( cylinderGeometry, cylinderMaterial );
+				const cylinderGeometry = new THREE.CylinderGeometry( 1, 1, 0.1, 50 );
+				const cylinderMaterial = new THREE.MeshLambertMaterial();
+				const cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
 				cylinder.position.z = - 2;
 				scene.add( cylinder );
 
 				//
 
-				reflector = new Reflector( new FOUR.PlaneGeometry( 2, 2 ), {
+				reflector = new Reflector( new THREE.PlaneGeometry( 2, 2 ), {
 					textureWidth: window.innerWidth,
 					textureHeight: window.innerHeight
 				} );
@@ -97,21 +97,21 @@
 				reflector.rotation.y = - Math.PI / 4;
 				scene.add( reflector );
 
-				const frameGeometry = new FOUR.BoxGeometry( 2.1, 2.1, 0.1 );
-				const frameMaterial = new FOUR.MeshLambertMaterial( { color: 0x888888 } );
-				const frame = new FOUR.Mesh( frameGeometry, frameMaterial );
+				const frameGeometry = new THREE.BoxGeometry( 2.1, 2.1, 0.1 );
+				const frameMaterial = new THREE.MeshLambertMaterial( { color: 0x888888 } );
+				const frame = new THREE.Mesh( frameGeometry, frameMaterial );
 				frame.position.z = - 0.07;
 				reflector.add( frame );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.autoClear = false;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.xr.enabled = true;
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 				document.body.appendChild( renderer.domElement );
 
@@ -121,15 +121,15 @@
 
 				//
 
-				const geometry = new FOUR.BufferGeometry();
-				geometry.setFromPoints( [ new FOUR.Vector3( 0, 0, 0 ), new FOUR.Vector3( 0, 0, - 5 ) ] );
+				const geometry = new THREE.BufferGeometry();
+				geometry.setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 5 ) ] );
 
 				const controller1 = renderer.xr.getController( 0 );
-				controller1.add( new FOUR.Line( geometry ) );
+				controller1.add( new THREE.Line( geometry ) );
 				scene.add( controller1 );
 
 				const controller2 = renderer.xr.getController( 1 );
-				controller2.add( new FOUR.Line( geometry ) );
+				controller2.add( new THREE.Line( geometry ) );
 				scene.add( controller2 );
 
 				//
@@ -149,7 +149,7 @@
 				function onChange() {
 
 					torus.geometry.dispose();
-					torus.geometry = new FOUR.TorusKnotGeometry( ...Object.values( parameters ) );
+					torus.geometry = new THREE.TorusKnotGeometry( ...Object.values( parameters ) );
 
 				}
 

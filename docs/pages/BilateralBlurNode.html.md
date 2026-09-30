@@ -10,10 +10,10 @@ Reference: [https://en.wikipedia.org/wiki/Bilateral\_filter](https://en.wikipedi
 
 ## Import
 
-BilateralBlurNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BilateralBlurNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { bilateralBlur } from '@tnb1j/4js/addons/tsl/display/BilateralBlurNode.js';
+import { bilateralBlur } from 'three/addons/tsl/display/BilateralBlurNode.js';
 ```
 
 ## Constructor
@@ -124,4 +124,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/BilateralBlurNode.js](../../examples/jsm/tsl/display/BilateralBlurNode.js)
+[examples/jsm/tsl/display/BilateralBlurNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/BilateralBlurNode.js)

@@ -1,6 +1,6 @@
 # ColladaComposer
 
-ColladaComposer converts parsed library data into 4.js objects.
+ColladaComposer converts parsed library data into Three.js objects.
 
 ## Constructor
 
@@ -8,4 +8,4 @@ ColladaComposer converts parsed library data into 4.js objects.
 
 ## Source
 
-[examples/jsm/loaders/collada/ColladaComposer.js](../../examples/jsm/loaders/collada/ColladaComposer.js)
+[examples/jsm/loaders/collada/ColladaComposer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/collada/ColladaComposer.js)

@@ -8,13 +8,13 @@ A special type of camera that is positioned in 3D space to render its surroundin
 
 ```js
 // Create cube render target
-const cubeRenderTarget = new FOUR.WebGLCubeRenderTarget( 256, { generateMipmaps: true, minFilter: FOUR.LinearMipmapLinearFilter } );
+const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 256, { generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter } );
 // Create cube camera
-const cubeCamera = new FOUR.CubeCamera( 1, 100000, cubeRenderTarget );
+const cubeCamera = new THREE.CubeCamera( 1, 100000, cubeRenderTarget );
 scene.add( cubeCamera );
 // Create car
-const chromeMaterial = new FOUR.MeshLambertMaterial( { color: 0xffffff, envMap: cubeRenderTarget.texture } );
-const car = new FOUR.Mesh( carGeometry, chromeMaterial );
+const chromeMaterial = new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: cubeRenderTarget.texture } );
+const car = new THREE.Mesh( carGeometry, chromeMaterial );
 scene.add( car );
 // Update the render target cube
 car.visible = false;
@@ -81,4 +81,4 @@ Must be called when the coordinate system of the cube camera is changed.
 
 ## Source
 
-[src/cameras/CubeCamera.js](../../src/cameras/CubeCamera.js)
+[src/cameras/CubeCamera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/CubeCamera.js)

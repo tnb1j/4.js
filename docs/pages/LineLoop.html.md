@@ -28,4 +28,4 @@ Default is `true`.
 
 ## Source
 
-[src/objects/LineLoop.js](../../src/objects/LineLoop.js)
+[src/objects/LineLoop.js](https://github.com/mrdoob/three.js/blob/master/src/objects/LineLoop.js)

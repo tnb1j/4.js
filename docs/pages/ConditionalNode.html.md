@@ -64,4 +64,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/math/ConditionalNode.js](../../src/nodes/math/ConditionalNode.js)
+[src/nodes/math/ConditionalNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/math/ConditionalNode.js)

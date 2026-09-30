@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
-			import { XRControllerModelFactory } from '@tnb1j/4js/addons/webxr/XRControllerModelFactory.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { XRButton } from 'three/addons/webxr/XRButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -37,7 +37,7 @@
 			let controller1, controller2;
 			let controllerGrip1, controllerGrip2;
 
-			const box = new FOUR.Box3();
+			const box = new THREE.Box3();
 
 			let controls, group;
 
@@ -48,29 +48,29 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x808080 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x808080 );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
 
-				listener = new FOUR.AudioListener();
+				listener = new THREE.AudioListener();
 				camera.add( listener );
 
 				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
-				const floorGeometry = new FOUR.PlaneGeometry( 4, 4 );
-				const floorMaterial = new FOUR.ShadowMaterial( { opacity: 0.25, blending: FOUR.CustomBlending, transparent: false } );
-				const floor = new FOUR.Mesh( floorGeometry, floorMaterial );
+				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
+				const floorMaterial = new THREE.ShadowMaterial( { opacity: 0.25, blending: THREE.CustomBlending, transparent: false } );
+				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
 
-				scene.add( new FOUR.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0xbcbcbc, 0xa5a5a5, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0, 6, 0 );
 				light.castShadow = true;
 				light.shadow.camera.top = 2;
@@ -80,7 +80,7 @@
 				light.shadow.mapSize.set( 4096, 4096 );
 				scene.add( light );
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 				group.position.z = - 0.5;
 				scene.add( group );
 				const BOXES = 10;
@@ -90,15 +90,15 @@
 					const intensity = ( i + 1 ) / BOXES;
 					const w = 0.1;
 					const h = 0.05 * i + 0.5;
-					const geometry = new FOUR.BoxGeometry( w, h, w );
+					const geometry = new THREE.BoxGeometry( w, h, w );
 					geometry.translate( 0, h / 2, 0 );
-					const material = new FOUR.MeshStandardMaterial( {
-						color: new FOUR.Color( intensity, 0.1, 0.1 ),
+					const material = new THREE.MeshStandardMaterial( {
+						color: new THREE.Color( intensity, 0.1, 0.1 ),
 						roughness: 0.7,
 						metalness: 0.0
 					} );
 
-					const object = new FOUR.Mesh( geometry, material );
+					const object = new THREE.Mesh( geometry, material );
 					object.position.x = ( i - 5 ) * ( w + 0.05 );
 					object.castShadow = true;
 					object.receiveShadow = true;
@@ -113,7 +113,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -157,7 +157,7 @@
 				oscillator.type = 'sine';
 				oscillator.start();
 
-				const audio = new FOUR.PositionalAudio( listener );
+				const audio = new THREE.PositionalAudio( listener );
 				audio.setNodeSource( oscillator );
 				audio.setRefDistance( 20 );
 				audio.setVolume( 0 );

@@ -9,7 +9,7 @@ This loader does not support node materials. Use [NodeMaterialLoader](NodeMateri
 ## Code Example
 
 ```js
-const loader = new FOUR.MaterialLoader();
+const loader = new THREE.MaterialLoader();
 const material = await loader.loadAsync( 'material.json' );
 ```
 
@@ -111,4 +111,4 @@ The material class.
 
 ## Source
 
-[src/loaders/MaterialLoader.js](../../src/loaders/MaterialLoader.js)
+[src/loaders/MaterialLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/MaterialLoader.js)

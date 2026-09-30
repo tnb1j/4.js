@@ -18,10 +18,10 @@ const json = pdb.json;
 
 ## Import
 
-PDBLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PDBLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PDBLoader } from '@tnb1j/4js/addons/loaders/PDBLoader.js';
+import { PDBLoader } from 'three/addons/loaders/PDBLoader.js';
 ```
 
 ## Constructor
@@ -72,4 +72,4 @@ The raw PDB data as a string.
 
 ## Source
 
-[examples/jsm/loaders/PDBLoader.js](../../examples/jsm/loaders/PDBLoader.js)
+[examples/jsm/loaders/PDBLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/PDBLoader.js)

@@ -52,4 +52,4 @@ The result buffer.
 
 ## Source
 
-[src/animation/tracks/QuaternionKeyframeTrack.js](../../src/animation/tracks/QuaternionKeyframeTrack.js)
+[src/animation/tracks/QuaternionKeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/tracks/QuaternionKeyframeTrack.js)

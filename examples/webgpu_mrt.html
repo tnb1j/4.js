@@ -25,25 +25,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { output, normalView, pass, step, diffuseColor, emissive, packNormalToRGB, screenUV, mix, mrt, Fn } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { output, normalView, pass, step, diffuseColor, emissive, packNormalToRGB, screenUV, mix, mrt, Fn } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let camera, scene, renderer;
 			let renderPipeline;
@@ -57,16 +57,16 @@
 
 				// scene
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
 				camera.position.set( - 1.8, 0.6, 2.7 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				new UltraHDRLoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_2k.hdr.jpg', function ( texture ) {
 
-						texture.mapping = FOUR.EquirectangularReflectionMapping;
+						texture.mapping = THREE.EquirectangularReflectionMapping;
 
 						scene.background = texture;
 						scene.environment = texture;
@@ -84,17 +84,17 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, requiredLimits: { maxColorAttachments: 5 } } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, requiredLimits: { maxColorAttachments: 5 } } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.inspector = new Inspector();
 				container.appendChild( renderer.domElement );
 
 				// post processing
 
-				const scenePass = pass( scene, camera, { minFilter: FOUR.NearestFilter, magFilter: FOUR.NearestFilter } );
+				const scenePass = pass( scene, camera, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter } );
 				scenePass.setMRT( mrt( {
 					output: output,
 					normal: packNormalToRGB( normalView ),
@@ -108,11 +108,11 @@
 				const diffuseTexture = scenePass.getTexture( 'diffuse' );
 				const emissiveTexture = scenePass.getTexture( 'emissive' );
 
-				normalTexture.type = diffuseTexture.type = emissiveTexture.type = FOUR.UnsignedByteType;
+				normalTexture.type = diffuseTexture.type = emissiveTexture.type = THREE.UnsignedByteType;
 
 				// post processing - mrt
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				renderPipeline.outputColorTransform = false;
 				renderPipeline.outputNode = Fn( () => {
 

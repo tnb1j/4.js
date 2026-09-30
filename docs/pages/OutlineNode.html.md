@@ -7,14 +7,14 @@ Post processing node for rendering outlines around selected objects. The node gi
 ## Code Example
 
 ```js
-const renderPipeline = new FOUR.RenderPipeline( renderer );
+const renderPipeline = new THREE.RenderPipeline( renderer );
 const scenePass = pass( scene, camera );
 // outline parameter
 const edgeStrength = uniform( 3.0 );
 const edgeGlow = uniform( 0.0 );
 const edgeThickness = uniform( 1.0 );
-const visibleEdgeColor = uniform( new FOUR.Color( 0xffffff ) );
-const hiddenEdgeColor = uniform( new FOUR.Color( 0x4e3636 ) );
+const visibleEdgeColor = uniform( new THREE.Color( 0xffffff ) );
+const hiddenEdgeColor = uniform( new THREE.Color( 0x4e3636 ) );
 outlinePass = outline( scene, camera, {
 	selectedObjects,
 	edgeGlow,
@@ -28,10 +28,10 @@ renderPipeline.outputNode = outlineColor.add( scenePass );
 
 ## Import
 
-OutlineNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OutlineNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { outline } from '@tnb1j/4js/addons/tsl/display/OutlineNode.js';
+import { outline } from 'three/addons/tsl/display/OutlineNode.js';
 ```
 
 ## Constructor
@@ -166,4 +166,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/OutlineNode.js](../../examples/jsm/tsl/display/OutlineNode.js)
+[examples/jsm/tsl/display/OutlineNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/OutlineNode.js)

@@ -112,7 +112,7 @@ class RangeNode extends Node {
 
 		if ( output === null ) {
 
-			throw new NodeError( 'FOUR.TSL: No "ConstNode" found in node graph.', this.stackTrace );
+			throw new NodeError( 'THREE.TSL: No "ConstNode" found in node graph.', this.stackTrace );
 
 		}
 

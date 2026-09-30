@@ -58,22 +58,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { TessellateModifier } from '@tnb1j/4js/addons/modifiers/TessellateModifier.js';
-			import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
-			import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { TessellateModifier } from 'three/addons/modifiers/TessellateModifier.js';
+			import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+			import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 			let renderer, scene, camera, stats;
 
@@ -93,15 +93,15 @@
 
 			function init( font ) {
 
-				camera = new FOUR.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
 				camera.position.set( - 100, 100, 200 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x050505 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x050505 );
 
 				//
 
-				let geometry = new TextGeometry( 'FOUR.JS', {
+				let geometry = new TextGeometry( 'THREE.JS', {
 
 					font: font,
 
@@ -128,7 +128,7 @@
 				const colors = new Float32Array( numFaces * 3 * 3 );
 				const displacement = new Float32Array( numFaces * 3 * 3 );
 
-				const color = new FOUR.Color();
+				const color = new THREE.Color();
 
 				for ( let f = 0; f < numFaces; f ++ ) {
 
@@ -156,8 +156,8 @@
 
 				}
 
-				geometry.setAttribute( 'customColor', new FOUR.BufferAttribute( colors, 3 ) );
-				geometry.setAttribute( 'displacement', new FOUR.BufferAttribute( displacement, 3 ) );
+				geometry.setAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'displacement', new THREE.BufferAttribute( displacement, 3 ) );
 
 				//
 
@@ -167,7 +167,7 @@
 
 				};
 
-				const shaderMaterial = new FOUR.ShaderMaterial( {
+				const shaderMaterial = new THREE.ShaderMaterial( {
 
 					uniforms: uniforms,
 					vertexShader: document.getElementById( 'vertexshader' ).textContent,
@@ -177,11 +177,11 @@
 
 				//
 
-				mesh = new FOUR.Mesh( geometry, shaderMaterial );
+				mesh = new THREE.Mesh( geometry, shaderMaterial );
 
 				scene.add( mesh );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( WIDTH, HEIGHT );
 				renderer.setAnimationLoop( animate );

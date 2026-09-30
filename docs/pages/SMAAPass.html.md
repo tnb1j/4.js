@@ -13,10 +13,10 @@ composer.addPass( smaaPass );
 
 ## Import
 
-SMAAPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SMAAPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SMAAPass } from '@tnb1j/4js/addons/postprocessing/SMAAPass.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 ```
 
 ## Constructor
@@ -75,4 +75,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/SMAAPass.js](../../examples/jsm/postprocessing/SMAAPass.js)
+[examples/jsm/postprocessing/SMAAPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/SMAAPass.js)

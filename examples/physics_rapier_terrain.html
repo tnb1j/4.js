@@ -20,18 +20,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RapierPhysics } from '@tnb1j/4js/addons/physics/RapierPhysics.js';
+			import * as THREE from 'three';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RapierPhysics } from 'three/addons/physics/RapierPhysics.js';
 
 			// Heightfield parameters
 			const terrainWidthExtents = 100;
@@ -47,7 +47,7 @@
 			let container, stats;
 			let camera, scene, renderer;
 			let terrainMesh;
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			// Physics variables
@@ -75,7 +75,7 @@
 			function initGraphics() {
 
 				container = document.getElementById( 'container' );
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				// Remove setAnimationLoop from here since we'll start it after physics init
@@ -87,9 +87,9 @@
 				stats.domElement.style.top = '0px';
 				container.appendChild( stats.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xbfd1e5 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.2, 2000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xbfd1e5 );
 
 				camera.position.y = heightData[ terrainHalfWidth + terrainHalfDepth * terrainWidth ] * ( terrainMaxHeight - terrainMinHeight ) + 5;
 				camera.position.z = terrainDepthExtents / 2;
@@ -98,7 +98,7 @@
 				const controls = new OrbitControls( camera, renderer.domElement );
 				controls.enableZoom = false;
 
-				const geometry = new FOUR.PlaneGeometry( terrainWidthExtents, terrainDepthExtents, terrainWidth - 1, terrainDepth - 1 );
+				const geometry = new THREE.PlaneGeometry( terrainWidthExtents, terrainDepthExtents, terrainWidth - 1, terrainDepth - 1 );
 				geometry.rotateX( - Math.PI / 2 );
 
 				const vertices = geometry.attributes.position.array;
@@ -111,27 +111,27 @@
 
 				geometry.computeVertexNormals();
 
-				const groundMaterial = new FOUR.MeshPhongMaterial( { color: 0xC7C7C7 } );
-				terrainMesh = new FOUR.Mesh( geometry, groundMaterial );
+				const groundMaterial = new THREE.MeshPhongMaterial( { color: 0xC7C7C7 } );
+				terrainMesh = new THREE.Mesh( geometry, groundMaterial );
 				terrainMesh.receiveShadow = true;
 				terrainMesh.castShadow = true;
 				scene.add( terrainMesh );
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				textureLoader.load( 'textures/grid.png', function ( texture ) {
 
-					texture.wrapS = FOUR.RepeatWrapping;
-					texture.wrapT = FOUR.RepeatWrapping;
+					texture.wrapS = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping;
 					texture.repeat.set( terrainWidth - 1, terrainDepth - 1 );
 					groundMaterial.map = texture;
 					groundMaterial.needsUpdate = true;
 			
 				} );
 
-				const ambientLight = new FOUR.AmbientLight( 0xbbbbbb );
+				const ambientLight = new THREE.AmbientLight( 0xbbbbbb );
 				scene.add( ambientLight );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 100, 100, 50 );
 				light.castShadow = true;
 				const dLight = 200;
@@ -208,23 +208,23 @@
 
 					case 1: // Sphere
 						radius = 1 + Math.random() * objectSize;
-						threeObject = new FOUR.Mesh( new FOUR.SphereGeometry( radius, 20, 20 ), createObjectMaterial() );
+						threeObject = new THREE.Mesh( new THREE.SphereGeometry( radius, 20, 20 ), createObjectMaterial() );
 						break;
 					case 2: // Box
 						const sx = 1 + Math.random() * objectSize;
 						const sy = 1 + Math.random() * objectSize;
 						const sz = 1 + Math.random() * objectSize;
-						threeObject = new FOUR.Mesh( new FOUR.BoxGeometry( sx, sy, sz, 1, 1, 1 ), createObjectMaterial() );
+						threeObject = new THREE.Mesh( new THREE.BoxGeometry( sx, sy, sz, 1, 1, 1 ), createObjectMaterial() );
 						break;
 					case 3: // Cylinder
 						radius = 1 + Math.random() * objectSize;
 						height = 1 + Math.random() * objectSize;
-						threeObject = new FOUR.Mesh( new FOUR.CylinderGeometry( radius, radius, height, 20, 1 ), createObjectMaterial() );
+						threeObject = new THREE.Mesh( new THREE.CylinderGeometry( radius, radius, height, 20, 1 ), createObjectMaterial() );
 						break;
 					default: // Cone
 						radius = 1 + Math.random() * objectSize;
 						height = 2 + Math.random() * objectSize;
-						threeObject = new FOUR.Mesh( new FOUR.ConeGeometry( radius, height, 20, 2 ), createObjectMaterial() );
+						threeObject = new THREE.Mesh( new THREE.ConeGeometry( radius, height, 20, 2 ), createObjectMaterial() );
 						break;
 			
 				}
@@ -259,7 +259,7 @@
 			function createObjectMaterial() {
 
 				const c = Math.floor( Math.random() * ( 1 << 24 ) );
-				return new FOUR.MeshPhongMaterial( { color: c } );
+				return new THREE.MeshPhongMaterial( { color: c } );
 
 			}
 

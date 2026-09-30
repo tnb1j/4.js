@@ -52,19 +52,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			const API = {
 				thickness: 1
@@ -76,14 +76,14 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 500 );
 				camera.position.z = 200;
 
 				const controls = new OrbitControls( camera, renderer.domElement );
@@ -91,7 +91,7 @@
 				controls.enablePan = false;
 				controls.enableZoom = false;
 
-				new FOUR.BufferGeometryLoader().load( 'models/json/WaltHeadLo_buffergeometry.json', function ( geometry ) {
+				new THREE.BufferGeometryLoader().load( 'models/json/WaltHeadLo_buffergeometry.json', function ( geometry ) {
 
 					geometry.deleteAttribute( 'normal' );
 					geometry.deleteAttribute( 'uv' );
@@ -100,31 +100,31 @@
 
 					// left
 
-					const material1 = new FOUR.MeshBasicMaterial( {
+					const material1 = new THREE.MeshBasicMaterial( {
 
 						color: 0xe0e0ff,
 						wireframe: true
 
 					} );
 
-					const mesh1 = new FOUR.Mesh( geometry, material1 );
+					const mesh1 = new THREE.Mesh( geometry, material1 );
 					mesh1.position.set( - 40, 0, 0 );
 
 					scene.add( mesh1 );
 
 					// right
 
-					const material2 = new FOUR.ShaderMaterial( {
+					const material2 = new THREE.ShaderMaterial( {
 
 						uniforms: { 'thickness': { value: API.thickness } },
 						vertexShader: document.getElementById( 'vertexShader' ).textContent,
 						fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-						side: FOUR.DoubleSide,
+						side: THREE.DoubleSide,
 						alphaToCoverage: true // only works when WebGLRenderer's "antialias" is set to "true"
 
 					} );
 
-					mesh2 = new FOUR.Mesh( geometry, material2 );
+					mesh2 = new THREE.Mesh( geometry, material2 );
 					mesh2.position.set( 40, 0, 0 );
 
 					scene.add( mesh2 );
@@ -157,9 +157,9 @@
 			function setupAttributes( geometry ) {
 
 				const vectors = [
-					new FOUR.Vector3( 1, 0, 0 ),
-					new FOUR.Vector3( 0, 1, 0 ),
-					new FOUR.Vector3( 0, 0, 1 )
+					new THREE.Vector3( 1, 0, 0 ),
+					new THREE.Vector3( 0, 1, 0 ),
+					new THREE.Vector3( 0, 0, 1 )
 				];
 
 				const position = geometry.attributes.position;
@@ -171,7 +171,7 @@
 
 				}
 
-				geometry.setAttribute( 'center', new FOUR.BufferAttribute( centers, 3 ) );
+				geometry.setAttribute( 'center', new THREE.BufferAttribute( centers, 3 ) );
 
 			}
 

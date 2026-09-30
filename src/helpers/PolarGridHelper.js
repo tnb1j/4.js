@@ -14,7 +14,7 @@ import { Color } from '../math/Color.js';
  * const rings = 8;
  * const divisions = 64;
  *
- * const helper = new FOUR.PolarGridHelper( radius, sectors, rings, divisions );
+ * const helper = new THREE.PolarGridHelper( radius, sectors, rings, divisions );
  * scene.add( helper );
  * ```
  *
@@ -114,6 +114,8 @@ class PolarGridHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

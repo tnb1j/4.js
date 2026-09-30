@@ -9,7 +9,7 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 ## Code Example
 
 ```js
-const geometry = new FOUR.PlaneGeometry( 100, 100 );
+const geometry = new THREE.PlaneGeometry( 100, 100 );
 const refractor = new Refractor( refractorGeometry, {
 	color: 0xcbcbcb,
 	textureWidth: 1024,
@@ -20,10 +20,10 @@ scene.add( refractor );
 
 ## Import
 
-Refractor is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Refractor is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Refractor } from '@tnb1j/4js/addons/objects/Refractor.js';
+import { Refractor } from 'three/addons/objects/Refractor.js';
 ```
 
 ## Constructor
@@ -57,6 +57,8 @@ Default is `true`.
 ### .dispose()
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
 
 ### .getRenderTarget() : WebGLRenderTarget
 
@@ -112,4 +114,4 @@ Default is `4`.
 
 ## Source
 
-[examples/jsm/objects/Refractor.js](../../examples/jsm/objects/Refractor.js)
+[examples/jsm/objects/Refractor.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Refractor.js)

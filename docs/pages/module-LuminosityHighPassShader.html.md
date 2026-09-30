@@ -2,10 +2,10 @@
 
 ## Import
 
-LuminosityHighPassShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LuminosityHighPassShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LuminosityHighPassShader } from '@tnb1j/4js/addons/shaders/LuminosityHighPassShader.js';
+import { LuminosityHighPassShader } from 'three/addons/shaders/LuminosityHighPassShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Luminosity high pass shader.
 
 ## Source
 
-[examples/jsm/shaders/LuminosityHighPassShader.js](../../examples/jsm/shaders/LuminosityHighPassShader.js)
+[examples/jsm/shaders/LuminosityHighPassShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/LuminosityHighPassShader.js)

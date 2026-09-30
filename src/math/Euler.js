@@ -17,8 +17,8 @@ const _quaternion = /*@__PURE__*/ new Quaternion();
  * order) in the corresponding order.
  *
  * ```js
- * const a = new FOUR.Euler( 0, 1, 1.57, 'XYZ' );
- * const b = new FOUR.Vector3( 1, 0, 1 );
+ * const a = new THREE.Euler( 0, 1, 1.57, 'XYZ' );
+ * const b = new THREE.Vector3( 1, 0, 1 );
  * b.applyEuler(a);
  * ```
  */

@@ -7,9 +7,9 @@ A material for rendering instances of [Sprite](Sprite.html).
 ## Code Example
 
 ```js
-const map = new FOUR.TextureLoader().load( 'textures/sprite.png' );
-const material = new FOUR.SpriteMaterial( { map: map, color: 0xffffff } );
-const sprite = new FOUR.Sprite( material );
+const map = new THREE.TextureLoader().load( 'textures/sprite.png' );
+const material = new THREE.SpriteMaterial( { map: map, color: 0xffffff } );
+const sprite = new THREE.Sprite( material );
 sprite.scale.set(200, 200, 1)
 scene.add( sprite );
 ```
@@ -84,4 +84,4 @@ Default is `true`.
 
 ## Source
 
-[src/materials/SpriteMaterial.js](../../src/materials/SpriteMaterial.js)
+[src/materials/SpriteMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/SpriteMaterial.js)

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>BufferAttributeNode - 4.js Docs</title>
+	<title>BufferAttributeNode - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -13,16 +13,16 @@
 	<h1 translate="no">BufferAttributeNode</h1>
 		<section>
 			<header>
-				<div class="class-description"><p>In earlier <code>4.js</code> versions it was only possible to define attribute data
+				<div class="class-description"><p>In earlier <code>three.js</code> versions it was only possible to define attribute data
 on geometry level. With <code>BufferAttributeNode</code>, it is also possible to do this
 on the node level.</p>
-<pre><code class="language-js">const geometry = new FOUR.PlaneGeometry();
+<pre><code class="language-js">const geometry = new THREE.PlaneGeometry();
 const positionAttribute = geometry.getAttribute( 'position' );
 const colors = [];
 for ( let i = 0; i &lt; position.count; i ++ ) {
 	colors.push( 1, 0, 0 );
 }
-material.colorNode = bufferAttribute( new FOUR.Float32BufferAttribute( colors, 3 ) );
+material.colorNode = bufferAttribute( new THREE.Float32BufferAttribute( colors, 3 ) );
 </code></pre>
 <p>This new approach is especially interesting when geometry data are generated via
 compute shaders. The below line converts a storage buffer into an attribute node.</p>
@@ -134,7 +134,7 @@ compute shaders. The below line converts a storage buffer into an attribute node
 				<div class="member">
 					<h3 class="name" id="usage" translate="no">.<a href="#usage">usage</a><span class="type-signature"> : number</span> </h3>
 					<div class="description">
-						<p>The usage property. Set this to <code>FOUR.DynamicDrawUsage</code> via <code>.setUsage()</code>,
+						<p>The usage property. Set this to <code>THREE.DynamicDrawUsage</code> via <code>.setUsage()</code>,
 if you are planning to update the attribute data per frame.</p>
 						<p>Default is <code>StaticDrawUsage</code>.</p>
 					</div>
@@ -305,7 +305,7 @@ creates an internal attribute and configures it respectively.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/nodes/accessors/BufferAttributeNode.js" translate="no">src/nodes/accessors/BufferAttributeNode.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/BufferAttributeNode.js" translate="no" target="_blank" rel="noopener">src/nodes/accessors/BufferAttributeNode.js</a>
 				</p>
 			</article>
 		</section>

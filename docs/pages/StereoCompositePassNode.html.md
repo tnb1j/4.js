@@ -6,10 +6,10 @@ A special (abstract) render pass node that renders the scene as a stereoscopic i
 
 ## Import
 
-StereoCompositePassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+StereoCompositePassNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { StereoCompositePassNode } from '@tnb1j/4js/addons/tsl/display/StereoCompositePassNode.js';
+import { StereoCompositePassNode } from 'three/addons/tsl/display/StereoCompositePassNode.js';
 ```
 
 ## Constructor
@@ -80,4 +80,4 @@ The current coordinate system.
 
 ## Source
 
-[examples/jsm/tsl/display/StereoCompositePassNode.js](../../examples/jsm/tsl/display/StereoCompositePassNode.js)
+[examples/jsm/tsl/display/StereoCompositePassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/StereoCompositePassNode.js)

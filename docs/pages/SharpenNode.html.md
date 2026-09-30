@@ -8,10 +8,10 @@ Reference: [https://gpuopen.com/fidelityfx-superresolution/](https://gpuopen.com
 
 ## Import
 
-SharpenNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SharpenNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { sharpen } from '@tnb1j/4js/webgpu';
+import { sharpen } from 'three/addons/tsl/display/SharpenNode.js';
 ```
 
 ## Constructor
@@ -116,4 +116,4 @@ The current node frame.
 
 ## Source
 
-[src/nodes/display/SharpenNode.js](../../src/nodes/display/SharpenNode.js)
+[examples/jsm/tsl/display/SharpenNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/SharpenNode.js)

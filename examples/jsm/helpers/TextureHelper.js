@@ -6,7 +6,7 @@ import {
 	PlaneGeometry,
 	ShaderMaterial,
 	Vector3,
-} from '@tnb1j/4js';
+} from 'three';
 import { mergeGeometries } from '../utils/BufferGeometryUtils.js';
 
 /**
@@ -18,7 +18,7 @@ import { mergeGeometries } from '../utils/BufferGeometryUtils.js';
  * When using {@link WebGPURenderer}, import from `TextureHelperGPU.js`.
  *
  * @augments Mesh
- * @four_import import { TextureHelper } from '@tnb1j/4js/addons/helpers/TextureHelper.js';
+ * @three_import import { TextureHelper } from 'three/addons/helpers/TextureHelper.js';
  */
 class TextureHelper extends Mesh {
 

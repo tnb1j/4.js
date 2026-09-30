@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { HalftoneShader } from '../shaders/HalftoneShader.js';
 
@@ -26,7 +26,7 @@ import { HalftoneShader } from '../shaders/HalftoneShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { HalftonePass } from '@tnb1j/4js/addons/postprocessing/HalftonePass.js';
+ * @three_import import { HalftonePass } from 'three/addons/postprocessing/HalftonePass.js';
  */
 class HalftonePass extends Pass {
 

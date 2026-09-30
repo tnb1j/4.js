@@ -2,10 +2,10 @@
 
 ## Import
 
-HorizontalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+HorizontalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { HorizontalBlurShader } from '@tnb1j/4js/addons/shaders/HorizontalBlurShader.js';
+import { HorizontalBlurShader } from 'three/addons/shaders/HorizontalBlurShader.js';
 ```
 
 ## Properties
@@ -27,4 +27,4 @@ References:
 
 ## Source
 
-[examples/jsm/shaders/HorizontalBlurShader.js](../../examples/jsm/shaders/HorizontalBlurShader.js)
+[examples/jsm/shaders/HorizontalBlurShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/HorizontalBlurShader.js)

@@ -2,7 +2,7 @@
 
 # AudioListener
 
-The class represents a virtual listener of the all positional and non-positional audio effects in the scene. A 4.js application usually creates a single listener. It is a mandatory constructor parameter for audios entities like [Audio](Audio.html) and [PositionalAudio](PositionalAudio.html).
+The class represents a virtual listener of the all positional and non-positional audio effects in the scene. A three.js application usually creates a single listener. It is a mandatory constructor parameter for audios entities like [Audio](Audio.html) and [PositionalAudio](PositionalAudio.html).
 
 In most cases, the listener object is a child of the camera. So the 3D transformation of the camera represents the 3D transformation of the listener.
 
@@ -86,4 +86,4 @@ The master volume to set.
 
 ## Source
 
-[src/audio/AudioListener.js](../../src/audio/AudioListener.js)
+[src/audio/AudioListener.js](https://github.com/mrdoob/three.js/blob/master/src/audio/AudioListener.js)

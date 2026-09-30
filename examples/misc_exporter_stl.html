@@ -16,19 +16,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { STLExporter } from '@tnb1j/4js/addons/exporters/STLExporter.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let scene, camera, renderer, exporter, mesh;
 
@@ -41,22 +41,22 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 4, 2, 4 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xa0a0a0 );
-				scene.fog = new FOUR.Fog( 0xa0a0a0, 4, 20 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xa0a0a0 );
+				scene.fog = new THREE.Fog( 0xa0a0a0, 4, 20 );
 
 				exporter = new STLExporter();
 
 				//
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x444444, 3 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 3 );
 				hemiLight.position.set( 0, 20, 0 );
 				scene.add( hemiLight );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				directionalLight.position.set( 0, 20, 10 );
 				directionalLight.castShadow = true;
 				directionalLight.shadow.camera.top = 2;
@@ -67,29 +67,29 @@
 
 				// ground
 
-				const ground = new FOUR.Mesh( new FOUR.PlaneGeometry( 40, 40 ), new FOUR.MeshPhongMaterial( { color: 0xbbbbbb, depthWrite: false } ) );
+				const ground = new THREE.Mesh( new THREE.PlaneGeometry( 40, 40 ), new THREE.MeshPhongMaterial( { color: 0xbbbbbb, depthWrite: false } ) );
 				ground.rotation.x = - Math.PI / 2;
 				ground.receiveShadow = true;
 				scene.add( ground );
 
-				const grid = new FOUR.GridHelper( 40, 20, 0x000000, 0x000000 );
+				const grid = new THREE.GridHelper( 40, 20, 0x000000, 0x000000 );
 				grid.material.opacity = 0.2;
 				grid.material.transparent = true;
 				scene.add( grid );
 
 				// export mesh
 
-				const geometry = new FOUR.BoxGeometry();
-				const material = new FOUR.MeshPhongMaterial( { color: 0x00ff00 } );
+				const geometry = new THREE.BoxGeometry();
+				const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				mesh.castShadow = true;
 				mesh.position.y = 0.5;
 				scene.add( mesh );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

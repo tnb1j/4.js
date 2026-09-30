@@ -6,10 +6,10 @@ A special type of an animated mesh with a more advanced interface for animation 
 
 ## Import
 
-MorphBlendMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MorphBlendMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MorphBlendMesh } from '@tnb1j/4js/addons/misc/MorphBlendMesh.js';
+import { MorphBlendMesh } from 'three/addons/misc/MorphBlendMesh.js';
 ```
 
 ## Constructor
@@ -176,4 +176,4 @@ The delta time in seconds.
 
 ## Source
 
-[examples/jsm/misc/MorphBlendMesh.js](../../examples/jsm/misc/MorphBlendMesh.js)
+[examples/jsm/misc/MorphBlendMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/MorphBlendMesh.js)

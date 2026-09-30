@@ -38,4 +38,4 @@ Default is `'number'`.
 
 ## Source
 
-[src/animation/tracks/NumberKeyframeTrack.js](../../src/animation/tracks/NumberKeyframeTrack.js)
+[src/animation/tracks/NumberKeyframeTrack.js](https://github.com/mrdoob/three.js/blob/master/src/animation/tracks/NumberKeyframeTrack.js)

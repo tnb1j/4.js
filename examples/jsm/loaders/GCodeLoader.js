@@ -6,7 +6,7 @@ import {
 	LineBasicMaterial,
 	LineSegments,
 	Loader
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the GCode format.
@@ -20,7 +20,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { GCodeLoader } from '@tnb1j/4js/addons/loaders/GCodeLoader.js';
+ * @three_import import { GCodeLoader } from 'three/addons/loaders/GCodeLoader.js';
  */
 class GCodeLoader extends Loader {
 
@@ -207,7 +207,7 @@ class GCodeLoader extends Loader {
 			} else if ( cmd === 'G2' || cmd === 'G3' ) {
 
 				//G2/G3 - Arc Movement ( G2 clock wise and G3 counter clock wise )
-				//console.warn( 'FOUR.GCodeLoader: Arc command not supported' );
+				//console.warn( 'THREE.GCodeLoader: Arc command not supported' );
 
 			} else if ( cmd === 'G90' ) {
 
@@ -248,7 +248,7 @@ class GCodeLoader extends Loader {
 
 			} else {
 
-				//console.warn( 'FOUR.GCodeLoader: Command not supported:' + cmd );
+				//console.warn( 'THREE.GCodeLoader: Command not supported:' + cmd );
 
 			}
 

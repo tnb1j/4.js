@@ -190,4 +190,4 @@ A reference to the current renderer.
 
 ## Source
 
-[src/nodes/lighting/ShadowNode.js](../../src/nodes/lighting/ShadowNode.js)
+[src/nodes/lighting/ShadowNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/ShadowNode.js)

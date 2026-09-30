@@ -2,10 +2,10 @@
 
 ## Import
 
-MirrorShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MirrorShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MirrorShader } from '@tnb1j/4js/addons/shaders/MirrorShader.js';
+import { MirrorShader } from 'three/addons/shaders/MirrorShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ side: side of input to mirror (0 = left, 1 = right, 2 = top, 3 = bottom).
 
 ## Source
 
-[examples/jsm/shaders/MirrorShader.js](../../examples/jsm/shaders/MirrorShader.js)
+[examples/jsm/shaders/MirrorShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/MirrorShader.js)

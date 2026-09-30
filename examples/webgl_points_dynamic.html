@@ -13,33 +13,33 @@
 		<div id="container"></div>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl dynamic particles + postprocessing<br/>
-			models by <a href="http://sketchup.google.com/3dwarehouse/details?mid=2c6fd128fca34052adc5f5b98d513da1" target="_blank" rel="noopener">Reallusion</a>
-			<a href="http://sketchup.google.com/3dwarehouse/details?mid=f526cc4abf7cb68d76cab47c765b7255" target="_blank" rel="noopener">iClone</a>
+			models by <a href="https://3dwarehouse.sketchup.com/model/2c6fd128fca34052adc5f5b98d513da1" target="_blank" rel="noopener">Reallusion</a>
+			<a href="https://3dwarehouse.sketchup.com/model/f526cc4abf7cb68d76cab47c765b7255" target="_blank" rel="noopener">iClone</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { ShaderPass } from '@tnb1j/4js/addons/postprocessing/ShaderPass.js';
-			import { BloomPass } from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
-			import { FilmPass } from '@tnb1j/4js/addons/postprocessing/FilmPass.js';
-			import { FocusShader } from '@tnb1j/4js/addons/shaders/FocusShader.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+			import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
+			import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
+			import { FocusShader } from 'three/addons/shaders/FocusShader.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 			let camera, scene, renderer, mesh;
 
@@ -49,7 +49,7 @@
 
 			let composer, effectFocus;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			let stats;
@@ -60,12 +60,12 @@
 
 				const container = document.querySelector( '#container' );
 
-				camera = new FOUR.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 50000 );
+				camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 50000 );
 				camera.position.set( 0, 700, 7000 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000104 );
-				scene.fog = new FOUR.FogExp2( 0x000104, 0.0000675 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000104 );
+				scene.fog = new THREE.FogExp2( 0x000104, 0.0000675 );
 
 				camera.lookAt( scene.position );
 
@@ -95,17 +95,17 @@
 				} );
 
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.autoClear = false;
 				container.appendChild( renderer.domElement );
 
-				parent = new FOUR.Object3D();
+				parent = new THREE.Object3D();
 				scene.add( parent );
 
-				const grid = new FOUR.Points( new FOUR.PlaneGeometry( 15000, 15000, 64, 64 ), new FOUR.PointsMaterial( { color: 0xff0000, size: 10 } ) );
+				const grid = new THREE.Points( new THREE.PlaneGeometry( 15000, 15000, 64, 64 ), new THREE.PointsMaterial( { color: 0xff0000, size: 10 } ) );
 				grid.position.y = - 400;
 				grid.rotation.x = - Math.PI / 2;
 				parent.add( grid );
@@ -188,17 +188,17 @@
 
 				} );
 
-				return new FOUR.BufferAttribute( combined, 3 );
+				return new THREE.BufferAttribute( combined, 3 );
 
 			}
 
 			function createMesh( positions, scene, scale, x, y, z, color ) {
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				geometry.setAttribute( 'position', positions.clone() );
 				geometry.setAttribute( 'initialPosition', positions.clone() );
 
-				geometry.attributes.position.setUsage( FOUR.DynamicDrawUsage );
+				geometry.attributes.position.setUsage( THREE.DynamicDrawUsage );
 
 				const clones = [
 
@@ -218,7 +218,7 @@
 
 					const c = ( i < clones.length - 1 ) ? 0x252525 : color;
 
-					mesh = new FOUR.Points( geometry, new FOUR.PointsMaterial( { size: 30, color: c } ) );
+					mesh = new THREE.Points( geometry, new THREE.PointsMaterial( { size: 30, color: c } ) );
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = scale;
 
 					mesh.position.x = x + clones[ i ][ 0 ];

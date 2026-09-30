@@ -13,10 +13,10 @@ composer.addPass( renderPixelatedPass );
 
 ## Import
 
-RenderPixelatedPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RenderPixelatedPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RenderPixelatedPass } from '@tnb1j/4js/addons/postprocessing/RenderPixelatedPass.js';
+import { RenderPixelatedPass } from 'three/addons/postprocessing/RenderPixelatedPass.js';
 ```
 
 ## Constructor
@@ -129,4 +129,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/RenderPixelatedPass.js](../../examples/jsm/postprocessing/RenderPixelatedPass.js)
+[examples/jsm/postprocessing/RenderPixelatedPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/RenderPixelatedPass.js)

@@ -2,10 +2,10 @@
 
 ## Import
 
-BleachBypassShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BleachBypassShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BleachBypassShader } from '@tnb1j/4js/addons/shaders/BleachBypassShader.js';
+import { BleachBypassShader } from 'three/addons/shaders/BleachBypassShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Bleach bypass shader \[http://en.wikipedia.org/wiki/Bleach\_bypass\] based on [N
 
 ## Source
 
-[examples/jsm/shaders/BleachBypassShader.js](../../examples/jsm/shaders/BleachBypassShader.js)
+[examples/jsm/shaders/BleachBypassShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/BleachBypassShader.js)

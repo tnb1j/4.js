@@ -54,7 +54,7 @@
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">threejs</a> webgl - depth texture<br/>
 			Stores render target depth in a texture attachment.<br/>
-			Created by <a href="http://twitter.com/mattdesl" target="_blank" rel="noopener">@mattdesl</a>.
+			Created by <a href="https://twitter.com/mattdesl" target="_blank" rel="noopener">@mattdesl</a>.
 
 			<div id="error" style="display: none;">
 			Your browser does not support <strong>WEBGL_depth_texture</strong>.<br/><br/>
@@ -65,39 +65,39 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, controls, stats;
 			let target;
 			let postScene, postCamera, postMaterial;
 
 			const params = {
-				format: FOUR.DepthFormat,
-				type: FOUR.UnsignedShortType,
+				format: THREE.DepthFormat,
+				type: THREE.UnsignedShortType,
 				samples: 0,
 			};
 
-			const formats = { DepthFormat: FOUR.DepthFormat, DepthStencilFormat: FOUR.DepthStencilFormat };
-			const types = { UnsignedShortType: FOUR.UnsignedShortType, UnsignedIntType: FOUR.UnsignedIntType, FloatType: FOUR.FloatType };
+			const formats = { DepthFormat: THREE.DepthFormat, DepthStencilFormat: THREE.DepthStencilFormat };
+			const types = { UnsignedShortType: THREE.UnsignedShortType, UnsignedIntType: THREE.UnsignedIntType, FloatType: THREE.FloatType };
 
 			init();
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -108,7 +108,7 @@
 				stats = new Stats();
 				document.body.appendChild( stats.dom );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 50 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 50 );
 				camera.position.z = 4;
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -145,14 +145,14 @@
 				const samples = parseInt( params.samples );
 
 				const dpr = renderer.getPixelRatio();
-				target = new FOUR.WebGLRenderTarget( window.innerWidth * dpr, window.innerHeight * dpr );
-				target.texture.minFilter = FOUR.NearestFilter;
-				target.texture.magFilter = FOUR.NearestFilter;
+				target = new THREE.WebGLRenderTarget( window.innerWidth * dpr, window.innerHeight * dpr );
+				target.texture.minFilter = THREE.NearestFilter;
+				target.texture.magFilter = THREE.NearestFilter;
 				target.texture.generateMipmaps = false;
-				target.stencilBuffer = ( format === FOUR.DepthStencilFormat ) ? true : false;
+				target.stencilBuffer = ( format === THREE.DepthStencilFormat ) ? true : false;
 				target.samples = samples;
 
-				target.depthTexture = new FOUR.DepthTexture();
+				target.depthTexture = new THREE.DepthTexture();
 				target.depthTexture.format = format;
 				target.depthTexture.type = type;
 
@@ -161,8 +161,8 @@
 			function setupPost() {
 
 				// Setup post processing stage
-				postCamera = new FOUR.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-				postMaterial = new FOUR.ShaderMaterial( {
+				postCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+				postMaterial = new THREE.ShaderMaterial( {
 					vertexShader: document.querySelector( '#post-vert' ).textContent.trim(),
 					fragmentShader: document.querySelector( '#post-frag' ).textContent.trim(),
 					uniforms: {
@@ -172,25 +172,25 @@
 						tDepth: { value: null }
 					}
 				} );
-				const postPlane = new FOUR.PlaneGeometry( 2, 2 );
-				const postQuad = new FOUR.Mesh( postPlane, postMaterial );
-				postScene = new FOUR.Scene();
+				const postPlane = new THREE.PlaneGeometry( 2, 2 );
+				const postQuad = new THREE.Mesh( postPlane, postMaterial );
+				postScene = new THREE.Scene();
 				postScene.add( postQuad );
 
 			}
 
 			function setupScene() {
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.TorusKnotGeometry( 1, 0.3, 128, 64 );
-				const material = new FOUR.MeshBasicMaterial( { color: 'blue' } );
+				const geometry = new THREE.TorusKnotGeometry( 1, 0.3, 128, 64 );
+				const material = new THREE.MeshBasicMaterial( { color: 'blue' } );
 
 				const count = 50;
 				const scale = 5;
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, count );
-				const dummy = new FOUR.Object3D();
+				const mesh = new THREE.InstancedMesh( geometry, material, count );
+				const dummy = new THREE.Object3D();
 
 				for ( let i = 0; i < count; i ++ ) {
 

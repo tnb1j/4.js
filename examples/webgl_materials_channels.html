@@ -12,28 +12,28 @@
 
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - <span id="description">Normal, Velocity, and Depth Materials</span><br/>
-			ninja head from <a href="https://gpuopen.com/archive/gamescgi/amd-gpu-meshmapper/" target="_blank" rel="noopener">AMD GPU MeshMapper</a>
+			ninja head from <a href="https://web.archive.org/web/2024/https://gpuopen.com/archive/gamescgi/amd-gpu-meshmapper/" target="_blank" rel="noopener">AMD GPU MeshMapper</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OBJLoader } from '@tnb1j/4js/addons/loaders/OBJLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { VelocityShader } from '@tnb1j/4js/addons/shaders/VelocityShader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VelocityShader } from 'three/addons/shaders/VelocityShader.js';
 
 
 			let stats;
@@ -47,9 +47,9 @@
 			};
 
 			const sides = {
-				'front': FOUR.FrontSide,
-				'back': FOUR.BackSide,
-				'double': FOUR.DoubleSide
+				'front': THREE.FrontSide,
+				'back': THREE.BackSide,
+				'double': THREE.DoubleSide
 			};
 
 			let cameraOrtho, cameraPerspective;
@@ -67,7 +67,7 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -75,15 +75,15 @@
 
 				//
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const aspect = window.innerWidth / window.innerHeight;
-				cameraPerspective = new FOUR.PerspectiveCamera( 45, aspect, 500, 3000 );
+				cameraPerspective = new THREE.PerspectiveCamera( 45, aspect, 500, 3000 );
 				cameraPerspective.position.z = 1500;
 				scene.add( cameraPerspective );
 
 				const height = 500;
-				cameraOrtho = new FOUR.OrthographicCamera( - height * aspect, height * aspect, height, - height, 1000, 2500 );
+				cameraOrtho = new THREE.OrthographicCamera( - height * aspect, height * aspect, height, - height, 1000, 2500 );
 				cameraOrtho.position.z = 1500;
 				scene.add( cameraOrtho );
 
@@ -101,31 +101,31 @@
 
 				// lights
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffff, 0.3 );
+				const ambientLight = new THREE.AmbientLight( 0xffffff, 0.3 );
 				scene.add( ambientLight );
 
-				const pointLight = new FOUR.PointLight( 0xff0000, 1.5, 0, 0 );
+				const pointLight = new THREE.PointLight( 0xff0000, 1.5, 0, 0 );
 				pointLight.position.z = 2500;
 				scene.add( pointLight );
 
-				const pointLight2 = new FOUR.PointLight( 0xff6666, 3, 0, 0 );
+				const pointLight2 = new THREE.PointLight( 0xff6666, 3, 0, 0 );
 				camera.add( pointLight2 );
 
-				const pointLight3 = new FOUR.PointLight( 0x0000ff, 1.5, 0, 0 );
+				const pointLight3 = new THREE.PointLight( 0x0000ff, 1.5, 0, 0 );
 				pointLight3.position.x = - 1000;
 				pointLight3.position.z = 1000;
 				scene.add( pointLight3 );
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				const normalMap = textureLoader.load( 'models/obj/ninja/normal.png' );
 				const aoMap = textureLoader.load( 'models/obj/ninja/ao.jpg' );
 				const displacementMap = textureLoader.load( 'models/obj/ninja/displacement.jpg' );
 
 				// material
 
-				materialStandard = new FOUR.MeshStandardMaterial( {
+				materialStandard = new THREE.MeshStandardMaterial( {
 					color: 0xffffff,
 
 					metalness: 0.5,
@@ -138,71 +138,71 @@
 					aoMap: aoMap,
 
 					normalMap: normalMap,
-					normalScale: new FOUR.Vector2( 1, - 1 ),
+					normalScale: new THREE.Vector2( 1, - 1 ),
 
 					//flatShading: true,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialDepthBasic = new FOUR.MeshDepthMaterial( {
-					depthPacking: FOUR.BasicDepthPacking,
+				materialDepthBasic = new THREE.MeshDepthMaterial( {
+					depthPacking: THREE.BasicDepthPacking,
 
 					displacementMap: displacementMap,
 					displacementScale: SCALE,
 					displacementBias: BIAS,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialDepthRGBA = new FOUR.MeshDepthMaterial( {
-					depthPacking: FOUR.RGBADepthPacking,
+				materialDepthRGBA = new THREE.MeshDepthMaterial( {
+					depthPacking: THREE.RGBADepthPacking,
 
 					displacementMap: displacementMap,
 					displacementScale: SCALE,
 					displacementBias: BIAS,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialDepthRGB = new FOUR.MeshDepthMaterial( {
-					depthPacking: FOUR.RGBDepthPacking,
+				materialDepthRGB = new THREE.MeshDepthMaterial( {
+					depthPacking: THREE.RGBDepthPacking,
 
 					displacementMap: displacementMap,
 					displacementScale: SCALE,
 					displacementBias: BIAS,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialDepthRG = new FOUR.MeshDepthMaterial( {
-					depthPacking: FOUR.RGDepthPacking,
+				materialDepthRG = new THREE.MeshDepthMaterial( {
+					depthPacking: THREE.RGDepthPacking,
 
 					displacementMap: displacementMap,
 					displacementScale: SCALE,
 					displacementBias: BIAS,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialNormal = new FOUR.MeshNormalMaterial( {
+				materialNormal = new THREE.MeshNormalMaterial( {
 					displacementMap: displacementMap,
 					displacementScale: SCALE,
 					displacementBias: BIAS,
 
 					normalMap: normalMap,
-					normalScale: new FOUR.Vector2( 1, - 1 ),
+					normalScale: new THREE.Vector2( 1, - 1 ),
 
 					//flatShading: true,
 
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				materialVelocity = new FOUR.ShaderMaterial( {
-					uniforms: FOUR.UniformsUtils.clone( VelocityShader.uniforms ),
+				materialVelocity = new THREE.ShaderMaterial( {
+					uniforms: THREE.UniformsUtils.clone( VelocityShader.uniforms ),
 					vertexShader: VelocityShader.vertexShader,
 					fragmentShader: VelocityShader.fragmentShader,
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 				materialVelocity.displacementMap = displacementMap; // required for defines
 				materialVelocity.uniforms.displacementMap.value = displacementMap;
@@ -217,9 +217,9 @@
 					const geometry = group.children[ 0 ].geometry;
 					geometry.center();
 
-					mesh = new FOUR.Mesh( geometry, materialNormal );
+					mesh = new THREE.Mesh( geometry, materialNormal );
 					mesh.scale.multiplyScalar( 25 );
-					mesh.userData.matrixWorldPrevious = new FOUR.Matrix4(); // for velocity
+					mesh.userData.matrixWorldPrevious = new THREE.Matrix4(); // for velocity
 					scene.add( mesh );
 
 				} );
@@ -294,9 +294,9 @@
 
 						switch ( params.side ) {
 
-							case 'front': material.side = FOUR.FrontSide; break;
-							case 'back': material.side = FOUR.BackSide; break;
-							case 'double': material.side = FOUR.DoubleSide; break;
+							case 'front': material.side = THREE.FrontSide; break;
+							case 'back': material.side = THREE.BackSide; break;
+							case 'double': material.side = THREE.DoubleSide; break;
 
 						}
 

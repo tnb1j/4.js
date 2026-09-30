@@ -9,7 +9,7 @@ Note that this class can only be used with [WebGPURenderer](WebGPURenderer.html)
 ## Code Example
 
 ```js
-const light = new FOUR.PointLight( 0xffffff, 1.5, 2000 );
+const light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
 const lensflare = new LensflareMesh();
 lensflare.addElement( new LensflareElement( textureFlare0, 512, 0 ) );
 lensflare.addElement( new LensflareElement( textureFlare1, 512, 0 ) );
@@ -19,10 +19,10 @@ light.add( lensflare );
 
 ## Import
 
-LensflareMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LensflareMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LensflareMesh } from '@tnb1j/4js/addons/objects/LensflareMesh.js';
+import { LensflareMesh } from 'three/addons/objects/LensflareMesh.js';
 ```
 
 ## Constructor
@@ -69,6 +69,8 @@ The element to add.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
+
 ## Source
 
-[examples/jsm/objects/LensflareMesh.js](../../examples/jsm/objects/LensflareMesh.js)
+[examples/jsm/objects/LensflareMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/LensflareMesh.js)

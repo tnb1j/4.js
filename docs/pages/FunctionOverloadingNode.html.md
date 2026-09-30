@@ -74,4 +74,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/utils/FunctionOverloadingNode.js](../../src/nodes/utils/FunctionOverloadingNode.js)
+[src/nodes/utils/FunctionOverloadingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/FunctionOverloadingNode.js)

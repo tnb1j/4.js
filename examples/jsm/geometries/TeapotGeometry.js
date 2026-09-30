@@ -4,7 +4,7 @@ import {
 	Matrix4,
 	Vector3,
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Tessellates the famous Utah teapot database by Martin Newell into triangles.
@@ -20,13 +20,13 @@ import {
  *
  * ```js
  * const geometry = new TeapotGeometry( 50, 18 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
- * const teapot = new FOUR.Mesh( geometry, material );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const teapot = new THREE.Mesh( geometry, material );
  * scene.add( teapot );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { TeapotGeometry } from '@tnb1j/4js/addons/geometries/TeapotGeometry.js';
+ * @three_import import { TeapotGeometry } from 'three/addons/geometries/TeapotGeometry.js';
  */
 class TeapotGeometry extends BufferGeometry {
 

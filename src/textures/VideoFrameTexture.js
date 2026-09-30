@@ -7,7 +7,7 @@ import { VideoTexture } from './VideoTexture.js';
  * video frames are decoded with the WebCodecs API.
  *
  * ```js
- * const texture = new FOUR.VideoFrameTexture();
+ * const texture = new THREE.VideoFrameTexture();
  * texture.setFrame( frame );
  * ```
  *

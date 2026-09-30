@@ -1,7 +1,7 @@
 import {
 	BoxGeometry,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 const _tempNormal = new Vector3();
 
@@ -42,14 +42,14 @@ function getUv( faceDirVector, normal, uvAxis, projectionAxis, radius, sideLengt
  * A special type of box geometry with rounded corners and edges.
  *
  * ```js
- * const geometry = new FOUR.RoundedBoxGeometry();
- * const material = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
- * const cube = new FOUR.Mesh( geometry, material );
+ * const geometry = new RoundedBoxGeometry();
+ * const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+ * const cube = new THREE.Mesh( geometry, material );
  * scene.add( cube );
  * ```
  *
  * @augments BoxGeometry
- * @four_import import { RoundedBoxGeometry } from '@tnb1j/4js/addons/geometries/RoundedBoxGeometry.js';
+ * @three_import import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
  */
 class RoundedBoxGeometry extends BoxGeometry {
 

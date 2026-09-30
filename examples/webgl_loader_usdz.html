@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
-			import { USDLoader } from '@tnb1j/4js/addons/loaders/USDLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+			import { USDLoader } from 'three/addons/loaders/USDLoader.js';
 
 			let camera, scene, renderer;
 
@@ -45,10 +45,10 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0.75, - 1.5 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const hdrLoader = new HDRLoader()
 					.setPath( 'textures/equirectangular/' );
@@ -63,7 +63,7 @@
 
 				// environment
 
-				texture.mapping = FOUR.EquirectangularReflectionMapping;
+				texture.mapping = THREE.EquirectangularReflectionMapping;
 
 				scene.background = texture;
 				scene.backgroundBlurriness = 0.5;
@@ -77,11 +77,11 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 2.0;
 				document.body.appendChild( renderer.domElement );
 

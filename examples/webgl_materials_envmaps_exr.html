@@ -16,21 +16,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { EXRLoader } from '@tnb1j/4js/addons/loaders/EXRLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 
 			const params = {
 				envMap: 'EXR',
@@ -53,41 +53,41 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 0, 120 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 
 				container.appendChild( renderer.domElement );
 
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				//
 
-				let geometry = new FOUR.TorusKnotGeometry( 18, 8, 150, 20 );
-				let material = new FOUR.MeshStandardMaterial( {
+				let geometry = new THREE.TorusKnotGeometry( 18, 8, 150, 20 );
+				let material = new THREE.MeshStandardMaterial( {
 					metalness: params.metalness,
 					roughness: params.roughness,
 					envMapIntensity: 1.0
 				} );
 
-				torusMesh = new FOUR.Mesh( geometry, material );
+				torusMesh = new THREE.Mesh( geometry, material );
 				scene.add( torusMesh );
 
-				geometry = new FOUR.PlaneGeometry( 200, 200 );
-				material = new FOUR.MeshBasicMaterial();
+				geometry = new THREE.PlaneGeometry( 200, 200 );
+				material = new THREE.MeshBasicMaterial();
 
-				planeMesh = new FOUR.Mesh( geometry, material );
+				planeMesh = new THREE.Mesh( geometry, material );
 				planeMesh.position.y = - 50;
 				planeMesh.rotation.x = - Math.PI * 0.5;
 				scene.add( planeMesh );
 
-				FOUR.DefaultLoadingManager.onLoad = function ( ) {
+				THREE.DefaultLoadingManager.onLoad = function ( ) {
 
 					pmremGenerator.dispose();
 
@@ -95,24 +95,24 @@
 
 				new EXRLoader().load( 'textures/piz_compressed.exr', function ( texture ) {
 
-					texture.mapping = FOUR.EquirectangularReflectionMapping;
+					texture.mapping = THREE.EquirectangularReflectionMapping;
 
 					exrCubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
 					exrBackground = texture;
 
 				} );
 
-				new FOUR.TextureLoader().load( 'textures/equirectangular.png', function ( texture ) {
+				new THREE.TextureLoader().load( 'textures/equirectangular.png', function ( texture ) {
 
-					texture.mapping = FOUR.EquirectangularReflectionMapping;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.mapping = THREE.EquirectangularReflectionMapping;
+					texture.colorSpace = THREE.SRGBColorSpace;
 
 					pngCubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
 					pngBackground = texture;
 
 				} );
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				pmremGenerator.compileEquirectangularShader();
 
 				stats = new Stats();

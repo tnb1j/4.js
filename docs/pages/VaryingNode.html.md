@@ -96,4 +96,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/core/VaryingNode.js](../../src/nodes/core/VaryingNode.js)
+[src/nodes/core/VaryingNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/VaryingNode.js)

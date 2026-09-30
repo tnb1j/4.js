@@ -10,4 +10,4 @@ Batched data node for point lights in dynamic lighting mode.
 
 ## Source
 
-[examples/jsm/tsl/lighting/data/PointLightDataNode.js](../../examples/jsm/tsl/lighting/data/PointLightDataNode.js)
+[examples/jsm/tsl/lighting/data/PointLightDataNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/lighting/data/PointLightDataNode.js)

@@ -119,4 +119,4 @@ The name of the member variable.
 
 ## Source
 
-[src/nodes/core/ArrayNode.js](../../src/nodes/core/ArrayNode.js)
+[src/nodes/core/ArrayNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/ArrayNode.js)

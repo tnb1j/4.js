@@ -4,7 +4,7 @@ import {
 	Mesh,
 	Vector3,
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 import { LineSegmentsGeometry } from './LineSegmentsGeometry.js';
 import { LineMaterial } from './LineMaterial.js';
 
@@ -19,7 +19,7 @@ const _viewport = new Vector4();
  * import the class from `lines/webgpu/Wireframe.js`.
  *
  * ```js
- * const geometry = new FOUR.IcosahedronGeometry();
+ * const geometry = new THREE.IcosahedronGeometry();
  * const wireframeGeometry = new WireframeGeometry2( geo );
  *
  * const wireframe = new Wireframe( wireframeGeometry, material );
@@ -27,7 +27,7 @@ const _viewport = new Vector4();
  * ```
  *
  * @augments Mesh
- * @four_import import { Wireframe } from '@tnb1j/4js/addons/lines/Wireframe.js';
+ * @three_import import { Wireframe } from 'three/addons/lines/Wireframe.js';
  */
 class Wireframe extends Mesh {
 

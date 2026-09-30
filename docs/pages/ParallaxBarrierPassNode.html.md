@@ -6,10 +6,10 @@ A render pass node that creates a parallax barrier effect.
 
 ## Import
 
-ParallaxBarrierPassNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ParallaxBarrierPassNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { parallaxBarrierPass } from '@tnb1j/4js/addons/tsl/display/ParallaxBarrierPassNode.js';
+import { parallaxBarrierPass } from 'three/addons/tsl/display/ParallaxBarrierPassNode.js';
 ```
 
 ## Constructor
@@ -48,4 +48,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/ParallaxBarrierPassNode.js](../../examples/jsm/tsl/display/ParallaxBarrierPassNode.js)
+[examples/jsm/tsl/display/ParallaxBarrierPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/ParallaxBarrierPassNode.js)

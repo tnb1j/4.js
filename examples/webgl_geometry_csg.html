@@ -29,8 +29,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.10/build/index.module.js",
 					"three-bvh-csg": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.18/build/index.module.js"
 				}
@@ -39,10 +39,10 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import * as THREE from 'three';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 			import { SUBTRACTION, INTERSECTION, ADDITION, Brush, Evaluator } from 'three-bvh-csg';
 
 			let stats;
@@ -64,17 +64,17 @@
 			function init() {
 
 				// environment
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100 );
 				camera.position.set( - 1, 1, 1 ).normalize().multiplyScalar( 10 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xfce4ec );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xfce4ec );
 
 				// lights
-				const ambient = new FOUR.HemisphereLight( 0xffffff, 0xbfd4d2, 3 );
+				const ambient = new THREE.HemisphereLight( 0xffffff, 0xbfd4d2, 3 );
 				scene.add( ambient );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 0.3 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3 );
 				directionalLight.position.set( 1, 4, 3 ).multiplyScalar( 3 );
 				directionalLight.castShadow = true;
 				directionalLight.shadow.mapSize.setScalar( 2048 );
@@ -83,25 +83,25 @@
 				scene.add( directionalLight );
 
 				// renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
 				document.body.appendChild( renderer.domElement );
 
 				stats = new Stats();
 				document.body.appendChild( stats.dom );
 
 				// add shadow plane
-				const plane = new FOUR.Mesh(
-					new FOUR.PlaneGeometry(),
-					new FOUR.ShadowMaterial( {
+				const plane = new THREE.Mesh(
+					new THREE.PlaneGeometry(),
+					new THREE.ShadowMaterial( {
 						color: 0xd81b60,
 						transparent: true,
 						opacity: 0.075,
-						side: FOUR.DoubleSide,
+						side: THREE.DoubleSide,
 					} ),
 				);
 				plane.position.y = - 3;
@@ -114,8 +114,8 @@
 				evaluator = new Evaluator();
 
 				baseBrush = new Brush(
-					new FOUR.IcosahedronGeometry( 2, 3 ),
-					new FOUR.MeshStandardMaterial( {
+					new THREE.IcosahedronGeometry( 2, 3 ),
+					new THREE.MeshStandardMaterial( {
 						flatShading: true,
 
 						polygonOffset: true,
@@ -125,8 +125,8 @@
 				);
 
 				brush = new Brush(
-					new FOUR.CylinderGeometry( 1, 1, 5, 45 ),
-					new FOUR.MeshStandardMaterial( {
+					new THREE.CylinderGeometry( 1, 1, 5, 45 ),
+					new THREE.MeshStandardMaterial( {
 						color: 0x80cbc4,
 
 						polygonOffset: true,
@@ -137,8 +137,8 @@
 				);
 
 				core = new Brush(
-					new FOUR.IcosahedronGeometry( 0.15, 1 ),
-					new FOUR.MeshStandardMaterial( {
+					new THREE.IcosahedronGeometry( 0.15, 1 ),
+					new THREE.MeshStandardMaterial( {
 						flatShading: true,
 						color: 0xff9800,
 						emissive: 0xff9800,
@@ -154,9 +154,9 @@
 				scene.add( core );
 
 				// create wireframe
-				wireframe = new FOUR.Mesh(
+				wireframe = new THREE.Mesh(
 					undefined,
-					new FOUR.MeshBasicMaterial( { color: 0x009688, wireframe: true } ),
+					new THREE.MeshBasicMaterial( { color: 0x009688, wireframe: true } ),
 				);
 				scene.add( wireframe );
 

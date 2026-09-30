@@ -1,6 +1,6 @@
 # JoltPhysics
 
-Can be used to include Jolt as a Physics engine into `4.js` apps. The API can be initialized via:
+Can be used to include Jolt as a Physics engine into `three.js` apps. The API can be initialized via:
 
 The component automatically imports Jolt from a CDN so make sure to use the component with an active Internet connection.
 
@@ -12,10 +12,10 @@ const physics = await JoltPhysics();
 
 ## Import
 
-JoltPhysics is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+JoltPhysics is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { JoltPhysics } from '@tnb1j/4js/addons/physics/JoltPhysics.js';
+import { JoltPhysics } from 'three/addons/physics/JoltPhysics.js';
 ```
 
 ## Methods
@@ -70,24 +70,6 @@ If the mesh is instanced, the index represents the instanced ID.
 
 Default is `0`.
 
-### .setMeshVelocity( mesh : Mesh, velocity : Vector3, index : number )
-
-Sets the linear velocity of the given mesh which is part of the physics simulation.
-
-**mesh**
-
-The mesh to update the velocity for.
-
-**velocity**
-
-The new linear velocity.
-
-**index**
-
-If the mesh is instanced, the index represents the instanced ID.
-
-Default is `0`.
-
 ## Source
 
-[examples/jsm/physics/JoltPhysics.js](../../examples/jsm/physics/JoltPhysics.js)
+[examples/jsm/physics/JoltPhysics.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/physics/JoltPhysics.js)

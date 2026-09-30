@@ -50,4 +50,4 @@ Setups the lighting model.
 
 ## Source
 
-[src/materials/nodes/ShadowNodeMaterial.js](../../src/materials/nodes/ShadowNodeMaterial.js)
+[src/materials/nodes/ShadowNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/ShadowNodeMaterial.js)

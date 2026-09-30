@@ -6,10 +6,10 @@ A procedural trees geometry.
 
 ## Import
 
-TreesGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TreesGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TreesGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
+import { TreesGeometry } from 'three/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor
@@ -24,4 +24,4 @@ A mesh representing the landscape. Trees will be positioned randomly on the land
 
 ## Source
 
-[examples/jsm/misc/RollerCoaster.js](../../examples/jsm/misc/RollerCoaster.js)
+[examples/jsm/misc/RollerCoaster.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/RollerCoaster.js)

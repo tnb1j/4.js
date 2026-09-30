@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>CSS2DRenderer - 4.js Docs</title>
+	<title>CSS2DRenderer - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
 	<h1 translate="no">CSS2DRenderer</h1>
 		<section>
 			<header>
-				<div class="class-description"><p>This renderer is a simplified version of <a href="CSS3DRenderer.html">CSS3DRenderer</a>. The only transformation that is
-supported is translation.</p>
+				<div class="class-description"><p>This renderer is a simplified version of <a href="CSS3DRenderer.html">CSS3DRenderer</a>. The only transformations that
+are supported are translation and 2D rotation.</p>
 <p>The renderer is very useful if you want to combine HTML based labels with 3D objects. Here too,
 the respective DOM elements are wrapped into an instance of <a href="CSS2DObject.html">CSS2DObject</a> and added to the
 scene graph. All other types of renderable 3D objects (like meshes or point clouds) are ignored.</p>
@@ -21,8 +21,8 @@ scene graph. All other types of renderable 3D objects (like meshes or point clou
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">CSS2DRenderer</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { CSS2DRenderer } from '@tnb1j/4js/addons/renderers/CSS2DRenderer.js';</code></pre>
+				<p><span translate="no">CSS2DRenderer</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="CSS2DRenderer" translate="no">new <a href="#CSS2DRenderer">CSS2DRenderer</a><span class="signature">( parameters : <span class="param-type"><a href="CSS2DRenderer.html#~Parameters">CSS2DRenderer~Parameters</a></span> )</span> </h3>
@@ -146,7 +146,7 @@ If not passed in here, a new div element will be created.</p>
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/renderers/CSS2DRenderer.js" translate="no">examples/jsm/renderers/CSS2DRenderer.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/renderers/CSS2DRenderer.js" translate="no" target="_blank" rel="noopener">examples/jsm/renderers/CSS2DRenderer.js</a>
 				</p>
 			</article>
 		</section>

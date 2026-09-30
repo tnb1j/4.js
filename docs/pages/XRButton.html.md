@@ -12,10 +12,10 @@ document.body.appendChild( XRButton.createButton( renderer ) );
 
 ## Import
 
-XRButton is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+XRButton is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
+import { XRButton } from 'three/addons/webxr/XRButton.js';
 ```
 
 ## Static Methods
@@ -36,4 +36,4 @@ The a configuration object for the AR session.
 
 ## Source
 
-[examples/jsm/webxr/XRButton.js](../../examples/jsm/webxr/XRButton.js)
+[examples/jsm/webxr/XRButton.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/webxr/XRButton.js)

@@ -24,27 +24,27 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { vec3, Fn, time, texture3D, screenUV, uniform, screenCoordinate, pass, checker, uv } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { vec3, Fn, time, texture3D, screenUV, uniform, screenCoordinate, pass, checker, uv } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
-			import { RectAreaLightTexturesLib } from '@tnb1j/4js/addons/lights/RectAreaLightTexturesLib.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
+			import { RectAreaLightTexturesLib } from 'three/addons/lights/RectAreaLightTexturesLib.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { bayer16 } from '@tnb1j/4js/addons/tsl/math/Bayer.js';
-			import { gaussianBlur } from '@tnb1j/4js/addons/tsl/display/GaussianBlurNode.js';
+			import { bayer16 } from 'three/addons/tsl/math/Bayer.js';
+			import { gaussianBlur } from 'three/addons/tsl/display/GaussianBlurNode.js';
 
 			let renderer, scene, camera;
 			let volumetricMesh;
@@ -88,12 +88,12 @@
 
 				}
 
-				const texture = new FOUR.Data3DTexture( data, size, size, size );
-				texture.format = FOUR.RedFormat;
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
-				texture.wrapS = FOUR.RepeatWrapping;
-				texture.wrapT = FOUR.RepeatWrapping;
+				const texture = new THREE.Data3DTexture( data, size, size, size );
+				texture.format = THREE.RedFormat;
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
 				texture.unpackAlignment = 1;
 				texture.needsUpdate = true;
 
@@ -103,25 +103,25 @@
 
 			function init() {
 
-				FOUR.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() );
+				THREE.RectAreaLightNode.setLTC( RectAreaLightTexturesLib.init() );
 
 				const LAYER_VOLUMETRIC_LIGHTING = 10;
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = 2;
 				renderer.shadowMap.enabled = true;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 250 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 250 );
 				camera.position.set( 0, 5, - 15 );
 
 				// Volumetric Fog Area
@@ -130,7 +130,7 @@
 
 				const smokeAmount = uniform( 2 );
 
-				const volumetricMaterial = new FOUR.VolumeNodeMaterial();
+				const volumetricMaterial = new THREE.VolumeNodeMaterial();
 				volumetricMaterial.steps = 12;
 				volumetricMaterial.offsetNode = bayer16( screenCoordinate ); // Add dithering to reduce banding
 				volumetricMaterial.scatteringNode = Fn( ( { positionRay } ) => {
@@ -149,7 +149,7 @@
 
 				} );
 
-				volumetricMesh = new FOUR.Mesh( new FOUR.BoxGeometry( 50, 40, 50 ), volumetricMaterial );
+				volumetricMesh = new THREE.Mesh( new THREE.BoxGeometry( 50, 40, 50 ), volumetricMaterial );
 				volumetricMesh.receiveShadow = true;
 				volumetricMesh.position.y = 20;
 				volumetricMesh.layers.disableAll();
@@ -158,17 +158,17 @@
 
 				// Objects
 
-				rectLight1 = new FOUR.RectAreaLight( 0xff0000, 5, 4, 10 );
+				rectLight1 = new THREE.RectAreaLight( 0xff0000, 5, 4, 10 );
 				rectLight1.layers.enable( LAYER_VOLUMETRIC_LIGHTING );
 				rectLight1.position.set( - 5, 6, 5 );
 				scene.add( rectLight1 );
 
-				rectLight2 = new FOUR.RectAreaLight( 0x00ff00, 5, 4, 10 );
+				rectLight2 = new THREE.RectAreaLight( 0x00ff00, 5, 4, 10 );
 				rectLight2.layers.enable( LAYER_VOLUMETRIC_LIGHTING );
 				rectLight2.position.set( 0, 6, 5 );
 				scene.add( rectLight2 );
 
-				rectLight3 = new FOUR.RectAreaLight( 0x0000ff, 5, 4, 10 );
+				rectLight3 = new THREE.RectAreaLight( 0x0000ff, 5, 4, 10 );
 				rectLight3.layers.enable( LAYER_VOLUMETRIC_LIGHTING );
 				rectLight3.position.set( 5, 6, 5 );
 				scene.add( rectLight3 );
@@ -177,14 +177,14 @@
 
 				const createRectLightMesh = ( rectLight ) => {
 
-					const geometry = new FOUR.PlaneGeometry( 4, 10 );
-					const frontMaterial = new FOUR.MeshBasicMaterial( { color: rectLight.color, side: FOUR.BackSide } );
-					const backMaterial = new FOUR.MeshStandardMaterial( { color: 0x111111 } );
+					const geometry = new THREE.PlaneGeometry( 4, 10 );
+					const frontMaterial = new THREE.MeshBasicMaterial( { color: rectLight.color, side: THREE.BackSide } );
+					const backMaterial = new THREE.MeshStandardMaterial( { color: 0x111111 } );
 
-					const backSide = new FOUR.Mesh( geometry, backMaterial );
+					const backSide = new THREE.Mesh( geometry, backMaterial );
 					backSide.position.set( 0, 0, .08 );
 
-					const frontSide = new FOUR.Mesh( geometry, frontMaterial );
+					const frontSide = new THREE.Mesh( geometry, frontMaterial );
 					frontSide.position.set( 0, 0, .01 );
 
 					rectLight.add( backSide );
@@ -198,15 +198,15 @@
 
 				//
 
-				const geoFloor = new FOUR.BoxGeometry( 2000, 0.1, 2000 );
-				const matStdFloor = new FOUR.MeshStandardMaterial( { color: 0x444444 } );
+				const geoFloor = new THREE.BoxGeometry( 2000, 0.1, 2000 );
+				const matStdFloor = new THREE.MeshStandardMaterial( { color: 0x444444 } );
 				matStdFloor.roughnessNode = checker( uv().mul( 400 ) );
-				const mshStdFloor = new FOUR.Mesh( geoFloor, matStdFloor );
+				const mshStdFloor = new THREE.Mesh( geoFloor, matStdFloor );
 				scene.add( mshStdFloor );
 
-				const geoKnot = new FOUR.TorusKnotGeometry( 1.5, 0.5, 200, 16 );
-				const matKnot = new FOUR.MeshStandardMaterial( { color: 0xffffff, roughness: 0, metalness: 0 } );
-				const meshKnot = new FOUR.Mesh( geoKnot, matKnot );
+				const geoKnot = new THREE.TorusKnotGeometry( 1.5, 0.5, 200, 16 );
+				const matKnot = new THREE.MeshStandardMaterial( { color: 0xffffff, roughness: 0, metalness: 0 } );
+				const meshKnot = new THREE.Mesh( geoKnot, matKnot );
 				meshKnot.position.set( 0, 5.5, 0 );
 				scene.add( meshKnot );
 
@@ -218,13 +218,13 @@
 
 				// Post-Processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// Layers
 
 				const volumetricLightingIntensity = uniform( 1 );
 
-				const volumetricLayer = new FOUR.Layers();
+				const volumetricLayer = new THREE.Layers();
 				volumetricLayer.disableAll();
 				volumetricLayer.enable( LAYER_VOLUMETRIC_LIGHTING );
 

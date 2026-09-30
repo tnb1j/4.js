@@ -2,7 +2,7 @@ import {
 	DataTextureLoader,
 	LinearFilter,
 	LinearMipmapLinearFilter
-} from '@tnb1j/4js';
+} from 'three';
 
 import UTIF from '../libs/utif.module.js';
 
@@ -12,11 +12,11 @@ import UTIF from '../libs/utif.module.js';
  * ```js
  * const loader = new TIFFLoader();
  * const texture = await loader.loadAsync( 'textures/tiff/crate_lzw.tif' );
- * texture.colorSpace = FOUR.SRGBColorSpace;
+ * texture.colorSpace = THREE.SRGBColorSpace;
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { TIFFLoader } from '@tnb1j/4js/addons/loaders/TIFFLoader.js';
+ * @three_import import { TIFFLoader } from 'three/addons/loaders/TIFFLoader.js';
  */
 class TIFFLoader extends DataTextureLoader {
 

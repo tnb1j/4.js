@@ -2,7 +2,7 @@ import {
 	BufferGeometry,
 	Float32BufferAttribute,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * This class can be used to generate a geometry based on a parametric surface.
@@ -10,14 +10,14 @@ import {
  * Reference: [Mesh Generation with Python](https://prideout.net/blog/old/blog/index.html@p=44.html)
  *
  * ```js
- * const geometry = new FOUR.ParametricGeometry( klein, 25, 25 );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
- * const klein = new FOUR.Mesh( geometry, material );
+ * const geometry = new ParametricGeometry( klein, 25, 25 );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const klein = new THREE.Mesh( geometry, material );
  * scene.add( klein );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { ParametricGeometry } from '@tnb1j/4js/addons/geometries/ParametricGeometry.js';
+ * @three_import import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.js';
  */
 class ParametricGeometry extends BufferGeometry {
 

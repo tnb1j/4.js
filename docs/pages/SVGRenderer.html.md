@@ -17,10 +17,10 @@ There are, however, some important limitations:
 
 ## Import
 
-SVGRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SVGRenderer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SVGRenderer } from '@tnb1j/4js/addons/renderers/SVGRenderer.js';
+import { SVGRenderer } from 'three/addons/renderers/SVGRenderer.js';
 ```
 
 ## Constructor
@@ -131,4 +131,4 @@ The height of the renderer.
 
 ## Source
 
-[examples/jsm/renderers/SVGRenderer.js](../../examples/jsm/renderers/SVGRenderer.js)
+[examples/jsm/renderers/SVGRenderer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/renderers/SVGRenderer.js)

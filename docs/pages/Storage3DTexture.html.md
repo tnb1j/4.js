@@ -50,13 +50,13 @@ Default is `true`.
 
 ### .magFilter : number
 
-The default `magFilter` for storage textures is `FOUR.LinearFilter`.
+The default `magFilter` for storage textures is `THREE.LinearFilter`.
 
 **Overrides:** [Texture#magFilter](Texture.html#magFilter)
 
 ### .minFilter : number
 
-The default `minFilter` for storage textures is `FOUR.LinearFilter`.
+The default `minFilter` for storage textures is `THREE.LinearFilter`.
 
 **Overrides:** [Texture#minFilter](Texture.html#minFilter)
 
@@ -65,6 +65,18 @@ The default `minFilter` for storage textures is `FOUR.LinearFilter`.
 This defines how the texture is wrapped in the depth direction and corresponds to _W_ in UVW mapping.
 
 ## Methods
+
+### .copy( source : Storage3DTexture ) : Storage3DTexture
+
+Copies the values of the given texture to this instance.
+
+**source**
+
+The texture to copy.
+
+**Overrides:** [Texture#copy](Texture.html#copy)
+
+**Returns:** A reference to this instance.
 
 ### .setSize( width : number, height : number, depth : number )
 
@@ -84,4 +96,4 @@ The new depth of the storage texture.
 
 ## Source
 
-[src/renderers/common/Storage3DTexture.js](../../src/renderers/common/Storage3DTexture.js)
+[src/renderers/common/Storage3DTexture.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/Storage3DTexture.js)

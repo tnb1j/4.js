@@ -19,19 +19,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { ColladaLoader } from '@tnb1j/4js/addons/loaders/ColladaLoader.js';
+			import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
 
 			let container, stats, timer;
 			let camera, scene, renderer, elf;
@@ -42,18 +42,18 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
 				camera.position.set( 8, 10, 8 );
 				camera.lookAt( 0, 3, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				// loading manager
 
-				const loadingManager = new FOUR.LoadingManager( function () {
+				const loadingManager = new THREE.LoadingManager( function () {
 
 					scene.add( elf );
 
@@ -70,16 +70,16 @@
 
 				//
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffff );
+				const ambientLight = new THREE.AmbientLight( 0xffffff );
 				scene.add( ambientLight );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 2.5 );
 				directionalLight.position.set( 1, 1, 0 ).normalize();
 				scene.add( directionalLight );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

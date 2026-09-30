@@ -194,4 +194,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshToonMaterial.js](../../src/materials/MeshToonMaterial.js)
+[src/materials/MeshToonMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshToonMaterial.js)

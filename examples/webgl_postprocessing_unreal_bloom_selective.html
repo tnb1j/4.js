@@ -11,7 +11,7 @@
 	<body>
 
 		<div id="info">
-			<a href="../" target="_blank" rel="noopener">4.js</a> Click on a sphere to toggle bloom<br>By <a href="http://github.com/Temdog007" target="_blank" rel="noopener">Temdog007</a>
+			<a href="../" target="_blank" rel="noopener">4.js</a> Click on a sphere to toggle bloom<br>By <a href="https://github.com/Temdog007" target="_blank" rel="noopener">Temdog007</a>
 		</div>
 
 		<script type="x-shader/x-vertex" id="vertexshader">
@@ -47,29 +47,29 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { EffectComposer } from '@tnb1j/4js/addons/postprocessing/EffectComposer.js';
-			import { RenderPass } from '@tnb1j/4js/addons/postprocessing/RenderPass.js';
-			import { ShaderPass } from '@tnb1j/4js/addons/postprocessing/ShaderPass.js';
-			import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
-			import { OutputPass } from '@tnb1j/4js/addons/postprocessing/OutputPass.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+			import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+			import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+			import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+			import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 			const BLOOM_SCENE = 1;
 
-			const bloomLayer = new FOUR.Layers();
+			const bloomLayer = new THREE.Layers();
 			bloomLayer.set( BLOOM_SCENE );
 
 			const params = {
@@ -79,20 +79,20 @@
 				exposure: 1
 			};
 
-			const darkMaterial = new FOUR.MeshBasicMaterial( { color: 'black' } );
+			const darkMaterial = new THREE.MeshBasicMaterial( { color: 'black' } );
 			const materials = {};
 
-			const renderer = new FOUR.WebGLRenderer( { antialias: false } );
+			const renderer = new THREE.WebGLRenderer( { antialias: false } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
-			renderer.toneMapping = FOUR.NeutralToneMapping;
+			renderer.toneMapping = THREE.NeutralToneMapping;
 			document.body.appendChild( renderer.domElement );
 
-			const scene = new FOUR.Scene();
-			const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+			const scene = new THREE.Scene();
+			const pmremGenerator = new THREE.PMREMGenerator( renderer );
 			scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
-			const camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 200 );
+			const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 200 );
 			camera.position.set( 0, 0, 20 );
 			camera.lookAt( 0, 0, 0 );
 
@@ -104,19 +104,19 @@
 
 			const renderScene = new RenderPass( scene, camera );
 
-			const bloomPass = new UnrealBloomPass( new FOUR.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+			const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
 			bloomPass.threshold = params.threshold;
 			bloomPass.strength = params.strength;
 			bloomPass.radius = params.radius;
 
-			const bloomRenderTarget = new FOUR.WebGLRenderTarget( window.innerWidth, window.innerHeight, { type: FOUR.HalfFloatType } );
+			const bloomRenderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { type: THREE.HalfFloatType } );
 			const bloomComposer = new EffectComposer( renderer, bloomRenderTarget );
 			bloomComposer.renderToScreen = false;
 			bloomComposer.addPass( renderScene );
 			bloomComposer.addPass( bloomPass );
 
 			const mixPass = new ShaderPass(
-				new FOUR.ShaderMaterial( {
+				new THREE.ShaderMaterial( {
 					uniforms: {
 						baseTexture: { value: null },
 						bloomTexture: { value: bloomComposer.renderTarget2.texture },
@@ -131,15 +131,15 @@
 
 			const outputPass = new OutputPass();
 
-			const finalRenderTarget = new FOUR.WebGLRenderTarget( window.innerWidth, window.innerHeight, { type: FOUR.HalfFloatType, samples: 4 } );
+			const finalRenderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { type: THREE.HalfFloatType, samples: 4 } );
 			const finalComposer = new EffectComposer( renderer, finalRenderTarget );
 			finalComposer.addPass( renderScene );
 			finalComposer.addPass( mixPass );
 			finalComposer.addPass( outputPass );
 
-			const raycaster = new FOUR.Raycaster();
+			const raycaster = new THREE.Raycaster();
 
-			const mouse = new FOUR.Vector2();
+			const mouse = new THREE.Vector2();
 
 			window.addEventListener( 'pointerdown', onPointerDown );
 
@@ -220,15 +220,15 @@
 				scene.traverse( disposeMaterial );
 				scene.children.length = 0;
 
-				const geometry = new FOUR.IcosahedronGeometry( 1, 15 );
+				const geometry = new THREE.IcosahedronGeometry( 1, 15 );
 
 				for ( let i = 0; i < 50; i ++ ) {
 
-					const color = new FOUR.Color();
+					const color = new THREE.Color();
 					color.setHSL( Math.random(), 0.7, Math.random() * 0.2 + 0.05 );
 
-					const material = new FOUR.MeshStandardMaterial( { color: color, roughness: 1, metalness: 1 } );
-					const sphere = new FOUR.Mesh( geometry, material );
+					const material = new THREE.MeshStandardMaterial( { color: color, roughness: 1, metalness: 1 } );
+					const sphere = new THREE.Mesh( geometry, material );
 					sphere.position.x = Math.random() * 10 - 5;
 					sphere.position.y = Math.random() * 10 - 5;
 					sphere.position.z = Math.random() * 10 - 5;

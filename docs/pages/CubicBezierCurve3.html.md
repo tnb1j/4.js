@@ -70,4 +70,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/curves/CubicBezierCurve3.js](../../src/extras/curves/CubicBezierCurve3.js)
+[src/extras/curves/CubicBezierCurve3.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/CubicBezierCurve3.js)

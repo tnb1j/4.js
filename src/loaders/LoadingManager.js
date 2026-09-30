@@ -8,7 +8,7 @@
  * separate loading bars for objects and textures.
  *
  * ```js
- * const manager = new FOUR.LoadingManager();
+ * const manager = new THREE.LoadingManager();
  * manager.onLoad = () => console.log( 'Loading complete!' );
  *
  * const loader1 = new OBJLoader( manager );
@@ -180,7 +180,7 @@ class LoadingManager {
 		 * ```js
 		 * const blobs = {'fish.gltf': blob1, 'diffuse.png': blob2, 'normal.png': blob3};
 		 *
-		 * const manager = new FOUR.LoadingManager();
+		 * const manager = new THREE.LoadingManager();
 		 *
 		 * // Initialize loading manager with URL callback.
 		 * const objectURLs = [];

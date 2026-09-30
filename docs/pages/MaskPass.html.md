@@ -13,10 +13,10 @@ composer.addPass( maskPass );
 
 ## Import
 
-MaskPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+MaskPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { MaskPass } from '@tnb1j/4js/addons/postprocessing/MaskPass.js';
+import { MaskPass } from 'three/addons/postprocessing/MaskPass.js';
 ```
 
 ## Constructor
@@ -95,4 +95,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/MaskPass.js](../../examples/jsm/postprocessing/MaskPass.js)
+[examples/jsm/postprocessing/MaskPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/MaskPass.js)

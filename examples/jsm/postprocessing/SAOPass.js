@@ -16,7 +16,7 @@ import {
 	Vector2,
 	WebGLRenderTarget,
 	ZeroFactor
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { SAOShader } from '../shaders/SAOShader.js';
 import { BlurShaderUtils, DepthLimitedBlurShader } from '../shaders/DepthLimitedBlurShader.js';
@@ -33,7 +33,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SAOPass } from '@tnb1j/4js/addons/postprocessing/SAOPass.js';
+ * @three_import import { SAOPass } from 'three/addons/postprocessing/SAOPass.js';
  */
 class SAOPass extends Pass {
 
@@ -108,7 +108,7 @@ class SAOPass extends Pass {
 		 */
 		this.resolution = new Vector2( resolution.x, resolution.y );
 
-		this.saoRenderTarget = new WebGLRenderTarget( this.resolution.x, this.resolution.y, { type: HalfFloatType } );
+		this.saoRenderTarget = new WebGLRenderTarget( this.resolution.x, this.resolution.y, { type: HalfFloatType, depthBuffer: false } );
 		this.blurIntermediateRenderTarget = this.saoRenderTarget.clone();
 
 		const depthTexture = new DepthTexture();

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>RoomEnvironment - 4.js Docs</title>
+	<title>RoomEnvironment - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -21,15 +21,15 @@ or directly as an environment map to PBR materials.</p>
 component from the <code>model-viewer</code> project.</p></div>
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">const environment = new RoomEnvironment();
-const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
 const envMap = pmremGenerator.fromScene( environment ).texture;
 scene.environment = envMap;
 </code></pre></div>
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">RoomEnvironment</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';</code></pre>
+				<p><span translate="no">RoomEnvironment</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="RoomEnvironment" translate="no">new <a href="#RoomEnvironment">RoomEnvironment</a><span class="signature">()</span> </h3>
@@ -43,10 +43,13 @@ scene.environment = envMap;
 							<p>Frees internal resources. This method should be called
 when the environment is no longer required.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Scene.html#dispose">Scene#dispose</a></dt>
+						</dl>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/environments/RoomEnvironment.js" translate="no">examples/jsm/environments/RoomEnvironment.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/environments/RoomEnvironment.js" translate="no" target="_blank" rel="noopener">examples/jsm/environments/RoomEnvironment.js</a>
 				</p>
 			</article>
 		</section>

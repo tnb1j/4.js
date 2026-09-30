@@ -9,7 +9,7 @@ Please note that `ImageLoader` has dropped support for progress events in `r84`.
 ## Code Example
 
 ```js
-const loader = new FOUR.ImageLoader();
+const loader = new THREE.ImageLoader();
 const image = await loader.loadAsync( 'image.png' );
 ```
 
@@ -51,4 +51,4 @@ Executed when errors occur.
 
 ## Source
 
-[src/loaders/ImageLoader.js](../../src/loaders/ImageLoader.js)
+[src/loaders/ImageLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/ImageLoader.js)

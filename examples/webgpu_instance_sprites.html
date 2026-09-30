@@ -25,21 +25,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { uniform, time, instanceIndex, instancedBufferAttribute } from '@tnb1j/4js/tsl';
+			import { uniform, time, instanceIndex, instancedBufferAttribute } from 'three/tsl';
 
 
 			let camera, scene, renderer, material;
@@ -52,11 +52,11 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
+				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
-				scene.fog = new FOUR.FogExp2( 0x000000, 0.001 );
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
 
 				// positions
 
@@ -70,31 +70,31 @@
 
 				}
 
-				const positionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( positions ), 3 );
+				const positionAttribute = new THREE.InstancedBufferAttribute( new Float32Array( positions ), 3 );
 
 				// texture
 
-				const map = new FOUR.TextureLoader().load( 'textures/sprites/snowflake1.png' );
-				map.colorSpace = FOUR.SRGBColorSpace;
+				const map = new THREE.TextureLoader().load( 'textures/sprites/snowflake1.png' );
+				map.colorSpace = THREE.SRGBColorSpace;
 
 				// material
 
-				material = new FOUR.SpriteNodeMaterial( { sizeAttenuation: true, map, alphaMap: map, alphaTest: 0.1 } );
-				material.color.setHSL( 1.0, 0.3, 0.7, FOUR.SRGBColorSpace );
+				material = new THREE.SpriteNodeMaterial( { sizeAttenuation: true, map, alphaMap: map, alphaTest: 0.1 } );
+				material.color.setHSL( 1.0, 0.3, 0.7, THREE.SRGBColorSpace );
 				material.positionNode = instancedBufferAttribute( positionAttribute );
 				material.rotationNode = time.add( instanceIndex ).sin();
 				material.scaleNode = uniform( 15 );
 
 				// sprites
 
-				const particles = new FOUR.Sprite( material );
+				const particles = new THREE.Sprite( material );
 				particles.count = count;
 
 				scene.add( particles );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

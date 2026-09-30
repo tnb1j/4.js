@@ -24,4 +24,4 @@ The GLSL code.
 
 ## Source
 
-[src/nodes/parsers/GLSLNodeParser.js](../../src/nodes/parsers/GLSLNodeParser.js)
+[src/nodes/parsers/GLSLNodeParser.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/parsers/GLSLNodeParser.js)

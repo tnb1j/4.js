@@ -2,7 +2,7 @@
 
 # NodeLoader
 
-A loader for loading node objects in the 4.js JSON Object/Scene format.
+A loader for loading node objects in the three.js JSON Object/Scene format.
 
 ## Constructor
 
@@ -118,4 +118,4 @@ The texture library defines as `<uuid,texture>`.
 
 ## Source
 
-[src/loaders/nodes/NodeLoader.js](../../src/loaders/nodes/NodeLoader.js)
+[src/loaders/nodes/NodeLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/nodes/NodeLoader.js)

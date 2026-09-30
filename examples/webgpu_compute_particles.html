@@ -22,23 +22,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 			import { Fn, If, uniform, float, uv, vec3, hash, shapeCircle,
-				instancedArray, instanceIndex } from '@tnb1j/4js/tsl';
+				instancedArray, instanceIndex } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			const particleCount = 200000;
 
@@ -47,7 +47,7 @@
 			const friction = uniform( .99 );
 			const size = uniform( .12 );
 
-			const clickPosition = uniform( new FOUR.Vector3() );
+			const clickPosition = uniform( new THREE.Vector3() );
 
 			let camera, scene, renderer;
 			let controls;
@@ -61,11 +61,11 @@
 
 				const { innerWidth, innerHeight } = window;
 
-				camera = new FOUR.PerspectiveCamera( 50, innerWidth / innerHeight, .1, 1000 );
+				camera = new THREE.PerspectiveCamera( 50, innerWidth / innerHeight, .1, 1000 );
 				camera.position.set( 0, 5, 20 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				//
 
@@ -127,7 +127,7 @@
 
 				// create particles
 
-				const material = new FOUR.SpriteNodeMaterial();
+				const material = new THREE.SpriteNodeMaterial();
 				material.colorNode = uv().mul( colors.element( instanceIndex ) );
 				material.positionNode = positions.toAttribute();
 				material.scaleNode = size;
@@ -135,28 +135,28 @@
 				material.alphaToCoverage = true;
 				material.transparent = true;
 
-				const particles = new FOUR.Sprite( material );
+				const particles = new THREE.Sprite( material );
 				particles.count = particleCount;
 				particles.frustumCulled = false;
 				scene.add( particles );
 
 				//
 
-				const helper = new FOUR.GridHelper( 90, 45, 0x303030, 0x303030 );
+				const helper = new THREE.GridHelper( 90, 45, 0x303030, 0x303030 );
 				scene.add( helper );
 
-				const geometry = new FOUR.PlaneGeometry( 200, 200 );
+				const geometry = new THREE.PlaneGeometry( 200, 200 );
 				geometry.rotateX( - Math.PI / 2 );
 
-				const plane = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial( { visible: false } ) );
+				const plane = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { visible: false } ) );
 				scene.add( plane );
 
-				const raycaster = new FOUR.Raycaster();
-				const pointer = new FOUR.Vector2();
+				const raycaster = new THREE.Raycaster();
+				const pointer = new THREE.Vector2();
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -240,7 +240,7 @@
 
 				controls.touches = {
 					ONE: null,
-					TWO: FOUR.TOUCH.DOLLY_PAN
+					TWO: THREE.TOUCH.DOLLY_PAN
 				};
 
 				//

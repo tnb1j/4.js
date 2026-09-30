@@ -13,7 +13,7 @@ import {
 	SRGBColorSpace,
 	Vector3,
 	Ray
-} from '@tnb1j/4js';
+} from 'three';
 
 // Special surface finish tag types.
 // Note: "MATERIAL" tag (e.g. GLITTER, SPECKLE) is not implemented
@@ -644,7 +644,7 @@ class LDrawParsedCache {
 
 		}
 
-		throw new Error( 'FOUR.LDrawLoader: Subobject "' + fileName + '" could not be loaded.' );
+		throw new Error( 'THREE.LDrawLoader: Subobject "' + fileName + '" could not be loaded.' );
 
 	}
 
@@ -854,7 +854,7 @@ class LDrawParsedCache {
 
 										default:
 
-											console.warn( 'FOUR.LDrawLoader: BFC directive "' + token + '" is unknown.' );
+											console.warn( 'THREE.LDrawLoader: BFC directive "' + token + '" is unknown.' );
 
 											break;
 
@@ -1060,7 +1060,7 @@ class LDrawParsedCache {
 					break;
 
 				default:
-					throw new Error( 'FOUR.LDrawLoader: Unknown line type "' + lineType + '"' + lp.getLineNumberString() + '.' );
+					throw new Error( 'THREE.LDrawLoader: Unknown line type "' + lineType + '"' + lp.getLineNumberString() + '.' );
 
 			}
 
@@ -1768,7 +1768,7 @@ function createObject( loader, elements, elementSize, isConditionalSegments = fa
  * ```
  *
  * @augments Loader
- * @four_import import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
+ * @three_import import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
  */
 class LDrawLoader extends Loader {
 
@@ -1781,7 +1781,7 @@ class LDrawLoader extends Loader {
 
 		super( manager );
 
-		// Array of FOUR.Material
+		// Array of THREE.Material
 		this.materials = [];
 		this.materialLibrary = {};
 		this.edgeMaterialCache = new WeakMap();
@@ -2196,7 +2196,7 @@ class LDrawLoader extends Loader {
 
 	parseColorMetaDirective( lineParser ) {
 
-		// Parses a color definition and returns a FOUR.Material
+		// Parses a color definition and returns a THREE.Material
 
 		let code = null;
 
@@ -2217,7 +2217,7 @@ class LDrawLoader extends Loader {
 		const name = lineParser.getToken();
 		if ( ! name ) {
 
-			throw new Error( 'FOUR.LDrawLoader: Material name was expected after "!COLOUR tag' + lineParser.getLineNumberString() + '.' );
+			throw new Error( 'THREE.LDrawLoader: Material name was expected after "!COLOUR tag' + lineParser.getLineNumberString() + '.' );
 
 		}
 
@@ -2251,7 +2251,7 @@ class LDrawLoader extends Loader {
 
 						} else if ( ! fillColor.startsWith( '#' ) ) {
 
-							throw new Error( 'FOUR.LDrawLoader: Invalid color while parsing material' + lineParser.getLineNumberString() + '.' );
+							throw new Error( 'THREE.LDrawLoader: Invalid color while parsing material' + lineParser.getLineNumberString() + '.' );
 
 						}
 
@@ -2270,7 +2270,7 @@ class LDrawLoader extends Loader {
 							edgeMaterial = this.getMaterial( edgeColor );
 							if ( ! edgeMaterial ) {
 
-								throw new Error( 'FOUR.LDrawLoader: Invalid edge color while parsing material' + lineParser.getLineNumberString() + '.' );
+								throw new Error( 'THREE.LDrawLoader: Invalid edge color while parsing material' + lineParser.getLineNumberString() + '.' );
 
 							}
 
@@ -2287,7 +2287,7 @@ class LDrawLoader extends Loader {
 
 						if ( isNaN( alpha ) ) {
 
-							throw new Error( 'FOUR.LDrawLoader: Invalid alpha value in material definition' + lineParser.getLineNumberString() + '.' );
+							throw new Error( 'THREE.LDrawLoader: Invalid alpha value in material definition' + lineParser.getLineNumberString() + '.' );
 
 						}
 
@@ -2305,7 +2305,7 @@ class LDrawLoader extends Loader {
 
 						if ( ! parseLuminance( lineParser.getToken() ) ) {
 
-							throw new Error( 'FOUR.LDrawLoader: Invalid luminance value in material definition' + lineParser.getLineNumberString() + '.' );
+							throw new Error( 'THREE.LDrawLoader: Invalid luminance value in material definition' + lineParser.getLineNumberString() + '.' );
 
 						}
 
@@ -2337,7 +2337,7 @@ class LDrawLoader extends Loader {
 						break;
 
 					default:
-						throw new Error( 'FOUR.LDrawLoader: Unknown token "' + token + '" while parsing material' + lineParser.getLineNumberString() + '.' );
+						throw new Error( 'THREE.LDrawLoader: Unknown token "' + token + '" while parsing material' + lineParser.getLineNumberString() + '.' );
 
 				}
 
@@ -2419,7 +2419,7 @@ class LDrawLoader extends Loader {
 
 			if ( this.ConditionalLineMaterial === null ) {
 
-				throw new Error( 'FOUR.LDrawLoader: ConditionalLineMaterial type must be specified via .setConditionalLineMaterial().' );
+				throw new Error( 'THREE.LDrawLoader: ConditionalLineMaterial type must be specified via .setConditionalLineMaterial().' );
 
 			}
 

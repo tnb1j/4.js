@@ -10,17 +10,17 @@ This class uses a simple room setup and should only be used for development purp
 
 ```js
 const environment = new DebugEnvironment();
-const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
 const envMap = pmremGenerator.fromScene( environment ).texture;
 scene.environment = envMap;
 ```
 
 ## Import
 
-DebugEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DebugEnvironment is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DebugEnvironment } from '@tnb1j/4js/addons/environments/DebugEnvironment.js';
+import { DebugEnvironment } from 'three/addons/environments/DebugEnvironment.js';
 ```
 
 ## Constructor
@@ -35,6 +35,8 @@ Constructs a new debug environment.
 
 Frees internal resources. This method should be called when the environment is no longer required.
 
+**Overrides:** [Scene#dispose](Scene.html#dispose)
+
 ## Source
 
-[examples/jsm/environments/DebugEnvironment.js](../../examples/jsm/environments/DebugEnvironment.js)
+[examples/jsm/environments/DebugEnvironment.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/environments/DebugEnvironment.js)

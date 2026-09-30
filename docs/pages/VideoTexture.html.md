@@ -4,7 +4,7 @@
 
 A texture for use with a video.
 
-Note: When using video textures with [WebGPURenderer](WebGPURenderer.html), [Texture#colorSpace](Texture.html#colorSpace) must be set to FOUR.SRGBColorSpace.
+Note: When using video textures with [WebGPURenderer](WebGPURenderer.html), [Texture#colorSpace](Texture.html#colorSpace) must be set to THREE.SRGBColorSpace.
 
 Note: After the initial use of a texture, its dimensions, format, and type cannot be changed. Instead, call [Texture#dispose](Texture.html#dispose) on the texture and instantiate a new one.
 
@@ -13,7 +13,7 @@ Note: After the initial use of a texture, its dimensions, format, and type canno
 ```js
 // assuming you have created a HTML video element with id="video"
 const video = document.getElementById( 'video' );
-const texture = new FOUR.VideoTexture( video );
+const texture = new THREE.VideoTexture( video );
 ```
 
 ## Constructor
@@ -102,4 +102,4 @@ Only relevant if `requestVideoFrameCallback` is not supported in the browser.
 
 ## Source
 
-[src/textures/VideoTexture.js](../../src/textures/VideoTexture.js)
+[src/textures/VideoTexture.js](https://github.com/mrdoob/three.js/blob/master/src/textures/VideoTexture.js)

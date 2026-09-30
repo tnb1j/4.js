@@ -1,11 +1,11 @@
 import {
 	Matrix4,
 	Vector2
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module SSAOShader
- * @four_import import { SSAOShader } from '@tnb1j/4js/addons/shaders/SSAOShader.js';
+ * @three_import import { SSAOShader } from 'three/addons/shaders/SSAOShader.js';
  */
 
 /**

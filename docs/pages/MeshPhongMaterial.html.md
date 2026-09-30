@@ -256,4 +256,4 @@ Default is `1`.
 
 ## Source
 
-[src/materials/MeshPhongMaterial.js](../../src/materials/MeshPhongMaterial.js)
+[src/materials/MeshPhongMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshPhongMaterial.js)

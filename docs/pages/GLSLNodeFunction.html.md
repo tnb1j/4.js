@@ -32,4 +32,4 @@ Default is `this.name`.
 
 ## Source
 
-[src/nodes/parsers/GLSLNodeFunction.js](../../src/nodes/parsers/GLSLNodeFunction.js)
+[src/nodes/parsers/GLSLNodeFunction.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/parsers/GLSLNodeFunction.js)

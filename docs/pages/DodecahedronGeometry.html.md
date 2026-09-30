@@ -7,9 +7,9 @@ A geometry class for representing a dodecahedron.
 ## Code Example
 
 ```js
-const geometry = new FOUR.DodecahedronGeometry();
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const dodecahedron = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.DodecahedronGeometry();
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const dodecahedron = new THREE.Mesh( geometry, material );
 scene.add( dodecahedron );
 ```
 
@@ -53,4 +53,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/DodecahedronGeometry.js](../../src/geometries/DodecahedronGeometry.js)
+[src/geometries/DodecahedronGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/DodecahedronGeometry.js)

@@ -56,4 +56,4 @@ The current state.
 
 ## Source
 
-[src/nodes/accessors/RendererReferenceNode.js](../../src/nodes/accessors/RendererReferenceNode.js)
+[src/nodes/accessors/RendererReferenceNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/RendererReferenceNode.js)

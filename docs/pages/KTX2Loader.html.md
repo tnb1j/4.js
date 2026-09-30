@@ -27,10 +27,10 @@ const texture = loader.loadAsync( 'diffuse.ktx2' );
 
 ## Import
 
-KTX2Loader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+KTX2Loader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 ```
 
 ## Constructor
@@ -137,4 +137,4 @@ The worker limit.
 
 ## Source
 
-[examples/jsm/loaders/KTX2Loader.js](../../examples/jsm/loaders/KTX2Loader.js)
+[examples/jsm/loaders/KTX2Loader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/KTX2Loader.js)

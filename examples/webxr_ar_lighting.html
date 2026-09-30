@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import { ARButton } from '@tnb1j/4js/addons/webxr/ARButton.js';
-			import { XREstimatedLight } from '@tnb1j/4js/addons/webxr/XREstimatedLight.js';
+			import * as THREE from 'three';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
+			import { XREstimatedLight } from 'three/addons/webxr/XREstimatedLight.js';
 
 			let camera, scene, renderer;
 			let controller;
@@ -41,17 +41,17 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-				const defaultLight = new FOUR.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
+				const defaultLight = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
 				defaultLight.position.set( 0.5, 1, 0.25 );
 				scene.add( defaultLight );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -95,7 +95,7 @@
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_2k.hdr.jpg', function ( texture ) {
 
-						texture.mapping = FOUR.EquirectangularReflectionMapping;
+						texture.mapping = THREE.EquirectangularReflectionMapping;
 
 						defaultEnvironment = texture;
 
@@ -110,8 +110,8 @@
 
 				//
 
-				const ballGeometry = new FOUR.SphereGeometry( 0.175, 32, 32 );
-				const ballGroup = new FOUR.Group();
+				const ballGeometry = new THREE.SphereGeometry( 0.175, 32, 32 );
+				const ballGroup = new THREE.Group();
 				ballGroup.position.z = - 2;
 
 				const rows = 3;
@@ -121,12 +121,12 @@
 
 					for ( let j = 0; j < cols; j ++ ) {
 
-						const ballMaterial = new FOUR.MeshStandardMaterial( {
+						const ballMaterial = new THREE.MeshStandardMaterial( {
 							color: 0xdddddd,
 							roughness: i / rows,
 							metalness: j / cols
 						} );
-						const ballMesh = new FOUR.Mesh( ballGeometry, ballMaterial );
+						const ballMesh = new THREE.Mesh( ballGeometry, ballMaterial );
 						ballMesh.position.set( ( i + 0.5 - rows * 0.5 ) * 0.4, ( j + 0.5 - cols * 0.5 ) * 0.4, 0 );
 						ballGroup.add( ballMesh );
 

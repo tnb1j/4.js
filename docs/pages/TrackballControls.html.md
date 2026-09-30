@@ -6,10 +6,10 @@ This class is similar to [OrbitControls](OrbitControls.html). However, it does n
 
 ## Import
 
-TrackballControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+TrackballControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
+import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 ```
 
 ## Constructor
@@ -78,13 +78,19 @@ This object contains references to the mouse actions used by the controls.
 
 ```js
 controls.mouseButtons = {
-	LEFT: FOUR.MOUSE.ROTATE,
-	MIDDLE: FOUR.MOUSE.DOLLY,
-	RIGHT: FOUR.MOUSE.PAN
+	LEFT: THREE.MOUSE.ROTATE,
+	MIDDLE: THREE.MOUSE.DOLLY,
+	RIGHT: THREE.MOUSE.PAN
 }
 ```
 
 **Overrides:** [Controls#mouseButtons](Controls.html#mouseButtons)
+
+### .multiTouchRoll : boolean
+
+Whether two finger twist gesture rolls the camera around its view axis or not.
+
+Default is `false`.
 
 ### .noPan : boolean
 
@@ -109,6 +115,12 @@ Default is `false`.
 The pan speed.
 
 Default is `0.3`.
+
+### .rollSpeed : number
+
+The roll speed used for multi-touch roll.
+
+Default is `1`.
 
 ### .rotateSpeed : number
 
@@ -174,4 +186,4 @@ Fires when an interaction was initiated.
 
 ## Source
 
-[examples/jsm/controls/TrackballControls.js](../../examples/jsm/controls/TrackballControls.js)
+[examples/jsm/controls/TrackballControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/TrackballControls.js)

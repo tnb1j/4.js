@@ -24,22 +24,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, lights } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { color, lights } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			class CustomLightingModel extends FOUR.LightingModel {
+			class CustomLightingModel extends THREE.LightingModel {
 
 				direct( { lightColor, reflectedLight }/*, builder */ ) {
 
@@ -57,25 +57,25 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.z = 1.5;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				// lights
 
-				const sphereGeometry = new FOUR.SphereGeometry( 0.02, 16, 8 );
+				const sphereGeometry = new THREE.SphereGeometry( 0.02, 16, 8 );
 
 				const addLight = ( hexColor ) => {
 
-					const material = new FOUR.NodeMaterial();
+					const material = new THREE.NodeMaterial();
 					material.colorNode = color( hexColor );
 					material.lightsNode = lights(); // ignore scene lights
 
-					const mesh = new FOUR.Mesh( sphereGeometry, material );
+					const mesh = new THREE.Mesh( sphereGeometry, material );
 
-					const light = new FOUR.PointLight( hexColor, 0.1, 1 );
+					const light = new THREE.PointLight( hexColor, 0.1, 1 );
 					light.add( mesh );
 
 					scene.add( light );
@@ -98,13 +98,13 @@
 
 				for ( let i = 0; i < 500000; i ++ ) {
 
-					const point = new FOUR.Vector3().random().subScalar( 0.5 ).multiplyScalar( 3 );
+					const point = new THREE.Vector3().random().subScalar( 0.5 ).multiplyScalar( 3 );
 					points.push( point );
 
 				}
 
-				const geometryPoints = new FOUR.BufferGeometry().setFromPoints( points );
-				const materialPoints = new FOUR.PointsNodeMaterial();
+				const geometryPoints = new THREE.BufferGeometry().setFromPoints( points );
+				const materialPoints = new THREE.PointsNodeMaterial();
 
 				// custom lighting model
 
@@ -115,12 +115,12 @@
 
 				//
 
-				const pointCloud = new FOUR.Points( geometryPoints, materialPoints );
+				const pointCloud = new THREE.Points( geometryPoints, materialPoints );
 				scene.add( pointCloud );
 
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

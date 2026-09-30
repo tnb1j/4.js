@@ -156,7 +156,7 @@ class WebGLAttributeUtils {
 
 		} else {
 
-			throw new Error( 'FOUR.WebGLBackend: Unsupported buffer data format: ' + array );
+			throw new Error( 'THREE.WebGLBackend: Unsupported buffer data format: ' + array );
 
 		}
 
@@ -286,7 +286,7 @@ class WebGLAttributeUtils {
 
 			if ( target._mapped === true ) {
 
-				throw new Error( 'FOUR.WebGPURenderer: ReadbackBuffer must be released before being used again.' );
+				throw new Error( 'THREE.WebGPURenderer: ReadbackBuffer must be released before being used again.' );
 
 			}
 

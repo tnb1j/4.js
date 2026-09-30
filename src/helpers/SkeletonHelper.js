@@ -14,7 +14,7 @@ const _matrixWorldInv = /*@__PURE__*/ new Matrix4();
  * A helper object to assist with visualizing a {@link Skeleton}.
  *
  * ```js
- * const helper = new FOUR.SkeletonHelper( skinnedMesh );
+ * const helper = new THREE.SkeletonHelper( skinnedMesh );
  * scene.add( helper );
  * ```
  *
@@ -161,6 +161,8 @@ class SkeletonHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

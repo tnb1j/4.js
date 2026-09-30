@@ -18,4 +18,4 @@ The scope defines the behavior of the node.
 
 ## Source
 
-[src/nodes/gpgpu/BarrierNode.js](../../src/nodes/gpgpu/BarrierNode.js)
+[src/nodes/gpgpu/BarrierNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/gpgpu/BarrierNode.js)

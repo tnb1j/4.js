@@ -1,7 +1,7 @@
 import {
 	BufferGeometry,
 	Float32BufferAttribute
-} from '@tnb1j/4js';
+} from 'three';
 import { ConvexHull } from '../math/ConvexHull.js';
 
 /**
@@ -10,13 +10,13 @@ import { ConvexHull } from '../math/ConvexHull.js';
  *
  * ```js
  * const geometry = new ConvexGeometry( points );
- * const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
- * const mesh = new FOUR.Mesh( geometry, material );
+ * const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+ * const mesh = new THREE.Mesh( geometry, material );
  * scene.add( mesh );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { ConvexGeometry } from '@tnb1j/4js/addons/geometries/ConvexGeometry.js';
+ * @three_import import { ConvexGeometry } from 'three/addons/geometries/ConvexGeometry.js';
  */
 class ConvexGeometry extends BufferGeometry {
 

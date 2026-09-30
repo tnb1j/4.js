@@ -5,7 +5,7 @@ import {
 	Matrix4,
 	Vector3,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Utility functions for parsing
@@ -111,7 +111,7 @@ class ColladaParser {
 
 			}
 
-			console.error( 'FOUR.ColladaLoader: Failed to parse collada file.\n', errorText );
+			console.error( 'THREE.ColladaLoader: Failed to parse collada file.\n', errorText );
 
 			return null;
 
@@ -120,7 +120,7 @@ class ColladaParser {
 		// metadata
 
 		const version = collada.getAttribute( 'version' );
-		console.debug( 'FOUR.ColladaLoader: File version', version );
+		console.debug( 'THREE.ColladaLoader: File version', version );
 
 		const asset = this.parseAsset( getElementsByTagName( collada, 'asset' )[ 0 ] );
 
@@ -446,7 +446,7 @@ class ColladaParser {
 
 				case 'morph':
 					data.id = parseId( child.getAttribute( 'source' ) );
-					console.warn( 'FOUR.ColladaLoader: Morph target animation not supported yet.' );
+					console.warn( 'THREE.ColladaLoader: Morph target animation not supported yet.' );
 					break;
 
 			}
@@ -1887,7 +1887,7 @@ class ColladaParser {
 
 		if ( this.hasNode( data.id ) ) {
 
-			console.warn( 'FOUR.ColladaLoader: There is already a node with ID %s. Exclude current node from further processing.', data.id );
+			console.warn( 'THREE.ColladaLoader: There is already a node with ID %s. Exclude current node from further processing.', data.id );
 
 		} else {
 

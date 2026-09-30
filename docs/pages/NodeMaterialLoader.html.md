@@ -72,4 +72,4 @@ The node library defined as `<classname,class>`.
 
 ## Source
 
-[src/loaders/nodes/NodeMaterialLoader.js](../../src/loaders/nodes/NodeMaterialLoader.js)
+[src/loaders/nodes/NodeMaterialLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/nodes/NodeMaterialLoader.js)

@@ -38,4 +38,4 @@ Default is `false`.
 
 ## Source
 
-[src/cameras/ArrayCamera.js](../../src/cameras/ArrayCamera.js)
+[src/cameras/ArrayCamera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/ArrayCamera.js)

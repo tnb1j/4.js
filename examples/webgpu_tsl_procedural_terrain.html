@@ -25,23 +25,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { mx_noise_float, color, cross, dot, float, transformNormalToView, positionLocal, sign, step, Fn, uniform, varying, vec2, vec3, Loop } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { mx_noise_float, color, cross, dot, float, transformNormalToView, positionLocal, sign, step, Fn, uniform, varying, vec2, vec3, Loop } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { SunLightNode } from 'three/addons/lights/SunLightNode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
+
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 
 			let camera, scene, renderer, controls, drag;
 
@@ -49,18 +52,18 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( - 10, 8, - 2.2 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x201919 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x201919 );
 
 				// environment
 
 				const hdrLoader = new HDRLoader();
 				hdrLoader.load( './textures/equirectangular/pedestrian_overpass_1k.hdr', ( environmentMap ) => {
 
-					environmentMap.mapping = FOUR.EquirectangularReflectionMapping;
+					environmentMap.mapping = THREE.EquirectangularReflectionMapping;
 
 					scene.background = environmentMap;
 					scene.backgroundBlurriness = 0.5;
@@ -70,22 +73,16 @@
 
 				// lights
 			
-				const directionalLight = new FOUR.DirectionalLight( '#ffffff', 2 );
-				directionalLight.position.set( 6.25, 3, 4 );
-				directionalLight.castShadow = true;
-				directionalLight.shadow.mapSize.set( 1024, 1024 );
-				directionalLight.shadow.camera.near = 0.1;
-				directionalLight.shadow.camera.far = 30;
-				directionalLight.shadow.camera.top = 8;
-				directionalLight.shadow.camera.right = 8;
-				directionalLight.shadow.camera.bottom = - 8;
-				directionalLight.shadow.camera.left = - 8;
-				directionalLight.shadow.normalBias = 0.05;
-				scene.add( directionalLight );
+				const sunLight = new SunLight( '#ffffff', 2 );
+				sunLight.position.set( 6.25, 3, 4 );
+				sunLight.castShadow = true;
+				sunLight.shadow.camera.far = 30;
+				sunLight.shadow.normalBias = 0.05;
+				scene.add( sunLight );
 
 				// terrain
 
-				const material = new FOUR.MeshStandardNodeMaterial( {
+				const material = new THREE.MeshStandardNodeMaterial( {
 					metalness: 0,
 					roughness: 0.5,
 					color: '#85d534'
@@ -183,21 +180,21 @@
 			
 				} )();
 
-				const geometry = new FOUR.PlaneGeometry( 10, 10, 500, 500 );
+				const geometry = new THREE.PlaneGeometry( 10, 10, 500, 500 );
 				geometry.deleteAttribute( 'uv' );
 				geometry.deleteAttribute( 'normal' );
 				geometry.rotateX( - Math.PI * 0.5 );
 
-				const terrain = new FOUR.Mesh( geometry, material );
+				const terrain = new THREE.Mesh( geometry, material );
 				terrain.receiveShadow = true;
 				terrain.castShadow = true;
 				scene.add( terrain );
 
 				// water
 			
-				const water = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 10, 10, 1, 1 ),
-					new FOUR.MeshPhysicalMaterial( {
+				const water = new THREE.Mesh(
+					new THREE.PlaneGeometry( 10, 10, 1, 1 ),
+					new THREE.MeshPhysicalMaterial( {
 						transmission: 1,
 						roughness: 0.5,
 						ior: 1.333,
@@ -211,14 +208,14 @@
 				// drag
 
 				drag = {};
-				drag.screenCoords = new FOUR.Vector2();
-				drag.prevWorldCoords = new FOUR.Vector3();
-				drag.worldCoords = new FOUR.Vector3();
-				drag.raycaster = new FOUR.Raycaster();
+				drag.screenCoords = new THREE.Vector2();
+				drag.prevWorldCoords = new THREE.Vector3();
+				drag.worldCoords = new THREE.Vector3();
+				drag.raycaster = new THREE.Raycaster();
 				drag.down = false;
 				drag.hover = false;
 
-				drag.object = new FOUR.Mesh( new FOUR.PlaneGeometry( 10, 10, 1, 1 ), new FOUR.MeshBasicMaterial() );
+				drag.object = new THREE.Mesh( new THREE.PlaneGeometry( 10, 10, 1, 1 ), new THREE.MeshBasicMaterial() );
 				drag.object.rotation.x = - Math.PI * 0.5;
 				drag.object.visible = false;
 				scene.add( drag.object );
@@ -268,8 +265,9 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
+				renderer.library.addLight( SunLightNode, SunLight );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.shadowMap.enabled = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );

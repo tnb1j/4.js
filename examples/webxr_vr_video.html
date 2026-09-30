@@ -24,16 +24,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { VRButton } from '@tnb1j/4js/addons/webxr/VRButton.js';
+			import * as THREE from 'three';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
 
 			let camera, scene, renderer;
 
@@ -48,7 +48,7 @@
 
 				} );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.layers.enable( 1 ); // render left view when no stereo available
 
 				// video
@@ -56,15 +56,15 @@
 				const video = document.getElementById( 'video' );
 				video.play();
 
-				const texture = new FOUR.VideoTexture( video );
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				const texture = new THREE.VideoTexture( video );
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x101010 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x101010 );
 
 				// left
 
-				const geometry1 = new FOUR.SphereGeometry( 500, 60, 40 );
+				const geometry1 = new THREE.SphereGeometry( 500, 60, 40 );
 				// invert the geometry on the x-axis so that all of the faces point inward
 				geometry1.scale( - 1, 1, 1 );
 
@@ -76,16 +76,16 @@
 
 				}
 
-				const material1 = new FOUR.MeshBasicMaterial( { map: texture } );
+				const material1 = new THREE.MeshBasicMaterial( { map: texture } );
 
-				const mesh1 = new FOUR.Mesh( geometry1, material1 );
+				const mesh1 = new THREE.Mesh( geometry1, material1 );
 				mesh1.rotation.y = - Math.PI / 2;
 				mesh1.layers.set( 1 ); // display in left eye only
 				scene.add( mesh1 );
 
 				// right
 
-				const geometry2 = new FOUR.SphereGeometry( 500, 60, 40 );
+				const geometry2 = new THREE.SphereGeometry( 500, 60, 40 );
 				geometry2.scale( - 1, 1, 1 );
 
 				const uvs2 = geometry2.attributes.uv.array;
@@ -97,16 +97,16 @@
 
 				}
 
-				const material2 = new FOUR.MeshBasicMaterial( { map: texture } );
+				const material2 = new THREE.MeshBasicMaterial( { map: texture } );
 
-				const mesh2 = new FOUR.Mesh( geometry2, material2 );
+				const mesh2 = new THREE.Mesh( geometry2, material2 );
 				mesh2.rotation.y = - Math.PI / 2;
 				mesh2.layers.set( 2 ); // display in right eye only
 				scene.add( mesh2 );
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

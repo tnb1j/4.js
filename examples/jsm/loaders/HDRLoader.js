@@ -5,7 +5,7 @@ import {
 	HalfFloatType,
 	LinearFilter,
 	LinearSRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for the RGBE HDR texture format.
@@ -13,13 +13,13 @@ import {
  * ```js
  * const loader = new HDRLoader();
  * const envMap = await loader.loadAsync( 'textures/equirectangular/blouberg_sunrise_2_1k.hdr' );
- * envMap.mapping = FOUR.EquirectangularReflectionMapping;
+ * envMap.mapping = THREE.EquirectangularReflectionMapping;
  *
  * scene.environment = envMap;
  * ```
  *
  * @augments DataTextureLoader
- * @four_import import { HDRLoader } from '@tnb1j/4js/addons/loaders/HDRLoader.js';
+ * @three_import import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
  */
 class HDRLoader extends DataTextureLoader {
 
@@ -62,11 +62,11 @@ class HDRLoader extends DataTextureLoader {
 
 				switch ( rgbe_error_code ) {
 
-					case rgbe_read_error: throw new Error( 'FOUR.HDRLoader: Read Error: ' + ( msg || '' ) );
-					case rgbe_write_error: throw new Error( 'FOUR.HDRLoader: Write Error: ' + ( msg || '' ) );
-					case rgbe_format_error: throw new Error( 'FOUR.HDRLoader: Bad File Format: ' + ( msg || '' ) );
+					case rgbe_read_error: throw new Error( 'THREE.HDRLoader: Read Error: ' + ( msg || '' ) );
+					case rgbe_write_error: throw new Error( 'THREE.HDRLoader: Write Error: ' + ( msg || '' ) );
+					case rgbe_format_error: throw new Error( 'THREE.HDRLoader: Bad File Format: ' + ( msg || '' ) );
 					default:
-					case rgbe_memory_error: throw new Error( 'FOUR.HDRLoader: Memory Error: ' + ( msg || '' ) );
+					case rgbe_memory_error: throw new Error( 'THREE.HDRLoader: Memory Error: ' + ( msg || '' ) );
 
 				}
 
@@ -423,7 +423,7 @@ class HDRLoader extends DataTextureLoader {
 
 			default:
 
-				throw new Error( 'FOUR.HDRLoader: Unsupported type: ' + this.type );
+				throw new Error( 'THREE.HDRLoader: Unsupported type: ' + this.type );
 
 		}
 

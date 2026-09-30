@@ -2,10 +2,10 @@
 
 ## Import
 
-FXAAShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+FXAAShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { FXAAShader } from '@tnb1j/4js/addons/shaders/FXAAShader.js';
+import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 ```
 
 ## Properties
@@ -21,4 +21,4 @@ References:
 
 ## Source
 
-[examples/jsm/shaders/FXAAShader.js](../../examples/jsm/shaders/FXAAShader.js)
+[examples/jsm/shaders/FXAAShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/FXAAShader.js)

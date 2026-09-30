@@ -13,10 +13,10 @@ composer.addPass( fxaaPass );
 
 ## Import
 
-ShaderPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ShaderPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ShaderPass } from '@tnb1j/4js/addons/postprocessing/ShaderPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 ```
 
 ## Constructor
@@ -87,4 +87,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/ShaderPass.js](../../examples/jsm/postprocessing/ShaderPass.js)
+[examples/jsm/postprocessing/ShaderPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/ShaderPass.js)

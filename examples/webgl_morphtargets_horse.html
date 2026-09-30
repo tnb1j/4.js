@@ -21,25 +21,25 @@
 
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> webgl - morph targets - horse<br/>
-			model by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="http://www.ro.me" target="_blank" rel="noopener">rome</a>
+			model by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="https://rome.mrdoob.com" target="_blank" rel="noopener">rome</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			let container, stats;
 			let camera, scene, renderer;
@@ -58,19 +58,19 @@
 
 				//
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.y = 300;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
 				//
 
-				const light1 = new FOUR.DirectionalLight( 0xefefff, 5 );
+				const light1 = new THREE.DirectionalLight( 0xefefff, 5 );
 				light1.position.set( 1, 1, 1 ).normalize();
 				scene.add( light1 );
 
-				const light2 = new FOUR.DirectionalLight( 0xffefef, 5 );
+				const light2 = new THREE.DirectionalLight( 0xffefef, 5 );
 				light2.position.set( - 1, - 1, - 1 ).normalize();
 				scene.add( light2 );
 
@@ -81,7 +81,7 @@
 					mesh.scale.set( 1.5, 1.5, 1.5 );
 					scene.add( mesh );
 
-					mixer = new FOUR.AnimationMixer( mesh );
+					mixer = new THREE.AnimationMixer( mesh );
 
 					mixer.clipAction( gltf.animations[ 0 ] ).setDuration( 1 ).play();
 
@@ -89,7 +89,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -129,8 +129,8 @@
 
 				theta += 0.1;
 
-				camera.position.x = radius * Math.sin( FOUR.MathUtils.degToRad( theta ) );
-				camera.position.z = radius * Math.cos( FOUR.MathUtils.degToRad( theta ) );
+				camera.position.x = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.z = radius * Math.cos( THREE.MathUtils.degToRad( theta ) );
 
 				camera.lookAt( 0, 150, 0 );
 

@@ -2,10 +2,10 @@
 
 ## Import
 
-KaleidoShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+KaleidoShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { KaleidoShader } from '@tnb1j/4js/addons/shaders/KaleidoShader.js';
+import { KaleidoShader } from 'three/addons/shaders/KaleidoShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ sides: number of reflections angle: initial angle in radians
 
 ## Source
 
-[examples/jsm/shaders/KaleidoShader.js](../../examples/jsm/shaders/KaleidoShader.js)
+[examples/jsm/shaders/KaleidoShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/KaleidoShader.js)

@@ -10,12 +10,12 @@ This and related audio modules make use of the [Web Audio API](https://www.w3.or
 
 ```js
 // create an AudioListener and add it to the camera
-const listener = new FOUR.AudioListener();
+const listener = new THREE.AudioListener();
 camera.add( listener );
 // create a global audio source
-const sound = new FOUR.Audio( listener );
+const sound = new THREE.Audio( listener );
 // load a sound and set it as the Audio object's buffer
-const audioLoader = new FOUR.AudioLoader();
+const audioLoader = new THREE.AudioLoader();
 audioLoader.load( 'sounds/ambient.ogg', function( buffer ) {
 	sound.setBuffer( buffer );
 	sound.setLoop( true );
@@ -380,4 +380,4 @@ Default is `0`.
 
 ## Source
 
-[src/audio/Audio.js](../../src/audio/Audio.js)
+[src/audio/Audio.js](https://github.com/mrdoob/three.js/blob/master/src/audio/Audio.js)

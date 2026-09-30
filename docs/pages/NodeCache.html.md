@@ -56,4 +56,4 @@ The data that should be cached.
 
 ## Source
 
-[src/nodes/core/NodeCache.js](../../src/nodes/core/NodeCache.js)
+[src/nodes/core/NodeCache.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeCache.js)

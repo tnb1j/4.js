@@ -17,32 +17,32 @@
 			</div>
 
 			<small>
-				Animation Retargeting from <a href="https://www.mixamo.com/" target="_blank" rel="noopener">Mixamo</a> to <a href="https://readyplayer.me/" target="_blank" rel="noopener">readyplayer.me</a>.
+				Animation Retargeting from <a href="https://www.mixamo.com/" target="_blank" rel="noopener">Mixamo</a> to readyplayer.me.
 			</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { screenUV, color, vec2, vec4, reflector, positionWorld } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { screenUV, color, vec2, vec4, reflector, positionWorld } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import * as SkeletonUtils from '@tnb1j/4js/addons/utils/SkeletonUtils.js';
+			import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 
 			const [ sourceModel, targetModel ] = await Promise.all( [
 
@@ -62,12 +62,12 @@
 
 			//
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			// scene
 
-			const scene = new FOUR.Scene();
+			const scene = new THREE.Scene();
 
 			// background
 
@@ -78,18 +78,18 @@
 
 			//
 
-			const light = new FOUR.HemisphereLight( 0x311649, 0x0c5d68, 10 );
+			const light = new THREE.HemisphereLight( 0x311649, 0x0c5d68, 10 );
 			scene.add( light );
 
-			const backLight = new FOUR.DirectionalLight( 0xffffff, 10 );
+			const backLight = new THREE.DirectionalLight( 0xffffff, 10 );
 			backLight.position.set( 0, 5, - 5 );
 			scene.add( backLight );
 
-			const keyLight = new FOUR.DirectionalLight( 0xfff9ea, 4 );
+			const keyLight = new THREE.DirectionalLight( 0xfff9ea, 4 );
 			keyLight.position.set( 3, 5, 3 );
 			scene.add( keyLight );
 
-			const camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .25, 50 );
+			const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, .25, 50 );
 			camera.position.set( 0, 3, 5 );
 
 			// add models to scene
@@ -108,12 +108,12 @@
 			const mixer = retargetModel( source, targetModel );
 
 			// renderer
-			const renderer = new FOUR.WebGPURenderer( { antialias: true } );
+			const renderer = new THREE.WebGPURenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
 			renderer.inspector = new Inspector();
-			renderer.toneMapping = FOUR.NeutralToneMapping;
+			renderer.toneMapping = THREE.NeutralToneMapping;
 			document.body.appendChild( renderer.domElement );
 
 			const controls = new OrbitControls( camera, renderer.domElement );
@@ -129,12 +129,12 @@
 
 			const reflectionMask = positionWorld.xz.distance( 0 ).mul( .1 ).clamp().oneMinus();
 
-			const floorMaterial = new FOUR.NodeMaterial();
+			const floorMaterial = new THREE.NodeMaterial();
 			floorMaterial.colorNode = vec4( reflection.rgb, reflectionMask );
 			floorMaterial.opacity = .2;
 			floorMaterial.transparent = true;
 
-			const floor = new FOUR.Mesh( new FOUR.BoxGeometry( 50, .001, 50 ), floorMaterial );
+			const floor = new THREE.Mesh( new THREE.BoxGeometry( 50, .001, 50 ), floorMaterial );
 			floor.receiveShadow = true;
 
 			floor.position.set( 0, 0, 0 );
@@ -146,10 +146,10 @@
 
 				const clip = sourceModel.animations[ 0 ];
 
-				const helper = new FOUR.SkeletonHelper( sourceModel );
-				const skeleton = new FOUR.Skeleton( helper.bones );
+				const helper = new THREE.SkeletonHelper( sourceModel );
+				const skeleton = new THREE.Skeleton( helper.bones );
 
-				const mixer = new FOUR.AnimationMixer( sourceModel );
+				const mixer = new THREE.AnimationMixer( sourceModel );
 				mixer.clipAction( sourceModel.animations[ 0 ] ).play();
 
 				return { clip, skeleton, mixer };
@@ -169,7 +169,7 @@
 					scale: .01,
 
 					// use ( 0, 1, 0 ) to ignore xz hip movement.
-					//hipInfluence: new FOUR.Vector3( 0, 1, 0 ),
+					//hipInfluence: new THREE.Vector3( 0, 1, 0 ),
 
 					// Map of target's bone names to source's bone names -> { targetBoneName: sourceBoneName }
 					getBoneName: function ( bone ) {
@@ -182,7 +182,7 @@
 
 				const retargetedClip = SkeletonUtils.retargetClip( targetSkin, sourceModel.skeleton, sourceModel.clip, retargetOptions );
 
-				const mixer = new FOUR.AnimationMixer( targetSkin );
+				const mixer = new THREE.AnimationMixer( targetSkin );
 				mixer.clipAction( retargetedClip ).play();
 
 				return mixer;

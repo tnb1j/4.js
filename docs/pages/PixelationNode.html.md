@@ -92,4 +92,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/PixelationPassNode.js](../../examples/jsm/tsl/display/PixelationPassNode.js)
+[examples/jsm/tsl/display/PixelationPassNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/PixelationPassNode.js)

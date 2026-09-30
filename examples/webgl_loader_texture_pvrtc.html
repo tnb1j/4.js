@@ -17,17 +17,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { PVRLoader } from '@tnb1j/4js/addons/loaders/PVRLoader.js';
+			import { PVRLoader } from 'three/addons/loaders/PVRLoader.js';
 
 			let camera, scene, renderer;
 			const meshes = [];
@@ -36,32 +36,32 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 1000;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.BoxGeometry( 200, 200, 200 );
+				const geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
 				//
 
 				const onCube1Loaded = function ( texture ) {
 
-					texture.magFilter = FOUR.LinearFilter;
-					texture.minFilter = FOUR.LinearFilter;
-					texture.mapping = FOUR.CubeReflectionMapping;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.magFilter = THREE.LinearFilter;
+					texture.minFilter = THREE.LinearFilter;
+					texture.mapping = THREE.CubeReflectionMapping;
+					texture.colorSpace = THREE.SRGBColorSpace;
 					material6.needsUpdate = true;
 
 				};
 
 				const onCube2Loaded = function ( texture ) {
 
-					texture.magFilter = FOUR.LinearFilter;
+					texture.magFilter = THREE.LinearFilter;
 					// texture.minFilter = LinearMipmapNearestFilter;
-					texture.minFilter = FOUR.LinearFilter;
-					texture.mapping = FOUR.CubeReflectionMapping;
-					texture.colorSpace = FOUR.SRGBColorSpace;
+					texture.minFilter = THREE.LinearFilter;
+					texture.mapping = THREE.CubeReflectionMapping;
+					texture.colorSpace = THREE.SRGBColorSpace;
 					material8.needsUpdate = true;
 
 				};
@@ -88,71 +88,71 @@
 				disturb_4bpp_rgb_v3.minFilter =
 				disturb_4bpp_rgb_v3.magFilter =
 				flare_2bpp_rgba.minFilter =
-				flare_2bpp_rgba.magFilter = FOUR.LinearFilter;
+				flare_2bpp_rgba.magFilter = THREE.LinearFilter;
 
 				disturb_2bpp_rgb.colorSpace =
 				flare_4bpp_rgba.colorSpace =
 				disturb_4bpp_rgb.colorSpace =
 				disturb_4bpp_rgb_v3.colorSpace =
-				flare_2bpp_rgba.colorSpace = FOUR.SRGBColorSpace;
+				flare_2bpp_rgba.colorSpace = THREE.SRGBColorSpace;
 
-				const material1 = new FOUR.MeshBasicMaterial( { map: disturb_4bpp_rgb } );
-				const material2 = new FOUR.MeshBasicMaterial( { map: disturb_4bpp_rgb_mips } );
-				const material3 = new FOUR.MeshBasicMaterial( { map: disturb_2bpp_rgb } );
-				const material4 = new FOUR.MeshBasicMaterial( { map: flare_4bpp_rgba, side: FOUR.DoubleSide, depthTest: false, transparent: true } );
-				const material5 = new FOUR.MeshBasicMaterial( { map: flare_2bpp_rgba, side: FOUR.DoubleSide, depthTest: false, transparent: true } );
-				const material6 = new FOUR.MeshBasicMaterial( { envMap: park3_cube_nomip_4bpp_rgb } );
-				const material8 = new FOUR.MeshBasicMaterial( { envMap: park3_cube_mip_2bpp_rgb_v3 } );
+				const material1 = new THREE.MeshBasicMaterial( { map: disturb_4bpp_rgb } );
+				const material2 = new THREE.MeshBasicMaterial( { map: disturb_4bpp_rgb_mips } );
+				const material3 = new THREE.MeshBasicMaterial( { map: disturb_2bpp_rgb } );
+				const material4 = new THREE.MeshBasicMaterial( { map: flare_4bpp_rgba, side: THREE.DoubleSide, depthTest: false, transparent: true } );
+				const material5 = new THREE.MeshBasicMaterial( { map: flare_2bpp_rgba, side: THREE.DoubleSide, depthTest: false, transparent: true } );
+				const material6 = new THREE.MeshBasicMaterial( { envMap: park3_cube_nomip_4bpp_rgb } );
+				const material8 = new THREE.MeshBasicMaterial( { envMap: park3_cube_mip_2bpp_rgb_v3 } );
 
-				const material7 = new FOUR.MeshBasicMaterial( { map: disturb_4bpp_rgb_v3 } );
+				const material7 = new THREE.MeshBasicMaterial( { map: disturb_4bpp_rgb_v3 } );
 
 				//
 
-				let mesh = new FOUR.Mesh( geometry, material1 );
+				let mesh = new THREE.Mesh( geometry, material1 );
 				mesh.position.x = - 500;
 				mesh.position.y = 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( geometry, material2 );
+				mesh = new THREE.Mesh( geometry, material2 );
 				mesh.position.x = - 166;
 				mesh.position.y = 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( geometry, material3 );
+				mesh = new THREE.Mesh( geometry, material3 );
 				mesh.position.x = 166;
 				mesh.position.y = 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( geometry, material7 );
+				mesh = new THREE.Mesh( geometry, material7 );
 				mesh.position.x = 500;
 				mesh.position.y = 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( geometry, material4 );
+				mesh = new THREE.Mesh( geometry, material4 );
 				mesh.position.x = - 500;
 				mesh.position.y = - 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( geometry, material5 );
+				mesh = new THREE.Mesh( geometry, material5 );
 				mesh.position.x = - 166;
 				mesh.position.y = - 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				const torus = new FOUR.TorusGeometry( 100, 50, 32, 24 );
+				const torus = new THREE.TorusGeometry( 100, 50, 32, 24 );
 
-				mesh = new FOUR.Mesh( torus, material6 );
+				mesh = new THREE.Mesh( torus, material6 );
 				mesh.position.x = 166;
 				mesh.position.y = - 200;
 				scene.add( mesh );
 				meshes.push( mesh );
 
-				mesh = new FOUR.Mesh( torus, material8 );
+				mesh = new THREE.Mesh( torus, material8 );
 				mesh.position.x = 500;
 				mesh.position.y = - 200;
 				scene.add( mesh );
@@ -160,7 +160,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

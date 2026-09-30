@@ -7,12 +7,12 @@ import { SphereGeometry } from '../geometries/SphereGeometry.js';
  * visualizing an instance of {@link PointLight}.
  *
  * ```js
- * const pointLight = new FOUR.PointLight( 0xff0000, 1, 100 );
+ * const pointLight = new THREE.PointLight( 0xff0000, 1, 100 );
  * pointLight.position.set( 10, 10, 10 );
  * scene.add( pointLight );
  *
  * const sphereSize = 1;
- * const pointLightHelper = new FOUR.PointLightHelper( pointLight, sphereSize );
+ * const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
  * scene.add( pointLightHelper );
  * ```
  *
@@ -64,6 +64,8 @@ class PointLightHelper extends Mesh {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

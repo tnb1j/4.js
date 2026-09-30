@@ -4,10 +4,10 @@ Utility class for LDraw models.
 
 ## Import
 
-LDrawUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LDrawUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LDrawUtils } from '@tnb1j/4js/addons/utils/LDrawUtils.js';
+import { LDrawUtils } from 'three/addons/utils/LDrawUtils.js';
 ```
 
 ## Constructor
@@ -28,4 +28,4 @@ The object to merge.
 
 ## Source
 
-[examples/jsm/utils/LDrawUtils.js](../../examples/jsm/utils/LDrawUtils.js)
+[examples/jsm/utils/LDrawUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/LDrawUtils.js)

@@ -12,19 +12,19 @@ Scalable Vector Graphics is an XML-based vector image format for two-dimensional
 const loader = new SVGLoader();
 const data = await loader.loadAsync( 'data/svgSample.svg' );
 const paths = data.paths;
-const group = new FOUR.Group();
+const group = new THREE.Group();
 for ( let i = 0; i < paths.length; i ++ ) {
 	const path = paths[ i ];
-	const material = new FOUR.MeshBasicMaterial( {
+	const material = new THREE.MeshBasicMaterial( {
 		color: path.color,
-		side: FOUR.DoubleSide,
+		side: THREE.DoubleSide,
 		depthWrite: false
 	} );
 	const shapes = SVGLoader.createShapes( path );
 	for ( let j = 0; j < shapes.length; j ++ ) {
 		const shape = shapes[ j ];
-		const geometry = new FOUR.ShapeGeometry( shape );
-		const mesh = new FOUR.Mesh( geometry, material );
+		const geometry = new THREE.ShapeGeometry( shape );
+		const mesh = new THREE.Mesh( geometry, material );
 		group.add( mesh );
 	}
 }
@@ -33,10 +33,10 @@ scene.add( group );
 
 ## Import
 
-SVGLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SVGLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SVGLoader } from '@tnb1j/4js/addons/loaders/SVGLoader.js';
+import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 ```
 
 ## Constructor
@@ -241,4 +241,4 @@ Default is `0`.
 
 ## Source
 
-[examples/jsm/loaders/SVGLoader.js](../../examples/jsm/loaders/SVGLoader.js)
+[examples/jsm/loaders/SVGLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/SVGLoader.js)

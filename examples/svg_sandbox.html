@@ -17,22 +17,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { SVGRenderer, SVGObject } from '@tnb1j/4js/addons/renderers/SVGRenderer.js';
+			import { SVGRenderer, SVGObject } from 'three/addons/renderers/SVGRenderer.js';
 
-			FOUR.ColorManagement.enabled = false;
+			THREE.ColorManagement.enabled = false;
 
 			let camera, scene, renderer, stats, controls;
 
@@ -43,18 +43,18 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
 				// QRCODE
 
-				const loader = new FOUR.BufferGeometryLoader();
+				const loader = new THREE.BufferGeometryLoader();
 				loader.load( 'models/json/QRCode_buffergeometry.json', function ( geometry ) {
 
-					mesh = new FOUR.Mesh( geometry, new FOUR.MeshLambertMaterial( { vertexColors: true } ) );
+					mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { vertexColors: true } ) );
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = 2;
 					scene.add( mesh );
 
@@ -62,16 +62,16 @@
 
 				// CUBES
 
-				const boxGeometry = new FOUR.BoxGeometry( 100, 100, 100 );
+				const boxGeometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-				let mesh = new FOUR.Mesh( boxGeometry, new FOUR.MeshBasicMaterial( { color: 0x0000ff, opacity: 0.5, transparent: true } ) );
+				let mesh = new THREE.Mesh( boxGeometry, new THREE.MeshBasicMaterial( { color: 0x0000ff, opacity: 0.5, transparent: true } ) );
 				mesh.position.x = 500;
 				mesh.rotation.x = Math.random();
 				mesh.rotation.y = Math.random();
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = 2;
 				scene.add( mesh );
 
-				mesh = new FOUR.Mesh( boxGeometry, new FOUR.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) );
+				mesh = new THREE.Mesh( boxGeometry, new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) );
 				mesh.position.x = 500;
 				mesh.position.y = 500;
 				mesh.rotation.x = Math.random();
@@ -81,14 +81,14 @@
 
 				// PLANE
 
-				mesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 100, 100 ), new FOUR.MeshBasicMaterial( { color: Math.random() * 0xffffff, side: FOUR.DoubleSide } ) );
+				mesh = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, side: THREE.DoubleSide } ) );
 				mesh.position.y = - 500;
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = 2;
 				scene.add( mesh );
 
 				// CYLINDER
 
-				mesh = new FOUR.Mesh( new FOUR.CylinderGeometry( 20, 100, 200, 10 ), new FOUR.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) );
+				mesh = new THREE.Mesh( new THREE.CylinderGeometry( 20, 100, 200, 10 ), new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) );
 				mesh.position.x = - 500;
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = 2;
@@ -96,14 +96,14 @@
 
 				// POLYFIELD
 
-				const geometry = new FOUR.BufferGeometry();
-				const material = new FOUR.MeshBasicMaterial( { vertexColors: true, side: FOUR.DoubleSide } );
+				const geometry = new THREE.BufferGeometry();
+				const material = new THREE.MeshBasicMaterial( { vertexColors: true, side: THREE.DoubleSide } );
 
-				const v = new FOUR.Vector3();
-				const v0 = new FOUR.Vector3();
-				const v1 = new FOUR.Vector3();
-				const v2 = new FOUR.Vector3();
-				const color = new FOUR.Color();
+				const v = new THREE.Vector3();
+				const v0 = new THREE.Vector3();
+				const v1 = new THREE.Vector3();
+				const v2 = new THREE.Vector3();
+				const color = new THREE.Color();
 
 				const vertices = [];
 				const colors = [];
@@ -152,10 +152,10 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( vertices, 3 ) );
-				geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+				geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 
-				group = new FOUR.Mesh( geometry, material );
+				group = new THREE.Mesh( geometry, material );
 				group.scale.set( 2, 2, 2 );
 				scene.add( group );
 
@@ -163,8 +163,8 @@
 
 				for ( let i = 0; i < 50; i ++ ) {
 
-					const material = new FOUR.SpriteMaterial( { color: Math.random() * 0xffffff } );
-					const sprite = new FOUR.Sprite( material );
+					const material = new THREE.SpriteMaterial( { color: Math.random() * 0xffffff } );
+					const sprite = new THREE.Sprite( material );
 					sprite.position.x = Math.random() * 1000 - 500;
 					sprite.position.y = Math.random() * 1000 - 500;
 					sprite.position.z = Math.random() * 1000 - 500;
@@ -192,7 +192,7 @@
 
 				// CUSTOM FROM FILE
 
-				const fileLoader = new FOUR.FileLoader();
+				const fileLoader = new THREE.FileLoader();
 				fileLoader.load( 'models/svg/hexagon.svg', function ( svg ) {
 
 					const node = document.createElementNS( 'http://www.w3.org/2000/svg', 'g' );
@@ -209,10 +209,10 @@
 
 				// LIGHTS
 
-				const ambient = new FOUR.AmbientLight( 0x80ffff );
+				const ambient = new THREE.AmbientLight( 0x80ffff );
 				scene.add( ambient );
 
-				const directional = new FOUR.DirectionalLight( 0xffff00 );
+				const directional = new THREE.DirectionalLight( 0xffff00 );
 				directional.position.set( - 1, 0.5, 0 );
 				scene.add( directional );
 

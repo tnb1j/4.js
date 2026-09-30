@@ -21,21 +21,21 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+		import Stats from 'three/addons/libs/stats.module.js';
 
-		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-		import { MarchingCubes } from '@tnb1j/4js/addons/objects/MarchingCubes.js';
-		import { ToonShader1, ToonShader2, ToonShaderHatching, ToonShaderDotted } from '@tnb1j/4js/addons/shaders/ToonShader.js';
+		import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { MarchingCubes } from 'three/addons/objects/MarchingCubes.js';
+		import { ToonShader1, ToonShader2, ToonShaderHatching, ToonShaderDotted } from 'three/addons/shaders/ToonShader.js';
 
 		let container, stats;
 
@@ -51,7 +51,7 @@
 
 		let time = 0;
 
-		const timer = new FOUR.Timer();
+		const timer = new THREE.Timer();
 		timer.connect( document );
 
 		init();
@@ -62,25 +62,25 @@
 
 			// CAMERA
 
-			camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+			camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 			camera.position.set( - 500, 500, 1500 );
 
 			// SCENE
 
-			scene = new FOUR.Scene();
-			scene.background = new FOUR.Color( 0x050505 );
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0x050505 );
 
 			// LIGHTS
 
-			light = new FOUR.DirectionalLight( 0xffffff, 3 );
+			light = new THREE.DirectionalLight( 0xffffff, 3 );
 			light.position.set( 0.5, 0.5, 1 );
 			scene.add( light );
 
-			pointLight = new FOUR.PointLight( 0xff7c00, 3, 0, 0 );
+			pointLight = new THREE.PointLight( 0xff7c00, 3, 0, 0 );
 			pointLight.position.set( 0, 0, 100 );
 			scene.add( pointLight );
 
-			ambientLight = new FOUR.AmbientLight( 0x323232, 3 );
+			ambientLight = new THREE.AmbientLight( 0x323232, 3 );
 			scene.add( ambientLight );
 
 			// MATERIALS
@@ -103,7 +103,7 @@
 
 			// RENDERER
 
-			renderer = new FOUR.WebGLRenderer();
+			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );
@@ -153,11 +153,11 @@
 				path + 'pz' + format, path + 'nz' + format
 			];
 
-			const cubeTextureLoader = new FOUR.CubeTextureLoader();
+			const cubeTextureLoader = new THREE.CubeTextureLoader();
 
 			const reflectionCube = cubeTextureLoader.load( urls );
 			const refractionCube = cubeTextureLoader.load( urls );
-			refractionCube.mapping = FOUR.CubeRefractionMapping;
+			refractionCube.mapping = THREE.CubeRefractionMapping;
 
 			// toons
 
@@ -166,21 +166,21 @@
 			const hatchingMaterial = createShaderMaterial( ToonShaderHatching, light, ambientLight );
 			const dottedMaterial = createShaderMaterial( ToonShaderDotted, light, ambientLight );
 
-			const texture = new FOUR.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
-			texture.wrapS = FOUR.RepeatWrapping;
-			texture.wrapT = FOUR.RepeatWrapping;
-			texture.colorSpace = FOUR.SRGBColorSpace;
+			const texture = new THREE.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
+			texture.wrapS = THREE.RepeatWrapping;
+			texture.wrapT = THREE.RepeatWrapping;
+			texture.colorSpace = THREE.SRGBColorSpace;
 
 			const materials = {
-				'shiny': new FOUR.MeshStandardMaterial( { color: 0x9c0000, envMap: reflectionCube, roughness: 0.1, metalness: 1.0 } ),
-				'chrome': new FOUR.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube } ),
-				'liquid': new FOUR.MeshLambertMaterial( { color: 0xffffff, envMap: refractionCube, refractionRatio: 0.85 } ),
-				'matte': new FOUR.MeshPhongMaterial( { specular: 0x494949, shininess: 1 } ),
-				'flat': new FOUR.MeshLambertMaterial( { /*TODO flatShading: true */ } ),
-				'textured': new FOUR.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 1, map: texture } ),
-				'colors': new FOUR.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 2, vertexColors: true } ),
-				'multiColors': new FOUR.MeshPhongMaterial( { shininess: 2, vertexColors: true } ),
-				'plastic': new FOUR.MeshPhongMaterial( { specular: 0xc1c1c1, shininess: 250 } ),
+				'shiny': new THREE.MeshStandardMaterial( { color: 0x9c0000, envMap: reflectionCube, roughness: 0.1, metalness: 1.0 } ),
+				'chrome': new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube } ),
+				'liquid': new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: refractionCube, refractionRatio: 0.85 } ),
+				'matte': new THREE.MeshPhongMaterial( { specular: 0x494949, shininess: 1 } ),
+				'flat': new THREE.MeshLambertMaterial( { /*TODO flatShading: true */ } ),
+				'textured': new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 1, map: texture } ),
+				'colors': new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 2, vertexColors: true } ),
+				'multiColors': new THREE.MeshPhongMaterial( { shininess: 2, vertexColors: true } ),
+				'plastic': new THREE.MeshPhongMaterial( { specular: 0xc1c1c1, shininess: 250 } ),
 				'toon1': toonMaterial1,
 				'toon2': toonMaterial2,
 				'hatching': hatchingMaterial,
@@ -193,12 +193,12 @@
 
 		function createShaderMaterial( shader, light, ambientLight ) {
 
-			const u = FOUR.UniformsUtils.clone( shader.uniforms );
+			const u = THREE.UniformsUtils.clone( shader.uniforms );
 
 			const vs = shader.vertexShader;
 			const fs = shader.fragmentShader;
 
-			const material = new FOUR.ShaderMaterial( { uniforms: u, vertexShader: vs, fragmentShader: fs } );
+			const material = new THREE.ShaderMaterial( { uniforms: u, vertexShader: vs, fragmentShader: fs } );
 
 			material.uniforms[ 'uDirLightPos' ].value = light.position;
 			material.uniforms[ 'uDirLightColor' ].value = light.color;
@@ -283,13 +283,13 @@
 			// fill the field with some metaballs
 
 			const rainbow = [
-				new FOUR.Color( 0xff0000 ),
-				new FOUR.Color( 0xffbb00 ),
-				new FOUR.Color( 0xffff00 ),
-				new FOUR.Color( 0x00ff00 ),
-				new FOUR.Color( 0x0000ff ),
-				new FOUR.Color( 0x9400bd ),
-				new FOUR.Color( 0xc800eb )
+				new THREE.Color( 0xff0000 ),
+				new THREE.Color( 0xffbb00 ),
+				new THREE.Color( 0xffff00 ),
+				new THREE.Color( 0x00ff00 ),
+				new THREE.Color( 0x0000ff ),
+				new THREE.Color( 0x9400bd ),
+				new THREE.Color( 0xc800eb )
 			];
 			const subtract = 12;
 			const strength = 1.2 / ( ( Math.sqrt( numblobs ) - 1 ) / 4 + 1 );

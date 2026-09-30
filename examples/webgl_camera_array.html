@@ -12,15 +12,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer;
 			let mesh;
@@ -41,8 +41,8 @@
 
 					for ( let x = 0; x < AMOUNT; x ++ ) {
 
-						const subcamera = new FOUR.PerspectiveCamera( 40, ASPECT_RATIO, 0.1, 10 );
-						subcamera.viewport = new FOUR.Vector4( Math.floor( x * WIDTH ), Math.floor( y * HEIGHT ), Math.ceil( WIDTH ), Math.ceil( HEIGHT ) );
+						const subcamera = new THREE.PerspectiveCamera( 40, ASPECT_RATIO, 0.1, 10 );
+						subcamera.viewport = new THREE.Vector4( Math.floor( x * WIDTH ), Math.floor( y * HEIGHT ), Math.ceil( WIDTH ), Math.ceil( HEIGHT ) );
 						subcamera.position.x = ( x / AMOUNT ) - 0.5;
 						subcamera.position.y = 0.5 - ( y / AMOUNT );
 						subcamera.position.z = 1.5;
@@ -55,36 +55,36 @@
 
 				}
 
-				camera = new FOUR.ArrayCamera( cameras );
+				camera = new THREE.ArrayCamera( cameras );
 				camera.position.z = 3;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				scene.add( new FOUR.AmbientLight( 0x999999 ) );
+				scene.add( new THREE.AmbientLight( 0x999999 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const light = new THREE.DirectionalLight( 0xffffff, 3 );
 				light.position.set( 0.5, 0.5, 1 );
 				light.castShadow = true;
 				light.shadow.camera.zoom = 4; // tighter shadow map
 				scene.add( light );
 
-				const geometryBackground = new FOUR.PlaneGeometry( 100, 100 );
-				const materialBackground = new FOUR.MeshPhongMaterial( { color: 0x000066 } );
+				const geometryBackground = new THREE.PlaneGeometry( 100, 100 );
+				const materialBackground = new THREE.MeshPhongMaterial( { color: 0x000066 } );
 
-				const background = new FOUR.Mesh( geometryBackground, materialBackground );
+				const background = new THREE.Mesh( geometryBackground, materialBackground );
 				background.receiveShadow = true;
 				background.position.set( 0, 0, - 1 );
 				scene.add( background );
 
-				const geometryCylinder = new FOUR.CylinderGeometry( 0.5, 0.5, 1, 32 );
-				const materialCylinder = new FOUR.MeshPhongMaterial( { color: 0xff0000 } );
+				const geometryCylinder = new THREE.CylinderGeometry( 0.5, 0.5, 1, 32 );
+				const materialCylinder = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
 
-				mesh = new FOUR.Mesh( geometryCylinder, materialCylinder );
+				mesh = new THREE.Mesh( geometryCylinder, materialCylinder );
 				mesh.castShadow = true;
 				mesh.receiveShadow = true;
 				scene.add( mesh );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

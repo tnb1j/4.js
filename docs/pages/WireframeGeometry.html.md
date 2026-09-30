@@ -9,9 +9,9 @@ Note: It is not yet possible to serialize/deserialize instances of this class.
 ## Code Example
 
 ```js
-const geometry = new FOUR.SphereGeometry();
-const wireframe = new FOUR.WireframeGeometry( geometry );
-const line = new FOUR.LineSegments( wireframe );
+const geometry = new THREE.SphereGeometry();
+const wireframe = new THREE.WireframeGeometry( geometry );
+const line = new THREE.LineSegments( wireframe );
 line.material.depthWrite = false;
 line.material.opacity = 0.25;
 line.material.transparent = true;
@@ -38,4 +38,4 @@ Holds the constructor parameters that have been used to generate the geometry. A
 
 ## Source
 
-[src/geometries/WireframeGeometry.js](../../src/geometries/WireframeGeometry.js)
+[src/geometries/WireframeGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/WireframeGeometry.js)

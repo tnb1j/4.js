@@ -8,17 +8,17 @@ This class can be used to generate a convex hull for a given array of 3D points.
 
 ```js
 const geometry = new ConvexGeometry( points );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 ```
 
 ## Import
 
-ConvexGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ConvexGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ConvexGeometry } from '@tnb1j/4js/addons/geometries/ConvexGeometry.js';
+import { ConvexGeometry } from 'three/addons/geometries/ConvexGeometry.js';
 ```
 
 ## Constructor
@@ -33,4 +33,4 @@ An array of points in 3D space which should be enclosed by the convex hull.
 
 ## Source
 
-[examples/jsm/geometries/ConvexGeometry.js](../../examples/jsm/geometries/ConvexGeometry.js)
+[examples/jsm/geometries/ConvexGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/ConvexGeometry.js)

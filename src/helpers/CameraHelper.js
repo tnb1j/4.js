@@ -22,8 +22,8 @@ const _camera = /*@__PURE__*/ new Camera();
  * to call the `update()` method of the respective helper.
  *
  * ```js
- * const camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
- * const helper = new FOUR.CameraHelper( camera );
+ * const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+ * const helper = new THREE.CameraHelper( camera );
  * scene.add( helper );
  * ```
  *
@@ -261,7 +261,7 @@ class CameraHelper extends LineSegments {
 
 			} else {
 
-				throw new Error( 'FOUR.CameraHelper.update(): Invalid coordinate system: ' + this.camera.coordinateSystem );
+				throw new Error( 'THREE.CameraHelper.update(): Invalid coordinate system: ' + this.camera.coordinateSystem );
 
 			}
 
@@ -313,6 +313,8 @@ class CameraHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

@@ -16,4 +16,4 @@ An optional output node.
 
 ## Source
 
-[src/renderers/common/PostProcessing.js](../../src/renderers/common/PostProcessing.js)
+[src/renderers/common/PostProcessing.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/PostProcessing.js)

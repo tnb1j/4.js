@@ -2,10 +2,10 @@
 
 ## Import
 
-NormalMapShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+NormalMapShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { NormalMapShader } from '@tnb1j/4js/addons/shaders/NormalMapShader.js';
+import { NormalMapShader } from 'three/addons/shaders/NormalMapShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Normal map shader, compute normals from heightmap.
 
 ## Source
 
-[examples/jsm/shaders/NormalMapShader.js](../../examples/jsm/shaders/NormalMapShader.js)
+[examples/jsm/shaders/NormalMapShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/NormalMapShader.js)

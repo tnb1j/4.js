@@ -1,8 +1,8 @@
-import { Vector3 } from '@tnb1j/4js';
+import { Vector3 } from 'three';
 
 /**
  * @module GeometryUtils
- * @four_import import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
+ * @three_import import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
  */
 
 /**

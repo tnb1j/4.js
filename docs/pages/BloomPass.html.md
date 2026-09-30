@@ -15,10 +15,10 @@ composer.addPass( effectBloom );
 
 ## Import
 
-BloomPass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BloomPass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BloomPass } from '@tnb1j/4js/addons/postprocessing/BloomPass.js';
+import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
 ```
 
 ## Constructor
@@ -121,4 +121,4 @@ The height to set.
 
 ## Source
 
-[examples/jsm/postprocessing/BloomPass.js](../../examples/jsm/postprocessing/BloomPass.js)
+[examples/jsm/postprocessing/BloomPass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/BloomPass.js)

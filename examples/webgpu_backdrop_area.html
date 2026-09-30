@@ -25,25 +25,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { color, positionWorld, linearDepth, viewportLinearDepth, viewportSharedTexture, screenUV, hue, time, checker, uv, modelScale } from '@tnb1j/4js/tsl';
-			import { hashBlur } from '@tnb1j/4js/addons/tsl/display/hashBlur.js';
+			import * as THREE from 'three/webgpu';
+			import { color, positionWorld, linearDepth, viewportLinearDepth, viewportSharedTexture, screenUV, hue, time, checker, uv, modelScale } from 'three/tsl';
+			import { hashBlur } from 'three/addons/tsl/display/hashBlur.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer;
 			let mixer, timer;
@@ -52,17 +52,17 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 25 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.25, 25 );
 				camera.position.set( 3, 2, 3 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundNode = hue( screenUV.y.mix( color( 0x66bbff ), color( 0x4466ff ) ), time.mul( 0.1 ) );
 				camera.lookAt( 0, 1, 0 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				const ambient = new FOUR.AmbientLight( 0xffffff, 2.5 );
+				const ambient = new THREE.AmbientLight( 0xffffff, 2.5 );
 				scene.add( ambient );
 			
 				// model
@@ -71,7 +71,7 @@
 				loader.load( 'models/gltf/Michelle.glb', function ( gltf ) {
 
 					const object = gltf.scene;
-					mixer = new FOUR.AnimationMixer( object );
+					mixer = new THREE.AnimationMixer( object );
 
 					const action = mixer.clipAction( gltf.animations[ 0 ] );
 					action.play();
@@ -90,35 +90,35 @@
 				const depthAlphaNode = depthDistance.oneMinus().smoothstep( .90, 2 ).mul( 10 ).saturate();
 				const depthBlurred = hashBlur( viewportSharedTexture(), depthDistance.smoothstep( 0, .6 ).mul( 40 ).clamp().mul( .1 ) );
 
-				const blurredBlur = new FOUR.MeshBasicNodeMaterial();
+				const blurredBlur = new THREE.MeshBasicNodeMaterial();
 				blurredBlur.backdropNode = depthBlurred.add( depthAlphaNode.mix( color( 0x003399 ).mul( .3 ), 0 ) );
 				blurredBlur.transparent = true;
-				blurredBlur.side = FOUR.DoubleSide;
+				blurredBlur.side = THREE.DoubleSide;
 
-				const depthMaterial = new FOUR.MeshBasicNodeMaterial();
+				const depthMaterial = new THREE.MeshBasicNodeMaterial();
 				depthMaterial.backdropNode = depthAlphaNode;
 				depthMaterial.transparent = true;
-				depthMaterial.side = FOUR.DoubleSide;
+				depthMaterial.side = THREE.DoubleSide;
 
-				const checkerMaterial = new FOUR.MeshBasicNodeMaterial();
+				const checkerMaterial = new THREE.MeshBasicNodeMaterial();
 				checkerMaterial.backdropNode = hashBlur( viewportSharedTexture(), .05 );
 				checkerMaterial.backdropAlphaNode = checker( uv().mul( 3 ).mul( modelScale.xy ) );
 				checkerMaterial.opacityNode = checkerMaterial.backdropAlphaNode;
 				checkerMaterial.transparent = true;
-				checkerMaterial.side = FOUR.DoubleSide;
+				checkerMaterial.side = THREE.DoubleSide;
 
-				const pixelMaterial = new FOUR.MeshBasicNodeMaterial();
+				const pixelMaterial = new THREE.MeshBasicNodeMaterial();
 				pixelMaterial.backdropNode = viewportSharedTexture( screenUV.mul( 100 ).floor().div( 100 ) );
 				pixelMaterial.transparent = true;
 
 				// box / floor
 
-				const box = new FOUR.Mesh( new FOUR.BoxGeometry( 2, 2, 2 ), blurredBlur );
+				const box = new THREE.Mesh( new THREE.BoxGeometry( 2, 2, 2 ), blurredBlur );
 				box.position.set( 0, 1, 0 );
 				box.renderOrder = 1;
 				scene.add( box );
 
-				const floor = new FOUR.Mesh( new FOUR.BoxGeometry( 5, .01, 5 ), new FOUR.MeshBasicNodeMaterial( {
+				const floor = new THREE.Mesh( new THREE.BoxGeometry( 5, .01, 5 ), new THREE.MeshBasicNodeMaterial( {
 					color: 0xff6600,
 					opacityNode: positionWorld.xz.distance( 0 ).oneMinus().clamp(),
 					transparent: true,
@@ -129,11 +129,11 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( /*{ antialias: true }*/ );
+				renderer = new THREE.WebGPURenderer( /*{ antialias: true }*/ );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.toneMappingExposure = .9;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
@@ -148,12 +148,12 @@
 
 				const materials = {
 					'blurred': blurredBlur,
-					'depth': depthMaterial,
 					'checker': checkerMaterial,
+					'depth': depthMaterial,
 					'pixel': pixelMaterial
 				};
 
-				const options = { material: 'blurred' };
+				const options = { material: 'checker' };
 				box.material = materials[ options.material ];
 
 				const gui = renderer.inspector.createParameters( 'Scene settings' );

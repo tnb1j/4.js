@@ -7,7 +7,7 @@ Defines an arbitrary 2d shape plane using paths with optional holes. It can be u
 ## Code Example
 
 ```js
-const heartShape = new FOUR.Shape();
+const heartShape = new THREE.Shape();
 heartShape.moveTo( 25, 25 );
 heartShape.bezierCurveTo( 25, 25, 20, 0, 0, 0 );
 heartShape.bezierCurveTo( - 30, 0, - 30, 35, - 30, 35 );
@@ -23,8 +23,8 @@ const extrudeSettings = {
 	bevelSize: 1,
 	bevelThickness: 1
 };
-const geometry = new FOUR.ExtrudeGeometry( heartShape, extrudeSettings );
-const mesh = new FOUR.Mesh( geometry, new FOUR.MeshBasicMaterial() );
+const geometry = new THREE.ExtrudeGeometry( heartShape, extrudeSettings );
+const mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial() );
 ```
 
 ## Constructor
@@ -71,4 +71,4 @@ The fineness of the result.
 
 ## Source
 
-[src/extras/core/Shape.js](../../src/extras/core/Shape.js)
+[src/extras/core/Shape.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/Shape.js)

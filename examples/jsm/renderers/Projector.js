@@ -8,7 +8,7 @@ import {
 	Vector2,
 	Vector3,
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 
 class RenderableObject {
 
@@ -125,7 +125,7 @@ class RenderableSprite {
  * used for rendering with a 2D API. `Projector` is currently used by {@link SVGRenderer}
  * and was previously used by the legacy `CanvasRenderer`.
  *
- * @four_import import { Projector } from '@tnb1j/4js/addons/renderers/Projector.js';
+ * @three_import import { Projector } from 'three/addons/renderers/Projector.js';
  */
 class Projector {
 

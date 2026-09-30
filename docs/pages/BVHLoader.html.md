@@ -12,20 +12,20 @@ Imports BVH files and outputs a single [Skeleton](Skeleton.html) and [AnimationC
 const loader = new BVHLoader();
 const result = await loader.loadAsync( 'models/bvh/pirouette.bvh' );
 // visualize skeleton
-const skeletonHelper = new FOUR.SkeletonHelper( result.skeleton.bones[ 0 ] );
+const skeletonHelper = new THREE.SkeletonHelper( result.skeleton.bones[ 0 ] );
 scene.add( result.skeleton.bones[ 0 ] );
 scene.add( skeletonHelper );
 // play animation clip
-mixer = new FOUR.AnimationMixer( result.skeleton.bones[ 0 ] );
+mixer = new THREE.AnimationMixer( result.skeleton.bones[ 0 ] );
 mixer.clipAction( result.clip ).play();
 ```
 
 ## Import
 
-BVHLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BVHLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BVHLoader } from '@tnb1j/4js/addons/loaders/BVHLoader.js';
+import { BVHLoader } from 'three/addons/loaders/BVHLoader.js';
 ```
 
 ## Constructor
@@ -90,4 +90,4 @@ The raw BVH data as a string.
 
 ## Source
 
-[examples/jsm/loaders/BVHLoader.js](../../examples/jsm/loaders/BVHLoader.js)
+[examples/jsm/loaders/BVHLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/BVHLoader.js)

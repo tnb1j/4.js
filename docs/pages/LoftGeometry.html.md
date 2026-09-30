@@ -17,22 +17,22 @@ for ( let i = 0; i <= 10; i ++ ) {
 	const radius = 2 + Math.sin( i * 0.8 );
 	for ( let j = 0; j < 32; j ++ ) {
 		const angle = j / 32 * Math.PI * 2;
-		points.push( new FOUR.Vector3( Math.sin( angle ) * radius, i, Math.cos( angle ) * radius ) );
+		points.push( new THREE.Vector3( Math.sin( angle ) * radius, i, Math.cos( angle ) * radius ) );
 	}
 	sections.push( points );
 }
 const geometry = new LoftGeometry( sections, { capStart: true, capEnd: true } );
-const material = new FOUR.MeshStandardMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 ```
 
 ## Import
 
-LoftGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LoftGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LoftGeometry } from '@tnb1j/4js/addons/geometries/LoftGeometry.js';
+import { LoftGeometry } from 'three/addons/geometries/LoftGeometry.js';
 ```
 
 ## Constructor
@@ -77,4 +77,4 @@ Holds the constructor parameters that have been used to generate the geometry. A
 
 ## Source
 
-[examples/jsm/geometries/LoftGeometry.js](../../examples/jsm/geometries/LoftGeometry.js)
+[examples/jsm/geometries/LoftGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/LoftGeometry.js)

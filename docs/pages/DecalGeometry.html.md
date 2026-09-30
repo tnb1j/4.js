@@ -12,17 +12,17 @@ Reference: [How to project decals](http://blog.wolfire.com/2009/06/how-to-projec
 
 ```js
 const geometry = new DecalGeometry( mesh, position, orientation, size );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const mesh = new FOUR.Mesh( geometry, material );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 ```
 
 ## Import
 
-DecalGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DecalGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { DecalGeometry } from '@tnb1j/4js/addons/geometries/DecalGeometry.js';
+import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
 ```
 
 ## Constructor
@@ -49,4 +49,4 @@ The scale of the decal projector.
 
 ## Source
 
-[examples/jsm/geometries/DecalGeometry.js](../../examples/jsm/geometries/DecalGeometry.js)
+[examples/jsm/geometries/DecalGeometry.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/geometries/DecalGeometry.js)

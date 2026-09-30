@@ -11,7 +11,7 @@ import {
 	Vector4,
 	WebGLRenderTarget,
 	HalfFloatType
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Can be used to create a flat, refractive surface like for special
@@ -21,7 +21,7 @@ import {
  * When using {@link WebGPURenderer}, use {@link viewportSharedTexture}.
  *
  * ```js
- * const geometry = new FOUR.PlaneGeometry( 100, 100 );
+ * const geometry = new THREE.PlaneGeometry( 100, 100 );
  *
  * const refractor = new Refractor( refractorGeometry, {
  * 	color: 0xcbcbcb,
@@ -33,7 +33,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Refractor } from '@tnb1j/4js/addons/objects/Refractor.js';
+ * @three_import import { Refractor } from 'three/addons/objects/Refractor.js';
  */
 class Refractor extends Mesh {
 

@@ -14,10 +14,10 @@ Note: This lib adds member variables to object's userData member (see prepareBre
 
 ## Import
 
-ConvexObjectBreaker is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ConvexObjectBreaker is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ConvexObjectBreaker } from '@tnb1j/4js/addons/misc/ConvexObjectBreaker.js';
+import { ConvexObjectBreaker } from 'three/addons/misc/ConvexObjectBreaker.js';
 ```
 
 ## Constructor
@@ -110,4 +110,4 @@ Max random iterations for not-radial cuts.
 
 ## Source
 
-[examples/jsm/misc/ConvexObjectBreaker.js](../../examples/jsm/misc/ConvexObjectBreaker.js)
+[examples/jsm/misc/ConvexObjectBreaker.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/ConvexObjectBreaker.js)

@@ -30,14 +30,14 @@ class StorageTexture extends Texture {
 		this.image = { width, height };
 
 		/**
-		 * The default `magFilter` for storage textures is `FOUR.LinearFilter`.
+		 * The default `magFilter` for storage textures is `THREE.LinearFilter`.
 		 *
 		 * @type {number}
 		 */
 		this.magFilter = LinearFilter;
 
 		/**
-		 * The default `minFilter` for storage textures is `FOUR.LinearFilter`.
+		 * The default `minFilter` for storage textures is `THREE.LinearFilter`.
 		 *
 		 * @type {number}
 		 */

@@ -54,4 +54,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/lighting/IESSpotLightNode.js](../../src/nodes/lighting/IESSpotLightNode.js)
+[src/nodes/lighting/IESSpotLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/IESSpotLightNode.js)

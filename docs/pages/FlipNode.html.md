@@ -54,4 +54,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/utils/FlipNode.js](../../src/nodes/utils/FlipNode.js)
+[src/nodes/utils/FlipNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/FlipNode.js)

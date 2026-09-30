@@ -172,4 +172,4 @@ An optional value holding meta information about the serialization.
 
 ## Source
 
-[src/core/InterleavedBuffer.js](../../src/core/InterleavedBuffer.js)
+[src/core/InterleavedBuffer.js](https://github.com/mrdoob/three.js/blob/master/src/core/InterleavedBuffer.js)

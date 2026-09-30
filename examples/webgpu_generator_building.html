@@ -24,36 +24,38 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { uniform } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { uniform } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { SkyMesh } from '@tnb1j/4js/addons/objects/SkyMesh.js';
-			import { SkyscraperGenerator, createSkyscraperMaterial, pickBuildingColor } from '@tnb1j/4js/addons/generators/city/SkyscraperGenerator.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { SunLightNode } from 'three/addons/lights/SunLightNode.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
+			import { SkyscraperGenerator, createSkyscraperMaterial, pickBuildingColor } from 'three/addons/generators/city/SkyscraperGenerator.js';
 
 			let camera, scene, renderer, controls, generator, building, material;
 			let sky, sunLight, pmremGenerator, envScene;
 
 			// reused by updateSun(): the current sun direction and the key-light
 			// colours it blends between as the sun nears the horizon or climbs high
-			const sun = new FOUR.Vector3();
-			const sunHorizonColor = new FOUR.Color( 0xffb072 );
-			const sunMiddayColor = new FOUR.Color( 0xfff4e8 );
+			const sun = new THREE.Vector3();
+			const sunHorizonColor = new THREE.Color( 0xffb072 );
+			const sunMiddayColor = new THREE.Color( 0xfff4e8 );
 
 			// every building takes one flat masonry colour; a uniform lets the seed
 			// repick it without recompiling the shared material
-			const baseColor = uniform( new FOUR.Color( 0xc6c0b2 ) );
+			const baseColor = uniform( new THREE.Color( 0xc6c0b2 ) );
 
 			const parameters = {
 				seed: 7,
@@ -71,22 +73,22 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
+				renderer.library.addLight( SunLightNode, SunLight );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.25;
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = FOUR.PCFShadowMap;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
 				await renderer.init();
 
-				pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.environmentIntensity = 0.25; // sky as a soft fill; the sun is the key
 
 				// a physical sky drives both the backdrop and the image-based lighting;
@@ -101,9 +103,9 @@
 
 				// the sky is baked into the environment map from this scene, then moved
 				// to the main scene as the backdrop ( see updateSun )
-				envScene = new FOUR.Scene();
+				envScene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 20000 );
 				camera.position.set( 120, 95, 155 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -116,25 +118,23 @@
 				controls.autoRotateSpeed = 0.3;
 				controls.update();
 
-				// a single directional key aligned with the sky's sun, for the crisp
-				// relief shadows the IBL alone can't give. updateSun() and
-				// fitShadowCamera() drive its colour, intensity and shadow frustum
+				// sunlight aligned with the sky, with shadows fitted to the view camera
 
-				sunLight = new FOUR.DirectionalLight();
+				sunLight = new SunLight();
 				sunLight.castShadow = true;
+				sunLight.shadow.camera.far = 1000;
 				sunLight.shadow.mapSize.set( 2048, 2048 );
 				sunLight.shadow.bias = - 0.0004;
 				scene.add( sunLight );
-				scene.add( sunLight.target );
 
 				// place the sun ( sky, IBL, key light and shadow ) for the current time
 				updateSun();
 
 				// an invisible ground that only catches the tower's shadow, large
 				// enough to hold the long shadow the low sun casts
-				const ground = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 2000, 2000 ).rotateX( - Math.PI / 2 ),
-					new FOUR.ShadowMaterial( { color: 0x000000, opacity: 0.35 } )
+				const ground = new THREE.Mesh(
+					new THREE.PlaneGeometry( 2000, 2000 ).rotateX( - Math.PI / 2 ),
+					new THREE.ShadowMaterial( { color: 0x000000, opacity: 0.35 } )
 				);
 				ground.receiveShadow = true;
 				scene.add( ground );
@@ -181,8 +181,6 @@
 				building.castShadow = building.receiveShadow = true;
 				scene.add( building );
 
-				fitShadowCamera();
-
 			}
 
 			function updateSun() {
@@ -195,7 +193,7 @@
 				const elevation = Math.max( 0, 1 - u * u ) * 72; // degrees above the horizon, peaks at noon
 				const azimuth = 90 - u * 55; // the sun swings east → west across the day
 
-				sun.setFromSphericalCoords( 1, FOUR.MathUtils.degToRad( 90 - elevation ), FOUR.MathUtils.degToRad( azimuth ) );
+				sun.setFromSphericalCoords( 1, THREE.MathUtils.degToRad( 90 - elevation ), THREE.MathUtils.degToRad( azimuth ) );
 				sky.sunPosition.value.copy( sun );
 
 				// physically-motivated key light: real sunlight is far brighter than the
@@ -203,10 +201,11 @@
 				// against the soft sky fill. the longer air path near the horizon dims and
 				// warms it ( the fill dims with it, as the environment is re-baked below ).
 
-				const sinElevation = Math.sin( FOUR.MathUtils.degToRad( elevation ) );
+				const sinElevation = Math.sin( THREE.MathUtils.degToRad( elevation ) );
 				const transmittance = Math.sqrt( Math.max( sinElevation, 0 ) ); // 0 at the horizon → 1 at the zenith
 				sunLight.color.copy( sunHorizonColor ).lerp( sunMiddayColor, transmittance );
 				sunLight.intensity = 6 * transmittance; // illuminance perpendicular to the rays; the renderer applies N·L per surface
+				sunLight.position.copy( sun );
 
 				// re-bake the sky ( without the sun disc ) into the environment map for IBL
 
@@ -217,37 +216,6 @@
 				scene.environment = env;
 				sky.showSunDisc.value = true;
 				scene.add( sky );
-
-				fitShadowCamera();
-
-			}
-
-			function fitShadowCamera() {
-
-				// fit the directional light's shadow frustum to the tower and the full
-				// ground shadow it casts, so a low sun's long shadow isn't clipped
-
-				const height = parameters.height;
-				const tipDistance = height / Math.max( sun.y, 0.05 ); // shadow tip on the ground
-				const centerX = - sun.x * tipDistance * 0.5;
-				const centerZ = - sun.z * tipDistance * 0.5;
-
-				const radius = Math.hypot( parameters.width, parameters.depth ) * 0.5;
-				const half = Math.hypot( centerX, centerZ ) + radius + 20;
-				const distance = half + height; // place the light clear of the whole scene
-
-				sunLight.target.position.set( centerX, 0, centerZ );
-				sunLight.target.updateMatrixWorld();
-				sunLight.position.set( centerX + sun.x * distance, sun.y * distance, centerZ + sun.z * distance );
-
-				const shadowCamera = sunLight.shadow.camera;
-				shadowCamera.left = - half;
-				shadowCamera.right = half;
-				shadowCamera.top = half;
-				shadowCamera.bottom = - half;
-				shadowCamera.near = 1;
-				shadowCamera.far = distance * 2;
-				shadowCamera.updateProjectionMatrix();
 
 			}
 

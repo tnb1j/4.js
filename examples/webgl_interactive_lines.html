@@ -18,25 +18,27 @@
 		</style>
 	</head>
 	<body>
+		<div id="info"><a href="../" target="_blank" rel="noopener">4.js</a> webgl - interactive lines</div>
+
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let container, stats;
 			let camera, scene, raycaster, renderer, parentTransform, sphereInter;
 
-			const pointer = new FOUR.Vector2();
+			const pointer = new THREE.Vector2();
 			const radius = 100;
 			let theta = 0;
 
@@ -47,31 +49,23 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				const info = document.createElement( 'div' );
-				info.style.position = 'absolute';
-				info.style.top = '10px';
-				info.style.width = '100%';
-				info.style.textAlign = 'center';
-				info.innerHTML = '<a href="../" target="_blank" rel="noopener">4.js</a> webgl - interactive lines';
-				container.appendChild( info );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xf0f0f0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xf0f0f0 );
+				const geometry = new THREE.SphereGeometry( 5 );
+				const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 
-				const geometry = new FOUR.SphereGeometry( 5 );
-				const material = new FOUR.MeshBasicMaterial( { color: 0xff0000 } );
-
-				sphereInter = new FOUR.Mesh( geometry, material );
+				sphereInter = new THREE.Mesh( geometry, material );
 				sphereInter.visible = false;
 				scene.add( sphereInter );
 
-				const lineGeometry = new FOUR.BufferGeometry();
+				const lineGeometry = new THREE.BufferGeometry();
 				const points = [];
 
-				const point = new FOUR.Vector3();
-				const direction = new FOUR.Vector3();
+				const point = new THREE.Vector3();
+				const direction = new THREE.Vector3();
 
 				for ( let i = 0; i < 50; i ++ ) {
 
@@ -85,9 +79,9 @@
 
 				}
 
-				lineGeometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( points, 3 ) );
+				lineGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( points, 3 ) );
 
-				parentTransform = new FOUR.Object3D();
+				parentTransform = new THREE.Object3D();
 				parentTransform.position.x = Math.random() * 40 - 20;
 				parentTransform.position.y = Math.random() * 40 - 20;
 				parentTransform.position.z = Math.random() * 40 - 20;
@@ -104,15 +98,15 @@
 
 					let object;
 
-					const lineMaterial = new FOUR.LineBasicMaterial( { color: Math.random() * 0xffffff } );
+					const lineMaterial = new THREE.LineBasicMaterial( { color: Math.random() * 0xffffff } );
 
 					if ( Math.random() > 0.5 ) {
 
-						object = new FOUR.Line( lineGeometry, lineMaterial );
+						object = new THREE.Line( lineGeometry, lineMaterial );
 
 					} else {
 
-						object = new FOUR.LineSegments( lineGeometry, lineMaterial );
+						object = new THREE.LineSegments( lineGeometry, lineMaterial );
 
 					}
 
@@ -134,10 +128,10 @@
 
 				scene.add( parentTransform );
 
-				raycaster = new FOUR.Raycaster();
+				raycaster = new THREE.Raycaster();
 				raycaster.params.Line.threshold = 3;
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -183,9 +177,9 @@
 
 				theta += 0.1;
 
-				camera.position.x = radius * Math.sin( FOUR.MathUtils.degToRad( theta ) );
-				camera.position.y = radius * Math.sin( FOUR.MathUtils.degToRad( theta ) );
-				camera.position.z = radius * Math.cos( FOUR.MathUtils.degToRad( theta ) );
+				camera.position.x = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.y = radius * Math.sin( THREE.MathUtils.degToRad( theta ) );
+				camera.position.z = radius * Math.cos( THREE.MathUtils.degToRad( theta ) );
 				camera.lookAt( scene.position );
 
 				camera.updateMatrixWorld();

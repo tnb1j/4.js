@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { luminance, cos, min, time, atan, uniform, pass, PI, TWO_PI, color, positionLocal, sin, texture, Fn, uv, vec2, vec3, vec4 } from '@tnb1j/4js/tsl';
-			import { bloom } from '@tnb1j/4js/addons/tsl/display/BloomNode.js';
+			import * as THREE from 'three/webgpu';
+			import { luminance, cos, min, time, atan, uniform, pass, PI, TWO_PI, color, positionLocal, sin, texture, Fn, uv, vec2, vec3, vec4 } from 'three/tsl';
+			import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline, controls;
 
@@ -49,17 +49,17 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 50 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 50 );
 				camera.position.set( 1, 1, 3 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// textures
 
-				const textureLoader = new FOUR.TextureLoader();
+				const textureLoader = new THREE.TextureLoader();
 				const perlinTexture = textureLoader.load( './textures/noises/perlin/rgb-256x256.png' );
-				perlinTexture.wrapS = FOUR.RepeatWrapping;
-				perlinTexture.wrapT = FOUR.RepeatWrapping;
+				perlinTexture.wrapS = THREE.RepeatWrapping;
+				perlinTexture.wrapT = THREE.RepeatWrapping;
 
 				// TSL functions
 
@@ -117,7 +117,7 @@
 
 				// tornado floor
 
-				const floorMaterial = new FOUR.MeshBasicNodeMaterial( { transparent: true, wireframe: false } );
+				const floorMaterial = new THREE.MeshBasicNodeMaterial( { transparent: true, wireframe: false } );
 
 				floorMaterial.outputNode = Fn( () => {
 
@@ -169,18 +169,18 @@
 
 				} )();
 
-				const floor = new FOUR.Mesh( new FOUR.PlaneGeometry( 2, 2 ), floorMaterial );
+				const floor = new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), floorMaterial );
 				floor.rotation.x = - Math.PI * 0.5;
 				scene.add( floor );
 
 				// tornado cylinder geometry
 
-				const cylinderGeometry = new FOUR.CylinderGeometry( 1, 1, 1, 20, 20, true );
+				const cylinderGeometry = new THREE.CylinderGeometry( 1, 1, 1, 20, 20, true );
 				cylinderGeometry.translate( 0, 0.5, 0 );
 
 				// tornado emissive cylinder
 
-				const emissiveMaterial = new FOUR.MeshBasicNodeMaterial( { transparent: true, side: FOUR.DoubleSide, wireframe: false } );
+				const emissiveMaterial = new THREE.MeshBasicNodeMaterial( { transparent: true, side: THREE.DoubleSide, wireframe: false } );
 
 				emissiveMaterial.positionNode = twistedCylinder( positionLocal, parabolStrength, parabolOffset, parabolAmplitude.sub( 0.05 ), time.mul( timeScale ) );
 
@@ -225,13 +225,13 @@
 
 				} )();
 
-				const emissive = new FOUR.Mesh( cylinderGeometry, emissiveMaterial );
+				const emissive = new THREE.Mesh( cylinderGeometry, emissiveMaterial );
 				emissive.scale.set( 1, 1, 1 );
 				scene.add( emissive );
 
 				// tornado dark cylinder
 
-				const darkMaterial = new FOUR.MeshBasicNodeMaterial( { transparent: true, side: FOUR.DoubleSide, wireframe: false } );
+				const darkMaterial = new THREE.MeshBasicNodeMaterial( { transparent: true, side: THREE.DoubleSide, wireframe: false } );
 
 				darkMaterial.positionNode = twistedCylinder( positionLocal, parabolStrength, parabolOffset, parabolAmplitude, time.mul( timeScale ) );
 
@@ -273,24 +273,24 @@
 
 				} )();
 
-				const dark = new FOUR.Mesh( cylinderGeometry, darkMaterial );
+				const dark = new THREE.Mesh( cylinderGeometry, darkMaterial );
 				dark.scale.set( 1, 1, 1 );
 				scene.add( dark );
 
 				// renderer
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setClearColor( 0x201919 );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				const scenePass = pass( scene, camera );
 				const scenePassColor = scenePass.getTextureNode( 'output' );
@@ -313,7 +313,7 @@
 
 				const gui = renderer.inspector.createParameters( 'Parameters' );
 
-				gui.addColor( { color: emissiveColor.value.getHexString( FOUR.SRGBColorSpace ) }, 'color' ).onChange( value => emissiveColor.value.set( value ) ).name( 'emissiveColor' );
+				gui.addColor( { color: emissiveColor.value.getHexString( THREE.SRGBColorSpace ) }, 'color' ).onChange( value => emissiveColor.value.set( value ) ).name( 'emissiveColor' );
 				gui.add( timeScale, 'value', - 1, 1, 0.01 ).name( 'timeScale' );
 				gui.add( parabolStrength, 'value', 0, 2, 0.01 ).name( 'parabolStrength' );
 				gui.add( parabolOffset, 'value', 0, 1, 0.01 ).name( 'parabolOffset' );

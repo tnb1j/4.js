@@ -7,9 +7,9 @@ A geometry class for representing an octahedron.
 ## Code Example
 
 ```js
-const geometry = new FOUR.OctahedronGeometry();
-const material = new FOUR.MeshBasicMaterial( { color: 0xffff00 } );
-const octahedron = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.OctahedronGeometry();
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const octahedron = new THREE.Mesh( geometry, material );
 scene.add( octahedron );
 ```
 
@@ -53,4 +53,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/OctahedronGeometry.js](../../src/geometries/OctahedronGeometry.js)
+[src/geometries/OctahedronGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/OctahedronGeometry.js)

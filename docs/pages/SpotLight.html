@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SpotLight - 4.js Docs</title>
+	<title>SpotLight - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -18,9 +18,9 @@ that increases in size the further from the light it gets.</p>
 <p>This light can cast shadows - see the <a href="SpotLightShadow.html">SpotLightShadow</a> for details.</p></div>
 				<h2>Code Example</h2>
 				<div translate="no"><pre><code class="language-js">// white spotlight shining from the side, modulated by a texture
-const spotLight = new FOUR.SpotLight( 0xffffff );
+const spotLight = new THREE.SpotLight( 0xffffff );
 spotLight.position.set( 100, 1000, 100 );
-spotLight.map = new FOUR.TextureLoader().load( url );
+spotLight.map = new THREE.TextureLoader().load( url );
 spotLight.castShadow = true;
 spotLight.shadow.mapSize.width = 1024;
 spotLight.shadow.mapSize.height = 1024;
@@ -172,7 +172,7 @@ in the scene. The light will now track the target object.</p>
 				</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/lights/SpotLight.js" translate="no">src/lights/SpotLight.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/lights/SpotLight.js" translate="no" target="_blank" rel="noopener">src/lights/SpotLight.js</a>
 				</p>
 			</article>
 		</section>

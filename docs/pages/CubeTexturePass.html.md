@@ -7,17 +7,17 @@ This pass can be used to render a cube texture over the entire screen.
 ## Code Example
 
 ```js
-const cubeMap = new FOUR.CubeTextureLoader().load( urls );
+const cubeMap = new THREE.CubeTextureLoader().load( urls );
 const cubeTexturePass = new CubeTexturePass( camera, cubemap );
 composer.addPass( cubeTexturePass );
 ```
 
 ## Import
 
-CubeTexturePass is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CubeTexturePass is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { CubeTexturePass } from '@tnb1j/4js/addons/postprocessing/CubeTexturePass.js';
+import { CubeTexturePass } from 'three/addons/postprocessing/CubeTexturePass.js';
 ```
 
 ## Constructor
@@ -100,4 +100,4 @@ Whether masking is active or not.
 
 ## Source
 
-[examples/jsm/postprocessing/CubeTexturePass.js](../../examples/jsm/postprocessing/CubeTexturePass.js)
+[examples/jsm/postprocessing/CubeTexturePass.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/postprocessing/CubeTexturePass.js)

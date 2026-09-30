@@ -25,22 +25,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { normalWorld, uniform, pmremTexture } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { normalWorld, uniform, pmremTexture } from 'three/tsl';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer;
 
@@ -51,14 +51,14 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
 				camera.position.set( - 1.8, 0.6, 2.7 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const forceWebGL = false;
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, forceWebGL } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, forceWebGL } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
@@ -74,39 +74,39 @@
 				controls.update();
 
 				//
-				const loader = new FOUR.CubeTextureLoader().setPath( './textures/cube/Park3Med/' );
+				const loader = new THREE.CubeTextureLoader().setPath( './textures/cube/Park3Med/' );
 
 				scene.background = await loader.loadAsync( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] );
 
 				let model;
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0x0000ff } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0x0000ff } ) );
 				model.position.z -= 1;
 				scene.add( model );
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0xff0000 } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0xff0000 } ) );
 				model.position.z += 1;
 				scene.add( model );
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0xff00ff } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0xff00ff } ) );
 				model.position.x += 1;
 				scene.add( model );
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0x00ffff } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0x00ffff } ) );
 				model.position.x -= 1;
 				scene.add( model );
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0xffff00 } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0xffff00 } ) );
 				model.position.y -= 1;
 				scene.add( model );
 
-				model = new FOUR.Mesh( new FOUR.SphereGeometry( .2, 64, 64 ), new FOUR.MeshBasicMaterial( { color: 0x00ff00 } ) );
+				model = new THREE.Mesh( new THREE.SphereGeometry( .2, 64, 64 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
 				model.position.y += 1;
 				scene.add( model );
 
 				//while ( scene.children.length > 0 ) scene.remove( scene.children[ 0 ] );
 
-				const sceneRT = new FOUR.PMREMGenerator( renderer ).fromScene( scene );
+				const sceneRT = new THREE.PMREMGenerator( renderer ).fromScene( scene );
 
 
 				//
@@ -114,7 +114,7 @@
 				const pmremRoughness = uniform( .5 );
 				const pmremNode = pmremTexture( sceneRT.texture, normalWorld, pmremRoughness );
 
-				scene.add( new FOUR.Mesh( new FOUR.SphereGeometry( .5, 64, 64 ), new FOUR.MeshBasicNodeMaterial( { colorNode: pmremNode } ) ) );
+				scene.add( new THREE.Mesh( new THREE.SphereGeometry( .5, 64, 64 ), new THREE.MeshBasicNodeMaterial( { colorNode: pmremNode } ) ) );
 
 				// gui
 

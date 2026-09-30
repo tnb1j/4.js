@@ -14,15 +14,15 @@ References:
 ```js
 const loader = new KTXLoader();
 const map = loader.load( 'textures/compressed/lensflare_ASTC8x8.ktx' )
-map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+map.colorSpace = THREE.SRGBColorSpace; // only for color textures
 ```
 
 ## Import
 
-KTXLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+KTXLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { KTXLoader } from '@tnb1j/4js/addons/loaders/KTXLoader.js';
+import { KTXLoader } from 'three/addons/loaders/KTXLoader.js';
 ```
 
 ## Constructor
@@ -55,4 +55,4 @@ Whether to load mipmaps or not.
 
 ## Source
 
-[examples/jsm/loaders/KTXLoader.js](../../examples/jsm/loaders/KTXLoader.js)
+[examples/jsm/loaders/KTXLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/KTXLoader.js)

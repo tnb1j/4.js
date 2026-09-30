@@ -82,4 +82,4 @@ The third control point.
 
 ## Source
 
-[src/extras/core/Interpolations.js](../../src/extras/core/Interpolations.js)
+[src/extras/core/Interpolations.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/Interpolations.js)

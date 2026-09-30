@@ -2,7 +2,7 @@ import {
 	FileLoader,
 	Loader,
 	LoaderUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 import { unzipSync } from '../libs/fflate.module.js';
 import { USDAParser } from './usd/USDAParser.js';
@@ -22,7 +22,7 @@ import { USDComposer } from './usd/USDComposer.js';
  * ```
  *
  * @augments Loader
- * @four_import import { USDLoader } from '@tnb1j/4js/addons/loaders/USDLoader.js';
+ * @three_import import { USDLoader } from 'three/addons/loaders/USDLoader.js';
  */
 class USDLoader extends Loader {
 
@@ -273,7 +273,7 @@ class USDLoader extends Loader {
 
 			if ( ! file ) {
 
-				throw new Error( 'FOUR.USDLoader: Invalid USDZ package. The first ZIP entry must be a USD layer (.usd/.usda/.usdc).' );
+				throw new Error( 'THREE.USDLoader: Invalid USDZ package. The first ZIP entry must be a USD layer (.usd/.usda/.usdc).' );
 
 			}
 
@@ -281,7 +281,7 @@ class USDLoader extends Loader {
 			const data = assets[ filename ];
 			if ( ! data ) {
 
-				throw new Error( 'FOUR.USDLoader: Failed to parse root layer "' + filename + '".' );
+				throw new Error( 'THREE.USDLoader: Failed to parse root layer "' + filename + '".' );
 
 			}
 

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>LensflareMesh - 4.js Docs</title>
+	<title>LensflareMesh - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
 <p>Note that this class can only be used with <a href="WebGPURenderer.html">WebGPURenderer</a>.
 When using <a href="WebGLRenderer.html">WebGLRenderer</a>, use <a href="Lensflare.html">Lensflare</a>.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const light = new FOUR.PointLight( 0xffffff, 1.5, 2000 );
+				<div translate="no"><pre><code class="language-js">const light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
 const lensflare = new LensflareMesh();
 lensflare.addElement( new LensflareElement( textureFlare0, 512, 0 ) );
 lensflare.addElement( new LensflareElement( textureFlare1, 512, 0 ) );
@@ -27,8 +27,8 @@ light.add( lensflare );
 			</header>
 			<article>
 				<h2 class="subsection-title">Import</h2>
-				<p><span translate="no">LensflareMesh</span> is an addon, and must be imported explicitly, see <a href="../../manual/#en/installation">Installation#Addons</a>.</p>
-				<pre><code class="language-js">import { LensflareMesh } from '@tnb1j/4js/addons/objects/LensflareMesh.js';</code></pre>
+				<p><span translate="no">LensflareMesh</span> is an addon, and must be imported explicitly, see <a href="https://threejs.org/manual/#installation#addons" target="_blank" rel="noopener">Installation#Addons</a>.</p>
+				<pre><code class="language-js">import { LensflareMesh } from 'three/addons/objects/LensflareMesh.js';</code></pre>
 				<div class="container-overview">
 					<h2>Constructor</h2>
 					<h3 class="name name-method" id="LensflareMesh" translate="no">new <a href="#LensflareMesh">LensflareMesh</a><span class="signature">()</span> </h3>
@@ -91,10 +91,13 @@ light.add( lensflare );
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Mesh.html#dispose">Mesh#dispose</a></dt>
+						</dl>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../examples/jsm/objects/LensflareMesh.js" translate="no">examples/jsm/objects/LensflareMesh.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/LensflareMesh.js" translate="no" target="_blank" rel="noopener">examples/jsm/objects/LensflareMesh.js</a>
 				</p>
 			</article>
 		</section>

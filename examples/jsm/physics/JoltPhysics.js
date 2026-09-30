@@ -1,4 +1,4 @@
-import { Timer, Vector3, Quaternion, Matrix4 } from '@tnb1j/4js';
+import { Timer, Vector3, Quaternion, Matrix4 } from 'three';
 
 const JOLT_PATH = 'https://cdn.jsdelivr.net/npm/jolt-physics@1.0.0/dist/jolt-physics.wasm-compat.js';
 
@@ -71,7 +71,7 @@ function setupCollisionFiltering( settings ) {
  * @name JoltPhysics
  * @class
  * @hideconstructor
- * @four_import import { JoltPhysics } from '@tnb1j/4js/addons/physics/JoltPhysics.js';
+ * @three_import import { JoltPhysics } from 'three/addons/physics/JoltPhysics.js';
  */
 async function JoltPhysics() {
 
@@ -130,11 +130,10 @@ async function JoltPhysics() {
 			? createInstancedBody( mesh, mass, restitution, shape )
 			: createBody( mesh.position, mesh.quaternion, mass, restitution, shape );
 
-		meshMap.set( mesh, body );
-
 		if ( mass > 0 ) {
 
 			meshes.push( mesh );
+			meshMap.set( mesh, body );
 
 		}
 
@@ -179,58 +178,45 @@ async function JoltPhysics() {
 
 	}
 
-	function getBody( mesh, index ) {
+	function setMeshPosition( mesh, position, index = 0 ) {
 
-		let body = meshMap.get( mesh );
+		if ( mesh.isInstancedMesh ) {
 
-		if ( body === undefined ) {
+			const bodies = meshMap.get( mesh );
 
-			throw new Error( 'JoltPhysics: Mesh has not been added to the physics simulation.' );
+			const body = bodies[ index ];
+
+			bodyInterface.RemoveBody( body.GetID() );
+			bodyInterface.DestroyBody( body.GetID() );
+
+			const physics = mesh.userData.physics;
+
+			const shape = body.GetShape();
+			const body2 = createBody( position, { x: 0, y: 0, z: 0, w: 1 }, physics.mass, physics.restitution, shape );
+
+			bodies[ index ] = body2;
+
+		} else {
+
+			// TODO: Implement this
 
 		}
+
+	}
+
+	function setMeshVelocity( /*mesh, velocity, index = 0*/ ) {
+
+		/*
+		let body = meshMap.get( mesh );
 
 		if ( mesh.isInstancedMesh ) {
 
 			body = body[ index ];
 
-			if ( body === undefined ) {
-
-				throw new RangeError( `JoltPhysics: Instanced mesh index ${index} is out of range.` );
-
-			}
-
 		}
 
-		return body;
-
-	}
-
-	function setMeshPosition( mesh, position, index = 0 ) {
-
-		const body = getBody( mesh, index );
-		const bodyID = body.GetID();
-		const nextPosition = new Jolt.RVec3( position.x, position.y, position.z );
-		const zeroVelocity = new Jolt.Vec3( 0, 0, 0 );
-
-		bodyInterface.SetLinearVelocity( bodyID, zeroVelocity );
-		bodyInterface.SetAngularVelocity( bodyID, zeroVelocity );
-		bodyInterface.SetPosition( bodyID, nextPosition, Jolt.EActivation_Activate );
-
-		Jolt.destroy( nextPosition );
-		Jolt.destroy( zeroVelocity );
-
-	}
-
-	function setMeshVelocity( mesh, velocity, index = 0 ) {
-
-		const body = getBody( mesh, index );
-		const bodyID = body.GetID();
-		const nextVelocity = new Jolt.Vec3( velocity.x, velocity.y, velocity.z );
-
-		bodyInterface.SetLinearVelocity( bodyID, nextVelocity );
-		bodyInterface.ActivateBody( bodyID );
-
-		Jolt.destroy( nextVelocity );
+		body.setLinvel( velocity );
+		*/
 
 	}
 
@@ -339,15 +325,7 @@ async function JoltPhysics() {
 		 */
 		setMeshPosition: setMeshPosition,
 
-		/**
-		 * Sets the linear velocity of the given mesh which is part of the physics simulation.
-		 *
-		 * @method
-		 * @name JoltPhysics#setMeshVelocity
-		 * @param {Mesh} mesh The mesh to update the velocity for.
-		 * @param {Vector3} velocity - The new linear velocity.
-		 * @param {number} [index=0] - If the mesh is instanced, the index represents the instanced ID.
-		 */
+		// NOOP
 		setMeshVelocity: setMeshVelocity
 	};
 

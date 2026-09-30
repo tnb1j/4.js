@@ -28,10 +28,10 @@ scene.add( object );
 
 ## Import
 
-LDrawLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LDrawLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LDrawLoader } from '@tnb1j/4js/addons/loaders/LDrawLoader.js';
+import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 ```
 
 ## Constructor
@@ -196,4 +196,4 @@ Path to library parts files to load referenced parts from. This is different fro
 
 ## Source
 
-[examples/jsm/loaders/LDrawLoader.js](../../examples/jsm/loaders/LDrawLoader.js)
+[examples/jsm/loaders/LDrawLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/LDrawLoader.js)

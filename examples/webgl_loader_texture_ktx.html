@@ -18,16 +18,16 @@
 <script type="importmap">
 	{
 		"imports": {
-			"@tnb1j/4js": "../build/4.module.js",
-			"@tnb1j/4js/addons/": "./jsm/"
+			"three": "../build/three.module.js",
+			"three/addons/": "./jsm/"
 		}
 	}
 </script>
 
 <script type="module">
-	import * as FOUR from '@tnb1j/4js';
+	import * as THREE from 'three';
 
-	import { KTXLoader } from '@tnb1j/4js/addons/loaders/KTXLoader.js';
+	import { KTXLoader } from 'three/addons/loaders/KTXLoader.js';
 
 	/*
 	This is how compressed textures are supposed to be used:
@@ -51,7 +51,7 @@
 
 	function init() {
 
-		renderer = new FOUR.WebGLRenderer( { antialias: true } );
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		renderer.setAnimationLoop( animate );
@@ -65,19 +65,19 @@
 			pvrtc: renderer.extensions.has( 'WEBGL_compressed_texture_pvrtc' )
 		};
 
-		camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+		camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
 		camera.position.z = 1000;
 
-		scene = new FOUR.Scene();
+		scene = new THREE.Scene();
 
-		const ambientLight = new FOUR.AmbientLight( 0xffffff, 0.02 );
+		const ambientLight = new THREE.AmbientLight( 0xffffff, 0.02 );
 		scene.add( ambientLight );
 
-		const pointLight = new FOUR.PointLight( 0xffffff, 2, 0, 0 );
+		const pointLight = new THREE.PointLight( 0xffffff, 2, 0, 0 );
 		pointLight.position.z = 300;
 		scene.add( pointLight );
 
-		const geometry = new FOUR.BoxGeometry( 200, 200, 200 );
+		const geometry = new THREE.BoxGeometry( 200, 200, 200 );
 		let material1, material2, material3;
 
 		// TODO: add cubemap support
@@ -85,82 +85,82 @@
 
 		if ( formats.pvrtc ) {
 
-			material1 = new FOUR.MeshBasicMaterial( {
+			material1 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/disturb_PVR2bpp.ktx' )
 			} );
-			material1.map.colorSpace = FOUR.SRGBColorSpace;
-			material2 = new FOUR.MeshBasicMaterial( {
+			material1.map.colorSpace = THREE.SRGBColorSpace;
+			material2 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/lensflare_PVR4bpp.ktx' ),
 				depthTest: false,
 				transparent: true,
-				side: FOUR.DoubleSide
+				side: THREE.DoubleSide
 			} );
-			material2.map.colorSpace = FOUR.SRGBColorSpace;
+			material2.map.colorSpace = THREE.SRGBColorSpace;
 
-			meshes.push( new FOUR.Mesh( geometry, material1 ) );
-			meshes.push( new FOUR.Mesh( geometry, material2 ) );
+			meshes.push( new THREE.Mesh( geometry, material1 ) );
+			meshes.push( new THREE.Mesh( geometry, material2 ) );
 
 		}
 
 		if ( formats.s3tc ) {
 
-			material1 = new FOUR.MeshBasicMaterial( {
+			material1 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/disturb_BC1.ktx' )
 			} );
-			material1.map.colorSpace = FOUR.SRGBColorSpace;
-			material2 = new FOUR.MeshBasicMaterial( {
+			material1.map.colorSpace = THREE.SRGBColorSpace;
+			material2 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/lensflare_BC3.ktx' ),
 				depthTest: false,
 				transparent: true,
-				side: FOUR.DoubleSide
+				side: THREE.DoubleSide
 			} );
-			material2.map.colorSpace = FOUR.SRGBColorSpace;
-			material3 = new FOUR.MeshStandardMaterial( {
+			material2.map.colorSpace = THREE.SRGBColorSpace;
+			material3 = new THREE.MeshStandardMaterial( {
 				normalMap: loader.load( 'textures/compressed/normal.bc5.ktx' )
 			} );
 
-			meshes.push( new FOUR.Mesh( geometry, material1 ) );
-			meshes.push( new FOUR.Mesh( geometry, material2 ) );
-			meshes.push( new FOUR.Mesh( geometry, material3 ) );
+			meshes.push( new THREE.Mesh( geometry, material1 ) );
+			meshes.push( new THREE.Mesh( geometry, material2 ) );
+			meshes.push( new THREE.Mesh( geometry, material3 ) );
 
 		}
 
 		if ( formats.etc1 ) {
 
-			material1 = new FOUR.MeshBasicMaterial( {
+			material1 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/disturb_ETC1.ktx' )
 			} );
 
-			meshes.push( new FOUR.Mesh( geometry, material1 ) );
+			meshes.push( new THREE.Mesh( geometry, material1 ) );
 
 		}
 
 		if ( formats.etc2 ) {
 
-			material1 = new FOUR.MeshStandardMaterial( {
+			material1 = new THREE.MeshStandardMaterial( {
 				normalMap: loader.load( 'textures/compressed/normal.eac_rg.ktx' )
 			} );
 
-			meshes.push( new FOUR.Mesh( geometry, material1 ) );
+			meshes.push( new THREE.Mesh( geometry, material1 ) );
 
 		}
 
 		if ( formats.astc ) {
 
-			material1 = new FOUR.MeshBasicMaterial( {
+			material1 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/disturb_ASTC4x4.ktx' )
 			} );
-			material1.map.colorSpace = FOUR.SRGBColorSpace;
-			material2 = new FOUR.MeshBasicMaterial( {
+			material1.map.colorSpace = THREE.SRGBColorSpace;
+			material2 = new THREE.MeshBasicMaterial( {
 				map: loader.load( 'textures/compressed/lensflare_ASTC8x8.ktx' ),
 				depthTest: false,
 				transparent: true,
-				side: FOUR.DoubleSide
+				side: THREE.DoubleSide
 			} );
-			material2.map.colorSpace = FOUR.SRGBColorSpace;
+			material2.map.colorSpace = THREE.SRGBColorSpace;
 
-			meshes.push( new FOUR.Mesh( geometry, material1 ) );
-			meshes.push( new FOUR.Mesh( geometry, material2 ) );
+			meshes.push( new THREE.Mesh( geometry, material1 ) );
+			meshes.push( new THREE.Mesh( geometry, material2 ) );
 
 		}
 

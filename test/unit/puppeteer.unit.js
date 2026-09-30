@@ -121,9 +121,9 @@ async function main() {
 	// Wait for the QUnit test results
 	await page.waitForFunction( () => {
 
-		return window.QUnit && window.QUnit.done;
+		return window._QUnitStats !== undefined;
 
-	} );
+	}, { timeout: networkTimeout * 60000 } );
 
 	// Get the test results
 	const stats = await page.evaluate( () => {

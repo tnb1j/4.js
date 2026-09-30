@@ -9,7 +9,7 @@ import { Color } from '../math/Color.js';
  * The X axis is red. The Y axis is green. The Z axis is blue.
  *
  * ```js
- * const axesHelper = new FOUR.AxesHelper( 5 );
+ * const axesHelper = new THREE.AxesHelper( 5 );
  * scene.add( axesHelper );
  * ```
  *
@@ -84,6 +84,8 @@ class AxesHelper extends LineSegments {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.geometry.dispose();
 		this.material.dispose();

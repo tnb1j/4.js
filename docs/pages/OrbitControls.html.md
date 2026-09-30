@@ -26,10 +26,10 @@ function animate() {
 
 ## Import
 
-OrbitControls is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OrbitControls is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 ```
 
 ## Constructor
@@ -203,9 +203,9 @@ This object contains references to the mouse actions used by the controls.
 
 ```js
 controls.mouseButtons = {
-	LEFT: FOUR.MOUSE.ROTATE,
-	MIDDLE: FOUR.MOUSE.DOLLY,
-	RIGHT: FOUR.MOUSE.PAN
+	LEFT: THREE.MOUSE.ROTATE,
+	MIDDLE: THREE.MOUSE.DOLLY,
+	RIGHT: THREE.MOUSE.PAN
 }
 ```
 
@@ -247,8 +247,8 @@ This object contains references to the touch actions used by the controls.
 
 ```js
 controls.mouseButtons = {
-	ONE: FOUR.TOUCH.ROTATE,
-	TWO: FOUR.TOUCH.DOLLY_PAN
+	ONE: THREE.TOUCH.ROTATE,
+	TWO: THREE.TOUCH.DOLLY_PAN
 }
 ```
 
@@ -382,4 +382,4 @@ Fires when an interaction was initiated.
 
 ## Source
 
-[examples/jsm/controls/OrbitControls.js](../../examples/jsm/controls/OrbitControls.js)
+[examples/jsm/controls/OrbitControls.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)

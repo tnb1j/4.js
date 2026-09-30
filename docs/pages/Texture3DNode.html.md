@@ -110,4 +110,4 @@ The update toggle.
 
 ## Source
 
-[src/nodes/accessors/Texture3DNode.js](../../src/nodes/accessors/Texture3DNode.js)
+[src/nodes/accessors/Texture3DNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/Texture3DNode.js)

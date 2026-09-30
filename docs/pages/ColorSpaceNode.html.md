@@ -54,4 +54,4 @@ The color space to resolve.
 
 ## Source
 
-[src/nodes/display/ColorSpaceNode.js](../../src/nodes/display/ColorSpaceNode.js)
+[src/nodes/display/ColorSpaceNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/display/ColorSpaceNode.js)

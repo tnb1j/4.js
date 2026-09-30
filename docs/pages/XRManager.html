@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>XRManager - 4.js Docs</title>
+	<title>XRManager - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -150,6 +150,18 @@ the default animation loop, this method can be used to update/transform 3D objec
 									<td class="description last">
 										<p>Allows to configure the layer's render target.</p>
 										<p>Default is <code>{}</code>.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">samples</strong>
+									</td>
+									<td class="description last">
+										<p>The scene MSAA sample count. Defaults to the renderer's sample count.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 									</td>
 								</tr>
 							</tbody>
@@ -230,6 +242,18 @@ the default animation loop, this method can be used to update/transform 3D objec
 									<td class="description last">
 										<p>Allows to configure the layer's render target.</p>
 										<p>Default is <code>{}</code>.</p>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">samples</strong>
+									</td>
+									<td class="description last">
+										<p>The scene MSAA sample count. Defaults to the renderer's sample count.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 									</td>
 								</tr>
 							</tbody>
@@ -293,7 +317,7 @@ capable of doing so.</p>
 					<h3 class="name name-method" id="getController" translate="no">.<a href="#getController">getController</a><span class="signature">( index : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="Group.html">Group</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Returns an instance of <code>FOUR.Group</code> that represents the transformation
+							<p>Returns an instance of <code>THREE.Group</code> that represents the transformation
 of a XR controller in target ray space. The requested controller is defined
 by the given index.</p>
 						</div>
@@ -316,7 +340,7 @@ by the given index.</p>
 					<h3 class="name name-method" id="getControllerGrip" translate="no">.<a href="#getControllerGrip">getControllerGrip</a><span class="signature">( index : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="Group.html">Group</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Returns an instance of <code>FOUR.Group</code> that represents the transformation
+							<p>Returns an instance of <code>THREE.Group</code> that represents the transformation
 of a XR controller in grip space. The requested controller is defined
 by the given index.</p>
 						</div>
@@ -375,7 +399,7 @@ by the given index.</p>
 					<h3 class="name name-method" id="getHand" translate="no">.<a href="#getHand">getHand</a><span class="signature">( index : <span class="param-type">number</span> )</span><span class="type-signature"> : <a href="Group.html">Group</a></span> </h3>
 					<div class="method">
 						<div class="description">
-							<p>Returns an instance of <code>FOUR.Group</code> that represents the transformation
+							<p>Returns an instance of <code>THREE.Group</code> that represents the transformation
 of a XR controller in hand space. The requested controller is defined
 by the given index.</p>
 						</div>
@@ -570,7 +594,7 @@ camera created on application level and used for non-XR rendering.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/renderers/common/XRManager.js" translate="no">src/renderers/common/XRManager.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/renderers/common/XRManager.js" translate="no" target="_blank" rel="noopener">src/renderers/common/XRManager.js</a>
 				</p>
 			</article>
 		</section>

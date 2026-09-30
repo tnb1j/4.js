@@ -6,10 +6,10 @@ Implementation is based on `(x, y [, z=0 [, w=1]])` control points with `w=weigh
 
 ## Import
 
-NURBSSurface is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+NURBSSurface is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { NURBSSurface } from '@tnb1j/4js/addons/curves/NURBSSurface.js';
+import { NURBSSurface } from 'three/addons/curves/NURBSSurface.js';
 ```
 
 ## Constructor
@@ -80,4 +80,4 @@ The target vector the result is written to.
 
 ## Source
 
-[examples/jsm/curves/NURBSSurface.js](../../examples/jsm/curves/NURBSSurface.js)
+[examples/jsm/curves/NURBSSurface.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/curves/NURBSSurface.js)

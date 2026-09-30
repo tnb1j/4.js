@@ -46,4 +46,4 @@ The type of the attribute.
 
 ## Source
 
-[src/nodes/core/NodeAttribute.js](../../src/nodes/core/NodeAttribute.js)
+[src/nodes/core/NodeAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeAttribute.js)

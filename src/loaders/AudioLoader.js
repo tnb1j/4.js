@@ -8,10 +8,10 @@ import { error } from '../utils.js';
  * loaded via {@link FileLoader}.
  *
  * ```js
- * const audioListener = new FOUR.AudioListener();
- * const ambientSound = new FOUR.Audio( audioListener );
+ * const audioListener = new THREE.AudioListener();
+ * const ambientSound = new THREE.Audio( audioListener );
  *
- * const loader = new FOUR.AudioLoader();
+ * const loader = new THREE.AudioLoader();
  * const audioBuffer = await loader.loadAsync( 'audio/ambient_ocean.ogg' );
  *
  * ambientSound.setBuffer( audioBuffer );

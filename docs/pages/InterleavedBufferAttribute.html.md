@@ -320,4 +320,4 @@ The matrix to apply.
 
 ## Source
 
-[src/core/InterleavedBufferAttribute.js](../../src/core/InterleavedBufferAttribute.js)
+[src/core/InterleavedBufferAttribute.js](https://github.com/mrdoob/three.js/blob/master/src/core/InterleavedBufferAttribute.js)

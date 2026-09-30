@@ -15,10 +15,10 @@ function render() {
 
 ## Import
 
-OutlineEffect is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OutlineEffect is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OutlineEffect } from '@tnb1j/4js/addons/effects/OutlineEffect.js';
+import { OutlineEffect } from 'three/addons/effects/OutlineEffect.js';
 ```
 
 ## Constructor
@@ -123,4 +123,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/effects/OutlineEffect.js](../../examples/jsm/effects/OutlineEffect.js)
+[examples/jsm/effects/OutlineEffect.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/effects/OutlineEffect.js)

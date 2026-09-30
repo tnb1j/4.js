@@ -78,4 +78,4 @@ Default is `false`.
 
 ## Source
 
-[src/nodes/core/PropertyNode.js](../../src/nodes/core/PropertyNode.js)
+[src/nodes/core/PropertyNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/PropertyNode.js)

@@ -5,8 +5,8 @@
 4.js began as a derivative of:
 
 - Project: Three.js
-- Release line: r185
-- Package version: `0.185.1`
+- Release line: r186
+- Package version: `0.186.1`
 - Upstream repository: `https://github.com/mrdoob/three.js`
 - License: MIT
 

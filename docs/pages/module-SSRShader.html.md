@@ -2,10 +2,10 @@
 
 ## Import
 
-SSRShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SSRShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as SSRShader from '@tnb1j/4js/addons/shaders/SSRShader.js';
+import * as SSRShader from 'three/addons/shaders/SSRShader.js';
 ```
 
 A collection of shaders used for SSR.
@@ -30,4 +30,4 @@ SSR shader.
 
 ## Source
 
-[examples/jsm/shaders/SSRShader.js](../../examples/jsm/shaders/SSRShader.js)
+[examples/jsm/shaders/SSRShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SSRShader.js)

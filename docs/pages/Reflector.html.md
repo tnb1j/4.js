@@ -9,7 +9,7 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 ## Code Example
 
 ```js
-const geometry = new FOUR.PlaneGeometry( 100, 100 );
+const geometry = new THREE.PlaneGeometry( 100, 100 );
 const reflector = new Reflector( geometry, {
 	clipBias: 0.003,
 	textureWidth: window.innerWidth * window.devicePixelRatio,
@@ -21,10 +21,10 @@ scene.add( reflector );
 
 ## Import
 
-Reflector is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Reflector is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Reflector } from '@tnb1j/4js/addons/objects/Reflector.js';
+import { Reflector } from 'three/addons/objects/Reflector.js';
 ```
 
 ## Constructor
@@ -60,6 +60,8 @@ Default is `true`.
 ### .dispose()
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
 
 ### .getReflectionCamera( camera : Camera ) : Camera
 
@@ -125,4 +127,4 @@ Default is `4`.
 
 ## Source
 
-[examples/jsm/objects/Reflector.js](../../examples/jsm/objects/Reflector.js)
+[examples/jsm/objects/Reflector.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Reflector.js)

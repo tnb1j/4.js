@@ -9,8 +9,8 @@ Iterating through an instance will yield its components (x, y, z, order) in the 
 ## Code Example
 
 ```js
-const a = new FOUR.Euler( 0, 1, 1.57, 'XYZ' );
-const b = new FOUR.Vector3( 1, 0, 1 );
+const a = new THREE.Euler( 0, 1, 1.57, 'XYZ' );
+const b = new THREE.Vector3( 1, 0, 1 );
 b.applyEuler(a);
 ```
 
@@ -228,4 +228,4 @@ Default is `0`.
 
 ## Source
 
-[src/math/Euler.js](../../src/math/Euler.js)
+[src/math/Euler.js](https://github.com/mrdoob/three.js/blob/master/src/math/Euler.js)

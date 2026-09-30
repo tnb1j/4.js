@@ -78,4 +78,4 @@ The built-in name.
 
 ## Source
 
-[src/nodes/gpgpu/ComputeBuiltinNode.js](../../src/nodes/gpgpu/ComputeBuiltinNode.js)
+[src/nodes/gpgpu/ComputeBuiltinNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/gpgpu/ComputeBuiltinNode.js)

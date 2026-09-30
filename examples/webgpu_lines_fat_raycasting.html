@@ -28,25 +28,25 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { LineSegments2 } from '@tnb1j/4js/addons/lines/webgpu/LineSegments2.js';
-			import { LineSegmentsGeometry } from '@tnb1j/4js/addons/lines/LineSegmentsGeometry.js';
-			import { Line2 } from '@tnb1j/4js/addons/lines/webgpu/Line2.js';
-			import { LineGeometry } from '@tnb1j/4js/addons/lines/LineGeometry.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { LineSegments2 } from 'three/addons/lines/webgpu/LineSegments2.js';
+			import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
+			import { Line2 } from 'three/addons/lines/webgpu/Line2.js';
+			import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 
 			//
 
@@ -56,16 +56,16 @@
 			let gui;
 			let timer;
 
-			const color = new FOUR.Color();
+			const color = new THREE.Color();
 
-			const pointer = new FOUR.Vector2( Infinity, Infinity );
+			const pointer = new THREE.Vector2( Infinity, Infinity );
 
-			const raycaster = new FOUR.Raycaster();
+			const raycaster = new THREE.Raycaster();
 
 			raycaster.params.Line2 = {};
 			raycaster.params.Line2.threshold = 0;
 
-			const matLine = new FOUR.Line2NodeMaterial( {
+			const matLine = new THREE.Line2NodeMaterial( {
 
 				color: 0xffffff,
 				linewidth: 1, // in world units with size attenuation, pixels otherwise
@@ -76,7 +76,7 @@
 
 			} );
 
-			const matThresholdLine = new FOUR.Line2NodeMaterial( {
+			const matThresholdLine = new THREE.Line2NodeMaterial( {
 
 				color: 0xffffff,
 				linewidth: matLine.linewidth, // in world units with size attenuation, pixels otherwise
@@ -106,10 +106,10 @@
 
 			function init() {
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true, alpha: true, trackTimestamp: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true, alpha: true, trackTimestamp: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setClearColor( 0x000000 );
@@ -117,21 +117,21 @@
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( - 40, 0, 60 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
 				controls.minDistance = 10;
 				controls.maxDistance = 500;
 
-				const sphereGeometry = new FOUR.SphereGeometry( 0.25, 8, 4 );
-				const sphereInterMaterial = new FOUR.MeshBasicMaterial( { color: 0xff0000, depthTest: false } );
-				const sphereOnLineMaterial = new FOUR.MeshBasicMaterial( { color: 0x00ff00, depthTest: false } );
+				const sphereGeometry = new THREE.SphereGeometry( 0.25, 8, 4 );
+				const sphereInterMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, depthTest: false } );
+				const sphereOnLineMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00, depthTest: false } );
 
-				sphereInter = new FOUR.Mesh( sphereGeometry, sphereInterMaterial );
-				sphereOnLine = new FOUR.Mesh( sphereGeometry, sphereOnLineMaterial );
+				sphereInter = new THREE.Mesh( sphereGeometry, sphereInterMaterial );
+				sphereOnLine = new THREE.Mesh( sphereGeometry, sphereOnLineMaterial );
 				sphereInter.visible = false;
 				sphereOnLine.visible = false;
 				sphereInter.renderOrder = 10;
@@ -139,7 +139,7 @@
 				scene.add( sphereInter );
 				scene.add( sphereOnLine );
 
-				// Position and FOUR.Color Data
+				// Position and THREE.Color Data
 
 				const positions = [];
 				const colors = [];
@@ -147,14 +147,14 @@
 				for ( let i = - 50; i < 50; i ++ ) {
 
 					const t = i / 3;
-					points.push( new FOUR.Vector3( t * Math.sin( 2 * t ), t, t * Math.cos( 2 * t ) ) );
+					points.push( new THREE.Vector3( t * Math.sin( 2 * t ), t, t * Math.cos( 2 * t ) ) );
 
 				}
 
-				const spline = new FOUR.CatmullRomCurve3( points );
+				const spline = new THREE.CatmullRomCurve3( points );
 				const divisions = Math.round( 3 * points.length );
-				const point = new FOUR.Vector3();
-				const color = new FOUR.Color();
+				const point = new THREE.Vector3();
+				const color = new THREE.Color();
 
 				for ( let i = 0, l = divisions; i < l; i ++ ) {
 
@@ -163,7 +163,7 @@
 					spline.getPoint( t, point );
 					positions.push( point.x, point.y, point.z );
 
-					color.setHSL( t, 1.0, 0.5, FOUR.SRGBColorSpace );
+					color.setHSL( t, 1.0, 0.5, THREE.SRGBColorSpace );
 					colors.push( color.r, color.g, color.b );
 
 				}
@@ -196,9 +196,9 @@
 				thresholdLine.scale.set( 1, 1, 1 );
 				scene.add( thresholdLine );
 
-				const geo = new FOUR.BufferGeometry();
-				geo.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
-				geo.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 3 ) );
+				const geo = new THREE.BufferGeometry();
+				geo.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+				geo.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 
 				//
 

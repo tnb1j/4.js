@@ -17,34 +17,34 @@
 				<a href="../" target="_blank" rel="noopener">4.js</a><span>GPU-Driven Compute Rasterizer — IBL</span>
 			</div>
 
-			<small>Rendering <span id="triangleCount"></span> triangles.<br/>Battle Damaged Sci-fi Helmet by <a href="https://sketchfab.com/theblueturtle_" target="_blank" rel="noopener">theblueturtle_</a></small>
+			<small>Rendering <span id="triangleCount"></span> triangles.<br/>Battle Damaged Sci-fi Helmet by theblueturtle_</small>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { Fn, If, Loop, vec2, vec4, uvec2, uvec4, mat4, uint, float, int, min, max, clamp, ceil, log2, length, dFdx, dFdy, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, instanceIndex, vertexIndex, distance, screenSize, screenCoordinate, time, texture, varyingProperty, sqrt, normalize, cross, sign, positionGeometry, cameraViewMatrix, Discard, context, positionView, positionViewDirection, overrideNodes } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { Fn, If, Loop, vec2, vec4, uvec2, uvec4, mat4, uint, float, int, min, max, clamp, ceil, log2, length, dFdx, dFdy, atomicMax, atomicAdd, atomicStore, atomicLoad, floor, cos, sin, dot, bool, storage, uniform, uniformArray, instanceIndex, vertexIndex, distance, screenSize, screenCoordinate, time, texture, varyingProperty, sqrt, normalize, cross, sign, positionGeometry, cameraViewMatrix, Discard, context, positionView, positionViewDirection, overrideNodes } from 'three/tsl';
 
-			import { FirstPersonControls } from '@tnb1j/4js/addons/controls/FirstPersonControls.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import { MeshoptClusterizer } from '@tnb1j/4js/addons/libs/meshopt_clusterizer.module.js';
-			import { MeshoptSimplifier } from '@tnb1j/4js/addons/libs/meshopt_simplifier.module.js';
+			import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import { MeshoptClusterizer } from 'three/addons/libs/meshopt_clusterizer.module.js';
+			import { MeshoptSimplifier } from 'three/addons/libs/meshopt_simplifier.module.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import WebGPU from '@tnb1j/4js/addons/capabilities/WebGPU.js';
+			import WebGPU from 'three/addons/capabilities/WebGPU.js';
 
 			if ( WebGPU.isAvailable() === false ) {
 
@@ -145,8 +145,8 @@
 
 			async function init() {
 
-				renderer = new FOUR.WebGPURenderer();
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer = new THREE.WebGPURenderer();
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -155,9 +155,9 @@
 
 				await renderer.init();
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, .25, 1000000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, .25, 1000000 );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 
 				controls = new FirstPersonControls( camera, renderer.domElement );
 				controls.movementSpeed = 10;
@@ -171,7 +171,7 @@
 					MeshoptSimplifier.ready
 				] );
 
-				envTexture.mapping = FOUR.EquirectangularReflectionMapping;
+				envTexture.mapping = THREE.EquirectangularReflectionMapping;
 
 				let sourceMesh;
 				gltf.scene.traverse( ( child ) => {
@@ -391,15 +391,15 @@
 				}
 
 				// Upload LOD offsets to GPU (vec4: triangleStart, numTriangles, chunkStart, 0)
-				const lodOffsetsUniform = uniformArray( lods.map( ( lod ) => new FOUR.Vector4( lod.indexOffset / 3, lod.numTriangles, lod.chunkStart, 0 ) ), 'vec4' );
-				const chunkBoundsBuffer = storage( new FOUR.StorageBufferAttribute( chunkBoundsData, 4 ), 'vec4', totalChunks ).toReadOnly();
+				const lodOffsetsUniform = uniformArray( lods.map( ( lod ) => new THREE.Vector4( lod.indexOffset / 3, lod.numTriangles, lod.chunkStart, 0 ) ), 'vec4' );
+				const chunkBoundsBuffer = storage( new THREE.StorageBufferAttribute( chunkBoundsData, 4 ), 'vec4', totalChunks ).toReadOnly();
 
 				// Storage Buffers
-				const vertexBuffer = storage( new FOUR.StorageBufferAttribute( vertexArray, 4 ), 'vec4', totalVertices ).toReadOnly();
-				const normalBuffer = storage( new FOUR.StorageBufferAttribute( normalArray, 4 ), 'vec4', totalVertices ).toReadOnly();
-				const uvBuffer = storage( new FOUR.StorageBufferAttribute( uvArray, 2 ), 'vec2', totalVertices ).toReadOnly();
-				const indexBuffer = storage( new FOUR.StorageBufferAttribute( indexArray, 1 ), 'uint', totalIndices ).toReadOnly();
-				const meshletIdBuffer = storage( new FOUR.StorageBufferAttribute( meshletTriangleArray, 1 ), 'uint', totalIndices / 3 ).toReadOnly();
+				const vertexBuffer = storage( new THREE.StorageBufferAttribute( vertexArray, 4 ), 'vec4', totalVertices ).toReadOnly();
+				const normalBuffer = storage( new THREE.StorageBufferAttribute( normalArray, 4 ), 'vec4', totalVertices ).toReadOnly();
+				const uvBuffer = storage( new THREE.StorageBufferAttribute( uvArray, 2 ), 'vec2', totalVertices ).toReadOnly();
+				const indexBuffer = storage( new THREE.StorageBufferAttribute( indexArray, 1 ), 'uint', totalIndices ).toReadOnly();
+				const meshletIdBuffer = storage( new THREE.StorageBufferAttribute( meshletTriangleArray, 1 ), 'uint', totalIndices / 3 ).toReadOnly();
 
 				const timeScale = uniform( 1.0 );
 
@@ -423,7 +423,7 @@
 				parameterGroup.add( options, 'Rasterizer', { 'SW Only': 'SW Only', 'HW Only': 'HW Only', 'Both': 'Both' } );
 
 				const staticInstanceData = new Float32Array( instanceCount * 4 );
-				const instanceDataAttr = new FOUR.StorageBufferAttribute( staticInstanceData, 4 );
+				const instanceDataAttr = new THREE.StorageBufferAttribute( staticInstanceData, 4 );
 				const instanceDataBuffer = storage( instanceDataAttr, 'vec4', instanceCount );
 
 				// Lay the instances out as a plane or a volume (same instance count)
@@ -498,56 +498,56 @@
 				const instanceWorldData = new Float32Array( instanceCount * 16 );
 				const instanceMvpData = new Float32Array( instanceCount * 16 );
 
-				const instanceWorldAttr = new FOUR.StorageBufferAttribute( instanceWorldData, 16 );
-				const instanceMvpAttr = new FOUR.StorageBufferAttribute( instanceMvpData, 16 );
+				const instanceWorldAttr = new THREE.StorageBufferAttribute( instanceWorldData, 16 );
+				const instanceMvpAttr = new THREE.StorageBufferAttribute( instanceMvpData, 16 );
 
 				const instanceWorldBuffer = storage( instanceWorldAttr, 'mat4', instanceCount );
 				const instanceMvpBuffer = storage( instanceMvpAttr, 'mat4', instanceCount );
 				const instanceWorldRead = storage( instanceWorldAttr, 'mat4', instanceCount ).toReadOnly();
 
 				// Previous frame world matrices for the occlusion test
-				const instancePrevWorldAttr = new FOUR.StorageBufferAttribute( new Float32Array( instanceCount * 16 ), 16 );
+				const instancePrevWorldAttr = new THREE.StorageBufferAttribute( new Float32Array( instanceCount * 16 ), 16 );
 				const instancePrevWorldBuffer = storage( instancePrevWorldAttr, 'mat4', instanceCount );
 
 				const workQueueCountData = new Uint32Array( 1 );
-				const workQueueCountAttr = new FOUR.StorageBufferAttribute( workQueueCountData, 1 );
+				const workQueueCountAttr = new THREE.StorageBufferAttribute( workQueueCountData, 1 );
 				const workQueueCountAtomic = storage( workQueueCountAttr, 'uint', 1 ).toAtomic();
 				const workQueueCountRead = storage( workQueueCountAttr, 'uint', 1 ).toReadOnly();
 
 				const dispatchData = new Uint32Array( 3 );
-				const dispatchAttr = new FOUR.IndirectStorageBufferAttribute( dispatchData, 3 );
+				const dispatchAttr = new THREE.IndirectStorageBufferAttribute( dispatchData, 3 );
 				const dispatchBuffer = storage( dispatchAttr, 'uint', 3 );
 
 				// Work queue budget — one item is a 64-triangle chunk of one visible instance
 				const MAX_WORK_ITEMS = 2820000;
 				const workQueueData = new Uint32Array( MAX_WORK_ITEMS * 4 );
-				const workQueueBuffer = storage( new FOUR.StorageBufferAttribute( workQueueData, 4 ), 'uvec4', MAX_WORK_ITEMS );
+				const workQueueBuffer = storage( new THREE.StorageBufferAttribute( workQueueData, 4 ), 'uvec4', MAX_WORK_ITEMS );
 
 				// HW Rasterizer Buffers (for large triangles that exceed SW raster budget)
 				const MAX_HW_TRIANGLES = 100000;
 
 				// HW queue: index 0 is atomic counter, then stride-2 entries [instId, triIdx]
 				const hwQueueData = new Uint32Array( 1 + MAX_HW_TRIANGLES * 2 );
-				const hwQueueAttr = new FOUR.StorageBufferAttribute( hwQueueData, 1 );
+				const hwQueueAttr = new THREE.StorageBufferAttribute( hwQueueData, 1 );
 				const hwQueueAtomic = storage( hwQueueAttr, 'uint', 1 + MAX_HW_TRIANGLES * 2 ).toAtomic();
 				const hwQueueRead = storage( hwQueueAttr, 'uint', 1 + MAX_HW_TRIANGLES * 2 ).toReadOnly();
 
 				// Draw indirect buffer: vertexCount, instanceCount, firstVertex, firstInstance
 				const hwDrawData = new Uint32Array( 4 );
-				const hwDrawAttr = new FOUR.IndirectStorageBufferAttribute( hwDrawData, 4 );
+				const hwDrawAttr = new THREE.IndirectStorageBufferAttribute( hwDrawData, 4 );
 				const hwDrawBuffer = storage( hwDrawAttr, 'uint', 4 );
 
-				projScreenMatrixUniform = uniform( new FOUR.Matrix4() );
-				prevProjScreenUniform = uniform( new FOUR.Matrix4() );
+				projScreenMatrixUniform = uniform( new THREE.Matrix4() );
+				prevProjScreenUniform = uniform( new THREE.Matrix4() );
 				frustumPlanesUniform = uniformArray( [
-					new FOUR.Vector4(), new FOUR.Vector4(), new FOUR.Vector4(),
-					new FOUR.Vector4(), new FOUR.Vector4(), new FOUR.Vector4()
+					new THREE.Vector4(), new THREE.Vector4(), new THREE.Vector4(),
+					new THREE.Vector4(), new THREE.Vector4(), new THREE.Vector4()
 				], 'vec4' );
-				cameraPos = uniform( new FOUR.Vector3() );
+				cameraPos = uniform( new THREE.Vector3() );
 				cotHalfFovUniform = uniform( 1.0 );
 				const maxRasterSizeUniform = uniform( MAX_RASTER_SIZE, 'int' ); // Max bounding box size in pixels for SW rasterizer
 
-				prevCameraPosUniform = uniform( new FOUR.Vector3() );
+				prevCameraPosUniform = uniform( new THREE.Vector3() );
 				outputModeUniform = uniform( 0, 'uint' );
 
 				depthSourceTexNode = texture( sceneRT.depthTexture );
@@ -1135,7 +1135,7 @@
 
 				// Scene — the resolve pass and the HW mesh share it, so both are lit
 				// by the same environment through the standard material pipeline
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = envTexture;
 				scene.backgroundBlurriness = 0.5;
 				scene.environment = envTexture;
@@ -1147,10 +1147,10 @@
 				{
 
 					// Geometry: dummy positions, vertex count driven by indirect draw
-					const hwGeometry = new FOUR.BufferGeometry();
-					hwGeometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( new Float32Array( MAX_HW_TRIANGLES * 3 * 3 ), 3 ) );
+					const hwGeometry = new THREE.BufferGeometry();
+					hwGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( new Float32Array( MAX_HW_TRIANGLES * 3 * 3 ), 3 ) );
 					hwGeometry.setIndirect( hwDrawAttr );
-					hwGeometry.boundingSphere = new FOUR.Sphere().set( new FOUR.Vector3(), Infinity );
+					hwGeometry.boundingSphere = new THREE.Sphere().set( new THREE.Vector3(), Infinity );
 
 					// Varyings from the vertex pulling stage
 					const vInstId = varyingProperty( 'uint', 'vInstId' );
@@ -1214,10 +1214,10 @@
 					const hwDNdy = dFdy( hwNormal );
 					const hwKernelRoughness = min( hwDNdx.dot( hwDNdx ).add( hwDNdy.dot( hwDNdy ) ).mul( SPECULAR_AA_VARIANCE ), SPECULAR_AA_MAX );
 
-					const hwShadedMaterial = new FOUR.MeshStandardNodeMaterial();
+					const hwShadedMaterial = new THREE.MeshStandardNodeMaterial();
 					hwShadedMaterial.positionNode = hwPosition;
 					hwShadedMaterial.colorNode = sampleMapHW( sourceMaterial.map );
-					hwShadedMaterial.normalNode = applyNormalMap( hwNormal, normalize( vTangent ), sampleMapHW( sourceMaterial.normalMap ) ).transformDirection( cameraViewMatrix );
+					hwShadedMaterial.normalNode = applyNormalMap( hwNormal, normalize( vTangent ), sampleMapHW( sourceMaterial.normalMap ) ).transformNormalByViewMatrix( cameraViewMatrix );
 					const metalRoughHW = sampleMapHW( sourceMaterial.roughnessMap ); // glTF packs roughness (g) and metalness (b) in one texture
 					hwShadedMaterial.roughnessNode = sqrt( metalRoughHW.g.mul( metalRoughHW.g ).add( hwKernelRoughness ) );
 					hwShadedMaterial.metalnessNode = metalRoughHW.b;
@@ -1225,7 +1225,7 @@
 					hwShadedMaterial.emissiveNode = sampleMapHW( sourceMaterial.emissiveMap ).rgb;
 
 					// Meshlet debug: flat colors per cluster
-					const hwDebugMaterial = new FOUR.NodeMaterial();
+					const hwDebugMaterial = new THREE.NodeMaterial();
 					hwDebugMaterial.positionNode = hwPosition;
 					hwDebugMaterial.fragmentNode = Fn( () => {
 
@@ -1236,7 +1236,7 @@
 					} )();
 
 					// Vis material: unlit visualization of channels
-					const hwVisMaterial = new FOUR.NodeMaterial();
+					const hwVisMaterial = new THREE.NodeMaterial();
 					hwVisMaterial.positionNode = hwPosition;
 					hwVisMaterial.fragmentNode = getVisColor(
 						outputModeUniform,
@@ -1249,7 +1249,7 @@
 						sampleMapHW( sourceMaterial.emissiveMap ).rgb
 					);
 
-					hwMesh = new FOUR.Mesh( hwGeometry, hwShadedMaterial );
+					hwMesh = new THREE.Mesh( hwGeometry, hwShadedMaterial );
 					hwMesh.userData.shadedMaterial = hwShadedMaterial;
 					hwMesh.userData.debugMaterial = hwDebugMaterial;
 					hwMesh.userData.visMaterial = hwVisMaterial;
@@ -1266,9 +1266,9 @@
 				// lighting pipeline (environment + lights) can shade the visibility buffer.
 				{
 
-					const resolveGeometry = new FOUR.BufferGeometry();
-					resolveGeometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( new Float32Array( [ - 1, - 1, 0, 3, - 1, 0, - 1, 3, 0 ] ), 3 ) );
-					resolveGeometry.boundingSphere = new FOUR.Sphere().set( new FOUR.Vector3(), Infinity );
+					const resolveGeometry = new THREE.BufferGeometry();
+					resolveGeometry.setAttribute( 'position', new THREE.Float32BufferAttribute( new Float32Array( [ - 1, - 1, 0, 3, - 1, 0, - 1, 3, 0 ] ), 3 ) );
+					resolveGeometry.boundingSphere = new THREE.Sphere().set( new THREE.Vector3(), Infinity );
 
 					// Shared reconstruction — built once, referenced by every material slot;
 					// identical node instances are emitted only once in the final shader
@@ -1425,7 +1425,7 @@
 					const fullscreenVertex = vec4( positionGeometry.xy, 0.0, 1.0 );
 
 					// Shaded: feed the reconstructed surface into the standard material pipeline
-					const resolveShadedMaterial = new FOUR.MeshStandardNodeMaterial();
+					const resolveShadedMaterial = new THREE.MeshStandardNodeMaterial();
 					resolveShadedMaterial.contextNode =
 						overrideNodes( [
 							[ positionView, positionViewHelmet ],
@@ -1439,7 +1439,7 @@
 						normal_interp,
 						computeTangent( w0, w1, w2, t_uv0, t_uv1, t_uv2, normal_interp ),
 						sampleMap( sourceMaterial.normalMap )
-					).transformDirection( cameraViewMatrix );
+					).transformNormalByViewMatrix( cameraViewMatrix );
 					const metalRough = sampleMap( sourceMaterial.roughnessMap ); // glTF packs roughness (g) and metalness (b) in one texture
 					resolveShadedMaterial.roughnessNode = sqrt( metalRough.g.mul( metalRough.g ).add( kernelRoughness ) );
 					resolveShadedMaterial.metalnessNode = metalRough.b;
@@ -1447,13 +1447,13 @@
 					resolveShadedMaterial.emissiveNode = sampleMap( sourceMaterial.emissiveMap ).rgb;
 
 					// Meshlet debug: flat colors per cluster
-					const resolveDebugMaterial = new FOUR.NodeMaterial();
+					const resolveDebugMaterial = new THREE.NodeMaterial();
 					resolveDebugMaterial.vertexNode = fullscreenVertex;
 					resolveDebugMaterial.depthNode = resolveDepth;
 					resolveDebugMaterial.fragmentNode = coveredColor( hashColor( meshletIdBuffer.element( megaTriangleIndex ).add( instId.mul( 1000 ) ) ) );
 
 					// Vis material: unlit visualization of channels
-					const resolveVisMaterial = new FOUR.NodeMaterial();
+					const resolveVisMaterial = new THREE.NodeMaterial();
 					resolveVisMaterial.contextNode = context( {
 						positionView: positionViewHelmet,
 						positionViewDirection: positionViewDirectionHelmet
@@ -1471,7 +1471,7 @@
 						sampleMap( sourceMaterial.emissiveMap ).rgb
 					) );
 
-					resolveMesh = new FOUR.Mesh( resolveGeometry, resolveShadedMaterial );
+					resolveMesh = new THREE.Mesh( resolveGeometry, resolveShadedMaterial );
 					resolveMesh.userData.shadedMaterial = resolveShadedMaterial;
 					resolveMesh.userData.debugMaterial = resolveDebugMaterial;
 					resolveMesh.userData.visMaterial = resolveVisMaterial;
@@ -1483,9 +1483,9 @@
 					// Presents the scene to the canvas (tone mapping applies here)
 					blitTexNode = texture( sceneRT.texture );
 
-					const blitMaterial = new FOUR.NodeMaterial();
+					const blitMaterial = new THREE.NodeMaterial();
 					blitMaterial.colorNode = blitTexNode;
-					blitQuad = new FOUR.QuadMesh( blitMaterial );
+					blitQuad = new THREE.QuadMesh( blitMaterial );
 
 				}
 
@@ -1515,7 +1515,7 @@
 
 					resolveMesh.material = resolveMesh.userData.debugMaterial;
 					hwMesh.material = hwMesh.userData.debugMaterial;
-					renderer.toneMapping = FOUR.NoToneMapping;
+					renderer.toneMapping = THREE.NoToneMapping;
 
 				} else if ( outputVal !== 'Default' ) {
 
@@ -1523,7 +1523,7 @@
 
 					resolveMesh.material = resolveMesh.userData.visMaterial;
 					hwMesh.material = hwMesh.userData.visMaterial;
-					renderer.toneMapping = FOUR.NoToneMapping;
+					renderer.toneMapping = THREE.NoToneMapping;
 
 				} else {
 
@@ -1531,7 +1531,7 @@
 
 					resolveMesh.material = resolveMesh.userData.shadedMaterial;
 					hwMesh.material = hwMesh.userData.shadedMaterial;
-					renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+					renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				}
 
@@ -1539,7 +1539,7 @@
 
 			function createScreenBuffers() {
 
-				const size = new FOUR.Vector2();
+				const size = new THREE.Vector2();
 				renderer.getDrawingBufferSize( size );
 				const newMaxPixels = size.x * size.y;
 
@@ -1552,16 +1552,16 @@
 
 				if ( hzbLevelTable === undefined ) {
 
-					hzbLevelTable = uniformArray( Array.from( { length: MAX_HZB_LEVELS }, () => new FOUR.Vector4() ), 'vec4' );
+					hzbLevelTable = uniformArray( Array.from( { length: MAX_HZB_LEVELS }, () => new THREE.Vector4() ), 'vec4' );
 					hzbLevelCountUniform = uniform( 0.0 );
 
 				}
 
 				const screenTriData = new Uint32Array( maxPixels );
-				screenTriAttr = new FOUR.StorageBufferAttribute( screenTriData, 1 );
+				screenTriAttr = new THREE.StorageBufferAttribute( screenTriData, 1 );
 
 				const screenInstData = new Uint32Array( maxPixels );
-				screenInstAttr = new FOUR.StorageBufferAttribute( screenInstData, 1 );
+				screenInstAttr = new THREE.StorageBufferAttribute( screenInstData, 1 );
 
 				if ( screenTriAtomic === undefined ) {
 
@@ -1609,9 +1609,9 @@
 
 				}
 
-				sceneRT = new FOUR.RenderTarget( size.x, size.y, { type: FOUR.HalfFloatType } );
-				sceneRT.depthTexture = new FOUR.DepthTexture( size.x, size.y );
-				sceneRT.depthTexture.type = FOUR.FloatType;
+				sceneRT = new THREE.RenderTarget( size.x, size.y, { type: THREE.HalfFloatType } );
+				sceneRT.depthTexture = new THREE.DepthTexture( size.x, size.y );
+				sceneRT.depthTexture.type = THREE.FloatType;
 
 
 				if ( blitTexNode ) {
@@ -1645,7 +1645,7 @@
 				hzbLevelCountUniform.value = hzbLevelCount;
 
 				const hzbData = new Float32Array( totalTexels ).fill( 1 ); // far plane — occludes nothing
-				const hzbAttr = new FOUR.StorageBufferAttribute( hzbData, 1 );
+				const hzbAttr = new THREE.StorageBufferAttribute( hzbData, 1 );
 
 				if ( hzbBuffer === undefined ) {
 
@@ -1683,11 +1683,11 @@
 
 			}
 
-			const frustum = new FOUR.Frustum();
-			const projScreenMatrix = new FOUR.Matrix4();
-			const prevProjScreen = new FOUR.Matrix4();
-			const cameraInverse = new FOUR.Matrix4();
-			const prevCameraPos = new FOUR.Vector3();
+			const frustum = new THREE.Frustum();
+			const projScreenMatrix = new THREE.Matrix4();
+			const prevProjScreen = new THREE.Matrix4();
+			const cameraInverse = new THREE.Matrix4();
+			const prevCameraPos = new THREE.Vector3();
 			let prevValid = false;
 
 			function animate() {

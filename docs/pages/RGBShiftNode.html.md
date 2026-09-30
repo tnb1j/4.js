@@ -6,15 +6,15 @@ Post processing node for shifting/splitting RGB color channels. The effect separ
 
 ## Import
 
-RGBShiftNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RGBShiftNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { rgbShift } from '@tnb1j/4js/addons/tsl/display/RGBShiftNode.js';
+import { rgbShift } from 'three/addons/tsl/display/RGBShiftNode.js';
 ```
 
 ## Constructor
 
-### new RGBShiftNode( textureNode : TextureNode, amount : number, angle : number )
+### new RGBShiftNode( textureNode : TextureNode, amount : number | Node.<float>, angle : number | Node.<float> )
 
 Constructs a new RGB shift node.
 
@@ -36,11 +36,11 @@ Default is `0`.
 
 ## Properties
 
-### .amount : UniformNode.<float>
+### .amount : Node.<float>
 
 The amount of the RGB shift.
 
-### .angle : UniformNode.<float>
+### .angle : Node.<float>
 
 Defines in which direction colors are shifted.
 
@@ -62,4 +62,4 @@ The current node builder.
 
 ## Source
 
-[examples/jsm/tsl/display/RGBShiftNode.js](../../examples/jsm/tsl/display/RGBShiftNode.js)
+[examples/jsm/tsl/display/RGBShiftNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/RGBShiftNode.js)

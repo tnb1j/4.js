@@ -16,22 +16,22 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GLTFExporter } from '@tnb1j/4js/addons/exporters/GLTFExporter.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
-			import { MeshoptDecoder } from '@tnb1j/4js/addons/libs/meshopt_decoder.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import * as TextureUtils from '@tnb1j/4js/addons/utils/WebGLTextureUtils.js';
+			import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
+			import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import * as TextureUtils from 'three/addons/utils/WebGLTextureUtils.js';
 
 			function exportGLTF( input ) {
 
@@ -143,18 +143,18 @@
 
 				}
 
-				const gradientTexture = new FOUR.DataTexture( data, 100, 100, FOUR.RGBAFormat );
-				gradientTexture.minFilter = FOUR.LinearFilter;
-				gradientTexture.magFilter = FOUR.LinearFilter;
+				const gradientTexture = new THREE.DataTexture( data, 100, 100, THREE.RGBAFormat );
+				gradientTexture.minFilter = THREE.LinearFilter;
+				gradientTexture.magFilter = THREE.LinearFilter;
 				gradientTexture.needsUpdate = true;
 
-				scene1 = new FOUR.Scene();
+				scene1 = new THREE.Scene();
 				scene1.name = 'Scene1';
 
 				// ---------------------------------------------------------------------
 				// Perspective Camera
 				// ---------------------------------------------------------------------
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 600, 400, 0 );
 
 				camera.name = 'PerspectiveCamera';
@@ -163,14 +163,14 @@
 				// ---------------------------------------------------------------------
 				// Ambient light
 				// ---------------------------------------------------------------------
-				const ambientLight = new FOUR.AmbientLight( 0xcccccc );
+				const ambientLight = new THREE.AmbientLight( 0xcccccc );
 				ambientLight.name = 'AmbientLight';
 				scene1.add( ambientLight );
 
 				// ---------------------------------------------------------------------
 				// DirectLight
 				// ---------------------------------------------------------------------
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.target.position.set( 0, 0, - 1 );
 				dirLight.add( dirLight.target );
 				dirLight.lookAt( - 1, - 1, 0 );
@@ -180,7 +180,7 @@
 				// ---------------------------------------------------------------------
 				// Grid
 				// ---------------------------------------------------------------------
-				gridHelper = new FOUR.GridHelper( 2000, 20, 0xc1c1c1, 0x8d8d8d );
+				gridHelper = new THREE.GridHelper( 2000, 20, 0xc1c1c1, 0x8d8d8d );
 				gridHelper.position.y = - 50;
 				gridHelper.name = 'Grid';
 				scene1.add( gridHelper );
@@ -188,7 +188,7 @@
 				// ---------------------------------------------------------------------
 				// Axes
 				// ---------------------------------------------------------------------
-				const axes = new FOUR.AxesHelper( 500 );
+				const axes = new THREE.AxesHelper( 500 );
 				axes.name = 'AxesHelper';
 				scene1.add( axes );
 
@@ -196,37 +196,37 @@
 				// Simple geometry with basic material
 				// ---------------------------------------------------------------------
 				// Icosahedron
-				const mapGrid = new FOUR.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
-				mapGrid.wrapS = mapGrid.wrapT = FOUR.RepeatWrapping;
-				mapGrid.colorSpace = FOUR.SRGBColorSpace;
-				material = new FOUR.MeshBasicMaterial( {
+				const mapGrid = new THREE.TextureLoader().load( 'textures/uv_grid_opengl.jpg' );
+				mapGrid.wrapS = mapGrid.wrapT = THREE.RepeatWrapping;
+				mapGrid.colorSpace = THREE.SRGBColorSpace;
+				material = new THREE.MeshBasicMaterial( {
 					color: 0xffffff,
 					map: mapGrid
 				} );
 
-				object = new FOUR.Mesh( new FOUR.IcosahedronGeometry( 75, 0 ), material );
+				object = new THREE.Mesh( new THREE.IcosahedronGeometry( 75, 0 ), material );
 				object.position.set( - 200, 0, 200 );
 				object.name = 'Icosahedron';
 				scene1.add( object );
 
 				// Octahedron
-				material = new FOUR.MeshBasicMaterial( {
+				material = new THREE.MeshBasicMaterial( {
 					color: 0x0000ff,
 					wireframe: true
 				} );
-				object = new FOUR.Mesh( new FOUR.OctahedronGeometry( 75, 1 ), material );
+				object = new THREE.Mesh( new THREE.OctahedronGeometry( 75, 1 ), material );
 				object.position.set( 0, 0, 200 );
 				object.name = 'Octahedron';
 				scene1.add( object );
 
 				// Tetrahedron
-				material = new FOUR.MeshBasicMaterial( {
+				material = new THREE.MeshBasicMaterial( {
 					color: 0xff0000,
 					transparent: true,
 					opacity: 0.5
 				} );
 
-				object = new FOUR.Mesh( new FOUR.TetrahedronGeometry( 75, 0 ), material );
+				object = new THREE.Mesh( new THREE.TetrahedronGeometry( 75, 0 ), material );
 				object.position.set( 200, 0, 200 );
 				object.name = 'Tetrahedron';
 				scene1.add( object );
@@ -235,7 +235,7 @@
 				// Buffered geometry primitives
 				// ---------------------------------------------------------------------
 				// Sphere
-				material = new FOUR.MeshStandardMaterial( {
+				material = new THREE.MeshStandardMaterial( {
 					color: 0xffff00,
 					metalness: 0.5,
 					roughness: 1.0,
@@ -243,27 +243,27 @@
 				} );
 				material.map = gradientTexture;
 				material.bumpMap = mapGrid;
-				sphere = new FOUR.Mesh( new FOUR.SphereGeometry( 70, 10, 10 ), material );
+				sphere = new THREE.Mesh( new THREE.SphereGeometry( 70, 10, 10 ), material );
 				sphere.position.set( 0, 0, 0 );
 				sphere.name = 'Sphere';
 				scene1.add( sphere );
 
 				// Cylinder
-				material = new FOUR.MeshStandardMaterial( {
+				material = new THREE.MeshStandardMaterial( {
 					color: 0xff00ff,
 					flatShading: true
 				} );
-				object = new FOUR.Mesh( new FOUR.CylinderGeometry( 10, 80, 100 ), material );
+				object = new THREE.Mesh( new THREE.CylinderGeometry( 10, 80, 100 ), material );
 				object.position.set( 200, 0, 0 );
 				object.name = 'Cylinder';
 				scene1.add( object );
 
 				// TorusKnot
-				material = new FOUR.MeshStandardMaterial( {
+				material = new THREE.MeshStandardMaterial( {
 					color: 0xff0000,
 					roughness: 1
 				} );
-				object = new FOUR.Mesh( new FOUR.TorusKnotGeometry( 50, 15, 40, 10 ), material );
+				object = new THREE.Mesh( new THREE.TorusKnotGeometry( 50, 15, 40, 10 ), material );
 				object.position.set( - 200, 0, 0 );
 				object.name = 'Cylinder';
 				scene1.add( object );
@@ -272,15 +272,15 @@
 				// ---------------------------------------------------------------------
 				// Hierarchy
 				// ---------------------------------------------------------------------
-				const mapWood = new FOUR.TextureLoader().load( 'textures/hardwood2_diffuse.jpg' );
-				material = new FOUR.MeshStandardMaterial( { map: mapWood, side: FOUR.DoubleSide } );
+				const mapWood = new THREE.TextureLoader().load( 'textures/hardwood2_diffuse.jpg' );
+				material = new THREE.MeshStandardMaterial( { map: mapWood, side: THREE.DoubleSide } );
 
-				object = new FOUR.Mesh( new FOUR.BoxGeometry( 40, 100, 100 ), material );
+				object = new THREE.Mesh( new THREE.BoxGeometry( 40, 100, 100 ), material );
 				object.position.set( - 200, 0, 400 );
 				object.name = 'Cube';
 				scene1.add( object );
 
-				object2 = new FOUR.Mesh( new FOUR.BoxGeometry( 40, 40, 40, 2, 2, 2 ), material );
+				object2 = new THREE.Mesh( new THREE.BoxGeometry( 40, 40, 40, 2, 2, 2 ), material );
 				object2.position.set( 0, 0, 50 );
 				object2.rotation.set( 0, 45, 0 );
 				object2.name = 'SubCube';
@@ -290,24 +290,24 @@
 				// ---------------------------------------------------------------------
 				// Groups
 				// ---------------------------------------------------------------------
-				const group1 = new FOUR.Group();
+				const group1 = new THREE.Group();
 				group1.name = 'Group';
 				scene1.add( group1 );
 
-				const group2 = new FOUR.Group();
+				const group2 = new THREE.Group();
 				group2.name = 'subGroup';
 				group2.position.set( 0, 50, 0 );
 				group1.add( group2 );
 
-				object2 = new FOUR.Mesh( new FOUR.BoxGeometry( 30, 30, 30 ), material );
+				object2 = new THREE.Mesh( new THREE.BoxGeometry( 30, 30, 30 ), material );
 				object2.name = 'Cube in group';
 				object2.position.set( 0, 0, 400 );
 				group2.add( object2 );
 
 				// ---------------------------------------------------------------------
-				// FOUR.Line Strip
+				// THREE.Line Strip
 				// ---------------------------------------------------------------------
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 				let numPoints = 100;
 				let positions = new Float32Array( numPoints * 3 );
 
@@ -319,15 +319,15 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				object = new FOUR.Line( geometry, new FOUR.LineBasicMaterial( { color: 0xffff00 } ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				object = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffff00 } ) );
 				object.position.set( - 50, 0, - 200 );
 				scene1.add( object );
 
 				// ---------------------------------------------------------------------
-				// FOUR.Line Loop
+				// THREE.Line Loop
 				// ---------------------------------------------------------------------
-				geometry = new FOUR.BufferGeometry();
+				geometry = new THREE.BufferGeometry();
 				numPoints = 5;
 				const radius = 70;
 				positions = new Float32Array( numPoints * 3 );
@@ -341,14 +341,14 @@
 
 				}
 
-				geometry.setAttribute( 'position', new FOUR.BufferAttribute( positions, 3 ) );
-				object = new FOUR.LineLoop( geometry, new FOUR.LineBasicMaterial( { color: 0xffff00 } ) );
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+				object = new THREE.LineLoop( geometry, new THREE.LineBasicMaterial( { color: 0xffff00 } ) );
 				object.position.set( 0, 0, - 200 );
 
 				scene1.add( object );
 
 				// ---------------------------------------------------------------------
-				// FOUR.Points
+				// THREE.Points
 				// ---------------------------------------------------------------------
 				numPoints = 100;
 				const pointsArray = new Float32Array( numPoints * 3 );
@@ -360,11 +360,11 @@
 
 				}
 
-				const pointsGeo = new FOUR.BufferGeometry();
-				pointsGeo.setAttribute( 'position', new FOUR.BufferAttribute( pointsArray, 3 ) );
+				const pointsGeo = new THREE.BufferGeometry();
+				pointsGeo.setAttribute( 'position', new THREE.BufferAttribute( pointsArray, 3 ) );
 
-				const pointsMaterial = new FOUR.PointsMaterial( { color: 0xffff00, size: 5 } );
-				const pointCloud = new FOUR.Points( pointsGeo, pointsMaterial );
+				const pointsMaterial = new THREE.PointsMaterial( { color: 0xffff00, size: 5 } );
+				const pointCloud = new THREE.Points( pointsGeo, pointsMaterial );
 				pointCloud.name = 'Points';
 				pointCloud.position.set( - 200, 0, - 200 );
 				scene1.add( pointCloud );
@@ -376,26 +376,26 @@
 				const height = 1000; // frustum height
 				const aspect = window.innerWidth / window.innerHeight;
 
-				const cameraOrtho = new FOUR.OrthographicCamera( - height * aspect, height * aspect, height, - height, 0, 2000 );
+				const cameraOrtho = new THREE.OrthographicCamera( - height * aspect, height * aspect, height, - height, 0, 2000 );
 				cameraOrtho.position.set( 600, 400, 0 );
 				cameraOrtho.lookAt( 0, 0, 0 );
 				scene1.add( cameraOrtho );
 				cameraOrtho.name = 'OrthographicCamera';
 
-				material = new FOUR.MeshLambertMaterial( {
+				material = new THREE.MeshLambertMaterial( {
 					color: 0xffff00,
-					side: FOUR.DoubleSide
+					side: THREE.DoubleSide
 				} );
 
-				object = new FOUR.Mesh( new FOUR.CircleGeometry( 50, 20, 0, Math.PI * 2 ), material );
+				object = new THREE.Mesh( new THREE.CircleGeometry( 50, 20, 0, Math.PI * 2 ), material );
 				object.position.set( 200, 0, - 400 );
 				scene1.add( object );
 
-				object = new FOUR.Mesh( new FOUR.RingGeometry( 10, 50, 20, 5, 0, Math.PI * 2 ), material );
+				object = new THREE.Mesh( new THREE.RingGeometry( 10, 50, 20, 5, 0, Math.PI * 2 ), material );
 				object.position.set( 0, 0, - 400 );
 				scene1.add( object );
 
-				object = new FOUR.Mesh( new FOUR.CylinderGeometry( 25, 75, 100, 40, 5 ), material );
+				object = new THREE.Mesh( new THREE.CylinderGeometry( 25, 75, 100, 40, 5 ), material );
 				object.position.set( - 200, 0, - 400 );
 				scene1.add( object );
 
@@ -404,21 +404,21 @@
 
 				for ( let i = 0; i < 50; i ++ ) {
 
-					points.push( new FOUR.Vector2( Math.sin( i * 0.2 ) * Math.sin( i * 0.1 ) * 15 + 50, ( i - 5 ) * 2 ) );
+					points.push( new THREE.Vector2( Math.sin( i * 0.2 ) * Math.sin( i * 0.1 ) * 15 + 50, ( i - 5 ) * 2 ) );
 
 				}
 
-				object = new FOUR.Mesh( new FOUR.LatheGeometry( points, 20 ), material );
+				object = new THREE.Mesh( new THREE.LatheGeometry( points, 20 ), material );
 				object.position.set( 200, 0, 400 );
 				scene1.add( object );
 
 				// ---------------------------------------------------------------------
 				// Big red box hidden just for testing `onlyVisible` option
 				// ---------------------------------------------------------------------
-				material = new FOUR.MeshBasicMaterial( {
+				material = new THREE.MeshBasicMaterial( {
 					color: 0xff0000
 				} );
-				object = new FOUR.Mesh( new FOUR.BoxGeometry( 200, 200, 200 ), material );
+				object = new THREE.Mesh( new THREE.BoxGeometry( 200, 200, 200 ), material );
 				object.position.set( 0, 0, 0 );
 				object.name = 'CubeHidden';
 				object.visible = false;
@@ -441,12 +441,12 @@
 				// Model requiring KHR_mesh_quantization
 				// ---------------------------------------------------------------------
 
-				material = new FOUR.MeshBasicMaterial( {
+				material = new THREE.MeshBasicMaterial( {
 					color: 0xffffff,
 				} );
-				object = new FOUR.InstancedMesh( new FOUR.BoxGeometry( 10, 10, 10, 2, 2, 2 ), material, 50 );
-				const matrix = new FOUR.Matrix4();
-				const color = new FOUR.Color();
+				object = new THREE.InstancedMesh( new THREE.BoxGeometry( 10, 10, 10, 2, 2, 2 ), material, 50 );
+				const matrix = new THREE.Matrix4();
+				const color = new THREE.Color();
 				for ( let i = 0; i < 50; i ++ ) {
 
 					matrix.setPosition( Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50 );
@@ -459,10 +459,10 @@
 				scene1.add( object );
 
 				// ---------------------------------------------------------------------
-				// 2nd FOUR.Scene
+				// 2nd THREE.Scene
 				// ---------------------------------------------------------------------
-				scene2 = new FOUR.Scene();
-				object = new FOUR.Mesh( new FOUR.BoxGeometry( 100, 100, 100 ), material );
+				scene2 = new THREE.Scene();
+				object = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), material );
 				object.position.set( 0, 0, 0 );
 				object.name = 'Cube2ndScene';
 				scene2.name = 'Scene2';
@@ -470,11 +470,11 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 1;
 
 				container.appendChild( renderer.domElement );
@@ -515,13 +515,13 @@
 				ctx.fillStyle = '#FFD500';
 				ctx.fillRect( 16, 16, 32, 32 );
 
-				const webpTexture = new FOUR.CanvasTexture( canvas );
+				const webpTexture = new THREE.CanvasTexture( canvas );
 				webpTexture.userData.mimeType = 'image/webp';
-				webpTexture.colorSpace = FOUR.SRGBColorSpace;
+				webpTexture.colorSpace = THREE.SRGBColorSpace;
 
-				webpBox = new FOUR.Mesh(
-					new FOUR.BoxGeometry( 100, 100, 100 ),
-					new FOUR.MeshBasicMaterial( { map: webpTexture } )
+				webpBox = new THREE.Mesh(
+					new THREE.BoxGeometry( 100, 100, 100 ),
+					new THREE.MeshBasicMaterial( { map: webpTexture } )
 				);
 				webpBox.position.set( 400, 0, 0 );
 				webpBox.name = 'WebPBox';

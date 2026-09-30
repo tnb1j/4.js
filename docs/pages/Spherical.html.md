@@ -118,4 +118,4 @@ The vector to set.
 
 ## Source
 
-[src/math/Spherical.js](../../src/math/Spherical.js)
+[src/math/Spherical.js](https://github.com/mrdoob/three.js/blob/master/src/math/Spherical.js)

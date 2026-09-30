@@ -17,20 +17,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
-			import { ColladaLoader } from '@tnb1j/4js/addons/loaders/ColladaLoader.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
+			import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
 
 			let container, stats;
 
@@ -60,14 +60,14 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 2, 2, 3 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// Grid
 
-				const grid = new FOUR.GridHelper( 20, 20, 0xc1c1c1, 0x8d8d8d );
+				const grid = new THREE.GridHelper( 20, 20, 0xc1c1c1, 0x8d8d8d );
 				scene.add( grid );
 
 				// Add the COLLADA
@@ -76,10 +76,10 @@
 
 				// Lights
 
-				const light = new FOUR.HemisphereLight( 0xfff7f7, 0x494966, 3 );
+				const light = new THREE.HemisphereLight( 0xfff7f7, 0x494966, 3 );
 				scene.add( light );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -98,7 +98,7 @@
 
 			function setupTween() {
 
-				const duration = FOUR.MathUtils.randInt( 1000, 5000 );
+				const duration = THREE.MathUtils.randInt( 1000, 5000 );
 
 				const target = {};
 
@@ -116,7 +116,7 @@
 
 							tweenParameters[ prop ] = position;
 
-							target[ prop ] = FOUR.MathUtils.randInt( joint.limits.min, joint.limits.max );
+							target[ prop ] = THREE.MathUtils.randInt( joint.limits.min, joint.limits.max );
 
 						}
 

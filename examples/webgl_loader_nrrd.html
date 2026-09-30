@@ -19,21 +19,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { NRRDLoader } from '@tnb1j/4js/addons/loaders/NRRDLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { NRRDLoader } from 'three/addons/loaders/NRRDLoader.js';
 
 			let stats,
 				camera,
@@ -45,19 +45,19 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
 				camera.position.z = 300;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				scene.add( camera );
 
 				// light
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x000000, 3 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x000000, 3 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				dirLight.position.set( 200, 200, 200 );
 				scene.add( dirLight );
 
@@ -65,11 +65,11 @@
 				loader.load( 'models/nrrd/I.nrrd', function ( volume ) {
 
 					//box helper to see the extend of the volume
-					const geometry = new FOUR.BoxGeometry( volume.xLength, volume.yLength, volume.zLength );
-					const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-					const cube = new FOUR.Mesh( geometry, material );
+					const geometry = new THREE.BoxGeometry( volume.xLength, volume.yLength, volume.zLength );
+					const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					const cube = new THREE.Mesh( geometry, material );
 					cube.visible = false;
-					const box = new FOUR.BoxHelper( cube );
+					const box = new THREE.BoxHelper( cube );
 					scene.add( box );
 					box.applyMatrix4( volume.matrix );
 					scene.add( cube );
@@ -127,7 +127,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

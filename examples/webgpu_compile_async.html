@@ -48,20 +48,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { uv, float, vec3, hash, mx_noise_vec3, mx_worley_noise_vec3, mx_cell_noise_float, mx_fractal_noise_vec3 } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { uv, float, vec3, hash, mx_noise_vec3, mx_worley_noise_vec3, mx_cell_noise_float, mx_fractal_noise_vec3 } from 'three/tsl';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let MESH_COUNT = 256;
 			let GRID_SIZE = 16;
@@ -113,7 +113,7 @@
 				// Orthographic camera
 				const aspect = window.innerWidth / window.innerHeight;
 				const frustumSize = 20;
-				camera = new FOUR.OrthographicCamera(
+				camera = new THREE.OrthographicCamera(
 					frustumSize * aspect / - 2,
 					frustumSize * aspect / 2,
 					frustumSize / 2,
@@ -124,17 +124,17 @@
 				camera.position.set( 0, 0, 20 );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x111111 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x111111 );
 
 				// Create animated sphere
-				const sphereGeometry = new FOUR.SphereGeometry( 0.5, 32, 32 );
-				const sphereMaterial = new FOUR.MeshNormalMaterial();
-				sphere = new FOUR.Mesh( sphereGeometry, sphereMaterial );
+				const sphereGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
+				const sphereMaterial = new THREE.MeshNormalMaterial();
+				sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
 				scene.add( sphere );
 
 				// Renderer
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -169,7 +169,7 @@
 
 			function createUniqueMaterial( index ) {
 
-				const material = new FOUR.MeshBasicNodeMaterial();
+				const material = new THREE.MeshBasicNodeMaterial();
 
 				const seed = float( index * 0.1 + 1.0 );
 				const scale = float( ( index % 5 ) + 2.0 );
@@ -213,16 +213,16 @@
 
 			async function addMeshes( mode ) {
 
-				const geometry = new FOUR.PlaneGeometry( 0.9, 0.9 );
+				const geometry = new THREE.PlaneGeometry( 0.9, 0.9 );
 				const startX = - ( GRID_SIZE - 1 ) / 2;
 				const startY = - ( GRID_SIZE - 1 ) / 2;
 
-				meshGroup = new FOUR.Group();
+				meshGroup = new THREE.Group();
 
 				for ( let i = 0; i < MESH_COUNT; i ++ ) {
 
 					const material = createUniqueMaterial( i );
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					const col = i % GRID_SIZE;
 					const row = Math.floor( i / GRID_SIZE );

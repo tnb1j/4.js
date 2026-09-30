@@ -16,21 +16,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 
 			const params = {
 				'image': 'ballroom',
@@ -49,25 +49,25 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( params.fov, window.innerWidth / window.innerHeight, .1, 50 );
+				camera = new THREE.PerspectiveCamera( params.fov, window.innerWidth / window.innerHeight, .1, 50 );
 				camera.position.set( 7, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 
 				container.appendChild( renderer.domElement );
 
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 				//
 
-				const sphereGeometry = new FOUR.SphereGeometry( 0.45, 64, 32 );
+				const sphereGeometry = new THREE.SphereGeometry( 0.45, 64, 32 );
 
-				const sphere01 = new FOUR.Mesh( sphereGeometry, new FOUR.MeshPhysicalMaterial( {
+				const sphere01 = new THREE.Mesh( sphereGeometry, new THREE.MeshPhysicalMaterial( {
 					transmission: 1.0,
 					thickness: 2.0,
 					metalness: 0.0,
@@ -76,21 +76,21 @@
 				sphere01.position.z += 2;
 				scene.add( sphere01 );
 
-				const sphere02 = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( {
+				const sphere02 = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( {
 					metalness: 0.0,
 					roughness: 1.0,
 				} ) );
 				sphere02.position.z += 1;
 				scene.add( sphere02 );
 
-				const sphere03 = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( {
+				const sphere03 = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( {
 					metalness: 1.0,
 					roughness: 0.0,
 				} ) );
 				sphere03.position.z += 0;
 				scene.add( sphere03 );
 
-				const sphere04 = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( {
+				const sphere04 = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( {
 					metalness: 1.0,
 					roughness: 0.5,
 					color: 0x888888
@@ -98,7 +98,7 @@
 				sphere04.position.z -= 1;
 				scene.add( sphere04 );
 
-				const sphere05 = new FOUR.Mesh( sphereGeometry, new FOUR.MeshStandardMaterial( {
+				const sphere05 = new THREE.Mesh( sphereGeometry, new THREE.MeshStandardMaterial( {
 					metalness: 0.0,
 					roughness: 0.0,
 					color: 0x6ab440
@@ -113,7 +113,7 @@
 
 					loader.load( url, ( texture ) => {
 
-						texture.mapping = FOUR.CubeUVReflectionMapping;
+						texture.mapping = THREE.CubeUVReflectionMapping;
 						scene.environment = texture;
 						scene.background = texture;
 

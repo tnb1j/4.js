@@ -6,14 +6,14 @@ Class for loading cube textures. Images are internally loaded via [ImageLoader](
 
 The loader returns an instance of [CubeTexture](CubeTexture.html) and expects the cube map to be defined as six separate images representing the sides of a cube. Other cube map definitions like vertical and horizontal cross, column and row layouts are not supported.
 
-Note that, by convention, cube maps are specified in a coordinate system in which positive-x is to the right when looking up the positive-z axis -- in other words, using a left-handed coordinate system. Since 4.js uses a right-handed coordinate system, environment maps used in 4.js will have pos-x and neg-x swapped.
+Note that, by convention, cube maps are specified in a coordinate system in which positive-x is to the right when looking up the positive-z axis -- in other words, using a left-handed coordinate system. Since three.js uses a right-handed coordinate system, environment maps used in three.js will have pos-x and neg-x swapped.
 
 The loaded cube texture is in sRGB color space. Meaning [Texture#colorSpace](Texture.html#colorSpace) is set to `SRGBColorSpace` by default.
 
 ## Code Example
 
 ```js
-const loader = new FOUR.CubeTextureLoader().setPath( 'textures/cubeMaps/' );
+const loader = new THREE.CubeTextureLoader().setPath( 'textures/cubeMaps/' );
 const cubeTexture = await loader.loadAsync( [
 	'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'
 ] );
@@ -58,4 +58,4 @@ Executed when errors occur.
 
 ## Source
 
-[src/loaders/CubeTextureLoader.js](../../src/loaders/CubeTextureLoader.js)
+[src/loaders/CubeTextureLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/CubeTextureLoader.js)

@@ -108,4 +108,4 @@ Default is `origin`.
 
 ## Source
 
-[src/extras/PMREMGenerator.js](../../src/extras/PMREMGenerator.js)
+[src/extras/PMREMGenerator.js](https://github.com/mrdoob/three.js/blob/master/src/extras/PMREMGenerator.js)

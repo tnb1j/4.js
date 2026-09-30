@@ -130,4 +130,4 @@ The current interpolation factor.
 
 ## Source
 
-[src/math/Interpolant.js](../../src/math/Interpolant.js)
+[src/math/Interpolant.js](https://github.com/mrdoob/three.js/blob/master/src/math/Interpolant.js)

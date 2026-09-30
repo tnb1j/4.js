@@ -48,4 +48,4 @@ Note: Any `ArrayBuffer` data associated with this readback buffer are removed an
 
 ## Source
 
-[src/renderers/common/ReadbackBuffer.js](../../src/renderers/common/ReadbackBuffer.js)
+[src/renderers/common/ReadbackBuffer.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/ReadbackBuffer.js)

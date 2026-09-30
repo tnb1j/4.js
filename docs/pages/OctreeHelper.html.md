@@ -13,10 +13,10 @@ scene.add( helper );
 
 ## Import
 
-OctreeHelper is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+OctreeHelper is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { OctreeHelper } from '@tnb1j/4js/addons/helpers/OctreeHelper.js';
+import { OctreeHelper } from 'three/addons/helpers/OctreeHelper.js';
 ```
 
 ## Constructor
@@ -51,10 +51,12 @@ The octree to visualize.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [LineSegments#dispose](LineSegments.html#dispose)
+
 ### .update()
 
 Updates the helper. This method must be called whenever the Octree's structure is changed.
 
 ## Source
 
-[examples/jsm/helpers/OctreeHelper.js](../../examples/jsm/helpers/OctreeHelper.js)
+[examples/jsm/helpers/OctreeHelper.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/helpers/OctreeHelper.js)

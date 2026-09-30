@@ -85,15 +85,15 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer, mesh;
 
@@ -101,12 +101,12 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 3500 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 3500 );
 				camera.position.z = 4;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x050505 );
-				scene.fog = new FOUR.Fog( 0x050505, 2000, 3500 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x050505 );
+				scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
 
 				// geometry
 
@@ -114,30 +114,30 @@
 				const vertexCountPerTriangle = 3;
 				const vertexCount = triangleCount * vertexCountPerTriangle;
 
-				const geometry = new FOUR.BufferGeometry();
+				const geometry = new THREE.BufferGeometry();
 				geometry.setDrawRange( 0, vertexCount );
 
 				// material
 
-				const material = new FOUR.RawShaderMaterial( {
+				const material = new THREE.RawShaderMaterial( {
 					uniforms: {
 						seed: { value: 42 },
 					},
 					vertexShader: document.getElementById( 'vertexShader' ).textContent,
 					fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-					side: FOUR.DoubleSide,
-					glslVersion: FOUR.GLSL3
+					side: THREE.DoubleSide,
+					glslVersion: THREE.GLSL3
 				} );
 
 				// mesh
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				mesh.frustumCulled = false;
 				scene.add( mesh );
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

@@ -1,6 +1,6 @@
 import {
 	ExtrudeGeometry
-} from '@tnb1j/4js';
+} from 'three';
 
 import { Font } from '../loaders/FontLoader.js';
 
@@ -25,7 +25,7 @@ import { Font } from '../loaders/FontLoader.js';
  * ```
  *
  * @augments ExtrudeGeometry
- * @four_import import { TextGeometry } from '@tnb1j/4js/addons/geometries/TextGeometry.js';
+ * @three_import import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
  */
 class TextGeometry extends ExtrudeGeometry {
 

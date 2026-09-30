@@ -12,19 +12,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let camera, scene, renderer, controls, stats;
 
@@ -32,35 +32,35 @@
 			const amount = parseInt( window.location.search.slice( 1 ) ) || 10;
 			const count = Math.pow( amount, 3 );
 
-			const raycaster = new FOUR.Raycaster();
-			const mouse = new FOUR.Vector2( 1, 1 );
+			const raycaster = new THREE.Raycaster();
+			const mouse = new THREE.Vector2( 1, 1 );
 
-			const color = new FOUR.Color();
-			const white = new FOUR.Color().setHex( 0xffffff );
+			const color = new THREE.Color();
+			const white = new THREE.Color().setHex( 0xffffff );
 
 			init();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( amount, amount, amount );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const light = new FOUR.HemisphereLight( 0xffffff, 0x888888, 3 );
+				const light = new THREE.HemisphereLight( 0xffffff, 0x888888, 3 );
 				light.position.set( 0, 1, 0 );
 				scene.add( light );
 
-				const geometry = new FOUR.IcosahedronGeometry( 0.5, 3 );
-				const material = new FOUR.MeshPhongMaterial( { color: 0xffffff } );
+				const geometry = new THREE.IcosahedronGeometry( 0.5, 3 );
+				const material = new THREE.MeshPhongMaterial( { color: 0xffffff } );
 
-				mesh = new FOUR.InstancedMesh( geometry, material, count );
+				mesh = new THREE.InstancedMesh( geometry, material, count );
 
 				let i = 0;
 				const offset = ( amount - 1 ) / 2;
 
-				const matrix = new FOUR.Matrix4();
+				const matrix = new THREE.Matrix4();
 
 				for ( let x = 0; x < amount; x ++ ) {
 
@@ -88,7 +88,7 @@
 				const gui = new GUI();
 				gui.add( mesh, 'count', 0, count );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

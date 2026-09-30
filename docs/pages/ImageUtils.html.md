@@ -32,4 +32,4 @@ The image object.
 
 ## Source
 
-[src/extras/ImageUtils.js](../../src/extras/ImageUtils.js)
+[src/extras/ImageUtils.js](https://github.com/mrdoob/three.js/blob/master/src/extras/ImageUtils.js)

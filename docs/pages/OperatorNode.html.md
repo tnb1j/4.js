@@ -82,4 +82,4 @@ The output type.
 
 ## Source
 
-[src/nodes/math/OperatorNode.js](../../src/nodes/math/OperatorNode.js)
+[src/nodes/math/OperatorNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/math/OperatorNode.js)

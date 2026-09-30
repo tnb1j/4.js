@@ -13,7 +13,7 @@ import {
 	Vector2,
 	Vector3,
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Creates a simulated lens flare that tracks a light.
@@ -22,7 +22,7 @@ import {
  * When using {@link WebGPURenderer}, use {@link LensflareMesh}.
  *
  * ```js
- * const light = new FOUR.PointLight( 0xffffff, 1.5, 2000 );
+ * const light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
  *
  * const lensflare = new Lensflare();
  * lensflare.addElement( new LensflareElement( textureFlare0, 512, 0 ) );
@@ -33,7 +33,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { Lensflare } from '@tnb1j/4js/addons/objects/Lensflare.js';
+ * @three_import import { Lensflare } from 'three/addons/objects/Lensflare.js';
  */
 class Lensflare extends Mesh {
 
@@ -340,7 +340,7 @@ class Lensflare extends Mesh {
 /**
  * Represents a single flare that can be added to a {@link Lensflare} container.
  *
- * @four_import import { LensflareElement } from '@tnb1j/4js/addons/objects/Lensflare.js';
+ * @three_import import { LensflareElement } from 'three/addons/objects/Lensflare.js';
  */
 class LensflareElement {
 

@@ -20,16 +20,16 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -91,7 +91,7 @@
 
 				return new Promise( function ( resolve ) {
 
-					new FOUR.CubeTextureLoader().load( urls, function ( cubeTexture ) {
+					new THREE.CubeTextureLoader().load( urls, function ( cubeTexture ) {
 
 						resolve( cubeTexture );
 
@@ -105,42 +105,42 @@
 			function allocateCubemapRenderTarget( cubeMapSize ) {
 
 				const params = {
-					magFilter: FOUR.LinearFilter,
-					minFilter: FOUR.LinearMipMapLinearFilter,
+					magFilter: THREE.LinearFilter,
+					minFilter: THREE.LinearMipMapLinearFilter,
 					generateMipmaps: false,
-					type: FOUR.HalfFloatType,
-					format: FOUR.RGBAFormat,
-					colorSpace: FOUR.LinearSRGBColorSpace,
+					type: THREE.HalfFloatType,
+					format: THREE.RGBAFormat,
+					colorSpace: THREE.LinearSRGBColorSpace,
 					depthBuffer: false,
 				};
 
-				const rt = new FOUR.WebGLCubeRenderTarget( cubeMapSize, params );
+				const rt = new THREE.WebGLCubeRenderTarget( cubeMapSize, params );
 
 				const mipLevels = Math.log( cubeMapSize ) * Math.LOG2E + 1.0;
 				for ( let i = 0; i < mipLevels; i ++ ) rt.texture.mipmaps.push( {} );
 
-				rt.texture.mapping = FOUR.CubeReflectionMapping;
+				rt.texture.mapping = THREE.CubeReflectionMapping;
 				return rt;
 
 			}
 
 			function renderToCubeTexture( cubeMapRenderTarget, sourceCubeTexture ) {
 
-				const geometry = new FOUR.BoxGeometry( 5, 5, 5 );
+				const geometry = new THREE.BoxGeometry( 5, 5, 5 );
 
-				const material = new FOUR.ShaderMaterial( {
+				const material = new THREE.ShaderMaterial( {
 					name: CubemapFilterShader.name,
-					uniforms: FOUR.UniformsUtils.clone( CubemapFilterShader.uniforms ),
+					uniforms: THREE.UniformsUtils.clone( CubemapFilterShader.uniforms ),
 					vertexShader: CubemapFilterShader.vertexShader,
 					fragmentShader: CubemapFilterShader.fragmentShader,
-					side: FOUR.BackSide,
-					blending: FOUR.NoBlending,
+					side: THREE.BackSide,
+					blending: THREE.NoBlending,
 				} );
 
 				material.uniforms.cubeTexture.value = sourceCubeTexture;
 
-				const mesh = new FOUR.Mesh( geometry, material );
-				const cubeCamera = new FOUR.CubeCamera( 1, 10, cubeMapRenderTarget );
+				const mesh = new THREE.Mesh( geometry, material );
+				const cubeCamera = new THREE.CubeCamera( 1, 10, cubeMapRenderTarget );
 				const mipmapCount = Math.floor( Math.log2( Math.max( cubeMapRenderTarget.width, cubeMapRenderTarget.height ) ) );
 
 				for ( let mipmap = 0; mipmap < mipmapCount; mipmap ++ ) {
@@ -166,15 +166,15 @@
 				document.body.appendChild( container );
 
 				// Create renderer
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				container.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 500;
 
 				// Create controls
@@ -201,17 +201,17 @@
 					renderToCubeTexture( cubeMapRenderTarget, cubeTexture );
 
 					// Create geometry
-					const sphere = new FOUR.SphereGeometry( 100, 128, 128 );
-					let material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: cubeTexture } );
+					const sphere = new THREE.SphereGeometry( 100, 128, 128 );
+					let material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: cubeTexture } );
 
-					let mesh = new FOUR.Mesh( sphere, material );
+					let mesh = new THREE.Mesh( sphere, material );
 					mesh.position.set( - 100, 0, 0 );
 					scene.add( mesh );
 
 					material = material.clone();
 					material.envMap = cubeMapRenderTarget.texture;
 
-					mesh = new FOUR.Mesh( sphere, material );
+					mesh = new THREE.Mesh( sphere, material );
 					mesh.position.set( 100, 0, 0 );
 					scene.add( mesh );
 

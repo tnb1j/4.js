@@ -1,5 +1,5 @@
-import { Raycaster, Vector2, BoxHelper, error, warn } from '@tnb1j/4js/webgpu';
-import { Extension } from '@tnb1j/4js/addons/inspector/Extension.js';
+import { Raycaster, Vector2, BoxHelper, error, warn } from 'three/webgpu';
+import { Extension } from 'three/addons/inspector/Extension.js';
 import { TSLGraphLoader } from './TSLGraphLoader.js';
 
 const HOST_SOURCE = 'tsl-graph-host';
@@ -194,59 +194,54 @@ class TSLGraphEditor extends Extension {
 
 		renderer.domElement.addEventListener( 'pointerup', ( e ) => {
 
-			const frame = inspector.getFrame();
+			const primaryPass = inspector.getPrimaryPass();
 
-			for ( const render of frame.renders ) {
+			if ( primaryPass === null ) return;
 
-				const scene = render.scene;
+			const scene = primaryPass.scene;
+			const camera = primaryPass.camera;
 
-				if ( scene.isScene !== true ) continue;
+			if ( pointerDownPosition.distanceTo( pointer.set( e.clientX, e.clientY ) ) > 2 ) return;
 
-				const camera = render.camera;
+			const rect = renderer.domElement.getBoundingClientRect();
+			pointer.x = ( ( e.clientX - rect.left ) / rect.width ) * 2 - 1;
+			pointer.y = - ( ( e.clientY - rect.top ) / rect.height ) * 2 + 1;
 
-				if ( pointerDownPosition.distanceTo( pointer.set( e.clientX, e.clientY ) ) > 2 ) return;
+			raycaster.setFromCamera( pointer, camera );
 
-				const rect = renderer.domElement.getBoundingClientRect();
-				pointer.x = ( ( e.clientX - rect.left ) / rect.width ) * 2 - 1;
-				pointer.y = - ( ( e.clientY - rect.top ) / rect.height ) * 2 + 1;
+			const intersects = raycaster.intersectObjects( scene.children, true );
 
-				raycaster.setFromCamera( pointer, camera );
+			let graphMaterial = null;
 
-				const intersects = raycaster.intersectObjects( scene.children, true );
+			if ( intersects.length > 0 ) {
 
-				let graphMaterial = null;
+				for ( const intersect of intersects ) {
 
-				if ( intersects.length > 0 ) {
+					const object = intersect.object;
+					const material = object.material;
 
-					for ( const intersect of intersects ) {
+					if ( material && material.isNodeMaterial ) {
 
-						const object = intersect.object;
-						const material = object.material;
+						removeBoundingBox();
 
-						if ( material && material.isNodeMaterial ) {
+						boundingBox = new BoxHelper( object, 0xffff00 );
+						scene.add( boundingBox );
 
-							removeBoundingBox();
+						graphMaterial = material;
 
-							boundingBox = new BoxHelper( object, 0xffff00 );
-							scene.add( boundingBox );
+					}
 
-							graphMaterial = material;
+					if ( object.isMesh || object.isSprite ) {
 
-						}
-
-						if ( object.isMesh || object.isSprite ) {
-
-							break;
-
-						}
+						break;
 
 					}
 
 				}
 
-				this.setMaterial( graphMaterial );
-
 			}
+
+			this.setMaterial( graphMaterial );
 
 		} );
 
@@ -306,7 +301,7 @@ class TSLGraphEditor extends Extension {
 
 				if ( ! this._pending.has( requestId ) ) return;
 				this._pending.delete( requestId );
-				reject( new Error( `FOUR.TSLGraphEditor: Timeout for ${type}` ) );
+				reject( new Error( `THREE.TSLGraphEditor: Timeout for ${type}` ) );
 
 			}, 5000 );
 
@@ -473,7 +468,7 @@ class TSLGraphEditor extends Extension {
 
 			await this.command( 'clear-graph' );
 
-			await this.command( 'set-root-material', { materialType: this._getGraphType( this.material ) } );
+			await this.command( 'set-root-material', { materialType: this._getGraphType( material ) } );
 
 		}
 

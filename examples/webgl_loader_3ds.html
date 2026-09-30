@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { TDSLoader } from '@tnb1j/4js/addons/loaders/TDSLoader.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { TDSLoader } from 'three/addons/loaders/TDSLoader.js';
 
 			let container, controls;
 			let camera, scene, renderer;
@@ -40,18 +40,18 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.z = 2;
 
-				scene = new FOUR.Scene();
-				scene.add( new FOUR.AmbientLight( 0xffffff, 3 ) );
+				scene = new THREE.Scene();
+				scene.add( new THREE.AmbientLight( 0xffffff, 3 ) );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffeedd, 3 );
+				const directionalLight = new THREE.DirectionalLight( 0xffeedd, 3 );
 				directionalLight.position.set( 0, 0, 2 );
 				scene.add( directionalLight );
 
 				//3ds files dont store normal maps
-				const normal = new FOUR.TextureLoader().load( 'models/3ds/portalgun/textures/normal.jpg' );
+				const normal = new THREE.TextureLoader().load( 'models/3ds/portalgun/textures/normal.jpg' );
 
 				const loader = new TDSLoader( );
 				loader.setResourcePath( 'models/3ds/portalgun/textures/' );
@@ -72,7 +72,7 @@
 
 				} );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

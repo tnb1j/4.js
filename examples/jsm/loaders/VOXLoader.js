@@ -13,7 +13,7 @@ import {
 	NearestFilter,
 	RedFormat,
 	SRGBColorSpace
-} from '@tnb1j/4js';
+} from 'three';
 
 // Helper function to read a STRING from the data view
 function readString( data, offset ) {
@@ -239,7 +239,7 @@ function buildObject( nodeId, nodes, chunks ) {
  * scene.add( result.scene.children[ 0 ] );
  * ```
  * @augments Loader
- * @four_import import { VOXLoader } from '@tnb1j/4js/addons/loaders/VOXLoader.js';
+ * @three_import import { VOXLoader } from 'three/addons/loaders/VOXLoader.js';
  */
 class VOXLoader extends Loader {
 
@@ -301,14 +301,14 @@ class VOXLoader extends Loader {
 
 		if ( id !== 542658390 ) {
 
-			console.error( 'FOUR.VOXLoader: Invalid VOX file.' );
+			console.error( 'THREE.VOXLoader: Invalid VOX file.' );
 			return;
 
 		}
 
 		if ( version !== 150 && version !== 200 ) {
 
-			console.error( 'FOUR.VOXLoader: Invalid VOX file. Unsupported version:', version );
+			console.error( 'THREE.VOXLoader: Invalid VOX file. Unsupported version:', version );
 			return;
 
 		}
@@ -548,7 +548,7 @@ class VOXLoader extends Loader {
 
 					if ( ! warned ) {
 
-						console.warn( 'FOUR.VOXLoader: Accessing result as an array is deprecated. Use result.chunks[] instead.' );
+						console.warn( 'THREE.VOXLoader: Accessing result as an array is deprecated. Use result.chunks[] instead.' );
 						warned = true;
 
 					}
@@ -562,7 +562,7 @@ class VOXLoader extends Loader {
 
 					if ( ! warned ) {
 
-						console.warn( 'FOUR.VOXLoader: Accessing result as an array is deprecated. Use result.chunks instead.' );
+						console.warn( 'THREE.VOXLoader: Accessing result as an array is deprecated. Use result.chunks instead.' );
 						warned = true;
 
 					}
@@ -576,7 +576,7 @@ class VOXLoader extends Loader {
 
 					if ( ! warned ) {
 
-						console.warn( 'FOUR.VOXLoader: Iterating result as an array is deprecated. Use result.chunks instead.' );
+						console.warn( 'THREE.VOXLoader: Iterating result as an array is deprecated. Use result.chunks instead.' );
 						warned = true;
 
 					}

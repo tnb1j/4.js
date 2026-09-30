@@ -25,19 +25,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import TWEEN from '@tnb1j/4js/addons/libs/tween.module.js';
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
-			import { CSS3DRenderer, CSS3DSprite } from '@tnb1j/4js/addons/renderers/CSS3DRenderer.js';
+			import TWEEN from 'three/addons/libs/tween.module.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DSprite } from 'three/addons/renderers/CSS3DRenderer.js';
 
 			let camera, scene, renderer;
 			let controls;
@@ -52,11 +52,11 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.set( 600, 400, 1500 );
 				camera.lookAt( 0, 0, 0 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const image = document.createElement( 'img' );
 				image.addEventListener( 'load', function () {

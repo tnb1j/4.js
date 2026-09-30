@@ -17,24 +17,24 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { TubePainter } from '@tnb1j/4js/addons/misc/TubePainter.js';
-			import { XRButton } from '@tnb1j/4js/addons/webxr/XRButton.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { TubePainter } from 'three/addons/misc/TubePainter.js';
+			import { XRButton } from 'three/addons/webxr/XRButton.js';
 
 			let camera, scene, renderer;
 			let controller1, controller2;
 
-			const cursor = new FOUR.Vector3();
-			const color = new FOUR.Color();
+			const cursor = new THREE.Vector3();
+			const color = new THREE.Color();
 
 			let controls;
 
@@ -45,22 +45,22 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x222222 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x222222 );
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 50 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.01, 50 );
 				camera.position.set( 0, 1.6, 3 );
 
 				controls = new OrbitControls( camera, container );
 				controls.target.set( 0, 1.6, 0 );
 				controls.update();
 
-				const grid = new FOUR.GridHelper( 4, 1, 0x111111, 0x111111 );
+				const grid = new THREE.GridHelper( 4, 1, 0x111111, 0x111111 );
 				scene.add( grid );
 
-				scene.add( new FOUR.HemisphereLight( 0x888877, 0x777788, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0x888877, 0x777788, 3 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 1.5 );
+				const light = new THREE.DirectionalLight( 0xffffff, 1.5 );
 				light.position.set( 0, 4, 0 );
 				scene.add( light );
 
@@ -74,7 +74,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -139,11 +139,11 @@
 
 				//
 
-				const pivot = new FOUR.Mesh( new FOUR.IcosahedronGeometry( 0.01, 3 ) );
+				const pivot = new THREE.Mesh( new THREE.IcosahedronGeometry( 0.01, 3 ) );
 				pivot.name = 'pivot';
 				pivot.position.z = - 0.05;
 
-				const group = new FOUR.Group();
+				const group = new THREE.Group();
 				group.add( pivot );
 
 				controller1.add( group.clone() );

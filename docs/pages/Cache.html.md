@@ -1,6 +1,6 @@
 # Cache
 
-A simple caching system, used internally by [FileLoader](FileLoader.html). To enable caching across all loaders that use [FileLoader](FileLoader.html), add `FOUR.Cache.enabled = true.` once in your app.
+A simple caching system, used internally by [FileLoader](FileLoader.html). To enable caching across all loaders that use [FileLoader](FileLoader.html), add `THREE.Cache.enabled = true.` once in your app.
 
 ## Properties
 
@@ -52,4 +52,4 @@ The key to reference the cached file.
 
 ## Source
 
-[src/loaders/Cache.js](../../src/loaders/Cache.js)
+[src/loaders/Cache.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/Cache.js)

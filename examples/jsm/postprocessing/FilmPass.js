@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { FilmShader } from '../shaders/FilmShader.js';
 
@@ -14,7 +14,7 @@ import { FilmShader } from '../shaders/FilmShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { FilmPass } from '@tnb1j/4js/addons/postprocessing/FilmPass.js';
+ * @three_import import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
  */
 class FilmPass extends Pass {
 

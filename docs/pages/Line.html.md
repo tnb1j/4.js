@@ -7,13 +7,13 @@ A continuous line. The line are rendered by connecting consecutive vertices with
 ## Code Example
 
 ```js
-const material = new FOUR.LineBasicMaterial( { color: 0x0000ff } );
+const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 const points = [];
-points.push( new FOUR.Vector3( - 10, 0, 0 ) );
-points.push( new FOUR.Vector3( 0, 10, 0 ) );
-points.push( new FOUR.Vector3( 10, 0, 0 ) );
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const line = new FOUR.Line( geometry, material );
+points.push( new THREE.Vector3( - 10, 0, 0 ) );
+points.push( new THREE.Vector3( 0, 10, 0 ) );
+points.push( new THREE.Vector3( 10, 0, 0 ) );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const line = new THREE.Line( geometry, material );
 scene.add( line );
 ```
 
@@ -69,6 +69,18 @@ Computes an array of distance values which are necessary for rendering dashed li
 
 **Returns:** A reference to this line.
 
+### .intersectsFrustum( frustum : Frustum | FrustumArray ) : boolean
+
+Returns `true` if this line intersects the given frustum.
+
+**frustum**
+
+The frustum to test.
+
+**Overrides:** [Object3D#intersectsFrustum](Object3D.html#intersectsFrustum)
+
+**Returns:** Whether this line intersects the given frustum or not.
+
 ### .raycast( raycaster : Raycaster, intersects : Array.<Object> )
 
 Computes intersection points between a casted ray and this line.
@@ -89,4 +101,4 @@ Sets the values of [Line#morphTargetDictionary](Line.html#morphTargetDictionary)
 
 ## Source
 
-[src/objects/Line.js](../../src/objects/Line.js)
+[src/objects/Line.js](https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js)

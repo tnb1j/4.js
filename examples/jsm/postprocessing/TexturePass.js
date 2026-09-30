@@ -1,7 +1,7 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -9,15 +9,15 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * This pass can be used to render a texture over the entire screen.
  *
  * ```js
- * const texture = new FOUR.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
- * texture.colorSpace = FOUR.SRGBColorSpace;
+ * const texture = new THREE.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' );
+ * texture.colorSpace = THREE.SRGBColorSpace;
  *
  * const texturePass = new TexturePass( texture );
  * composer.addPass( texturePass );
  * ```
  *
  * @augments Pass
- * @four_import import { TexturePass } from '@tnb1j/4js/addons/postprocessing/TexturePass.js';
+ * @three_import import { TexturePass } from 'three/addons/postprocessing/TexturePass.js';
  */
 class TexturePass extends Pass {
 

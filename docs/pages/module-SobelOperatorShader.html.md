@@ -2,10 +2,10 @@
 
 ## Import
 
-SobelOperatorShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SobelOperatorShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SobelOperatorShader } from '@tnb1j/4js/addons/shaders/SobelOperatorShader.js';
+import { SobelOperatorShader } from 'three/addons/shaders/SobelOperatorShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ As mentioned in the video the Sobel operator expects a grayscale image as input.
 
 ## Source
 
-[examples/jsm/shaders/SobelOperatorShader.js](../../examples/jsm/shaders/SobelOperatorShader.js)
+[examples/jsm/shaders/SobelOperatorShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SobelOperatorShader.js)

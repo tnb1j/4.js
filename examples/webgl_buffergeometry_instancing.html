@@ -71,17 +71,17 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-		import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+		import Stats from 'three/addons/libs/stats.module.js';
+		import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 		let container, stats;
 
@@ -93,14 +93,14 @@
 
 			container = document.getElementById( 'container' );
 
-			camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
+			camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
 			camera.position.z = 2;
 
-			scene = new FOUR.Scene();
+			scene = new THREE.Scene();
 
 			// geometry
 
-			const vector = new FOUR.Vector4();
+			const vector = new THREE.Vector4();
 
 			const instances = 50000;
 
@@ -142,19 +142,19 @@
 
 			}
 
-			const geometry = new FOUR.InstancedBufferGeometry();
+			const geometry = new THREE.InstancedBufferGeometry();
 			geometry.instanceCount = instances; // set so its initialized for dat.GUI, will be set in first draw otherwise
 
-			geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
+			geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
 
-			geometry.setAttribute( 'offset', new FOUR.InstancedBufferAttribute( new Float32Array( offsets ), 3 ) );
-			geometry.setAttribute( 'color', new FOUR.InstancedBufferAttribute( new Float32Array( colors ), 4 ) );
-			geometry.setAttribute( 'orientationStart', new FOUR.InstancedBufferAttribute( new Float32Array( orientationsStart ), 4 ) );
-			geometry.setAttribute( 'orientationEnd', new FOUR.InstancedBufferAttribute( new Float32Array( orientationsEnd ), 4 ) );
+			geometry.setAttribute( 'offset', new THREE.InstancedBufferAttribute( new Float32Array( offsets ), 3 ) );
+			geometry.setAttribute( 'color', new THREE.InstancedBufferAttribute( new Float32Array( colors ), 4 ) );
+			geometry.setAttribute( 'orientationStart', new THREE.InstancedBufferAttribute( new Float32Array( orientationsStart ), 4 ) );
+			geometry.setAttribute( 'orientationEnd', new THREE.InstancedBufferAttribute( new Float32Array( orientationsEnd ), 4 ) );
 
 			// material
 
-			const material = new FOUR.RawShaderMaterial( {
+			const material = new THREE.RawShaderMaterial( {
 
 				uniforms: {
 					'time': { value: 1.0 },
@@ -162,7 +162,7 @@
 				},
 				vertexShader: document.getElementById( 'vertexShader' ).textContent,
 				fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-				side: FOUR.DoubleSide,
+				side: THREE.DoubleSide,
 				forceSinglePass: true,
 				transparent: true
 
@@ -170,12 +170,12 @@
 
 			//
 
-			const mesh = new FOUR.Mesh( geometry, material );
+			const mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
 			//
 
-			renderer = new FOUR.WebGLRenderer();
+			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setAnimationLoop( animate );

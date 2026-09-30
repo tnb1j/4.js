@@ -3,19 +3,19 @@
 Class representing a 3D vector. A 3D vector is an ordered triplet of numbers (labeled x, y and z), which can be used to represent a number of things, such as:
 
 *   A point in 3D space.
-*   A direction and length in 3D space. In 4.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0, 0)` to `(x, y, z)` and the direction is also measured from `(0, 0, 0)` towards `(x, y, z)`.
+*   A direction and length in 3D space. In three.js the length will always be the Euclidean distance(straight-line distance) from `(0, 0, 0)` to `(x, y, z)` and the direction is also measured from `(0, 0, 0)` towards `(x, y, z)`.
 *   Any arbitrary ordered triplet of numbers.
 
-There are other things a 3D vector can be used to represent, such as momentum vectors and so on, however these are the most common uses in 4.js.
+There are other things a 3D vector can be used to represent, such as momentum vectors and so on, however these are the most common uses in three.js.
 
 Iterating through a vector instance will yield its components `(x, y, z)` in the corresponding order.
 
 ## Code Example
 
 ```js
-const a = new FOUR.Vector3( 0, 1, 0 );
+const a = new THREE.Vector3( 0, 1, 0 );
 //no arguments; will be initialised to (0, 0, 0)
-const b = new FOUR.Vector3( );
+const b = new THREE.Vector3( );
 const d = a.distanceTo( b );
 ```
 
@@ -825,7 +825,7 @@ Default is `0`.
 
 ### .transformDirection( m : Matrix4 ) : Vector3
 
-Transforms the direction of this vector by a matrix (the upper left 3 x 3 subset of the given 4x4 matrix and then normalizes the result.
+Transforms this vector by the upper left 3x3 sub-matrix of the given 4x4 matrix, and normalizes the result.
 
 **m**
 
@@ -845,4 +845,4 @@ The camera.
 
 ## Source
 
-[src/math/Vector3.js](../../src/math/Vector3.js)
+[src/math/Vector3.js](https://github.com/mrdoob/three.js/blob/master/src/math/Vector3.js)

@@ -8,16 +8,16 @@ Note that this class can only be used with [WebGLRenderer](WebGLRenderer.html). 
 
 References:
 
-*   [Flat mirror for 4.js](https://github.com/Slayvin)
+*   [Flat mirror for three.js](https://github.com/Slayvin)
 *   [An implementation of water shader based on the flat mirror](https://home.adelphi.edu/~stemkoski/)
 *   [Water shader explanations in WebGL](http://29a.ch/slides/2012/webglwater/)
 
 ## Import
 
-Water is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Water is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Water } from '@tnb1j/4js/addons/objects/Water.js';
+import { Water } from 'three/addons/objects/Water.js';
 ```
 
 ## Constructor
@@ -139,4 +139,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/objects/Water.js](../../examples/jsm/objects/Water.js)
+[examples/jsm/objects/Water.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Water.js)

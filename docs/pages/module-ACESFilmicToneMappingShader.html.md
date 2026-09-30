@@ -2,10 +2,10 @@
 
 ## Import
 
-ACESFilmicToneMappingShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ACESFilmicToneMappingShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ACESFilmicToneMappingShader } from '@tnb1j/4js/addons/shaders/ACESFilmicToneMappingShader.js';
+import { ACESFilmicToneMappingShader } from 'three/addons/shaders/ACESFilmicToneMappingShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ This implementation of ACES is modified to accommodate a brighter viewing enviro
 
 ## Source
 
-[examples/jsm/shaders/ACESFilmicToneMappingShader.js](../../examples/jsm/shaders/ACESFilmicToneMappingShader.js)
+[examples/jsm/shaders/ACESFilmicToneMappingShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ACESFilmicToneMappingShader.js)

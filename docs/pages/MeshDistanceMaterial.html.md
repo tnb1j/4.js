@@ -64,4 +64,4 @@ Default is `null`.
 
 ## Source
 
-[src/materials/MeshDistanceMaterial.js](../../src/materials/MeshDistanceMaterial.js)
+[src/materials/MeshDistanceMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/MeshDistanceMaterial.js)

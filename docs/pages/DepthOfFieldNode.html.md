@@ -11,10 +11,10 @@ References:
 
 ## Import
 
-DepthOfFieldNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+DepthOfFieldNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { dof } from '@tnb1j/4js/addons/tsl/display/DepthOfFieldNode.js';
+import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
 ```
 
 ## Constructor
@@ -121,4 +121,4 @@ The current node frame.
 
 ## Source
 
-[examples/jsm/tsl/display/DepthOfFieldNode.js](../../examples/jsm/tsl/display/DepthOfFieldNode.js)
+[examples/jsm/tsl/display/DepthOfFieldNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/DepthOfFieldNode.js)

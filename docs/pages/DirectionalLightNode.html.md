@@ -18,4 +18,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/lighting/DirectionalLightNode.js](../../src/nodes/lighting/DirectionalLightNode.js)
+[src/nodes/lighting/DirectionalLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/DirectionalLightNode.js)

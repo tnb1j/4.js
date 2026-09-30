@@ -8,10 +8,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 
 ## Import
 
-LDrawConditionalLineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+LDrawConditionalLineMaterial is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { LDrawConditionalLineMaterial } from '@tnb1j/4js/addons/materials/LDrawConditionalLineMaterial.js';
+import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 ```
 
 ## Constructor
@@ -48,4 +48,4 @@ Default is `1`.
 
 ## Source
 
-[examples/jsm/materials/LDrawConditionalLineMaterial.js](../../examples/jsm/materials/LDrawConditionalLineMaterial.js)
+[examples/jsm/materials/LDrawConditionalLineMaterial.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/materials/LDrawConditionalLineMaterial.js)

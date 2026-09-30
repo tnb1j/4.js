@@ -1,7 +1,7 @@
 
 /**
  * @module SortUtils
- * @four_import import * as SortUtils from '@tnb1j/4js/addons/utils/SortUtils.js';
+ * @three_import import * as SortUtils from 'three/addons/utils/SortUtils.js';
  */
 
 const POWER = 3;

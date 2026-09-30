@@ -6,10 +6,10 @@ Capsules are often used as bounding volumes (next to AABBs and bounding spheres)
 
 ## Import
 
-Capsule is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Capsule is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Capsule } from '@tnb1j/4js/addons/math/Capsule.js';
+import { Capsule } from 'three/addons/math/Capsule.js';
 ```
 
 ## Constructor
@@ -116,4 +116,4 @@ The offset that should be used to translate the capsule.
 
 ## Source
 
-[examples/jsm/math/Capsule.js](../../examples/jsm/math/Capsule.js)
+[examples/jsm/math/Capsule.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/Capsule.js)

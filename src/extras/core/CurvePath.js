@@ -121,8 +121,8 @@ class CurvePath extends Curve {
 
 	getLength() {
 
-		// We cannot use the default FOUR.Curve getPoint() with getLength() because in
-		// FOUR.Curve, getLength() depends on getPoint() but in FOUR.CurvePath
+		// We cannot use the default THREE.Curve getPoint() with getLength() because in
+		// THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
 		// getPoint() depends on getLength
 
 		const lens = this.getCurveLengths();

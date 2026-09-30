@@ -72,6 +72,12 @@ The current clipping context.
 
 This dictionary holds the (native) node codes of this builder. The codes are maintained in an array for each shader stage.
 
+### .compute : ComputeNode
+
+The compute node, if building for compute.
+
+Default is `null`.
+
 ### .computeShader : string
 
 The generated compute shader.
@@ -175,6 +181,10 @@ Default is `null`.
 ### .parser : NodeParser
 
 A reference to a node parser.
+
+### .renderPipeline : RenderPipeline
+
+A reference to the render pipeline.
 
 ### .renderer : Renderer
 
@@ -703,6 +713,24 @@ Snippet defining the texture coordinates.
 **depthSnippet**
 
 Snippet defining the 0-based texture array index to sample.
+
+**levelSnippet**
+
+Snippet defining the mip level.
+
+**Returns:** The generated shader string.
+
+### .generateTextureSize( texture : Texture, textureProperty : string, levelSnippet : string ) : string (abstract)
+
+Generates a texture size shader string for the given texture data.
+
+**texture**
+
+The texture.
+
+**textureProperty**
+
+The texture property name.
 
 **levelSnippet**
 
@@ -1558,6 +1586,16 @@ The type to check.
 
 **Returns:** Whether the given type is a reference type or not.
 
+### .isReservedKeyword( name : string ) : boolean
+
+Returns whether the given name is a reserved keyword of the backend's shading language. Backends override this method to provide their language-specific keywords.
+
+**name**
+
+The name to test.
+
+**Returns:** Whether the name is a reserved keyword or not.
+
 ### .isVector( type : string ) : boolean
 
 Whether the given type is a vector type or not.
@@ -1688,4 +1726,4 @@ Sorts the bind groups and updates [NodeBuilder#bindingsIndexes](NodeBuilder.html
 
 ## Source
 
-[src/nodes/core/NodeBuilder.js](../../src/nodes/core/NodeBuilder.js)
+[src/nodes/core/NodeBuilder.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeBuilder.js)

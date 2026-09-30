@@ -2,10 +2,10 @@
 
 ## Import
 
-SMAAShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SMAAShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SMAAShader } from '@tnb1j/4js/addons/shaders/SMAAShader.js';
+import { SMAAShader } from 'three/addons/shaders/SMAAShader.js';
 ```
 
 WebGL port of Subpixel Morphological Antialiasing (SMAA) v2.8 Preset: SMAA 1x Medium (with color edge detection)
@@ -30,4 +30,4 @@ SMAA Weights shader.
 
 ## Source
 
-[examples/jsm/shaders/SMAAShader.js](../../examples/jsm/shaders/SMAAShader.js)
+[examples/jsm/shaders/SMAAShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/SMAAShader.js)

@@ -77,4 +77,4 @@ The drawing buffer color space config.
 
 ## Source
 
-[examples/jsm/math/ColorSpaces.js](../../examples/jsm/math/ColorSpaces.js)
+[examples/jsm/math/ColorSpaces.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/math/ColorSpaces.js)

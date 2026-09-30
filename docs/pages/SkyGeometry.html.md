@@ -6,10 +6,10 @@ A procedural sky geometry.
 
 ## Import
 
-SkyGeometry is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+SkyGeometry is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { SkyGeometry } from '@tnb1j/4js/addons/misc/RollerCoaster.js';
+import { SkyGeometry } from 'three/addons/misc/RollerCoaster.js';
 ```
 
 ## Constructor
@@ -20,4 +20,4 @@ Constructs a new geometry.
 
 ## Source
 
-[examples/jsm/misc/RollerCoaster.js](../../examples/jsm/misc/RollerCoaster.js)
+[examples/jsm/misc/RollerCoaster.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/RollerCoaster.js)

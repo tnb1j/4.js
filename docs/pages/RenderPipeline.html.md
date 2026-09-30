@@ -28,9 +28,11 @@ An optional output node.
 
 ## Properties
 
-### .context : Object (readonly)
+### .isRenderPipeline : boolean (readonly)
 
-Returns the current context of the render pipeline stack.
+This flag can be used for type testing.
+
+Default is `true`.
 
 ### .needsUpdate : Node.<vec4>
 
@@ -76,4 +78,4 @@ When `RenderPipeline` is used to apply rendering pipeline and post processing ef
 
 ## Source
 
-[src/renderers/common/RenderPipeline.js](../../src/renderers/common/RenderPipeline.js)
+[src/renderers/common/RenderPipeline.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/RenderPipeline.js)

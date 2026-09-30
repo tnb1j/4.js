@@ -2,10 +2,10 @@
 
 ## Import
 
-RGBShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RGBShiftShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { RGBShiftShader } from '@tnb1j/4js/addons/shaders/RGBShiftShader.js';
+import { RGBShiftShader } from 'three/addons/shaders/RGBShiftShader.js';
 ```
 
 ## Properties
@@ -18,4 +18,4 @@ amount: shift distance (1 is width of input) angle: shift angle in radians
 
 ## Source
 
-[examples/jsm/shaders/RGBShiftShader.js](../../examples/jsm/shaders/RGBShiftShader.js)
+[examples/jsm/shaders/RGBShiftShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/RGBShiftShader.js)

@@ -58,4 +58,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/utils/SetNode.js](../../src/nodes/utils/SetNode.js)
+[src/nodes/utils/SetNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/utils/SetNode.js)

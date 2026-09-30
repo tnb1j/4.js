@@ -6,13 +6,13 @@ import {
 	Matrix4,
 	Mesh,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 
 import { mergeGroups, deepCloneAttribute } from './BufferGeometryUtils.js';
 
 /**
  * @module SceneUtils
- * @four_import import * as SceneUtils from '@tnb1j/4js/addons/utils/SceneUtils.js';
+ * @three_import import * as SceneUtils from 'three/addons/utils/SceneUtils.js';
  */
 
 const _color = /*@__PURE__*/new Color();
@@ -63,7 +63,7 @@ function createMeshesFromMultiMaterialMesh( mesh ) {
 
 	if ( Array.isArray( mesh.material ) === false ) {
 
-		console.warn( 'FOUR.SceneUtils.createMeshesFromMultiMaterialMesh(): The given mesh has no multiple materials.' );
+		console.warn( 'THREE.SceneUtils.createMeshesFromMultiMaterialMesh(): The given mesh has no multiple materials.' );
 		return mesh;
 
 	}

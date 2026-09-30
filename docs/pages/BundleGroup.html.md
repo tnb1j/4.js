@@ -4,6 +4,8 @@
 
 A specialized group which enables applications access to the Render Bundle API of WebGPU. The group with all its descendant nodes are considered as one render bundle and processed as such by the renderer.
 
+Only renderable 3D objects are allowed in a bundle group. Other types like lights are not supported and must be added to the scene outside of the group.
+
 This module is only fully supported by `WebGPURenderer` with a WebGPU backend. With a WebGL backend, the group can technically be rendered but without any performance improvements.
 
 ## Constructor
@@ -52,4 +54,4 @@ Default is `0`.
 
 ## Source
 
-[src/renderers/common/BundleGroup.js](../../src/renderers/common/BundleGroup.js)
+[src/renderers/common/BundleGroup.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/common/BundleGroup.js)

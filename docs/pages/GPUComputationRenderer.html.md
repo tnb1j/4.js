@@ -10,7 +10,7 @@ The renderer has actually two render targets per variable, to make ping-pong. Te
 
 The render targets of the variables can be used as input textures for your visualization shaders.
 
-Variable names should be valid identifiers and should not collide with FOUR GLSL used identifiers. a common approach could be to use 'texture' prefixing the variable name; i.e texturePosition, textureVelocity...
+Variable names should be valid identifiers and should not collide with THREE GLSL used identifiers. a common approach could be to use 'texture' prefixing the variable name; i.e texturePosition, textureVelocity...
 
 The size of the computation (sizeX \* sizeY) is defined as 'resolution' automatically in the shader. For example:
 
@@ -70,10 +70,10 @@ gpuCompute.doRenderTarget( myFilter2, outputRenderTarget );
 
 ## Import
 
-GPUComputationRenderer is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GPUComputationRenderer is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
+import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
 ```
 
 ## Constructor
@@ -238,4 +238,4 @@ Other compute variables that represents the dependencies.
 
 ## Source
 
-[examples/jsm/misc/GPUComputationRenderer.js](../../examples/jsm/misc/GPUComputationRenderer.js)
+[examples/jsm/misc/GPUComputationRenderer.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/GPUComputationRenderer.js)

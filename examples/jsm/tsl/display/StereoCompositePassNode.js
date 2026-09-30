@@ -1,5 +1,5 @@
-import { RenderTarget, StereoCamera, HalfFloatType, LinearFilter, NearestFilter, Vector2, PassNode, QuadMesh, RendererUtils } from '@tnb1j/4js/webgpu';
-import { texture } from '@tnb1j/4js/tsl';
+import { RenderTarget, StereoCamera, HalfFloatType, LinearFilter, NearestFilter, Vector2, PassNode, QuadMesh, RendererUtils } from 'three/webgpu';
+import { texture } from 'three/tsl';
 
 const _size = /*@__PURE__*/ new Vector2();
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
@@ -15,7 +15,7 @@ let _rendererState;
  *
  * @abstract
  * @augments PassNode
- * @four_import import { StereoCompositePassNode } from '@tnb1j/4js/addons/tsl/display/StereoCompositePassNode.js';
+ * @three_import import { StereoCompositePassNode } from 'three/addons/tsl/display/StereoCompositePassNode.js';
  */
 class StereoCompositePassNode extends PassNode {
 
@@ -139,11 +139,9 @@ class StereoCompositePassNode extends PassNode {
 
 		//
 
-		this._pixelRatio = renderer.getPixelRatio();
-
 		this.updateStereoCamera( renderer.coordinateSystem );
 
-		const size = renderer.getSize( _size );
+		const size = renderer.getDrawingBufferSize( _size );
 		this.setSize( size.width, size.height );
 
 		// left

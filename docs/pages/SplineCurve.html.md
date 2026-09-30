@@ -8,18 +8,18 @@ A curve representing a 2D spline curve.
 
 ```js
 // Create a sine-like wave
-const curve = new FOUR.SplineCurve( [
-	new FOUR.Vector2( -10, 0 ),
-	new FOUR.Vector2( -5, 5 ),
-	new FOUR.Vector2( 0, 0 ),
-	new FOUR.Vector2( 5, -5 ),
-	new FOUR.Vector2( 10, 0 )
+const curve = new THREE.SplineCurve( [
+	new THREE.Vector2( -10, 0 ),
+	new THREE.Vector2( -5, 5 ),
+	new THREE.Vector2( 0, 0 ),
+	new THREE.Vector2( 5, -5 ),
+	new THREE.Vector2( 10, 0 )
 ] );
 const points = curve.getPoints( 50 );
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const material = new FOUR.LineBasicMaterial( { color: 0xff0000 } );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
 // Create the final object to add to the scene
-const splineObject = new FOUR.Line( geometry, material );
+const splineObject = new THREE.Line( geometry, material );
 ```
 
 ## Constructor
@@ -64,4 +64,4 @@ The optional target vector the result is written to.
 
 ## Source
 
-[src/extras/curves/SplineCurve.js](../../src/extras/curves/SplineCurve.js)
+[src/extras/curves/SplineCurve.js](https://github.com/mrdoob/three.js/blob/master/src/extras/curves/SplineCurve.js)

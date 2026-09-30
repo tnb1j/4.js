@@ -2,7 +2,7 @@
 
 # Object3D
 
-This is the base class for most objects in 4.js and provides a set of properties and methods for manipulating objects in 3D space.
+This is the base class for most objects in three.js and provides a set of properties and methods for manipulating objects in 3D space.
 
 ## Constructor
 
@@ -289,6 +289,16 @@ Default is `true`.
 
 **Returns:** A reference to this instance.
 
+### .dispose()
+
+Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+
+Geometries, materials and textures are potentially shared with other 3D objects and must be disposed of separately.
+
+##### Fires:
+
+*   [Object3D#event:dispose](Object3D.html#event:dispose)
+
 ### .getObjectById( id : number ) : Object3D | undefined
 
 Searches through the 3D object and its children, starting with the 3D object itself, and returns the first with a matching ID.
@@ -380,6 +390,16 @@ Returns a vector representing the scale of the 3D object in world space.
 The target vector the result is stored to.
 
 **Returns:** The 3D object's scale in world space.
+
+### .intersectsFrustum( frustum : Frustum | FrustumArray ) : boolean | undefined (abstract)
+
+Abstract method to test whether this 3D object intersects the given frustum. Renderable 3D objects such as [Mesh](Mesh.html), [Line](Line.html) or [Points](Points.html) implement this method in order to use frustum culling.
+
+**frustum**
+
+The frustum to test.
+
+**Returns:** Whether this 3D object intersects the given frustum or not.
 
 ### .localToWorld( vector : Vector3 ) : Vector3
 
@@ -823,6 +843,14 @@ Fires when a child object has been removed.
 
 *   Object
 
+### .dispose
+
+Fires when the 3D object has been disposed of.
+
+##### Type:
+
+*   Object
+
 ### .removed
 
 Fires when the object has been removed from its parent object.
@@ -833,4 +861,4 @@ Fires when the object has been removed from its parent object.
 
 ## Source
 
-[src/core/Object3D.js](../../src/core/Object3D.js)
+[src/core/Object3D.js](https://github.com/mrdoob/three.js/blob/master/src/core/Object3D.js)

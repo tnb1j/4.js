@@ -16,7 +16,7 @@
 	<body>
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a>
-			<a href="http://3mf.io" target="_blank" rel="noopener">3MF File format</a>
+			<a href="https://3mf.io" target="_blank" rel="noopener">3MF File format</a>
 			<div>3MF loader test by <a href="https://github.com/technohippy" target="_blank" rel="noopener">technohippy</a></div>
 			<div>Files from <a href="https://github.com/3MFConsortium/3mf-samples" target="_blank" rel="noopener">3mf-samples</a></div>
 		</div>
@@ -24,19 +24,19 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ThreeMFLoader } from '@tnb1j/4js/addons/loaders/3MFLoader.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ThreeMFLoader } from 'three/addons/loaders/3MFLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, object, loader, controls;
 
@@ -48,6 +48,9 @@
 				'cube_gears',
 				'facecolors',
 				'multipletextures',
+				'pyramid',
+				'spinal implant',
+				'variable voronoi',
 				'vertexcolors'
 			];
 
@@ -55,15 +58,15 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x333333 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x333333 );
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
 
 				// Z is up for objects intended to be 3D printed.
 
@@ -78,18 +81,18 @@
 				controls.enablePan = false;
 				controls.update();
 
-				scene.add( new FOUR.AmbientLight( 0xffffff, 0.6 ) );
+				scene.add( new THREE.AmbientLight( 0xffffff, 0.6 ) );
 
-				const light = new FOUR.DirectionalLight( 0xffffff, 2 );
+				const light = new THREE.DirectionalLight( 0xffffff, 2 );
 				light.position.set( - 1, - 2.5, 1 );
 				scene.add( light );
 
-				const manager = new FOUR.LoadingManager();
+				const manager = new THREE.LoadingManager();
 
 				manager.onLoad = function () {
 
-					const aabb = new FOUR.Box3().setFromObject( object );
-					const center = aabb.getCenter( new FOUR.Vector3() );
+					const aabb = new THREE.Box3().setFromObject( object );
+					const center = aabb.getCenter( new THREE.Vector3() );
 
 					object.position.x += ( object.position.x - center.x );
 					object.position.y += ( object.position.y - center.y );

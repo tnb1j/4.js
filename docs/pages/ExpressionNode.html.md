@@ -32,4 +32,4 @@ Default is `''`.
 
 ## Source
 
-[src/nodes/code/ExpressionNode.js](../../src/nodes/code/ExpressionNode.js)
+[src/nodes/code/ExpressionNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/code/ExpressionNode.js)

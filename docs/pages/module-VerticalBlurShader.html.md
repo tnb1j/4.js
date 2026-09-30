@@ -2,10 +2,10 @@
 
 ## Import
 
-VerticalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+VerticalBlurShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { VerticalBlurShader } from '@tnb1j/4js/addons/shaders/VerticalBlurShader.js';
+import { VerticalBlurShader } from 'three/addons/shaders/VerticalBlurShader.js';
 ```
 
 ## Properties
@@ -25,4 +25,4 @@ Two pass Gaussian blur filter (horizontal and vertical blur shaders)
 
 ## Source
 
-[examples/jsm/shaders/VerticalBlurShader.js](../../examples/jsm/shaders/VerticalBlurShader.js)
+[examples/jsm/shaders/VerticalBlurShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/VerticalBlurShader.js)

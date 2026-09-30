@@ -4,10 +4,10 @@ This class had been written to handle the output of the [NRRDLoader](NRRDLoader.
 
 ## Import
 
-Volume is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Volume is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Volume } from '@tnb1j/4js/addons/misc/Volume.js';
+import { Volume } from 'three/addons/misc/Volume.js';
 ```
 
 ## Constructor
@@ -210,4 +210,4 @@ Index of the voxel.
 
 ## Source
 
-[examples/jsm/misc/Volume.js](../../examples/jsm/misc/Volume.js)
+[examples/jsm/misc/Volume.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/misc/Volume.js)

@@ -24,21 +24,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { pass, renderOutput } from '@tnb1j/4js/tsl';
-			import { fxaa } from '@tnb1j/4js/addons/tsl/display/FXAANode.js';
+			import * as THREE from 'three/webgpu';
+			import { pass, renderOutput } from 'three/tsl';
+			import { fxaa } from 'three/addons/tsl/display/FXAANode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			const params = {
 				enabled: true,
@@ -52,34 +52,34 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
 				camera.position.z = 50;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xffffff );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
 
-				timer = new FOUR.Timer();
+				timer = new THREE.Timer();
 				timer.connect( document );
 
 				//
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x8d8d8d );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d );
 				hemiLight.position.set( 0, 1000, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 3 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 3 );
 				dirLight.position.set( - 3000, 1000, - 1000 );
 				scene.add( dirLight );
 
 				//
 
-				group = new FOUR.Group();
+				group = new THREE.Group();
 
-				const geometry = new FOUR.TetrahedronGeometry();
-				const material = new FOUR.MeshStandardMaterial( { color: 0xf73232, flatShading: true } );
+				const geometry = new THREE.TetrahedronGeometry();
+				const material = new THREE.MeshStandardMaterial( { color: 0xf73232, flatShading: true } );
 
-				const mesh = new FOUR.InstancedMesh( geometry, material, 100 );
-				const dummy = new FOUR.Object3D();
+				const mesh = new THREE.InstancedMesh( geometry, material, 100 );
+				const dummy = new THREE.Object3D();
 
 				for ( let i = 0; i < 100; i ++ ) {
 
@@ -101,7 +101,7 @@
 				group.add( mesh );
 				scene.add( group );
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -110,7 +110,7 @@
 
 				// post processing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 
 				// ignore default output color transform ( toneMapping and outputColorSpace )
 				// use renderOutput() for control the sequence

@@ -7,7 +7,7 @@ import { Object3D } from '../core/Object3D.js';
  * ```js
  * // Create a group and add the two cubes.
  * // These cubes can now be rotated / scaled etc as a group.
- * const group = new FOUR.Group();
+ * const group = new THREE.Group();
  *
  * group.add( meshA );
  * group.add( meshB );

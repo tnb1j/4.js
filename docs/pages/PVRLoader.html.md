@@ -9,15 +9,15 @@ A loader for the PVRTC texture compression format.
 ```js
 const loader = new PVRLoader();
 const map = loader.load( 'textures/compressed/disturb_4bpp_rgb.pvr' );
-map.colorSpace = FOUR.SRGBColorSpace; // only for color textures
+map.colorSpace = THREE.SRGBColorSpace; // only for color textures
 ```
 
 ## Import
 
-PVRLoader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PVRLoader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PVRLoader } from '@tnb1j/4js/addons/loaders/PVRLoader.js';
+import { PVRLoader } from 'three/addons/loaders/PVRLoader.js';
 ```
 
 ## Constructor
@@ -50,4 +50,4 @@ Whether to load mipmaps or not. This option is not yet supported by the loader.
 
 ## Source
 
-[examples/jsm/loaders/PVRLoader.js](../../examples/jsm/loaders/PVRLoader.js)
+[examples/jsm/loaders/PVRLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/PVRLoader.js)

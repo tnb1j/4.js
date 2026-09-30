@@ -2,10 +2,10 @@
 
 ## Import
 
-BrightnessContrastShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+BrightnessContrastShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { BrightnessContrastShader } from '@tnb1j/4js/addons/shaders/BrightnessContrastShader.js';
+import { BrightnessContrastShader } from 'three/addons/shaders/BrightnessContrastShader.js';
 ```
 
 ## Properties
@@ -16,4 +16,4 @@ Brightness and contrast adjustment [https://github.com/evanw/glfx.js](https://gi
 
 ## Source
 
-[examples/jsm/shaders/BrightnessContrastShader.js](../../examples/jsm/shaders/BrightnessContrastShader.js)
+[examples/jsm/shaders/BrightnessContrastShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/BrightnessContrastShader.js)

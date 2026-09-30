@@ -2,16 +2,16 @@
 
 # BufferAttributeNode
 
-In earlier `4.js` versions it was only possible to define attribute data on geometry level. With `BufferAttributeNode`, it is also possible to do this on the node level.
+In earlier `three.js` versions it was only possible to define attribute data on geometry level. With `BufferAttributeNode`, it is also possible to do this on the node level.
 
 ```js
-const geometry = new FOUR.PlaneGeometry();
+const geometry = new THREE.PlaneGeometry();
 const positionAttribute = geometry.getAttribute( 'position' );
 const colors = [];
 for ( let i = 0; i < position.count; i ++ ) {
 	colors.push( 1, 0, 0 );
 }
-material.colorNode = bufferAttribute( new FOUR.Float32BufferAttribute( colors, 3 ) );
+material.colorNode = bufferAttribute( new THREE.Float32BufferAttribute( colors, 3 ) );
 ```
 
 This new approach is especially interesting when geometry data are generated via compute shaders. The below line converts a storage buffer into an attribute node.
@@ -96,7 +96,7 @@ Default is `true`.
 
 ### .usage : number
 
-The usage property. Set this to `FOUR.DynamicDrawUsage` via `.setUsage()`, if you are planning to update the attribute data per frame.
+The usage property. Set this to `THREE.DynamicDrawUsage` via `.setUsage()`, if you are planning to update the attribute data per frame.
 
 Default is `StaticDrawUsage`.
 
@@ -182,4 +182,4 @@ The current node builder.
 
 ## Source
 
-[src/nodes/accessors/BufferAttributeNode.js](../../src/nodes/accessors/BufferAttributeNode.js)
+[src/nodes/accessors/BufferAttributeNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/accessors/BufferAttributeNode.js)

@@ -8,7 +8,7 @@ import {
 	Vector2,
 	Vector3,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { LuminosityHighPassShader } from '../shaders/LuminosityHighPassShader.js';
@@ -25,13 +25,13 @@ import { LuminosityHighPassShader } from '../shaders/LuminosityHighPassShader.js
  * - [Bloom in Unreal Engine](https://docs.unrealengine.com/latest/INT/Engine/Rendering/PostProcessEffects/Bloom/)
  *
  * ```js
- * const resolution = new FOUR.Vector2( window.innerWidth, window.innerHeight );
+ * const resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
  * const bloomPass = new UnrealBloomPass( resolution, 1.5, 0.4, 0.85 );
  * composer.addPass( bloomPass );
  * ```
  *
  * @augments Pass
- * @four_import import { UnrealBloomPass } from '@tnb1j/4js/addons/postprocessing/UnrealBloomPass.js';
+ * @three_import import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
  */
 class UnrealBloomPass extends Pass {
 
@@ -102,20 +102,20 @@ class UnrealBloomPass extends Pass {
 		let resx = Math.round( this.resolution.x / 2 );
 		let resy = Math.round( this.resolution.y / 2 );
 
-		this.renderTargetBright = new WebGLRenderTarget( resx, resy, { type: HalfFloatType } );
+		this.renderTargetBright = new WebGLRenderTarget( resx, resy, { type: HalfFloatType, depthBuffer: false } );
 		this.renderTargetBright.texture.name = 'UnrealBloomPass.bright';
 		this.renderTargetBright.texture.generateMipmaps = false;
 
 		for ( let i = 0; i < this.nMips; i ++ ) {
 
-			const renderTargetHorizontal = new WebGLRenderTarget( resx, resy, { type: HalfFloatType } );
+			const renderTargetHorizontal = new WebGLRenderTarget( resx, resy, { type: HalfFloatType, depthBuffer: false } );
 
 			renderTargetHorizontal.texture.name = 'UnrealBloomPass.h' + i;
 			renderTargetHorizontal.texture.generateMipmaps = false;
 
 			this.renderTargetsHorizontal.push( renderTargetHorizontal );
 
-			const renderTargetVertical = new WebGLRenderTarget( resx, resy, { type: HalfFloatType } );
+			const renderTargetVertical = new WebGLRenderTarget( resx, resy, { type: HalfFloatType, depthBuffer: false } );
 
 			renderTargetVertical.texture.name = 'UnrealBloomPass.v' + i;
 			renderTargetVertical.texture.generateMipmaps = false;
@@ -387,17 +387,35 @@ class UnrealBloomPass extends Pass {
 
 		}
 
+		// merge adjacent taps into single bilinear fetches (linear sampling)
+
+		const offsets = [];
+		const weights = [];
+
+		for ( let i = 1; i < kernelRadius; i += 2 ) {
+
+			const wa = coefficients[ i ];
+			const wb = ( i + 1 < kernelRadius ) ? coefficients[ i + 1 ] : 0;
+			const w = wa + wb;
+
+			offsets.push( ( i * wa + ( i + 1 ) * wb ) / w );
+			weights.push( w );
+
+		}
+
 		return new ShaderMaterial( {
 
 			defines: {
-				'KERNEL_RADIUS': kernelRadius
+				'KERNEL_PAIRS': offsets.length
 			},
 
 			uniforms: {
 				'colorTexture': { value: null },
 				'invSize': { value: new Vector2( 0.5, 0.5 ) }, // inverse texture size
 				'direction': { value: new Vector2( 0.5, 0.5 ) },
-				'gaussianCoefficients': { value: coefficients } // precomputed Gaussian coefficients
+				'centerWeight': { value: coefficients[ 0 ] },
+				'gaussianOffsets': { value: offsets },
+				'gaussianWeights': { value: weights }
 			},
 
 			vertexShader: /* glsl */`
@@ -420,21 +438,20 @@ class UnrealBloomPass extends Pass {
 				uniform sampler2D colorTexture;
 				uniform vec2 invSize;
 				uniform vec2 direction;
-				uniform float gaussianCoefficients[KERNEL_RADIUS];
+				uniform float centerWeight;
+				uniform float gaussianOffsets[KERNEL_PAIRS];
+				uniform float gaussianWeights[KERNEL_PAIRS];
 
 				void main() {
 
-					float weightSum = gaussianCoefficients[0];
-					vec3 diffuseSum = texture2D( colorTexture, vUv ).rgb * weightSum;
+					vec3 diffuseSum = texture2D( colorTexture, vUv ).rgb * centerWeight;
 
-					for ( int i = 1; i < KERNEL_RADIUS; i ++ ) {
+					for ( int i = 0; i < KERNEL_PAIRS; i ++ ) {
 
-						float x = float( i );
-						float w = gaussianCoefficients[i];
-						vec2 uvOffset = direction * invSize * x;
+						vec2 uvOffset = direction * invSize * gaussianOffsets[ i ];
 						vec3 sample1 = texture2D( colorTexture, vUv + uvOffset ).rgb;
 						vec3 sample2 = texture2D( colorTexture, vUv - uvOffset ).rgb;
-						diffuseSum += ( sample1 + sample2 ) * w;
+						diffuseSum += ( sample1 + sample2 ) * gaussianWeights[ i ];
 
 					}
 

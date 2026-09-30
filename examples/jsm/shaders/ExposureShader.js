@@ -1,10 +1,10 @@
 /**
  * @module ExposureShader
- * @four_import import { ExposureShader } from '@tnb1j/4js/addons/shaders/ExposureShader.js';
+ * @three_import import { ExposureShader } from 'three/addons/shaders/ExposureShader.js';
  */
 
 /**
- * TODO
+ * Exposure shader that scales the image color by an exposure factor.
  *
  * @constant
  * @type {ShaderMaterial~Shader}

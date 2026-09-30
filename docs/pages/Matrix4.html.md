@@ -11,7 +11,7 @@ A Note on Row-Major and Column-Major Ordering:
 The constructor and [Matrix3#set](Matrix3.html#set) method take arguments in [row-major](https://en.wikipedia.org/wiki/Row-_and_column-major_order#Column-major_order) order, while internally they are stored in the [Matrix3#elements](Matrix3.html#elements) array in column-major order. This means that calling:
 
 ```js
-const m = new FOUR.Matrix4();
+const m = new THREE.Matrix4();
 m.set( 11, 12, 13, 14,
        21, 22, 23, 24,
        31, 32, 33, 34,
@@ -27,7 +27,7 @@ m.elements = [ 11, 21, 31, 41,
                14, 24, 34, 44 ];
 ```
 
-and internally all calculations are performed using column-major ordering. However, as the actual ordering makes no difference mathematically and most people are used to thinking about matrices in row-major order, the 4.js documentation shows matrices in row-major order. Just bear in mind that if you are reading the source code, you'll have to take the transpose of any matrices outlined here to make sense of the calculations.
+and internally all calculations are performed using column-major ordering. However, as the actual ordering makes no difference mathematically and most people are used to thinking about matrices in row-major order, the three.js documentation shows matrices in row-major order. Just bear in mind that if you are reading the source code, you'll have to take the transpose of any matrices outlined here to make sense of the calculations.
 
 ## Constructor
 
@@ -175,8 +175,6 @@ The scale vector.
 
 Computes and returns the determinant of this matrix.
 
-Based on the method outlined [here](http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.html).
-
 **Returns:** The determinant.
 
 ### .determinantAffine() : number
@@ -201,7 +199,7 @@ The matrix to test for equality.
 
 ### .extractBasis( xAxis : Vector3, yAxis : Vector3, zAxis : Vector3 ) : Matrix4
 
-Extracts the basis of this matrix into the three axis vectors provided.
+Extracts the basis vectors of this matrix into the three vectors provided.
 
 **xAxis**
 
@@ -387,8 +385,6 @@ Default is `false`.
 
 Sets this matrix as a rotational transformation around the given axis by the given angle.
 
-This is a somewhat controversial but mathematically sound alternative to rotating via Quaternions. See the discussion [here](https://www.gamedev.net/articles/programming/math-and-physics/do-we-really-need-quaternions-r1199).
-
 **axis**
 
 The normalized rotation axis.
@@ -561,7 +557,7 @@ The matrix to multiply with.
 
 ### .scale( v : Vector3 ) : Matrix4
 
-Multiplies the columns of this matrix by the given vector.
+Scales each of the first three columns of this matrix by the corresponding component of the given vector.
 
 **v**
 
@@ -693,4 +689,4 @@ Transposes this matrix in place.
 
 ## Source
 
-[src/math/Matrix4.js](../../src/math/Matrix4.js)
+[src/math/Matrix4.js](https://github.com/mrdoob/three.js/blob/master/src/math/Matrix4.js)

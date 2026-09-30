@@ -6,10 +6,10 @@ This module can only be used with [WebGLRenderer](WebGLRenderer.html). When usin
 
 ## Import
 
-Flow is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+Flow is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { Flow } from '@tnb1j/4js/addons/modifiers/CurveModifier.js';
+import { Flow } from 'three/addons/modifiers/CurveModifier.js';
 ```
 
 ## Constructor
@@ -56,4 +56,4 @@ The curve that should be used to bend the mesh.
 
 ## Source
 
-[examples/jsm/modifiers/CurveModifier.js](../../examples/jsm/modifiers/CurveModifier.js)
+[examples/jsm/modifiers/CurveModifier.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/modifiers/CurveModifier.js)

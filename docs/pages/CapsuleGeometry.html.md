@@ -7,9 +7,9 @@ A geometry class for representing a capsule.
 ## Code Example
 
 ```js
-const geometry = new FOUR.CapsuleGeometry( 1, 1, 4, 8, 1 );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
-const capsule = new FOUR.Mesh( geometry, material );
+const geometry = new THREE.CapsuleGeometry( 1, 1, 4, 8, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const capsule = new THREE.Mesh( geometry, material );
 scene.add( capsule );
 ```
 
@@ -69,4 +69,4 @@ A JSON object representing the serialized geometry.
 
 ## Source
 
-[src/geometries/CapsuleGeometry.js](../../src/geometries/CapsuleGeometry.js)
+[src/geometries/CapsuleGeometry.js](https://github.com/mrdoob/three.js/blob/master/src/geometries/CapsuleGeometry.js)

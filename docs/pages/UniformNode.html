@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>UniformNode - 4.js Docs</title>
+	<title>UniformNode - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -30,7 +30,7 @@
 										<strong translate="no">value</strong>
 									</td>
 									<td class="description last">
-										<p>The value of this node. Usually a JS primitive or 4.js object (vector, matrix, color, texture).</p>
+										<p>The value of this node. Usually a JS primitive or three.js object (vector, matrix, color, texture).</p>
 									</td>
 								</tr>
 								<tr>
@@ -80,6 +80,28 @@ which is updated per frame or render call.</p>
 						</div>
 						<dl class="details">
 							<dt class="tag-returns"><strong>Returns:</strong> The uniform group.</dt>
+						</dl>
+					</div>
+					<h3 class="name name-method" id="getSharedNode" translate="no">.<a href="#getSharedNode">getSharedNode</a><span class="signature">( builder : <span class="param-type"><a href="NodeBuilder.html">NodeBuilder</a></span> )</span><span class="type-signature"> : <a href="UniformNode.html">UniformNode</a></span> </h3>
+					<div class="method">
+						<div class="description">
+							<p>Uniform nodes with the same hash share a single uniform. This method returns the node
+the shared uniform refers to which is the first node registered for the hash.</p>
+						</div>
+						<table class="params">
+							<tbody>
+								<tr>
+									<td class="name">
+										<strong translate="no">builder</strong>
+									</td>
+									<td class="description last">
+										<p>The current node builder.</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<dl class="details">
+							<dt class="tag-returns"><strong>Returns:</strong> The node the shared uniform refers to.</dt>
 						</dl>
 					</div>
 					<h3 class="name name-method" id="getUniformHash" translate="no">.<a href="#getUniformHash">getUniformHash</a><span class="signature">( builder : <span class="param-type"><a href="NodeBuilder.html">NodeBuilder</a></span> )</span><span class="type-signature"> : string</span> </h3>
@@ -172,7 +194,7 @@ classes might overwrite this method with a different implementation.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/nodes/core/UniformNode.js" translate="no">src/nodes/core/UniformNode.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/nodes/core/UniformNode.js" translate="no" target="_blank" rel="noopener">src/nodes/core/UniformNode.js</a>
 				</p>
 			</article>
 		</section>

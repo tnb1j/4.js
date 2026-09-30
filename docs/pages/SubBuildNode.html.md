@@ -42,4 +42,4 @@ The node to be built in the sub-build.
 
 ## Source
 
-[src/nodes/core/SubBuildNode.js](../../src/nodes/core/SubBuildNode.js)
+[src/nodes/core/SubBuildNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/SubBuildNode.js)

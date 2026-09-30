@@ -1,14 +1,14 @@
 import {
 	FileLoader,
 	Loader
-} from '@tnb1j/4js';
+} from 'three';
 import opentype from 'https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/+esm';
 
 /**
  * A loader for the TTF format.
  *
  * Loads TTF files and converts them into typeface JSON that can be used directly
- * to create FOUR.Font objects.
+ * to create THREE.Font objects.
  *
  * ```js
  * const loader = new TTFLoader();
@@ -17,7 +17,7 @@ import opentype from 'https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/+esm';
  * ```
  *
  * @augments Loader
- * @four_import import { TTFLoader } from '@tnb1j/4js/addons/loaders/TTFLoader.js';
+ * @three_import import { TTFLoader } from 'three/addons/loaders/TTFLoader.js';
  */
 class TTFLoader extends Loader {
 

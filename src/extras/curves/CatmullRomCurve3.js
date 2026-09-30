@@ -88,21 +88,21 @@ const pz = /*@__PURE__*/ new CubicPoly();
  *
  * ```js
  * //Create a closed wavey loop
- * const curve = new FOUR.CatmullRomCurve3( [
- * 	new FOUR.Vector3( -10, 0, 10 ),
- * 	new FOUR.Vector3( -5, 5, 5 ),
- * 	new FOUR.Vector3( 0, 0, 0 ),
- * 	new FOUR.Vector3( 5, -5, 5 ),
- * 	new FOUR.Vector3( 10, 0, 10 )
+ * const curve = new THREE.CatmullRomCurve3( [
+ * 	new THREE.Vector3( -10, 0, 10 ),
+ * 	new THREE.Vector3( -5, 5, 5 ),
+ * 	new THREE.Vector3( 0, 0, 0 ),
+ * 	new THREE.Vector3( 5, -5, 5 ),
+ * 	new THREE.Vector3( 10, 0, 10 )
  * ] );
  *
  * const points = curve.getPoints( 50 );
- * const geometry = new FOUR.BufferGeometry().setFromPoints( points );
+ * const geometry = new THREE.BufferGeometry().setFromPoints( points );
  *
- * const material = new FOUR.LineBasicMaterial( { color: 0xff0000 } );
+ * const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
  *
  * // Create the final object to add to the scene
- * const curveObject = new FOUR.Line( geometry, material );
+ * const curveObject = new THREE.Line( geometry, material );
  * ```
  *
  * @augments Curve

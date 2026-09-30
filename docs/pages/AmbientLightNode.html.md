@@ -18,4 +18,4 @@ Default is `null`.
 
 ## Source
 
-[src/nodes/lighting/AmbientLightNode.js](../../src/nodes/lighting/AmbientLightNode.js)
+[src/nodes/lighting/AmbientLightNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/lighting/AmbientLightNode.js)

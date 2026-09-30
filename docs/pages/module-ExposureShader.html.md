@@ -2,18 +2,18 @@
 
 ## Import
 
-ExposureShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ExposureShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ExposureShader } from '@tnb1j/4js/addons/shaders/ExposureShader.js';
+import { ExposureShader } from 'three/addons/shaders/ExposureShader.js';
 ```
 
 ## Properties
 
 ### .ExposureShader : ShaderMaterial~Shader (inner, constant)
 
-TODO
+Exposure shader that scales the image color by an exposure factor.
 
 ## Source
 
-[examples/jsm/shaders/ExposureShader.js](../../examples/jsm/shaders/ExposureShader.js)
+[examples/jsm/shaders/ExposureShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/ExposureShader.js)

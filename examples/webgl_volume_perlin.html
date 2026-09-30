@@ -17,18 +17,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
-			import * as FOUR from '@tnb1j/4js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { ImprovedNoise } from '@tnb1j/4js/addons/math/ImprovedNoise.js';
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { ImprovedNoise } from 'three/addons/math/ImprovedNoise.js';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let renderer, scene, camera;
 			let mesh;
@@ -37,15 +37,15 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				document.body.appendChild( renderer.domElement );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
 				camera.position.set( 0, 0, 2 );
 
 				new OrbitControls( camera, renderer.domElement );
@@ -57,7 +57,7 @@
 
 				let i = 0;
 				const perlin = new ImprovedNoise();
-				const vector = new FOUR.Vector3();
+				const vector = new THREE.Vector3();
 
 				for ( let z = 0; z < size; z ++ ) {
 
@@ -77,10 +77,10 @@
 
 				}
 
-				const texture = new FOUR.Data3DTexture( data, size, size, size );
-				texture.format = FOUR.RedFormat;
-				texture.minFilter = FOUR.LinearFilter;
-				texture.magFilter = FOUR.LinearFilter;
+				const texture = new THREE.Data3DTexture( data, size, size, size );
+				texture.format = THREE.RedFormat;
+				texture.minFilter = THREE.LinearFilter;
+				texture.magFilter = THREE.LinearFilter;
 				texture.unpackAlignment = 1;
 				texture.needsUpdate = true;
 
@@ -123,6 +123,9 @@
 
 					uniform float threshold;
 					uniform float steps;
+					uniform bool refine;
+
+					#define REFINEMENT_STEPS 4
 
 					vec2 hitBox( vec3 orig, vec3 dir ) {
 						const vec3 box_min = vec3( - 0.5 );
@@ -178,6 +181,30 @@
 
 							if ( d > threshold ) {
 
+								if ( refine ) {
+
+									// The surface lies between the previous ray parameter i.e. (t - stepSize)
+									// and the current ray parameter (t). Bisect that interval to localize
+									// the crossing precisely.
+
+									float t0 = max( t - stepSize, bounds.x );
+									float t1 = t;
+
+									for ( int j = 0; j < REFINEMENT_STEPS; j ++ ) {
+
+										float tm = ( t0 + t1 ) * 0.5;
+										float dm = sample1( vOrigin + tm * rayDir + 0.5 );
+
+										bool isGreater = dm > threshold;
+										t1 = isGreater ? tm : t1;
+										t0 = isGreater ? t0 : tm;
+
+									}
+
+									p = vOrigin + t1 * rayDir;
+
+								}
+
 								color.rgb = normal( p + 0.5 ) * 0.5 + ( p * 1.5 + 0.25 );
 								color.a = 1.;
 								break;
@@ -191,37 +218,40 @@
 					}
 				`;
 
-				const geometry = new FOUR.BoxGeometry( 1, 1, 1 );
-				const material = new FOUR.RawShaderMaterial( {
-					glslVersion: FOUR.GLSL3,
+				const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				const material = new THREE.RawShaderMaterial( {
+					glslVersion: THREE.GLSL3,
 					uniforms: {
 						map: { value: texture },
-						cameraPos: { value: new FOUR.Vector3() },
+						cameraPos: { value: new THREE.Vector3() },
 						threshold: { value: 0.6 },
-						steps: { value: 200 }
+						steps: { value: 200 },
+						refine: { value: true }
 					},
 					vertexShader,
 					fragmentShader,
-					side: FOUR.BackSide,
+					side: THREE.BackSide,
 				} );
 
-				mesh = new FOUR.Mesh( geometry, material );
+				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//
 
-				const parameters = { threshold: 0.6, steps: 200 };
+				const parameters = { threshold: 0.6, steps: 200, refine: true };
 
 				function update() {
 
 					material.uniforms.threshold.value = parameters.threshold;
 					material.uniforms.steps.value = parameters.steps;
+					material.uniforms.refine.value = parameters.refine;
 
 				}
 
 				const gui = new GUI();
 				gui.add( parameters, 'threshold', 0, 1, 0.01 ).onChange( update );
 				gui.add( parameters, 'steps', 0, 300, 1 ).onChange( update );
+				gui.add( parameters, 'refine' ).onChange( update );
 
 				window.addEventListener( 'resize', onWindowResize );
 

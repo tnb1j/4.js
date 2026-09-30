@@ -18,28 +18,29 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { SunLight } from 'three/addons/lights/SunLight.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			const manager = new FOUR.LoadingManager();
+			const manager = new THREE.LoadingManager();
 
-			let camera, scene, renderer, stats, object, loader, guiMorphsFolder;
+			let camera, scene, renderer, controls, stats, object, loader, guiMorphsFolder, guiAnimationsFolder;
 			let mixer;
 
-			const timer = new FOUR.Timer();
+			const timer = new THREE.Timer();
 			timer.connect( document );
 
 			const params = {
@@ -60,6 +61,7 @@
 				'exampleWindow',
 				'Head_69',
 				'morph-translation',
+				'ball_anims_asc_2018',
 			];
 
 			const scales = new Map();
@@ -67,6 +69,7 @@
 			scales.set( 'archer/ArcherRi01', 100 );
 			scales.set( 'stanford-bunny', 0.001 );
 			scales.set( 'Head_69', 100 );
+			scales.set( 'ball_anims_asc_2018', 50 );
 
 			init();
 
@@ -75,35 +78,29 @@
 				const container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( 100, 200, 300 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0xa0a0a0 );
-				scene.fog = new FOUR.Fog( 0xa0a0a0, 200, 1000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xa0a0a0 );
+				scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
 
-				const hemiLight = new FOUR.HemisphereLight( 0xffffff, 0x444444, 5 );
+				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 5 );
 				hemiLight.position.set( 0, 200, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 5 );
-				dirLight.position.set( 0, 200, 100 );
-				dirLight.castShadow = true;
-				dirLight.shadow.camera.top = 180;
-				dirLight.shadow.camera.bottom = - 100;
-				dirLight.shadow.camera.left = - 120;
-				dirLight.shadow.camera.right = 120;
-				scene.add( dirLight );
-
-				// scene.add( new FOUR.CameraHelper( dirLight.shadow.camera ) );
+				const sunLight = new SunLight( 0xffffff, 5 );
+				sunLight.position.set( 0, 200, 100 );
+				sunLight.castShadow = true;
+				scene.add( sunLight );
 
 				// ground
-				const mesh = new FOUR.Mesh( new FOUR.PlaneGeometry( 2000, 2000 ), new FOUR.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+				const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
 				scene.add( mesh );
 
-				const grid = new FOUR.GridHelper( 2000, 20, 0x000000, 0x000000 );
+				const grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
 				grid.material.opacity = 0.2;
 				grid.material.transparent = true;
 				scene.add( grid );
@@ -111,14 +108,17 @@
 				loader = new FBXLoader( manager );
 				loadAsset( params.asset );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.shadowMap.enabled = true;
 				container.appendChild( renderer.domElement );
 
-				const controls = new OrbitControls( camera, renderer.domElement );
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.enableZoom = false;
+				controls.enablePan = false;
+				controls.enableDamping = true;
 				controls.target.set( 0, 100, 0 );
 				controls.update();
 
@@ -136,10 +136,13 @@
 				} );
 
 				guiMorphsFolder = gui.addFolder( 'Morphs' ).hide();
+				guiAnimationsFolder = gui.addFolder( 'Animations' ).hide();
 
 			}
 
 			function loadAsset( asset ) {
+
+				loader.trimAnimationClips = ( asset === 'ball_anims_asc_2018' );
 
 				loader.load( 'models/fbx/' + asset + '.fbx', function ( group ) {
 
@@ -180,12 +183,28 @@
 					const scale = scales.get( asset );
 					object.scale.setScalar( scale || 1 );
 
+					guiAnimationsFolder.children.forEach( ( child ) => child.destroy() );
+					guiAnimationsFolder.hide();
+
 					if ( object.animations && object.animations.length ) {
 
-						mixer = new FOUR.AnimationMixer( object );
+						mixer = new THREE.AnimationMixer( object );
 
 						const action = mixer.clipAction( object.animations[ 0 ] );
 						action.play();
+
+						const clips = object.animations;
+						const animationParams = { clip: clips[ 0 ].name };
+
+						guiAnimationsFolder.show();
+						guiAnimationsFolder.add( animationParams, 'clip', clips.map( ( clip ) => clip.name ) ).onChange( function ( name ) {
+
+							mixer.stopAllAction();
+
+							const clip = THREE.AnimationClip.findByName( clips, name );
+							mixer.clipAction( clip ).play();
+
+						} );
 
 					} else {
 
@@ -243,6 +262,8 @@
 				const delta = timer.getDelta();
 
 				if ( mixer ) mixer.update( delta );
+
+				controls.update();
 
 				renderer.render( scene, camera );
 

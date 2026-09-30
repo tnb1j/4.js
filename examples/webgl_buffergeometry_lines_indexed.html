@@ -17,17 +17,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
 			let container, stats;
 
@@ -41,13 +41,13 @@
 
 				container = document.getElementById( 'container' );
 
-				camera = new FOUR.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 9000;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.BufferGeometry();
-				const material = new FOUR.LineBasicMaterial( { vertexColors: true } );
+				const geometry = new THREE.BufferGeometry();
+				const material = new THREE.LineBasicMaterial( { vertexColors: true } );
 
 				const indices = [];
 				const positions = [];
@@ -132,8 +132,8 @@
 
 				snowflake(
 					[
-						new FOUR.Vector3( 0, y, 0 ),
-						new FOUR.Vector3( 500, y, 0 )
+						new THREE.Vector3( 0, y, 0 ),
+						new THREE.Vector3( 500, y, 0 )
 					],
 					false, 600
 				);
@@ -141,9 +141,9 @@
 				y += 600;
 				snowflake(
 					[
-						new FOUR.Vector3( 0, y, 0 ),
-						new FOUR.Vector3( 250, y + 400, 0 ),
-						new FOUR.Vector3( 500, y, 0 )
+						new THREE.Vector3( 0, y, 0 ),
+						new THREE.Vector3( 250, y + 400, 0 ),
+						new THREE.Vector3( 500, y, 0 )
 					],
 					true, 600
 				);
@@ -151,10 +151,10 @@
 				y += 600;
 				snowflake(
 					[
-						new FOUR.Vector3( 0, y, 0 ),
-						new FOUR.Vector3( 500, y, 0 ),
-						new FOUR.Vector3( 500, y + 500, 0 ),
-						new FOUR.Vector3( 0, y + 500, 0 )
+						new THREE.Vector3( 0, y, 0 ),
+						new THREE.Vector3( 500, y, 0 ),
+						new THREE.Vector3( 500, y + 500, 0 ),
+						new THREE.Vector3( 0, y + 500, 0 )
 					],
 					true, 600
 				);
@@ -162,15 +162,15 @@
 				y += 1000;
 				snowflake(
 					[
-						new FOUR.Vector3( 250, y, 0 ),
-						new FOUR.Vector3( 500, y, 0 ),
-						new FOUR.Vector3( 250, y, 0 ),
-						new FOUR.Vector3( 250, y + 250, 0 ),
-						new FOUR.Vector3( 250, y, 0 ),
-						new FOUR.Vector3( 0, y, 0 ),
-						new FOUR.Vector3( 250, y, 0 ),
-						new FOUR.Vector3( 250, y - 250, 0 ),
-						new FOUR.Vector3( 250, y, 0 )
+						new THREE.Vector3( 250, y, 0 ),
+						new THREE.Vector3( 500, y, 0 ),
+						new THREE.Vector3( 250, y, 0 ),
+						new THREE.Vector3( 250, y + 250, 0 ),
+						new THREE.Vector3( 250, y, 0 ),
+						new THREE.Vector3( 0, y, 0 ),
+						new THREE.Vector3( 250, y, 0 ),
+						new THREE.Vector3( 250, y - 250, 0 ),
+						new THREE.Vector3( 250, y, 0 )
 					],
 					false, 600
 				);
@@ -178,20 +178,20 @@
 				//
 
 				geometry.setIndex( indices );
-				geometry.setAttribute( 'position', new FOUR.Float32BufferAttribute( positions, 3 ) );
-				geometry.setAttribute( 'color', new FOUR.Float32BufferAttribute( colors, 3 ) );
+				geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+				geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 				geometry.computeBoundingSphere();
 
-				const lineSegments = new FOUR.LineSegments( geometry, material );
+				const lineSegments = new THREE.LineSegments( geometry, material );
 				lineSegments.position.x -= 1200;
 				lineSegments.position.y -= 1200;
 
-				parent_node = new FOUR.Object3D();
+				parent_node = new THREE.Object3D();
 				parent_node.add( lineSegments );
 
 				scene.add( parent_node );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

@@ -130,4 +130,4 @@ Converts the paths into an array of shapes.
 
 ## Source
 
-[src/extras/core/ShapePath.js](../../src/extras/core/ShapePath.js)
+[src/extras/core/ShapePath.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/ShapePath.js)

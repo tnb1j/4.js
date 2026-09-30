@@ -1,17 +1,17 @@
 # Quaternion
 
-Class for representing a Quaternion. Quaternions are used in 4.js to represent rotations.
+Class for representing a Quaternion. Quaternions are used in three.js to represent rotations.
 
 Iterating through a vector instance will yield its components `(x, y, z, w)` in the corresponding order.
 
-Note that 4.js expects Quaternions to be normalized.
+Note that three.js expects Quaternions to be normalized.
 
 ## Code Example
 
 ```js
-const quaternion = new FOUR.Quaternion();
-quaternion.setFromAxisAngle( new FOUR.Vector3( 0, 1, 0 ), Math.PI / 2 );
-const vector = new FOUR.Vector3( 1, 0, 0 );
+const quaternion = new THREE.Quaternion();
+quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+const vector = new THREE.Vector3( 1, 0, 0 );
 vector.applyQuaternion( quaternion );
 ```
 
@@ -451,4 +451,4 @@ See:
 
 ## Source
 
-[src/math/Quaternion.js](../../src/math/Quaternion.js)
+[src/math/Quaternion.js](https://github.com/mrdoob/three.js/blob/master/src/math/Quaternion.js)

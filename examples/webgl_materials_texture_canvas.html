@@ -30,35 +30,35 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
 			let camera, scene, renderer, mesh, material;
-			const drawStartPos = new FOUR.Vector2();
+			const drawStartPos = new THREE.Vector2();
 
 			init();
 			setupCanvasDrawing();
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				material = new FOUR.MeshBasicMaterial();
+				material = new THREE.MeshBasicMaterial();
 
-				mesh = new FOUR.Mesh( new FOUR.BoxGeometry( 200, 200, 200 ), material );
+				mesh = new THREE.Mesh( new THREE.BoxGeometry( 200, 200, 200 ), material );
 				scene.add( mesh );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -84,7 +84,7 @@
 
 				// set canvas as material.map (this could be done to any map, bump, displacement etc.)
 
-				material.map = new FOUR.CanvasTexture( drawingCanvas );
+				material.map = new THREE.CanvasTexture( drawingCanvas );
 
 				// set the variable to keep track of when to draw
 

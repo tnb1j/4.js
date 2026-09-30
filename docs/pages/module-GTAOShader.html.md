@@ -2,10 +2,10 @@
 
 ## Import
 
-GTAOShader is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GTAOShader is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { GTAOShader } from '@tnb1j/4js/addons/shaders/GTAOShader.js';
+import { GTAOShader } from 'three/addons/shaders/GTAOShader.js';
 ```
 
 ## Properties
@@ -29,4 +29,4 @@ References:
 
 ## Source
 
-[examples/jsm/shaders/GTAOShader.js](../../examples/jsm/shaders/GTAOShader.js)
+[examples/jsm/shaders/GTAOShader.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/shaders/GTAOShader.js)

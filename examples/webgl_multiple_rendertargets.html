@@ -113,18 +113,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, controls;
 			let renderTarget;
@@ -144,20 +144,20 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
 				// Create a multi render target with Float buffers
 
-				renderTarget = new FOUR.WebGLRenderTarget(
+				renderTarget = new THREE.WebGLRenderTarget(
 					window.innerWidth * window.devicePixelRatio,
 					window.innerHeight * window.devicePixelRatio,
 					{
 						count: 2,
-						minFilter: FOUR.NearestFilter,
-						magFilter: FOUR.NearestFilter
+						minFilter: THREE.NearestFilter,
+						magFilter: THREE.NearestFilter
 					}
 				);
 
@@ -168,41 +168,41 @@
 
 				// Scene setup
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x222222 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x222222 );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 50 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 50 );
 				camera.position.z = 4;
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 
 				const diffuse = loader.load( 'textures/hardwood2_diffuse.jpg', render );
-				diffuse.wrapS = FOUR.RepeatWrapping;
-				diffuse.wrapT = FOUR.RepeatWrapping;
-				diffuse.colorSpace = FOUR.SRGBColorSpace;
+				diffuse.wrapS = THREE.RepeatWrapping;
+				diffuse.wrapT = THREE.RepeatWrapping;
+				diffuse.colorSpace = THREE.SRGBColorSpace;
 
-				scene.add( new FOUR.Mesh(
-					new FOUR.TorusKnotGeometry( 1, 0.3, 128, 32 ),
-					new FOUR.RawShaderMaterial( {
+				scene.add( new THREE.Mesh(
+					new THREE.TorusKnotGeometry( 1, 0.3, 128, 32 ),
+					new THREE.RawShaderMaterial( {
 						name: 'G-Buffer Shader',
 						vertexShader: document.querySelector( '#gbuffer-vert' ).textContent.trim(),
 						fragmentShader: document.querySelector( '#gbuffer-frag' ).textContent.trim(),
 						uniforms: {
 							tDiffuse: { value: diffuse },
-							repeat: { value: new FOUR.Vector2( 5, 0.5 ) }
+							repeat: { value: new THREE.Vector2( 5, 0.5 ) }
 						},
-						glslVersion: FOUR.GLSL3
+						glslVersion: THREE.GLSL3
 					} )
 				) );
 
 				// PostProcessing setup
 
-				postScene = new FOUR.Scene();
-				postCamera = new FOUR.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+				postScene = new THREE.Scene();
+				postCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
 
-				postScene.add( new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 2, 2 ),
-					new FOUR.RawShaderMaterial( {
+				postScene.add( new THREE.Mesh(
+					new THREE.PlaneGeometry( 2, 2 ),
+					new THREE.RawShaderMaterial( {
 						name: 'Post-FX Shader',
 						vertexShader: document.querySelector( '#render-vert' ).textContent.trim(),
 						fragmentShader: document.querySelector( '#render-frag' ).textContent.trim(),
@@ -210,7 +210,7 @@
 							tDiffuse: { value: renderTarget.textures[ 0 ] },
 							tNormal: { value: renderTarget.textures[ 1 ] },
 						},
-						glslVersion: FOUR.GLSL3
+						glslVersion: THREE.GLSL3
 					} )
 				) );
 

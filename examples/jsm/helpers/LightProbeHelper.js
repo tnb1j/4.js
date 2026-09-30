@@ -2,7 +2,7 @@ import {
 	Mesh,
 	ShaderMaterial,
 	SphereGeometry
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * Renders a sphere to visualize a light probe in the scene.
@@ -16,7 +16,7 @@ import {
  * ```
  *
  * @augments Mesh
- * @four_import import { LightProbeHelper } from '@tnb1j/4js/addons/helpers/LightProbeHelper.js';
+ * @three_import import { LightProbeHelper } from 'three/addons/helpers/LightProbeHelper.js';
  */
 class LightProbeHelper extends Mesh {
 

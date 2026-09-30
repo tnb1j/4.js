@@ -17,8 +17,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/",
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/",
 					"postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.39.1/build/index.js",
 					"goodrays": "https://cdn.jsdelivr.net/npm/three-good-godrays@0.12.0/build/three-good-godrays.esm.js"
 				}
@@ -27,12 +27,12 @@
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			import { EffectComposer, RenderPass } from 'postprocessing';
 			import { GodraysPass } from 'goodrays';
@@ -44,11 +44,11 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( - 175, 50, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x000000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
 
 				// asset
 
@@ -57,31 +57,31 @@
 				scene.add( gltf.scene );
 
 				const pillars = gltf.scene.getObjectByName( 'concrete' );
-				pillars.material = new FOUR.MeshStandardMaterial( {
+				pillars.material = new THREE.MeshStandardMaterial( {
 					color: 0x333333,
 				} );
 
 				const base = gltf.scene.getObjectByName( 'base' );
-				base.material = new FOUR.MeshStandardMaterial( {
+				base.material = new THREE.MeshStandardMaterial( {
 					color: 0x333333,
-					side: FOUR.DoubleSide,
+					side: THREE.DoubleSide,
 				} );
 
 				setupBackdrop();
 
 				// lights
 
-				const lightPos = new FOUR.Vector3( 0, 50, 0 );
-				const lightSphereMaterial = new FOUR.MeshBasicMaterial( {
+				const lightPos = new THREE.Vector3( 0, 50, 0 );
+				const lightSphereMaterial = new THREE.MeshBasicMaterial( {
 					color: 0xffffff,
 				} );
-				const lightSphere = new FOUR.Mesh( new FOUR.SphereGeometry( 0.5, 16, 16 ), lightSphereMaterial );
+				const lightSphere = new THREE.Mesh( new THREE.SphereGeometry( 0.5, 16, 16 ), lightSphereMaterial );
 				lightSphere.position.copy( lightPos );
 				scene.add( lightSphere );
 
-				scene.add( new FOUR.AmbientLight( 0xcccccc, 0.4 ) );
+				scene.add( new THREE.AmbientLight( 0xcccccc, 0.4 ) );
 
-				const pointLight = new FOUR.PointLight( 0xf6287d, 10000 );
+				const pointLight = new THREE.PointLight( 0xf6287d, 10000 );
 				pointLight.castShadow = true;
 				pointLight.shadow.bias = - 0.001;
 				pointLight.shadow.mapSize.width = 1024;
@@ -107,7 +107,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -116,7 +116,7 @@
 
 				//
 
-				composer = new EffectComposer( renderer, { frameBufferType: FOUR.HalfFloatType } );
+				composer = new EffectComposer( renderer, { frameBufferType: THREE.HalfFloatType } );
 
 				const renderPass = new RenderPass( scene, camera );
     			composer.addPass( renderPass );
@@ -127,7 +127,7 @@
 					edgeStrength: 2,
 					edgeRadius: 2,
 					distanceAttenuation: 2,
-					color: new FOUR.Color( 0xf6287d ),
+					color: new THREE.Color( 0xf6287d ),
 					raymarchSteps: 60,
 					blur: true,
 					gammaCorrection: true,
@@ -173,30 +173,30 @@
 
 				 const backdropDistance = 200;
 				// Add backdrop walls `backdropDistance` units away from the origin
-				const backdropGeometry = new FOUR.PlaneGeometry( 400, 200 );
-				const backdropMaterial = new FOUR.MeshBasicMaterial( {
+				const backdropGeometry = new THREE.PlaneGeometry( 400, 200 );
+				const backdropMaterial = new THREE.MeshBasicMaterial( {
 					color: 0x200808,
-					side: FOUR.DoubleSide,
+					side: THREE.DoubleSide,
 				} );
-				const backdropLeft = new FOUR.Mesh( backdropGeometry, backdropMaterial );
+				const backdropLeft = new THREE.Mesh( backdropGeometry, backdropMaterial );
 				backdropLeft.position.set( - backdropDistance, 100, 0 );
 				backdropLeft.rotateY( Math.PI / 2 );
 				scene.add( backdropLeft );
 			
-				const backdropRight = new FOUR.Mesh( backdropGeometry, backdropMaterial );
+				const backdropRight = new THREE.Mesh( backdropGeometry, backdropMaterial );
 				backdropRight.position.set( backdropDistance, 100, 0 );
 				backdropRight.rotateY( Math.PI / 2 );
 				scene.add( backdropRight );
 			
-				const backdropFront = new FOUR.Mesh( backdropGeometry, backdropMaterial );
+				const backdropFront = new THREE.Mesh( backdropGeometry, backdropMaterial );
 				backdropFront.position.set( 0, 100, - backdropDistance );
 				scene.add( backdropFront );
 			
-				const backdropBack = new FOUR.Mesh( backdropGeometry, backdropMaterial );
+				const backdropBack = new THREE.Mesh( backdropGeometry, backdropMaterial );
 				backdropBack.position.set( 0, 100, backdropDistance );
 				scene.add( backdropBack );
 			
-				const backdropTop = new FOUR.Mesh( backdropGeometry, backdropMaterial );
+				const backdropTop = new THREE.Mesh( backdropGeometry, backdropMaterial );
 				backdropTop.position.set( 0, 200, 0 );
 				backdropTop.rotateX( Math.PI / 2 );
 				backdropTop.scale.set( 3, 6, 1 );

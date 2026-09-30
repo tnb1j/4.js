@@ -20,4 +20,4 @@ The native shader code.
 
 ## Source
 
-[src/nodes/core/NodeParser.js](../../src/nodes/core/NodeParser.js)
+[src/nodes/core/NodeParser.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/NodeParser.js)

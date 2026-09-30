@@ -18,10 +18,10 @@ group.add( mesh1, mesh2, mesh3 );
 
 ## Import
 
-InteractiveGroup is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+InteractiveGroup is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { InteractiveGroup } from '@tnb1j/4js/addons/interactive/InteractiveGroup.js';
+import { InteractiveGroup } from 'three/addons/interactive/InteractiveGroup.js';
 ```
 
 ## Constructor
@@ -86,4 +86,4 @@ The XR controller.
 
 ## Source
 
-[examples/jsm/interactive/InteractiveGroup.js](../../examples/jsm/interactive/InteractiveGroup.js)
+[examples/jsm/interactive/InteractiveGroup.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/interactive/InteractiveGroup.js)

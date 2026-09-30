@@ -10,7 +10,7 @@ import {
 	UniformsUtils,
 	Vector2,
 	Vector4
-} from '@tnb1j/4js';
+} from 'three';
 import { Reflector } from '../objects/Reflector.js';
 import { Refractor } from '../objects/Refractor.js';
 
@@ -28,7 +28,7 @@ import { Refractor } from '../objects/Refractor.js';
  * - {@link http://graphicsrunner.blogspot.de/2010/08/water-using-flow-maps.html}
  *
  * @augments Mesh
- * @four_import import { Water } from '@tnb1j/4js/addons/objects/Water2.js';
+ * @three_import import { Water } from 'three/addons/objects/Water2.js';
  */
 class Water extends Mesh {
 
@@ -80,14 +80,14 @@ class Water extends Mesh {
 
 		if ( Reflector === undefined ) {
 
-			console.error( 'FOUR.Water: Required component Reflector not found.' );
+			console.error( 'THREE.Water: Required component Reflector not found.' );
 			return;
 
 		}
 
 		if ( Refractor === undefined ) {
 
-			console.error( 'FOUR.Water: Required component Refractor not found.' );
+			console.error( 'THREE.Water: Required component Refractor not found.' );
 			return;
 
 		}

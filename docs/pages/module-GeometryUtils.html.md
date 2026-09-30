@@ -2,10 +2,10 @@
 
 ## Import
 
-GeometryUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+GeometryUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as GeometryUtils from '@tnb1j/4js/addons/utils/GeometryUtils.js';
+import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 ```
 
 ## Methods
@@ -148,4 +148,4 @@ Default is `7`.
 
 ## Source
 
-[examples/jsm/utils/GeometryUtils.js](../../examples/jsm/utils/GeometryUtils.js)
+[examples/jsm/utils/GeometryUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/GeometryUtils.js)

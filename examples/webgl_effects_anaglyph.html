@@ -17,17 +17,17 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { AnaglyphEffect } from '@tnb1j/4js/addons/effects/AnaglyphEffect.js';
+			import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
 
 			let container, camera, scene, renderer, effect;
 
@@ -48,7 +48,7 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
 				camera.position.z = 3;
 
 				const path = 'textures/cube/pisa/';
@@ -59,17 +59,17 @@
 					path + 'pz' + format, path + 'nz' + format
 				];
 
-				const textureCube = new FOUR.CubeTextureLoader().load( urls );
+				const textureCube = new THREE.CubeTextureLoader().load( urls );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.background = textureCube;
 
-				const geometry = new FOUR.SphereGeometry( 0.1, 32, 16 );
-				const material = new FOUR.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+				const geometry = new THREE.SphereGeometry( 0.1, 32, 16 );
+				const material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
 
 				for ( let i = 0; i < 500; i ++ ) {
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					mesh.position.x = Math.random() * 10 - 5;
 					mesh.position.y = Math.random() * 10 - 5;
@@ -85,7 +85,7 @@
 
 				//
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setAnimationLoop( animate );
 				container.appendChild( renderer.domElement );

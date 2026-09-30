@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>4.js Geometry Browser</title>
+		<title>Three.js Geometry Browser</title>
 		<link rel="shortcut icon" href="../../files/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="../../files/main.css">
 		<style>
@@ -25,8 +25,8 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../../build/4.module.js",
-					"@tnb1j/4js/addons/": "../../examples/jsm/"
+					"three": "../../build/three.module.js",
+					"three/addons/": "../../examples/jsm/"
 				}
 			}
 		</script>
@@ -71,10 +71,10 @@
 				Vector3,
 				WireframeGeometry,
 				WebGLRenderer
-			} from '@tnb1j/4js';
+			} from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			const twoPi = Math.PI * 2;
 
@@ -149,7 +149,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.BoxGeometry' );
+					const folder = gui.addFolder( 'THREE.BoxGeometry' );
 
 					folder.add( data, 'width', 1, 30 ).onChange( generateGeometry );
 					folder.add( data, 'height', 1, 30 ).onChange( generateGeometry );
@@ -180,7 +180,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.CapsuleGeometry' );
+					const folder = gui.addFolder( 'THREE.CapsuleGeometry' );
 
 					folder.add( data, 'radius', 1, 30 ).onChange( generateGeometry );
 					folder.add( data, 'height', 1, 30 ).onChange( generateGeometry );
@@ -222,7 +222,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.CylinderGeometry' );
+					const folder = gui.addFolder( 'THREE.CylinderGeometry' );
 
 					folder.add( data, 'radiusTop', 0, 30 ).onChange( generateGeometry );
 					folder.add( data, 'radiusBottom', 0, 30 ).onChange( generateGeometry );
@@ -266,7 +266,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.ConeGeometry' );
+					const folder = gui.addFolder( 'THREE.ConeGeometry' );
 
 					folder.add( data, 'radius', 0, 30 ).onChange( generateGeometry );
 					folder.add( data, 'height', 1, 50 ).onChange( generateGeometry );
@@ -300,7 +300,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.CircleGeometry' );
+					const folder = gui.addFolder( 'THREE.CircleGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'segments', 0, 128 ).step( 1 ).onChange( generateGeometry );
@@ -328,7 +328,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.DodecahedronGeometry' );
+					const folder = gui.addFolder( 'THREE.DodecahedronGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'detail', 0, 5 ).step( 1 ).onChange( generateGeometry );
@@ -354,7 +354,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.IcosahedronGeometry' );
+					const folder = gui.addFolder( 'THREE.IcosahedronGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'detail', 0, 5 ).step( 1 ).onChange( generateGeometry );
@@ -389,7 +389,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.LatheGeometry' );
+					const folder = gui.addFolder( 'THREE.LatheGeometry' );
 
 					folder.add( data, 'segments', 1, 30 ).step( 1 ).onChange( generateGeometry );
 					folder.add( data, 'phiStart', 0, twoPi ).onChange( generateGeometry );
@@ -416,7 +416,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.OctahedronGeometry' );
+					const folder = gui.addFolder( 'THREE.OctahedronGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'detail', 0, 5 ).step( 1 ).onChange( generateGeometry );
@@ -444,7 +444,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.PlaneGeometry' );
+					const folder = gui.addFolder( 'THREE.PlaneGeometry' );
 
 					folder.add( data, 'width', 1, 30 ).onChange( generateGeometry );
 					folder.add( data, 'height', 1, 30 ).onChange( generateGeometry );
@@ -476,7 +476,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.RingGeometry' );
+					const folder = gui.addFolder( 'THREE.RingGeometry' );
 
 					folder.add( data, 'innerRadius', 1, 30 ).onChange( generateGeometry );
 					folder.add( data, 'outerRadius', 1, 30 ).onChange( generateGeometry );
@@ -511,7 +511,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.SphereGeometry' );
+					const folder = gui.addFolder( 'THREE.SphereGeometry' );
 
 					folder.add( data, 'radius', 1, 30 ).onChange( generateGeometry );
 					folder.add( data, 'widthSegments', 3, 64 ).step( 1 ).onChange( generateGeometry );
@@ -542,7 +542,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.TetrahedronGeometry' );
+					const folder = gui.addFolder( 'THREE.TetrahedronGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'detail', 0, 5 ).step( 1 ).onChange( generateGeometry );
@@ -571,7 +571,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.TorusGeometry' );
+					const folder = gui.addFolder( 'THREE.TorusGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'tube', 0.1, 10 ).onChange( generateGeometry );
@@ -605,7 +605,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.TorusKnotGeometry' );
+					const folder = gui.addFolder( 'THREE.TorusKnotGeometry' );
 
 					folder.add( data, 'radius', 1, 20 ).onChange( generateGeometry );
 					folder.add( data, 'tube', 0.1, 10 ).onChange( generateGeometry );
@@ -636,7 +636,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.TubeGeometry' );
+					const folder = gui.addFolder( 'THREE.TubeGeometry' );
 
 					folder.add( data, 'segments', 1, 100 ).step( 1 ).onChange( generateGeometry );
 					folder.add( data, 'radius', 1, 10 ).onChange( generateGeometry );
@@ -661,7 +661,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.ShapeGeometry' );
+					const folder = gui.addFolder( 'THREE.ShapeGeometry' );
 					folder.add( data, 'segments', 1, 100 ).step( 1 ).onChange( generateGeometry );
 
 					generateGeometry();
@@ -698,7 +698,7 @@
 
 					}
 
-					const folder = gui.addFolder( 'FOUR.ExtrudeGeometry' );
+					const folder = gui.addFolder( 'THREE.ExtrudeGeometry' );
 
 					folder.add( data, 'steps', 1, 10 ).step( 1 ).onChange( generateGeometry );
 					folder.add( data, 'depth', 1, 20 ).onChange( generateGeometry );

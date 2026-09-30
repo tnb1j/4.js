@@ -15,18 +15,18 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { AsciiEffect } from '@tnb1j/4js/addons/effects/AsciiEffect.js';
-			import { TrackballControls } from '@tnb1j/4js/addons/controls/TrackballControls.js';
+			import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 
 			let camera, controls, scene, renderer, effect;
 
@@ -38,32 +38,32 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.y = 150;
 				camera.position.z = 500;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0, 0, 0 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0, 0, 0 );
 
-				const pointLight1 = new FOUR.PointLight( 0xffffff, 3, 0, 0 );
+				const pointLight1 = new THREE.PointLight( 0xffffff, 3, 0, 0 );
 				pointLight1.position.set( 500, 500, 500 );
 				scene.add( pointLight1 );
 
-				const pointLight2 = new FOUR.PointLight( 0xffffff, 1, 0, 0 );
+				const pointLight2 = new THREE.PointLight( 0xffffff, 1, 0, 0 );
 				pointLight2.position.set( - 500, - 500, - 500 );
 				scene.add( pointLight2 );
 
-				sphere = new FOUR.Mesh( new FOUR.SphereGeometry( 200, 20, 10 ), new FOUR.MeshPhongMaterial( { flatShading: true } ) );
+				sphere = new THREE.Mesh( new THREE.SphereGeometry( 200, 20, 10 ), new THREE.MeshPhongMaterial( { flatShading: true } ) );
 				scene.add( sphere );
 
 				// Plane
 
-				plane = new FOUR.Mesh( new FOUR.PlaneGeometry( 400, 400 ), new FOUR.MeshBasicMaterial( { color: 0xe0e0e0 } ) );
+				plane = new THREE.Mesh( new THREE.PlaneGeometry( 400, 400 ), new THREE.MeshBasicMaterial( { color: 0xe0e0e0 } ) );
 				plane.position.y = - 200;
 				plane.rotation.x = - Math.PI / 2;
 				scene.add( plane );
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 

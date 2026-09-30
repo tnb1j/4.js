@@ -72,4 +72,4 @@ A reference to the current node frame.
 
 ## Source
 
-[src/nodes/core/InspectorNode.js](../../src/nodes/core/InspectorNode.js)
+[src/nodes/core/InspectorNode.js](https://github.com/mrdoob/three.js/blob/master/src/nodes/core/InspectorNode.js)

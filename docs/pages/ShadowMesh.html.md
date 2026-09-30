@@ -16,10 +16,10 @@ scene.add( cubeShadow );
 
 ## Import
 
-ShadowMesh is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+ShadowMesh is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { ShadowMesh } from '@tnb1j/4js/addons/objects/ShadowMesh.js';
+import { ShadowMesh } from 'three/addons/objects/ShadowMesh.js';
 ```
 
 ## Constructor
@@ -76,4 +76,4 @@ The light position.
 
 ## Source
 
-[examples/jsm/objects/ShadowMesh.js](../../examples/jsm/objects/ShadowMesh.js)
+[examples/jsm/objects/ShadowMesh.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/ShadowMesh.js)

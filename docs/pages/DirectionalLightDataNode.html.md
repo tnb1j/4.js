@@ -10,4 +10,4 @@ Batched data node for directional lights in dynamic lighting mode.
 
 ## Source
 
-[examples/jsm/tsl/lighting/data/DirectionalLightDataNode.js](../../examples/jsm/tsl/lighting/data/DirectionalLightDataNode.js)
+[examples/jsm/tsl/lighting/data/DirectionalLightDataNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/lighting/data/DirectionalLightDataNode.js)

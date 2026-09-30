@@ -2,7 +2,7 @@ import {
 	FileLoader,
 	Loader,
 	ShapePath
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A loader for loading fonts.
@@ -15,7 +15,7 @@ import {
  * ```
  *
  * @augments Loader
- * @four_import import { FontLoader } from '@tnb1j/4js/addons/loaders/FontLoader.js';
+ * @three_import import { FontLoader } from 'three/addons/loaders/FontLoader.js';
  */
 class FontLoader extends Loader {
 
@@ -185,7 +185,7 @@ function createPath( char, scale, offsetX, offsetY, data ) {
 
 	if ( ! glyph ) {
 
-		console.error( 'FOUR.Font: character "' + char + '" does not exists in font family ' + data.familyName + '.' );
+		console.error( 'THREE.Font: character "' + char + '" does not exists in font family ' + data.familyName + '.' );
 
 		return;
 

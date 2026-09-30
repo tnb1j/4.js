@@ -1,5 +1,5 @@
-import { DepthTexture, FloatType, RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, SpriteNodeMaterial, RendererUtils, NodeUpdateType } from '@tnb1j/4js/webgpu';
-import { Loop, int, exp, min, float, mul, uv, vec2, vec3, Fn, textureSize, orthographicDepthToViewZ, screenUV, nodeObject, uniform, vec4, passTexture, texture, perspectiveDepthToViewZ, positionView, reference, color } from '@tnb1j/4js/tsl';
+import { DepthTexture, FloatType, RenderTarget, Vector2, TempNode, QuadMesh, NodeMaterial, SpriteNodeMaterial, RendererUtils, NodeUpdateType } from 'three/webgpu';
+import { Loop, int, exp, min, float, mul, uv, vec2, vec3, Fn, textureSize, orthographicDepthToViewZ, screenUV, nodeObject, uniform, vec4, passTexture, texture, perspectiveDepthToViewZ, positionView, reference, color } from 'three/tsl';
 
 const _quadMesh = /*@__PURE__*/ new QuadMesh();
 const _size = /*@__PURE__*/ new Vector2();
@@ -13,7 +13,7 @@ let _rendererState;
  * gives you great flexibility in composing the final outline look depending on
  * your requirements.
  * ```js
- * const renderPipeline = new FOUR.RenderPipeline( renderer );
+ * const renderPipeline = new THREE.RenderPipeline( renderer );
  *
  * const scenePass = pass( scene, camera );
  *
@@ -22,8 +22,8 @@ let _rendererState;
  * const edgeStrength = uniform( 3.0 );
  * const edgeGlow = uniform( 0.0 );
  * const edgeThickness = uniform( 1.0 );
- * const visibleEdgeColor = uniform( new FOUR.Color( 0xffffff ) );
- * const hiddenEdgeColor = uniform( new FOUR.Color( 0x4e3636 ) );
+ * const visibleEdgeColor = uniform( new THREE.Color( 0xffffff ) );
+ * const hiddenEdgeColor = uniform( new THREE.Color( 0x4e3636 ) );
  *
  * outlinePass = outline( scene, camera, {
  * 	selectedObjects,
@@ -40,7 +40,7 @@ let _rendererState;
  * ```
  *
  * @augments TempNode
- * @four_import import { outline } from '@tnb1j/4js/addons/tsl/display/OutlineNode.js';
+ * @three_import import { outline } from 'three/addons/tsl/display/OutlineNode.js';
  */
 class OutlineNode extends TempNode {
 
@@ -747,6 +747,8 @@ class OutlineNode extends TempNode {
 	 * when the effect is no longer required.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.selectedObjects.length = 0;
 

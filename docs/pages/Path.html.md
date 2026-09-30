@@ -7,14 +7,14 @@ A 2D path representation. The class provides methods for creating paths and cont
 ## Code Example
 
 ```js
-const path = new FOUR.Path();
+const path = new THREE.Path();
 path.lineTo( 0, 0.8 );
 path.quadraticCurveTo( 0, 1, 0.2, 1 );
 path.lineTo( 1, 1 );
 const points = path.getPoints();
-const geometry = new FOUR.BufferGeometry().setFromPoints( points );
-const material = new FOUR.LineBasicMaterial( { color: 0xffffff } );
-const line = new FOUR.Line( geometry, material );
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const line = new THREE.Line( geometry, material );
 scene.add( line );
 ```
 
@@ -330,4 +330,4 @@ An array of points in 2D space.
 
 ## Source
 
-[src/extras/core/Path.js](../../src/extras/core/Path.js)
+[src/extras/core/Path.js](https://github.com/mrdoob/three.js/blob/master/src/extras/core/Path.js)

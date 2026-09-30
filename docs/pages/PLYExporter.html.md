@@ -13,10 +13,10 @@ const data = exporter.parse( scene, options );
 
 ## Import
 
-PLYExporter is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+PLYExporter is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { PLYExporter } from '@tnb1j/4js/addons/exporters/PLYExporter.js';
+import { PLYExporter } from 'three/addons/exporters/PLYExporter.js';
 ```
 
 ## Constructor
@@ -85,4 +85,4 @@ A mapping that allows exporting custom buffer attributes as PLY vertex propertie
 
 ## Source
 
-[examples/jsm/exporters/PLYExporter.js](../../examples/jsm/exporters/PLYExporter.js)
+[examples/jsm/exporters/PLYExporter.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/PLYExporter.js)

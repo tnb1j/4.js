@@ -48,9 +48,9 @@ class AnimationMixer extends EventDispatcher {
 		 */
 		this.timeScale = 1.0;
 
-		if ( typeof __FOUR_DEVTOOLS__ !== 'undefined' ) {
+		if ( typeof __THREE_DEVTOOLS__ !== 'undefined' ) {
 
-			__FOUR_DEVTOOLS__.dispatchEvent( new CustomEvent( 'observe', { detail: this } ) );
+			__THREE_DEVTOOLS__.dispatchEvent( new CustomEvent( 'observe', { detail: this } ) );
 
 		}
 

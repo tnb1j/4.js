@@ -12,25 +12,25 @@
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> -
 			STL loader test by <a href="https://github.com/aleeper" target="_blank" rel="noopener">aleeper</a>.<br/>
-			PR2 head from <a href="http://www.ros.org/wiki/pr2_description">www.ros.org</a>
+			PR2 head from <a href="https://www.ros.org/wiki/pr2_description">www.ros.org</a>
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { STLLoader } from '@tnb1j/4js/addons/loaders/STLLoader.js';
+			import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 			let container, stats;
 
@@ -43,20 +43,20 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
+				camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
 				camera.position.set( 3, 0.15, 3 );
 
-				cameraTarget = new FOUR.Vector3( 0, - 0.25, 0 );
+				cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( 0x72645b );
-				scene.fog = new FOUR.Fog( 0x72645b, 2, 15 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x72645b );
+				scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
 
 				// Ground
 
-				const plane = new FOUR.Mesh(
-					new FOUR.PlaneGeometry( 40, 40 ),
-					new FOUR.MeshPhongMaterial( { color: 0xcbcbcb, specular: 0x474747 } )
+				const plane = new THREE.Mesh(
+					new THREE.PlaneGeometry( 40, 40 ),
+					new THREE.MeshPhongMaterial( { color: 0xcbcbcb, specular: 0x474747 } )
 				);
 				plane.rotation.x = - Math.PI / 2;
 				plane.position.y = - 0.5;
@@ -70,8 +70,8 @@
 				const loader = new STLLoader();
 				loader.load( './models/stl/ascii/slotted_disk.stl', function ( geometry ) {
 
-					const material = new FOUR.MeshPhongMaterial( { color: 0xff9c7c, specular: 0x494949, shininess: 200 } );
-					const mesh = new FOUR.Mesh( geometry, material );
+					const material = new THREE.MeshPhongMaterial( { color: 0xff9c7c, specular: 0x494949, shininess: 200 } );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					mesh.position.set( 0, - 0.25, 0.6 );
 					mesh.rotation.set( 0, - Math.PI / 2, 0 );
@@ -87,11 +87,11 @@
 
 				// Binary files
 
-				const material = new FOUR.MeshPhongMaterial( { color: 0xd5d5d5, specular: 0x494949, shininess: 200 } );
+				const material = new THREE.MeshPhongMaterial( { color: 0xd5d5d5, specular: 0x494949, shininess: 200 } );
 
 				loader.load( './models/stl/binary/pr2_head_pan.stl', function ( geometry ) {
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					mesh.position.set( 0, - 0.37, - 0.6 );
 					mesh.rotation.set( - Math.PI / 2, 0, 0 );
@@ -106,7 +106,7 @@
 
 				loader.load( './models/stl/binary/pr2_head_tilt.stl', function ( geometry ) {
 
-					const mesh = new FOUR.Mesh( geometry, material );
+					const mesh = new THREE.Mesh( geometry, material );
 
 					mesh.position.set( 0.136, - 0.37, - 0.6 );
 					mesh.rotation.set( - Math.PI / 2, 0.3, 0 );
@@ -126,11 +126,11 @@
 
 					if ( geometry.hasColors ) {
 
-						meshMaterial = new FOUR.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: true } );
+						meshMaterial = new THREE.MeshPhongMaterial( { opacity: geometry.alpha, vertexColors: true } );
 
 					}
 
-					const mesh = new FOUR.Mesh( geometry, meshMaterial );
+					const mesh = new THREE.Mesh( geometry, meshMaterial );
 
 					mesh.position.set( 0.5, 0.2, 0 );
 					mesh.rotation.set( - Math.PI / 2, Math.PI / 2, 0 );
@@ -146,13 +146,13 @@
 
 				// Lights
 
-				scene.add( new FOUR.HemisphereLight( 0x8d7c7c, 0x494966, 3 ) );
+				scene.add( new THREE.HemisphereLight( 0x8d7c7c, 0x494966, 3 ) );
 
 				addShadowedLight( 1, 1, 1, 0xffffff, 3.5 );
 				addShadowedLight( 0.5, 1, - 1, 0xffd500, 3 );
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -174,7 +174,7 @@
 
 			function addShadowedLight( x, y, z, color, intensity ) {
 
-				const directionalLight = new FOUR.DirectionalLight( color, intensity );
+				const directionalLight = new THREE.DirectionalLight( color, intensity );
 				directionalLight.position.set( x, y, z );
 				scene.add( directionalLight );
 

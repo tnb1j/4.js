@@ -22,16 +22,16 @@
 	<script type="importmap">
 		{
 			"imports": {
-				"@tnb1j/4js": "../build/4.module.js",
-				"@tnb1j/4js/addons/": "./jsm/"
+				"three": "../build/three.module.js",
+				"three/addons/": "./jsm/"
 			}
 		}
 	</script>
 
 	<script type="module">
-		import * as FOUR from '@tnb1j/4js';
+		import * as THREE from 'three';
 
-		import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 		let scene, camera, renderer, timer;
 
@@ -51,22 +51,22 @@
 
 			const container = document.getElementById( 'container' );
 
-			scene = new FOUR.Scene();
+			scene = new THREE.Scene();
 
-			timer = new FOUR.Timer();
+			timer = new THREE.Timer();
 			timer.connect( document );
 
 			//
 
-			camera = new FOUR.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
+			camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
 			camera.position.set( 7, 3, 7 );
 
 			// lights
 
-			const ambientLight = new FOUR.AmbientLight( 0xcccccc );
+			const ambientLight = new THREE.AmbientLight( 0xcccccc );
 			scene.add( ambientLight );
 
-			const directionalLight = new FOUR.DirectionalLight( 0xffffff, 2.5 );
+			const directionalLight = new THREE.DirectionalLight( 0xffffff, 2.5 );
 			directionalLight.position.set( 0, 5, 5 );
 			scene.add( directionalLight );
 
@@ -85,17 +85,17 @@
 
 			// audio
 
-			const audioLoader = new FOUR.AudioLoader();
+			const audioLoader = new THREE.AudioLoader();
 
-			const listener = new FOUR.AudioListener();
+			const listener = new THREE.AudioListener();
 			camera.add( listener );
 
 			// floor
 
-			const floorGeometry = new FOUR.PlaneGeometry( 10, 10 );
-			const floorMaterial = new FOUR.MeshLambertMaterial( { color: 0x4676b6 } );
+			const floorGeometry = new THREE.PlaneGeometry( 10, 10 );
+			const floorMaterial = new THREE.MeshLambertMaterial( { color: 0x4676b6 } );
 
-			const floor = new FOUR.Mesh( floorGeometry, floorMaterial );
+			const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 			floor.rotation.x = Math.PI * - 0.5;
 			floor.receiveShadow = true;
 			scene.add( floor );
@@ -105,9 +105,9 @@
 			const count = 5;
 			const radius = 3;
 
-			const ballGeometry = new FOUR.SphereGeometry( 0.3, 32, 16 );
+			const ballGeometry = new THREE.SphereGeometry( 0.3, 32, 16 );
 			ballGeometry.translate( 0, 0.3, 0 );
-			const ballMaterial = new FOUR.MeshLambertMaterial( { color: 0xcccccc } );
+			const ballMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc } );
 
 			// create objects when audio buffer is loaded
 
@@ -117,14 +117,14 @@
 
 					const s = i / count * Math.PI * 2;
 
-					const ball = new FOUR.Mesh( ballGeometry, ballMaterial );
+					const ball = new THREE.Mesh( ballGeometry, ballMaterial );
 					ball.castShadow = true;
 					ball.userData.down = false;
 
 					ball.position.x = radius * Math.cos( s );
 					ball.position.z = radius * Math.sin( s );
 
-					const audio = new FOUR.PositionalAudio( listener );
+					const audio = new THREE.PositionalAudio( listener );
 					audio.setBuffer( buffer );
 					ball.add( audio );
 
@@ -139,7 +139,7 @@
 
 			//
 
-			renderer = new FOUR.WebGLRenderer( { antialias: true } );
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.shadowMap.enabled = true;

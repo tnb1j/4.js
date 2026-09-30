@@ -80,4 +80,4 @@ The query object to resolve.
 
 ## Source
 
-[src/renderers/webgl-fallback/utils/WebGLTimestampQueryPool.js](../../src/renderers/webgl-fallback/utils/WebGLTimestampQueryPool.js)
+[src/renderers/webgl-fallback/utils/WebGLTimestampQueryPool.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webgl-fallback/utils/WebGLTimestampQueryPool.js)

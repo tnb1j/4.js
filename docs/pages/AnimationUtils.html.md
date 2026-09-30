@@ -48,6 +48,16 @@ The keyframe time values.
 
 **Returns:** The array.
 
+### .hasTangents( settings : Object ) : boolean
+
+Returns `true` if the given keyframe track settings hold Bezier tangent data.
+
+**settings**
+
+The settings of a keyframe track.
+
+**Returns:** Whether both tangent arrays are defined or not.
+
 ### .isTypedArray( object : any ) : boolean
 
 Returns `true` if the given object is a typed array.
@@ -134,4 +144,4 @@ Default is `30`.
 
 ## Source
 
-[src/animation/AnimationUtils.js](../../src/animation/AnimationUtils.js)
+[src/animation/AnimationUtils.js](https://github.com/mrdoob/three.js/blob/master/src/animation/AnimationUtils.js)

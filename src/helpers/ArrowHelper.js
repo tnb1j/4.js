@@ -15,16 +15,16 @@ let _lineGeometry, _coneGeometry;
  * An 3D arrow object for visualizing directions.
  *
  * ```js
- * const dir = new FOUR.Vector3( 1, 2, 0 );
+ * const dir = new THREE.Vector3( 1, 2, 0 );
  *
  * //normalize the direction vector (convert to vector of length 1)
  * dir.normalize();
  *
- * const origin = new FOUR.Vector3( 0, 0, 0 );
+ * const origin = new THREE.Vector3( 0, 0, 0 );
  * const length = 1;
  * const hex = 0xffff00;
  *
- * const arrowHelper = new FOUR.ArrowHelper( dir, origin, length, hex );
+ * const arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
  * scene.add( arrowHelper );
  * ```
  *
@@ -158,6 +158,8 @@ class ArrowHelper extends Object3D {
 	 * method whenever this instance is no longer used in your app.
 	 */
 	dispose() {
+
+		super.dispose();
 
 		this.line.geometry.dispose();
 		this.line.material.dispose();

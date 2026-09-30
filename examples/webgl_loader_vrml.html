@@ -17,21 +17,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
+			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { VRMLLoader } from '@tnb1j/4js/addons/loaders/VRMLLoader.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VRMLLoader } from 'three/addons/loaders/VRMLLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			let camera, scene, renderer, stats, controls, loader;
 
@@ -64,18 +64,18 @@
 
 			function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1e10 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1e10 );
 				camera.position.set( - 10, 5, 10 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.add( camera );
 
 				// light
 
-				const ambientLight = new FOUR.AmbientLight( 0xffffff, 1.2 );
+				const ambientLight = new THREE.AmbientLight( 0xffffff, 1.2 );
 				scene.add( ambientLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0xffffff, 2.0 );
+				const dirLight = new THREE.DirectionalLight( 0xffffff, 2.0 );
 				dirLight.position.set( 200, 200, 200 );
 				scene.add( dirLight );
 
@@ -84,7 +84,7 @@
 
 				// renderer
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );

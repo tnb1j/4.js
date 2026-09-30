@@ -3,7 +3,7 @@ import {
 	Mesh,
 	Plane,
 	Vector3
-} from '@tnb1j/4js';
+} from 'three';
 import { ConvexGeometry } from '../geometries/ConvexGeometry.js';
 
 const _v1 = new Vector3();
@@ -25,7 +25,7 @@ const _v1 = new Vector3();
  * Note: This lib adds member variables to object's userData member (see prepareBreakableObject function)
  * Use with caution and read the code when using with other libs.
  *
- * @four_import import { ConvexObjectBreaker } from '@tnb1j/4js/addons/misc/ConvexObjectBreaker.js';
+ * @three_import import { ConvexObjectBreaker } from 'three/addons/misc/ConvexObjectBreaker.js';
  */
 class ConvexObjectBreaker {
 
@@ -473,7 +473,7 @@ class ConvexObjectBreaker {
 
 		// input:
 		// vector interpreted as a free vector
-		// FOUR.Matrix4 orthogonal matrix (matrix without scale)
+		// THREE.Matrix4 orthogonal matrix (matrix without scale)
 
 		const x = v.x, y = v.y, z = v.z;
 		const e = m.elements;
@@ -490,7 +490,7 @@ class ConvexObjectBreaker {
 
 		// input:
 		// vector interpreted as a free vector
-		// FOUR.Matrix4 orthogonal matrix (matrix without scale)
+		// THREE.Matrix4 orthogonal matrix (matrix without scale)
 
 		const x = v.x, y = v.y, z = v.z;
 		const e = m.elements;
@@ -507,7 +507,7 @@ class ConvexObjectBreaker {
 
 		// input:
 		// vector interpreted as a tied (ordinary) vector
-		// FOUR.Matrix4 orthogonal matrix (matrix without scale)
+		// THREE.Matrix4 orthogonal matrix (matrix without scale)
 
 		const x = v.x, y = v.y, z = v.z;
 		const e = m.elements;

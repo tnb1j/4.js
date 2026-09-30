@@ -9,7 +9,7 @@ This projection mode is designed to mimic the way the human eye sees. It is the 
 ## Code Example
 
 ```js
-const camera = new FOUR.PerspectiveCamera( 45, width / height, 1, 1000 );
+const camera = new THREE.PerspectiveCamera( 45, width / height, 1, 1000 );
 scene.add( camera );
 ```
 
@@ -244,4 +244,4 @@ Updates the camera's projection matrix. Must be called after any change of camer
 
 ## Source
 
-[src/cameras/PerspectiveCamera.js](../../src/cameras/PerspectiveCamera.js)
+[src/cameras/PerspectiveCamera.js](https://github.com/mrdoob/three.js/blob/master/src/cameras/PerspectiveCamera.js)

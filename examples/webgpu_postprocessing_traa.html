@@ -23,21 +23,21 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { mrt, output, pass, velocity } from '@tnb1j/4js/tsl';
-			import { traa } from '@tnb1j/4js/addons/tsl/display/TRAANode.js';
+			import * as THREE from 'three/webgpu';
+			import { mrt, output, pass, velocity } from 'three/tsl';
+			import { traa } from 'three/addons/tsl/display/TRAANode.js';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
 			let camera, scene, renderer, renderPipeline;
 			let index = 0;
@@ -46,40 +46,40 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGPURenderer();
+				renderer = new THREE.WebGPURenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
-				camera = new FOUR.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.z = 2.5;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				const geometry = new FOUR.BoxGeometry();
-				const material1 = new FOUR.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
+				const geometry = new THREE.BoxGeometry();
+				const material1 = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 
-				const mesh1 = new FOUR.Mesh( geometry, material1 );
+				const mesh1 = new THREE.Mesh( geometry, material1 );
 				mesh1.position.x = - 1;
 				scene.add( mesh1 );
 
-				const texture = new FOUR.TextureLoader().load( 'textures/brick_diffuse.jpg' );
-				texture.minFilter = FOUR.NearestFilter;
-				texture.magFilter = FOUR.NearestFilter;
+				const texture = new THREE.TextureLoader().load( 'textures/brick_diffuse.jpg' );
+				texture.minFilter = THREE.NearestFilter;
+				texture.magFilter = THREE.NearestFilter;
 				texture.generateMipmaps = false;
-				texture.colorSpace = FOUR.SRGBColorSpace;
+				texture.colorSpace = THREE.SRGBColorSpace;
 
-				const material2 = new FOUR.MeshBasicMaterial( { map: texture } );
+				const material2 = new THREE.MeshBasicMaterial( { map: texture } );
 
-				const mesh2 = new FOUR.Mesh( geometry, material2 );
+				const mesh2 = new THREE.Mesh( geometry, material2 );
 				mesh2.position.x = 1;
 				scene.add( mesh2 );
 
 				// postprocessing
 
-				renderPipeline = new FOUR.RenderPipeline( renderer );
+				renderPipeline = new THREE.RenderPipeline( renderer );
 				const scenePass = pass( scene, camera );
 				scenePass.setMRT( mrt( {
 					output: output,

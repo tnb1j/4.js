@@ -1,20 +1,20 @@
 import {
 	BufferGeometry,
 	Float32BufferAttribute
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * A special type of box geometry intended for {@link LineSegments}.
  *
  * ```js
- * const geometry = new FOUR.BoxLineGeometry();
- * const material = new FOUR.LineBasicMaterial( { color: 0x00ff00 } );
- * const lines = new FOUR.LineSegments( geometry, material );
+ * const geometry = new BoxLineGeometry();
+ * const material = new THREE.LineBasicMaterial( { color: 0x00ff00 } );
+ * const lines = new THREE.LineSegments( geometry, material );
  * scene.add( lines );
  * ```
  *
  * @augments BufferGeometry
- * @four_import import { BoxLineGeometry } from '@tnb1j/4js/addons/geometries/BoxLineGeometry.js';
+ * @three_import import { BoxLineGeometry } from 'three/addons/geometries/BoxLineGeometry.js';
  */
 class BoxLineGeometry extends BufferGeometry {
 

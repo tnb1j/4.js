@@ -60,4 +60,4 @@ Setups the lighting model.
 
 ## Source
 
-[src/materials/nodes/MeshSSSNodeMaterial.js](../../src/materials/nodes/MeshSSSNodeMaterial.js)
+[src/materials/nodes/MeshSSSNodeMaterial.js](https://github.com/mrdoob/three.js/blob/master/src/materials/nodes/MeshSSSNodeMaterial.js)

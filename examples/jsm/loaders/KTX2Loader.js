@@ -44,7 +44,7 @@ import {
 	UnsignedInt5999Type,
 	UnsignedInt101111Type,
 	UnsignedShortType
-} from '@tnb1j/4js';
+} from 'three';
 import { WorkerPool } from '../utils/WorkerPool.js';
 import {
 	read,
@@ -137,7 +137,7 @@ let _zstd;
  * ```
  *
  * @augments Loader
- * @four_import import { KTX2Loader } from '@tnb1j/4js/addons/loaders/KTX2Loader.js';
+ * @three_import import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
  */
 class KTX2Loader extends Loader {
 
@@ -162,7 +162,7 @@ class KTX2Loader extends Loader {
 
 			console.warn(
 
-				'FOUR.KTX2Loader: Please update to latest "basis_transcoder".'
+				'THREE.KTX2Loader: Please update to latest "basis_transcoder".'
 				+ ' "msc_basis_transcoder" is no longer supported in 4.js r125+.'
 
 			);
@@ -348,7 +348,7 @@ class KTX2Loader extends Loader {
 
 				console.warn(
 
-					'FOUR.KTX2Loader: Multiple active KTX2 loaders may cause performance issues.'
+					'THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues.'
 					+ ' Use a single KTX2Loader instance, or call .dispose() on old instances.'
 
 				);
@@ -376,7 +376,7 @@ class KTX2Loader extends Loader {
 
 		if ( this.workerConfig === null ) {
 
-			throw new Error( 'FOUR.KTX2Loader: Missing initialization with `.detectSupport( renderer )`.' );
+			throw new Error( 'THREE.KTX2Loader: Missing initialization with `.detectSupport( renderer )`.' );
 
 		}
 
@@ -408,7 +408,7 @@ class KTX2Loader extends Loader {
 
 		if ( this.workerConfig === null ) {
 
-			throw new Error( 'FOUR.KTX2Loader: Missing initialization with `.detectSupport( renderer )`.' );
+			throw new Error( 'THREE.KTX2Loader: Missing initialization with `.detectSupport( renderer )`.' );
 
 		}
 
@@ -634,7 +634,7 @@ KTX2Loader.BasisWorker = function () {
 
 			if ( BasisModule.KTX2File === undefined ) {
 
-				console.warn( 'FOUR.KTX2Loader: Please update Basis Universal transcoder.' );
+				console.warn( 'THREE.KTX2Loader: Please update Basis Universal transcoder.' );
 
 			}
 
@@ -656,7 +656,7 @@ KTX2Loader.BasisWorker = function () {
 		if ( ! ktx2File.isValid() ) {
 
 			cleanup();
-			throw new Error( 'FOUR.KTX2Loader:	Invalid or unsupported .ktx2 file' );
+			throw new Error( 'THREE.KTX2Loader:	Invalid or unsupported .ktx2 file' );
 
 		}
 
@@ -676,7 +676,7 @@ KTX2Loader.BasisWorker = function () {
 
 		} else {
 
-			throw new Error( 'FOUR.KTX2Loader: Unknown Basis encoding' );
+			throw new Error( 'THREE.KTX2Loader: Unknown Basis encoding' );
 
 		}
 
@@ -693,14 +693,14 @@ KTX2Loader.BasisWorker = function () {
 		if ( ! width || ! height || ! levelCount ) {
 
 			cleanup();
-			throw new Error( 'FOUR.KTX2Loader:	Invalid texture' );
+			throw new Error( 'THREE.KTX2Loader:	Invalid texture' );
 
 		}
 
 		if ( ! ktx2File.startTranscoding() ) {
 
 			cleanup();
-			throw new Error( 'FOUR.KTX2Loader: .startTranscoding failed' );
+			throw new Error( 'THREE.KTX2Loader: .startTranscoding failed' );
 
 		}
 
@@ -723,7 +723,7 @@ KTX2Loader.BasisWorker = function () {
 
 					if ( face === 0 && mip === 0 && layer === 0 && ( levelInfo.origWidth % 4 !== 0 || levelInfo.origHeight % 4 !== 0 ) ) {
 
-						console.warn( 'FOUR.KTX2Loader: ETC1S and UASTC textures should use multiple-of-four dimensions.' );
+						console.warn( 'THREE.KTX2Loader: ETC1S and UASTC textures should use multiple-of-four dimensions.' );
 
 					}
 
@@ -754,7 +754,7 @@ KTX2Loader.BasisWorker = function () {
 					if ( ! status ) {
 
 						cleanup();
-						throw new Error( 'FOUR.KTX2Loader: .transcodeImage failed.' );
+						throw new Error( 'THREE.KTX2Loader: .transcodeImage failed.' );
 
 					}
 
@@ -917,7 +917,7 @@ KTX2Loader.BasisWorker = function () {
 
 		}
 
-		throw new Error( 'FOUR.KTX2Loader: Failed to identify transcoding target.' );
+		throw new Error( 'THREE.KTX2Loader: Failed to identify transcoding target.' );
 
 	}
 
@@ -1100,14 +1100,14 @@ async function createRawTexture( container ) {
 
 	if ( FORMAT_MAP[ vkFormat ] === undefined ) {
 
-		throw new Error( 'FOUR.KTX2Loader: Unsupported vkFormat: ' + vkFormat );
+		throw new Error( 'THREE.KTX2Loader: Unsupported vkFormat: ' + vkFormat );
 
 	}
 
 	// TODO: Merge the TYPE_MAP warning into the thrown error above, after r190.
 	if ( TYPE_MAP[ vkFormat ] === undefined ) {
 
-		console.warn( 'FOUR.KTX2Loader: Missing ".type" for vkFormat: ' + vkFormat );
+		console.warn( 'THREE.KTX2Loader: Missing ".type" for vkFormat: ' + vkFormat );
 
 	}
 
@@ -1157,7 +1157,7 @@ async function createRawTexture( container ) {
 
 		} else {
 
-			throw new Error( 'FOUR.KTX2Loader: Unsupported supercompressionScheme.' );
+			throw new Error( 'THREE.KTX2Loader: Unsupported supercompressionScheme.' );
 
 		}
 
@@ -1227,7 +1227,7 @@ async function createRawTexture( container ) {
 
 	} else {
 
-		if ( container.pixelDepth > 0 ) throw new Error( 'FOUR.KTX2Loader: Unsupported pixelDepth.' );
+		if ( container.pixelDepth > 0 ) throw new Error( 'THREE.KTX2Loader: Unsupported pixelDepth.' );
 
 		texture = new CompressedTexture( mipmaps, container.pixelWidth, container.pixelHeight );
 		texture.minFilter = useMipmaps ? LinearMipmapLinearFilter : LinearFilter;
@@ -1266,7 +1266,7 @@ function parseColorSpace( container ) {
 
 	} else {
 
-		console.warn( `FOUR.KTX2Loader: Unsupported color primaries, "${ dfd.colorPrimaries }"` );
+		console.warn( `THREE.KTX2Loader: Unsupported color primaries, "${ dfd.colorPrimaries }"` );
 		return NoColorSpace;
 
 	}

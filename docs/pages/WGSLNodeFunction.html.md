@@ -32,4 +32,4 @@ Default is `this.name`.
 
 ## Source
 
-[src/renderers/webgpu/nodes/WGSLNodeFunction.js](../../src/renderers/webgpu/nodes/WGSLNodeFunction.js)
+[src/renderers/webgpu/nodes/WGSLNodeFunction.js](https://github.com/mrdoob/three.js/blob/master/src/renderers/webgpu/nodes/WGSLNodeFunction.js)

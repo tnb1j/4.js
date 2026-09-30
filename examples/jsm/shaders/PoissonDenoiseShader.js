@@ -2,11 +2,11 @@ import {
 	Matrix4,
 	Vector2,
 	Vector3,
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module PoissonDenoiseShader
- * @four_import import { PoissonDenoiseShader } from '@tnb1j/4js/addons/shaders/PoissonDenoiseShader.js';
+ * @three_import import { PoissonDenoiseShader } from 'three/addons/shaders/PoissonDenoiseShader.js';
  */
 
 /**

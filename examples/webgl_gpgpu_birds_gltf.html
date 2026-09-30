@@ -21,7 +21,7 @@
 
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl gpgpu birds + GLTF mesh<br/>
-			Flamingo by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="http://www.ro.me/" target="_blank" rel="noopener">rome</a><br/>
+			Flamingo by <a href="https://mirada.com/" target="_blank" rel="noopener">mirada</a> from <a href="https://rome.mrdoob.com/" target="_blank" rel="noopener">rome</a><br/>
 			Move mouse to disturb birds.
 		</div>
 
@@ -212,26 +212,26 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
-			import Stats from '@tnb1j/4js/addons/libs/stats.module.js';
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
-			import { GPUComputationRenderer } from '@tnb1j/4js/addons/misc/GPUComputationRenderer.js';
+			import * as THREE from 'three';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
 
 			/* TEXTURE WIDTH FOR SIMULATION */
 			const WIDTH = 64;
 			const BIRDS = WIDTH * WIDTH;
 
 			/* BAKE ANIMATION INTO TEXTURE and CREATE GEOMETRY FROM BASE MODEL */
-			const BirdGeometry = new FOUR.BufferGeometry();
+			const BirdGeometry = new THREE.BufferGeometry();
 			let textureAnimation, durationAnimation, birdMesh, materialShader, indicesPerBird;
 
 			function nextPowerOf2( n ) {
@@ -272,17 +272,17 @@
 							d0 = morphAttributes[ curMorph ].array[ i * 3 ];
 							d1 = morphAttributes[ nextMorph ].array[ i * 3 ];
 
-							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 ] = FOUR.MathUtils.lerp( d0, d1, lerpAmount );
+							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 ] = THREE.MathUtils.lerp( d0, d1, lerpAmount );
 
 							d0 = morphAttributes[ curMorph ].array[ i * 3 + 1 ];
 							d1 = morphAttributes[ nextMorph ].array[ i * 3 + 1 ];
 
-							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 + 1 ] = FOUR.MathUtils.lerp( d0, d1, lerpAmount );
+							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 + 1 ] = THREE.MathUtils.lerp( d0, d1, lerpAmount );
 
 							d0 = morphAttributes[ curMorph ].array[ i * 3 + 2 ];
 							d1 = morphAttributes[ nextMorph ].array[ i * 3 + 2 ];
 
-							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 + 2 ] = FOUR.MathUtils.lerp( d0, d1, lerpAmount );
+							if ( d0 !== undefined && d1 !== undefined ) tData[ offset + i * 4 + 2 ] = THREE.MathUtils.lerp( d0, d1, lerpAmount );
 
 							tData[ offset + i * 4 + 3 ] = 1;
 
@@ -292,7 +292,7 @@
 
 				}
 
-				textureAnimation = new FOUR.DataTexture( tData, tWidth, tHeight, FOUR.RGBAFormat, FOUR.FloatType );
+				textureAnimation = new THREE.DataTexture( tData, tWidth, tHeight, THREE.RGBAFormat, THREE.FloatType );
 				textureAnimation.needsUpdate = true;
 
 				const vertices = [], color = [], reference = [], seeds = [], indices = [];
@@ -326,11 +326,11 @@
 
 				}
 
-				BirdGeometry.setAttribute( 'position', new FOUR.BufferAttribute( new Float32Array( vertices ), 3 ) );
-				BirdGeometry.setAttribute( 'birdColor', new FOUR.BufferAttribute( new Float32Array( color ), 3 ) );
-				BirdGeometry.setAttribute( 'color', new FOUR.BufferAttribute( new Float32Array( color ), 3 ) );
-				BirdGeometry.setAttribute( 'reference', new FOUR.BufferAttribute( new Float32Array( reference ), 4 ) );
-				BirdGeometry.setAttribute( 'seeds', new FOUR.BufferAttribute( new Float32Array( seeds ), 4 ) );
+				BirdGeometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( vertices ), 3 ) );
+				BirdGeometry.setAttribute( 'birdColor', new THREE.BufferAttribute( new Float32Array( color ), 3 ) );
+				BirdGeometry.setAttribute( 'color', new THREE.BufferAttribute( new Float32Array( color ), 3 ) );
+				BirdGeometry.setAttribute( 'reference', new THREE.BufferAttribute( new Float32Array( reference ), 4 ) );
+				BirdGeometry.setAttribute( 'seeds', new THREE.BufferAttribute( new Float32Array( seeds ), 4 ) );
 
 				BirdGeometry.setIndex( indices );
 
@@ -360,28 +360,28 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
 				camera.position.z = 350;
 
-				scene = new FOUR.Scene();
-				scene.background = new FOUR.Color( colors[ selectModel ] );
-				scene.fog = new FOUR.Fog( colors[ selectModel ], 100, 1000 );
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( colors[ selectModel ] );
+				scene.fog = new THREE.Fog( colors[ selectModel ], 100, 1000 );
 
 				// LIGHTS
 
-				const hemiLight = new FOUR.HemisphereLight( colors[ selectModel ], 0xffffff, 4.5 );
-				hemiLight.color.setHSL( 0.6, 1, 0.6, FOUR.SRGBColorSpace );
-				hemiLight.groundColor.setHSL( 0.095, 1, 0.75, FOUR.SRGBColorSpace );
+				const hemiLight = new THREE.HemisphereLight( colors[ selectModel ], 0xffffff, 4.5 );
+				hemiLight.color.setHSL( 0.6, 1, 0.6, THREE.SRGBColorSpace );
+				hemiLight.groundColor.setHSL( 0.095, 1, 0.75, THREE.SRGBColorSpace );
 				hemiLight.position.set( 0, 50, 0 );
 				scene.add( hemiLight );
 
-				const dirLight = new FOUR.DirectionalLight( 0x00CED1, 2.0 );
-				dirLight.color.setHSL( 0.1, 1, 0.95, FOUR.SRGBColorSpace );
+				const dirLight = new THREE.DirectionalLight( 0x00CED1, 2.0 );
+				dirLight.color.setHSL( 0.1, 1, 0.95, THREE.SRGBColorSpace );
 				dirLight.position.set( - 1, 1.75, 1 );
 				dirLight.position.multiplyScalar( 30 );
 				scene.add( dirLight );
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
@@ -461,13 +461,13 @@
 				velocityUniforms[ 'alignmentDistance' ] = { value: 1.0 };
 				velocityUniforms[ 'cohesionDistance' ] = { value: 1.0 };
 				velocityUniforms[ 'freedomFactor' ] = { value: 1.0 };
-				velocityUniforms[ 'predator' ] = { value: new FOUR.Vector3() };
+				velocityUniforms[ 'predator' ] = { value: new THREE.Vector3() };
 				velocityVariable.material.defines.BOUNDS = BOUNDS.toFixed( 2 );
 
-				velocityVariable.wrapS = FOUR.RepeatWrapping;
-				velocityVariable.wrapT = FOUR.RepeatWrapping;
-				positionVariable.wrapS = FOUR.RepeatWrapping;
-				positionVariable.wrapT = FOUR.RepeatWrapping;
+				velocityVariable.wrapS = THREE.RepeatWrapping;
+				velocityVariable.wrapT = THREE.RepeatWrapping;
+				positionVariable.wrapS = THREE.RepeatWrapping;
+				positionVariable.wrapT = THREE.RepeatWrapping;
 
 				const error = gpuCompute.init();
 
@@ -483,7 +483,7 @@
 
 				const geometry = BirdGeometry;
 
-				const m = new FOUR.MeshStandardMaterial( {
+				const m = new THREE.MeshStandardMaterial( {
 					vertexColors: true,
 					flatShading: true,
 					roughness: 1,
@@ -553,7 +553,7 @@
 
 				};
 
-				birdMesh = new FOUR.Mesh( geometry, m );
+				birdMesh = new THREE.Mesh( geometry, m );
 				birdMesh.rotation.y = Math.PI / 2;
 
 				birdMesh.castShadow = true;

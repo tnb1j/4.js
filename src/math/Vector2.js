@@ -17,10 +17,10 @@ import { clamp } from './MathUtils.js';
  * Iterating through a vector instance will yield its components `(x, y)` in
  * the corresponding order.
  * ```js
- * const a = new FOUR.Vector2( 0, 1 );
+ * const a = new THREE.Vector2( 0, 1 );
  *
  * //no arguments; will be initialised to (0, 0)
- * const b = new FOUR.Vector2( );
+ * const b = new THREE.Vector2( );
  *
  * const d = a.distanceTo( b );
  * ```
@@ -170,7 +170,7 @@ class Vector2 {
 
 			case 0: this.x = value; break;
 			case 1: this.y = value; break;
-			default: throw new Error( 'FOUR.Vector2: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector2: index is out of range: ' + index );
 
 		}
 
@@ -190,7 +190,7 @@ class Vector2 {
 
 			case 0: return this.x;
 			case 1: return this.y;
-			default: throw new Error( 'FOUR.Vector2: index is out of range: ' + index );
+			default: throw new Error( 'THREE.Vector2: index is out of range: ' + index );
 
 		}
 

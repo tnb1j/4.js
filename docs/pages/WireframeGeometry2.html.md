@@ -9,16 +9,16 @@ This is used in [Wireframe](Wireframe.html) to describe the shape.
 ## Code Example
 
 ```js
-const geometry = new FOUR.IcosahedronGeometry();
+const geometry = new THREE.IcosahedronGeometry();
 const wireframeGeometry = new WireframeGeometry2( geo );
 ```
 
 ## Import
 
-WireframeGeometry2 is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+WireframeGeometry2 is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { WireframeGeometry2 } from '@tnb1j/4js/addons/lines/WireframeGeometry2.js';
+import { WireframeGeometry2 } from 'three/addons/lines/WireframeGeometry2.js';
 ```
 
 ## Constructor
@@ -41,4 +41,4 @@ Default is `true`.
 
 ## Source
 
-[examples/jsm/lines/WireframeGeometry2.js](../../examples/jsm/lines/WireframeGeometry2.js)
+[examples/jsm/lines/WireframeGeometry2.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/lines/WireframeGeometry2.js)

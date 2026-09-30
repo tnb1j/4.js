@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ArrowHelper - 4.js Docs</title>
+	<title>ArrowHelper - Three.js Docs</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src="../scripts/highlight.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="../styles/highlight-four.css">
+	<link type="text/css" rel="stylesheet" href="../styles/highlight-three.css">
 	<link type="text/css" rel="stylesheet" href="../styles/page.css">
 </head>
 <body>
@@ -15,13 +15,13 @@
 			<header>
 				<div class="class-description"><p>An 3D arrow object for visualizing directions.</p></div>
 				<h2>Code Example</h2>
-				<div translate="no"><pre><code class="language-js">const dir = new FOUR.Vector3( 1, 2, 0 );
+				<div translate="no"><pre><code class="language-js">const dir = new THREE.Vector3( 1, 2, 0 );
 //normalize the direction vector (convert to vector of length 1)
 dir.normalize();
-const origin = new FOUR.Vector3( 0, 0, 0 );
+const origin = new THREE.Vector3( 0, 0, 0 );
 const length = 1;
 const hex = 0xffff00;
-const arrowHelper = new FOUR.ArrowHelper( dir, origin, length, hex );
+const arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
 scene.add( arrowHelper );
 </code></pre></div>
 			</header>
@@ -113,6 +113,9 @@ scene.add( arrowHelper );
 							<p>Frees the GPU-related resources allocated by this instance. Call this
 method whenever this instance is no longer used in your app.</p>
 						</div>
+						<dl class="details">
+							<dt class="tag-overrides"><strong>Overrides:</strong> <a href="Object3D.html#dispose">Object3D#dispose</a></dt>
+						</dl>
 					</div>
 					<h3 class="name name-method" id="setColor" translate="no">.<a href="#setColor">setColor</a><span class="signature">( color : <span class="param-type">number | <a href="Color.html">Color</a> | string</span> )</span> </h3>
 					<div class="method">
@@ -188,7 +191,7 @@ method whenever this instance is no longer used in your app.</p>
 					</div>
 				<h2 class="subsection-title">Source</h2>
 				<p>
-					<a href="../../src/helpers/ArrowHelper.js" translate="no">src/helpers/ArrowHelper.js</a>
+					<a href="https://github.com/mrdoob/three.js/blob/master/src/helpers/ArrowHelper.js" translate="no" target="_blank" rel="noopener">src/helpers/ArrowHelper.js</a>
 				</p>
 			</article>
 		</section>

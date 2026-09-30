@@ -9,7 +9,7 @@ This light can cast shadows - see the [PointLightShadow](PointLightShadow.html) 
 ## Code Example
 
 ```js
-const light = new FOUR.PointLight( 0xff0000, 1, 100 );
+const light = new THREE.PointLight( 0xff0000, 1, 100 );
 light.position.set( 50, 50, 50 );
 scene.add( light );
 ```
@@ -74,4 +74,4 @@ This property holds the light's shadow configuration.
 
 ## Source
 
-[src/lights/PointLight.js](../../src/lights/PointLight.js)
+[src/lights/PointLight.js](https://github.com/mrdoob/three.js/blob/master/src/lights/PointLight.js)

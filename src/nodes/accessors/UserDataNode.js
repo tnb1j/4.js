@@ -6,7 +6,7 @@ import ReferenceNode from './ReferenceNode.js';
  * ```js
  * sprite.userData.rotation = 1; // stores individual rotation per sprite
  *
- * const material = new FOUR.SpriteNodeMaterial();
+ * const material = new THREE.SpriteNodeMaterial();
  * material.rotationNode = userData( 'rotation', 'float' );
  * ```
  * Since `UserDataNode` is extended from {@link ReferenceNode}, the node value

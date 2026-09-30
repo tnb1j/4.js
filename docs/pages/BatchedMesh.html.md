@@ -7,9 +7,9 @@ A special version of a mesh with multi draw batch rendering support. Use this cl
 ## Code Example
 
 ```js
-const box = new FOUR.BoxGeometry( 1, 1, 1 );
-const sphere = new FOUR.SphereGeometry( 1, 12, 12 );
-const material = new FOUR.MeshBasicMaterial( { color: 0x00ff00 } );
+const box = new THREE.BoxGeometry( 1, 1, 1 );
+const sphere = new THREE.SphereGeometry( 1, 12, 12 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 // initialize and add geometries into the batched mesh
 const batchedMesh = new BatchedMesh( 10, 5000, 10000, material );
 const boxGeometryId = batchedMesh.addGeometry( box );
@@ -170,6 +170,8 @@ The ID of the instance to remove from the batch.
 ### .dispose()
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+
+**Overrides:** [Mesh#dispose](Mesh.html#dispose)
 
 ### .getBoundingBoxAt( geometryId : number, target : Box3 ) : Box3
 
@@ -385,4 +387,4 @@ The instance to validate.
 
 ## Source
 
-[src/objects/BatchedMesh.js](../../src/objects/BatchedMesh.js)
+[src/objects/BatchedMesh.js](https://github.com/mrdoob/three.js/blob/master/src/objects/BatchedMesh.js)

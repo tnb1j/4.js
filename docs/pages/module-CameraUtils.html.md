@@ -2,10 +2,10 @@
 
 ## Import
 
-CameraUtils is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+CameraUtils is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import * as CameraUtils from '@tnb1j/4js/addons/utils/CameraUtils.js';
+import * as CameraUtils from 'three/addons/utils/CameraUtils.js';
 ```
 
 ## Methods
@@ -38,4 +38,4 @@ Default is `false`.
 
 ## Source
 
-[examples/jsm/utils/CameraUtils.js](../../examples/jsm/utils/CameraUtils.js)
+[examples/jsm/utils/CameraUtils.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/utils/CameraUtils.js)

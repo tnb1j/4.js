@@ -28,23 +28,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
-			import { texture, uniform, vec3 } from '@tnb1j/4js/tsl';
+			import * as THREE from 'three/webgpu';
+			import { texture, uniform, vec3 } from 'three/tsl';
 
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { FBXLoader } from '@tnb1j/4js/addons/loaders/FBXLoader.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -57,34 +57,34 @@
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 5000 );
 				camera.position.set( 0.0, 300, 400 * 4 );
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				// Lights
 
-				scene.add( new FOUR.AmbientLight( 0xc1c1c1 ) );
+				scene.add( new THREE.AmbientLight( 0xc1c1c1 ) );
 
-				const directionalLight = new FOUR.DirectionalLight( 0xffffff, 0.03 );
+				const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.03 );
 				directionalLight.position.set( 0.0, 0.5, 0.5 ).normalize();
 				scene.add( directionalLight );
 
-				const pointLight1 = new FOUR.Mesh( new FOUR.SphereGeometry( 4, 8, 8 ), new FOUR.MeshBasicMaterial( { color: 0xc1c1c1 } ) );
-				pointLight1.add( new FOUR.PointLight( 0xc1c1c1, 4.0, 300, 0 ) );
+				const pointLight1 = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xc1c1c1 } ) );
+				pointLight1.add( new THREE.PointLight( 0xc1c1c1, 4.0, 300, 0 ) );
 				scene.add( pointLight1 );
 				pointLight1.position.x = 0;
 				pointLight1.position.y = - 50;
 				pointLight1.position.z = 350;
 
-				const pointLight2 = new FOUR.Mesh( new FOUR.SphereGeometry( 4, 8, 8 ), new FOUR.MeshBasicMaterial( { color: 0xc1c100 } ) );
-				pointLight2.add( new FOUR.PointLight( 0xc1c100, 0.75, 500, 0 ) );
+				const pointLight2 = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xc1c100 } ) );
+				pointLight2.add( new THREE.PointLight( 0xc1c100, 0.75, 500, 0 ) );
 				scene.add( pointLight2 );
 				pointLight2.position.x = - 100;
 				pointLight2.position.y = 20;
 				pointLight2.position.z = - 260;
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( render );
@@ -109,15 +109,15 @@
 
 			function initMaterial() {
 
-				const loader = new FOUR.TextureLoader();
+				const loader = new THREE.TextureLoader();
 				const imgTexture = loader.load( 'models/fbx/white.jpg' );
-				imgTexture.colorSpace = FOUR.SRGBColorSpace;
+				imgTexture.colorSpace = THREE.SRGBColorSpace;
 
 				const thicknessTexture = loader.load( 'models/fbx/bunny_thickness.jpg' );
-				imgTexture.wrapS = imgTexture.wrapT = FOUR.RepeatWrapping;
+				imgTexture.wrapS = imgTexture.wrapT = THREE.RepeatWrapping;
 
-				const material = new FOUR.MeshSSSNodeMaterial();
-				material.color = new FOUR.Color( 1.0, 0.2, 0.2 );
+				const material = new THREE.MeshSSSNodeMaterial();
+				material.color = new THREE.Color( 1.0, 0.2, 0.2 );
 				material.roughness = 0.3;
 				material.thicknessColorNode = texture( thicknessTexture ).mul( vec3( 0.5, 0.3, 0.0 ) );
 				material.thicknessDistortionNode = uniform( 0.1 );

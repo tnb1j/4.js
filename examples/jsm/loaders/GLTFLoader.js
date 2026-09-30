@@ -64,7 +64,7 @@ import {
 	VectorKeyframeTrack,
 	SRGBColorSpace,
 	InstancedBufferAttribute
-} from '@tnb1j/4js';
+} from 'three';
 import { toTrianglesDrawMode } from '../utils/BufferGeometryUtils.js';
 import { clone } from '../utils/SkeletonUtils.js';
 
@@ -104,7 +104,8 @@ import { clone } from '../utils/SkeletonUtils.js';
  * - EXT_texture_avif
  * - EXT_texture_webp
  *
- * The following glTF 2.0 extension is supported by an external user plugin:
+ * The following glTF 2.0 extensions are supported by separately registered plugins:
+ * - KHR_gaussian_splatting
  * - [KHR_materials_variants](https://github.com/takahirox/three-gltf-extensions)
  * - [MSFT_texture_dds](https://github.com/takahirox/three-gltf-extensions)
  * - [KHR_animation_pointer](https://github.com/needle-tools/three-animation-pointer)
@@ -123,7 +124,7 @@ import { clone } from '../utils/SkeletonUtils.js';
  * ```
  *
  * @augments Loader
- * @four_import import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+ * @three_import import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
  */
 class GLTFLoader extends Loader {
 
@@ -470,7 +471,7 @@ class GLTFLoader extends Loader {
 
 		if ( json.asset === undefined || json.asset.version[ 0 ] < 2 ) {
 
-			if ( onError ) onError( new Error( 'FOUR.GLTFLoader: Unsupported asset. glTF versions >=2.0 are supported.' ) );
+			if ( onError ) onError( new Error( 'THREE.GLTFLoader: Unsupported asset. glTF versions >=2.0 are supported.' ) );
 			return;
 
 		}
@@ -492,7 +493,7 @@ class GLTFLoader extends Loader {
 
 			const plugin = this.pluginCallbacks[ i ]( parser );
 
-			if ( ! plugin.name ) console.error( 'FOUR.GLTFLoader: Invalid plugin found: missing name' );
+			if ( ! plugin.name ) console.error( 'THREE.GLTFLoader: Invalid plugin found: missing name' );
 
 			plugins[ plugin.name ] = plugin;
 
@@ -533,7 +534,7 @@ class GLTFLoader extends Loader {
 
 						if ( extensionsRequired.indexOf( extensionName ) >= 0 && plugins[ extensionName ] === undefined ) {
 
-							console.warn( 'FOUR.GLTFLoader: Unknown extension "' + extensionName + '".' );
+							console.warn( 'THREE.GLTFLoader: Unknown extension "' + extensionName + '".' );
 
 						}
 
@@ -738,7 +739,7 @@ class GLTFLightsExtension {
 				break;
 
 			default:
-				throw new Error( 'FOUR.GLTFLoader: Unexpected light type: ' + lightDef.type );
+				throw new Error( 'THREE.GLTFLoader: Unexpected light type: ' + lightDef.type );
 
 		}
 
@@ -1475,7 +1476,7 @@ class GLTFTextureBasisUExtension {
 
 			if ( json.extensionsRequired && json.extensionsRequired.indexOf( this.name ) >= 0 ) {
 
-				throw new Error( 'FOUR.GLTFLoader: setKTX2Loader must be called before loading KTX2 textures' );
+				throw new Error( 'THREE.GLTFLoader: setKTX2Loader must be called before loading KTX2 textures' );
 
 			} else {
 
@@ -1618,7 +1619,7 @@ class GLTFMeshoptCompression {
 
 				if ( json.extensionsRequired && json.extensionsRequired.indexOf( this.name ) >= 0 ) {
 
-					throw new Error( 'FOUR.GLTFLoader: setMeshoptDecoder must be called before loading compressed files' );
+					throw new Error( 'THREE.GLTFLoader: setMeshoptDecoder must be called before loading compressed files' );
 
 				} else {
 
@@ -1786,6 +1787,9 @@ class GLTFMeshGpuInstancing {
 				}
 
 				// Add instance attributes to the geometry, excluding TRS.
+
+				let instanceGeometry = null;
+
 				for ( const attributeName in attributes ) {
 
 					if ( attributeName === '_COLOR_0' ) {
@@ -1797,7 +1801,36 @@ class GLTFMeshGpuInstancing {
 						 attributeName !== 'ROTATION' &&
 						 attributeName !== 'SCALE' ) {
 
-						mesh.geometry.setAttribute( attributeName, attributes[ attributeName ] );
+						if ( instanceGeometry === null ) {
+
+							// do a shallow clone of the goemetry so per-instance data are not shared
+
+							const source = instancedMesh.geometry;
+							instanceGeometry = new BufferGeometry();
+							instanceGeometry.name = source.name;
+
+							for ( const name in source.attributes ) instanceGeometry.setAttribute( name, source.attributes[ name ] );
+							for ( const name in source.morphAttributes ) instanceGeometry.morphAttributes[ name ] = source.morphAttributes[ name ];
+							if ( source.index !== null ) instanceGeometry.setIndex( source.index );
+
+							instanceGeometry.morphTargetsRelative = source.morphTargetsRelative;
+
+							for ( const group of source.groups ) instanceGeometry.addGroup( group.start, group.count, group.materialIndex );
+
+							if ( source.boundingBox !== null ) instanceGeometry.boundingBox = source.boundingBox.clone();
+							if ( source.boundingSphere !== null ) instanceGeometry.boundingSphere = source.boundingSphere.clone();
+
+							instanceGeometry.drawRange.start = source.drawRange.start;
+							instanceGeometry.drawRange.count = source.drawRange.count;
+
+							instanceGeometry.userData = Object.assign( {}, source.userData );
+
+							instancedMesh.geometry = instanceGeometry;
+
+						}
+
+						const attr = attributes[ attributeName ];
+						instanceGeometry.setAttribute( attributeName, new InstancedBufferAttribute( attr.array, attr.itemSize, attr.normalized ) );
 
 					}
 
@@ -1854,11 +1887,11 @@ class GLTFBinaryExtension {
 
 		if ( this.header.magic !== BINARY_EXTENSION_HEADER_MAGIC ) {
 
-			throw new Error( 'FOUR.GLTFLoader: Unsupported glTF-Binary header.' );
+			throw new Error( 'THREE.GLTFLoader: Unsupported glTF-Binary header.' );
 
 		} else if ( this.header.version < 2.0 ) {
 
-			throw new Error( 'FOUR.GLTFLoader: Legacy binary file detected.' );
+			throw new Error( 'THREE.GLTFLoader: Legacy binary file detected.' );
 
 		}
 
@@ -1894,7 +1927,7 @@ class GLTFBinaryExtension {
 
 		if ( this.content === null ) {
 
-			throw new Error( 'FOUR.GLTFLoader: JSON content not found.' );
+			throw new Error( 'THREE.GLTFLoader: JSON content not found.' );
 
 		}
 
@@ -1915,7 +1948,7 @@ class GLTFDracoMeshCompressionExtension {
 
 		if ( ! dracoLoader ) {
 
-			throw new Error( 'FOUR.GLTFLoader: No DRACOLoader instance provided.' );
+			throw new Error( 'THREE.GLTFLoader: No DRACOLoader instance provided.' );
 
 		}
 
@@ -2037,6 +2070,27 @@ class GLTFTextureTransformExtension {
 		if ( transform.scale !== undefined ) {
 
 			texture.repeat.fromArray( transform.scale );
+
+		}
+
+		if ( transform.rotation !== undefined ) {
+
+			// glTF's KHR_texture_transform order differs from 4.js:
+			// glTF defines the UV transform as T * R * S
+			// 4.js defines the UV transform as T * S * R
+			//
+			// To fix this, we need to override the matrix with the value computed per glTF spec
+			// We still set the other fields so that you can inspect/export the resulting object.
+
+			const c = Math.cos( texture.rotation );
+			const s = Math.sin( texture.rotation );
+
+			texture.matrix.set(
+				texture.repeat.x * c, texture.repeat.y * s, texture.offset.x,
+				- texture.repeat.x * s, texture.repeat.y * c, texture.offset.y,
+				0, 0, 1
+			);
+			texture.matrixAutoUpdate = false;
 
 		}
 
@@ -2313,7 +2367,7 @@ function assignExtrasToUserData( object, gltfDef ) {
 
 		} else {
 
-			console.warn( 'FOUR.GLTFLoader: Ignoring primitive type .extras, ' + gltfDef.extras );
+			console.warn( 'THREE.GLTFLoader: Ignoring primitive type .extras, ' + gltfDef.extras );
 
 		}
 
@@ -2448,7 +2502,7 @@ function updateMorphTargets( mesh, meshDef ) {
 
 		} else {
 
-			console.warn( 'FOUR.GLTFLoader: Invalid extras.targetNames length. Ignoring names.' );
+			console.warn( 'THREE.GLTFLoader: Invalid extras.targetNames length. Ignoring names.' );
 
 		}
 
@@ -2524,7 +2578,7 @@ function getNormalizedComponentScale( constructor ) {
 			return 1 / 65535;
 
 		default:
-			throw new Error( 'FOUR.GLTFLoader: Unsupported normalized accessor component type.' );
+			throw new Error( 'THREE.GLTFLoader: Unsupported normalized accessor component type.' );
 
 	}
 
@@ -3015,7 +3069,7 @@ class GLTFParser {
 
 		if ( bufferDef.type && bufferDef.type !== 'arraybuffer' ) {
 
-			throw new Error( 'FOUR.GLTFLoader: ' + bufferDef.type + ' buffer type is not supported.' );
+			throw new Error( 'THREE.GLTFLoader: ' + bufferDef.type + ' buffer type is not supported.' );
 
 		}
 
@@ -3032,7 +3086,7 @@ class GLTFParser {
 
 			loader.load( LoaderUtils.resolveURL( bufferDef.uri, options.path ), resolve, undefined, function () {
 
-				reject( new Error( 'FOUR.GLTFLoader: Failed to load buffer "' + bufferDef.uri + '".' ) );
+				reject( new Error( 'THREE.GLTFLoader: Failed to load buffer "' + bufferDef.uri + '".' ) );
 
 			} );
 
@@ -3188,7 +3242,7 @@ class GLTFParser {
 					if ( itemSize >= 2 ) bufferAttribute.setY( index, sparseValues[ i * itemSize + 1 ] );
 					if ( itemSize >= 3 ) bufferAttribute.setZ( index, sparseValues[ i * itemSize + 2 ] );
 					if ( itemSize >= 4 ) bufferAttribute.setW( index, sparseValues[ i * itemSize + 3 ] );
-					if ( itemSize >= 5 ) throw new Error( 'FOUR.GLTFLoader: Unsupported itemSize in sparse BufferAttribute.' );
+					if ( itemSize >= 5 ) throw new Error( 'THREE.GLTFLoader: Unsupported itemSize in sparse BufferAttribute.' );
 
 				}
 
@@ -3318,7 +3372,7 @@ class GLTFParser {
 
 		} else if ( sourceDef.uri === undefined ) {
 
-			throw new Error( 'FOUR.GLTFLoader: Image ' + sourceIndex + ' is missing URI and bufferView' );
+			throw new Error( 'THREE.GLTFLoader: Image ' + sourceIndex + ' is missing URI and bufferView' );
 
 		}
 
@@ -3363,7 +3417,7 @@ class GLTFParser {
 
 		} ).catch( function ( error ) {
 
-			console.error( 'FOUR.GLTFLoader: Couldn\'t load texture', sourceURI );
+			console.error( 'THREE.GLTFLoader: Couldn\'t load texture', sourceURI );
 			throw error;
 
 		} );
@@ -3776,6 +3830,18 @@ class GLTFParser {
 
 				}
 
+				// Convert strip/fan primitives to triangles
+
+				if ( primitive.mode === WEBGL_CONSTANTS.TRIANGLE_STRIP ) {
+
+					geometryPromise = geometryPromise.then( geometry => toTrianglesDrawMode( geometry, TriangleStripDrawMode ) );
+
+				} else if ( primitive.mode === WEBGL_CONSTANTS.TRIANGLE_FAN ) {
+
+					geometryPromise = geometryPromise.then( geometry => toTrianglesDrawMode( geometry, TriangleFanDrawMode ) );
+
+				}
+
 				// Cache this geometry
 				cache[ cacheKey ] = { primitive: primitive, promise: geometryPromise };
 
@@ -3819,7 +3885,7 @@ class GLTFParser {
 
 		pending.push( parser.loadGeometries( primitives ) );
 
-		return Promise.all( pending ).then( function ( results ) {
+		return Promise.all( pending ).then( async function ( results ) {
 
 			const materials = results.slice( 0, results.length - 1 );
 			const geometries = results[ results.length - 1 ];
@@ -3842,8 +3908,17 @@ class GLTFParser {
 						primitive.mode === WEBGL_CONSTANTS.TRIANGLE_FAN ||
 						primitive.mode === undefined ) {
 
+					const needsSkinning = meshDef.isSkinnedMesh === true;
+					const hasSkinningAttributes = geometry.hasAttribute( 'skinIndex' ) && geometry.hasAttribute( 'skinWeight' );
+
+					if ( needsSkinning && hasSkinningAttributes === false ) {
+
+						console.warn( 'THREE.GLTFLoader: Missing skinIndex or skinWeight attributes. Skinning disabled.' );
+
+					}
+
 					// .isSkinnedMesh isn't in glTF spec. See ._markDefs()
-					mesh = meshDef.isSkinnedMesh === true
+					mesh = ( needsSkinning && hasSkinningAttributes )
 						? new SkinnedMesh( geometry, material )
 						: new Mesh( geometry, material );
 
@@ -3851,16 +3926,6 @@ class GLTFParser {
 
 						// normalize skin weights to fix malformed assets (see #15319)
 						mesh.normalizeSkinWeights();
-
-					}
-
-					if ( primitive.mode === WEBGL_CONSTANTS.TRIANGLE_STRIP ) {
-
-						mesh.geometry = toTrianglesDrawMode( mesh.geometry, TriangleStripDrawMode );
-
-					} else if ( primitive.mode === WEBGL_CONSTANTS.TRIANGLE_FAN ) {
-
-						mesh.geometry = toTrianglesDrawMode( mesh.geometry, TriangleFanDrawMode );
 
 					}
 
@@ -3882,7 +3947,7 @@ class GLTFParser {
 
 				} else {
 
-					throw new Error( 'FOUR.GLTFLoader: Primitive mode unsupported: ' + primitive.mode );
+					throw new Error( 'THREE.GLTFLoader: Primitive mode unsupported: ' + primitive.mode );
 
 				}
 
@@ -3954,7 +4019,7 @@ class GLTFParser {
 
 		if ( ! params ) {
 
-			console.warn( 'FOUR.GLTFLoader: Missing camera parameters.' );
+			console.warn( 'THREE.GLTFLoader: Missing camera parameters.' );
 			return;
 
 		}
@@ -4037,7 +4102,7 @@ class GLTFParser {
 
 				} else {
 
-					console.warn( 'FOUR.GLTFLoader: Joint "%s" could not be found.', skinDef.joints[ i ] );
+					console.warn( 'THREE.GLTFLoader: Joint "%s" could not be found.', skinDef.joints[ i ] );
 
 				}
 
@@ -4698,7 +4763,7 @@ function computeBounds( geometry, primitiveDef, parser ) {
 
 		} else {
 
-			console.warn( 'FOUR.GLTFLoader: Missing min/max properties for accessor POSITION.' );
+			console.warn( 'THREE.GLTFLoader: Missing min/max properties for accessor POSITION.' );
 
 			return;
 
@@ -4752,7 +4817,7 @@ function computeBounds( geometry, primitiveDef, parser ) {
 
 				} else {
 
-					console.warn( 'FOUR.GLTFLoader: Missing min/max properties for accessor POSITION.' );
+					console.warn( 'THREE.GLTFLoader: Missing min/max properties for accessor POSITION.' );
 
 				}
 
@@ -4826,7 +4891,7 @@ function addPrimitiveAttributes( geometry, primitiveDef, parser ) {
 
 	if ( ColorManagement.workingColorSpace !== LinearSRGBColorSpace && 'COLOR_0' in attributes ) {
 
-		console.warn( `FOUR.GLTFLoader: Converting vertex colors from "srgb-linear" to "${ColorManagement.workingColorSpace}" not supported.` );
+		console.warn( `THREE.GLTFLoader: Converting vertex colors from "srgb-linear" to "${ColorManagement.workingColorSpace}" not supported.` );
 
 	}
 

@@ -4,7 +4,7 @@ import {
 	ShaderMaterial,
 	UniformsLib,
 	UniformsUtils
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * An outline effect for toon shaders.
@@ -22,7 +22,7 @@ import {
  * }
  * ```
  *
- * @four_import import { OutlineEffect } from '@tnb1j/4js/addons/effects/OutlineEffect.js';
+ * @three_import import { OutlineEffect } from 'three/addons/effects/OutlineEffect.js';
  */
 class OutlineEffect {
 

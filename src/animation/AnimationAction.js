@@ -109,7 +109,7 @@ class AnimationAction {
 		 * Can be set via {@link AnimationAction#setLoop}.
 		 *
 		 * Setting this number has no effect if {@link AnimationAction#loop} is set to
-		 * `FOUR:LoopOnce`.
+		 * `THREE:LoopOnce`.
 		 *
 		 * @type {number}
 		 * @default Infinity

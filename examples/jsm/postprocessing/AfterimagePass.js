@@ -5,7 +5,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 import { AfterimageShader } from '../shaders/AfterimageShader.js';
@@ -19,7 +19,7 @@ import { AfterimageShader } from '../shaders/AfterimageShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { AfterimagePass } from '@tnb1j/4js/addons/postprocessing/AfterimagePass.js';
+ * @three_import import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';
  */
 class AfterimagePass extends Pass {
 
@@ -76,12 +76,14 @@ class AfterimagePass extends Pass {
 
 		this._textureComp = new WebGLRenderTarget( window.innerWidth, window.innerHeight, {
 			magFilter: NearestFilter,
-			type: HalfFloatType
+			type: HalfFloatType,
+			depthBuffer: false
 		} );
 
 		this._textureOld = new WebGLRenderTarget( window.innerWidth, window.innerHeight, {
 			magFilter: NearestFilter,
-			type: HalfFloatType
+			type: HalfFloatType,
+			depthBuffer: false
 		} );
 
 		this._compFsQuad = new FullScreenQuad( this.compFsMaterial );

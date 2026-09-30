@@ -7,13 +7,13 @@ An 3D arrow object for visualizing directions.
 ## Code Example
 
 ```js
-const dir = new FOUR.Vector3( 1, 2, 0 );
+const dir = new THREE.Vector3( 1, 2, 0 );
 //normalize the direction vector (convert to vector of length 1)
 dir.normalize();
-const origin = new FOUR.Vector3( 0, 0, 0 );
+const origin = new THREE.Vector3( 0, 0, 0 );
 const length = 1;
 const hex = 0xffff00;
-const arrowHelper = new FOUR.ArrowHelper( dir, origin, length, hex );
+const arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
 scene.add( arrowHelper );
 ```
 
@@ -75,6 +75,8 @@ The line part of the arrow helper.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Object3D#dispose](Object3D.html#dispose)
+
 ### .setColor( color : number | Color | string )
 
 Sets the color of the helper.
@@ -113,4 +115,4 @@ Default is `headLength*0.2`.
 
 ## Source
 
-[src/helpers/ArrowHelper.js](../../src/helpers/ArrowHelper.js)
+[src/helpers/ArrowHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/ArrowHelper.js)

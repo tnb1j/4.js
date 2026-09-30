@@ -1,11 +1,11 @@
-import { TempNode } from '@tnb1j/4js/webgpu';
-import { nodeObject, Fn, float, uv, convertToTexture, vec4, If, int, clamp, sub, mix } from '@tnb1j/4js/tsl';
+import { TempNode } from 'three/webgpu';
+import { nodeObject, Fn, float, uv, convertToTexture, vec4, If, int, clamp, sub, mix } from 'three/tsl';
 
 /**
  * Post processing node for creating a transition effect between scenes.
  *
  * @augments TempNode
- * @four_import import { transition } from '@tnb1j/4js/addons/tsl/display/TransitionNode.js';
+ * @three_import import { transition } from 'three/addons/tsl/display/TransitionNode.js';
  */
 class TransitionNode extends TempNode {
 

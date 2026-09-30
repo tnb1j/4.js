@@ -9,9 +9,9 @@ When the directional light or its target are transformed or light properties are
 ## Code Example
 
 ```js
-const light = new FOUR.DirectionalLight( 0xFFFFFF );
+const light = new THREE.DirectionalLight( 0xFFFFFF );
 scene.add( light );
-const helper = new FOUR.DirectionalLightHelper( light, 5 );
+const helper = new THREE.DirectionalLightHelper( light, 5 );
 scene.add( helper );
 ```
 
@@ -59,10 +59,12 @@ Represents the target line of the directional light.
 
 Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
 
+**Overrides:** [Object3D#dispose](Object3D.html#dispose)
+
 ### .update()
 
 Updates the helper to match the position and direction of the light being visualized.
 
 ## Source
 
-[src/helpers/DirectionalLightHelper.js](../../src/helpers/DirectionalLightHelper.js)
+[src/helpers/DirectionalLightHelper.js](https://github.com/mrdoob/three.js/blob/master/src/helpers/DirectionalLightHelper.js)

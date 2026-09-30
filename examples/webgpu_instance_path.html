@@ -25,23 +25,23 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.webgpu.js",
-					"@tnb1j/4js/webgpu": "../build/4.webgpu.js",
-					"@tnb1j/4js/tsl": "../build/4.tsl.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.webgpu.js",
+					"three/webgpu": "../build/three.webgpu.js",
+					"three/tsl": "../build/three.tsl.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js/webgpu';
+			import * as THREE from 'three/webgpu';
 
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { RoomEnvironment } from '@tnb1j/4js/addons/environments/RoomEnvironment.js';
-			import { Inspector } from '@tnb1j/4js/addons/inspector/Inspector.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			import { abs, add, instancedBufferAttribute, positionLocal, mod, time, sin, vec3, select, float, screenUV, color } from '@tnb1j/4js/tsl';
+			import { abs, add, instancedBufferAttribute, positionLocal, mod, time, sin, vec3, select, float, screenUV, color } from 'three/tsl';
 
 			let camera, scene, renderer, controls;
 
@@ -51,17 +51,17 @@
 
 			async function init() {
 
-				camera = new FOUR.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
 				camera.position.z = 15;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 				scene.backgroundNode = screenUV.distance( .5 ).remap( 0, 0.65 ).mix( color( 0x94254c ), color( 0x000000 ) );
 
 				// generate a path representing a heart shape
 
 				const x = 0, y = 0;
 
-				const path = new FOUR.Path()
+				const path = new THREE.Path()
 					.moveTo( x - 2.5, y - 2.5 )
 					.bezierCurveTo( x - 2.5, y - 2.5, x - 2, y, x, y )
 					.bezierCurveTo( x + 3, y, x + 3, y - 3.5, x + 3, y - 3.5 )
@@ -72,10 +72,10 @@
 
 				// generate instanced ico-spheres along the path
 			
-				const geometry = new FOUR.IcosahedronGeometry( 0.1 );
-				const material = new FOUR.MeshStandardNodeMaterial();
+				const geometry = new THREE.IcosahedronGeometry( 0.1 );
+				const material = new THREE.MeshStandardNodeMaterial();
 
-				const mesh = new FOUR.Mesh( geometry, material );
+				const mesh = new THREE.Mesh( geometry, material );
 				mesh.position.set( 2.5, 5, 0 );
 				mesh.count = count;
 				mesh.frustumCulled = false;
@@ -84,8 +84,8 @@
 
 				// instance data
 
-				const v = new FOUR.Vector3();
-				const c = new FOUR.Color();
+				const v = new THREE.Vector3();
+				const c = new THREE.Color();
 
 				const positions = [];
 				const times = [];
@@ -111,10 +111,10 @@
 
 				}
 
-				const positionAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( positions ), 3 );
-				const colorAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( colors ), 3 );
-				const timeAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( times ), 1 );
-				const seedAttribute = new FOUR.InstancedBufferAttribute( new Float32Array( seeds ), 1 );
+				const positionAttribute = new THREE.InstancedBufferAttribute( new Float32Array( positions ), 3 );
+				const colorAttribute = new THREE.InstancedBufferAttribute( new Float32Array( colors ), 3 );
+				const timeAttribute = new THREE.InstancedBufferAttribute( new Float32Array( times ), 1 );
+				const seedAttribute = new THREE.InstancedBufferAttribute( new Float32Array( seeds ), 1 );
 
 				// TSL
 
@@ -138,17 +138,17 @@
 			
 				//
 
-				renderer = new FOUR.WebGPURenderer( { antialias: true } );
+				renderer = new THREE.WebGPURenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setAnimationLoop( animate );
-				renderer.toneMapping = FOUR.NeutralToneMapping;
+				renderer.toneMapping = THREE.NeutralToneMapping;
 				renderer.inspector = new Inspector();
 				document.body.appendChild( renderer.domElement );
 
 				await renderer.init();
 
-				const pmremGenerator = new FOUR.PMREMGenerator( renderer );
+				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
 				controls = new OrbitControls( camera, renderer.domElement );

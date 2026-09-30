@@ -12,25 +12,25 @@
 
 		<div id="info">
 			<a href="../" target="_blank" rel="noopener">4.js</a> - webgl EXR texture loader example<br/>
-			Image courtesy of <a href="http://www.pauldebevec.com/Research/HDR/" target="_blank" rel="noopener">Paul Debevec</a>.
+			Image courtesy of <a href="https://www.pauldebevec.com/Research/HDR/" target="_blank" rel="noopener">Paul Debevec</a>.
 		</div>
 
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-			import { EXRLoader } from '@tnb1j/4js/addons/loaders/EXRLoader.js';
+			import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 
 			const params = {
 				exposure: 2.0
@@ -42,20 +42,20 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				renderer.toneMapping = FOUR.ReinhardToneMapping;
+				renderer.toneMapping = THREE.ReinhardToneMapping;
 				renderer.toneMappingExposure = params.exposure;
 
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
 				const aspect = window.innerWidth / window.innerHeight;
 
-				camera = new FOUR.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 1 );
+				camera = new THREE.OrthographicCamera( - aspect, aspect, 1, - 1, 0, 1 );
 
 				new EXRLoader()
 					.load( 'textures/memorial.exr', function ( texture, textureData ) {
@@ -70,11 +70,11 @@
 						//texture.minFilter = LinearFilter;
 						//texture.magFilter = LinearFilter;
 
-						const material = new FOUR.MeshBasicMaterial( { map: texture } );
+						const material = new THREE.MeshBasicMaterial( { map: texture } );
 
-						const quad = new FOUR.PlaneGeometry( 1.5 * textureData.width / textureData.height, 1.5 );
+						const quad = new THREE.PlaneGeometry( 1.5 * textureData.width / textureData.height, 1.5 );
 
-						const mesh = new FOUR.Mesh( quad, material );
+						const mesh = new THREE.Mesh( quad, material );
 
 						scene.add( mesh );
 

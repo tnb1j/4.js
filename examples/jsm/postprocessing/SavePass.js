@@ -4,7 +4,7 @@ import {
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
-} from '@tnb1j/4js';
+} from 'three';
 import { Pass, FullScreenQuad } from './Pass.js';
 import { CopyShader } from '../shaders/CopyShader.js';
 
@@ -17,7 +17,7 @@ import { CopyShader } from '../shaders/CopyShader.js';
  * ```
  *
  * @augments Pass
- * @four_import import { SavePass } from '@tnb1j/4js/addons/postprocessing/SavePass.js';
+ * @three_import import { SavePass } from 'three/addons/postprocessing/SavePass.js';
  */
 class SavePass extends Pass {
 
@@ -61,7 +61,7 @@ class SavePass extends Pass {
 
 		if ( this.renderTarget === undefined ) {
 
-			this.renderTarget = new WebGLRenderTarget( 1, 1, { type: HalfFloatType } ); // will be resized later
+			this.renderTarget = new WebGLRenderTarget( 1, 1, { type: HalfFloatType, depthBuffer: false } ); // will be resized later
 			this.renderTarget.texture.name = 'SavePass.rt';
 
 		}

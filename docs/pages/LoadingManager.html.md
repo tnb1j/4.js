@@ -7,7 +7,7 @@ In general that should be sufficient, however there are times when it can be use
 ## Code Example
 
 ```js
-const manager = new FOUR.LoadingManager();
+const manager = new THREE.LoadingManager();
 manager.onLoad = () => console.log( 'Loading complete!' );
 const loader1 = new OBJLoader( manager );
 const loader2 = new ColladaLoader( manager );
@@ -148,7 +148,7 @@ If provided, the callback will be passed each resource URL before a request is s
 
 ```js
 const blobs = {'fish.gltf': blob1, 'diffuse.png': blob2, 'normal.png': blob3};
-const manager = new FOUR.LoadingManager();
+const manager = new THREE.LoadingManager();
 // Initialize loading manager with URL callback.
 const objectURLs = [];
 manager.setURLModifier( ( url ) => {
@@ -172,4 +172,4 @@ URL modifier callback. Called with an URL and must return a resolved URL.
 
 ## Source
 
-[src/loaders/LoadingManager.js](../../src/loaders/LoadingManager.js)
+[src/loaders/LoadingManager.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/LoadingManager.js)

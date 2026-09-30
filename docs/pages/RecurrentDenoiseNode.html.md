@@ -8,10 +8,10 @@ The denoising kernel is selected at construction time via `mode`: `'diffuse'` (S
 
 ## Import
 
-RecurrentDenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+RecurrentDenoiseNode is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { recurrentDenoise } from '@tnb1j/4js/addons/tsl/display/RecurrentDenoiseNode.js';
+import { recurrentDenoise } from 'three/addons/tsl/display/RecurrentDenoiseNode.js';
 ```
 
 ## Constructor
@@ -52,4 +52,4 @@ Returns the internal output render target (e.g. for temporal reprojection/SSGI t
 
 ## Source
 
-[examples/jsm/tsl/display/RecurrentDenoiseNode.js](../../examples/jsm/tsl/display/RecurrentDenoiseNode.js)
+[examples/jsm/tsl/display/RecurrentDenoiseNode.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/tsl/display/RecurrentDenoiseNode.js)

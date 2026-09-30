@@ -19,10 +19,10 @@ interactions.update();
 
 ## Import
 
-InteractionManager is an addon, and must be imported explicitly, see [Installation#Addons](../../manual/#en/installation).
+InteractionManager is an addon, and must be imported explicitly, see [Installation#Addons](https://threejs.org/manual/#installation#addons).
 
 ```js
-import { InteractionManager } from '@tnb1j/4js/addons/interaction/InteractionManager.js';
+import { InteractionManager } from 'three/addons/interaction/InteractionManager.js';
 ```
 
 ## Constructor
@@ -87,4 +87,4 @@ Updates the element transforms for all registered objects. Call this once per fr
 
 ## Source
 
-[examples/jsm/interaction/InteractionManager.js](../../examples/jsm/interaction/InteractionManager.js)
+[examples/jsm/interaction/InteractionManager.js](https://github.com/mrdoob/three.js/blob/master/examples/jsm/interaction/InteractionManager.js)

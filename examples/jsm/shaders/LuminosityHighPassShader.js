@@ -1,10 +1,10 @@
 import {
 	Color
-} from '@tnb1j/4js';
+} from 'three';
 
 /**
  * @module LuminosityHighPassShader
- * @four_import import { LuminosityHighPassShader } from '@tnb1j/4js/addons/shaders/LuminosityHighPassShader.js';
+ * @three_import import { LuminosityHighPassShader } from 'three/addons/shaders/LuminosityHighPassShader.js';
  */
 
 /**

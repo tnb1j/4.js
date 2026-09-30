@@ -55,20 +55,20 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"@tnb1j/4js": "../build/4.module.js",
-					"@tnb1j/4js/addons/": "./jsm/"
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as FOUR from '@tnb1j/4js';
+			import * as THREE from 'three';
 
-			import { GUI } from '@tnb1j/4js/addons/libs/lil-gui.module.min.js';
-			import { OrbitControls } from '@tnb1j/4js/addons/controls/OrbitControls.js';
-			import { UltraHDRLoader } from '@tnb1j/4js/addons/loaders/UltraHDRLoader.js';
-			import { GLTFLoader } from '@tnb1j/4js/addons/loaders/GLTFLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 			const params = {
 				color: 0xffffff,
@@ -95,7 +95,7 @@
 				.setPath( 'textures/equirectangular/' )
 				.load( 'royal_esplanade_2k.hdr.jpg', function () {
 
-					hdrEquirect.mapping = FOUR.EquirectangularReflectionMapping;
+					hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
 
 					new GLTFLoader()
 						.setPath( 'models/gltf/' )
@@ -108,7 +108,7 @@
 									mesh = child;
 									material = mesh.material;
 
-									const color = new FOUR.Color();
+									const color = new THREE.Color();
 
 									params.color = color.copy( mesh.material.color ).getHex();
 									params.roughness = mesh.material.roughness;
@@ -141,22 +141,22 @@
 
 			function init() {
 
-				renderer = new FOUR.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
 				document.body.appendChild( renderer.domElement );
 
-				renderer.toneMapping = FOUR.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = params.exposure;
 
 				// accommodate CSS table
 				renderer.domElement.style.position = 'absolute';
 				renderer.domElement.style.top = 0;
 
-				scene = new FOUR.Scene();
+				scene = new THREE.Scene();
 
-				camera = new FOUR.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 2000 );
 				camera.position.set( - 5, 0.5, 0 );
 
 				const controls = new OrbitControls( camera, renderer.domElement );

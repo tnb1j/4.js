@@ -7,11 +7,11 @@ import { Texture } from './Texture.js';
  * ```js
  * // assuming you have created a HTML video element with id="video"
  * const video = document.getElementById( 'video' );
- * const texture = new FOUR.VideoTexture( video );
+ * const texture = new THREE.VideoTexture( video );
  * ```
  *
  * Note: When using video textures with {@link WebGPURenderer}, {@link Texture#colorSpace} must be
- * set to FOUR.SRGBColorSpace.
+ * set to THREE.SRGBColorSpace.
  *
  * Note: After the initial use of a texture, its dimensions, format, and type
  * cannot be changed. Instead, call {@link Texture#dispose} on the texture and instantiate a new one.

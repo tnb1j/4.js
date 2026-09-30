@@ -1,6 +1,6 @@
 # 4.js
 
-4.js is an enhanced, backward-compatible fork of Three.js r185 for modern
+4.js is an enhanced, backward-compatible fork of Three.js r186 for modern
 WebGL, WebGPU, and WebXR applications. The native package is `@tnb1j/4js`,
 and the recommended namespace is `FOUR`.
 
